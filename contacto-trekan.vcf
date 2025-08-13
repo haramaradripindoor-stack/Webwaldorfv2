@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Colegio Waldorf Trekan
+ORG:Colegio Waldorf Trekan
+TITLE:Institución Educativa Waldorf
+ADR;TYPE=WORK:;;Las Azaleas 96, Parque Ivian 1;Puerto Varas;Región de Los Lagos;;Chile
+LABEL;TYPE=WORK:Colegio Waldorf Trekan\nLas Azaleas 96, Parque Ivian 1\nPuerto Varas, Chile
+TEL;TYPE=WORK,VOICE:+56 9 3270 1359
+EMAIL;TYPE=PREF,WORK:admision@colegiowaldorftrekan.cl
+URL:https://www.instagram.com/waldorftrekanpv/
+NOTE:Comunidad educativa inspirada en la pedagogía Waldorf para niños entre 6 y 10 años.\nComprometidos con la voluntad, la naturaleza y la comunidad.
+END:VCARD

@@ -1,0 +1,614 @@
+/* style.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  line-height: 1.8;
+  color: #333;
+  background-color: #f8f5f0;
+}
+
+h1, h2, h3 {
+  font-family: 'Merriweather', serif;
+  color: #2E5E4E;
+  margin-bottom: 1rem;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.logo {
+  max-width: 200px;
+  margin-bottom: 10px;
+}
+.tagline {
+  font-style: italic;
+  color: #555;
+  font-size: 1.2em;
+}
+
+/* Nav - Versión mejorada */
+.nav {
+  background-color: #4CAF50; /* Verde claro y cálido */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 8px 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-logo-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-mini {
+  width: 30px;
+  height: auto;
+  border-radius: 8px;
+  filter: brightness(1.1); /* Mejora visibilidad del logo */
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  padding: 15px 20px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s ease, background 0.3s ease;
+  border-radius: 8px;
+}
+
+.nav a:hover {
+  color: #F9C846;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Hero */
+.hero {
+  background: url('images/fondo-natural.jpg') no-repeat center center;
+  background-size: cover;
+  color: white;
+  text-align: center;
+  padding: 120px 20px;
+  position: relative;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.hero > * {
+  position: relative;
+  z-index: 2;
+}
+.intro-text {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.intro-text h2 {
+  color: white;
+  font-size: 2.5em;
+  margin-bottom: 1rem;
+}
+.cta-buttons {
+  margin-top: 30px;
+}
+.btn-primary, .btn-secondary {
+  padding: 12px 25px;
+  margin: 0 10px;
+  border-radius: 30px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+}
+.btn-primary {
+  background: #F9C846;
+  color: #333;
+}
+.btn-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+/* Secciones generales */
+.section {
+  padding: 80px 0;
+  text-align: center;
+}
+.section.light {
+  background-color: #e9f3e9;
+}
+.section.dark {
+  background-color: #2E5E4E;
+  color: white;
+}
+.section.dark a {
+  color: #a8d8a8;
+}
+
+/* Features */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+  text-align: left;
+}
+.feature h3 {
+  color: #2E5E4E;
+  margin-bottom: 10px;
+}
+.section.dark .feature h3 {
+  color: #a8d8a8;
+}
+
+/* Quote */
+.quote {
+  background: #e0f2e9;
+  padding: 60px 20px;
+  margin: 0;
+}
+.quote blockquote {
+  font-style: italic;
+  font-size: 1.3em;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #2E5E4E;
+}
+.quote cite {
+  display: block;
+  text-align: right;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+/* About Grid */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+.about-card {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+/* Admission */
+.admission-info, .process {
+  max-width: 600px;
+  margin: 30px auto;
+  text-align: left;
+}
+.admission-info p, .process ol {
+  margin-bottom: 15px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 30px 0;
+  background: #111;
+  color: white;
+  font-size: 0.9em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero { padding: 80px 20px; }
+  .intro-text h2 { font-size: 2em; }
+  .nav ul { flex-direction: column; }
+  .nav a { text-align: center; }
+  .btn-primary, .btn-secondary {
+    margin: 5px 0;
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+  }
+}
+
+/* Botón de formulario */
+.form-button {
+  margin-top: 30px;
+  text-align: center;
+}
+.form-button .btn-primary {
+  font-size: 1.1em;
+  padding: 14px 30px;
+  background: #F9C846;
+  color: #333;
+  border: none;
+  transition: all 0.3s ease;
+}
+.form-button .btn-primary:hover {
+  background: #e8b73f;
+  transform: translateY(-2px);
+}
+
+/* Contenedor del mapa */
+.map-container {
+  margin-top: 30px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  background: white;
+}
+/* Responsive para el mapa */
+@media (max-width: 768px) {
+  .map-container iframe {
+    height: 300px;
+  }
+}
+
+/* Botón de WhatsApp */
+.whatsapp-button {
+  margin-top: 25px;
+  text-align: center;
+}
+.whatsapp-button a {
+  display: inline-block;
+  background: #25D366;
+  color: white;
+  padding: 14px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1em;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+}
+.whatsapp-button a:hover {
+  background: #128C7E;
+  transform: translateY(-2px);
+}
+
+/* Tabla de admisión */
+.admission-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.95em;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.admission-table th, .admission-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+.admission-table th {
+  background: #2E5E4E;
+  color: white;
+}
+.admission-table tr:nth-child(even) {
+  background: #f0f7f0;
+}
+.admission-table tr:hover {
+  background: #e0f2e9;
+}
+
+/* Vida Comunitaria y Propuesta Curricular */
+.comunidad-grid,
+.curricular-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin: 30px auto;
+  max-width: 800px;
+  text-align: left;
+}
+.item {
+  background: #f0f7f0;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  color: #2E5E4E;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Iconos en títulos */
+section h2 {
+  position: relative;
+  padding-bottom: 15px;
+}
+section h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: #F9C846;
+  border-radius: 2px;
+}
+
+/* Galería de fotos */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.03);
+}
+
+/* Slideshow */
+.slideshow-container {
+  position: relative;
+  max-width: 800px;
+  margin: 30px auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.slide {
+  display: none;
+  text-align: center;
+}
+
+.slide img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Flechas de navegación */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 50%;
+  user-select: none;
+  transition: background 0.3s ease;
+  z-index: 2;
+}
+
+.prev:hover, .next:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+.prev {
+  left: 10px;
+  border-radius: 50%;
+}
+
+.next {
+  right: 10px;
+  border-radius: 50%;
+}
+
+/* Puntos indicadores */
+.dots-container {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.dot {
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  margin: 0 6px;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dot:hover, .dot.active {
+  background: #2E5E4E;
+}
+
+/* Grid de Contacto - Compacto y legible */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.contact-item {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 16px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.contact-item h3 {
+  color: #a8d8a8;
+  margin: 0 0 8px 0;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.contact-item p {
+  color: white;
+  margin: 0;
+  line-height: 1.6;
+  font-size: 0.95em;
+}
+
+/* Correo: evita que se salga del contenedor */
+.contact-link {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.contact-link a {
+  color: #a8d8a8;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95em;
+}
+
+.contact-link a:hover {
+  text-decoration: underline;
+}
+
+/* Botón pequeño y discreto */
+.btn-small {
+  display: inline-block;
+  background: #F9C846;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-small:hover {
+  background: #e8b73f;
+  transform: translateY(-1px);
+}
+
+/* Asegura que todo respire en móviles */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .contact-item {
+    padding: 14px;
+  }
+  .contact-item h3 {
+    font-size: 1.05em;
+  }
+  .contact-item p {
+    font-size: 0.9em;
+  }
+  .btn-small {
+    font-size: 0.85em;
+    padding: 5px 10px;
+  }
+  .container {
+    padding: 0 15px;
+  }
+}
+/* Responsive mejorado para móviles */
+@media (max-width: 768px) {
+  /* Ajuste de encabezados */
+  h1 { font-size: 1.8em; }
+  h2 { font-size: 1.6em; }
+  h3 { font-size: 1.3em; }
+
+  /* Ajuste de contenedores */
+  .container {
+    padding: 0 15px;
+  }
+
+  /* Menú en móvil */
+  .nav ul {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav a {
+    padding: 12px 10px;
+    font-size: 0.9em;
+  }
+
+  /* Sección de contacto */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .contact-item {
+    padding: 15px;
+  }
+
+  /* Mapa */
+  .map-container iframe {
+    height: 300px;
+  }
+
+  /* Botones */
+  .btn-primary, .btn-secondary, .btn-small {
+    padding: 10px 15px;
+    font-size: 1em;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 80px 15px;
+  }
+  .intro-text h2 {
+    font-size: 2em;
+  }
+
+  /* Slideshow */
+  .slide img {
+    height: 300px;
+  }
+
+  /* Evita que el correo se salga del contenedor */
+  .contact-link {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
