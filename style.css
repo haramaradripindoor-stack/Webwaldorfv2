@@ -395,7 +395,7 @@ p {
 /* Botones pequeños mejorados (WhatsApp, contacto) */
 .btn-small {
   display: inline-block;
-  background: #FF6B35; /* Naranja oscuro para mejor contraste */
+  background: #FF6B35;
   color: white;
   padding: 10px 20px;
   border-radius: 25px;
@@ -407,7 +407,7 @@ p {
 }
 
 .btn-small:hover {
-  background: #FF8C00; /* Naranja más claro al pasar el mouse */
+  background: #FF8C00;
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(255, 107, 53, 0.4);
 }
@@ -803,7 +803,7 @@ p {
   font-weight: bold;
 }
 
-/* Nota importante - CORREGIDO */
+/* Nota importante */
 .note {
   margin-top: 15px;
   padding: 16px 20px;
@@ -816,7 +816,6 @@ p {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Versión para secciones oscuras */
 .section-dark .note {
   background: #FFF9E6;
   color: #333;
@@ -872,20 +871,48 @@ p {
   text-decoration: underline;
 }
 
+/* Redes Sociales con SVG - Versión segura */
 .social-links {
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  gap: 12px;
+  margin: 12px 0;
 }
 
-.social-links a {
+.social-link {
+  display: flex;
+  align-items: center;
   color: #a8d8a8;
   text-decoration: none;
-  transition: var(--transition);
   font-weight: 500;
+  transition: all 0.3s ease;
+  gap: 10px;
+  padding: 6px 0;
 }
 
-.social-links a:hover {
-  color: var(--accent-yellow);
+.social-link:hover {
+  color: #F9C846;
+  transform: translateX(5px);
+}
+
+/* SVG de redes sociales */
+.social-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* Asegura que el color del SVG no se pierda */
+.social-icon path {
+  transition: fill 0.3s ease;
+}
+
+.social-link:hover .social-icon path {
+  fill: #F9C846 !important;
+}
+
+.social-name {
+  font-size: 1.05em;
 }
 
 /* Map Container */
@@ -923,6 +950,33 @@ p {
 .footer p {
   margin: 5px 0;
   opacity: 0.8;
+}
+
+/* Botón flotante de WhatsApp */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  color: white;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  z-index: 1000;
+  animation: float 2s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid white;
+}
+
+.floating-whatsapp:hover {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
 }
 
 /* Mobile Responsive */
