@@ -88,16 +88,6 @@ p {
   50% { transform: translate(-30px, -30px) rotate(180deg); }
 }
 
-/* Header */
-.header {
-  text-align: center;
-  padding: clamp(30px, 5vw, 50px) 20px;
-  background: linear-gradient(135deg, #fff 0%, #f8f5f0 100%);
-  box-shadow: var(--shadow-sm);
-  position: relative;
-  overflow: hidden;
-}
-
 /* Header con imagen de fondo */
 .header-with-bg {
   background-image: url('images/colegio-fondo.jpg');
@@ -109,9 +99,10 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Overlay oscuro para mejorar legibilidad */
 .header-overlay {
   position: absolute;
   top: 0;
@@ -127,13 +118,12 @@ p {
   z-index: 1;
 }
 
-/* Contenido del header */
 .header-content {
   position: relative;
   z-index: 2;
+  text-align: center;
 }
 
-/* Ajustes para el header con fondo */
 .header-with-bg h1 {
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -402,22 +392,24 @@ p {
   font-size: 1.1rem;
 }
 
+/* Botones pequeños mejorados (WhatsApp, contacto) */
 .btn-small {
   display: inline-block;
-  background: var(--accent-yellow);
-  color: var(--text-dark);
-  padding: 8px 16px;
+  background: #FF6B35; /* Naranja oscuro para mejor contraste */
+  color: white;
+  padding: 10px 20px;
   border-radius: 25px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none;
-  transition: var(--transition);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
 }
 
 .btn-small:hover {
-  background: #e8b73f;
+  background: #FF8C00; /* Naranja más claro al pasar el mouse */
   transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 6px 15px rgba(255, 107, 53, 0.4);
 }
 
 /* Sections */
@@ -811,13 +803,24 @@ p {
   font-weight: bold;
 }
 
+/* Nota importante - CORREGIDO */
 .note {
   margin-top: 15px;
-  padding: 15px;
-  background: #fff9e6;
+  padding: 16px 20px;
+  background: #FFF9E6;
+  border-left: 3px solid var(--accent-yellow);
   border-radius: 8px;
   font-size: 0.95rem;
-  border-left: 3px solid var(--accent-yellow);
+  line-height: 1.5;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Versión para secciones oscuras */
+.section-dark .note {
+  background: #FFF9E6;
+  color: #333;
+  border-left-color: var(--accent-yellow);
 }
 
 .form-button {
@@ -924,10 +927,9 @@ p {
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
-  /* Header con fondo en móvil */
   .header-with-bg {
     min-height: 350px;
-    background-attachment: scroll; /* Mejor rendimiento en móvil */
+    background-attachment: scroll;
     padding: 50px 20px;
   }
 
@@ -943,7 +945,6 @@ p {
     max-width: 180px;
   }
 
-  /* Navigation Mobile */
   .menu-toggle {
     display: block;
   }
@@ -966,26 +967,9 @@ p {
     left: 0;
   }
 
-  .nav-menu li {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .nav-menu li:last-child {
-    border-bottom: none;
-  }
-
   .nav-menu a {
     padding: 20px;
     font-size: 1.1rem;
-  }
-
-  /* Hero Mobile */
-  .hero {
-    padding: 60px 20px;
-  }
-
-  .intro-text h2 {
-    font-size: 1.8rem;
   }
 
   .cta-buttons {
@@ -998,18 +982,6 @@ p {
     max-width: 280px;
   }
 
-  /* Features Mobile */
-  .features {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  /* About Grid Mobile */
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Slideshow Mobile */
   .slide img {
     height: 300px;
   }
@@ -1023,7 +995,6 @@ p {
   .prev { left: 10px; }
   .next { right: 10px; }
 
-  /* Table Mobile */
   .admission-table {
     font-size: 0.85rem;
   }
@@ -1033,17 +1004,11 @@ p {
     padding: 10px;
   }
 
-  /* Contact Grid Mobile */
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-
   .social-links {
     flex-direction: column;
     gap: 10px;
   }
 
-  /* Map Mobile */
   .map-container {
     height: 300px;
   }
@@ -1121,10 +1086,6 @@ p {
     color: #e0e0e0;
   }
 
-  .header {
-    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-  }
-
   .section-light {
     background: #2a2a2a;
   }
@@ -1149,24 +1110,4 @@ p {
   .admission-table tbody tr:hover {
     background: #3a3a3a;
   }
-}
-.header-with-bg .header-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(46, 94, 78, 0.85) 0%,
-    rgba(76, 175, 80, 0.75) 50%,
-    rgba(46, 94, 78, 0.85) 100%
-  );
-  z-index: 1;
-}
-
-.header-with-bg .header-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
 }
