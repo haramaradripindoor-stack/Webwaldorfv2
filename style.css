@@ -584,6 +584,9 @@ p {
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
   border-left: 4px solid var(--secondary-green);
+  min-height: auto;
+  overflow: visible;
+  word-wrap: break-word;
 }
 
 .about-card:hover {
@@ -1065,6 +1068,15 @@ p {
 
   .map-container {
     height: 300px;
+  }
+
+  .about-card {
+    padding: 20px;
+    font-size: 0.95em;
+  }
+
+  .team-members p {
+    margin-bottom: 10px;
   }
 }
 
