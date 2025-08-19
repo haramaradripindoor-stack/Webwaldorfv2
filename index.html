@@ -658,12 +658,36 @@ Porque en Trekan, educar también significa cuidar, construir y embellecer el es
     </div>
   </footer>
 
-  <!-- Modal de Imagen -->
-  <div id="imageModal" class="modal">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="modalImage">
+ <!-- Modal de Imagen Mejorado -->
+<div id="imageModal" class="modal">
+  <!-- Botón cerrar -->
+  <span class="close">&times;</span>
+  
+  <!-- Contador de imágenes -->
+  <div class="modal-counter">1 / 5</div>
+  
+  <!-- Botón anterior -->
+  <button class="modal-prev" aria-label="Imagen anterior">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+    </svg>
+  </button>
+  
+  <!-- Imagen principal -->
+  <img class="modal-content" id="modalImage" alt="">
+  
+  <!-- Botón siguiente -->
+  <button class="modal-next" aria-label="Imagen siguiente">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+      <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+    </svg>
+  </button>
+  
+  <!-- Instrucciones de navegación (opcional) -->
+  <div class="modal-instructions">
+    Usa las flechas del teclado o desliza para navegar
   </div>
-
+</div>
   <!-- JavaScript -->
   <script src="js/script.js"></script>
 
