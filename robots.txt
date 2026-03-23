@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Carpetas que NO deben rastrearse
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /js/
+Disallow: /css/
+Disallow: /images/
+
+# Evitar URLs con parámetros (duplicados)
+Disallow: /*?*
+Disallow: /*.php$
+Disallow: /*.pdf$
+
+# Archivos específicos
+Disallow: /js/script.js
+Disallow: /style.css
+
+# Sitemap
+Sitemap: https://www.colegiowaldorftrekan.cl/sitemap.xml
