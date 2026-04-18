@@ -19,6 +19,7 @@
   --header-height: 90px; /* Aumentado para mejor visualización */
   --z-nav: 1000;
   --z-modal: 2000;
+  --z-modal-controls: 2001; /* FIX: CSS no soporta var() + 1, se usa variable dedicada */
   --z-floating: 999;
 }
 
@@ -32,7 +33,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* FIX: scroll-behavior: smooth eliminado — el JS maneja el smooth scroll
+     con offset correcto del navbar. Tener ambos causa doble animación en móvil. */
   font-size: 16px;
 }
 
@@ -123,9 +125,16 @@ p {
   background-image: url('assets/colegio-fondo.jpg');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
-  opacity: 0.3;
+  background-attachment: scroll; /* FIX: fixed roto en iOS Safari */
+  opacity: 0.45; /* aumentado para más impacto visual */
   z-index: 1;
+}
+
+/* Parallax solo en desktop con mouse (no touch) */
+@media (min-width: 769px) and (hover: hover) {
+  .header-with-bg::before {
+    background-attachment: fixed;
+  }
 }
 
 .header-overlay {
@@ -148,7 +157,23 @@ p {
   width: clamp(80px, 15vw, 120px);
   height: auto;
   margin-bottom: 1rem;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  animation: logoEntrance 0.8s ease-out both;
+}
+
+@keyframes logoEntrance {
+  from { opacity: 0; transform: scale(0.85) translateY(-10px); }
+  to   { opacity: 1; transform: scale(1)   translateY(0); }
+}
+
+.header-content h1 {
+  text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+  letter-spacing: -0.02em;
+}
+
+.header-content .tagline {
+  text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
 }
 
 .tagline {
@@ -173,6 +198,7 @@ p {
   z-index: var(--z-nav);
   transition: var(--transition);
   height: var(--header-height);
+  will-change: transform; /* FIX: promueve a su propio layer para animación de hide/show */
 }
 
 .nav.scrolled {
@@ -186,7 +212,7 @@ p {
   justify-content: space-between;
   height: 100%;
   position: relative;
-  overflow: hidden;
+  overflow: visible; /* FIX: hidden cortaba el dropdown menu */
 }
 
 .nav-logo {
@@ -459,10 +485,11 @@ p {
 /* ======================
    HERO SECTION
    ====================== */
+/* HERO SECTION */
 .hero {
   padding: 6rem 0 4rem;
   background: linear-gradient(135deg, var(--light-green) 0%, var(--white) 100%);
-  margin-top: var(--header-height);
+  /* FIX: margin-top eliminado — body ya tiene padding-top: var(--header-height) */
 }
 
 .intro-text {
@@ -719,6 +746,8 @@ p {
   position: relative;
   width: 100%;
   height: 400px;
+  /* FIX CLS: aspect-ratio asegura espacio reservado antes de cargar imágenes */
+  aspect-ratio: 16 / 9;
 }
 
 .slide.active {
@@ -729,6 +758,11 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+/* FIX: transición de opacidad para el slideshow (el JS controla opacity directamente) */
+.slide {
   transition: opacity 0.3s ease;
 }
 
@@ -783,9 +817,12 @@ p {
 }
 
 .dot.active,
-.dot:hover {
+.dot:hover,
+.dot:focus-visible {
   background-color: var(--primary-green);
   transform: scale(1.2);
+  outline: 2px solid var(--primary-green);
+  outline-offset: 2px;
 }
 
 @media (max-width: 768px) {
@@ -836,6 +873,8 @@ p {
   width: 100%;
   height: 200px;
   overflow: hidden;
+  /* FIX CLS: aspecto fijo evita saltos de layout al cargar imágenes */
+  aspect-ratio: 16 / 8;
 }
 
 .news-image img {
@@ -1323,7 +1362,7 @@ p {
   font-size: 40px;
   font-weight: bold;
   cursor: pointer;
-  z-index: var(--z-modal) + 1;
+  z-index: var(--z-modal-controls); /* FIX: era var(--z-modal) + 1, inválido en CSS */
   width: 50px;
   height: 50px;
   display: flex;
@@ -1368,7 +1407,7 @@ p {
   align-items: center;
   justify-content: center;
   transition: var(--transition);
-  z-index: var(--z-modal) + 1;
+  z-index: var(--z-modal-controls); /* FIX: era var(--z-modal) + 1, inválido en CSS */
 }
 
 .modal-prev {
@@ -1501,7 +1540,7 @@ p {
 /* Ajuste en móviles */
 @media (max-width: 768px) {
   .floating-whatsapp {
-    bottom: 20px;
+    bottom: 90px; /* FIX: subido para no solaparse con el botón "Postula aquí" fijo */
     left: 15px;
     width: 55px;
     height: 55px;
@@ -1511,7 +1550,7 @@ p {
 
 @media (max-width: 480px) {
   .floating-whatsapp {
-    bottom: 15px;
+    bottom: 85px;
     left: 12px;
     width: 50px;
     height: 50px;
@@ -1555,6 +1594,22 @@ p {
     height: 45px;
     font-size: 18px;
   }
+}
+
+
+/* ======================
+   CONTENT VISIBILITY (Mejora de render en secciones off-screen)
+   Solo para secciones que no son visibles en el viewport inicial
+   ====================== */
+#noticias,
+#galeria,
+#admission,
+#faq,
+#arriendo-salon,
+#comunidad,
+#curricular {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px; /* estimado de altura */
 }
 
 /* ======================
@@ -1635,25 +1690,148 @@ p {
    PRINT STYLES
    ====================== */
 @media print {
+  /* Ocultar elementos no imprimibles */
   .nav,
   .floating-whatsapp,
   .back-to-top,
-  .modal {
+  .modal,
+  .slideshow-container,
+  .dots-container,
+  .news-video,
+  .map-container,
+  .arriendo-actions,
+  .gallery-preview,
+  .contact-form-wrap,
+  #cookie-banner,
+  .cta-buttons,
+  .nav-apply-btn,
+  iframe {
     display: none !important;
   }
-  
+
+  /* Reset para impresión */
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    font-size: 11pt;
+    line-height: 1.5;
+    font-family: Georgia, serif;
+    padding-top: 0 !important;
+  }
+
+  /* Encabezado impreso */
+  .header {
+    min-height: auto !important;
+    padding: 1rem 0 !important;
+    border-bottom: 2px solid #2E5E4E;
+    page-break-after: avoid;
+  }
+
+  .header h1 {
+    font-size: 22pt;
+    color: #2E5E4E !important;
+  }
+
+  .tagline {
+    font-size: 11pt;
+    color: #555 !important;
+  }
+
+  /* Secciones */
   .section {
+    padding: 1rem 0 !important;
     page-break-inside: avoid;
   }
-  
-  body {
-    font-size: 12pt;
-    line-height: 1.4;
+
+  .section-title {
+    font-size: 16pt;
+    color: #2E5E4E !important;
+    border-bottom: 1px solid #A8D8B9;
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.8rem;
+  }
+
+  /* Tabla admisión — conservar en impresión */
+  .admission-table {
+    border: 1pt solid #ccc;
+    width: 100%;
+  }
+
+  .admission-table th {
+    background: #2E5E4E !important;
+    color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .admission-table th:last-child,
+  .admission-table td:last-child {
+    display: table-cell !important; /* revertir el ocultar móvil */
+  }
+
+  /* Links — mostrar URL */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    color: #666 !important;
+  }
+
+  a[href^="tel"]::after,
+  a[href^="mailto"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+  }
+
+  /* Info cards */
+  .info-card {
+    border: 1pt solid #2E5E4E;
+    border-left: 4pt solid #2E5E4E;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    page-break-inside: avoid;
+  }
+
+  /* Contacto */
+  .section-dark {
+    background: white !important;
+    color: black !important;
+  }
+
+  .section-dark h2,
+  .section-dark h3,
+  .section-dark p,
+  .section-dark a {
+    color: #2E5E4E !important;
+  }
+
+  /* Footer */
+  .footer {
+    border-top: 1pt solid #ccc;
+    text-align: center;
+    font-size: 9pt;
+    padding: 0.5rem 0;
+    background: white !important;
+    color: #555 !important;
+  }
+
+  /* Página de impresión — número */
+  @page {
+    margin: 2cm;
+    @bottom-center {
+      content: "Colegio Waldorf Trekan — www.colegiowaldorftrekan.cl — Página " counter(page);
+      font-size: 8pt;
+      color: #888;
+    }
   }
 }
 
 /* ======================
-   SUBMENÚ DESPLEGABLE
+   SUBMENÚ DESPLEGABLE — 5 items nav
    ====================== */
 .dropdown {
   position: relative;
@@ -1661,104 +1839,1322 @@ p {
 
 .dropdown-toggle {
   position: relative;
-  padding-right: 1.5rem;
-  transition: var(--transition);
+  padding-right: 1.6rem !important;
 }
 
 .dropdown-toggle::after {
-  content: '▼';
+  content: '▾';
   position: absolute;
-  right: 0.5rem;
-  font-size: 0.8rem;
-  color: var(--text-dark);
-  transition: var(--transition);
+  right: 0.4rem;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
 }
 
+.dropdown.open .dropdown-toggle::after {
+  transform: rotate(180deg);
+}
+
+/* Desktop dropdown menu */
 .dropdown-menu {
-  display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
   background: var(--white);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  box-shadow: var(--shadow-hover);
-  min-width: 160px;
-  z-index: 1001;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  min-width: 210px;
+  z-index: 1100;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  transform: translateX(-50%) translateY(-6px);
+  list-style: none;
+  padding: 0.4rem 0;
 }
 
-.dropdown:hover .dropdown-menu {
-  display: block;
-  opacity: 1;
-  visibility: visible;
+/* Small arrow pointing up */
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: var(--white);
+  border-top: none;
+  filter: drop-shadow(0 -1px 0 var(--border-color));
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu,
+.dropdown.open .dropdown-menu {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateX(-50%) translateY(0) !important;
 }
 
 .dropdown-menu li {
   width: 100%;
-  text-align: left;
 }
 
 .dropdown-menu a {
-  display: block;
-  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  padding: 0.65rem 1.2rem;
   text-decoration: none;
   color: var(--text-dark);
   font-weight: 500;
-  font-size: 0.95rem;
-  border-bottom: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  transition: var(--transition);
+  white-space: nowrap;
+  border-radius: 0;
+}
+
+.dropdown-menu a::before {
+  content: '→';
+  margin-right: 0.5rem;
+  color: var(--secondary-green);
+  font-size: 0.8rem;
+  opacity: 0;
+  transform: translateX(-4px);
   transition: var(--transition);
 }
 
 .dropdown-menu a:hover {
-  background-color: var(--light-green);
+  background: var(--light-green);
   color: var(--primary-green);
-  transform: translateY(-2px);
 }
 
-.dropdown-menu a:last-child {
-  border-bottom: none;
+.dropdown-menu a:hover::before {
+  opacity: 1;
+  transform: translateX(0);
 }
 
-/* Para móvil: mostrar submenú en modo dropdown */
+/* MOBILE — accordion style */
 @media (max-width: 768px) {
   .dropdown-menu {
     position: static;
-    display: none;
-    background: transparent;
-    border: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
     box-shadow: none;
+    border: none;
+    background: transparent;
+    padding: 0;
+    display: none; /* controlled by JS */
+    min-width: unset;
     width: 100%;
     margin-top: 0.5rem;
-    padding-left: 1rem;
   }
 
-  .dropdown-menu li {
-    margin: 0;
-    padding: 0;
+  .dropdown-menu::before { display: none; }
+
+  .dropdown.open .dropdown-menu {
+    display: block;
+    transform: none;
   }
 
   .dropdown-menu a {
-    display: block;
-    padding: 0.75rem 1rem;
-    background: var(--light-green);
+    background: rgba(46, 94, 78, 0.08);
+    border-radius: 10px;
+    margin-bottom: 0.4rem;
     color: var(--primary-green);
-    border: none;
-    border-radius: var(--border-radius);
-    margin-bottom: 0.5rem;
-    transition: var(--transition);
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
   }
 
   .dropdown-menu a:hover {
-    background: var(--white);
-    color: var(--primary-green);
-    transform: scale(1.02);
+    background: rgba(46, 94, 78, 0.15);
+  }
+
+  .dropdown-menu a::before {
+    opacity: 1;
+    transform: none;
   }
 
   .dropdown-toggle::after {
-    content: '▶';
-    transform: rotate(90deg);
+    content: '▾';
+    transform: none;
+    transition: transform 0.3s ease;
+  }
+
+  .dropdown.open .dropdown-toggle::after {
+    transform: rotate(180deg);
+  }
+}
+
+/* ======================
+   OPTIMIZACIONES DE IMAGEN
+   ====================== */
+
+/* Placeholder skeleton mientras carga imagen */
+img {
+  background: var(--light-gray);
+}
+
+img.loaded {
+  background: transparent;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Evitar que las imágenes overflow en sus contenedores */
+picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ======================
+   FORMULARIO DE CONTACTO
+   ====================== */
+.contact-form-wrap {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  margin: 2rem 0 3rem;
+}
+
+.contact-form-title {
+  color: var(--white) !important;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.8rem 1rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--border-radius);
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--text-dark);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: var(--transition);
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--secondary-green);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(168, 216, 185, 0.3);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.contact-submit {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .contact-submit {
+    width: 100%;
+  }
+}
+
+/* ======================
+   ANIMACIONES AL SCROLL — data-animate
+   ====================== */
+
+/* Estado inicial: invisible y desplazado */
+.pre-animate {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Estado final: visible */
+.animated {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Sin animación para usuarios que prefieren movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .pre-animate {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ======================
+   MOBILE UX — FIXES COMPLETOS
+   ====================== */
+
+/* 1. Section padding reducido en móvil (era 4rem = 64px, excesivo) */
+@media (max-width: 768px) {
+  .section {
+    padding: 2.5rem 0;
+  }
+
+  .hero {
+    padding: 3.5rem 0 2.5rem;
+  }
+
+  /* 2. Grids — arreglar desborde en pantallas < 320px */
+  .features {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .grid-list {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.8rem;
+  }
+
+  /* 3. Slideshow más alto en móvil */
+  .slide {
+    height: 300px;
+  }
+
+  /* 4. Tabla admisión - fuente más pequeña */
+  .admission-table th,
+  .admission-table td {
+    padding: 0.7rem 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  /* 5. info-card padding reducido */
+  .info-card {
+    padding: 1.25rem;
+  }
+
+  /* 6. Feature cards padding */
+  .feature {
+    padding: 1.5rem 1.2rem;
+  }
+
+  /* 7. About card */
+  .about-card {
+    padding: 1.5rem 1.2rem;
+  }
+
+  /* 8. Section title más compacto */
+  .section-title {
+    margin-bottom: 1.2rem;
+    font-size: clamp(1.6rem, 5vw, 2rem);
+  }
+
+  .section-description {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+
+  /* 9. Quote section */
+  .quote blockquote {
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
+  }
+
+  /* 10. Arriendo grid */
+  .arriendo-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Pantallas muy pequeñas (320px) */
+  .container {
+    padding: 0 0.85rem;
+  }
+
+  .section {
+    padding: 2rem 0;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-list {
+    grid-template-columns: 1fr;
+  }
+
+  /* Tabla de admisión en pantalla muy chica */
+  .admission-table th,
+  .admission-table td {
+    padding: 0.5rem 0.4rem;
+    font-size: 0.78rem;
+  }
+
+  /* Ocultar columna "Detalles" en móvil muy chico */
+  .admission-table th:last-child,
+  .admission-table td:last-child {
+    display: none;
+  }
+
+  .news-video iframe {
+    height: 200px;
+  }
+}
+
+/* ======================
+   DOTS — Touch target ampliado
+   ====================== */
+.dot {
+  /* Touch target real: 12px visible pero 44px de área táctil */
+  position: relative;
+}
+
+.dot::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+/* ======================
+   ESTADOS :active — Feedback táctil
+   ====================== */
+.btn:active {
+  transform: scale(0.97);
+  transition: transform 0.1s ease;
+}
+
+.nav-menu a:active {
+  background-color: var(--secondary-green);
+  transform: scale(0.98);
+}
+
+.faq-question:active {
+  background: var(--secondary-green);
+}
+
+.social-link:active {
+  transform: scale(0.93);
+}
+
+.floating-whatsapp:active {
+  transform: scale(0.93);
+}
+
+.prev:active,
+.next:active,
+.modal-prev:active,
+.modal-next:active {
+  transform: translateY(-50%) scale(0.93);
+}
+
+/* ======================
+   iPhone NOTCH / Safe Area
+   ====================== */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .floating-whatsapp {
+    bottom: calc(90px + env(safe-area-inset-bottom));
+  }
+
+  .back-to-top {
+    bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+
+  @media (max-width: 768px) {
+    .nav-apply-btn {
+      bottom: calc(30px + env(safe-area-inset-bottom));
+    }
+  }
+
+  footer {
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* ======================
+   MEJORAS TIPOGRAFÍA MÓVIL
+   ====================== */
+@media (max-width: 480px) {
+  h1 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+  h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
+  h3 { font-size: clamp(1.2rem, 5vw, 1.6rem); }
+
+  p {
+    font-size: 0.97rem;
+    line-height: 1.65;
+  }
+
+  .tagline {
+    font-size: 1rem;
+  }
+
+  .highlight-text {
+    font-size: 0.97rem;
+    padding: 1.2rem;
+  }
+}
+
+/* ======================
+   BACK-TO-TOP MÓVIL — posición corregida
+   ====================== */
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: 20px;
+    right: 15px;
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+  }
+}
+
+/* ======================
+   SLIDESHOW — mejoras mobile
+   ====================== */
+@media (max-width: 480px) {
+  .slide {
+    height: 240px;
+  }
+
+  .dots-container {
+    margin-top: 0.75rem;
+  }
+}
+
+/* ======================
+   GALERÍA DE NOTICIAS — mobile
+   ====================== */
+@media (max-width: 480px) {
+  .news-gallery {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.4rem;
+  }
+
+  .news-content {
+    padding: 1.2rem;
+  }
+
+  .news-content h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* ======================
+   FORMULARIO CONTACTO — dark section
+   ====================== */
+@media (max-width: 480px) {
+  .contact-form-wrap {
+    padding: 1.5rem 1rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 16px; /* evita zoom automático en iOS al hacer focus */
+  }
+}
+
+/* ======================
+   MAPA — mobile
+   ====================== */
+@media (max-width: 768px) {
+  .map-container iframe {
+    height: 280px;
+  }
+}
+
+/* ======================
+   PREVIEW GALERÍA ARRIENDO — mobile
+   ====================== */
+@media (max-width: 480px) {
+  .gallery-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-item {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* ======================
+   ANIMACIONES AL SCROLL — data-animate
+   ====================== */
+.pre-animate {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.animated {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pre-animate { opacity: 1; transform: none; transition: none; }
+}
+
+/* ======================
+   MOBILE UX — Section padding
+   ====================== */
+@media (max-width: 768px) {
+  .section { padding: 2.5rem 0; }
+  .hero { padding: 3.5rem 0 2.5rem; }
+  .features { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+  .news-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .grid-list { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem; }
+  .slide { height: 300px; }
+  .admission-table th, .admission-table td { padding: 0.7rem 0.6rem; font-size: 0.85rem; }
+  .info-card { padding: 1.25rem; }
+  .feature { padding: 1.5rem 1.2rem; }
+  .about-card { padding: 1.5rem 1.2rem; }
+  .section-title { margin-bottom: 1.2rem; font-size: clamp(1.6rem, 5vw, 2rem); }
+  .section-description { margin-bottom: 2rem; font-size: 1rem; }
+  .quote blockquote { font-size: clamp(1.1rem, 4vw, 1.4rem); }
+  .arriendo-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+  .back-to-top { bottom: 20px; right: 15px; width: 42px; height: 42px; font-size: 16px; }
+  .map-container iframe { height: 280px; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 0.85rem; }
+  .section { padding: 2rem 0; }
+  .features { grid-template-columns: 1fr; }
+  .grid-list { grid-template-columns: 1fr; }
+  .admission-table th, .admission-table td { padding: 0.5rem 0.4rem; font-size: 0.78rem; }
+  .admission-table th:last-child, .admission-table td:last-child { display: none; }
+  .news-video iframe { height: 200px; }
+  .slide { height: 240px; }
+  .dots-container { margin-top: 0.75rem; }
+  .news-gallery { grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
+  .news-content { padding: 1.2rem; }
+  .news-content h3 { font-size: 1.1rem; }
+  .contact-form-wrap { padding: 1.5rem 1rem; }
+  .form-group input, .form-group select, .form-group textarea { font-size: 16px; }
+  h1 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+  h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
+  h3 { font-size: clamp(1.2rem, 5vw, 1.6rem); }
+  p { font-size: 0.97rem; line-height: 1.65; }
+  .tagline { font-size: 1rem; }
+  .highlight-text { font-size: 0.97rem; padding: 1.2rem; }
+  .gallery-preview { grid-template-columns: 1fr; }
+  .preview-item { aspect-ratio: 16 / 9; }
+}
+
+/* Dots — area táctil 44px */
+.dot { position: relative; }
+.dot::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+}
+
+/* :active — feedback táctil */
+.btn:active { transform: scale(0.97); transition: transform 0.1s ease; }
+.nav-menu a:active { background-color: var(--secondary-green); transform: scale(0.98); }
+.faq-question:active { background: var(--secondary-green); }
+.social-link:active, .floating-whatsapp:active { transform: scale(0.93); }
+.prev:active, .next:active,
+.modal-prev:active, .modal-next:active { transform: translateY(-50%) scale(0.93); }
+
+/* iPhone notch — safe area */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .floating-whatsapp { bottom: calc(90px + env(safe-area-inset-bottom)); }
+  .back-to-top { bottom: calc(20px + env(safe-area-inset-bottom)); }
+  footer { padding-bottom: calc(2rem + env(safe-area-inset-bottom)); }
+  @media (max-width: 768px) {
+    .nav-apply-btn { bottom: calc(30px + env(safe-area-inset-bottom)); }
+  }
+}
+.about-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+
+/* ======================
+   PRÓXIMAS ACTIVIDADES
+   ====================== */
+.actividades-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.actividad-card {
+  display: flex;
+  gap: 1.2rem;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  border-left: 4px solid var(--secondary-green);
+  align-items: flex-start;
+}
+
+.actividad-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.actividad-fecha {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-green);
+  color: var(--white);
+  border-radius: var(--border-radius);
+  padding: 0.8rem 1rem;
+  min-width: 60px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.actividad-dia {
+  font-size: 1.8rem;
+  font-weight: 700;
+  font-family: 'Merriweather', serif;
+  line-height: 1;
+}
+
+.actividad-mes {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  opacity: 0.85;
+  margin-top: 0.2rem;
+}
+
+.actividad-info {
+  flex: 1;
+}
+
+.actividad-info h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+  color: var(--primary-green);
+  line-height: 1.3;
+}
+
+.actividad-info p {
+  font-size: 0.92rem;
+  color: var(--text-light);
+  margin-bottom: 0.6rem;
+  line-height: 1.5;
+}
+
+.actividad-hora {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.actividad-tipo {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.7rem;
+  border-radius: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.tipo-asamblea   { background: #e8f4fd; color: #1a6a9e; }
+.tipo-celebracion{ background: var(--light-green); color: var(--primary-green); }
+.tipo-admision   { background: #fff3e0; color: #e65100; }
+.tipo-taller     { background: #f3e5f5; color: #6a1b9a; }
+
+.actividades-cta {
+  text-align: center;
+  margin-top: 2.5rem;
+  padding: 2rem;
+  background: var(--light-green);
+  border-radius: var(--border-radius);
+  border: 2px solid var(--secondary-green);
+}
+
+.actividades-cta p {
+  font-size: 1.05rem;
+  margin-bottom: 1.2rem;
+  color: var(--text-dark);
+}
+
+@media (max-width: 768px) {
+  .actividades-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .actividad-card {
+    padding: 1.1rem;
+    gap: 0.9rem;
+  }
+  .actividad-fecha {
+    min-width: 52px;
+    padding: 0.6rem 0.7rem;
+  }
+  .actividad-dia { font-size: 1.5rem; }
+  .actividad-info h3 { font-size: 0.97rem; }
+}
+
+/* ======================
+   BARRA DE PROGRESO DE SCROLL
+   ====================== */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--primary-green), var(--secondary-green), var(--accent-orange));
+  z-index: 9998;
+  transition: width 0.1s linear;
+  border-radius: 0 2px 2px 0;
+}
+
+/* Botón compartir */
+.btn-outline-share {
+  background: transparent;
+  color: var(--primary-green);
+  border: 2px solid var(--primary-green);
+  padding: 0.8rem 1.5rem;
+  font-size: 0.95rem;
+  min-width: auto;
+}
+.btn-outline-share:hover {
+  background: var(--primary-green);
+  color: white;
+}
+/* Solo mostrar en dispositivos que soporten Web Share API */
+#share-btn { display: none; }
+
+/* ======================
+   INSTAGRAM SECTION
+   ====================== */
+.ig-handle {
+  color: var(--primary-green);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid var(--secondary-green);
+  transition: var(--transition);
+}
+.ig-handle:hover {
+  color: #c13584;
+  border-color: #c13584;
+}
+
+.ig-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 200px 200px;
+  gap: 0.5rem;
+  max-width: 860px;
+  margin: 2rem auto;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-hover);
+  height: 405px; /* 200+200+5gap */
+}
+
+.ig-item {
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+  position: relative;
+  transition: var(--transition);
+  border-radius: 0;
+}
+
+.ig-item:hover { opacity: 0.88; }
+.ig-item:active { transform: scale(0.98); }
+
+/* Item principal — ocupa exactamente 2 filas */
+.ig-main {
+  grid-row: 1 / 3;
+  grid-column: 1 / 2;
+}
+
+/* Placeholder degradado Instagram */
+.ig-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: unset;
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.ig-logo-wrap {
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.ig-icon {
+  width: 44px;
+  height: 44px;
+  fill: white;
+}
+
+.ig-cta-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: white;
+}
+
+.ig-username {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.ig-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.82rem;
+  opacity: 0.85;
+}
+
+/* Fotos pequeñas — placeholder colorido */
+.ig-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  transition: var(--transition);
+}
+
+/* Colores alternados para las 5 celdas pequeñas */
+.ig-item:nth-child(2) .ig-photo-placeholder { background: linear-gradient(135deg, #A8D8B9, #2E5E4E); }
+.ig-item:nth-child(3) .ig-photo-placeholder { background: linear-gradient(135deg, #D4A574, #c9885a); }
+.ig-item:nth-child(4) .ig-photo-placeholder { background: linear-gradient(135deg, #E8F5E8, #A8D8B9); }
+.ig-item:nth-child(5) .ig-photo-placeholder { background: linear-gradient(135deg, #2E5E4E, #1e3d22); }
+.ig-item:nth-child(6) .ig-photo-placeholder { background: linear-gradient(135deg, #A8D8B9, #D4A574); }
+
+/* Overlay al hover en fotos pequeñas */
+.ig-item:not(.ig-main):hover .ig-photo-placeholder {
+  filter: brightness(0.85);
+}
+
+/* Botón seguir */
+.ig-follow-btn-wrap {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.ig-follow-btn {
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(193, 53, 132, 0.3);
+  transition: var(--transition);
+  min-width: auto;
+}
+
+.ig-follow-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(193, 53, 132, 0.45);
+  background: linear-gradient(135deg, #e6683c, #dc2743, #cc2366, #bc1888, #9b27af);
+  color: white;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .ig-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 180px 120px 120px;
+    height: auto;
+  }
+  .ig-main {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .ig-grid {
+    gap: 0.3rem;
+    grid-template-rows: 160px 100px 100px;
+  }
+  .ig-photo-placeholder { font-size: 1.8rem; }
+  .ig-logo-wrap { width: 56px; height: 56px; }
+  .ig-icon { width: 30px; height: 30px; }
+  .ig-cta-text { font-size: 0.9rem; }
+}
+
+/* ======================
+   INSTAGRAM GRID — FOTOS REALES
+   ====================== */
+.ig-item picture,
+.ig-item picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.ig-item:hover picture img {
+  transform: scale(1.06);
+}
+
+/* Overlay principal — aparece siempre abajo */
+.ig-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.65));
+  color: white;
+  padding: 1.5rem 1.2rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Overlay fotos pequeñas — aparece en hover */
+.ig-overlay-small {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  transition: background 0.3s ease;
+}
+
+.ig-item:hover .ig-overlay-small {
+  background: rgba(193, 53, 132, 0.25);
+}
+
+/* ======================
+   HERO REDISEÑADO
+   ====================== */
+.hero-content {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.hero-eyebrow {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--secondary-green);
+  margin-bottom: 1.2rem;
+  opacity: 0.95;
+}
+
+.hero-title {
+  font-family: 'Merriweather', serif;
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--white);
+  text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  margin-bottom: 1.4rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  color: rgba(255,255,255,0.93);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.25);
+}
+
+.hero-subtitle strong {
+  color: var(--secondary-green);
+}
+
+/* Badges diferenciadores */
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-bottom: 2.2rem;
+}
+
+.hero-badge {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: var(--white);
+  padding: 0.45rem 1rem;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: var(--transition);
+}
+
+.hero-badge:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.4);
+}
+
+/* Hero CTAs más grandes */
+.btn-hero {
+  padding: 1.1rem 2.2rem;
+  font-size: 1.05rem;
+  border-radius: 50px;
+}
+
+.btn-primary.btn-hero {
+  background: var(--secondary-green);
+  color: var(--primary-green);
+  box-shadow: 0 6px 24px rgba(168,216,185,0.4);
+}
+
+.btn-primary.btn-hero:hover {
+  background: white;
+  color: var(--primary-green);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(168,216,185,0.5);
+}
+
+.btn-secondary.btn-hero {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(255,255,255,0.7);
+}
+
+.btn-secondary.btn-hero:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: white;
+  color: white;
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .hero-title { font-size: clamp(1.9rem, 7vw, 2.6rem); }
+  .hero-badges { gap: 0.4rem; }
+  .hero-badge { font-size: 0.78rem; padding: 0.4rem 0.8rem; }
+  .btn-hero { padding: 1rem 1.8rem; font-size: 1rem; }
+  .cta-buttons { gap: 0.8rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { line-height: 1.2; }
+  .hero-badges { flex-direction: column; align-items: center; }
+  .hero-badge { font-size: 0.82rem; }
+  .cta-buttons { flex-direction: column; align-items: center; }
+  .btn-hero { width: 100%; max-width: 280px; text-align: center; }
+}
+
+/* FIX LOGO HEADER (fondo blanco) */
+.logo,
+.logo-mini,
+.header .logo,
+.nav-logo img {
+  background: transparent !important;
+  mix-blend-mode: normal;
+}
+
+/* Evitar que regla global afecte el logo */
+img.logo,
+img.logo-mini {
+  background: none !important;
+}
+
+/* Tamaño logo header */
+.logo {
+  width: clamp(140px, 22vw, 200px);
+}
+
+/* Tamaño logo nav (arriba chico) */
+.logo-mini {
+  width: 50px;
+  height: auto;
+}
+/* ======================
+   DROPDOWN — FIX VISIBILIDAD
+   ====================== */
+.dropdown {
+  position: relative;
+}
+
+.dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 1px solid #E9ECEF;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  min-width: 200px;
+  z-index: 9999;
+  list-style: none;
+  padding: 0.4rem 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.dropdown.open .dropdown-menu {
+  display: block !important;
+  opacity: 1 !important;
+}
+
+.dropdown .dropdown-menu a {
+  display: block;
+  padding: 0.7rem 1.2rem;
+  color: #2C3E50;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.dropdown .dropdown-menu a:hover {
+  background: #E8F5E8;
+  color: #2E5E4E;
+}
+
+/* Mobile dropdown */
+@media (max-width: 768px) {
+  .dropdown .dropdown-menu {
+    position: static;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    padding: 0.3rem 0 0 1rem;
+    width: 100%;
+  }
+
+  .dropdown .dropdown-menu a {
+    background: rgba(46,94,78,0.08);
+    border-radius: 8px;
+    margin-bottom: 0.3rem;
+    color: #2E5E4E;
+  }
+}
+
+/* ======================
+   DROPDOWN — POSICIÓN CORRECTA (fijo al nav)
+   ====================== */
+.dropdown {
+  position: static;
+}
+
+.nav-menu {
+  position: static;
+}
+
+.nav-container {
+  position: relative;
+  overflow: visible !important;
+}
+
+.dropdown .dropdown-menu {
+  position: fixed !important;
+  top: var(--header-height) !important;
+  left: auto !important;
+  transform: none !important;
+  background: white;
+  border: 1px solid #E9ECEF;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  min-width: 200px;
+  z-index: 9999;
+  list-style: none;
+  padding: 0.4rem 0;
+}
+
+@media (max-width: 768px) {
+  .dropdown .dropdown-menu {
+    position: static !important;
+    top: auto !important;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    padding: 0.3rem 0 0 1rem;
   }
 }

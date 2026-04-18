@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página no encontrada — Colegio Waldorf Trekan</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde: #2E5E4E;
+      --verde-claro: #A8D8B9;
+      --verde-light: #E8F5E8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      font-family: 'Quicksand', sans-serif;
+      background: var(--verde-light);
+      color: #2C3E50;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .illustration {
+      font-size: 6rem;
+      line-height: 1;
+      margin-bottom: 1rem;
+      animation: sway 3s ease-in-out infinite;
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-3deg); }
+      50%       { transform: rotate(3deg); }
+    }
+
+    .code {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(4rem, 15vw, 7rem);
+      color: var(--verde);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(1.3rem, 4vw, 1.8rem);
+      color: var(--verde);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 1.05rem;
+      color: #5a7a6a;
+      max-width: 460px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--verde);
+      color: white;
+      box-shadow: 0 4px 15px rgba(46, 94, 78, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: #1e3d22;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(46, 94, 78, 0.4);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--verde);
+      border: 2px solid var(--verde);
+    }
+
+    .btn-secondary:hover {
+      background: var(--verde);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: var(--verde-claro);
+      border-radius: 2px;
+      margin: 1.5rem auto;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 1.5rem;
+      font-size: 0.85rem;
+      color: #9ab0a5;
+    }
+
+    @media (max-width: 480px) {
+      .actions { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 280px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="illustration">🌲</div>
+
+  <div class="code">404</div>
+
+  <div class="divider"></div>
+
+  <h1>Esta página se perdió en el bosque</h1>
+
+  <p>La dirección que buscas no existe o fue movida.<br>
+  Volvamos al camino.</p>
+
+  <div class="actions">
+    <a href="/" class="btn btn-primary">🏠 Volver al inicio</a>
+    <a href="https://wa.me/56967765106?text=Hola,%20necesito%20ayuda%20con%20el%20sitio%20web%20de%20Trekan"
+       target="_blank" rel="noopener noreferrer"
+       class="btn btn-secondary">💬 Escribirnos</a>
+  </div>
+
+  <footer>© 2026 Colegio Waldorf Trekan — Puerto Varas</footer>
+
+</body>
+</html>
