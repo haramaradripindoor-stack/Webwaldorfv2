@@ -1,0 +1,45 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+locale: 'es'
+
+collections:
+  - name: "noticias"
+    label: "Noticias"
+    folder: "_noticias"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Título", name: "titulo", widget: "string"}
+      - {label: "Fecha", name: "fecha", widget: "string", hint: "Ej: 21 de junio de 2026"}
+      - {label: "Foto", name: "foto", widget: "image"}
+      - {label: "Descripción foto", name: "foto_alt", widget: "string"}
+      - {label: "Texto", name: "texto", widget: "markdown"}
+      - {label: "ID Video YouTube (opcional)", name: "video_id", widget: "string", required: false}
+
+  - name: "actividades"
+    label: "Actividades"
+    folder: "_actividades"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Nombre", name: "nombre", widget: "string"}
+      - {label: "Día", name: "dia", widget: "string"}
+      - label: "Mes"
+        name: "mes"
+        widget: "select"
+        options: ["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"]
+      - label: "Tipo"
+        name: "tipo"
+        widget: "select"
+        options:
+          - {label: "Asamblea", value: "asamblea"}
+          - {label: "Celebración", value: "celebracion"}
+          - {label: "Admisión", value: "admision"}
+          - {label: "Taller", value: "taller"}
+      - {label: "Descripción", name: "descripcion", widget: "text"}
+      - {label: "Hora y lugar", name: "hora", widget: "string"}
