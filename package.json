@@ -1,0 +1,11 @@
+{
+  "name": "colegio-waldorf-trekan",
+  "version": "2.1.0",
+  "description": "Sitio web Colegio Waldorf Trekan - Puerto Varas",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
