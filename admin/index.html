@@ -8,9 +8,9 @@
   <link rel="icon" href="../assets/logo.png">
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- Versión fija para evitar bugs de versiones inestables -->
+  <script src="https://unpkg.com/decap-cms@3.3.3/dist/decap-cms.js"></script>
   <script>
-    // Configuración embebida directamente para evitar error 404 del config.yml
     CMS.init({
       config: {
         backend: {
@@ -34,7 +34,7 @@
               { label: "Foto principal", name: "foto", widget: "image" },
               { label: "Descripción foto", name: "foto_alt", widget: "string" },
               { label: "Texto de la noticia", name: "texto", widget: "markdown" },
-              { label: "ID Video YouTube (opcional)", name: "video_id", widget: "string", required: false, hint: "Solo el ID del video, ej: eOsbR_QoNAY" }
+              { label: "ID Video YouTube (opcional)", name: "video_id", widget: "string", required: false, hint: "Ej: eOsbR_QoNAY" }
             ]
           },
           {
