@@ -4,11 +4,82 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow">
-  <title>Admin — Colegio Waldorf Trekan</title>
+  <title>Panel Admin — Colegio Waldorf Trekan</title>
   <link rel="icon" href="../assets/logo.png">
 </head>
 <body>
-  <!-- Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // Configuración embebida directamente para evitar error 404 del config.yml
+    CMS.init({
+      config: {
+        backend: {
+          name: "git-gateway",
+          branch: "main"
+        },
+        media_folder: "images",
+        public_folder: "images",
+        locale: "es",
+        collections: [
+          {
+            name: "noticias",
+            label: "📰 Noticias",
+            label_singular: "Noticia",
+            folder: "_noticias",
+            create: true,
+            slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+            fields: [
+              { label: "Título", name: "titulo", widget: "string" },
+              { label: "Fecha", name: "fecha", widget: "string", hint: "Ej: 21 de junio de 2026" },
+              { label: "Foto principal", name: "foto", widget: "image" },
+              { label: "Descripción foto", name: "foto_alt", widget: "string" },
+              { label: "Texto de la noticia", name: "texto", widget: "markdown" },
+              { label: "ID Video YouTube (opcional)", name: "video_id", widget: "string", required: false, hint: "Solo el ID del video, ej: eOsbR_QoNAY" }
+            ]
+          },
+          {
+            name: "actividades",
+            label: "📅 Actividades",
+            label_singular: "Actividad",
+            folder: "_actividades",
+            create: true,
+            slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+            fields: [
+              { label: "Nombre del evento", name: "nombre", widget: "string" },
+              { label: "Día", name: "dia", widget: "string", hint: "Ej: 28" },
+              {
+                label: "Mes", name: "mes", widget: "select",
+                options: [
+                  { label: "Enero", value: "ENE" },
+                  { label: "Febrero", value: "FEB" },
+                  { label: "Marzo", value: "MAR" },
+                  { label: "Abril", value: "ABR" },
+                  { label: "Mayo", value: "MAY" },
+                  { label: "Junio", value: "JUN" },
+                  { label: "Julio", value: "JUL" },
+                  { label: "Agosto", value: "AGO" },
+                  { label: "Septiembre", value: "SEP" },
+                  { label: "Octubre", value: "OCT" },
+                  { label: "Noviembre", value: "NOV" },
+                  { label: "Diciembre", value: "DIC" }
+                ]
+              },
+              {
+                label: "Tipo", name: "tipo", widget: "select",
+                options: [
+                  { label: "🔵 Asamblea", value: "asamblea" },
+                  { label: "🟢 Celebración", value: "celebracion" },
+                  { label: "🟠 Admisión", value: "admision" },
+                  { label: "🟣 Taller", value: "taller" }
+                ]
+              },
+              { label: "Descripción", name: "descripcion", widget: "text" },
+              { label: "Hora y lugar", name: "hora", widget: "string", hint: "Ej: Las Azaleas 96 · 18:30 hrs" }
+            ]
+          }
+        ]
+      }
+    });
+  </script>
 </body>
 </html>
