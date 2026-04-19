@@ -1284,28 +1284,32 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
   <!-- Widget Chatbot Trekan — Asistente virtual IA -->
   <!-- ============================================== -->
   <style>
-    /* Burbuja flotante del asistente */
+    /* Burbuja flotante del asistente — con LOGO */
     .trekan-bot-bubble {
       position: fixed;
       bottom: 110px;     /* Por encima del botón de WhatsApp */
       right: 25px;
-      width: 60px;
-      height: 60px;
+      width: 62px;
+      height: 62px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #2E5E4E 0%, #3d7a66 100%);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Merriweather', serif;
-      font-weight: 700;
-      font-size: 1.7rem;
+      background: #fff;
+      padding: 0;
       cursor: pointer;
-      border: none;
-      box-shadow: 0 6px 20px rgba(46,94,78,0.4), 0 0 0 0 rgba(168,216,185,0.6);
+      border: 2px solid #2E5E4E;
+      box-shadow: 0 6px 20px rgba(46,94,78,0.35), 0 0 0 0 rgba(168,216,185,0.6);
       z-index: 9998;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
       animation: trekan-bot-pulse 2.5s ease-out infinite;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .trekan-bot-bubble img {
+      width: 74%;
+      height: 74%;
+      object-fit: contain;
+      pointer-events: none;
     }
     .trekan-bot-bubble:hover {
       transform: scale(1.08);
@@ -1313,17 +1317,17 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
     }
     .trekan-bot-bubble:active { transform: scale(0.95); }
     @keyframes trekan-bot-pulse {
-      0%   { box-shadow: 0 6px 20px rgba(46,94,78,0.4), 0 0 0 0 rgba(168,216,185,0.6); }
-      70%  { box-shadow: 0 6px 20px rgba(46,94,78,0.4), 0 0 0 14px rgba(168,216,185,0); }
-      100% { box-shadow: 0 6px 20px rgba(46,94,78,0.4), 0 0 0 0 rgba(168,216,185,0); }
+      0%   { box-shadow: 0 6px 20px rgba(46,94,78,0.35), 0 0 0 0 rgba(168,216,185,0.6); }
+      70%  { box-shadow: 0 6px 20px rgba(46,94,78,0.35), 0 0 0 14px rgba(168,216,185,0); }
+      100% { box-shadow: 0 6px 20px rgba(46,94,78,0.35), 0 0 0 0 rgba(168,216,185,0); }
     }
     .trekan-bot-bubble.open { animation: none; }
 
     /* Tooltip inicial "¿Te ayudo?" */
     .trekan-bot-tooltip {
       position: fixed;
-      bottom: 125px;
-      right: 95px;
+      bottom: 128px;
+      right: 97px;
       background: #fff;
       color: #1a2e25;
       padding: 10px 16px;
@@ -1398,7 +1402,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
       pointer-events: auto;
     }
 
-    /* Header del panel */
+    /* Header del panel con logo */
     .trekan-bot-header {
       background: linear-gradient(135deg, #2E5E4E 0%, #3d7a66 100%);
       color: #fff;
@@ -1418,20 +1422,24 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
       width: 38px;
       height: 38px;
       border-radius: 50%;
-      background: #A8D8B9;
-      color: #1a2e25;
+      background: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Merriweather', serif;
-      font-weight: 700;
-      font-size: 1.1rem;
+      overflow: hidden;
+      padding: 3px;
+    }
+    .trekan-bot-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
     .trekan-bot-header-text h4 {
       margin: 0;
       font-size: 1rem;
       font-weight: 600;
       line-height: 1.2;
+      font-family: 'Quicksand', sans-serif;
     }
     .trekan-bot-header-text span {
       font-size: 0.78rem;
@@ -1484,8 +1492,8 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
         border-radius: 0;
       }
       .trekan-bot-tooltip {
-        bottom: 125px;
-        right: 90px;
+        bottom: 128px;
+        right: 92px;
         font-size: 0.85rem;
         padding: 8px 14px;
       }
@@ -1512,14 +1520,16 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
     ¿Tienes dudas? Pregúntame 🌱
   </div>
 
-  <!-- Burbuja flotante -->
+  <!-- Burbuja flotante con LOGO del colegio -->
   <button
     id="trekan-bot-bubble"
     class="trekan-bot-bubble"
     aria-label="Abrir asistente virtual Trekan"
     aria-expanded="false"
     aria-controls="trekan-bot-panel"
-  >T</button>
+  >
+    <img src="assets/logo.png" alt="" aria-hidden="true">
+  </button>
 
   <!-- Overlay oscuro (solo móvil) -->
   <div id="trekan-bot-overlay" class="trekan-bot-overlay" aria-hidden="true"></div>
@@ -1534,7 +1544,9 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
   >
     <div class="trekan-bot-header">
       <div class="trekan-bot-header-info">
-        <div class="trekan-bot-avatar">T</div>
+        <div class="trekan-bot-avatar">
+          <img src="assets/logo.png" alt="" aria-hidden="true">
+        </div>
         <div class="trekan-bot-header-text">
           <h4>Asistente Trekan</h4>
           <span><span class="trekan-bot-status-dot"></span> En línea</span>
@@ -1566,7 +1578,6 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
         setTimeout(function() {
           if (!panel.classList.contains('open')) {
             tooltip.classList.add('visible');
-            // Ocultar tras 6s
             setTimeout(function() {
               tooltip.classList.remove('visible');
             }, 6000);
@@ -1575,7 +1586,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
       }
 
       function openBot() {
-        // Lazy load del iframe (no carga hasta que se abre → mejor LCP)
+        // Lazy load del iframe
         if (!iframeLoaded) {
           var iframe = document.createElement('iframe');
           iframe.src = 'https://chatbottrekan.vercel.app/?embed=1';
@@ -1592,7 +1603,6 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
         bubble.setAttribute('aria-expanded', 'true');
         tooltip.classList.remove('visible');
         localStorage.setItem('trekan-bot-seen', '1');
-        // Envío evento a GTM si existe
         if (window.dataLayer) {
           window.dataLayer.push({ event: 'chatbot_open', chatbot: 'trekan' });
         }
@@ -1613,7 +1623,6 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
       closeBtn.addEventListener('click', closeBot);
       overlay.addEventListener('click', closeBot);
 
-      // Cerrar con tecla ESC
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && panel.classList.contains('open')) {
           closeBot();
