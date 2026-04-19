@@ -385,6 +385,7 @@ p {
     left: 0;
     width: 100%;
     height: 100vh;
+    height: 100dvh; /* mejor en móviles, considera la barra del navegador */
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -397,10 +398,12 @@ p {
     z-index: 1000;
     padding: 2rem;
     overflow-y: auto;
+    visibility: hidden; /* evita interacción cuando está cerrado */
   }
   
   .nav-menu.active {
     transform: translateX(0);
+    visibility: visible;
   }
   
   .nav-menu li {
@@ -429,7 +432,7 @@ p {
     transform: scale(1.02);
   }
   
-  /* Botón Postula en menú móvil */
+  /* Botón Postula: OCULTO por defecto en móvil, solo visible cuando el menú se abre */
   .nav-apply-btn {
     position: fixed;
     bottom: 30px;
@@ -444,6 +447,18 @@ p {
     width: auto;
     min-width: 200px;
     text-align: center;
+    /* Oculto mientras el menú está cerrado */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+
+  /* Cuando el menú está abierto, mostramos el botón Postula */
+  .nav-menu.active ~ .nav-apply-btn {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 }
 
