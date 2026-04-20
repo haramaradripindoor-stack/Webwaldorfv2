@@ -797,54 +797,54 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.key === 'Escape') dropdownItems.forEach(d => d.classList.remove('open'));
   });
 
+  // ======================
+  // 11. FORMULARIO DE CONTACTO — Feedback visual
+  // (FormSubmit maneja el envío, esto mejora UX antes del redirect)
+  // ======================
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function() {
+      const btn = this.querySelector('.contact-submit');
+      if (btn) {
+        btn.textContent = 'Enviando...';
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+      }
+    });
+  }
+
+  // ======================
+  // 12. BARRA DE PROGRESO DE SCROLL
+  // ======================
+  const progressBar = document.getElementById('scroll-progress');
+  if (progressBar) {
+    window.addEventListener('scroll', Utils.throttle(() => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled  = (window.scrollY / docHeight) * 100;
+      progressBar.style.width = Math.min(scrolled, 100) + '%';
+    }, 16), { passive: true });
+  }
+
+  // ======================
+  // 13. WEB SHARE API — Botón compartir nativo en móvil
+  // ======================
+  const shareBtn = document.getElementById('share-btn');
+  if (shareBtn && navigator.share) {
+    shareBtn.style.display = 'inline-block';
+    shareBtn.addEventListener('click', async () => {
+      try {
+        await navigator.share({
+          title: 'Colegio Waldorf Trekan',
+          text: 'Educación con el corazón, en armonía con la naturaleza. Puerto Varas, Chile.',
+          url:   'https://www.colegiowaldorftrekan.cl'
+        });
+      } catch (err) {
+        log('Share cancelado o no disponible');
+      }
+    });
+  }
+
   log('✅ Colegio Waldorf Trekan — Script cargado v2.1');
 });
-
-// ======================
-// 11. FORMULARIO DE CONTACTO — Feedback visual
-// (FormSubmit maneja el envío, esto mejora UX antes del redirect)
-// ======================
-const contactForm = document.getElementById('contact-form');
-if (contactForm) {
-  contactForm.addEventListener('submit', function() {
-    const btn = this.querySelector('.contact-submit');
-    if (btn) {
-      btn.textContent = 'Enviando...';
-      btn.disabled = true;
-      btn.style.opacity = '0.7';
-    }
-  });
-}
-
-// ======================
-// 12. BARRA DE PROGRESO DE SCROLL
-// ======================
-const progressBar = document.getElementById('scroll-progress');
-if (progressBar) {
-  window.addEventListener('scroll', Utils.throttle(() => {
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrolled  = (window.scrollY / docHeight) * 100;
-    progressBar.style.width = Math.min(scrolled, 100) + '%';
-  }, 16), { passive: true });
-}
-
-// ======================
-// 13. WEB SHARE API — Botón compartir nativo en móvil
-// ======================
-const shareBtn = document.getElementById('share-btn');
-if (shareBtn && navigator.share) {
-  shareBtn.style.display = 'inline-block'; // Solo en browsers con soporte
-  shareBtn.addEventListener('click', async () => {
-    try {
-      await navigator.share({
-        title: 'Colegio Waldorf Trekan',
-        text: 'Educación con el corazón, en armonía con la naturaleza. Puerto Varas, Chile.',
-        url:   'https://www.colegiowaldorftrekan.cl'
-      });
-    } catch (err) {
-      log('Share cancelado o no disponible');
-    }
-  });
-}
 
 
