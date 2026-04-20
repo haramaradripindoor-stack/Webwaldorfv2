@@ -16,10 +16,16 @@ collections:
     fields:
       - {label: "Título", name: "titulo", widget: "string"}
       - {label: "Fecha", name: "fecha", widget: "string", hint: "Ej: 21 de junio de 2026"}
-      - {label: "Foto", name: "foto", widget: "image"}
+      - {label: "Foto principal (encabezado)", name: "foto", widget: "image"}
       - {label: "Descripción foto", name: "foto_alt", widget: "string"}
-      - {label: "Texto", name: "body", widget: "markdown"}
-      - {label: "ID Video YouTube (opcional)", name: "video_id", widget: "string", required: false}
+      - {label: "Texto de la noticia", name: "body", widget: "markdown"}
+      - {label: "ID Video YouTube (opcional)", name: "video_id", widget: "string", required: false, hint: "Ej: eOsbR_QoNAY (solo el ID, no la URL completa)"}
+      - label: "Galería de fotos adicionales"
+        name: "galeria"
+        widget: "list"
+        required: false
+        hint: "Agrega fotos que aparecerán en el grid debajo del texto"
+        field: {label: "Foto", name: "foto", widget: "image"}
 
   - name: "actividades"
     label: "Actividades"
@@ -27,8 +33,8 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{nombre}}"
     fields:
-      - {label: "Nombre", name: "nombre", widget: "string"}
-      - {label: "Día", name: "dia", widget: "string"}
+      - {label: "Nombre del evento", name: "nombre", widget: "string"}
+      - {label: "Día", name: "dia", widget: "string", hint: "Ej: 28"}
       - label: "Mes"
         name: "mes"
         widget: "select"
@@ -37,9 +43,9 @@ collections:
         name: "tipo"
         widget: "select"
         options:
-          - {label: "Asamblea", value: "asamblea"}
-          - {label: "Celebración", value: "celebracion"}
-          - {label: "Admisión", value: "admision"}
-          - {label: "Taller", value: "taller"}
+          - {label: "🔵 Asamblea", value: "asamblea"}
+          - {label: "🟢 Celebración", value: "celebracion"}
+          - {label: "🟠 Admisión", value: "admision"}
+          - {label: "🟣 Taller", value: "taller"}
       - {label: "Descripción", name: "descripcion", widget: "text"}
-      - {label: "Hora y lugar", name: "hora", widget: "string"}
+      - {label: "Hora y lugar", name: "hora", widget: "string", hint: "Ej: Las Azaleas 96 · 18:30 hrs"}
