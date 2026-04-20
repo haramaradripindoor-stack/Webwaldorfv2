@@ -1,5 +1,5 @@
 ---
-nombre: Inicio Época de las manzanas
+nombre: Inicio Época de las Manzanas
 dia: "07"
 mes: ABR
 tipo: celebracion
