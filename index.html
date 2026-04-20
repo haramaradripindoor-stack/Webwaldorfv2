@@ -191,112 +191,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .cookie-btn { flex: 1; text-align: center; }
     }
   </style>
-
-<style id="cms-gallery-styles">
-/* CMS-GALLERY-v2 */
-
-.cms-gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  gap: 6px;
-  margin-top: 1rem;
-}
-.cms-gallery-thumb {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: 6px;
-  cursor: pointer;
-  outline: none;
-}
-.cms-gallery-thumb:focus-visible {
-  box-shadow: 0 0 0 3px var(--secondary-green, #A8D8B9);
-}
-.cms-gallery-thumb picture,
-.cms-gallery-thumb img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.35s ease;
-}
-.cms-gallery-thumb:hover img,
-.cms-gallery-thumb:focus img { transform: scale(1.1); }
-.cms-gallery-overlay {
-  position: absolute; inset: 0;
-  background: rgba(0,0,0,0);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem; opacity: 0;
-  transition: background 0.2s ease, opacity 0.2s ease;
-}
-.cms-gallery-thumb:hover .cms-gallery-overlay,
-.cms-gallery-thumb:focus .cms-gallery-overlay {
-  background: rgba(0,0,0,0.38); opacity: 1;
-}
-
-/* ── Lightbox ── */
-#cms-lightbox {
-  display: none;
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.93);
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 1rem;
-}
-#cms-lightbox.open { display: flex; }
-#cms-lightbox img {
-  max-width: min(90vw, 1200px);
-  max-height: 80vh;
-  object-fit: contain;
-  border-radius: 4px;
-  box-shadow: 0 8px 48px rgba(0,0,0,0.6);
-  user-select: none;
-}
-.cms-lb-counter {
-  color: rgba(255,255,255,0.65);
-  font-size: 0.85rem;
-  margin-top: 0.8rem;
-  font-family: monospace;
-}
-.cms-lb-btn {
-  position: absolute;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: #fff;
-  cursor: pointer;
-  border-radius: 6px;
-  font-size: 1.8rem;
-  line-height: 1;
-  padding: 0.4rem 0.9rem;
-  transition: background 0.2s ease;
-}
-.cms-lb-btn:hover { background: rgba(255,255,255,0.28); }
-.cms-lb-close { top: 1rem; right: 1rem; font-size: 1.4rem; }
-.cms-lb-prev  { left: 1rem;  top: 50%; transform: translateY(-50%); }
-.cms-lb-next  { right: 1rem; top: 50%; transform: translateY(-50%); }
-@media (max-width: 480px) {
-  .cms-gallery-grid { grid-template-columns: repeat(3, 1fr); }
-  .cms-lb-prev { left: 0.4rem; }
-  .cms-lb-next { right: 0.4rem; }
-}
-
-/* ── Video responsive 16:9 ── */
-.cms-video-wrap {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border-radius: 10px;
-  margin-top: 1rem;
-  background: #000;
-}
-.cms-video-wrap iframe {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%; border: none;
-}
-</style>
-
 </head>
 <body>
 
@@ -473,7 +367,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
             <span class="actividad-tipo tipo-celebracion">Celebración</span>
             <h3>Fiesta de Otoño</h3>
             <p>Celebración estacional en armonía con la naturaleza. Actividades para niños y familias al aire libre.</p>
-            <span class="actividad-hora">🕐 Las Azaleas 96 · 10:00 hrs</span>
+            <span class="actividad-hora">📍 Las Azaleas 96 · 10:00 hrs</span>
           </div>
         </div>
 
@@ -486,33 +380,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
             <span class="actividad-tipo tipo-asamblea">Asamblea</span>
             <h3>Asamblea Mensual de Familias</h3>
             <p>Reunión de toda la comunidad Trekan. Revisión de avances, proyectos y próximas celebraciones.</p>
-            <span class="actividad-hora">🕐 Las Azaleas 96 · 18:30 hrs</span>
-          </div>
-        </div>
-
-        <div class="actividad-card" data-animate="fade-up" data-delay="200">
-          <div class="actividad-fecha">
-            <span class="actividad-dia">8</span>
-            <span class="actividad-mes">ABR</span>
-          </div>
-          <div class="actividad-info">
-            <span class="actividad-tipo tipo-admision">Admisión</span>
-            <h3>prueba</h3>
-            <p>prueba prueba prueba prueba prueba prueba prueba prueba prueba</p>
-            <span class="actividad-hora">🕐 Las Azaleas 96, 15:00</span>
-          </div>
-        </div>
-
-        <div class="actividad-card" data-animate="fade-up" data-delay="300">
-          <div class="actividad-fecha">
-            <span class="actividad-dia">7</span>
-            <span class="actividad-mes">ABR</span>
-          </div>
-          <div class="actividad-info">
-            <span class="actividad-tipo tipo-celebracion">Celebración</span>
-            <h3>Inicio época de las manzanas</h3>
-            <p>Las épocas dividen el año según lo que ocurre en la tierra. La de</p>
-            <span class="actividad-hora">🕐 Las Azaleas 96 </span>
+            <span class="actividad-hora">📍 Las Azaleas 96 · 18:30 hrs</span>
           </div>
         </div>
         <!-- CMS:ACTIVIDADES:END -->
@@ -553,7 +421,8 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
 
       <div class="news-grid">
         <!-- CMS:NOTICIAS:START -->
-        <div class="news-card" data-animate="fade-up" data-delay="0">
+        <!-- Noticia 1 — MÁS RECIENTE ARRIBA -->
+        <div class="news-card">
           <div class="news-image">
             <picture>
               <source srcset="images/noticia1.webp" type="image/webp">
@@ -563,15 +432,99 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
           <div class="news-content">
             <span class="news-date">21 de junio de 2025</span>
             <h3>Fiesta de la Luz</h3>
-            <p>En el corazón del invierno, cuando las noches son más largas y la luz del sol escasea, nuestra comunidad se reúne para celebrar la Fiesta de la Luz.</p>
-            
-            
-            <div class="cms-video-wrap">
-              <iframe src="https://www.youtube.com/embed/eOsbR_QoNAY?rel=0&modestbranding=1&iv_load_policy=3" title="Fiesta de la Luz"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen loading="lazy">
+            <p>En el corazón del invierno, cuando las noches son más largas y la luz del sol escasea, nuestra comunidad se reúne para celebrar la Fiesta de la Luz. Esta tradición, propia de las escuelas Waldorf, nos invita a recordar que cada uno lleva dentro una luz que puede brillar incluso en la oscuridad.</p>
+
+            <div class="news-video">
+              <iframe width="100%" height="250"
+                      src="https://www.youtube.com/embed/eOsbR_QoNAY?rel=0&modestbranding=1&iv_load_policy=3"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                      loading="lazy"
+                      title="Video: Fiesta de la Luz - Colegio Waldorf Trekan">
               </iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Noticia 2 -->
+        <div class="news-card">
+          <div class="news-image">
+            <picture>
+              <source srcset="images/noticia2.webp" type="image/webp">
+              <img src="images/noticia2.jpg" alt="Inauguración Colegio Waldorf Trekan 2025" loading="lazy">
+            </picture>
+          </div>
+          <div class="news-content">
+            <span class="news-date">5 de Marzo de 2025</span>
+            <h3>El inicio de un sueño – Inauguración del Colegio Waldorf Trekan</h3>
+            <p>Todo comenzó con una pregunta sencilla pero poderosa: ¿Y si nuestros niños pudieran aprender en un lugar donde la naturaleza, el arte y la vida se unieran para educar?</p>
+           
+            <div class="news-video">
+              <iframe width="100%" height="250" 
+                      src="https://www.youtube.com/embed/Sy4PO2UIy2w?rel=0&modestbranding=1&iv_load_policy=3"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                      loading="lazy"
+                      title="Video: Inauguración Colegio Waldorf Trekan 2025">
+              </iframe>
+            </div>
+            <div class="news-gallery">
+              <div class="news-gallery-item">
+                <picture>
+                  <source srcset="images/galeria-Inauguracion.webp" type="image/webp">
+                  <img src="images/galeria-Inauguracion.jpg" alt="Inauguración Colegio Waldorf Trekan" loading="lazy">
+                </picture>
+              </div>
+              <div class="news-gallery-item">
+                <picture>
+                  <source srcset="images/galeria-Inauguracion2.webp" type="image/webp">
+                  <img src="images/galeria-Inauguracion2.jpg" alt="Actividad inaugural Colegio Waldorf Trekan" loading="lazy">
+                </picture>
+              </div>
+              <div class="news-gallery-item">
+                <picture>
+                  <source srcset="images/galeria-Inauguracion3.webp" type="image/webp">
+                  <img src="images/galeria-Inauguracion3.jpg" alt="Celebración inauguración Colegio Waldorf Trekan" loading="lazy">
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Noticia 3 -->
+        <div class="news-card">
+          <div class="news-image">
+            <picture>
+              <source srcset="images/noticia3.webp" type="image/webp">
+              <img src="images/noticia3.jpg" alt="Jornada de obras y mantenimiento Colegio Waldorf Trekan" loading="lazy">
+            </picture>
+          </div>
+          <div class="news-content">
+            <span class="news-date">20 de Febrero de 2025</span>
+            <h3>Construyendo y Embelleciendo Nuestro Colegio</h3>
+            <p>En días recientes, nuestra Comisión de Obras y Mantenimiento se reunió con un objetivo claro: dejar nuestro colegio listo y lleno de vida para recibir a nuestras niñas, niños y familias.</p>
+            
+            <div class="news-gallery">
+              <div class="news-gallery-item">
+                <picture>
+                  <source srcset="images/comisionobraymantencion1.webp" type="image/webp">
+                  <img src="images/comisionobraymantencion1.jpg" alt="Mantenimiento salón Colegio Waldorf Trekan" loading="lazy">
+                </picture>
+              </div>
+              <div class="news-gallery-item">
+                <picture>
+                  <source srcset="images/comisionobraymantencion2.webp" type="image/webp">
+                  <img src="images/comisionobraymantencion2.jpg" alt="Trabajo comunitario Colegio Waldorf Trekan" loading="lazy">
+                </picture>
+              </div>
+              <div class="news-gallery-item">
+                <picture>
+                  <source srcset="images/comisionobraymantencion3.webp" type="image/webp">
+                  <img src="images/comisionobraymantencion3.jpg" alt="Embellecimiento espacio Colegio Waldorf Trekan" loading="lazy">
+                </picture>
+              </div>
             </div>
           </div>
         </div>
@@ -1277,85 +1230,6 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
       });
     }
   </script>
-
-
-<script id="cms-lightbox-script">
-/* CMS-LIGHTBOX-v2 */
-(function () {
-  var lb = document.createElement('div');
-  lb.id = 'cms-lightbox';
-  lb.setAttribute('role', 'dialog');
-  lb.setAttribute('aria-modal', 'true');
-  lb.setAttribute('aria-label', 'Galería de imágenes');
-  lb.innerHTML =
-    '<button class="cms-lb-btn cms-lb-close" aria-label="Cerrar">✕</button>' +
-    '<button class="cms-lb-btn cms-lb-prev"  aria-label="Anterior">‹</button>' +
-    '<img src="" alt="Imagen ampliada">' +
-    '<div class="cms-lb-counter"></div>' +
-    '<button class="cms-lb-btn cms-lb-next"  aria-label="Siguiente">›</button>';
-  document.body.appendChild(lb);
-
-  var imgs = [], cur = 0;
-
-  function getImgs(gallery) {
-    return Array.from(
-      document.querySelectorAll('.cms-gallery-thumb[data-gallery="' + gallery + '"]')
-    ).map(function(el) { return el.querySelector('img').src; });
-  }
-
-  function open(gallery, idx) {
-    imgs = getImgs(gallery);
-    if (!imgs.length) return;
-    cur = Math.max(0, Math.min(idx, imgs.length - 1));
-    render();
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    lb.querySelector('.cms-lb-close').focus();
-  }
-
-  function close() { lb.classList.remove('open'); document.body.style.overflow = ''; }
-  function prev()  { cur = (cur - 1 + imgs.length) % imgs.length; render(); }
-  function next()  { cur = (cur + 1) % imgs.length; render(); }
-
-  function render() {
-    lb.querySelector('img').src = imgs[cur];
-    lb.querySelector('.cms-lb-counter').textContent = (cur + 1) + ' / ' + imgs.length;
-    var many = imgs.length > 1;
-    lb.querySelector('.cms-lb-prev').style.display = many ? '' : 'none';
-    lb.querySelector('.cms-lb-next').style.display = many ? '' : 'none';
-  }
-
-  lb.querySelector('.cms-lb-close').addEventListener('click', close);
-  lb.querySelector('.cms-lb-prev').addEventListener('click', prev);
-  lb.querySelector('.cms-lb-next').addEventListener('click', next);
-  lb.addEventListener('click', function(e) { if (e.target === lb) close(); });
-
-  document.addEventListener('keydown', function(e) {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape')     close();
-    if (e.key === 'ArrowLeft')  prev();
-    if (e.key === 'ArrowRight') next();
-  });
-
-  var startX = 0;
-  lb.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
-  lb.addEventListener('touchend', function(e) {
-    var dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
-  });
-
-  document.addEventListener('click', function(e) {
-    var thumb = e.target.closest('.cms-gallery-thumb');
-    if (thumb) open(thumb.dataset.gallery, parseInt(thumb.dataset.index, 10));
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-      var thumb = document.activeElement && document.activeElement.closest('.cms-gallery-thumb');
-      if (thumb) open(thumb.dataset.gallery, parseInt(thumb.dataset.index, 10));
-    }
-  });
-})();
-</script>
 
 </body>
 </html>
