@@ -214,7 +214,9 @@ p {
 .nav.hide {
   top: calc(-1 * var(--header-height));
 }
-
+@media (max-width: 768px) {
+  .nav.hide { top: -65px; }
+}
 @media (max-width: 480px) {
   .nav.hide { top: -60px; }
 }
@@ -394,10 +396,6 @@ p {
     overflow: visible;
   }
 
-  .nav.hide {
-    top: -65px;
-  }
-
   body {
     padding-top: 65px;
   }
@@ -432,12 +430,14 @@ p {
   }
 
   .nav-menu.active {
-    max-height: 80vh;
+    max-height: fit-content;
+    max-height: -moz-fit-content;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    overflow-y: auto;
+    overflow-y: visible;
     padding: 0.75rem 1rem 1rem;
+    height: auto;
   }
 
   .nav-menu li {
@@ -476,16 +476,20 @@ p {
     font-size: 1rem;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(46, 94, 78, 0.25);
-    position: static;
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    width: calc(100% - 2rem);
     transform: none;
-    left: auto;
-    bottom: auto;
+    z-index: 1002;
   }
 
   .nav-menu.active ~ .nav-apply-btn {
     display: block;
     position: static;
+    width: 100%;
     transform: none;
+    margin-top: 0.4rem;
   }
 }
 
@@ -515,10 +519,15 @@ p {
     top: 60px;
     padding: 0;
     gap: 0;
+    max-height: 0;
   }
 
   .nav-menu.active {
     padding: 0.5rem 0.75rem 0.75rem;
+    max-height: fit-content;
+    max-height: -moz-fit-content;
+    height: auto;
+    overflow-y: visible;
   }
 
   .nav-menu > li > a {
