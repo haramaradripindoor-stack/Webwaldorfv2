@@ -214,9 +214,7 @@ p {
 .nav.hide {
   top: calc(-1 * var(--header-height));
 }
-@media (max-width: 768px) {
-  .nav.hide { top: -65px; }
-}
+
 @media (max-width: 480px) {
   .nav.hide { top: -60px; }
 }
@@ -394,6 +392,10 @@ p {
   .nav {
     height: 65px;
     overflow: visible;
+  }
+
+  .nav.hide {
+    top: -65px;
   }
 
   body {
