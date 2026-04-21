@@ -400,13 +400,6 @@ p {
     padding-top: 65px;
   }
 
-  /* FIX CLAVE: nav-container tiene max-width+margin:auto, así que si .nav-menu
-     es position:absolute relativo a él, el menú queda centrado y no es full-width.
-     Con position:static, el containing block sube al .nav que sí es left:0/right:0 */
-  .nav-container {
-    position: static;
-  }
-
   .menu-toggle {
     display: flex;
   }
@@ -437,11 +430,12 @@ p {
   }
 
   .nav-menu.active {
-    max-height: 600px;
+    max-height: fit-content;
+    max-height: -moz-fit-content;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    overflow-y: auto;
+    overflow-y: visible;
     padding: 0.75rem 1rem 1rem;
     height: auto;
   }
@@ -530,9 +524,10 @@ p {
 
   .nav-menu.active {
     padding: 0.5rem 0.75rem 0.75rem;
-    max-height: 600px;
+    max-height: fit-content;
+    max-height: -moz-fit-content;
     height: auto;
-    overflow-y: auto;
+    overflow-y: visible;
   }
 
   .nav-menu > li > a {
@@ -2013,8 +2008,8 @@ p {
     display: none;
     min-width: unset;
     width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
   }
 
   .dropdown-menu::before { display: none; }
@@ -2025,7 +2020,7 @@ p {
 
   .dropdown-menu li {
     width: 100%;
-    max-width: 320px;
+    max-width: 100%;
   }
 
   .dropdown-menu a {
@@ -2036,8 +2031,10 @@ p {
     font-size: 0.95rem;
     padding: 0.7rem 1rem;
     white-space: normal;
-    text-align: center;
+    text-align: left;
     border: none;
+    width: 100%;
+    display: block;
   }
 
   .dropdown-menu a:hover {
@@ -3127,6 +3124,8 @@ img.logo-mini {
 /* ======================
    DROPDOWN — FIX VISIBILIDAD
    ====================== */
+
+/* Desktop: dropdown posicionado con JS (position:fixed via script.js) */
 .dropdown {
   position: relative;
 }
@@ -3170,16 +3169,22 @@ img.logo-mini {
   color: #2E5E4E;
 }
 
-/* Mobile dropdown */
+/* Mobile: accordion estático, ancho completo, sin corte */
 @media (max-width: 768px) {
-  .dropdown .dropdown-menu {
+  .dropdown {
     position: static;
-    transform: none;
+  }
+
+  .dropdown .dropdown-menu {
+    position: static !important;
+    transform: none !important;
     box-shadow: none;
     border: none;
     background: transparent;
-    padding: 0.3rem 0 0 1rem;
+    padding: 0.25rem 0 0;
     width: 100%;
+    max-width: 100%;
+    margin: 0;
   }
 
   .dropdown .dropdown-menu a {
@@ -3187,13 +3192,15 @@ img.logo-mini {
     border-radius: 8px;
     margin-bottom: 0.3rem;
     color: #2E5E4E;
+    text-align: left;
+    width: 100%;
+    white-space: normal;
+    padding: 0.7rem 1rem;
   }
 }
 
 /* ======================
-   DROPDOWN — POSICIÓN CORRECTA (fijo al nav)
-   El JS posiciona el dropdown con position:fixed en desktop,
-   y lo deja estático en móvil. No se pisa .nav-menu aquí.
+   NAV-CONTAINER — overflow visible garantizado
    ====================== */
 .nav-container {
   position: relative;
