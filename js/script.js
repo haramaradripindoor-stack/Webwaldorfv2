@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!mobileMenu || !navMenu) return;
     mobileMenu.classList.remove('active');
     navMenu.classList.remove('active');
-    document.body.style.overflow = '';
+    // No restaurar overflow — nunca se puso hidden
     mobileMenu.setAttribute('aria-expanded', 'false');
     document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
   }
@@ -74,7 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
     mobileMenu.addEventListener('click', function() {
       const isActive = navMenu.classList.toggle('active');
       mobileMenu.classList.toggle('active');
-      document.body.style.overflow = isActive ? 'hidden' : '';
+      // FIX: NO poner overflow:hidden en body — en iOS/Android clipa elementos
+      // position:absolute y rompe el posicionamiento del menú desplegable
       mobileMenu.setAttribute('aria-expanded', isActive);
       // FIX: asegurar que el navbar sea visible cuando se abre el menú móvil
       if (isActive) {
