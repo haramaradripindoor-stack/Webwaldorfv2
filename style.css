@@ -191,16 +191,23 @@ p {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* FIX CRÍTICO #2: backdrop-filter en un ancestro también crea un nuevo containing block
+     para position:fixed children (igual que transform). Se elimina del .nav
+     y se aplica solo en desktop via ::before pseudo-element para no romper el menú móvil. */
+  background: rgba(255, 255, 255, 0.97);
   border-bottom: 1px solid var(--border-color);
   z-index: var(--z-nav);
-  /* FIX CRÍTICO: se usa 'top' en vez de 'transform' para ocultar el nav al scroll.
-     transform crea un nuevo containing block para position:fixed children,
-     lo que rompe el menú móvil (nav-menu fixed deja de ser relativo al viewport). */
   transition: top 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
   height: var(--header-height);
+}
+
+/* backdrop-filter solo en desktop — en móvil rompe position:fixed del nav-menu */
+@media (min-width: 769px) {
+  .nav {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
 }
 
 /* Clase para ocultar navbar al scroll-down (reemplaza inline transform) */
@@ -406,8 +413,7 @@ p {
     width: auto;
     height: 100dvh;
     background: rgba(255, 255, 255, 0.99);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    /* FIX: backdrop-filter eliminado — en móvil puede causar problems de rendering */
     flex-direction: column;
     justify-content: center;
     align-items: center;
