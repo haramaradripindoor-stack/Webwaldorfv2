@@ -135,7 +135,7 @@ function galeriaHtml(imagenes, id) {
                  tabindex="0" role="button" aria-label="Ver imagen ${idx + 1}">
               <picture>
                 <source srcset="${webp}" type="image/webp">
-                <img src="${img}" alt="Foto ${idx + 1}" loading="lazy">
+                <img src="${img}" alt="Foto ${idx + 1}" loading="lazy" width="200" height="150">
               </picture>
               <div class="cms-gallery-overlay">🔍</div>
             </div>`;
@@ -200,7 +200,7 @@ function noticiaHtml(n, i) {
           <div class="news-image">
             <picture>
               <source srcset="${webpMain}" type="image/webp">
-              <img src="${fotoMain}" alt="${alt}" loading="lazy">
+              <img src="${fotoMain}" alt="${alt}" loading="lazy" width="600" height="400">
             </picture>
           </div>
           <div class="news-content">

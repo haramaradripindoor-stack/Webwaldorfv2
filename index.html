@@ -56,7 +56,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="apple-touch-icon" href="assets/logo.png">
 
   <!-- Preload imagen hero (LCP crítico) -->
-  <link rel="preload" href="assets/colegio-fondo.jpg" as="image" fetchpriority="high">
+  <link rel="preload" href="assets/colegio-fondo.webp" as="image" type="image/webp" fetchpriority="high" media="(min-width: 769px)">
+  <link rel="preload" href="assets/colegio-fondo-800.webp" as="image" type="image/webp" fetchpriority="high" media="(max-width: 768px)">
 
   <!-- Fuente mejorada -->
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Merriweather:wght@300;400;700&display=swap">
@@ -297,6 +298,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </style>
 
+
+  <style>
+    /* Hero background — responsive para movil */
+    .header-with-bg::before {
+      background-image: url('assets/colegio-fondo-800.webp');
+    }
+    @media (min-width: 769px) {
+      .header-with-bg::before {
+        background-image: url('assets/colegio-fondo.webp');
+      }
+    }
+    @supports not (background-image: url('x.webp')) {
+      .header-with-bg::before {
+        background-image: url('assets/colegio-fondo.jpg');
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -316,7 +334,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
   <header class="header header-with-bg">
     <div class="header-overlay"></div>
     <div class="container header-content">
-      <img src="assets/logo.png" alt="Colegio Waldorf Trekan - Educación Waldorf en Puerto Varas" class="logo" fetchpriority="high" style="width:clamp(100px,18vw,150px);">
+      <img src="assets/logo.png" alt="Colegio Waldorf Trekan - Educación Waldorf en Puerto Varas" class="logo" fetchpriority="high" width="150" height="150" style="width:clamp(100px,18vw,150px);height:auto;">
       <h1>Colegio Waldorf Trekan</h1>
       <p class="tagline">Educación con el corazón, en armonía con la naturaleza</p>
     </div>
@@ -326,7 +344,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
   <nav class="nav" id="navbar">
     <div class="nav-container container">
       <a href="#inicio" class="nav-logo">
-        <img src="assets/logo-mini.png" alt="Logo Trekan" class="logo-mini">
+        <img src="assets/logo-mini.png" alt="Logo Trekan" class="logo-mini" width="40" height="40">
         <span>Trekan</span>
       </a>
       
@@ -544,7 +562,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
           <div class="news-image">
             <picture>
               <source srcset="images/noticia1.webp" type="image/webp">
-              <img src="images/noticia1.jpg" alt="Fiesta de la Luz en Colegio Waldorf Trekan" loading="lazy">
+              <img src="images/noticia1.jpg" alt="Fiesta de la Luz en Colegio Waldorf Trekan" loading="lazy" width="600" height="400">
             </picture>
           </div>
           <div class="news-content">
@@ -567,7 +585,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
           <div class="news-image">
             <picture>
               <source srcset="images/galeria-Inauguracion.webp" type="image/webp">
-              <img src="images/galeria-Inauguracion.jpg" alt="Inauguración Colegio Waldorf Trekan 2025" loading="lazy">
+              <img src="images/galeria-Inauguracion.jpg" alt="Inauguración Colegio Waldorf Trekan 2025" loading="lazy" width="600" height="400">
             </picture>
           </div>
           <div class="news-content">
@@ -580,7 +598,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
                  tabindex="0" role="button" aria-label="Ver imagen 1">
               <picture>
                 <source srcset="images/galeria-Inauguracion2.webp" type="image/webp">
-                <img src="images/galeria-Inauguracion2.jpg" alt="Foto 1" loading="lazy">
+                <img src="images/galeria-Inauguracion2.jpg" alt="Foto 1" loading="lazy" width="200" height="150">
               </picture>
               <div class="cms-gallery-overlay">🔍</div>
             </div>
@@ -588,7 +606,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
                  tabindex="0" role="button" aria-label="Ver imagen 2">
               <picture>
                 <source srcset="images/galeria-Inauguracion3.webp" type="image/webp">
-                <img src="images/galeria-Inauguracion3.jpg" alt="Foto 2" loading="lazy">
+                <img src="images/galeria-Inauguracion3.jpg" alt="Foto 2" loading="lazy" width="200" height="150">
               </picture>
               <div class="cms-gallery-overlay">🔍</div>
             </div>
@@ -608,7 +626,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
           <div class="news-image">
             <picture>
               <source srcset="images/comisionobraymantencion1.webp" type="image/webp">
-              <img src="images/comisionobraymantencion1.jpg" alt="Jornada de obras y mantenimiento Colegio Waldorf Trekan" loading="lazy">
+              <img src="images/comisionobraymantencion1.jpg" alt="Jornada de obras y mantenimiento Colegio Waldorf Trekan" loading="lazy" width="600" height="400">
             </picture>
           </div>
           <div class="news-content">
@@ -621,7 +639,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
                  tabindex="0" role="button" aria-label="Ver imagen 1">
               <picture>
                 <source srcset="images/comisionobraymantencion2.webp" type="image/webp">
-                <img src="images/comisionobraymantencion2.jpg" alt="Foto 1" loading="lazy">
+                <img src="images/comisionobraymantencion2.jpg" alt="Foto 1" loading="lazy" width="200" height="150">
               </picture>
               <div class="cms-gallery-overlay">🔍</div>
             </div>
@@ -629,7 +647,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
                  tabindex="0" role="button" aria-label="Ver imagen 2">
               <picture>
                 <source srcset="images/comisionobraymantencion3.webp" type="image/webp">
-                <img src="images/comisionobraymantencion3.jpg" alt="Foto 2" loading="lazy">
+                <img src="images/comisionobraymantencion3.jpg" alt="Foto 2" loading="lazy" width="200" height="150">
               </picture>
               <div class="cms-gallery-overlay">🔍</div>
             </div>
@@ -920,13 +938,13 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
 
       <div class="gallery-preview">
         <div class="preview-item" onclick="openArriendoModal('./images/salon-principal.jpg', 'Salón Principal')">
-          <img src="./images/salon-principal.jpg" alt="Salón Principal">
+          <img src="./images/salon-principal.jpg" alt="Salón Principal" width="400" height="300" loading="lazy">
         </div>
         <div class="preview-item" onclick="openArriendoModal('./images/cocina.jpg', 'Cocina Equipada')">
-          <img src="./images/cocina.jpg" alt="Cocina Equipada">
+          <img src="./images/cocina.jpg" alt="Cocina Equipada" width="400" height="300" loading="lazy">
         </div>
         <div class="preview-item" onclick="openArriendoModal('./images/estacionamiento.jpg', 'Estacionamiento')">
-          <img src="./images/estacionamiento.jpg" alt="Estacionamiento">
+          <img src="./images/estacionamiento.jpg" alt="Estacionamiento" width="400" height="300" loading="lazy">
         </div>
       </div>
 
@@ -1081,7 +1099,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
         <a href="https://www.instagram.com/waldorftrekanpv/" target="_blank" rel="noopener noreferrer" class="ig-item ig-main" aria-label="Ver Instagram de Waldorf Trekan">
           <picture>
             <source srcset="images/galeria-Inauguracion.webp" type="image/webp">
-            <img src="images/galeria-Inauguracion.jpg" alt="Comunidad Colegio Waldorf Trekan" loading="lazy">
+            <img src="images/galeria-Inauguracion.jpg" alt="Comunidad Colegio Waldorf Trekan" loading="lazy" width="400" height="300">
           </picture>
           <div class="ig-overlay">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.718-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -1089,15 +1107,15 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
           </div>
         </a>
         <a href="https://www.instagram.com/waldorftrekanpv/" target="_blank" rel="noopener noreferrer" class="ig-item" aria-label="Foto comunidad Trekan">
-          <picture><source srcset="images/galeria1.webp" type="image/webp"><img src="images/galeria1.jpg" alt="Actividad Colegio Waldorf Trekan" loading="lazy"></picture>
+          <picture><source srcset="images/galeria1.webp" type="image/webp"><img src="images/galeria1.jpg" alt="Actividad Colegio Waldorf Trekan" loading="lazy" width="300" height="300"></picture>
           <div class="ig-overlay-small"></div>
         </a>
         <a href="https://www.instagram.com/waldorftrekanpv/" target="_blank" rel="noopener noreferrer" class="ig-item" aria-label="Foto comunidad Trekan">
-          <picture><source srcset="images/galeria5.webp" type="image/webp"><img src="images/galeria5.jpg" alt="Niños Colegio Waldorf Trekan" loading="lazy"></picture>
+          <picture><source srcset="images/galeria5.webp" type="image/webp"><img src="images/galeria5.jpg" alt="Niños Colegio Waldorf Trekan" loading="lazy" width="300" height="300"></picture>
           <div class="ig-overlay-small"></div>
         </a>
         <a href="https://www.instagram.com/waldorftrekanpv/" target="_blank" rel="noopener noreferrer" class="ig-item" aria-label="Foto comunidad Trekan">
-          <picture><source srcset="images/galeria3.webp" type="image/webp"><img src="images/galeria3.jpg" alt="Actividad Colegio Waldorf Trekan" loading="lazy"></picture>
+          <picture><source srcset="images/galeria3.webp" type="image/webp"><img src="images/galeria3.jpg" alt="Actividad Colegio Waldorf Trekan" loading="lazy" width="300" height="300"></picture>
           <div class="ig-overlay-small"></div>
         </a>
         <a href="https://www.instagram.com/waldorftrekanpv/" target="_blank" rel="noopener noreferrer" class="ig-item" aria-label="Foto comunidad Trekan">
@@ -1331,14 +1349,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
   </script>
 
   <!-- Netlify Identity -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) { window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; }); }
-      });
-    }
-  </script>
+
 
 
 <script id="cms-lightbox-script">
