@@ -76,6 +76,10 @@ document.addEventListener('DOMContentLoaded', function() {
       mobileMenu.classList.toggle('active');
       document.body.style.overflow = isActive ? 'hidden' : '';
       mobileMenu.setAttribute('aria-expanded', isActive);
+      // FIX: asegurar que el navbar sea visible cuando se abre el menú móvil
+      if (isActive) {
+        navbar.classList.remove('hide');
+      }
       if (!isActive) {
         document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
       }
@@ -240,10 +244,15 @@ document.addEventListener('DOMContentLoaded', function() {
       navbar?.classList.remove('scrolled');
     }
 
-    if (scrollTop > lastScrollTop && scrollTop > 300) {
-      if (navbar) navbar.style.transform = 'translateY(-100%)';
+    // FIX CRÍTICO: usar clase CSS 'hide' en vez de transform inline.
+    // navbar.style.transform crea un containing block que rompe position:fixed
+    // de los hijos (nav-menu móvil deja de cubrir el viewport completo).
+    // Tampoco se oculta el navbar si el menú móvil está abierto.
+    const mobileMenuOpen = navMenu && navMenu.classList.contains('active');
+    if (scrollTop > lastScrollTop && scrollTop > 300 && !mobileMenuOpen) {
+      if (navbar) navbar.classList.add('hide');
     } else {
-      if (navbar) navbar.style.transform = 'translateY(0)';
+      if (navbar) navbar.classList.remove('hide');
     }
 
     lastScrollTop = scrollTop;
