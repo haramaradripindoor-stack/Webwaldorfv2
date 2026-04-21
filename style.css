@@ -2038,6 +2038,11 @@ p {
 
   .dropdown.open .dropdown-menu {
     display: block;
+    transform: none !important;
+    left: auto !important;
+    position: static !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
   .dropdown-menu li {
