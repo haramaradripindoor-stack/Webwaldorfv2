@@ -1,5 +1,5 @@
 ---
-nombre: Asamblea general
+nombre: "Asamblea General: Celebrando el Cierre del Semestre ❄️"
 dia: "1"
 mes: JUL
 tipo: asamblea
