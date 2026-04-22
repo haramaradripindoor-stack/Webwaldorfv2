@@ -2695,6 +2695,24 @@ picture img {
   line-height: 1.5;
 }
 
+.actividad-body {
+  font-size: 0.92rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 0.6rem;
+}
+
+.actividad-body p {
+  margin-bottom: 0.5rem;
+}
+
+.actividad-body ul {
+  padding-left: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.actividad-body strong { color: var(--primary-green); }
+
 .actividad-hora {
   font-size: 0.82rem;
   color: var(--text-light);

@@ -219,6 +219,9 @@ function actividadHtml(a, i) {
   const tipo = d.tipo || 'celebracion';
   const hora  = d.hora  ? `\n            <span class="actividad-hora">🕐 ${d.hora}</span>` : '';
   const lugar = d.lugar ? `\n            <span class="actividad-hora">🏫 ${d.lugar}</span>` : '';
+  // Descripción corta (frontmatter) + cuerpo largo del documento (si existe)
+  const descCorta = d.descripcion ? `<p>${d.descripcion}</p>` : '';
+  const bodyHtml  = a.body && a.body.trim() ? `<div class="actividad-body">${mdToHtml(a.body)}</div>` : '';
   return `        <div class="actividad-card" data-animate="fade-up" data-delay="${i * 100}">
           <div class="actividad-fecha">
             <span class="actividad-dia">${d.dia || ''}</span>
@@ -227,7 +230,7 @@ function actividadHtml(a, i) {
           <div class="actividad-info">
             <span class="actividad-tipo tipo-${tipo}">${TIPO_LABEL[tipo] || tipo}</span>
             <h3>${d.nombre || ''}</h3>
-            <p>${d.descripcion || ''}</p>${hora}${lugar}
+            ${descCorta}${bodyHtml}${hora}${lugar}
           </div>
         </div>`;
 }
