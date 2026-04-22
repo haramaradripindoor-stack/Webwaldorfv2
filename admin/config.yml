@@ -47,5 +47,6 @@ collections:
           - {label: "🟢 Celebración", value: "celebracion"}
           - {label: "🟠 Admisión", value: "admision"}
           - {label: "🟣 Taller", value: "taller"}
-      - {label: "Descripción", name: "descripcion", widget: "text"}
-      - {label: "Hora y lugar", name: "hora", widget: "string", hint: "Ej: Las Azaleas 96 · 18:30 hrs"}
+      - {label: "Descripción corta", name: "descripcion", widget: "text", required: false, hint: "Resumen breve que aparece en la tarjeta"}
+      - {label: "Hora y lugar", name: "hora", widget: "string", required: false, hint: "Ej: Las Azaleas 96 · 18:30 hrs"}
+      - {label: "Contenido completo (opcional)", name: "body", widget: "markdown", required: false, hint: "Texto largo, detalles, instrucciones, etc."}
