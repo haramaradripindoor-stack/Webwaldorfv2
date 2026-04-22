@@ -21,16 +21,53 @@
 const fs   = require('fs');
 const path = require('path');
 
-// ── Parsear frontmatter YAML (soporta arrays con guiones y arrays inline) ────
+// ── Parsear frontmatter YAML (soporta arrays, bloques >- y | del CMS) ────────
 function parseFrontmatter(content) {
   const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
   if (!match) return { data: {}, body: content };
 
   const data  = {};
   const lines = match[1].split('\n');
-  let currentKey = null;
+  let currentKey  = null;
+  let blockMode   = null;   // 'folded' (>-) o 'literal' (|-)
+  let blockLines  = [];
 
-  lines.forEach(line => {
+  function flushBlock() {
+    if (!blockMode || !currentKey) return;
+    if (blockMode === 'folded') {
+      // Une líneas en párrafos; líneas vacías = salto de párrafo
+      let out = '', i = 0;
+      while (i < blockLines.length) {
+        if (blockLines[i] === '') { out += '\n'; i++; }
+        else {
+          const para = [];
+          while (i < blockLines.length && blockLines[i] !== '') para.push(blockLines[i++]);
+          out += para.join(' ');
+          if (i < blockLines.length) out += '\n';
+        }
+      }
+      data[currentKey] = out.trim();
+    } else {
+      data[currentKey] = blockLines.join('\n').trim();
+    }
+    blockMode  = null;
+    blockLines = [];
+  }
+
+  lines.forEach(rawLine => {
+    const line = rawLine.replace(/\r$/, '');
+
+    // Estamos dentro de un bloque escalar
+    if (blockMode) {
+      if (line === '' || /^\s/.test(line)) {
+        blockLines.push(line.trimStart());
+        return;
+      }
+      // Primera línea sin sangría = fin del bloque
+      flushBlock();
+    }
+
+    // Ítem de lista YAML (-  valor)
     if (/^\s{1,}-\s+/.test(line)) {
       if (currentKey) {
         if (!Array.isArray(data[currentKey])) data[currentKey] = [];
@@ -38,13 +75,21 @@ function parseFrontmatter(content) {
       }
       return;
     }
+
     const i = line.indexOf(':');
     if (i === -1) return;
     const k = line.slice(0, i).trim();
     const v = line.slice(i + 1).trim().replace(/^["']|["']$/g, '');
     if (!k) return;
     currentKey = k;
-    if (v.startsWith('[') && v.endsWith(']')) {
+
+    if (v === '>-' || v === '>') {
+      blockMode  = 'folded';
+      blockLines = [];
+    } else if (v === '|-' || v === '|') {
+      blockMode  = 'literal';
+      blockLines = [];
+    } else if (v.startsWith('[') && v.endsWith(']')) {
       data[k] = v.slice(1, -1).split(',')
         .map(s => s.trim().replace(/^["']|["']$/g, ''))
         .filter(Boolean);
@@ -53,6 +98,7 @@ function parseFrontmatter(content) {
     }
   });
 
+  flushBlock(); // por si el bloque es el último campo
   return { data, body: match[2].trim() };
 }
 
