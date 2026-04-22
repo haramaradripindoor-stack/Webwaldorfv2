@@ -330,7 +330,7 @@ function actividadHtml(a, i) {
 // ─────────────────────────────────────────────────────────────────────────────
 //  CSS del lightbox — se inyecta en <head> (idempotente)
 // ─────────────────────────────────────────────────────────────────────────────
-const CSS_MARKER = '/* CMS-GALLERY-v2 */';
+const CSS_MARKER = '/* CMS-GALLERY-v3 */';
 const GALLERY_CSS = `
 <style id="cms-gallery-styles">
 ${CSS_MARKER}
@@ -435,13 +435,88 @@ ${CSS_MARKER}
   position: absolute; top: 0; left: 0;
   width: 100%; height: 100%; border: none;
 }
+
+/* ── Link "Ver archivo completo" en home ── */
+.cms-ver-archivo {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin: 2.5rem 0 1rem;
+}
+.cms-ver-archivo a {
+  display: inline-block;
+  padding: 0.75rem 1.6rem;
+  border: 1.5px solid var(--primary-green, #4A7C59);
+  color: var(--primary-green, #4A7C59);
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.cms-ver-archivo a:hover {
+  background: var(--primary-green, #4A7C59);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ── Archivo de noticias: chips + masonry grid ── */
+.cms-archivo-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 1rem 0;
+  margin: 0 0 1.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.cms-chip {
+  border: 1px solid rgba(0,0,0,0.15);
+  background: #fff;
+  padding: 0.45rem 1.05rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  font-family: inherit;
+  color: inherit;
+}
+.cms-chip:hover { background: #f4f4f4; }
+.cms-chip.active {
+  background: var(--primary-green, #4A7C59);
+  color: #fff;
+  border-color: transparent;
+}
+.cms-archivo-grid {
+  columns: 1;
+  column-gap: 1.5rem;
+}
+@media (min-width: 640px)  { .cms-archivo-grid { columns: 2; } }
+@media (min-width: 1024px) { .cms-archivo-grid { columns: 3; } }
+.cms-archivo-card {
+  break-inside: avoid;
+  margin: 0 0 1.5rem;
+  display: block;
+}
+.cms-archivo-card.hidden { display: none; }
+.cms-archivo-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: rgba(0,0,0,0.55);
+  font-style: italic;
+}
 </style>
 `;
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  JS del lightbox — se inyecta antes de </body> (idempotente)
 // ─────────────────────────────────────────────────────────────────────────────
-const JS_MARKER = '/* CMS-LIGHTBOX-v2 */';
+const JS_MARKER = '/* CMS-LIGHTBOX-v3 */';
 const GALLERY_JS = `
 <script id="cms-lightbox-script">
 ${JS_MARKER}
@@ -518,6 +593,28 @@ ${JS_MARKER}
       if (thumb) open(thumb.dataset.gallery, parseInt(thumb.dataset.index, 10));
     }
   });
+
+  // ── Filtro de chips del archivo de noticias ──
+  document.addEventListener('click', function(e) {
+    var chip = e.target.closest('.cms-chip');
+    if (!chip) return;
+    var year = chip.dataset.year;
+    var chips = document.querySelectorAll('.cms-chip');
+    chips.forEach(function(c) {
+      var on = (c === chip);
+      c.classList.toggle('active', on);
+      c.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    var cards = document.querySelectorAll('.cms-archivo-card');
+    var visible = 0;
+    cards.forEach(function(card) {
+      var show = (year === 'all') || (card.dataset.year === year);
+      card.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    var empty = document.querySelector('.cms-archivo-empty');
+    if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
+  });
 })();
 </script>
 `;
@@ -530,6 +627,80 @@ function injectCss(html) {
 function injectJs(html) {
   if (html.includes(JS_MARKER)) return html;
   return html.replace('</body>', GALLERY_JS + '\n</body>');
+}
+
+// ── Archivo completo de noticias: genera/actualiza noticias.html ─────────────
+function noticiaYear(n) {
+  const m = n.file.match(/^(\d{4})/);
+  return m ? m[1] : 'sin-fecha';
+}
+
+function buildArchivoNoticias(todas) {
+  if (!todas.length) return;
+
+  // Años únicos, descendente
+  const years = [...new Set(todas.map(noticiaYear))]
+    .sort((a, b) => b.localeCompare(a));
+
+  // Chips
+  const chipsHtml =
+    `          <div class="cms-archivo-chips" role="tablist" aria-label="Filtrar por año">\n` +
+    `            <button class="cms-chip active" data-year="all" role="tab" aria-selected="true">Todas</button>\n` +
+    years.map(y =>
+      `            <button class="cms-chip" data-year="${y}" role="tab" aria-selected="false">${y === 'sin-fecha' ? 'Sin fecha' : y}</button>`
+    ).join('\n') +
+    `\n          </div>`;
+
+  // Cards envueltas con data-year para filtrar
+  const cardsHtml = todas.map(n =>
+    `          <article class="cms-archivo-card" data-year="${noticiaYear(n)}">\n${noticiaHtml(n)}\n          </article>`
+  ).join('\n\n');
+
+  const archivoBlock =
+    chipsHtml + `\n\n          <div class="cms-archivo-grid">\n${cardsHtml}\n          </div>\n          <div class="cms-archivo-empty" style="display:none;">No hay noticias para este año.</div>`;
+
+  const archivoPath = 'noticias.html';
+  let archivoHtml;
+
+  if (fs.existsSync(archivoPath)) {
+    // Ya existe: solo inyecta entre marcadores
+    archivoHtml = fs.readFileSync(archivoPath, 'utf8');
+    archivoHtml = injectBetweenMarkers(archivoHtml, 'ARCHIVO', archivoBlock);
+  } else {
+    // No existe: genera plantilla heredando <head> de index.html (mismos estilos/fonts)
+    const indexHtml = fs.readFileSync('index.html', 'utf8');
+    const headMatch = indexHtml.match(/<head[\s\S]*?<\/head>/i);
+    let head = headMatch
+      ? headMatch[0]
+      : '<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Archivo</title></head>';
+    // Ajustar title
+    head = head.replace(/<title>[\s\S]*?<\/title>/i,
+      '<title>Archivo de noticias — Colegio Waldorf Trekan</title>');
+
+    archivoHtml = `<!DOCTYPE html>
+<html lang="es">
+${head}
+<body>
+  <header style="padding: 1.2rem 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.08); background: #fff;">
+    <a href="index.html" style="text-decoration: none; color: inherit; font-weight: 500; font-size: 0.95rem;">← Volver al inicio</a>
+  </header>
+  <main style="max-width: 1200px; margin: 0 auto; padding: 2rem 1.25rem 4rem;">
+    <h1 style="margin: 0 0 0.4rem;">Archivo de noticias</h1>
+    <p style="color: rgba(0,0,0,0.6); margin: 0 0 1.5rem;">Todas las noticias publicadas por el colegio, filtrables por año.</p>
+    <!-- CMS:ARCHIVO:START -->
+${archivoBlock}
+    <!-- CMS:ARCHIVO:END -->
+  </main>
+</body>
+</html>`;
+  }
+
+  // CSS + JS del lightbox/chips (idempotente)
+  archivoHtml = injectCss(archivoHtml);
+  archivoHtml = injectJs(archivoHtml);
+
+  fs.writeFileSync(archivoPath, archivoHtml, 'utf8');
+  console.log('   📂 Archivo:     ' + todas.length + ' noticias en ' + years.length + ' año(s) → noticias.html');
 }
 
 // ── MAIN ──────────────────────────────────────────────────────────────────────
@@ -551,8 +722,13 @@ console.log('   📅 Actividades: ' + actividadesVisibles.length + ' de ' + tota
 
 let html = fs.readFileSync('index.html', 'utf8');
 
+// Link a archivo completo (solo si hay más noticias que el máximo visible)
+const verArchivoLink = totalNoticias > MAX_NOTICIAS
+  ? '\n\n        <div class="cms-ver-archivo"><a href="noticias.html">Ver archivo completo (' + totalNoticias + ' noticias) →</a></div>'
+  : '';
+
 const noticiasBlock = noticiasVisibles.length
-  ? noticiasVisibles.map(noticiaHtml).join('\n\n')
+  ? noticiasVisibles.map(noticiaHtml).join('\n\n') + verArchivoLink
   : '        <div class="info-card"><p>Próximamente nuevas noticias.</p></div>';
 html = injectBetweenMarkers(html, 'NOTICIAS', noticiasBlock);
 
@@ -566,10 +742,14 @@ html = injectJs(html);
 
 fs.writeFileSync('index.html', html, 'utf8');
 
+// Generar página de archivo completo con TODAS las noticias (no solo las visibles)
+buildArchivoNoticias(noticias);
+
 console.log('\n✅ index.html actualizado');
 console.log('   🖼  Galería con lightbox habilitada');
 console.log('   🎥  YouTube / Vimeo responsive (16:9) habilitado');
 console.log('   📝  Markdown enriquecido activo');
+console.log('   📂  Archivo completo generado en noticias.html');
 console.log('\n── Sintaxis en tus .md ─────────────────────────────────────');
 console.log('  foto:             images/portada.jpg');
 console.log('  galeria:          [images/f1.jpg, images/f2.jpg, images/f3.jpg]');
