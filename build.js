@@ -635,6 +635,34 @@ function noticiaYear(n) {
   return m ? m[1] : 'sin-fecha';
 }
 
+// Convierte anchors del tipo href="#seccion" a href="index.html#seccion"
+// para que el navbar/footer heredados lleven de vuelta a la home.
+function rewriteAnchors(html) {
+  return html.replace(/href="#([^"]+)"/g, 'href="index.html#$1"');
+}
+
+// Ajusta el <head> del index para la página de archivo:
+// título propio, canonical y og:url apuntando a /noticias.html.
+function adjustHeadForArchivo(head) {
+  return head
+    .replace(/<title>[\s\S]*?<\/title>/i,
+      '<title>Archivo de noticias — Colegio Waldorf Trekan</title>')
+    .replace(/<meta\s+name="description"\s+content="[^"]*"/i,
+      '<meta name="description" content="Archivo histórico de noticias del Colegio Waldorf Trekan. Todas las publicaciones organizadas por año."')
+    .replace(/<link\s+rel="canonical"\s+href="([^"]+)"[^>]*>/i, (_, url) => {
+      const base = url.replace(/\/$/, '');
+      return `<link rel="canonical" href="${base}/noticias.html">`;
+    })
+    .replace(/<meta\s+property="og:url"\s+content="([^"]+)"[^>]*>/i, (_, url) => {
+      const base = url.replace(/\/$/, '');
+      return `<meta property="og:url" content="${base}/noticias.html">`;
+    })
+    .replace(/<meta\s+property="og:title"\s+content="[^"]*"/i,
+      '<meta property="og:title" content="Archivo de noticias — Colegio Waldorf Trekan"')
+    .replace(/<meta\s+name="twitter:title"\s+content="[^"]*"/i,
+      '<meta name="twitter:title" content="Archivo de noticias — Colegio Waldorf Trekan"');
+}
+
 function buildArchivoNoticias(todas) {
   if (!todas.length) return;
 
@@ -663,35 +691,50 @@ function buildArchivoNoticias(todas) {
   let archivoHtml;
 
   if (fs.existsSync(archivoPath)) {
-    // Ya existe: solo inyecta entre marcadores
+    // Ya existe: solo inyecta entre marcadores (respeta ediciones del usuario)
     archivoHtml = fs.readFileSync(archivoPath, 'utf8');
     archivoHtml = injectBetweenMarkers(archivoHtml, 'ARCHIVO', archivoBlock);
   } else {
-    // No existe: genera plantilla heredando <head> de index.html (mismos estilos/fonts)
+    // No existe: genera plantilla heredando head + navbar + footer del index
     const indexHtml = fs.readFileSync('index.html', 'utf8');
+
+    // 1. Head (con title/canonical/og ajustados)
     const headMatch = indexHtml.match(/<head[\s\S]*?<\/head>/i);
-    let head = headMatch
-      ? headMatch[0]
-      : '<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Archivo</title></head>';
-    // Ajustar title
-    head = head.replace(/<title>[\s\S]*?<\/title>/i,
-      '<title>Archivo de noticias — Colegio Waldorf Trekan</title>');
+    const head = headMatch
+      ? adjustHeadForArchivo(headMatch[0])
+      : '<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Archivo de noticias</title></head>';
+
+    // 2. Nav (con anchors reescritos hacia index.html)
+    const navMatch = indexHtml.match(/<nav\b[\s\S]*?<\/nav>/i);
+    const nav = navMatch ? rewriteAnchors(navMatch[0]) : '';
+
+    // 3. Footer (con anchors reescritos)
+    const footerMatch = indexHtml.match(/<footer\b[\s\S]*?<\/footer>/i);
+    const footer = footerMatch ? rewriteAnchors(footerMatch[0]) : '';
+
+    // 4. Script principal del sitio (para menú móvil, dropdowns, etc.)
+    //    Detecta si el index usa js/script.js y lo incluye.
+    const hasMainScript = /<script[^>]+src="js\/script\.js"/i.test(indexHtml);
+    const mainScript = hasMainScript ? '  <script src="js/script.js"></script>\n' : '';
 
     archivoHtml = `<!DOCTYPE html>
 <html lang="es">
 ${head}
 <body>
-  <header style="padding: 1.2rem 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.08); background: #fff;">
-    <a href="index.html" style="text-decoration: none; color: inherit; font-weight: 500; font-size: 0.95rem;">← Volver al inicio</a>
-  </header>
-  <main style="max-width: 1200px; margin: 0 auto; padding: 2rem 1.25rem 4rem;">
-    <h1 style="margin: 0 0 0.4rem;">Archivo de noticias</h1>
-    <p style="color: rgba(0,0,0,0.6); margin: 0 0 1.5rem;">Todas las noticias publicadas por el colegio, filtrables por año.</p>
+${nav}
+
+  <main class="container" style="max-width:1200px;margin:0 auto;padding:6rem 1.25rem 4rem;">
+    <header style="margin-bottom:1.5rem;">
+      <h1 style="margin:0 0 0.4rem;font-family:'Merriweather',serif;">Archivo de noticias</h1>
+      <p style="color:rgba(0,0,0,0.6);margin:0;">Todas las publicaciones del colegio, filtrables por año.</p>
+    </header>
     <!-- CMS:ARCHIVO:START -->
 ${archivoBlock}
     <!-- CMS:ARCHIVO:END -->
   </main>
-</body>
+
+${footer}
+${mainScript}</body>
 </html>`;
   }
 
