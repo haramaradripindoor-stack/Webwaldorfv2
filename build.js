@@ -21,6 +21,11 @@
 const fs   = require('fs');
 const path = require('path');
 
+// ── Configuración: cantidad máxima a mostrar en la web ───────────────────────
+// Cambia estos números si quieres mostrar más o menos.
+const MAX_NOTICIAS    = 6;  // las 6 más recientes
+const MAX_ACTIVIDADES = 4;  // las 4 más próximas
+
 // ── Parsear frontmatter YAML (soporta arrays, bloques >- y | del CMS) ────────
 function parseFrontmatter(content) {
   const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
@@ -533,18 +538,26 @@ console.log('🔨 Building Colegio Waldorf Trekan v2...\n');
 const noticias    = readNoticias();
 const actividades = readActividades();
 
-console.log('   📰 Noticias:    ' + noticias.length);
-console.log('   📅 Actividades: ' + actividades.length);
+// Totales antes de recortar (para el log)
+const totalNoticias    = noticias.length;
+const totalActividades = actividades.length;
+
+// Recortar a lo que se mostrará en la web
+const noticiasVisibles    = noticias.slice(0, MAX_NOTICIAS);
+const actividadesVisibles = actividades.slice(0, MAX_ACTIVIDADES);
+
+console.log('   📰 Noticias:    ' + noticiasVisibles.length + ' de ' + totalNoticias + ' (máx ' + MAX_NOTICIAS + ')');
+console.log('   📅 Actividades: ' + actividadesVisibles.length + ' de ' + totalActividades + ' (máx ' + MAX_ACTIVIDADES + ')');
 
 let html = fs.readFileSync('index.html', 'utf8');
 
-const noticiasBlock = noticias.length
-  ? noticias.map(noticiaHtml).join('\n\n')
+const noticiasBlock = noticiasVisibles.length
+  ? noticiasVisibles.map(noticiaHtml).join('\n\n')
   : '        <div class="info-card"><p>Próximamente nuevas noticias.</p></div>';
 html = injectBetweenMarkers(html, 'NOTICIAS', noticiasBlock);
 
-const actividadesBlock = actividades.length
-  ? actividades.map(actividadHtml).join('\n\n')
+const actividadesBlock = actividadesVisibles.length
+  ? actividadesVisibles.map(actividadHtml).join('\n\n')
   : '        <div class="info-card"><p>Próximamente nuevas actividades.</p></div>';
 html = injectBetweenMarkers(html, 'ACTIVIDADES', actividadesBlock);
 
