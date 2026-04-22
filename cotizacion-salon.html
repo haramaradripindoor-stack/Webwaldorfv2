@@ -278,7 +278,7 @@
     <header>
       <h1>COTIZACIÓN DE ARRIENDO DE SALÓN</h1>
       <p>Espacio Trekan — Un lugar pensado para el aprendizaje, la conexión y el crecimiento</p>
-      <div class="tarifa-badge">💰 Tarifa desde $15.000 CLP / hora</div>
+      <div class="tarifa-badge">💰 Tarifa desde $10.000 CLP / hora</div>
 
       <div class="photo-gallery">
         <div class="gallery-intro">
@@ -430,10 +430,10 @@
             <tr><th>Duración</th><th>Tarifa</th></tr>
           </thead>
           <tbody>
-            <tr><td>1 – 3 horas</td><td>$15.000 CLP / hora</td></tr>
-            <tr><td>4 – 6 horas</td><td>$13.000 CLP / hora</td></tr>
-            <tr><td>Jornada completa (7 hrs)</td><td>$66.500 CLP total</td></tr>
-            <tr><td>Horas extra (>7 hrs)</td><td>$10.000 CLP / hora adicional</td></tr>
+            <tr><td>1 – 3 horas</td><td>$10.000 CLP / hora</td></tr>
+            <tr><td>4 – 6 horas</td><td>$9.000 CLP / hora</td></tr>
+            <tr><td>Jornada completa (7 hrs)</td><td>$50.000 CLP total</td></tr>
+            <tr><td>Horas extra (>7 hrs)</td><td>$7.000 CLP / hora adicional</td></tr>
           </tbody>
         </table>
       </section>
@@ -443,13 +443,13 @@
         <div class="checkbox-group">
           <label>
             <input type="checkbox" name="kit_completo" value="Sí" onchange="calcularTotalHoras()">
-            Kit Audiovisual Completo (proyector + pantalla + parlantes + micrófono) — $25.000 CLP
+            Kit Audiovisual Completo (proyector + pantalla + parlantes + micrófono) — $20.000 CLP
           </label>
         </div>
         <div class="checkbox-group">
           <label>
             <input type="checkbox" name="calefaccion" value="Sí" onchange="calcularTotalHoras()">
-            Calefacción a leña: incluye 1 vara y encendido inicial — $18.000 CLP
+            Calefacción a leña: incluye 1 vara y encendido inicial — $15.000 CLP
             <small>El cliente se responsabiliza de alimentar la calefacción durante el evento.</small>
           </label>
         </div>
@@ -655,16 +655,16 @@
     }
 
     // ─── LÓGICA DE PRECIOS (sincronizada con index.html) ───
-    // FIX: Precios sincronizados con index.html ($15.000/hr 1-3h, $13.000/hr 4-6h, $66.500 jornada)
+    // FIX: Precios actualizados competitivos ($10.000/hr 1-3h, $9.000/hr 4-6h, $50.000 jornada)
     function calcularCostoSalon(horas) {
       if (horas <= 0) return 0;
-      if (horas <= 3) return horas * 15000;
-      if (horas <= 6) return horas * 13000;
-      if (horas <= 7) return 66500;
+      if (horas <= 3) return horas * 10000;
+      if (horas <= 6) return horas * 9000;
+      if (horas <= 7) return 50000;
       // Más de 7 horas: jornadas completas + horas extra
       const jornadas = Math.floor(horas / 7);
       const extra    = horas % 7;
-      return jornadas * 66500 + extra * 10000;
+      return jornadas * 50000 + extra * 7000;
     }
 
     function calcularTotalHoras() {
@@ -683,8 +683,8 @@
       const costoSalon = calcularCostoSalon(totalHoras);
 
       let costoEquipos = 0;
-      if (document.querySelector('input[name="kit_completo"]:checked')) costoEquipos += 25000;
-      if (document.querySelector('input[name="calefaccion"]:checked'))  costoEquipos += 18000;
+      if (document.querySelector('input[name="kit_completo"]:checked')) costoEquipos += 20000;
+      if (document.querySelector('input[name="calefaccion"]:checked'))  costoEquipos += 15000;
       if (document.getElementById('otro_servicio_check').checked &&
           document.getElementById('otro_servicio').value.trim() !== '') costoEquipos += 10000;
 
