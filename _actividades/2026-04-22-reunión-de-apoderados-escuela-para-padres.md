@@ -1,9 +1,8 @@
 ---
-nombre: Reunión de apoderados/Escuela para padres
+nombre: Reunión de apoderados
 dia: "27"
 mes: MAY
 tipo: asamblea
-descripcion: Cómo acompañar a nuestros niños y niñas a través de ritmos
-  saludables en el hogar, nutriendo su voluntad y tranquilidad.
+descripcion: .
 hora: Las Azaleas 96 · 18:00hrs
 ---
