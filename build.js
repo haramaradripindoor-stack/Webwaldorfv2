@@ -330,7 +330,7 @@ function actividadHtml(a, i) {
 // ─────────────────────────────────────────────────────────────────────────────
 //  CSS del lightbox — se inyecta en <head> (idempotente)
 // ─────────────────────────────────────────────────────────────────────────────
-const CSS_MARKER = '/* CMS-GALLERY-v3 */';
+const CSS_MARKER = '/* CMS-GALLERY-v4 */';
 const GALLERY_CSS = `
 <style id="cms-gallery-styles">
 ${CSS_MARKER}
@@ -510,13 +510,25 @@ ${CSS_MARKER}
   color: rgba(0,0,0,0.55);
   font-style: italic;
 }
+
+/* ── Calendario de actividades: secciones por mes ── */
+.cms-calendario-mes { margin-bottom: 2.5rem; }
+.cms-calendario-mes-titulo {
+  font-family: 'Merriweather', serif;
+  font-size: 1.4rem;
+  color: var(--primary-green, #4A7C59);
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(74,124,89,0.15);
+  text-transform: capitalize;
+}
 </style>
 `;
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  JS del lightbox — se inyecta antes de </body> (idempotente)
 // ─────────────────────────────────────────────────────────────────────────────
-const JS_MARKER = '/* CMS-LIGHTBOX-v3 */';
+const JS_MARKER = '/* CMS-LIGHTBOX-v4 */';
 const GALLERY_JS = `
 <script id="cms-lightbox-script">
 ${JS_MARKER}
@@ -594,11 +606,11 @@ ${JS_MARKER}
     }
   });
 
-  // ── Filtro de chips del archivo de noticias ──
+  // ── Filtro de chips (archivo de noticias y calendario de actividades) ──
   document.addEventListener('click', function(e) {
     var chip = e.target.closest('.cms-chip');
     if (!chip) return;
-    var year = chip.dataset.year;
+    var filter = chip.dataset.filter || chip.dataset.year;
     var chips = document.querySelectorAll('.cms-chip');
     chips.forEach(function(c) {
       var on = (c === chip);
@@ -608,9 +620,17 @@ ${JS_MARKER}
     var cards = document.querySelectorAll('.cms-archivo-card');
     var visible = 0;
     cards.forEach(function(card) {
-      var show = (year === 'all') || (card.dataset.year === year);
+      var cardFilter = card.dataset.filter || card.dataset.year;
+      var show = (filter === 'all') || (cardFilter === filter);
       card.classList.toggle('hidden', !show);
       if (show) visible++;
+    });
+    // Ocultar secciones de mes vacías (solo relevante en calendario)
+    var sections = document.querySelectorAll('.cms-calendario-mes');
+    sections.forEach(function(section) {
+      var sectionKey = section.dataset.month;
+      var show = (filter === 'all') || (sectionKey === filter);
+      section.style.display = show ? '' : 'none';
     });
     var empty = document.querySelector('.cms-archivo-empty');
     if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
@@ -621,11 +641,15 @@ ${JS_MARKER}
 
 function injectCss(html) {
   if (html.includes(CSS_MARKER)) return html;
+  // Limpiar versiones anteriores antes de inyectar la nueva (evita bloques zombies)
+  html = html.replace(/\s*<style id="cms-gallery-styles">[\s\S]*?<\/style>\s*/g, '\n');
   return html.replace('</head>', GALLERY_CSS + '\n</head>');
 }
 
 function injectJs(html) {
   if (html.includes(JS_MARKER)) return html;
+  // Limpiar versiones anteriores antes de inyectar la nueva
+  html = html.replace(/\s*<script id="cms-lightbox-script">[\s\S]*?<\/script>\s*/g, '\n');
   return html.replace('</body>', GALLERY_JS + '\n</body>');
 }
 
@@ -673,15 +697,15 @@ function buildArchivoNoticias(todas) {
   // Chips
   const chipsHtml =
     `          <div class="cms-archivo-chips" role="tablist" aria-label="Filtrar por año">\n` +
-    `            <button class="cms-chip active" data-year="all" role="tab" aria-selected="true">Todas</button>\n` +
+    `            <button class="cms-chip active" data-filter="all" role="tab" aria-selected="true">Todas</button>\n` +
     years.map(y =>
-      `            <button class="cms-chip" data-year="${y}" role="tab" aria-selected="false">${y === 'sin-fecha' ? 'Sin fecha' : y}</button>`
+      `            <button class="cms-chip" data-filter="${y}" role="tab" aria-selected="false">${y === 'sin-fecha' ? 'Sin fecha' : y}</button>`
     ).join('\n') +
     `\n          </div>`;
 
-  // Cards envueltas con data-year para filtrar
+  // Cards envueltas con data-filter para filtrar
   const cardsHtml = todas.map(n =>
-    `          <article class="cms-archivo-card" data-year="${noticiaYear(n)}">\n${noticiaHtml(n)}\n          </article>`
+    `          <article class="cms-archivo-card" data-filter="${noticiaYear(n)}">\n${noticiaHtml(n)}\n          </article>`
   ).join('\n\n');
 
   const archivoBlock =
@@ -746,6 +770,133 @@ ${mainScript}</body>
   console.log('   📂 Archivo:     ' + todas.length + ' noticias en ' + years.length + ' año(s) → noticias.html');
 }
 
+// ── Calendario completo de actividades: genera/actualiza actividades.html ────
+const MESES_LARGO = {
+  1: 'Enero', 2: 'Febrero', 3: 'Marzo', 4: 'Abril',
+  5: 'Mayo', 6: 'Junio', 7: 'Julio', 8: 'Agosto',
+  9: 'Septiembre', 10: 'Octubre', 11: 'Noviembre', 12: 'Diciembre'
+};
+
+function actividadMesKey(a) {
+  const d = actividadFecha(a);
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+}
+
+function buildCalendarioActividades(todas) {
+  if (!todas.length) return;
+
+  // Agrupar por mes-año (las actividades ya vienen ordenadas cronológicamente)
+  const groups = new Map();
+  for (const a of todas) {
+    const key = actividadMesKey(a);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(a);
+  }
+  const keys = [...groups.keys()].sort();
+
+  // Si todas son del mismo año, mostrar solo el mes; si cruzan años, mostrar "Mes Año"
+  const uniqueYears = new Set(keys.map(k => k.split('-')[0]));
+  const singleYear = uniqueYears.size === 1;
+  const labelFor = key => {
+    const [y, m] = key.split('-');
+    const mes = MESES_LARGO[parseInt(m, 10)];
+    return singleYear ? mes : `${mes} ${y}`;
+  };
+
+  // Chips (Todos + un chip por mes con actividades)
+  const chipsHtml =
+    `          <div class="cms-archivo-chips" role="tablist" aria-label="Filtrar por mes">\n` +
+    `            <button class="cms-chip active" data-filter="all" role="tab" aria-selected="true">Todos</button>\n` +
+    keys.map(k =>
+      `            <button class="cms-chip" data-filter="${k}" role="tab" aria-selected="false">${labelFor(k)}</button>`
+    ).join('\n') +
+    `\n          </div>`;
+
+  // Secciones por mes con heading
+  const sectionsHtml = keys.map(k => {
+    const cards = groups.get(k).map(a =>
+      `              <article class="cms-archivo-card" data-filter="${k}">\n${actividadHtml(a)}\n              </article>`
+    ).join('\n');
+    return `          <section class="cms-calendario-mes" data-month="${k}">
+            <h2 class="cms-calendario-mes-titulo">${labelFor(k)}</h2>
+            <div class="cms-archivo-grid">
+${cards}
+            </div>
+          </section>`;
+  }).join('\n\n');
+
+  const calendarioBlock =
+    chipsHtml + '\n\n' + sectionsHtml +
+    '\n          <div class="cms-archivo-empty" style="display:none;">No hay actividades para este mes.</div>';
+
+  const calendarioPath = 'actividades.html';
+  let calendarioHtml;
+
+  if (fs.existsSync(calendarioPath)) {
+    // Ya existe: solo inyecta entre marcadores (respeta ediciones del usuario)
+    calendarioHtml = fs.readFileSync(calendarioPath, 'utf8');
+    calendarioHtml = injectBetweenMarkers(calendarioHtml, 'CALENDARIO', calendarioBlock);
+  } else {
+    // No existe: genera plantilla heredando head + navbar + footer del index
+    const indexHtml = fs.readFileSync('index.html', 'utf8');
+
+    const headMatch = indexHtml.match(/<head[\s\S]*?<\/head>/i);
+    let head = headMatch
+      ? adjustHeadForArchivo(headMatch[0])
+      : '<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Calendario de actividades</title></head>';
+    // Ajustar específicamente para el calendario (sobreescribe title/canonical que adjustHeadForArchivo puso para noticias)
+    head = head
+      .replace(/<title>[\s\S]*?<\/title>/i,
+        '<title>Calendario de actividades — Colegio Waldorf Trekan</title>')
+      .replace(/<link rel="canonical" href="[^"]+"/i, (m) =>
+        m.replace(/noticias\.html/, 'actividades.html'))
+      .replace(/<meta property="og:url" content="[^"]+"/i, (m) =>
+        m.replace(/noticias\.html/, 'actividades.html'))
+      .replace(/<meta property="og:title" content="[^"]*"/i,
+        '<meta property="og:title" content="Calendario de actividades — Colegio Waldorf Trekan"')
+      .replace(/<meta name="twitter:title" content="[^"]*"/i,
+        '<meta name="twitter:title" content="Calendario de actividades — Colegio Waldorf Trekan"')
+      .replace(/<meta\s+name="description"\s+content="[^"]*"/i,
+        '<meta name="description" content="Calendario de próximas actividades del Colegio Waldorf Trekan organizadas por mes."');
+
+    const navMatch = indexHtml.match(/<nav\b[\s\S]*?<\/nav>/i);
+    const nav = navMatch ? rewriteAnchors(navMatch[0]) : '';
+
+    const footerMatch = indexHtml.match(/<footer\b[\s\S]*?<\/footer>/i);
+    const footer = footerMatch ? rewriteAnchors(footerMatch[0]) : '';
+
+    const hasMainScript = /<script[^>]+src="js\/script\.js"/i.test(indexHtml);
+    const mainScript = hasMainScript ? '  <script src="js/script.js"></script>\n' : '';
+
+    calendarioHtml = `<!DOCTYPE html>
+<html lang="es">
+${head}
+<body>
+${nav}
+
+  <main class="container" style="max-width:1200px;margin:0 auto;padding:6rem 1.25rem 4rem;">
+    <header style="margin-bottom:1.5rem;">
+      <h1 style="margin:0 0 0.4rem;font-family:'Merriweather',serif;">Calendario de actividades</h1>
+      <p style="color:rgba(0,0,0,0.6);margin:0;">Próximos eventos del colegio, organizados por mes.</p>
+    </header>
+    <!-- CMS:CALENDARIO:START -->
+${calendarioBlock}
+    <!-- CMS:CALENDARIO:END -->
+  </main>
+
+${footer}
+${mainScript}</body>
+</html>`;
+  }
+
+  // CSS + JS (idempotente)
+  calendarioHtml = injectCss(calendarioHtml);
+  calendarioHtml = injectJs(calendarioHtml);
+
+  fs.writeFileSync(calendarioPath, calendarioHtml, 'utf8');
+  console.log('   📅 Calendario:  ' + todas.length + ' actividades en ' + keys.length + ' mes(es) → actividades.html');
+}
+
 // ── MAIN ──────────────────────────────────────────────────────────────────────
 console.log('🔨 Building Colegio Waldorf Trekan v2...\n');
 
@@ -765,9 +916,14 @@ console.log('   📅 Actividades: ' + actividadesVisibles.length + ' de ' + tota
 
 let html = fs.readFileSync('index.html', 'utf8');
 
-// Link a archivo completo (solo si hay más noticias que el máximo visible)
+// Link a archivo completo de noticias (solo si hay más que el máximo visible)
 const verArchivoLink = totalNoticias > MAX_NOTICIAS
   ? '\n\n        <div class="cms-ver-archivo"><a href="noticias.html">Ver archivo completo (' + totalNoticias + ' noticias) →</a></div>'
+  : '';
+
+// Link a calendario completo (solo si hay más actividades futuras que el máximo)
+const verCalendarioLink = totalActividades > MAX_ACTIVIDADES
+  ? '\n\n        <div class="cms-ver-archivo"><a href="actividades.html">Ver calendario completo (' + totalActividades + ' actividades) →</a></div>'
   : '';
 
 const noticiasBlock = noticiasVisibles.length
@@ -776,7 +932,7 @@ const noticiasBlock = noticiasVisibles.length
 html = injectBetweenMarkers(html, 'NOTICIAS', noticiasBlock);
 
 const actividadesBlock = actividadesVisibles.length
-  ? actividadesVisibles.map(actividadHtml).join('\n\n')
+  ? actividadesVisibles.map(actividadHtml).join('\n\n') + verCalendarioLink
   : '        <div class="info-card"><p>Próximamente nuevas actividades.</p></div>';
 html = injectBetweenMarkers(html, 'ACTIVIDADES', actividadesBlock);
 
@@ -785,14 +941,16 @@ html = injectJs(html);
 
 fs.writeFileSync('index.html', html, 'utf8');
 
-// Generar página de archivo completo con TODAS las noticias (no solo las visibles)
+// Generar páginas completas: archivo de noticias + calendario de actividades
 buildArchivoNoticias(noticias);
+buildCalendarioActividades(actividades);
 
 console.log('\n✅ index.html actualizado');
 console.log('   🖼  Galería con lightbox habilitada');
 console.log('   🎥  YouTube / Vimeo responsive (16:9) habilitado');
 console.log('   📝  Markdown enriquecido activo');
-console.log('   📂  Archivo completo generado en noticias.html');
+console.log('   📂  Archivo completo de noticias → noticias.html');
+console.log('   📅  Calendario de actividades → actividades.html');
 console.log('\n── Sintaxis en tus .md ─────────────────────────────────────');
 console.log('  foto:             images/portada.jpg');
 console.log('  galeria:          [images/f1.jpg, images/f2.jpg, images/f3.jpg]');
