@@ -111,8 +111,49 @@ function readFolder(folder) {
       file: f,
       ...parseFrontmatter(fs.readFileSync(path.join(folder, f), 'utf8'))
     }))
-    .filter(item => Object.keys(item.data).length > 0)
+    .filter(item => Object.keys(item.data).length > 0);
+}
+
+// Noticias: más reciente primero (descendente por fecha en filename)
+function readNoticias() {
+  return readFolder('_noticias')
     .sort((a, b) => b.file.localeCompare(a.file));
+}
+
+// Actividades: próximas primero, filtrando las pasadas
+const MES_NUM = {
+  ENE:1, FEB:2, MAR:3, ABR:4, MAY:5, JUN:6,
+  JUL:7, AGO:8, SEP:9, OCT:10, NOV:11, DIC:12
+};
+
+function actividadFecha(a) {
+  // Intentar extraer año del nombre de archivo (2026-04-22-nombre.md)
+  const fileMatch = a.file.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (fileMatch) {
+    return new Date(
+      parseInt(fileMatch[1]),
+      parseInt(fileMatch[2]) - 1,
+      parseInt(fileMatch[3])
+    );
+  }
+  // Fallback: usar dia + mes del frontmatter con año actual/siguiente
+  const d   = a.data;
+  const dia = parseInt(d.dia) || 1;
+  const mes = MES_NUM[d.mes] || 1;
+  const hoy = new Date();
+  let anio  = hoy.getFullYear();
+  const candidato = new Date(anio, mes - 1, dia);
+  // Si ya pasó este año, asumir el próximo
+  if (candidato < hoy) anio++;
+  return new Date(anio, mes - 1, dia);
+}
+
+function readActividades() {
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0);
+  return readFolder('_actividades')
+    .filter(a => actividadFecha(a) >= hoy)   // solo futuras o de hoy
+    .sort((a, b) => actividadFecha(a) - actividadFecha(b)); // ascendente: próximas primero
 }
 
 // ── Reemplazar bloque entre marcadores ───────────────────────────────────────
@@ -489,8 +530,8 @@ function injectJs(html) {
 // ── MAIN ──────────────────────────────────────────────────────────────────────
 console.log('🔨 Building Colegio Waldorf Trekan v2...\n');
 
-const noticias    = readFolder('_noticias');
-const actividades = readFolder('_actividades');
+const noticias    = readNoticias();
+const actividades = readActividades();
 
 console.log('   📰 Noticias:    ' + noticias.length);
 console.log('   📅 Actividades: ' + actividades.length);
