@@ -1,6 +1,6 @@
 ---
 titulo: 'Escuela para Padres: "El Ritmo y la Respiración en el Hogar"'
-fecha: 22/04/2026
+fecha: 22 de Abril de 2026
 foto: /images/escuela2.webp
 foto_alt: Encuentro de Escuela para Padres, donde se generó un espacio de
   diálogo y reflexión en torno al ritmo en el hogar, la pedagogía Waldorf y el
