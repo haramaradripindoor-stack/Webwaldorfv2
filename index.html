@@ -421,8 +421,8 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
     <div class="header-overlay"></div>
     <div class="container header-content">
       <picture><source srcset="assets/logo.webp" type="image/webp"><img src="assets/logo.png" alt="Colegio Waldorf Trekan - Educación Waldorf en Puerto Varas" class="logo" fetchpriority="high" width="150" height="150" style="width:clamp(100px,18vw,150px);height:auto;background:transparent;"></picture>
-      <h1>Colegio Waldorf Trekan</h1>
-      <p class="tagline">Educación con el corazón, en armonía con la naturaleza</p>
+      <h1 data-i18n="site_name">Colegio Waldorf Trekan</h1>
+      <p class="tagline" data-i18n="site_tagline">Educación con el corazón, en armonía con la naturaleza</p>
     </div>
   </header>
 
@@ -442,37 +442,37 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
       </button>
       
       <ul class="nav-menu" id="nav-menu">
-        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#inicio" data-i18n="nav_inicio">Inicio</a></li>
 
         <!-- Nosotros — dropdown -->
         <li class="dropdown">
-          <a href="#quienes-somos" class="dropdown-toggle">Nosotros</a>
+          <a href="#quienes-somos" class="dropdown-toggle" data-i18n="nav_nosotros">Nosotros</a>
           <ul class="dropdown-menu">
-            <li><a href="#quienes-somos">Quiénes Somos</a></li>
-            <li><a href="#pedagogia">Pedagogía Waldorf</a></li>
-            <li><a href="#comunidad">Comunidad</a></li>
-            <li><a href="#noticias">Noticias</a></li>
-            <li><a href="#actividades">Actividades</a></li>
+            <li><a href="#quienes-somos" data-i18n="nav_quienes">Quiénes Somos</a></li>
+            <li><a href="#pedagogia" data-i18n="nav_ped">Pedagogía Waldorf</a></li>
+            <li><a href="#comunidad" data-i18n="nav_comunidad">Comunidad</a></li>
+            <li><a href="#noticias" data-i18n="nav_noticias">Noticias</a></li>
+            <li><a href="#actividades" data-i18n="nav_actividades">Actividades</a></li>
           </ul>
         </li>
 
         <!-- Admisión — dropdown -->
         <li class="dropdown">
-          <a href="#admission" class="dropdown-toggle">Admisión 2026</a>
+          <a href="#admission" class="dropdown-toggle" data-i18n="nav_admision">Admisión 2026</a>
           <ul class="dropdown-menu">
-            <li><a href="#admission">Valores y Aranceles</a></li>
-            <li><a href="#faq">Preguntas Frecuentes</a></li>
+            <li><a href="#admission" data-i18n="nav_valores">Valores y Aranceles</a></li>
+            <li><a href="#faq" data-i18n="nav_faq">Preguntas Frecuentes</a></li>
           </ul>
         </li>
 
-        <li><a href="#arriendo-salon">Arriendo de Salón</a></li>
-        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#arriendo-salon" data-i18n="nav_arriendo">Arriendo de Salón</a></li>
+        <li><a href="#contacto" data-i18n="nav_contacto">Contacto</a></li>
 
         <!-- Botón Admisión — solo visible en móvil dentro del menú -->
         <li class="nav-apply-mobile">
           <a href="/admision.html"
              aria-label="Conocer el proceso de admisión">
-            🌿 Conocer admisión
+            <span data-i18n="nav_cta">🌿 Conocer admisión</span>
           </a>
         </li>
       </ul>
@@ -481,7 +481,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
       <a href="/admision.html"
          class="nav-apply-btn nav-apply-desktop"
          aria-label="Conocer el proceso de admisión">
-        🌿 Conocer admisión
+        <span data-i18n="nav_cta">🌿 Conocer admisión</span>
       </a>
       <!-- Selector de idioma -->
       <div id="langSwitcher" style="position:relative;display:inline-flex;align-items:center;margin-left:.3rem;">
@@ -1655,7 +1655,15 @@ var T = {
     news_title: '📰 Noticias y Actualidad',
     salon_title: '🏡 Arriendo de Salón - Espacio Trekan',
     contact_title: '📍 En contacto con Trekan',
-    footer_copy: 'Construyendo comunidad, educación y voluntad. Todos los derechos reservados.'
+    footer_copy: 'Construyendo comunidad, educación y voluntad. Todos los derechos reservados.',
+    site_name: 'Colegio Waldorf Trekan',
+    site_tagline: 'Educación con el corazón, en armonía con la naturaleza',
+    nav_inicio: 'Inicio', nav_nosotros: 'Nosotros', nav_quienes: 'Quiénes Somos',
+    nav_ped: 'Pedagogía Waldorf', nav_comunidad: 'Comunidad',
+    nav_noticias: 'Noticias', nav_actividades: 'Actividades',
+    nav_admision: 'Admisión 2026', nav_valores: 'Valores y Aranceles',
+    nav_faq: 'Preguntas Frecuentes', nav_arriendo: 'Arriendo de Salón',
+    nav_contacto: 'Contacto', nav_cta: '🌿 Conocer admisión'
   },
   en: {
     hero_h2: 'Where the child walks with purpose',
@@ -1675,7 +1683,15 @@ var T = {
     news_title: '📰 News & Updates',
     salon_title: '🏡 Hall Rental - Espacio Trekan',
     contact_title: '📍 Get in touch with Trekan',
-    footer_copy: 'Building community, education and purpose. All rights reserved.'
+    footer_copy: 'Building community, education and purpose. All rights reserved.',
+    site_name: 'Waldorf Trekan School',
+    site_tagline: 'Education with heart, in harmony with nature',
+    nav_inicio: 'Home', nav_nosotros: 'About us', nav_quienes: 'Who we are',
+    nav_ped: 'Waldorf Pedagogy', nav_comunidad: 'Community',
+    nav_noticias: 'News', nav_actividades: 'Activities',
+    nav_admision: 'Admissions 2026', nav_valores: 'Fees & Tuition',
+    nav_faq: 'Frequently Asked Questions', nav_arriendo: 'Hall Rental',
+    nav_contacto: 'Contact', nav_cta: '🌿 Learn about admissions'
   },
   de: {
     hero_h2: 'Wo das Kind mit Willen seinen Weg geht',
@@ -1695,7 +1711,15 @@ var T = {
     news_title: '📰 Neuigkeiten & Aktuelles',
     salon_title: '🏡 Saalvermietung - Espacio Trekan',
     contact_title: '📍 Kontakt mit Trekan',
-    footer_copy: 'Gemeinschaft, Bildung und Willen aufbauen. Alle Rechte vorbehalten.'
+    footer_copy: 'Gemeinschaft, Bildung und Willen aufbauen. Alle Rechte vorbehalten.',
+    site_name: 'Waldorf Trekan Schule',
+    site_tagline: 'Bildung mit Herz, im Einklang mit der Natur',
+    nav_inicio: 'Start', nav_nosotros: 'Über uns', nav_quienes: 'Wer wir sind',
+    nav_ped: 'Waldorfpädagogik', nav_comunidad: 'Gemeinschaft',
+    nav_noticias: 'Neuigkeiten', nav_actividades: 'Aktivitäten',
+    nav_admision: 'Aufnahme 2026', nav_valores: 'Gebühren',
+    nav_faq: 'Häufige Fragen', nav_arriendo: 'Saalvermietung',
+    nav_contacto: 'Kontakt', nav_cta: '🌿 Aufnahme kennenlernen'
   }
 };
 
