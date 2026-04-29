@@ -5,7 +5,10 @@ foto: /images/escuela2.webp
 foto_alt: Encuentro de Escuela para Padres, donde se generó un espacio de
   diálogo y reflexión en torno al ritmo en el hogar, la pedagogía Waldorf y el
   acompañamiento de las familias.
-galeria: []
+galeria:
+  - /images/escuela4.webp
+  - /images/escuela1.webp
+  - /images/escuela3.webp
 ---
 
 
