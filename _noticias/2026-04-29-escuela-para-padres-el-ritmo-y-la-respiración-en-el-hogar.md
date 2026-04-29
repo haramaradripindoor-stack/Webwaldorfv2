@@ -9,6 +9,7 @@ galeria:
   - /images/escuela4.webp
   - /images/escuela1.webp
   - /images/escuela3.webp
+  - /images/escuela2.webp
 ---
 
 
