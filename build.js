@@ -132,7 +132,20 @@ const MES_NUM = {
 };
 
 function actividadFecha(a) {
-  // Intentar extraer año del nombre de archivo (2026-04-22-nombre.md)
+  const d   = a.data;
+  const dia = parseInt(d.dia);
+  const mes = MES_NUM[d.mes];
+
+  // Prioridad 1: dia + mes del frontmatter (fecha real del evento)
+  if (dia && mes) {
+    const hoy = new Date();
+    let anio  = hoy.getFullYear();
+    const candidato = new Date(anio, mes - 1, dia);
+    if (candidato < hoy) anio++;
+    return new Date(anio, mes - 1, dia);
+  }
+
+  // Prioridad 2: fecha del nombre de archivo (fecha de creación en Decap)
   const fileMatch = a.file.match(/^(\d{4})-(\d{2})-(\d{2})/);
   if (fileMatch) {
     return new Date(
@@ -141,16 +154,8 @@ function actividadFecha(a) {
       parseInt(fileMatch[3])
     );
   }
-  // Fallback: usar dia + mes del frontmatter con año actual/siguiente
-  const d   = a.data;
-  const dia = parseInt(d.dia) || 1;
-  const mes = MES_NUM[d.mes] || 1;
-  const hoy = new Date();
-  let anio  = hoy.getFullYear();
-  const candidato = new Date(anio, mes - 1, dia);
-  // Si ya pasó este año, asumir el próximo
-  if (candidato < hoy) anio++;
-  return new Date(anio, mes - 1, dia);
+
+  return new Date();
 }
 
 function readActividades() {
@@ -711,8 +716,8 @@ function buildArchivoNoticias(todas) {
     `\n          </div>`;
 
   // Cards envueltas con data-filter para filtrar
-  const cardsHtml = todas.map(n =>
-    `          <article class="cms-archivo-card" data-filter="${noticiaYear(n)}">\n${noticiaHtml(n)}\n          </article>`
+  const cardsHtml = todas.map((n, i) =>
+    `          <article class="cms-archivo-card" data-filter="${noticiaYear(n)}">\n${noticiaHtml(n, i)}\n          </article>`
   ).join('\n\n');
 
   const archivoBlock =
@@ -821,8 +826,8 @@ function buildCalendarioActividades(todas) {
 
   // Secciones por mes con heading
   const sectionsHtml = keys.map(k => {
-    const cards = groups.get(k).map(a =>
-      `              <article class="cms-archivo-card" data-filter="${k}">\n${actividadHtml(a)}\n              </article>`
+    const cards = groups.get(k).map((a, idx) =>
+      `              <article class="cms-archivo-card" data-filter="${k}">\n${actividadHtml(a, idx)}\n              </article>`
     ).join('\n');
     return `          <section class="cms-calendario-mes" data-month="${k}">
             <h2 class="cms-calendario-mes-titulo">${labelFor(k)}</h2>
