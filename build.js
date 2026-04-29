@@ -161,6 +161,13 @@ function readActividades() {
     .sort((a, b) => actividadFecha(a) - actividadFecha(b)); // ascendente: próximas primero
 }
 
+
+// Todas las actividades sin filtro de fecha (para el calendario completo)
+function readTodasActividades() {
+  return readFolder('_actividades')
+    .sort((a, b) => actividadFecha(a) - actividadFecha(b));
+}
+
 // ── Reemplazar bloque entre marcadores ───────────────────────────────────────
 function injectBetweenMarkers(html, section, newContent) {
   const start = `<!-- CMS:${section}:START -->`;
@@ -704,8 +711,8 @@ function buildArchivoNoticias(todas) {
     `\n          </div>`;
 
   // Cards envueltas con data-filter para filtrar
-  const cardsHtml = todas.map((n, i) =>
-    `          <article class="cms-archivo-card" data-filter="${noticiaYear(n)}">\n${noticiaHtml(n, i)}\n          </article>`
+  const cardsHtml = todas.map(n =>
+    `          <article class="cms-archivo-card" data-filter="${noticiaYear(n)}">\n${noticiaHtml(n)}\n          </article>`
   ).join('\n\n');
 
   const archivoBlock =
@@ -814,8 +821,8 @@ function buildCalendarioActividades(todas) {
 
   // Secciones por mes con heading
   const sectionsHtml = keys.map(k => {
-    const cards = groups.get(k).map((a, idx) =>
-      `              <article class="cms-archivo-card" data-filter="${k}">\n${actividadHtml(a, idx)}\n              </article>`
+    const cards = groups.get(k).map(a =>
+      `              <article class="cms-archivo-card" data-filter="${k}">\n${actividadHtml(a)}\n              </article>`
     ).join('\n');
     return `          <section class="cms-calendario-mes" data-month="${k}">
             <h2 class="cms-calendario-mes-titulo">${labelFor(k)}</h2>
@@ -900,8 +907,9 @@ ${mainScript}</body>
 // ── MAIN ──────────────────────────────────────────────────────────────────────
 console.log('🔨 Building Colegio Waldorf Trekan v2...\n');
 
-const noticias    = readNoticias();
-const actividades = readActividades();
+const noticias          = readNoticias();
+const actividades         = readActividades();
+const todasActividades    = readTodasActividades();
 
 // Totales antes de recortar (para el log)
 const totalNoticias    = noticias.length;
@@ -943,7 +951,7 @@ fs.writeFileSync('index.html', html, 'utf8');
 
 // Generar páginas completas: archivo de noticias + calendario de actividades
 buildArchivoNoticias(noticias);
-buildCalendarioActividades(actividades);
+buildCalendarioActividades(todasActividades);
 
 console.log('\n✅ index.html actualizado');
 console.log('   🖼  Galería con lightbox habilitada');
