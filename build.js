@@ -969,3 +969,254 @@ console.log('  video_id:         dQw4w9WgXcQ');
 console.log('  video_ids:        [id1, id2]');
 console.log('  video_url:        https://vimeo.com/...');
 console.log('────────────────────────────────────────────────────────────\n');
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SOPORTE MULTIIDIOMA — EN / DE
+// Lee _noticias/en/, _noticias/de/, _actividades/en/, _actividades/de/
+// Genera noticias-en.html, noticias-de.html, actividades-en.html, actividades-de.html
+// ═══════════════════════════════════════════════════════════════════════════
+
+const LANG_CONFIG = {
+  en: {
+    code: 'en',
+    suffix: '-en',
+    noticias_folder: '_noticias/en',
+    actividades_folder: '_actividades/en',
+    noticias_file: 'noticias-en.html',
+    actividades_file: 'actividades-en.html',
+    // Textos UI en inglés
+    ui: {
+      noticias_titulo: 'News Archive',
+      noticias_desc: 'All school publications, filterable by year.',
+      noticias_todas: 'All',
+      noticias_empty: 'No news for this year.',
+      actividades_titulo: 'Activities Calendar',
+      actividades_desc: 'Upcoming school events, organized by month.',
+      actividades_todos: 'All',
+      actividades_empty: 'No activities for this month.',
+      ver_archivo: 'View full archive',
+      ver_calendario: 'View full calendar',
+    }
+  },
+  de: {
+    code: 'de',
+    suffix: '-de',
+    noticias_folder: '_noticias/de',
+    actividades_folder: '_actividades/de',
+    noticias_file: 'noticias-de.html',
+    actividades_file: 'actividades-de.html',
+    ui: {
+      noticias_titulo: 'Nachrichtenarchiv',
+      noticias_desc: 'Alle Schulpublikationen, nach Jahr filterbar.',
+      noticias_todas: 'Alle',
+      noticias_empty: 'Keine Neuigkeiten für dieses Jahr.',
+      actividades_titulo: 'Aktivitätenkalender',
+      actividades_desc: 'Kommende Schulveranstaltungen, nach Monat geordnet.',
+      actividades_todos: 'Alle',
+      actividades_empty: 'Keine Aktivitäten für diesen Monat.',
+      ver_archivo: 'Vollständiges Archiv anzeigen',
+      ver_calendario: 'Vollständigen Kalender anzeigen',
+    }
+  }
+};
+
+// Meses largos en cada idioma para el calendario
+const MESES_LARGO_LANG = {
+  en: { 1:'January',2:'February',3:'March',4:'April',5:'May',6:'June',
+        7:'July',8:'August',9:'September',10:'October',11:'November',12:'December' },
+  de: { 1:'Januar',2:'Februar',3:'März',4:'April',5:'Mai',6:'Juni',
+        7:'Juli',8:'August',9:'September',10:'Oktober',11:'November',12:'Dezember' }
+};
+
+// ── Leer noticias/actividades de carpeta de idioma ────────────────────────
+function readNoticiasLang(lang) {
+  const folder = LANG_CONFIG[lang].noticias_folder;
+  if (!fs.existsSync(folder)) {
+    console.log(`   ⚠️  Carpeta no encontrada: ${folder}`);
+    return [];
+  }
+  return readFolder(folder).sort((a, b) => b.file.localeCompare(a.file));
+}
+
+function readActividadesLang(lang) {
+  const folder = LANG_CONFIG[lang].actividades_folder;
+  if (!fs.existsSync(folder)) {
+    console.log(`   ⚠️  Carpeta no encontrada: ${folder}`);
+    return [];
+  }
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0);
+  return readFolder(folder)
+    .filter(a => actividadFecha(a) >= hoy)
+    .sort((a, b) => actividadFecha(a) - actividadFecha(b));
+}
+
+// ── Ajustar <head> para páginas de idioma ─────────────────────────────────
+function adjustHeadForLang(head, lang, tipo) {
+  const cfg = LANG_CONFIG[lang];
+  const isNoticias = tipo === 'noticias';
+  const titulo = isNoticias
+    ? (lang === 'en' ? 'News Archive' : 'Nachrichtenarchiv')
+    : (lang === 'en' ? 'Activities Calendar' : 'Aktivitätenkalender');
+  const archivo = isNoticias ? cfg.noticias_file : cfg.actividades_file;
+
+  return head
+    .replace(/<html[^>]*>/i, `<html lang="${lang}">`)
+    .replace(/<title>[\s\S]*?<\/title>/i, `<title>${titulo} — Colegio Waldorf Trekan</title>`)
+    .replace(/<link\s+rel="canonical"\s+href="([^"]+)"[^>]*>/i, (_, url) => {
+      const base = url.replace(/\/$/, '').replace(/\/[^/]+$/, '');
+      return `<link rel="canonical" href="${base}/${archivo}">`;
+    })
+    .replace(/<meta\s+property="og:url"\s+content="([^"]+)"[^>]*>/i, (_, url) => {
+      const base = url.replace(/\/$/, '').replace(/\/[^/]+$/, '');
+      return `<meta property="og:url" content="${base}/${archivo}">`;
+    })
+    .replace(/<meta\s+property="og:title"\s+content="[^"]*"/i,
+      `<meta property="og:title" content="${titulo} — Colegio Waldorf Trekan"`)
+    .replace(/<meta\s+name="twitter:title"\s+content="[^"]*"/i,
+      `<meta name="twitter:title" content="${titulo} — Colegio Waldorf Trekan"`);
+}
+
+// ── Generar archivo de noticias en un idioma ──────────────────────────────
+function buildNoticiasLang(lang) {
+  const todas = readNoticiasLang(lang);
+  if (!todas.length) {
+    console.log(`   📂 Noticias ${lang.toUpperCase()}: sin archivos en ${LANG_CONFIG[lang].noticias_folder}`);
+    return;
+  }
+
+  const cfg = LANG_CONFIG[lang];
+  const ui  = cfg.ui;
+
+  const years = [...new Set(todas.map(noticiaYear))].sort((a, b) => b.localeCompare(a));
+
+  const chipsHtml =
+    `          <div class="cms-archivo-chips" role="tablist" aria-label="Filter by year">\n` +
+    `            <button class="cms-chip active" data-filter="all" role="tab" aria-selected="true">${ui.noticias_todas}</button>\n` +
+    years.map(y =>
+      `            <button class="cms-chip" data-filter="${y}" role="tab" aria-selected="false">${y}</button>`
+    ).join('\n') +
+    `\n          </div>`;
+
+  const cardsHtml = todas.map((n, i) =>
+    `          <article class="cms-archivo-card" data-filter="${noticiaYear(n)}">\n${noticiaHtml(n, i)}\n          </article>`
+  ).join('\n\n');
+
+  const archivoBlock =
+    chipsHtml +
+    `\n\n          <div class="cms-archivo-grid">\n${cardsHtml}\n          </div>\n` +
+    `          <div class="cms-archivo-empty" style="display:none;">${ui.noticias_empty}</div>`;
+
+  const archivoPath = cfg.noticias_file;
+  let archivoHtml;
+
+  if (fs.existsSync(archivoPath)) {
+    archivoHtml = fs.readFileSync(archivoPath, 'utf8');
+    archivoHtml = injectBetweenMarkers(archivoHtml, 'ARCHIVO', archivoBlock);
+  } else {
+    const indexHtml = fs.readFileSync('index.html', 'utf8');
+    const headMatch = indexHtml.match(/<head[\s\S]*?<\/head>/i);
+    const head = headMatch
+      ? adjustHeadForLang(headMatch[0], lang, 'noticias')
+      : `<head><meta charset="UTF-8"><title>${ui.noticias_titulo}</title></head>`;
+    const navMatch   = indexHtml.match(/<nav\b[\s\S]*?<\/nav>/i);
+    const nav        = navMatch ? rewriteAnchors(navMatch[0]) : '';
+    const footerMatch = indexHtml.match(/<footer\b[\s\S]*?<\/footer>/i);
+    const footer     = footerMatch ? rewriteAnchors(footerMatch[0]) : '';
+    const hasScript  = /<script[^>]+src="js\/script\.js"/i.test(indexHtml);
+    const mainScript = hasScript ? '  <script src="js/script.js"></script>\n' : '';
+
+    archivoHtml = `<!DOCTYPE html>\n<html lang="${lang}">\n${head}\n<body>\n${nav}\n\n  <main class="container" style="max-width:1200px;margin:0 auto;padding:6rem 1.25rem 4rem;">\n    <header style="margin-bottom:1.5rem;">\n      <h1 style="margin:0 0 0.4rem;font-family:'Merriweather',serif;">${ui.noticias_titulo}</h1>\n      <p style="color:rgba(0,0,0,0.6);margin:0;">${ui.noticias_desc}</p>\n    </header>\n    <!-- CMS:ARCHIVO:START -->\n${archivoBlock}\n    <!-- CMS:ARCHIVO:END -->\n  </main>\n\n${footer}\n${mainScript}</body>\n</html>`;
+  }
+
+  archivoHtml = injectCss(archivoHtml);
+  archivoHtml = injectJs(archivoHtml);
+  fs.writeFileSync(archivoPath, archivoHtml, 'utf8');
+  console.log(`   📂 Noticias ${lang.toUpperCase()}:    ${todas.length} artículos → ${archivoPath}`);
+}
+
+// ── Generar calendario de actividades en un idioma ────────────────────────
+function buildCalendarioLang(lang) {
+  const todas = readActividadesLang(lang);
+  if (!todas.length) {
+    console.log(`   📅 Actividades ${lang.toUpperCase()}: sin archivos en ${LANG_CONFIG[lang].actividades_folder}`);
+    return;
+  }
+
+  const cfg    = LANG_CONFIG[lang];
+  const ui     = cfg.ui;
+  const meses  = MESES_LARGO_LANG[lang];
+
+  // Agrupar por mes
+  const groups = new Map();
+  for (const a of todas) {
+    const key = actividadMesKey(a);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(a);
+  }
+  const keys = [...groups.keys()].sort();
+
+  const uniqueYears  = new Set(keys.map(k => k.split('-')[0]));
+  const singleYear   = uniqueYears.size === 1;
+  const labelFor = key => {
+    const [y, m] = key.split('-');
+    const mes = meses[parseInt(m, 10)];
+    return singleYear ? mes : `${mes} ${y}`;
+  };
+
+  const chipsHtml =
+    `          <div class="cms-archivo-chips" role="tablist" aria-label="Filter by month">\n` +
+    `            <button class="cms-chip active" data-filter="all" role="tab" aria-selected="true">${ui.actividades_todos}</button>\n` +
+    keys.map(k =>
+      `            <button class="cms-chip" data-filter="${k}" role="tab" aria-selected="false">${labelFor(k)}</button>`
+    ).join('\n') +
+    `\n          </div>`;
+
+  const sectionsHtml = keys.map(k => {
+    const cards = groups.get(k).map((a, idx) =>
+      `              <article class="cms-archivo-card" data-filter="${k}">\n${actividadHtml(a, idx)}\n              </article>`
+    ).join('\n');
+    return `          <section class="cms-calendario-mes" data-month="${k}">\n            <h2 class="cms-calendario-mes-titulo">${labelFor(k)}</h2>\n            <div class="cms-archivo-grid">\n${cards}\n            </div>\n          </section>`;
+  }).join('\n\n');
+
+  const calendarioBlock =
+    chipsHtml + '\n\n' + sectionsHtml +
+    `\n          <div class="cms-archivo-empty" style="display:none;">${ui.actividades_empty}</div>`;
+
+  const calendarioPath = cfg.actividades_file;
+  let calendarioHtml;
+
+  if (fs.existsSync(calendarioPath)) {
+    calendarioHtml = fs.readFileSync(calendarioPath, 'utf8');
+    calendarioHtml = injectBetweenMarkers(calendarioHtml, 'CALENDARIO', calendarioBlock);
+  } else {
+    const indexHtml = fs.readFileSync('index.html', 'utf8');
+    const headMatch = indexHtml.match(/<head[\s\S]*?<\/head>/i);
+    const head = headMatch
+      ? adjustHeadForLang(headMatch[0], lang, 'actividades')
+      : `<head><meta charset="UTF-8"><title>${ui.actividades_titulo}</title></head>`;
+    const navMatch    = indexHtml.match(/<nav\b[\s\S]*?<\/nav>/i);
+    const nav         = navMatch ? rewriteAnchors(navMatch[0]) : '';
+    const footerMatch = indexHtml.match(/<footer\b[\s\S]*?<\/footer>/i);
+    const footer      = footerMatch ? rewriteAnchors(footerMatch[0]) : '';
+    const hasScript   = /<script[^>]+src="js\/script\.js"/i.test(indexHtml);
+    const mainScript  = hasScript ? '  <script src="js/script.js"></script>\n' : '';
+
+    calendarioHtml = `<!DOCTYPE html>\n<html lang="${lang}">\n${head}\n<body>\n${nav}\n\n  <main class="container" style="max-width:1200px;margin:0 auto;padding:6rem 1.25rem 4rem;">\n    <header style="margin-bottom:1.5rem;">\n      <h1 style="margin:0 0 0.4rem;font-family:'Merriweather',serif;">${ui.actividades_titulo}</h1>\n      <p style="color:rgba(0,0,0,0.6);margin:0;">${ui.actividades_desc}</p>\n    </header>\n    <!-- CMS:CALENDARIO:START -->\n${calendarioBlock}\n    <!-- CMS:CALENDARIO:END -->\n  </main>\n\n${footer}\n${mainScript}</body>\n</html>`;
+  }
+
+  calendarioHtml = injectCss(calendarioHtml);
+  calendarioHtml = injectJs(calendarioHtml);
+  fs.writeFileSync(calendarioPath, calendarioHtml, 'utf8');
+  console.log(`   📅 Actividades ${lang.toUpperCase()}:  ${todas.length} eventos en ${keys.length} mes(es) → ${calendarioPath}`);
+}
+
+// ── Ejecutar build multiidioma ────────────────────────────────────────────
+console.log('\n🌐 Building versiones EN / DE...\n');
+buildNoticiasLang('en');
+buildNoticiasLang('de');
+buildCalendarioLang('en');
+buildCalendarioLang('de');
+console.log('\n✅ Build multiidioma completado');
+console.log('   📂 noticias-en.html, noticias-de.html');
+console.log('   📅 actividades-en.html, actividades-de.html');
