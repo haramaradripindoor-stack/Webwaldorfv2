@@ -163,14 +163,14 @@ function readActividades() {
   hoy.setHours(0, 0, 0, 0);
   return readFolder('_actividades')
     .filter(a => actividadFecha(a) >= hoy)   // solo futuras o de hoy
-    .sort((a, b) => actividadFecha(a) - actividadFecha(b)); // ascendente: próximas primero
+    .sort((a, b) => actividadFechaReal(a) - actividadFechaReal(b)); // ascendente: próximas primero
 }
 
 
 // Todas las actividades sin filtro de fecha (para el calendario completo)
 function readTodasActividades() {
   return readFolder('_actividades')
-    .sort((a, b) => actividadFecha(a) - actividadFecha(b));
+    .sort((a, b) => actividadFechaReal(a) - actividadFechaReal(b));
 }
 
 // ── Reemplazar bloque entre marcadores ───────────────────────────────────────
@@ -790,7 +790,7 @@ const MESES_LARGO = {
 };
 
 function actividadMesKey(a) {
-  const d = actividadFecha(a);
+  const d = actividadFechaReal(a);
   return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
 }
 
@@ -806,13 +806,10 @@ function buildCalendarioActividades(todas) {
   }
   const keys = [...groups.keys()].sort();
 
-  // Si todas son del mismo año, mostrar solo el mes; si cruzan años, mostrar "Mes Año"
-  const uniqueYears = new Set(keys.map(k => k.split('-')[0]));
-  const singleYear = uniqueYears.size === 1;
+  // Mostrar solo el nombre del mes (sin año) para mantener el calendario atemporal
   const labelFor = key => {
-    const [y, m] = key.split('-');
-    const mes = MESES_LARGO[parseInt(m, 10)];
-    return singleYear ? mes : `${mes} ${y}`;
+    const [, m] = key.split('-');
+    return MESES_LARGO[parseInt(m, 10)];
   };
 
   // Chips (Todos + un chip por mes con actividades)
