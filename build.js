@@ -163,14 +163,14 @@ function readActividades() {
   hoy.setHours(0, 0, 0, 0);
   return readFolder('_actividades')
     .filter(a => actividadFecha(a) >= hoy)   // solo futuras o de hoy
-    .sort((a, b) => actividadFechaReal(a) - actividadFechaReal(b)); // ascendente: próximas primero
+    .sort((a, b) => actividadFecha(a) - actividadFecha(b)); // ascendente: próximas primero
 }
 
 
 // Todas las actividades sin filtro de fecha (para el calendario completo)
 function readTodasActividades() {
   return readFolder('_actividades')
-    .sort((a, b) => actividadFechaReal(a) - actividadFechaReal(b));
+    .sort((a, b) => actividadFecha(a) - actividadFecha(b));
 }
 
 // ── Reemplazar bloque entre marcadores ───────────────────────────────────────
@@ -790,7 +790,7 @@ const MESES_LARGO = {
 };
 
 function actividadMesKey(a) {
-  const d = actividadFechaReal(a);
+  const d = actividadFecha(a);
   return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
 }
 
