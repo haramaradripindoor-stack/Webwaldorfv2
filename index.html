@@ -465,25 +465,34 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
         <li><a href="#arriendo-salon">Arriendo de Salón</a></li>
         <li><a href="#contacto">Contacto</a></li>
 
-        <!-- Botón Postula — solo visible en móvil dentro del menú -->
+        <!-- Botón Admisión — solo visible en móvil dentro del menú -->
         <li class="nav-apply-mobile">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdXbiojPJFncN94G3AS5huINvHKjpv2xFLcEaMjsHiC8sHYSQ/viewform"
-             aria-label="Postular al colegio"
-             target="_blank"
-             rel="noopener noreferrer">
-            📝 Postula aquí
+          <a href="/admision.html"
+             aria-label="Conocer el proceso de admisión">
+            🌿 Conocer admisión
           </a>
         </li>
       </ul>
 
-      <!-- Botón Postula — solo visible en desktop -->
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdXbiojPJFncN94G3AS5huINvHKjpv2xFLcEaMjsHiC8sHYSQ/viewform"
+      <!-- Botón Admisión — solo visible en desktop -->
+      <a href="/admision.html"
          class="nav-apply-btn nav-apply-desktop"
-         aria-label="Postular al colegio"
-         target="_blank"
-         rel="noopener noreferrer">
-        📝 Postula aquí
+         aria-label="Conocer el proceso de admisión">
+        🌿 Conocer admisión
       </a>
+      <!-- Selector de idioma -->
+      <div id="langSwitcher" style="position:relative;display:inline-flex;align-items:center;margin-left:.3rem;">
+        <button id="langBtn" aria-haspopup="true" aria-expanded="false"
+          style="display:inline-flex;align-items:center;gap:.4rem;padding:.5rem .85rem;border-radius:50px;background:transparent;border:1.5px solid #A8D8B9;color:#2E5E4E;font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;">
+          <span id="currentFlag">🇪🇸</span><span id="currentLang">ES</span><span id="langArrow" style="font-size:.65rem;transition:transform .2s;">▾</span>
+        </button>
+        <div id="langDropdown"
+          style="position:absolute;top:calc(100% + .5rem);right:0;background:white;border:1px solid #EDE4D8;border-radius:12px;box-shadow:0 8px 28px rgba(46,94,78,.12);min-width:140px;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(-6px);transition:all .2s ease;z-index:9999;">
+          <button class="tlang-opt" data-lang="es" style="display:flex;align-items:center;gap:.6rem;padding:.7rem 1rem;font-size:.84rem;font-weight:600;color:#1E2E28;cursor:pointer;background:none;width:100%;border:none;text-align:left;font-family:inherit;">🇪🇸 Español</button>
+          <button class="tlang-opt" data-lang="en" style="display:flex;align-items:center;gap:.6rem;padding:.7rem 1rem;font-size:.84rem;font-weight:600;color:#1E2E28;cursor:pointer;background:none;width:100%;border:none;text-align:left;font-family:inherit;">🇬🇧 English</button>
+          <button class="tlang-opt" data-lang="de" style="display:flex;align-items:center;gap:.6rem;padding:.7rem 1rem;font-size:.84rem;font-weight:600;color:#1E2E28;cursor:pointer;background:none;width:100%;border:none;text-align:left;font-family:inherit;">🇩🇪 Deutsch</button>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -497,7 +506,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
         <p>En el corazón de <strong>Puerto Varas</strong>, nace <strong>Trekan</strong>, una comunidad educativa inspirada en la <strong>pedagogía Waldorf</strong> que acompaña a niñas y niños <strong>de 3 a 14 años</strong> en su desarrollo integral.</p>
         <p><strong>Trekan</strong> significa <em>caminante</em> en mapudungun: un ser que decide encaminarse hacia el mundo… y hacia sí mismo.</p>
         <div class="cta-buttons" data-animate="fade-up" data-delay="200">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdXbiojPJFncN94G3AS5huINvHKjpv2xFLcEaMjsHiC8sHYSQ/viewform" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Postula aquí</a>
+          <a href="/admision.html" class="btn btn-primary">🌿 Conocer el proceso de admisión</a>
           <a href="#quienes-somos" class="btn btn-secondary">Conócenos</a>
         </div>
         <button id="share-btn" class="btn btn-outline-share" aria-label="Compartir sitio">🔗 Compartir</button>
@@ -625,20 +634,7 @@ Cuando la luz exterior disminuye y el frío nos invita a volver a casa, es momen
           </div>
         </div>
 
-        <div class="actividad-card" data-animate="fade-up" data-delay="300">
-          <div class="actividad-fecha">
-            <span class="actividad-dia">22</span>
-            <span class="actividad-mes">ABR</span>
-          </div>
-          <div class="actividad-info">
-            <span class="actividad-tipo tipo-taller">Taller</span>
-            <h3>Escuela para Padres: "El Ritmo y la Respiración en el Hogar"</h3>
-            <div class="actividad-body"><p>El otoño nos invita a volver la mirada hacia el interior. Conversaremos sobre cómo el ritmo diario (la inhalación y exhalación en casa) brinda seguridad y calor a nuestros niños en esta época. Traer un pequeño elemento de la naturaleza (hoja, piedra o ramita) para la mesa de estación.</p></div>
-            <span class="actividad-hora">🕐 Las Azaleas 96 · 18:00 hrs</span>
-          </div>
-        </div>
-
-        <div class="cms-ver-archivo"><a href="actividades.html">Ver calendario completo (7 actividades) →</a></div>
+        <div class="cms-ver-archivo"><a href="actividades.html">📅 Ver calendario completo →</a></div>
         <!-- CMS:ACTIVIDADES:END -->
       </div>
 
@@ -852,8 +848,9 @@ Cuando la luz exterior disminuye y el frío nos invita a volver a casa, es momen
         <p><strong>Jornada:</strong> 8:00 a 14:00 hrs, de lunes a viernes.</p>
       </div>
       <div class="form-button">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdXbiojPJFncN94G3AS5huINvHKjpv2xFLcEaMjsHiC8sHYSQ/viewform" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">
-          📝 Postula aquí
+        <p style="margin-bottom:1rem;color:#4E6A5E;font-size:.97rem;">Elegir colegio no es una decisión rápida. Te invitamos a conocer cómo es realmente el proceso.</p>
+        <a href="/admision.html" class="btn btn-primary btn-large">
+          🌿 Conocer el proceso de admisión
         </a>
       </div>
     </div>
@@ -1580,3 +1577,49 @@ Cuando la luz exterior disminuye y el frío nos invita a volver a casa, es momen
 
 </body>
 </html>
+<script>
+/* ── SELECTOR DE IDIOMA (index) ── */
+(function() {
+  var FLAGS  = { es:'🇪🇸', en:'🇬🇧', de:'🇩🇪' };
+  var LABELS = { es:'ES',  en:'EN',  de:'DE'  };
+  var btn      = document.getElementById('langBtn');
+  var dropdown = document.getElementById('langDropdown');
+  var flagEl   = document.getElementById('currentFlag');
+  var labelEl  = document.getElementById('currentLang');
+  var arrowEl  = document.getElementById('langArrow');
+  if (!btn) return;
+
+  function setLang(lang) {
+    flagEl.textContent  = FLAGS[lang];
+    labelEl.textContent = LABELS[lang];
+    localStorage.setItem('trekan-lang', lang);
+    document.querySelectorAll('.tlang-opt').forEach(function(o) {
+      o.style.background = o.dataset.lang === lang ? '#F0F7F3' : '';
+    });
+  }
+
+  function openDD(open) {
+    dropdown.style.opacity    = open ? '1' : '0';
+    dropdown.style.visibility = open ? 'visible' : 'hidden';
+    dropdown.style.transform  = open ? 'translateY(0)' : 'translateY(-6px)';
+    arrowEl.style.transform   = open ? 'rotate(180deg)' : '';
+    btn.setAttribute('aria-expanded', String(open));
+  }
+
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    openDD(dropdown.style.visibility !== 'visible');
+  });
+  document.addEventListener('click', function() { openDD(false); });
+
+  document.querySelectorAll('.tlang-opt').forEach(function(opt) {
+    opt.addEventListener('click', function() { setLang(opt.dataset.lang); openDD(false); });
+    opt.addEventListener('mouseenter', function() { opt.style.background='#F0F7F3'; });
+    opt.addEventListener('mouseleave', function() {
+      opt.style.background = opt.dataset.lang===localStorage.getItem('trekan-lang') ? '#F0F7F3' : '';
+    });
+  });
+
+  setLang(localStorage.getItem('trekan-lang') || 'es');
+})();
+</script>

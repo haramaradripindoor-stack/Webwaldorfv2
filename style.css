@@ -2735,14 +2735,34 @@ picture img {
 .tipo-admision   { background: #fff3e0; color: #e65100; }
 .tipo-taller     { background: #f3e5f5; color: #6a1b9a; }
 
-.actividades-cta {
+.cms-ver-archivo {
+  grid-column: 1 / -1;
   text-align: center;
-  margin-top: 2.5rem;
-  padding: 2rem;
-  background: var(--light-green);
-  border-radius: var(--border-radius);
-  border: 2px solid var(--secondary-green);
+  padding: 1rem 0 0.5rem;
 }
+
+.cms-ver-archivo a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1.8rem;
+  background: var(--primary-green);
+  color: white;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+
+.cms-ver-archivo a:hover {
+  background: #1e3d22;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.actividades-cta {
 
 .actividades-cta p {
   font-size: 1.05rem;
