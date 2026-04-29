@@ -704,8 +704,8 @@ function buildArchivoNoticias(todas) {
     `\n          </div>`;
 
   // Cards envueltas con data-filter para filtrar
-  const cardsHtml = todas.map(n =>
-    `          <article class="cms-archivo-card" data-filter="${noticiaYear(n)}">\n${noticiaHtml(n)}\n          </article>`
+  const cardsHtml = todas.map((n, i) =>
+    `          <article class="cms-archivo-card" data-filter="${noticiaYear(n)}">\n${noticiaHtml(n, i)}\n          </article>`
   ).join('\n\n');
 
   const archivoBlock =
@@ -814,8 +814,8 @@ function buildCalendarioActividades(todas) {
 
   // Secciones por mes con heading
   const sectionsHtml = keys.map(k => {
-    const cards = groups.get(k).map(a =>
-      `              <article class="cms-archivo-card" data-filter="${k}">\n${actividadHtml(a)}\n              </article>`
+    const cards = groups.get(k).map((a, idx) =>
+      `              <article class="cms-archivo-card" data-filter="${k}">\n${actividadHtml(a, idx)}\n              </article>`
     ).join('\n');
     return `          <section class="cms-calendario-mes" data-month="${k}">
             <h2 class="cms-calendario-mes-titulo">${labelFor(k)}</h2>
