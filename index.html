@@ -1586,8 +1586,45 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
 
 </body>
 </html>
+<!-- ══ GOOGLE TRANSLATE - Contenedor oculto ══ -->
+<div id="google_translate_element" style="position:absolute;left:-9999px;top:-9999px;visibility:hidden;"></div>
+
+<!-- CSS para ocultar la barra de Google Translate -->
+<style>
+  /* Ocultar barra superior de Google Translate */
+  .goog-te-banner-frame.skiptranslate,
+  .goog-te-gadget-icon,
+  .goog-logo-link,
+  .goog-te-gadget span { display: none !important; }
+  body { top: 0 !important; position: static !important; }
+  .goog-tooltip, .goog-tooltip:hover { display: none !important; }
+  .goog-text-highlight {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  /* Ocultar iframe de Google */
+  iframe.goog-te-banner-frame { display: none !important; }
+  /* Evitar que el body se desplace hacia abajo */
+  html { margin-top: 0 !important; }
+</style>
+
+<script type="text/javascript">
+/* ══ INICIALIZAR GOOGLE TRANSLATE ══ */
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'es',
+    includedLanguages: 'en,de,es',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
 <script>
-/* ── SELECTOR DE IDIOMA (index) ── */
+/* ══ SELECTOR DE IDIOMA (index) - Conectado a Google Translate ══ */
 (function() {
   var FLAGS  = { es:'🇪🇸', en:'🇬🇧', de:'🇩🇪' };
   var LABELS = { es:'ES',  en:'EN',  de:'DE'  };
@@ -1598,13 +1635,46 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
   var arrowEl  = document.getElementById('langArrow');
   if (!btn) return;
 
-  function setLang(lang) {
+  /* ── Cambia idioma usando Google Translate ── */
+  function triggerGoogleTranslate(lang) {
+    // Espera a que el widget esté listo
+    var attempts = 0;
+    var interval = setInterval(function() {
+      var select = document.querySelector('.goog-te-combo');
+      if (select) {
+        clearInterval(interval);
+        if (lang === 'es') {
+          // Volver al original: limpiar cookie de Google
+          document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+          document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + location.hostname + ';';
+          select.value = '';
+          select.dispatchEvent(new Event('change'));
+          // Recarga para limpiar traducción residual
+          if (window.__trekanLangChanged) {
+            location.reload();
+          }
+        } else {
+          select.value = lang;
+          select.dispatchEvent(new Event('change'));
+          window.__trekanLangChanged = true;
+        }
+      } else if (++attempts > 30) {
+        clearInterval(interval);
+        console.warn('Google Translate no se cargó');
+      }
+    }, 200);
+  }
+
+  function setLang(lang, skipTranslate) {
     flagEl.textContent  = FLAGS[lang];
     labelEl.textContent = LABELS[lang];
     localStorage.setItem('trekan-lang', lang);
     document.querySelectorAll('.tlang-opt').forEach(function(o) {
       o.style.background = o.dataset.lang === lang ? '#F0F7F3' : '';
     });
+    if (!skipTranslate) {
+      triggerGoogleTranslate(lang);
+    }
   }
 
   function openDD(open) {
@@ -1622,13 +1692,18 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
   document.addEventListener('click', function() { openDD(false); });
 
   document.querySelectorAll('.tlang-opt').forEach(function(opt) {
-    opt.addEventListener('click', function() { setLang(opt.dataset.lang); openDD(false); });
+    opt.addEventListener('click', function() {
+      setLang(opt.dataset.lang);
+      openDD(false);
+    });
     opt.addEventListener('mouseenter', function() { opt.style.background='#F0F7F3'; });
     opt.addEventListener('mouseleave', function() {
       opt.style.background = opt.dataset.lang===localStorage.getItem('trekan-lang') ? '#F0F7F3' : '';
     });
   });
 
-  setLang(localStorage.getItem('trekan-lang') || 'es');
+  /* ── Init: aplicar idioma guardado sin recargar ── */
+  var savedLang = localStorage.getItem('trekan-lang') || 'es';
+  setLang(savedLang, savedLang === 'es'); // Si es ES, no traducir
 })();
 </script>
