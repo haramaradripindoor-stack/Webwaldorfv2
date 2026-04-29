@@ -934,9 +934,9 @@ const verArchivoLink = totalNoticias > MAX_NOTICIAS
   ? '\n\n        <div class="cms-ver-archivo"><a href="noticias.html">Ver archivo completo (' + totalNoticias + ' noticias) →</a></div>'
   : '';
 
-// Link a calendario completo (solo si hay más actividades futuras que el máximo)
-const verCalendarioLink = totalActividades > MAX_ACTIVIDADES
-  ? '\n\n        <div class="cms-ver-archivo"><a href="actividades.html">Ver calendario completo (' + totalActividades + ' actividades) →</a></div>'
+// Link a calendario completo (si hay más actividades que el máximo visible)
+const verCalendarioLink = todasActividades.length > MAX_ACTIVIDADES
+  ? '\n\n        <div class="cms-ver-archivo"><a href="actividades.html">Ver calendario completo (' + todasActividades.length + ' actividades) →</a></div>'
   : '';
 
 const noticiasBlock = noticiasVisibles.length
