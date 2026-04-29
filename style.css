@@ -3173,3 +3173,15 @@ img.logo-mini {
   position: relative;
   overflow: visible !important;
 }
+
+/* ======================
+   LOGOS — fondo blanco transparente sobre el hero
+   ====================== */
+.header-content .logo {
+  mix-blend-mode: multiply;
+  border-radius: 4px;
+}
+
+.logo-mini {
+  mix-blend-mode: multiply;
+}
