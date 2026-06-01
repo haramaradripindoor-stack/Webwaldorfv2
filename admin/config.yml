@@ -2,6 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
+logo_url: "https://haramaradripindoor-stack.github.io/Webwaldorfv2/assets/logo.png"
+
 media_folder: "images"
 public_folder: "/images"
 
@@ -14,39 +16,70 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{titulo}}"
     fields:
-      - {label: "Título", name: "titulo", widget: "string"}
-      - {label: "Fecha", name: "fecha", widget: "string", hint: "Ej: 21 de junio de 2026"}
-      - {label: "Foto principal (encabezado)", name: "foto", widget: "image"}
-      - {label: "Descripción foto", name: "foto_alt", widget: "string"}
-      - {label: "Texto de la noticia", name: "body", widget: "markdown"}
-      - {label: "ID Video YouTube (opcional)", name: "video_id", widget: "string", required: false, hint: "Ej: eOsbR_QoNAY (solo el ID, no la URL completa)"}
+      - {label: "Título", name: "titulo", widget: "string", hint: "Ej: Celebración de la Fiesta de la Primavera"}
+      - {label: "Fecha", name: "fecha", widget: "string", hint: "Ej: 21 de septiembre de 2026"}
+      - {label: "Foto principal (encabezado)", name: "foto", widget: "image", hint: "Formato recomendado: JPG o PNG. Tamaño: 800x600px"}
+      - {label: "Descripción foto (Accesibilidad)", name: "foto_alt", widget: "string", required: false, hint: "Breve descripción para personas con discapacidad visual."}
+      - label: "Texto de la noticia"
+        name: "body"
+        widget: "markdown"
+        hint: "Escribe el contenido principal aquí."
+        buttons: ["bold", "italic", "link", "heading-two", "heading-three", "bulleted-list", "numbered-list"]
+        editor_components: ["image", "code-block"]
+      - {label: "ID Video YouTube (opcional)", name: "video_id", widget: "string", required: false, hint: "Ej: eOsbR_QoNAY (solo el ID, no el enlace completo)"}
       - label: "Galería de fotos adicionales"
         name: "galeria"
         widget: "list"
         required: false
-        hint: "Agrega fotos que aparecerán en el grid debajo del texto"
+        hint: "Agrega fotos extra que aparecerán al final de la noticia."
         field: {label: "Foto", name: "foto", widget: "image"}
 
   - name: "actividades"
-    label: "Actividades"
+    label: "Calendario (Actividades)"
     folder: "_actividades"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{nombre}}"
     fields:
-      - {label: "Nombre del evento", name: "nombre", widget: "string"}
-      - {label: "Día", name: "dia", widget: "string", hint: "Ej: 28"}
+      - {label: "Nombre del evento", name: "nombre", widget: "string", hint: "Ej: Escuela para Padres"}
+      - label: "Día"
+        name: "dia"
+        widget: "string"
+        hint: "Ej: 28 (solo números o rangos como 14-18)"
+        pattern: ['^[0-9A-Za-z \-\.]+$', "Introduce un día válido (ej: 28 o 14-18)"]
       - label: "Mes"
         name: "mes"
         widget: "select"
         options: ["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"]
-      - label: "Tipo"
+      - label: "Tipo / Categoría"
         name: "tipo"
         widget: "select"
         options:
           - {label: "🔵 Asamblea", value: "asamblea"}
           - {label: "🟢 Celebración", value: "celebracion"}
-          - {label: "🟠 Admisión", value: "admision"}
-          - {label: "🟣 Taller", value: "taller"}
-      - {label: "Descripción corta", name: "descripcion", widget: "text", required: false, hint: "Resumen breve que aparece en la tarjeta"}
-      - {label: "Hora y lugar", name: "hora", widget: "string", required: false, hint: "Ej: Las Azaleas 96 · 18:30 hrs"}
-      - {label: "Contenido completo (opcional)", name: "body", widget: "markdown", required: false, hint: "Texto largo, detalles, instrucciones, etc."}
+          - {label: "🟠 Admisión / Charlas", value: "admision"}
+          - {label: "🟣 Taller / Cursos", value: "taller"}
+          - {label: "⚪ Reunión", value: "reunion"}
+          - {label: "🟡 Charla", value: "charla"}
+      - {label: "Descripción corta (Tarjeta)", name: "descripcion", widget: "text", required: false, hint: "Resumen breve que aparece en la cajita del calendario."}
+      - {label: "Hora y lugar (opcional)", name: "hora", widget: "string", required: false, hint: "Ej: Las Azaleas 96 · 18:30 hrs"}
+      - label: "Contenido completo (Detalle)"
+        name: "body"
+        widget: "markdown"
+        required: false
+        hint: "Texto largo, detalles o instrucciones adicionales para las familias."
+        buttons: ["bold", "italic", "link", "bulleted-list"]
+        editor_components: []
+
+  - name: "ajustes"
+    label: "Ajustes Globales"
+    files:
+      - label: "Datos de Contacto"
+        name: "contacto"
+        file: "_config/contacto.yml"
+        fields:
+          - {label: "Teléfono Principal", name: "telefono", widget: "string", hint: "Ej: +56 9 6776 5106"}
+          - {label: "Email Admisión", name: "email_admision", widget: "string"}
+          - {label: "Email Coordinación", name: "email_coordinacion", widget: "string"}
+          - {label: "Dirección", name: "direccion", widget: "string"}
+          - {label: "Link Formulario de Postulación", name: "link_postulacion", widget: "string"}
+          - {label: "Usuario de Instagram", name: "instagram", widget: "string", hint: "Ej: waldorftrekanpv"}

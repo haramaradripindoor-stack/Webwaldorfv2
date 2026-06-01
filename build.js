@@ -40,8 +40,29 @@ for (const tpl of htmlTemplates) {
   }
 }
 if (builtHtml) {
+  // Inyectar Configuración Global (contacto.yml)
+  if (fs.existsSync(path.join('_config', 'contacto.yml'))) {
+    const confRaw = fs.readFileSync(path.join('_config', 'contacto.yml'), 'utf8');
+    const config = {};
+    confRaw.split('\n').forEach(line => {
+      const match = line.match(/^(\w+):\s*"(.*)"/);
+      if (match) config[match[1]] = match[2];
+    });
+    
+    // Limpiar teléfono para links (quitar espacios)
+    const telClean = (config.telefono || '').replace(/\s+/g, '');
+    
+    // Reemplazos (soportando los placeholders en los templates)
+    builtHtml = builtHtml.replace(/\{\{CONTACTO_TELEFONO\}\}/g, config.telefono || '');
+    builtHtml = builtHtml.replace(/\{\{CONTACTO_TEL_CLEAN\}\}/g, telClean);
+    builtHtml = builtHtml.replace(/\{\{CONTACTO_EMAIL_ADMISION\}\}/g, config.email_admision || '');
+    builtHtml = builtHtml.replace(/\{\{CONTACTO_DIRECCION\}\}/g, config.direccion || '');
+    builtHtml = builtHtml.replace(/\{\{CONTACTO_INSTAGRAM\}\}/g, config.instagram || '');
+    builtHtml = builtHtml.replace(/\{\{LINK_POSTULACION\}\}/g, config.link_postulacion || '');
+  }
+
   fs.writeFileSync('index.html', builtHtml.trim() + '\n', 'utf8');
-  console.log('   ✅ index.html generado desde src/templates');
+  console.log('   ✅ index.html generado desde src/templates (Ajustes Globales inyectados)');
 }
 
 const cssModules = [
