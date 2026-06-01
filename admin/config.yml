@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: haramaradripindoor-stack/Webwaldorfv2
   branch: main
 
 logo_url: "https://haramaradripindoor-stack.github.io/Webwaldorfv2/assets/logo.png"
