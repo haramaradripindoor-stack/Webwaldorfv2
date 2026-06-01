@@ -289,7 +289,7 @@
         <div class="image-slider" id="image-slider">
           <div class="slider-container" id="slider-container">
             <div class="slide" onclick="openLightbox(0)">
-              <img src="./images/salon-principal.jpg" alt="Salón principal"
+              <img src="./images/salon-principal.webp" alt="Salón principal"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="slide-fallback" style="display:none;">
                 <span class="emoji">🏡</span>
@@ -309,7 +309,7 @@
               <div class="slide-overlay"><h3>Vista Exterior</h3><p>Las Azaleas 96, rodeado de naturaleza.</p></div>
             </div>
             <div class="slide" onclick="openLightbox(2)">
-              <img src="./images/cocina.jpg" alt="Cocina equipada"
+              <img src="./images/cocina.webp" alt="Cocina equipada"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="slide-fallback" style="display:none;">
                 <span class="emoji">🍽️</span>
@@ -355,7 +355,7 @@
 
         <div class="thumbnails">
           <div class="thumbnail active" onclick="currentSlide(1)">
-            <img src="./images/salon-principal.jpg" alt="Salón"
+            <img src="./images/salon-principal.webp" alt="Salón"
                  onerror="this.parentElement.style.background='linear-gradient(135deg,#2c5530,#a8d8b9)'; this.style.display='none';">
           </div>
           <div class="thumbnail" onclick="currentSlide(2)">
@@ -363,7 +363,7 @@
                  onerror="this.parentElement.style.background='linear-gradient(45deg,#4a90e2,#7bb3f0)'; this.style.display='none';">
           </div>
           <div class="thumbnail" onclick="currentSlide(3)">
-            <img src="./images/cocina.jpg" alt="Cocina"
+            <img src="./images/cocina.webp" alt="Cocina"
                  onerror="this.parentElement.style.background='linear-gradient(45deg,#f39c12,#f7dc6f)'; this.style.display='none';">
           </div>
           <div class="thumbnail" onclick="currentSlide(4)">
@@ -556,9 +556,9 @@
     const totalSlides = 5;
 
     const imageData = [
-      { src: './images/salon-principal.jpg',   title: 'Salón Principal',   description: '25m² con capacidad para 20 personas. Mesas modulares configurables.' },
+      { src: './images/salon-principal.webp',   title: 'Salón Principal',   description: '25m² con capacidad para 20 personas. Mesas modulares configurables.' },
       { src: './images/exterior.jpg',           title: 'Vista Exterior',    description: 'Las Azaleas 96, Puerto Varas. Rodeado de naturaleza y tranquilidad.' },
-      { src: './images/cocina.jpg',             title: 'Cocina Equipada',   description: 'Completamente equipada para coffee break o autogestión de alimentos.' },
+      { src: './images/cocina.webp',             title: 'Cocina Equipada',   description: 'Completamente equipada para coffee break o autogestión de alimentos.' },
       { src: './images/ambiente.jpg',           title: 'Ambiente Cálido',   description: 'Calefacción a leña disponible. Incluye 1 vara y encendido inicial.' },
       { src: './images/estacionamiento.jpg',    title: 'Estacionamiento',   description: 'Amplio estacionamiento privado con capacidad para 10 vehículos.' }
     ];
