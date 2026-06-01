@@ -1,0 +1,485 @@
+/* ======================
+   HEADER PRINCIPAL
+   ====================== */
+.header {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--white);
+  overflow: hidden;
+}
+
+.header-with-bg {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+}
+
+.header-with-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('assets/colegio-fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll; /* FIX: fixed roto en iOS Safari */
+  opacity: 0.45; /* aumentado para más impacto visual */
+  z-index: 1;
+}
+
+/* Parallax solo en desktop con mouse (no touch) */
+@media (min-width: 769px) and (hover: hover) {
+  .header-with-bg::before {
+    background-attachment: fixed;
+  }
+}
+
+.header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(46, 94, 78, 0.8) 0%, rgba(168, 216, 185, 0.6) 100%);
+  z-index: 2;
+}
+
+.header-content {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+}
+
+.logo {
+  width: clamp(80px, 15vw, 120px);
+  height: auto;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  animation: logoEntrance 0.8s ease-out both;
+}
+
+@keyframes logoEntrance {
+  from { opacity: 0; transform: scale(0.85) translateY(-10px); }
+  to   { opacity: 1; transform: scale(1)   translateY(0); }
+}
+
+.header-content h1 {
+  text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+  letter-spacing: -0.02em;
+}
+
+.header-content .tagline {
+  text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+}
+
+.tagline {
+  font-size: clamp(1.1rem, 3vw, 1.3rem);
+  font-style: italic;
+  opacity: 0.95;
+  margin-top: 0.5rem;
+}
+
+
+/* ======================
+   NAVEGACIÓN MEJORADA
+   ====================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* FIX CRÍTICO #2: backdrop-filter en un ancestro también crea un nuevo containing block
+     para position:fixed children (igual que transform). Se elimina del .nav
+     y se aplica solo en desktop via ::before pseudo-element para no romper el menú móvil. */
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 1px solid var(--border-color);
+  z-index: var(--z-nav);
+  transition: top 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  height: var(--header-height);
+}
+
+/* backdrop-filter solo en desktop — en móvil rompe position:fixed del nav-menu */
+@media (min-width: 769px) {
+  .nav {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+/* Clase para ocultar navbar al scroll-down (reemplaza inline transform) */
+.nav.hide {
+  top: calc(-1 * var(--header-height));
+}
+@media (max-width: 768px) {
+  .nav.hide { top: -65px; }
+}
+@media (max-width: 480px) {
+  .nav.hide { top: -60px; }
+}
+
+.nav.scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: var(--shadow);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+  overflow: visible; /* FIX: hidden cortaba el dropdown menu */
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--primary-green);
+  font-weight: 600;
+  font-size: 1.2rem;
+  z-index: 1001;
+  flex-shrink: 0;
+}
+
+.logo-mini {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* MENÚ PRINCIPAL */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.nav-menu li {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.nav-menu a {
+  display: block;
+  padding: 1rem 1.2rem;
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  background-color: var(--light-green);
+  color: var(--primary-green);
+  transform: translateY(-2px);
+}
+
+/* BOTÓN POSTULA AQUÍ */
+.nav-apply-btn {
+  background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+  color: var(--white) !important;
+  padding: 1rem 1.8rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  white-space: nowrap;
+  align-self: center;
+  margin-left: 1rem;
+  z-index: 1001;
+  flex-shrink: 0;
+}
+
+/* El li del botón en móvil — oculto en desktop */
+.nav-apply-mobile {
+  display: none;
+}
+
+/* El botón desktop — oculto en móvil */
+.nav-apply-desktop {
+  display: inline-block;
+}
+
+.nav-apply-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  background: linear-gradient(135deg, #1e3d22, var(--primary-green));
+}
+
+/* BOTÓN HAMBURGUESA */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1002;
+  position: relative;
+}
+
+.hamburger {
+  position: relative;
+  width: 24px;
+  height: 2px;
+  background-color: var(--primary-green);
+  transition: var(--transition);
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background-color: var(--primary-green);
+  transition: var(--transition);
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  bottom: -8px;
+}
+
+.menu-toggle.active .hamburger {
+  background-color: transparent;
+}
+
+.menu-toggle.active .hamburger::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.menu-toggle.active .hamburger::after {
+  transform: rotate(-45deg);
+  bottom: 0;
+}
+
+
+/* ======================
+   FOOTER
+   ====================== */
+.footer {
+  background: var(--text-dark);
+  color: var(--white);
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 4rem;
+}
+
+.footer p {
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+
+/* ======================
+   SUBMENÚ DESPLEGABLE — 5 items nav
+   ====================== */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  position: relative;
+  padding-right: 1.6rem !important;
+}
+
+.dropdown-toggle::after {
+  content: '▾';
+  position: absolute;
+  right: 0.4rem;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.dropdown.open .dropdown-toggle::after {
+  transform: rotate(180deg);
+}
+
+/* Desktop dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  min-width: 210px;
+  z-index: 1100;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  transform: translateX(-50%) translateY(-6px);
+  list-style: none;
+  padding: 0.4rem 0;
+}
+
+/* Small arrow pointing up */
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: var(--white);
+  border-top: none;
+  filter: drop-shadow(0 -1px 0 var(--border-color));
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu,
+.dropdown.open .dropdown-menu {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+.dropdown-menu li {
+  width: 100%;
+}
+
+.dropdown-menu a {
+  display: flex;
+  align-items: center;
+  padding: 0.65rem 1.2rem;
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  white-space: nowrap;
+  border-radius: 0;
+}
+
+.dropdown-menu a::before {
+  content: '→';
+  margin-right: 0.5rem;
+  color: var(--secondary-green);
+  font-size: 0.8rem;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: var(--transition);
+}
+
+.dropdown-menu a:hover {
+  background: var(--light-green);
+  color: var(--primary-green);
+}
+
+.dropdown-menu a:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* MOBILE — accordion style */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none !important;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    padding: 0.25rem 0 0;
+    display: none;
+    min-width: unset;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .dropdown-menu::before { display: none; }
+
+  .dropdown.open .dropdown-menu {
+    display: block;
+    transform: none !important;
+    left: auto !important;
+    position: static !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .dropdown-menu li {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .dropdown-menu a {
+    background: rgba(46, 94, 78, 0.08);
+    border-radius: 10px;
+    margin-bottom: 0.35rem;
+    color: var(--primary-green);
+    font-size: 0.95rem;
+    padding: 0.7rem 1rem;
+    white-space: normal;
+    text-align: left;
+    border: none;
+    width: 100%;
+    display: block;
+  }
+
+  .dropdown-menu a:hover {
+    background: rgba(46, 94, 78, 0.15);
+    transform: none;
+  }
+
+  .dropdown-menu a::before {
+    opacity: 1;
+    transform: none;
+  }
+
+  .dropdown-toggle::after {
+    content: '▾';
+    transform: none;
+    transition: transform 0.3s ease;
+  }
+
+  .dropdown.open .dropdown-toggle::after {
+    transform: rotate(180deg);
+  }
+}
+
+
+/* ======================
+   NAV-CONTAINER — overflow visible garantizado
+   ====================== */
+.nav-container {
+  position: relative;
+  overflow: visible !important;
+}
+

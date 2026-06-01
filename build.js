@@ -21,6 +21,49 @@
 const fs   = require('fs');
 const path = require('path');
 
+// ── Compilación de templates HTML y módulos CSS ──────────────────────────────
+console.log('📦 Compilando plantillas y estilos...');
+
+const htmlTemplates = [
+  'head', 'header', 'nav', 'hero', 'pedagogia', 'quienes-somos', 
+  'actividades', 'comunidad', 'noticias', 'curricular', 'admision', 
+  'faq', 'arriendo', 'contacto', 'instagram', 'footer', 'modals-scripts'
+];
+
+let builtHtml = '';
+for (const tpl of htmlTemplates) {
+  const p = path.join('src', 'templates', tpl + '.html');
+  if (fs.existsSync(p)) {
+    builtHtml += fs.readFileSync(p, 'utf8') + '\n';
+  } else {
+    console.warn(`⚠️  Falta plantilla: ${p}`);
+  }
+}
+if (builtHtml) {
+  fs.writeFileSync('index.html', builtHtml.trim() + '\n', 'utf8');
+  console.log('   ✅ index.html generado desde src/templates');
+}
+
+const cssModules = [
+  'variables', 'base', 'layout', 'responsive', 'hero', 
+  'components', 'sections', 'utilities'
+];
+
+let builtCss = '';
+for (const mod of cssModules) {
+  const p = path.join('src', 'css', mod + '.css');
+  if (fs.existsSync(p)) {
+    builtCss += fs.readFileSync(p, 'utf8') + '\n';
+  } else {
+    console.warn(`⚠️  Falta módulo CSS: ${p}`);
+  }
+}
+if (builtCss) {
+  fs.writeFileSync('style.css', builtCss.trim() + '\n', 'utf8');
+  console.log('   ✅ style.css generado desde src/css');
+}
+
+
 // ── Configuración: cantidad máxima a mostrar en la web ───────────────────────
 // Cambia estos números si quieres mostrar más o menos.
 const MAX_NOTICIAS    = 6;  // las 6 más recientes

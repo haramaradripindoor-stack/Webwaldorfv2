@@ -1,0 +1,275 @@
+/* ======================
+   RESET Y BASE
+   ====================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* FIX: scroll-behavior: smooth eliminado — el JS maneja el smooth scroll
+     con offset correcto del navbar. Tener ambos causa doble animación en móvil. */
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--white);
+  overflow-x: hidden;
+  padding-top: var(--header-height); /* ✅ Evita que el nav tape el header */
+}
+
+
+/* ======================
+   TIPOGRAFÍA
+   ====================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: var(--primary-green);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h4 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
+
+p {
+  margin-bottom: 1rem;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  line-height: 1.7;
+}
+
+
+/* ======================
+   CONTENEDORES
+   ====================== */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section {
+  padding: 4rem 0;
+  position: relative;
+}
+
+.section-light {
+  background-color: var(--light-gray);
+}
+
+.section-dark {
+  background-color: var(--primary-green);
+  color: var(--white);
+}
+
+.section-dark h2,
+.section-dark h3 {
+  color: var(--white);
+}
+
+
+/* ======================
+   ACCESIBILIDAD
+   ====================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus visible para navegación por teclado */
+*:focus-visible {
+  outline: 2px solid var(--primary-green);
+  outline-offset: 2px;
+}
+
+
+/* ======================
+   PRINT STYLES
+   ====================== */
+@media print {
+  /* Ocultar elementos no imprimibles */
+  .nav,
+  .floating-whatsapp,
+  .back-to-top,
+  .modal,
+  .slideshow-container,
+  .dots-container,
+  .news-video,
+  .map-container,
+  .arriendo-actions,
+  .gallery-preview,
+  .contact-form-wrap,
+  #cookie-banner,
+  .cta-buttons,
+  .nav-apply-btn,
+  iframe {
+    display: none !important;
+  }
+
+  /* Reset para impresión */
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    font-size: 11pt;
+    line-height: 1.5;
+    font-family: Georgia, serif;
+    padding-top: 0 !important;
+  }
+
+  /* Encabezado impreso */
+  .header {
+    min-height: auto !important;
+    padding: 1rem 0 !important;
+    border-bottom: 2px solid #2E5E4E;
+    page-break-after: avoid;
+  }
+
+  .header h1 {
+    font-size: 22pt;
+    color: #2E5E4E !important;
+  }
+
+  .tagline {
+    font-size: 11pt;
+    color: #555 !important;
+  }
+
+  /* Secciones */
+  .section {
+    padding: 1rem 0 !important;
+    page-break-inside: avoid;
+  }
+
+  .section-title {
+    font-size: 16pt;
+    color: #2E5E4E !important;
+    border-bottom: 1px solid #A8D8B9;
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.8rem;
+  }
+
+  /* Tabla admisión — conservar en impresión */
+  .admission-table {
+    border: 1pt solid #ccc;
+    width: 100%;
+  }
+
+  .admission-table th {
+    background: #2E5E4E !important;
+    color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .admission-table th:last-child,
+  .admission-table td:last-child {
+    display: table-cell !important; /* revertir el ocultar móvil */
+  }
+
+  /* Links — mostrar URL */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    color: #666 !important;
+  }
+
+  a[href^="tel"]::after,
+  a[href^="mailto"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+  }
+
+  /* Info cards */
+  .info-card {
+    border: 1pt solid #2E5E4E;
+    border-left: 4pt solid #2E5E4E;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    page-break-inside: avoid;
+  }
+
+  /* Contacto */
+  .section-dark {
+    background: white !important;
+    color: black !important;
+  }
+
+  .section-dark h2,
+  .section-dark h3,
+  .section-dark p,
+  .section-dark a {
+    color: #2E5E4E !important;
+  }
+
+  /* Footer */
+  .footer {
+    border-top: 1pt solid #ccc;
+    text-align: center;
+    font-size: 9pt;
+    padding: 0.5rem 0;
+    background: white !important;
+    color: #555 !important;
+  }
+
+  /* Página de impresión — número */
+  @page {
+    margin: 2cm;
+    @bottom-center {
+      content: "Colegio Waldorf Trekan — www.colegiowaldorftrekan.cl — Página " counter(page);
+      font-size: 8pt;
+      color: #888;
+    }
+  }
+}
+
+
+/* ======================
+   OPTIMIZACIONES DE IMAGEN
+   ====================== */
+
+/* Placeholder skeleton mientras carga imagen */
+img {
+  background: var(--light-gray);
+}
+
+img.loaded {
+  background: transparent;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Evitar que las imágenes overflow en sus contenedores */
+picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
