@@ -26,7 +26,7 @@ console.log('📦 Compilando plantillas y estilos...');
 
 const htmlTemplates = [
   'head', 'header', 'nav', 'hero', 'pedagogia', 'quienes-somos', 
-  'actividades', 'comunidad', 'noticias', 'curricular', 'admision', 
+  'actividades', 'testimonios', 'comunidad', 'noticias', 'curricular', 'admision', 
   'faq', 'arriendo', 'contacto', 'instagram', 'footer', 'modals-scripts'
 ];
 
