@@ -1,9 +1,11 @@
 ---
-nombre: 'Escuela para Padres: "El Ritmo y la Respiración en el Hogar"'
+nombre: Escuela para Padres
 dia: "22"
 mes: ABR
 tipo: taller
-descripcion: ""
-hora: Las Azaleas 96 · 18:00 hrs
+descripcion: >-
+  Un espacio de formación y reflexión conjunta sobre la pedagogía y la crianza.
+hora: ""
 ---
-El otoño nos invita a volver la mirada hacia el interior. Conversaremos sobre cómo el ritmo diario (la inhalación y exhalación en casa) brinda seguridad y calor a nuestros niños en esta época. Traer un pequeño elemento de la naturaleza (hoja, piedra o ramita) para la mesa de estación.
+
+En nuestra Escuela para Padres, nos reunimos en comunidad para profundizar en la cosmovisión Waldorf. Es un espacio de diálogo, aprendizaje y apoyo mutuo, donde abordamos temas esenciales sobre el desarrollo anímico y corporal de nuestros hijos.
