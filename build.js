@@ -199,23 +199,26 @@ function actividadFecha(a) {
   const d   = a.data;
   const dia = parseInt(d.dia);
   const mes = MES_NUM[d.mes];
+  let anio = new Date().getFullYear();
 
-  // Prioridad 1: dia + mes del frontmatter (fecha real del evento)
+  // Prioridad 1: Año desde el nombre del archivo (Decap)
+  const fileMatch = a.file.match(/^(\d{4})-/);
+  if (fileMatch) {
+    anio = parseInt(fileMatch[1], 10);
+  }
+
+  // Prioridad 2: Si existe día y mes en frontmatter, usar con el año extraído
   if (dia && mes) {
-    const hoy = new Date();
-    let anio  = hoy.getFullYear();
-    const candidato = new Date(anio, mes - 1, dia);
-    if (candidato < hoy) anio++;
     return new Date(anio, mes - 1, dia);
   }
 
-  // Prioridad 2: fecha del nombre de archivo (fecha de creación en Decap)
-  const fileMatch = a.file.match(/^(\d{4})-(\d{2})-(\d{2})/);
-  if (fileMatch) {
+  // Prioridad 3: Fecha completa del nombre de archivo (fallback)
+  const fileMatchFull = a.file.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (fileMatchFull) {
     return new Date(
-      parseInt(fileMatch[1]),
-      parseInt(fileMatch[2]) - 1,
-      parseInt(fileMatch[3])
+      parseInt(fileMatchFull[1], 10),
+      parseInt(fileMatchFull[2], 10) - 1,
+      parseInt(fileMatchFull[3], 10)
     );
   }
 
@@ -812,10 +815,8 @@ function buildArchivoNoticias(todas) {
     const footerMatch = indexHtml.match(/<footer\b[\s\S]*?<\/footer>/i);
     const footer = footerMatch ? rewriteAnchors(footerMatch[0]) : '';
 
-    // 4. Script principal del sitio (para menú móvil, dropdowns, etc.)
-    //    Detecta si el index usa js/script.js y lo incluye.
-    const hasMainScript = /<script[^>]+src="js\/script\.js"/i.test(indexHtml);
-    const mainScript = hasMainScript ? '  <script src="js/script.js"></script>\n' : '';
+    const afterFooterMatch = indexHtml.match(/<\/footer>\s*([\s\S]*?)<\/body>/i);
+    const afterFooter = afterFooterMatch ? rewriteAnchors(afterFooterMatch[1]) : '  <script src="js/script.js"></script>\n';
 
     archivoHtml = `<!DOCTYPE html>
 <html lang="es">
@@ -834,7 +835,7 @@ ${archivoBlock}
   </main>
 
 ${footer}
-${mainScript}</body>
+${afterFooter}</body>
 </html>`;
   }
 
@@ -938,8 +939,8 @@ ${cards}
     const footerMatch = indexHtml.match(/<footer\b[\s\S]*?<\/footer>/i);
     const footer = footerMatch ? rewriteAnchors(footerMatch[0]) : '';
 
-    const hasMainScript = /<script[^>]+src="js\/script\.js"/i.test(indexHtml);
-    const mainScript = hasMainScript ? '  <script src="js/script.js"></script>\n' : '';
+    const afterFooterMatch = indexHtml.match(/<\/footer>\s*([\s\S]*?)<\/body>/i);
+    const afterFooter = afterFooterMatch ? rewriteAnchors(afterFooterMatch[1]) : '  <script src="js/script.js"></script>\n';
 
     calendarioHtml = `<!DOCTYPE html>
 <html lang="es">
@@ -958,7 +959,7 @@ ${calendarioBlock}
   </main>
 
 ${footer}
-${mainScript}</body>
+${afterFooter}</body>
 </html>`;
   }
 
@@ -983,7 +984,14 @@ const totalActividades = actividades.length;
 
 // Recortar a lo que se mostrará en la web
 const noticiasVisibles    = noticias.slice(0, MAX_NOTICIAS);
-const actividadesVisibles = actividades.slice(0, MAX_ACTIVIDADES);
+
+// Homepage: Mostrar las actividades vigentes que pertenecen al mes actual
+const currentMonth = new Date().getMonth();
+let actividadesVisibles = actividades.filter(a => actividadFecha(a).getMonth() === currentMonth);
+// Si ya no quedan actividades en este mes, mostrar las próximas 4
+if (actividadesVisibles.length === 0) {
+  actividadesVisibles = actividades.slice(0, MAX_ACTIVIDADES);
+}
 
 console.log('   📰 Noticias:    ' + noticiasVisibles.length + ' de ' + totalNoticias + ' (máx ' + MAX_NOTICIAS + ')');
 console.log('   📅 Actividades: ' + actividadesVisibles.length + ' de ' + totalActividades + ' (máx ' + MAX_ACTIVIDADES + ')');
@@ -1187,10 +1195,10 @@ function buildNoticiasLang(lang) {
     const nav        = navMatch ? rewriteAnchors(navMatch[0]) : '';
     const footerMatch = indexHtml.match(/<footer\b[\s\S]*?<\/footer>/i);
     const footer     = footerMatch ? rewriteAnchors(footerMatch[0]) : '';
-    const hasScript  = /<script[^>]+src="js\/script\.js"/i.test(indexHtml);
-    const mainScript = hasScript ? '  <script src="js/script.js"></script>\n' : '';
+    const afterFooterMatch = indexHtml.match(/<\/footer>\s*([\s\S]*?)<\/body>/i);
+    const afterFooter = afterFooterMatch ? rewriteAnchors(afterFooterMatch[1]) : '  <script src="js/script.js"></script>\n';
 
-    archivoHtml = `<!DOCTYPE html>\n<html lang="${lang}">\n${head}\n<body>\n${nav}\n\n  <main class="container" style="max-width:1200px;margin:0 auto;padding:6rem 1.25rem 4rem;">\n    <header style="margin-bottom:1.5rem;">\n      <h1 style="margin:0 0 0.4rem;font-family:'Merriweather',serif;">${ui.noticias_titulo}</h1>\n      <p style="color:rgba(0,0,0,0.6);margin:0;">${ui.noticias_desc}</p>\n    </header>\n    <!-- CMS:ARCHIVO:START -->\n${archivoBlock}\n    <!-- CMS:ARCHIVO:END -->\n  </main>\n\n${footer}\n${mainScript}</body>\n</html>`;
+    archivoHtml = `<!DOCTYPE html>\n<html lang="${lang}">\n${head}\n<body>\n${nav}\n\n  <main class="container" style="max-width:1200px;margin:0 auto;padding:6rem 1.25rem 4rem;">\n    <header style="margin-bottom:1.5rem;">\n      <h1 style="margin:0 0 0.4rem;font-family:'Merriweather',serif;">${ui.noticias_titulo}</h1>\n      <p style="color:rgba(0,0,0,0.6);margin:0;">${ui.noticias_desc}</p>\n    </header>\n    <!-- CMS:ARCHIVO:START -->\n${archivoBlock}\n    <!-- CMS:ARCHIVO:END -->\n  </main>\n\n${footer}\n${afterFooter}</body>\n</html>`;
   }
 
   archivoHtml = injectCss(archivoHtml);
@@ -1263,10 +1271,10 @@ function buildCalendarioLang(lang) {
     const nav         = navMatch ? rewriteAnchors(navMatch[0]) : '';
     const footerMatch = indexHtml.match(/<footer\b[\s\S]*?<\/footer>/i);
     const footer      = footerMatch ? rewriteAnchors(footerMatch[0]) : '';
-    const hasScript   = /<script[^>]+src="js\/script\.js"/i.test(indexHtml);
-    const mainScript  = hasScript ? '  <script src="js/script.js"></script>\n' : '';
+    const afterFooterMatch = indexHtml.match(/<\/footer>\s*([\s\S]*?)<\/body>/i);
+    const afterFooter      = afterFooterMatch ? rewriteAnchors(afterFooterMatch[1]) : '  <script src="js/script.js"></script>\n';
 
-    calendarioHtml = `<!DOCTYPE html>\n<html lang="${lang}">\n${head}\n<body>\n${nav}\n\n  <main class="container" style="max-width:1200px;margin:0 auto;padding:6rem 1.25rem 4rem;">\n    <header style="margin-bottom:1.5rem;">\n      <h1 style="margin:0 0 0.4rem;font-family:'Merriweather',serif;">${ui.actividades_titulo}</h1>\n      <p style="color:rgba(0,0,0,0.6);margin:0;">${ui.actividades_desc}</p>\n    </header>\n    <!-- CMS:CALENDARIO:START -->\n${calendarioBlock}\n    <!-- CMS:CALENDARIO:END -->\n  </main>\n\n${footer}\n${mainScript}</body>\n</html>`;
+    calendarioHtml = `<!DOCTYPE html>\n<html lang="${lang}">\n${head}\n<body>\n${nav}\n\n  <main class="container" style="max-width:1200px;margin:0 auto;padding:6rem 1.25rem 4rem;">\n    <header style="margin-bottom:1.5rem;">\n      <h1 style="margin:0 0 0.4rem;font-family:'Merriweather',serif;">${ui.actividades_titulo}</h1>\n      <p style="color:rgba(0,0,0,0.6);margin:0;">${ui.actividades_desc}</p>\n    </header>\n    <!-- CMS:CALENDARIO:START -->\n${calendarioBlock}\n    <!-- CMS:CALENDARIO:END -->\n  </main>\n\n${footer}\n${afterFooter}</body>\n</html>`;
   }
 
   calendarioHtml = injectCss(calendarioHtml);
