@@ -101,7 +101,13 @@ collections:
         file: "_config/quienes_somos.yml"
         fields:
           - {label: "Título", name: "titulo", widget: "string"}
-          - {label: "Historia (Texto largo)", name: "historia", widget: "markdown", buttons: ["bold", "italic", "link"]}
+          - label: "Tarjetas (Misión, Visión, etc.)"
+            name: "tarjetas"
+            widget: "list"
+            fields:
+              - {label: "Título (con emoji)", name: "titulo", widget: "string"}
+              - {label: "Texto", name: "texto", widget: "markdown", buttons: ["bold", "italic", "link"]}
+              - {label: "Ocupar todo el ancho", name: "full_width", widget: "boolean", default: false, required: false}
           
       - label: "Pedagogía"
         name: "pedagogia"
@@ -115,6 +121,7 @@ collections:
             fields:
               - {label: "Título del Pilar", name: "titulo", widget: "string"}
               - {label: "Descripción", name: "descripcion", widget: "text"}
+              - {label: "Imagen (Opcional)", name: "imagen", widget: "image", required: false}
 
       - label: "Preguntas Frecuentes (FAQ)"
         name: "faq"

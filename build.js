@@ -86,7 +86,22 @@ if (builtHtml) {
   // Inyectar Quiénes Somos
   if (configQuienes.titulo) {
     builtHtml = builtHtml.replace(/\{\{QUIENES_TITULO\}\}/g, configQuienes.titulo);
-    builtHtml = builtHtml.replace(/\{\{QUIENES_HISTORIA\}\}/g, mdToHtml(configQuienes.historia || ''));
+    
+    let tarjetasHtml = '';
+    if (configQuienes.tarjetas && configQuienes.tarjetas.length > 0) {
+      configQuienes.tarjetas.forEach((t, i) => {
+        const fullClass = t.full_width ? ' full-width' : '';
+        tarjetasHtml += `
+        <div class="about-card${fullClass}" data-animate="fade-up" data-delay="${i * 100}">
+          <h3>${t.titulo}</h3>
+          ${mdToHtml(t.texto)}
+        </div>`;
+      });
+    } else if (configQuienes.historia) {
+      // Compatibilidad hacia atrás si usan el formato antiguo
+      tarjetasHtml = mdToHtml(configQuienes.historia);
+    }
+    builtHtml = builtHtml.replace(/\{\{QUIENES_HISTORIA\}\}/g, tarjetasHtml);
   }
 
   // Inyectar Pedagogía
@@ -97,11 +112,19 @@ if (builtHtml) {
     let pilaresHtml = '';
     if (configPedagogia.pilares && configPedagogia.pilares.length > 0) {
       configPedagogia.pilares.forEach((p, i) => {
-        // Asignamos un icono basado en el orden o en el título si no tenemos uno dinámico
-        const icono = p.titulo.match(/^([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/) ? '' : '✨';
+        let mediaHtml = '';
+        if (p.imagen) {
+          const imgSrc = p.imagen.startsWith('/') ? p.imagen : '/' + p.imagen;
+          const cleanAlt = p.titulo.replace(/[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]/g, '').trim();
+          mediaHtml = `<img src="${imgSrc}" alt="${cleanAlt}" class="feature-img" loading="lazy">`;
+        } else {
+          const icono = p.titulo.match(/^([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/) ? '' : '✨';
+          mediaHtml = `<div class="feature-icon">${icono}</div>`;
+        }
+        
         pilaresHtml += `
         <div class="feature" data-animate="fade-up" data-delay="${i * 100}">
-          <div class="feature-icon">${icono}</div>
+          ${mediaHtml}
           <h3>${p.titulo}</h3>
           <p>${p.descripcion}</p>
         </div>`;
