@@ -84,3 +84,47 @@ collections:
           - {label: "Dirección", name: "direccion", widget: "string"}
           - {label: "Link Formulario de Postulación", name: "link_postulacion", widget: "string"}
           - {label: "Usuario de Instagram", name: "instagram", widget: "string", hint: "Ej: waldorftrekanpv"}
+
+  - name: "paginas"
+    label: "Páginas de la Web"
+    files:
+      - label: "Inicio (Hero)"
+        name: "inicio"
+        file: "_config/inicio.yml"
+        fields:
+          - {label: "Título Principal", name: "titulo", widget: "string"}
+          - {label: "Subtítulo", name: "subtitulo", widget: "string"}
+          - {label: "Texto Botón Principal", name: "cta_text", widget: "string"}
+          
+      - label: "Quiénes Somos"
+        name: "quienes_somos"
+        file: "_config/quienes_somos.yml"
+        fields:
+          - {label: "Título", name: "titulo", widget: "string"}
+          - {label: "Historia (Texto largo)", name: "historia", widget: "markdown", buttons: ["bold", "italic", "link"]}
+          
+      - label: "Pedagogía"
+        name: "pedagogia"
+        file: "_config/pedagogia.yml"
+        fields:
+          - {label: "Título de Sección", name: "titulo", widget: "string"}
+          - {label: "Descripción Principal", name: "descripcion", widget: "text"}
+          - label: "Pilares / Viñetas"
+            name: "pilares"
+            widget: "list"
+            fields:
+              - {label: "Título del Pilar", name: "titulo", widget: "string"}
+              - {label: "Descripción", name: "descripcion", widget: "text"}
+
+      - label: "Preguntas Frecuentes (FAQ)"
+        name: "faq"
+        file: "_config/faq.yml"
+        fields:
+          - {label: "Título Principal", name: "titulo", widget: "string"}
+          - {label: "Subtítulo", name: "subtitulo", widget: "string"}
+          - label: "Preguntas y Respuestas"
+            name: "preguntas"
+            widget: "list"
+            fields:
+              - {label: "Pregunta", name: "pregunta", widget: "string"}
+              - {label: "Respuesta", name: "respuesta", widget: "markdown"}

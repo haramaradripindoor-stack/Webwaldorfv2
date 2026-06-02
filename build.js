@@ -20,6 +20,7 @@
 
 const fs   = require('fs');
 const path = require('path');
+const yaml = require('js-yaml');
 
 // ── Compilación de templates HTML y módulos CSS ──────────────────────────────
 console.log('📦 Compilando plantillas y estilos...');
@@ -42,12 +43,12 @@ for (const tpl of htmlTemplates) {
 if (builtHtml) {
   // Inyectar Configuración Global (contacto.yml)
   if (fs.existsSync(path.join('_config', 'contacto.yml'))) {
-    const confRaw = fs.readFileSync(path.join('_config', 'contacto.yml'), 'utf8');
-    const config = {};
-    confRaw.split('\n').forEach(line => {
-      const match = line.match(/^(\w+):\s*"(.*)"/);
-      if (match) config[match[1]] = match[2];
-    });
+    let config = {};
+    try {
+      config = yaml.load(fs.readFileSync(path.join('_config', 'contacto.yml'), 'utf8'));
+    } catch (e) {
+      console.warn('Error leyendo contacto.yml:', e.message);
+    }
     
     // Limpiar teléfono para links (quitar espacios)
     const telClean = (config.telefono || '').replace(/\s+/g, '');
@@ -59,6 +60,83 @@ if (builtHtml) {
     builtHtml = builtHtml.replace(/\{\{CONTACTO_DIRECCION\}\}/g, config.direccion || '');
     builtHtml = builtHtml.replace(/\{\{CONTACTO_INSTAGRAM\}\}/g, config.instagram || '');
     builtHtml = builtHtml.replace(/\{\{LINK_POSTULACION\}\}/g, config.link_postulacion || '');
+  }
+
+  // Cargar configuraciones de páginas
+  function loadConfig(name) {
+    const p = path.join('_config', name + '.yml');
+    if (fs.existsSync(p)) {
+      try { return yaml.load(fs.readFileSync(p, 'utf8')) || {}; }
+      catch (e) { console.warn(`Error leyendo ${name}.yml:`, e.message); }
+    }
+    return {};
+  }
+  const configInicio = loadConfig('inicio');
+  const configQuienes = loadConfig('quienes_somos');
+  const configPedagogia = loadConfig('pedagogia');
+  const configFaq = loadConfig('faq');
+
+  // Inyectar Inicio (Hero)
+  if (configInicio.titulo) {
+    builtHtml = builtHtml.replace(/\{\{INICIO_TITULO\}\}/g, configInicio.titulo);
+    builtHtml = builtHtml.replace(/\{\{INICIO_SUBTITULO\}\}/g, mdToHtml(configInicio.subtitulo || ''));
+    builtHtml = builtHtml.replace(/\{\{INICIO_CTA\}\}/g, configInicio.cta_text || '🌿 Conocer el proceso de admisión');
+  }
+
+  // Inyectar Quiénes Somos
+  if (configQuienes.titulo) {
+    builtHtml = builtHtml.replace(/\{\{QUIENES_TITULO\}\}/g, configQuienes.titulo);
+    builtHtml = builtHtml.replace(/\{\{QUIENES_HISTORIA\}\}/g, mdToHtml(configQuienes.historia || ''));
+  }
+
+  // Inyectar Pedagogía
+  if (configPedagogia.titulo) {
+    builtHtml = builtHtml.replace(/\{\{PEDAGOGIA_TITULO\}\}/g, configPedagogia.titulo);
+    builtHtml = builtHtml.replace(/\{\{PEDAGOGIA_DESCRIPCION\}\}/g, configPedagogia.descripcion || '');
+    
+    let pilaresHtml = '';
+    if (configPedagogia.pilares && configPedagogia.pilares.length > 0) {
+      configPedagogia.pilares.forEach((p, i) => {
+        // Asignamos un icono basado en el orden o en el título si no tenemos uno dinámico
+        const icono = p.titulo.match(/^([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/) ? '' : '✨';
+        pilaresHtml += `
+        <div class="feature" data-animate="fade-up" data-delay="${i * 100}">
+          <div class="feature-icon">${icono}</div>
+          <h3>${p.titulo}</h3>
+          <p>${p.descripcion}</p>
+        </div>`;
+      });
+    }
+    builtHtml = builtHtml.replace(/\{\{PEDAGOGIA_PILARES\}\}/g, pilaresHtml);
+  }
+
+  // Inyectar FAQ
+  if (configFaq.titulo) {
+    builtHtml = builtHtml.replace(/\{\{FAQ_TITULO\}\}/g, configFaq.titulo);
+    builtHtml = builtHtml.replace(/\{\{FAQ_SUBTITULO\}\}/g, configFaq.subtitulo || '');
+    
+    let faqHtml = '';
+    if (configFaq.preguntas && configFaq.preguntas.length > 0) {
+      configFaq.preguntas.forEach(q => {
+        // Extraemos un emoji si lo hay al principio, si no, ponemos un dot
+        const match = q.pregunta.match(/^([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])\s*(.*)/);
+        const emoji = match ? match[1] : '💬';
+        const texto = match ? match[2] : q.pregunta;
+        
+        faqHtml += `
+        <div class="faq-item" role="listitem">
+          <button class="faq-question">
+            <span class="faq-emoji">${emoji}</span>
+            <span class="faq-text">${texto}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            ${mdToHtml(q.respuesta)}
+          </div>
+        </div>`;
+      });
+    }
+    builtHtml = builtHtml.replace(/\{\{FAQ_LISTA\}\}/g, faqHtml);
   }
 
   fs.writeFileSync('index.html', builtHtml.trim() + '\n', 'utf8');
