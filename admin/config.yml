@@ -107,6 +107,7 @@ collections:
             fields:
               - {label: "Título (con emoji)", name: "titulo", widget: "string"}
               - {label: "Texto", name: "texto", widget: "markdown", buttons: ["bold", "italic", "link"]}
+              - {label: "Imagen (Opcional)", name: "imagen", widget: "image", required: false}
               - {label: "Ocupar todo el ancho", name: "full_width", widget: "boolean", default: false, required: false}
           
       - label: "Pedagogía"

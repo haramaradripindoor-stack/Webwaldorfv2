@@ -91,8 +91,15 @@ if (builtHtml) {
     if (configQuienes.tarjetas && configQuienes.tarjetas.length > 0) {
       configQuienes.tarjetas.forEach((t, i) => {
         const fullClass = t.full_width ? ' full-width' : '';
+        let mediaHtml = '';
+        if (t.imagen) {
+          const imgSrc = t.imagen.startsWith('/') ? t.imagen : '/' + t.imagen;
+          const cleanAlt = t.titulo.replace(/[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]/g, '').trim();
+          mediaHtml = `<img src="${imgSrc}" alt="${cleanAlt}" class="about-img" loading="lazy">`;
+        }
         tarjetasHtml += `
         <div class="about-card${fullClass}" data-animate="fade-up" data-delay="${i * 100}">
+          ${mediaHtml}
           <h3>${t.titulo}</h3>
           ${mdToHtml(t.texto)}
         </div>`;
