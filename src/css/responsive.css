@@ -208,8 +208,8 @@
   }
 
   .news-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    column-count: 1;
+    column-gap: 1.5rem;
   }
 
   .grid-list {
@@ -447,7 +447,7 @@
   .hero { padding: 3.5rem 0 2.5rem; }
   .features { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
   .about-grid { grid-template-columns: 1fr; gap: 1.2rem; }
-  .news-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .news-grid { column-count: 1; column-gap: 1.5rem; }
   .grid-list { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem; }
   .slide { height: 300px; }
   .admission-table th, .admission-table td { padding: 0.7rem 0.6rem; font-size: 0.85rem; }
