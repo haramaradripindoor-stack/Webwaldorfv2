@@ -1,5 +1,5 @@
 ---
-nombre: EDUVIDA Voz: "Piaf y Violeta"
+nombre: 'EDUVIDA Voz: "Piaf y Violeta"'
 dia: "23"
 mes: JUL
 tipo: charla

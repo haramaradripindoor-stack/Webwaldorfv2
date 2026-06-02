@@ -1,5 +1,5 @@
 ---
-nombre: EDUVIDA: Puedes Cantar
+nombre: "EDUVIDA: Puedes Cantar"
 dia: "8"
 mes: DIC
 tipo: charla

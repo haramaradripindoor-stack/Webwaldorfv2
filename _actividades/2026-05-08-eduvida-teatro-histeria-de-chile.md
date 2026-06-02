@@ -1,5 +1,5 @@
 ---
-nombre: EDUVIDA Teatro: "Histeria de Chile"
+nombre: 'EDUVIDA Teatro: "Histeria de Chile"'
 dia: "8"
 mes: MAY
 tipo: charla

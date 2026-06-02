@@ -1,5 +1,5 @@
 ---
-nombre: EDUVIDA: Puedes Bailar
+nombre: "EDUVIDA: Puedes Bailar"
 dia: "5"
 mes: NOV
 tipo: charla
