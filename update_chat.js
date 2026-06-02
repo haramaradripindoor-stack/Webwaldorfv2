@@ -1,75 +1,9 @@
-<!-- Modal Galería Principal -->
-  <div id="imageModal" class="modal">
-    <span class="close">&times;</span>
-    <div class="modal-counter">1 / 11</div>
-    <button class="modal-prev" aria-label="Imagen anterior">
-      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-    </button>
-    <img class="modal-content" id="modalImage" alt="Imagen ampliada">
-    <button class="modal-next" aria-label="Imagen siguiente">
-      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
-    </button>
-    <div class="modal-instructions">Usa las flechas del teclado o desliza para navegar</div>
-  </div>
+const fs = require('fs');
 
-  <!-- Modal Arriendo de Salón -->
-  <div id="arriendoModal" class="modal">
-    <span class="close">&times;</span>
-    <button class="prev" onclick="changeArriendoImage(-1)" aria-label="Imagen anterior">❮</button>
-    <img class="modal-content" id="arriendoModalImage" alt="Imagen del salón">
-    <div class="modal-caption" id="arriendoModalCaption"></div>
-    <button class="next" onclick="changeArriendoImage(1)" aria-label="Imagen siguiente">❯</button>
-  </div>
+const filePath = 'src/templates/modals-scripts.html';
+let content = fs.readFileSync(filePath, 'utf8');
 
-  <!-- JavaScript -->
-  <script src="js/script.js"></script>
-
-  <!-- Botón flotante de WhatsApp -->
-  <style>
-    .wa-trigger{position:fixed;bottom:1.75rem;left:1.5rem;z-index:1000;width:52px;height:52px;border-radius:50%;background:#2E5E4E;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.2);transition:opacity .2s,box-shadow .2s;padding:0;}
-    .wa-trigger:hover{opacity:.88;box-shadow:0 4px 18px rgba(0,0,0,.25);}
-    .wa-trigger img{width:32px;height:32px;object-fit:contain;border-radius:50%;}
-    .wa-card{position:fixed;bottom:5.5rem;left:1.5rem;z-index:1000;width:270px;background:#fff;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.15);overflow:hidden;font-family:'Quicksand',sans-serif;opacity:0;transform:translateY(10px) scale(.97);pointer-events:none;transition:opacity .22s ease,transform .22s ease;}
-    .wa-card.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;}
-    .wa-card-header{background:#2E5E4E;padding:1rem 1rem .85rem;display:flex;align-items:center;gap:.75rem;position:relative;}
-    .wa-card-logo{width:46px;height:46px;border-radius:50%;object-fit:contain;background:#fff;padding:4px;flex-shrink:0;}
-    .wa-card-identity{display:flex;flex-direction:column;gap:.1rem;}
-    .wa-card-name{font-size:.85rem;font-weight:700;color:#fff;line-height:1.2;}
-    .wa-card-role{font-size:.72rem;font-weight:500;color:rgba(255,255,255,.75);}
-    .wa-card-body{padding:1rem;}
-    .wa-card-msg{font-size:.8rem;color:#555;line-height:1.5;margin:0 0 .85rem;}
-    .wa-card-btn{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;padding:.65rem;border-radius:10px;background:#25D366;color:#fff;font-family:'Quicksand',sans-serif;font-size:.82rem;font-weight:700;text-decoration:none;transition:background .2s;}
-    .wa-card-btn:hover{background:#1ebe5d;}
-    .wa-card-btn svg{width:18px;height:18px;fill:#fff;flex-shrink:0;}
-    .wa-card-close{position:absolute;top:.6rem;right:.7rem;background:none;border:none;color:rgba(255,255,255,.7);font-size:1.1rem;cursor:pointer;line-height:1;padding:0;}
-  </style>
-  <div class="wa-card" id="waCard" role="dialog" aria-modal="true" aria-label="Contacto WhatsApp">
-    <div class="wa-card-header">
-      <img class="wa-card-logo" src="assets/Coordinadora.png" alt="Ivonne Parada A.">
-      <div class="wa-card-identity">
-        <span class="wa-card-name">Ivonne Parada A.</span>
-        <span class="wa-card-role">Coordinadora General</span>
-      </div>
-      <button class="wa-card-close" onclick="waClose()" aria-label="Cerrar">✕</button>
-    </div>
-    <div class="wa-card-body">
-      <p class="wa-card-msg">Hola 👋 Escríbeme directamente, con gusto respondo tus preguntas sobre el colegio o agenda tu visita.</p>
-      <a class="wa-card-btn" href="https://wa.me/{{CONTACTO_TEL_CLEAN}}?text=Hola,%20me%20gustaría%20saber%20más%20sobre%20el%20Colegio%20Waldorf%20Trekan" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-        Enviar mensaje
-      </a>
-    </div>
-  </div>
-  <button class="wa-trigger" id="waTrigger" aria-label="Contactar por WhatsApp" onclick="waToggle()">
-    <img src="assets/logo.png" alt="WhatsApp Trekan">
-  </button>
-  <script>
-    function waToggle(){ document.getElementById('waCard').classList.toggle('open'); }
-    function waClose(){ document.getElementById('waCard').classList.remove('open'); }
-    document.addEventListener('keydown',function(e){ if(e.key==='Escape') waClose(); });
-  </script>
-
-  
+const replacement = `
   <!-- Widget Chatbot Trekan -->
   <style>
     :root {
@@ -327,7 +261,7 @@
         { keywords: ["salon","espacio trekan","arriendo","arrendar","alquilar","arrendar espacio"], response: "🏡 <b>Arriendo Espacio Trekan</b> — 25m² para hasta 20 personas, incluye mesas, sillas, cocina equipada, baño y estacionamiento.<ul><li>1-3 hrs: <b>$15.000/hora</b></li><li>4-6 hrs: <b>$13.000/hora</b></li><li>Jornada completa (7h): <b>$66.500</b></li><li>Kit audiovisual: +$25.000</li></ul>Consulta por <a href='https://wa.me/56967765106?text=Hola,%20quiero%20informacion%20sobre%20el%20arriendo%20del%20salon%20Trekan' target='_blank'>WhatsApp</a>." }
       ];
 
-      var SYSTEM_PROMPT = `Eres el asistente virtual del COLEGIO WALDORF TREKAN, ubicado en Puerto Varas, Chile. Responde SIEMPRE en español, de forma cálida, breve (máximo 4-5 oraciones) y profesional, con el tono cercano de una comunidad educativa Waldorf.
+      var SYSTEM_PROMPT = \`Eres el asistente virtual del COLEGIO WALDORF TREKAN, ubicado en Puerto Varas, Chile. Responde SIEMPRE en español, de forma cálida, breve (máximo 4-5 oraciones) y profesional, con el tono cercano de una comunidad educativa Waldorf.
 
 === INFORMACIÓN DEL COLEGIO ===
 IDENTIDAD: Colegio Waldorf Trekan ("Trekan" significa "caminante" en mapudungun). Niños de 3 a 14 años. Las Azaleas 96, Parque Ivian 1, Puerto Varas. www.colegiowaldorftrekan.cl
@@ -340,7 +274,7 @@ PEDAGOGÍA WALDORF: Desarrollo integral: mente, corazón, manos. Evaluación cua
 MINEDUC: NO tiene reconocimiento oficial. Rinden Exámenes Libres. Promedio 90% aprueba con buenas notas.
 SERVICIOS: NO hay transporte ni alimentación. Seguro escolar opcional (Andes Salud / Clínica Pto Varas).
 ARRIENDO ESPACIO: 25m², 20 pers. Tarifas: 1-3h $15.000/hr | 4-6h $13.000/hr | Jornada 7h $66.500 | Kit AV +$25.000
-REGLAS: NUNCA inventes precios o fechas. Tono cálido, usa emojis moderados.`;
+REGLAS: NUNCA inventes precios o fechas. Tono cálido, usa emojis moderados.\`;
 
       if (!hasInteracted) {
         setTimeout(function() {
@@ -387,7 +321,7 @@ REGLAS: NUNCA inventes precios o fechas. Tono cálido, usa emojis moderados.`;
         bubbleEl.className = 'chat-bubble';
         
         // Remove markdown tags if any
-        text = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+        text = text.replace(/\\*\\*(.*?)\\*\\*/g, '<b>$1</b>');
 
         var prefix = '';
         if (source === 'kb') prefix = '<span class="chat-source-tag kb">INFO</span>';
@@ -452,7 +386,7 @@ REGLAS: NUNCA inventes precios o fechas. Tono cálido, usa emojis moderados.`;
           conversationHistory = h.slice(-12).map(function(m) {
             return {
               role: m.sender === 'user' ? 'user' : 'assistant',
-              content: m.text.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+              content: m.text.replace(/<[^>]+>/g, ' ').replace(/\\s+/g, ' ').trim()
             };
           });
         }
@@ -473,7 +407,7 @@ REGLAS: NUNCA inventes precios o fechas. Tono cálido, usa emojis moderados.`;
       clearBtn.addEventListener('click', clearChatHistory);
 
       function normalize(text) {
-        return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[¿?¡!.,;:()"']/g, "").trim();
+        return text.toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").replace(/[¿?¡!.,;:()"']/g, "").trim();
       }
 
       function findBestKBResponse(userText) {
@@ -529,7 +463,7 @@ REGLAS: NUNCA inventes precios o fechas. Tono cálido, usa emojis moderados.`;
             hideTyping();
             renderMessage(kbResponse, 'bot', null, 'kb');
             saveHistory('bot', kbResponse, 'kb');
-            conversationHistory.push({ role: "assistant", content: kbResponse.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() });
+            conversationHistory.push({ role: "assistant", content: kbResponse.replace(/<[^>]+>/g, ' ').replace(/\\s+/g, ' ').trim() });
           }, 600);
           return;
         }
@@ -551,142 +485,15 @@ REGLAS: NUNCA inventes precios o fechas. Tono cálido, usa emojis moderados.`;
       });
     })();
   </script>
-<!-- Cookie Consent Banner -->
-  <div id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
-    <p>🍪 Usamos cookies para mejorar tu visita. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Saber más</a></p>
-    <div class="cookie-actions">
-      <button class="cookie-btn cookie-reject" id="cookie-reject">Rechazar</button>
-      <button class="cookie-btn cookie-accept" id="cookie-accept">Aceptar</button>
-    </div>
-  </div>
+`;
 
-  <script>
-    (function() {
-      var banner  = document.getElementById('cookie-banner');
-      var consent = localStorage.getItem('cookie-consent');
-      if (consent) return;
-      setTimeout(function() { banner.classList.add('visible'); }, 3500);
-      document.getElementById('cookie-accept').addEventListener('click', function() {
-        localStorage.setItem('cookie-consent', 'accepted'); banner.style.transform = 'translateY(100%)';
-      });
-      document.getElementById('cookie-reject').addEventListener('click', function() {
-        localStorage.setItem('cookie-consent', 'rejected'); banner.style.transform = 'translateY(100%)';
-        if (window['ga-disable-GTM-NWT7GVSD']) { window['ga-disable-GTM-NWT7GVSD'] = true; }
-      });
-    })();
-  </script>
+const startIndex = content.indexOf('<!-- Widget Chatbot Trekan -->');
+const endIndex = content.indexOf('<!-- Cookie Consent Banner -->');
 
-  <!-- Netlify Identity -->
-
-
-<script id="cms-lightbox-script">
-/* CMS-LIGHTBOX-v4 */
-(function () {
-  var lb = document.createElement('div');
-  lb.id = 'cms-lightbox';
-  lb.setAttribute('role', 'dialog');
-  lb.setAttribute('aria-modal', 'true');
-  lb.setAttribute('aria-label', 'Galería de imágenes');
-  lb.innerHTML =
-    '<button class="cms-lb-btn cms-lb-close" aria-label="Cerrar">✕</button>' +
-    '<button class="cms-lb-btn cms-lb-prev"  aria-label="Anterior">‹</button>' +
-    '<img src="" alt="Imagen ampliada">' +
-    '<div class="cms-lb-counter"></div>' +
-    '<button class="cms-lb-btn cms-lb-next"  aria-label="Siguiente">›</button>';
-  document.body.appendChild(lb);
-
-  var imgs = [], cur = 0;
-
-  function getImgs(gallery) {
-    return Array.from(
-      document.querySelectorAll('.cms-gallery-thumb[data-gallery="' + gallery + '"]')
-    ).map(function(el) { return el.querySelector('img').src; });
-  }
-
-  function open(gallery, idx) {
-    imgs = getImgs(gallery);
-    if (!imgs.length) return;
-    cur = Math.max(0, Math.min(idx, imgs.length - 1));
-    render();
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    lb.querySelector('.cms-lb-close').focus();
-  }
-
-  function close() { lb.classList.remove('open'); document.body.style.overflow = ''; }
-  function prev()  { cur = (cur - 1 + imgs.length) % imgs.length; render(); }
-  function next()  { cur = (cur + 1) % imgs.length; render(); }
-
-  function render() {
-    lb.querySelector('img').src = imgs[cur];
-    lb.querySelector('.cms-lb-counter').textContent = (cur + 1) + ' / ' + imgs.length;
-    var many = imgs.length > 1;
-    lb.querySelector('.cms-lb-prev').style.display = many ? '' : 'none';
-    lb.querySelector('.cms-lb-next').style.display = many ? '' : 'none';
-  }
-
-  lb.querySelector('.cms-lb-close').addEventListener('click', close);
-  lb.querySelector('.cms-lb-prev').addEventListener('click', prev);
-  lb.querySelector('.cms-lb-next').addEventListener('click', next);
-  lb.addEventListener('click', function(e) { if (e.target === lb) close(); });
-
-  document.addEventListener('keydown', function(e) {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape')     close();
-    if (e.key === 'ArrowLeft')  prev();
-    if (e.key === 'ArrowRight') next();
-  });
-
-  var startX = 0;
-  lb.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
-  lb.addEventListener('touchend', function(e) {
-    var dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
-  });
-
-  document.addEventListener('click', function(e) {
-    var thumb = e.target.closest('.cms-gallery-thumb');
-    if (thumb) open(thumb.dataset.gallery, parseInt(thumb.dataset.index, 10));
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-      var thumb = document.activeElement && document.activeElement.closest('.cms-gallery-thumb');
-      if (thumb) open(thumb.dataset.gallery, parseInt(thumb.dataset.index, 10));
-    }
-  });
-
-  // ── Filtro de chips (archivo de noticias y calendario de actividades) ──
-  document.addEventListener('click', function(e) {
-    var chip = e.target.closest('.cms-chip');
-    if (!chip) return;
-    var filter = chip.dataset.filter || chip.dataset.year;
-    var chips = document.querySelectorAll('.cms-chip');
-    chips.forEach(function(c) {
-      var on = (c === chip);
-      c.classList.toggle('active', on);
-      c.setAttribute('aria-selected', on ? 'true' : 'false');
-    });
-    var cards = document.querySelectorAll('.cms-archivo-card');
-    var visible = 0;
-    cards.forEach(function(card) {
-      var cardFilter = card.dataset.filter || card.dataset.year;
-      var show = (filter === 'all') || (cardFilter === filter);
-      card.classList.toggle('hidden', !show);
-      if (show) visible++;
-    });
-    // Ocultar secciones de mes vacías (solo relevante en calendario)
-    var sections = document.querySelectorAll('.cms-calendario-mes');
-    sections.forEach(function(section) {
-      var sectionKey = section.dataset.month;
-      var show = (filter === 'all') || (sectionKey === filter);
-      section.style.display = show ? '' : 'none';
-    });
-    var empty = document.querySelector('.cms-archivo-empty');
-    if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
-  });
-})();
-</script>
-
-
-</body>
-</html>
+if (startIndex !== -1 && endIndex !== -1) {
+  content = content.substring(0, startIndex) + replacement + content.substring(endIndex);
+  fs.writeFileSync(filePath, content, 'utf8');
+  console.log('Chatbot updated successfully!');
+} else {
+  console.error('Could not find boundaries for chatbot replacement.');
+}
