@@ -10,8 +10,6 @@ logo_url: "https://www.colegiowaldorftrekan.cl/assets/logo.png"
 media_folder: "images"
 public_folder: "/images"
 
-locale: 'es'
-
 collections:
   - name: "noticias"
     label: "Noticias"

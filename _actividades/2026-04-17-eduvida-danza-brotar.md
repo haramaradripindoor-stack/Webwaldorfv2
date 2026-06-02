@@ -1,5 +1,5 @@
 ---
-nombre: EDUVIDA Danza: "Brotar"
+nombre: 'EDUVIDA Danza: "Brotar"'
 dia: "17"
 mes: ABR
 tipo: charla
