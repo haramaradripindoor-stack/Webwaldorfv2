@@ -28,7 +28,7 @@ console.log('📦 Compilando plantillas y estilos...');
 const htmlTemplates = [
   'head', 'header', 'nav', 'hero', 'pedagogia', 'quienes-somos', 
   'actividades', 'testimonios', 'comunidad', 'noticias', 'curricular', 'admision', 
-  'faq', 'arriendo', 'contacto', 'instagram', 'footer', 'modals-scripts'
+  'faq', 'contacto', 'instagram', 'footer', 'modals-scripts'
 ];
 
 let builtHtml = '';
@@ -1400,3 +1400,44 @@ buildCalendarioLang('de');
 console.log('\n✅ Build multiidioma completado');
 console.log('   📂 noticias-en.html, noticias-de.html');
 console.log('   📅 actividades-en.html, actividades-de.html');
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ARRIENDO SALON PÁGINA INDEPENDIENTE
+// ═══════════════════════════════════════════════════════════════════════════
+function buildArriendoSalon() {
+  let salonHtml = '';
+  const components = ['head', 'nav', 'arriendo', 'footer', 'modals-scripts'];
+  for (const tpl of components) {
+    const p = path.join('src', 'templates', tpl + '.html');
+    if (fs.existsSync(p)) {
+      salonHtml += fs.readFileSync(p, 'utf8') + '\n';
+    }
+  }
+  
+  if (fs.existsSync(path.join('_config', 'contacto.yml'))) {
+    let config = {};
+    try {
+      config = yaml.load(fs.readFileSync(path.join('_config', 'contacto.yml'), 'utf8'));
+    } catch (e) {}
+    const telClean = (config.telefono || '').replace(/\s+/g, '');
+    salonHtml = salonHtml.replace(/\{\{CONTACTO_TELEFONO\}\}/g, config.telefono || '');
+    salonHtml = salonHtml.replace(/\{\{CONTACTO_TEL_CLEAN\}\}/g, telClean);
+    salonHtml = salonHtml.replace(/\{\{CONTACTO_EMAIL_ADMISION\}\}/g, config.email_admision || '');
+    salonHtml = salonHtml.replace(/\{\{CONTACTO_DIRECCION\}\}/g, config.direccion || '');
+    salonHtml = salonHtml.replace(/\{\{CONTACTO_INSTAGRAM\}\}/g, config.instagram || '');
+    salonHtml = salonHtml.replace(/\{\{LINK_POSTULACION\}\}/g, config.link_postulacion || '');
+  }
+  
+  salonHtml = injectCss(salonHtml);
+  salonHtml = injectJs(salonHtml);
+  
+  salonHtml = salonHtml.replace(/<title>[\s\S]*?<\/title>/i, `<title>Arriendo de Salón — Colegio Waldorf Trekan</title>`);
+  
+  fs.writeFileSync('arriendo-salon.html', salonHtml, 'utf8');
+  console.log('   🏡 Arriendo de Salón -> arriendo-salon.html');
+}
+
+console.log('\n🏠 Construyendo página dedicada de Arriendo de Salón...');
+buildArriendoSalon();
+console.log('✅ Listo!');
+
