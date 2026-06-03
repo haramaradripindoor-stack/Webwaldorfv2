@@ -330,7 +330,7 @@ picture img {
   background-size: cover;
   background-position: center;
   background-attachment: scroll; /* FIX: fixed roto en iOS Safari */
-  opacity: 0.45; /* aumentado para más impacto visual */
+  opacity: 1; /* Aumentado para ver la imagen real y luminosa */
   z-index: 1;
 }
 
@@ -347,7 +347,7 @@ picture img {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(46, 94, 78, 0.8) 0%, rgba(168, 216, 185, 0.6) 100%);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.45) 0%, rgba(46, 94, 78, 0.15) 100%);
   z-index: 2;
 }
 
