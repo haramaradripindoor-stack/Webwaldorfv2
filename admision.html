@@ -13,617 +13,162 @@
   <meta property="og:image" content="https://www.colegiowaldorftrekan.cl/assets/og-image.jpg">
   <meta property="og:locale" content="es_CL">
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NWT7GVSD');</script>
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿El colegio tiene reconocimiento del Mineduc?","acceptedAnswer":{"@type":"Answer","text":"No contamos con reconocimiento oficial del Mineduc. Los estudiantes rinden Exámenes Libres de Validación de Estudios. Al aprobar reciben certificados equivalentes a los de cualquier colegio reconocido."}},{"@type":"Question","name":"¿Cuántos niños hay por curso?","acceptedAnswer":{"@type":"Answer","text":"Máximo 16 niñas y niños por curso."}},{"@type":"Question","name":"¿Cuándo puedo postular?","acceptedAnswer":{"@type":"Answer","text":"El proceso está abierto todo el año, siempre que haya cupos disponibles."}}]}</script>
   <style>
     :root {
-      /* Organic Waldorf Pedagogy Colors */
-      --surface: #fbf9f4;
-      --surface-dim: #dbdad5;
-      --surface-container-low: #f5f3ee;
-      --surface-container: #f0eee9;
-      --on-surface: #1b1c19;
-      --on-surface-variant: #45483d;
-      --primary: #394b1c;
-      --on-primary: #ffffff;
-      --primary-container: #506331;
-      --inverse-primary: #b8cf92;
-      --secondary: #835416;
-      --secondary-container: #ffc078;
-      --tertiary: #5c4000;
-      
-      /* Policies Cards Colors */
-      --card-yellow: #fff8e1; /* Aranceles / Seguro */
-      --card-blue: #e8f4f8;   /* Devoluciones / Saber */
+      --verde:     #2E5E4E;
+      --verde-med: #3a7060;
+      --verde-cl:  #A8D8B9;
+      --verde-pal: #F0F7F3;
+      --tierra:    #C97B63;
+      --tierra-cl: #F2E0D8;
+      --beige:     #F8F3EC;
+      --beige-dk:  #EDE4D8;
+      --dark:      #1E2E28;
+      --mid:       #4E6A5E;
+      --soft:      #8AA898;
+      --white:     #FFFFFF;
     }
-    
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { 
-      font-family: 'Plus Jakarta Sans', sans-serif; 
-      color: var(--on-surface); 
-      background: var(--surface); 
-      line-height: 1.6; 
-      overflow-x: hidden; 
-    }
-    
-    h1, h2, h3, h4 { 
-      font-family: 'Libre Caslon Text', serif; 
-      font-weight: 700; 
-      line-height: 1.2; 
-      color: var(--on-surface);
-      letter-spacing: -0.02em;
-    }
-    
-    p { font-size: 18px; color: var(--on-surface-variant); }
-    @media (max-width: 768px) { p { font-size: 16px; } }
-
-    /* LAYOUT & SPACING */
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 64px;
-    }
-    @media (max-width: 768px) { .container { padding: 0 20px; } }
-    
-    .section-padding { padding: 100px 0; }
-    @media (max-width: 768px) { .section-padding { padding: 60px 0; } }
-
-    /* BUTTONS */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 600;
-      font-size: 16px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      border: 1px solid transparent;
-    }
-    .btn-primary {
-      background: var(--primary);
-      color: var(--on-primary);
-    }
-    .btn-primary:hover {
-      background: var(--primary-container);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(57, 75, 28, 0.15);
-    }
-    .btn-outline {
-      background: transparent;
-      color: var(--on-surface);
-      border-color: var(--surface-dim);
-    }
-    .btn-outline:hover {
-      background: var(--surface-container);
-      border-color: var(--secondary);
-    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Quicksand',sans-serif;color:var(--dark);background:var(--beige);line-height:1.75;overflow-x:hidden;}
+    h1,h2,h3{font-family:'Lora',serif;font-weight:500;line-height:1.3;}
+    p{font-size:1rem;color:var(--mid);}
 
     /* NAV */
-    nav {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 20px 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    @media (max-width: 768px) { nav { padding: 16px 20px; } }
-    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .nav-brand img { width: 44px; height: 44px; object-fit: contain; }
-    .nav-brand-txt { font-family: 'Libre Caslon Text', serif; font-size: 18px; color: var(--primary); font-weight: 600; line-height: 1.1; }
-    .nav-brand-txt span { display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; color: var(--on-surface-variant); font-weight: 500; }
-    .nav-links { display: flex; gap: 16px; align-items: center; }
+    nav{position:sticky;top:0;z-index:100;background:rgba(248,243,236,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--beige-dk);padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between;}
+    .nav-brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;}
+    .nav-brand img{width:36px;height:36px;object-fit:contain;}
+    .nav-brand-txt{font-family:'Lora',serif;font-size:.88rem;color:var(--verde);font-weight:500;}
+    .nav-brand-txt span{display:block;font-family:'Quicksand',sans-serif;font-size:.7rem;color:var(--soft);font-weight:500;}
+    .nav-links{display:flex;gap:.7rem;align-items:center;}
+
+    /* BOTONES */
+    .btn{display:inline-flex;align-items:center;gap:.35rem;padding:.7rem 1.5rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.88rem;font-family:'Quicksand',sans-serif;transition:all .22s ease;cursor:pointer;border:none;letter-spacing:.02em;}
+    .btn-verde{background:var(--verde);color:white;}
+    .btn-verde:hover{background:var(--verde-med);transform:translateY(-2px);box-shadow:0 8px 24px rgba(46,94,78,.2);}
+    .btn-outline{background:transparent;color:var(--verde);border:1.5px solid var(--verde-cl);}
+    .btn-outline:hover{border-color:var(--verde);background:var(--verde-pal);}
+    .btn-wa{background:#25D366;color:white;}
+    .btn-wa:hover{background:#1fbc5b;transform:translateY(-2px);}
+    .btn-lg{padding:.9rem 2rem;font-size:.95rem;}
+    .btn-blanco{background:white;color:var(--verde);}
+    .btn-blanco:hover{background:var(--verde-pal);transform:translateY(-2px);}
+    .btn-transp{background:transparent;color:white;border:1.5px solid rgba(255,255,255,.4);}
+    .btn-transp:hover{background:rgba(255,255,255,.1);transform:translateY(-2px);}
 
     /* HERO */
-    .hero {
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 140px 20px 80px;
-      position: relative;
-    }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('images/admision2.webp');
-      background-size: cover;
-      background-position: center 20%;
-      opacity: 0.15;
-      z-index: 0;
-      mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
-      -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-    }
-    .eyebrow {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      color: var(--secondary);
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      display: block;
-    }
-    .hero h1 {
-      font-size: clamp(36px, 6vw, 64px);
-      margin-bottom: 24px;
-      color: var(--tertiary);
-    }
-    .hero-prose {
-      font-size: 20px;
-      margin-bottom: 40px;
-      max-width: 650px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .hero-actions { display: flex; gap: 16px; justify-content: center; margin-bottom: 64px; flex-wrap: wrap; }
-    
-    .hero-stats {
-      display: flex;
-      gap: 64px;
-      justify-content: center;
-      flex-wrap: wrap;
-      border-top: 1px solid var(--surface-dim);
-      padding-top: 40px;
-    }
-    .stat { text-align: center; }
-    .stat-val { font-family: 'Libre Caslon Text', serif; font-size: 32px; color: var(--on-surface); line-height: 1; margin-bottom: 8px; }
-    .stat-lbl { font-size: 12px; font-weight: 600; color: var(--on-surface-variant); text-transform: uppercase; letter-spacing: 0.05em; }
+    .hero{min-height:90vh;background:var(--beige);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;inset:0;background-image:url('images/admision2.webp');background-size:cover;background-position:center 30%;opacity:.18;z-index:0;}
+    .hero-deco{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+    .hero-inner{max-width:680px;margin:0 auto;position:relative;z-index:1;}
+    .hero-eyebrow{display:inline-block;font-family:'Lora',serif;font-style:italic;font-size:1rem;color:var(--tierra);margin-bottom:1.4rem;letter-spacing:.04em;}
+    .hero h1{font-size:clamp(2rem,5.5vw,3.4rem);color:var(--dark);margin-bottom:1.4rem;}
+    .hero h1 em{color:var(--verde);}
+    .hero-prose{font-size:1.07rem;color:var(--mid);max-width:500px;margin:0 auto 2.4rem;line-height:1.85;}
+    .hero-actions{display:flex;gap:.9rem;flex-wrap:wrap;justify-content:center;margin-bottom:3.5rem;}
+    .hero-datos{display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap;}
+    .dato{text-align:center;}
+    .dato-num{font-family:'Lora',serif;font-size:1.65rem;color:var(--verde);display:block;line-height:1;}
+    .dato-txt{font-size:.75rem;color:var(--soft);font-weight:600;text-transform:uppercase;letter-spacing:.06em;}
 
-    /* DUAL SECTION (Proceso & Valores) */
-    .dual-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
-    }
-    @media (max-width: 992px) { .dual-section { grid-template-columns: 1fr; gap: 48px; } }
-    
-    .dual-title { font-size: 32px; margin-bottom: 32px; }
+    /* SEPARADORES */
+    .wave{display:block;width:100%;line-height:0;}
+    .wave svg{display:block;width:100%;}
 
-    /* TIMELINE */
-    .timeline { display: flex; flex-direction: column; gap: 32px; position: relative; }
-    .timeline::before {
-      content: ''; position: absolute; left: 40px; top: 40px; bottom: 40px; width: 2px;
-      background: var(--surface-dim); z-index: 0;
-    }
-    .timeline-item {
-      display: flex; gap: 24px; position: relative; z-index: 1; align-items: center;
-    }
-    .timeline-img {
-      width: 80px; height: 80px; border-radius: 50%; background: var(--surface-container-low);
-      display: flex; align-items: center; justify-content: center; font-size: 32px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 4px solid var(--surface);
-      flex-shrink: 0; overflow: hidden;
-    }
-    .timeline-img img { width: 100%; height: 100%; object-fit: cover; }
-    .timeline-content h4 { font-size: 20px; margin-bottom: 4px; }
-    .timeline-content p { font-size: 16px; margin: 0; }
+    /* SECCIONES */
+    .sec{padding:5.5rem 2rem;}
+    .inner{max-width:820px;margin:0 auto;}
+    .inner-sm{max-width:600px;margin:0 auto;}
+    .bg-pal{background:var(--verde-pal);}
+    .bg-beige{background:var(--beige);}
+    .bg-white{background:white;}
+    .eyebrow{font-family:'Lora',serif;font-style:italic;font-size:.9rem;color:var(--tierra);display:block;margin-bottom:.7rem;}
+    .sec-title{font-size:clamp(1.55rem,3.5vw,2.3rem);color:var(--dark);margin-bottom:1rem;}
+    .sec-prose{font-size:1rem;color:var(--mid);line-height:1.85;margin-bottom:2.5rem;max-width:550px;}
 
-    /* VALORES TABLE */
-    .valores-card {
-      background: var(--surface-container-low);
-      border-radius: 24px;
-      padding: 40px;
-      box-shadow: 0 12px 40px rgba(57, 75, 28, 0.04);
-    }
-    .val-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 16px 0; border-bottom: 1px solid var(--surface-dim);
-    }
-    .val-row:last-child { border-bottom: none; padding-bottom: 0; }
-    .val-label { font-weight: 600; color: var(--on-surface); font-size: 16px; }
-    .val-price { font-family: 'Libre Caslon Text', serif; font-size: 20px; color: var(--primary); }
-    .val-sub { font-size: 14px; color: var(--on-surface-variant); margin-top: 4px; display: block; }
+    /* PASOS */
+    .pasos{display:flex;flex-direction:column;}
+    .paso{display:grid;grid-template-columns:64px 1fr;gap:0 1.6rem;align-items:flex-start;padding:2rem 0;border-bottom:1px dashed rgba(168,216,185,.5);opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
+    .paso:last-child{border-bottom:none;}
+    .paso.vis{opacity:1;transform:translateY(0);}
+    .paso-num-wrap{display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+    .paso-num{width:52px;height:52px;border-radius:50%;background:var(--verde);color:white;font-family:'Lora',serif;font-size:1.25rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 16px rgba(46,94,78,.2);}
+    .paso-linea{width:1px;flex:1;background:linear-gradient(to bottom,var(--verde-cl),transparent);min-height:36px;}
+    .paso-body{padding-top:.6rem;}
+    .paso-body h3{font-size:1.05rem;color:var(--dark);margin-bottom:.4rem;}
+    .paso-body p{font-size:.92rem;color:var(--mid);line-height:1.75;}
 
-    /* POLICIES CARDS */
-    .policies-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 64px;
-    }
-    @media (max-width: 1024px) { .policies-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 600px) { .policies-grid { grid-template-columns: 1fr; } }
-    
-    .policy-card {
-      padding: 32px 24px; border-radius: 16px;
-      transition: transform 0.3s ease;
-    }
-    .policy-card:hover { transform: translateY(-4px); }
-    .policy-card.yellow { background: var(--card-yellow); }
-    .policy-card.blue { background: var(--card-blue); }
-    .policy-icon {
-      width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.6);
-      display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 20px;
-    }
-    .policy-card h4 { font-size: 18px; margin-bottom: 12px; }
-    .policy-card p { font-size: 14px; line-height: 1.5; margin: 0; }
-    .policy-card a { color: var(--primary); text-decoration: underline; font-weight: 600; }
+    /* ARANCELES */
+    .arancel-lista{display:flex;flex-direction:column;margin-bottom:2rem;}
+    .arancel-fila{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:baseline;padding:1.1rem 0;border-bottom:1px solid rgba(168,216,185,.35);opacity:0;transform:translateX(-10px);transition:opacity .5s ease,transform .5s ease;}
+    .arancel-fila:last-child{border-bottom:none;}
+    .arancel-fila.vis{opacity:1;transform:translateX(0);}
+    .arancel-nombre{font-weight:600;color:var(--dark);font-size:.95rem;}
+    .arancel-det{font-size:.8rem;color:var(--soft);margin-top:.12rem;line-height:1.5;}
+    .arancel-valor{font-family:'Lora',serif;font-size:1.12rem;color:var(--verde);white-space:nowrap;text-align:right;}
 
-    /* ES PARA TI */
-    .fit-section {
-      text-align: center;
-    }
-    .fit-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; text-align: left; margin-top: 48px;
-    }
-    @media (max-width: 768px) { .fit-grid { grid-template-columns: 1fr; gap: 32px; } }
-    
-    .fit-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
-    .fit-item { display: flex; gap: 16px; align-items: flex-start; }
-    .fit-icon { flex-shrink: 0; font-size: 20px; margin-top: 2px; }
-    .fit-item h4 { font-size: 18px; margin-bottom: 24px; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .nota{background:white;border-radius:14px;padding:1.3rem 1.5rem;margin-bottom:.9rem;border-left:3px solid var(--verde-cl);font-size:.88rem;color:var(--mid);line-height:1.75;}
+    .nota h4{font-family:'Lora',serif;font-size:.95rem;color:var(--dark);margin-bottom:.4rem;font-weight:500;}
+    .nota ul{padding-left:1.2rem;margin-top:.35rem;}
+    .nota li{margin-bottom:.2rem;}
+    .nota a{color:var(--verde);font-weight:600;}
+
+    .nota-mined{background:#FFFBF0;border-radius:14px;padding:1.3rem 1.5rem;margin-bottom:.9rem;border:1px solid #F0D07A;font-size:.88rem;color:#6B4F1C;line-height:1.75;}
+    .nota-mined h4{font-family:'Lora',serif;font-size:.95rem;color:#5A3E12;margin-bottom:.4rem;font-weight:500;}
+    .nota-mined a{color:#8B6914;font-weight:600;}
+
+    /* PARA TI */
+    .para-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-bottom:2rem;}
+    .para-card{background:white;border-radius:16px;padding:1.9rem 1.7rem;opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease;}
+    .para-card.vis{opacity:1;transform:translateY(0);}
+    .para-card-titulo{font-family:'Lora',serif;font-size:1rem;color:var(--dark);margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem;}
+    .para-items{display:flex;flex-direction:column;gap:.7rem;}
+    .para-item{display:flex;gap:.6rem;font-size:.9rem;color:var(--mid);line-height:1.6;}
+    .para-icono{flex-shrink:0;margin-top:.1rem;}
 
     /* FAQ */
-    .faq-container { max-width: 800px; margin: 0 auto; }
-    .faq-title { text-align: center; margin-bottom: 48px; }
-    .faq-title span { display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
-    .faq-item {
-      background: var(--surface-container-low);
-      border-radius: 12px; margin-bottom: 16px;
-      border: 1px solid var(--surface-container);
-    }
-    .faq-q {
-      width: 100%; text-align: left; padding: 20px 24px; background: none; border: none;
-      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 600; color: var(--on-surface);
-      cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px;
-    }
-    .faq-q .ico-left { font-size: 20px; flex-shrink: 0; }
-    .faq-q .ico-right { width: 24px; height: 24px; border-radius: 50%; background: var(--surface-dim); display: flex; align-items: center; justify-content: center; transition: transform 0.3s; font-size: 12px; }
-    .faq-q.open .ico-right { transform: rotate(45deg); background: var(--primary); color: white; }
-    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-    .faq-a.open { max-height: 500px; }
-    .faq-a-inner { padding: 0 24px 24px 60px; font-size: 16px; color: var(--on-surface-variant); }
+    .faq-lista{display:flex;flex-direction:column;gap:.65rem;}
+    .faq-item{background:white;border-radius:13px;overflow:hidden;box-shadow:0 1px 6px rgba(46,94,78,.06);}
+    .faq-q{width:100%;background:none;border:none;padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;cursor:pointer;font-family:'Quicksand',sans-serif;font-size:.91rem;font-weight:600;color:var(--dark);text-align:left;transition:background .18s;}
+    .faq-q:hover{background:var(--verde-pal);}
+    .faq-q.open{color:var(--verde);}
+    .faq-ico{flex-shrink:0;font-size:1rem;}
+    .faq-arr{width:22px;height:22px;border-radius:50%;background:var(--verde-pal);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.82rem;transition:transform .3s,background .2s;color:var(--verde);font-weight:700;}
+    .faq-q.open .faq-arr{transform:rotate(45deg);background:var(--verde);color:white;}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+    .faq-a.open{max-height:600px;}
+    .faq-a-inner{padding:.2rem 1.4rem 1.1rem;color:var(--mid);font-size:.88rem;line-height:1.8;}
+    .faq-a-inner a{color:var(--verde);font-weight:600;}
+    .faq-a-inner strong{color:var(--dark);font-weight:600;}
+    .faq-a-inner ul{padding-left:1.2rem;margin-top:.4rem;}
+    .faq-a-inner li{margin-bottom:.22rem;}
 
-    /* FOOTER CTA */
-    .cta-footer {
-      background: var(--primary);
-      color: var(--on-primary);
-      padding: 80px 20px;
-    }
-    .cta-container {
-      max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap;
-    }
-    .cta-text { max-width: 600px; }
-    .cta-text h2 { color: var(--on-primary); font-size: 40px; margin-bottom: 16px; }
-    .cta-text p { color: var(--inverse-primary); font-size: 18px; margin-bottom: 24px; }
-    .cta-contact { font-size: 14px; color: var(--surface-dim); }
-    .cta-logo { text-align: right; }
-    .cta-logo img { width: 80px; margin-bottom: 16px; border-radius: 50%; background: white; padding: 4px; }
-    .social-links { display: flex; gap: 16px; justify-content: flex-end; }
-    .social-links a { color: var(--on-primary); text-decoration: none; font-size: 20px; }
-    .copyright { margin-top: 80px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; font-size: 14px; color: var(--surface-dim); }
-  </style>
-<body>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NWT7GVSD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    /* INVITACIÓN */
+    .invit{background:var(--verde);padding:5.5rem 2rem;text-align:center;position:relative;overflow:hidden;}
+    .invit-deco{position:absolute;inset:0;pointer-events:none;opacity:.12;}
+    .invit-inner{max-width:540px;margin:0 auto;position:relative;z-index:1;}
+    .invit-inner .eyebrow{color:var(--verde-cl);}
+    .invit-inner h2{font-size:clamp(1.6rem,4vw,2.4rem);color:white;margin-bottom:1rem;}
+    .invit-inner p{color:rgba(255,255,255,.75);font-size:1rem;margin-bottom:2.4rem;line-height:1.85;}
+    .invit-btns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;}
+    .invit-contacto{margin-top:2.4rem;font-size:.78rem;color:rgba(255,255,255,.42);line-height:2;}
+    .invit-contacto a{color:var(--verde-cl);}
 
-<!-- NAV -->
-<nav>
-  <a href="/" class="nav-brand">
-    <img src="assets/logo.png" alt="Logo Trekan">
-    <div class="nav-brand-txt">Colegio Waldorf Trekan<span>Puerto Varas</span></div>
-  </a>
-  <div class="nav-links">
-    <div style="display:flex; gap:8px;">
-      <button onclick="translatePage('es')" class="btn btn-outline" style="padding: 8px 12px; font-size: 18px;" title="Español">🇪🇸</button>
-      <button onclick="translatePage('de')" class="btn btn-outline" style="padding: 8px 12px; font-size: 18px;" title="Deutsch">🇩🇪</button>
-      <button onclick="translatePage('en')" class="btn btn-outline" style="padding: 8px 12px; font-size: 18px;" title="English">🇬🇧</button>
-    </div>
-    <a href="/" class="btn btn-outline">← Volver al sitio</a>
-    <a href="https://wa.me/56967765106?text=Hola!%20Quiero%20agendar%20una%20visita%20al%20Colegio%20Trekan" target="_blank" class="btn btn-primary">▶ Agendar visita</a>
-  </div>
-</nav>
+    /* FOOTER */
+    footer{background:var(--dark);color:rgba(255,255,255,.42);text-align:center;padding:1.6rem;font-size:.78rem;}
+    footer a{color:var(--verde-cl);text-decoration:none;}
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <span class="eyebrow">Admisión 2026 — Abierta todo el año</span>
-    <h1>Donde el niño camina<br>con voluntad</h1>
-    <p class="hero-prose">
-      Trekan significa "caminar" en mapudungun. Somos un refugio educativo en Puerto Varas donde la naturaleza, las artes y la vida misma acompañan a cada estudiante a descubrir su propia verdad.
-    </p>
-    <div class="hero-actions">
-      <a href="https://wa.me/56967765106" target="_blank" class="btn btn-primary">✅ Agendar visita al colegio</a>
-      <a href="#proceso" class="btn btn-outline">Ver proceso de admisión</a>
-    </div>
-    
-    <div class="hero-stats">
-      <div class="stat">
-        <span class="stat-val">3 – 14</span>
-        <span class="stat-lbl">Años de edad</span>
-      </div>
-      <div class="stat">
-        <span class="stat-val">16</span>
-        <span class="stat-lbl">Alumnos máx por curso</span>
-      </div>
-      <div class="stat">
-        <span class="stat-val">Las Azaleas 66</span>
-        <span class="stat-lbl">Puerto Varas</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DUAL SECTION -->
-<section id="proceso" class="section-padding container">
-  <div class="dual-section">
-    <!-- PROCESO -->
-    <div>
-      <h2 class="dual-title">Cómo es llegar a Trekan</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-img">🤝</div>
-          <div class="timeline-content">
-            <h4>Agendas una visita</h4>
-            <p>Coordinamos una mañana para que nos conozcamos en Trekan.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-img">🏫</div>
-          <div class="timeline-content">
-            <h4>Vives un día en Trekan</h4>
-            <p>Conoce nuestro entorno y evalúa si resuena contigo.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-img">📝</div>
-          <div class="timeline-content">
-            <h4>Proceso de postulación</h4>
-            <p>Completas la documentación y formalizamos la matrícula.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- VALORES -->
-    <div>
-      <h2 class="dual-title">Valores 2026</h2>
-      <div class="valores-card">
-        <div class="val-row">
-          <span class="val-label">Matrícula</span>
-          <span class="val-price">$500.000 <span class="val-sub" style="text-align:right">Pago único enero-feb</span></span>
-        </div>
-        <div class="val-row">
-          <span class="val-label">Escolaridad</span>
-          <span class="val-price">$330.000 <span class="val-sub" style="text-align:right">Mensual</span></span>
-        </div>
-        <div class="val-row">
-          <span class="val-label">Responsabilidad Social</span>
-          <span class="val-price">$33.000 <span class="val-sub" style="text-align:right">Adicional mensual</span></span>
-        </div>
-        <div class="val-row">
-          <span class="val-label">Cuota de Materiales</span>
-          <span class="val-price">$160.000 <span class="val-sub" style="text-align:right">Anual (2 cuotas)</span></span>
-        </div>
-        <div class="val-row">
-          <span class="val-label">Cuota de Incorporación</span>
-          <span class="val-price">$330.000 <span class="val-sub" style="text-align:right">Pago único inicial</span></span>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- POLICIES -->
-  <div class="policies-grid">
-    <div class="policy-card yellow">
-      <div class="policy-icon">⚠️</div>
-      <h4>Aranceles diferenciados</h4>
-      <p>Si deseas participar en el proyecto pero necesitas un arancel diferenciado, conversaremos contigo con empatía. Evaluaremos opciones sostenibles según habilidades.</p>
-    </div>
-    <div class="policy-card blue">
-      <div class="policy-icon">↩️</div>
-      <h4>Política de devoluciones</h4>
-      <p>Antes de marzo: 100% escolaridad. Después de marzo (1er sem): Devolución del 2° semestre. Matrícula no reembolsable.</p>
-    </div>
-    <div class="policy-card yellow">
-      <div class="policy-icon">🛡️</div>
-      <h4>Seguro escolar</h4>
-      <p>No es obligatorio. Opciones: Andes Salud o Clínica Puerto Varas. De lo contrario, se firma un Mandato Parental de Urgencias.</p>
-    </div>
-    <div class="policy-card blue">
-      <div class="policy-icon">ℹ️</div>
-      <h4>Una cosa importante de saber</h4>
-      <p>Trekan no tiene reconocimiento del Mineduc. Los niños rinden <strong>Exámenes Libres</strong> de Validación de Estudios. <a href="#">Más información aquí.</a></p>
-    </div>
-  </div>
-</section>
-
-<!-- ES PARA TI -->
-<section class="section-padding container fit-section">
-  <h2 class="dual-title">¿Es Trekan para tu familia?</h2>
-  <div class="fit-grid">
-    <div>
-      <h4 style="margin-bottom:24px; font-family:'Plus Jakarta Sans',sans-serif; color:var(--primary); display:flex; align-items:center; gap:8px;">
-        <span style="background:#d4ebac; width:24px; height:24px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">✓</span>
-        Puede ser para ti si...
-      </h4>
-      <ul class="fit-list">
-        <li class="fit-item">
-          <div class="fit-icon">🌿</div>
-          <p>Buscas familiaridad. Promovemos el vínculo y no el principio de competencia para motivar.</p>
-        </li>
-        <li class="fit-item">
-          <div class="fit-icon">🎨</div>
-          <p>Valoras el arte, la naturaleza y la construcción manual como pilares del aprendizaje real.</p>
-        </li>
-        <li class="fit-item">
-          <div class="fit-icon">🤝</div>
-          <p>Te quieres involucrar y participar en comunidad, donando tu tiempo y habilidades.</p>
-        </li>
-        <li class="fit-item">
-          <div class="fit-icon">⏳</div>
-          <p>Estás abierto a respetar un desarrollo rítmico y pausado, sin sobre-estimulación digital temprana.</p>
-        </li>
-      </ul>
-    </div>
-    
-    <div>
-      <h4 style="margin-bottom:24px; font-family:'Plus Jakarta Sans',sans-serif; color:var(--secondary); display:flex; align-items:center; gap:8px;">
-        <span style="background:#ffddba; width:24px; height:24px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:12px;">✖</span>
-        Puede que no sea el momento si...
-      </h4>
-      <ul class="fit-list">
-        <li class="fit-item">
-          <div class="fit-icon">📉</div>
-          <p>Buscas notas numéricas y mediciones estandarizadas constantes como principal referencia.</p>
-        </li>
-        <li class="fit-item">
-          <div class="fit-icon">📱</div>
-          <p>Necesitas exposición temprana a pantallas tecnológicas (tablets, smartphones) en el aula.</p>
-        </li>
-        <li class="fit-item">
-          <div class="fit-icon">🏃</div>
-          <p>Prefieres un enfoque altamente competitivo donde se presione la lectura precoz.</p>
-        </li>
-        <li class="fit-item">
-          <div class="fit-icon">🕒</div>
-          <p>No tienes tiempo o disposición para participar activamente en actividades de la comunidad.</p>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="section-padding container faq-container">
-  <div class="faq-title">
-    <span>Preguntas frecuentes</span>
-    <h2>Lo que las familias siempre preguntan</h2>
-  </div>
-  
-  <div class="faq-item">
-    <button class="faq-q">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="ico-left">🏛️</span> ¿El colegio tiene reconocimiento oficial del Mineduc?
-      </div>
-      <span class="ico-right">+</span>
-    </button>
-    <div class="faq-a">
-      <div class="faq-a-inner">
-        No contamos con reconocimiento oficial del Mineduc. Los estudiantes rinden <strong>Exámenes Libres</strong> de Validación de Estudios a fin de año. Al aprobarlos, reciben certificados completamente equivalentes a los de cualquier colegio tradicional reconocido por el Estado.
-      </div>
-    </div>
-  </div>
-  
-  <div class="faq-item">
-    <button class="faq-q">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="ico-left">📜</span> ¿Cómo evalúan si no hay calificaciones tradicionales?
-      </div>
-      <span class="ico-right">+</span>
-    </button>
-    <div class="faq-a">
-      <div class="faq-a-inner">
-        La evaluación es cualitativa y constante. Los maestros observan el desarrollo físico, anímico e intelectual del niño, entregando informes descriptivos detallados a fin de año, y manteniendo reuniones periódicas con los padres.
-      </div>
-    </div>
-  </div>
-  
-  <div class="faq-item">
-    <button class="faq-q">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="ico-left">👧</span> ¿Cuántos niños hay por curso?
-      </div>
-      <span class="ico-right">+</span>
-    </button>
-    <div class="faq-a">
-      <div class="faq-a-inner">
-        Mantenemos grupos pequeños para garantizar un acompañamiento profundo y personalizado. Nuestro límite es de <strong>16 niñas y niños por curso máximo</strong>.
-      </div>
-    </div>
-  </div>
-  
-  <div class="faq-item">
-    <button class="faq-q">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="ico-left">🗓️</span> ¿Cuándo puedo postular?
-      </div>
-      <span class="ico-right">+</span>
-    </button>
-    <div class="faq-a">
-      <div class="faq-a-inner">
-        El proceso de admisión está abierto <strong>todo el año</strong>. Si existe un cupo disponible en el curso correspondiente, tu hijo puede integrarse en cualquier momento del ciclo escolar tras pasar por nuestro proceso de entrevistas y periodo de prueba.
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER CTA -->
-<footer class="cta-footer">
-  <div class="cta-container">
-    <div class="cta-text">
-      <h2>Ven a conocernos</h2>
-      <p>No necesitas tener todas las respuestas hoy. Muchas de las familias de Trekan comenzaron su viaje simplemente buscando información. Te invitamos a dar el primer paso.</p>
-      <div class="cta-contact">
-        📍 Las Azaleas 66, Puerto Varas, Chile<br>
-        ✉️ admision@colegiowaldorftrekan.cl · 📞 +56 9 6776 5106
-      </div>
-    </div>
-    <div class="cta-logo">
-      <img src="assets/logo.png" alt="Logo Trekan">
-      <div class="social-links">
-        <a href="https://www.facebook.com/profile.php?id=61573063135723" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/waldorftrekanpv/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-        <a href="#" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.015 3.015 0 00-2.122 2.136C0 8.082 0 12 0 12s0 3.918.501 5.814a3.016 3.016 0 002.122 2.136c1.871.55 9.377.55 9.377.55s7.505 0 9.377-.55a3.015 3.015 0 002.122-2.136C24 15.918 24 12 24 12s0-3.918-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="cta-container" style="margin-top: 0;">
-    <div class="copyright">
-      <span>© 2026 Colegio Waldorf Trekan</span>
-      <span>Política de Admisión</span>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // FAQ ACORDEÓN
-  const faqs = document.querySelectorAll('.faq-q');
-  faqs.forEach(q => {
-    q.addEventListener('click', () => {
-      const a = q.nextElementSibling;
-      const isOpen = a.classList.contains('open');
-      
-      // Cerrar todos
-      document.querySelectorAll('.faq-a').forEach(ans => ans.classList.remove('open'));
-      document.querySelectorAll('.faq-q').forEach(btn => btn.classList.remove('open'));
-      
-      if (!isOpen) {
-        a.classList.add('open');
-        q.classList.add('open');
-      }
-    });
-  });
-</script>
-<!-- Botón flotante de WhatsApp -->
-  <style>
+    /* WA POPUP */
     .wa-trigger{position:fixed;bottom:1.75rem;left:1.5rem;z-index:1000;width:52px;height:52px;border-radius:50%;background:#2E5E4E;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.2);transition:opacity .2s,box-shadow .2s;padding:0;}
     .wa-trigger:hover{opacity:.88;box-shadow:0 4px 18px rgba(0,0,0,.25);}
     .wa-trigger img{width:32px;height:32px;object-fit:contain;border-radius:50%;}
     .wa-card{position:fixed;bottom:5.5rem;left:1.5rem;z-index:1000;width:270px;background:#fff;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.15);overflow:hidden;font-family:'Quicksand',sans-serif;opacity:0;transform:translateY(10px) scale(.97);pointer-events:none;transition:opacity .22s ease,transform .22s ease;}
     .wa-card.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;}
-    .wa-card-header{background:#2E5E4E;padding:1rem 1rem .85rem;display:flex;align-items:center;gap:.75rem;position:relative;}
+    .wa-card-header{background:#2E5E4E;padding:1rem 1rem .85rem;display:flex;align-items:center;gap:.75rem;}
     .wa-card-logo{width:46px;height:46px;border-radius:50%;object-fit:contain;background:#fff;padding:4px;flex-shrink:0;}
     .wa-card-identity{display:flex;flex-direction:column;gap:.1rem;}
     .wa-card-name{font-size:.85rem;font-weight:700;color:#fff;line-height:1.2;}
@@ -634,515 +179,300 @@
     .wa-card-btn:hover{background:#1ebe5d;}
     .wa-card-btn svg{width:18px;height:18px;fill:#fff;flex-shrink:0;}
     .wa-card-close{position:absolute;top:.6rem;right:.7rem;background:none;border:none;color:rgba(255,255,255,.7);font-size:1.1rem;cursor:pointer;line-height:1;padding:0;}
+
+    /* REVEAL */
+    .rev{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+    .rev.vis{opacity:1;transform:translateY(0);}
+
+    /* LANG SWITCHER */
+    .lang-switcher{position:relative;display:inline-flex;align-items:center;}
+    .lang-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem .85rem;border-radius:50px;background:transparent;border:1.5px solid var(--verde-cl);color:var(--verde);font-family:'Quicksand',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:.02em;white-space:nowrap;}
+    .lang-btn:hover{border-color:var(--verde);background:var(--verde-pal);}
+    .lang-btn .lang-arrow{font-size:.65rem;transition:transform .2s;margin-left:.1rem;}
+    .lang-switcher.open .lang-arrow{transform:rotate(180deg);}
+    .lang-dropdown{position:absolute;top:calc(100% + .5rem);right:0;background:white;border:1px solid var(--beige-dk);border-radius:12px;box-shadow:0 8px 28px rgba(46,94,78,.12);min-width:140px;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(-6px);transition:all .2s ease;z-index:200;}
+    .lang-switcher.open .lang-dropdown{opacity:1;visibility:visible;transform:translateY(0);}
+    .lang-opt{display:flex;align-items:center;gap:.6rem;padding:.7rem 1rem;font-size:.84rem;font-weight:600;color:var(--dark);cursor:pointer;transition:background .15s;border:none;background:none;width:100%;text-align:left;font-family:'Quicksand',sans-serif;}
+    .lang-opt:hover{background:var(--verde-pal);}
+    .lang-opt.active{color:var(--verde);background:var(--verde-pal);}
+    .lang-flag{font-size:1.1rem;line-height:1;}
+
+    @media(max-width:640px){
+      .nav-links .btn-outline{display:none;}
+      .hero{min-height:auto;padding:5rem 1.5rem 3.5rem;}
+      .para-grid{grid-template-columns:1fr;}
+      .hero-datos{gap:1.4rem;}
+      .paso{grid-template-columns:48px 1fr;gap:0 1.1rem;}
+    }
   </style>
-  <div class="wa-card" id="waCard" role="dialog" aria-modal="true" aria-label="Contacto WhatsApp">
-    <div class="wa-card-header">
-      <img class="wa-card-logo" src="assets/Coordinadora.png" alt="Ivonne Parada A.">
-      <div class="wa-card-identity">
-        <span class="wa-card-name">Ivonne Parada A.</span>
-        <span class="wa-card-role">Coordinadora General</span>
-      </div>
-      <button class="wa-card-close" onclick="waClose()" aria-label="Cerrar">✕</button>
-    </div>
-    <div class="wa-card-body">
-      <p class="wa-card-msg">Hola 👋 Escríbeme directamente, con gusto respondo tus preguntas sobre el colegio o agenda tu visita.</p>
-      <a class="wa-card-btn" href="https://wa.me/{{CONTACTO_TEL_CLEAN}}?text=Hola,%20me%20gustaría%20saber%20más%20sobre%20el%20Colegio%20Waldorf%20Trekan" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-        Enviar mensaje
-      </a>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NWT7GVSD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-brand">
+    <img src="assets/logo.png" alt="Logo Trekan">
+    <div class="nav-brand-txt">Colegio Waldorf Trekan<span>Puerto Varas · Admisión 2026</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="/" class="btn btn-outline">← Volver</a>
+    <a href="https://wa.me/56967765106?text=Hola!%20Quiero%20agendar%20una%20visita%20al%20Colegio%20Trekan%20%F0%9F%8C%B1%0AMi%20hijo%2Fa%20tiene%20___%20a%C3%B1os.%0A%C2%BFTienen%20horarios%20disponibles%3F" target="_blank" class="btn btn-wa" id="wa-nav-btn">💬 Agendar visita</a>
     </div>
   </div>
-  <button class="wa-trigger" id="waTrigger" aria-label="Contactar por WhatsApp" onclick="waToggle()">
-    <img src="assets/logo.png" alt="WhatsApp Trekan">
-  </button>
-  <script>
-    function waToggle(){ document.getElementById('waCard').classList.toggle('open'); }
-    function waClose(){ document.getElementById('waCard').classList.remove('open'); }
-    document.addEventListener('keydown',function(e){ if(e.key==='Escape') waClose(); });
-  </script>
+</nav>
 
-  
-  <!-- Widget Chatbot Trekan -->
-  <style>
-    :root {
-      --chat-bg: #f5f4ee;
-      --chat-user: #2E5E4E;
-      --chat-bot: #e8f5e8;
-      --chat-border: #e4e8e0;
-      --chat-accent: #2E5E4E;
-      --chat-accent-hover: #3a7661;
-      --chat-ink: #1a2e25;
-      --chat-mute: #8a9590;
-    }
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-deco">
+    <!-- Mandala floral sutil -->
+    <svg style="position:absolute;top:-80px;right:-100px;width:480px;height:480px;opacity:.55" viewBox="0 0 400 400">
+      <circle cx="200" cy="200" r="175" fill="none" stroke="#A8D8B9" stroke-width="1" stroke-dasharray="5 11"/>
+      <circle cx="200" cy="200" r="120" fill="none" stroke="#A8D8B9" stroke-width=".6" stroke-dasharray="3 9"/>
+      <ellipse cx="200" cy="55" rx="16" ry="26" fill="#A8D8B9" opacity=".4" transform="rotate(0,200,200)"/>
+      <ellipse cx="200" cy="55" rx="16" ry="26" fill="#A8D8B9" opacity=".3" transform="rotate(45,200,200)"/>
+      <ellipse cx="200" cy="55" rx="16" ry="26" fill="#A8D8B9" opacity=".3" transform="rotate(90,200,200)"/>
+      <ellipse cx="200" cy="55" rx="16" ry="26" fill="#A8D8B9" opacity=".3" transform="rotate(135,200,200)"/>
+      <ellipse cx="200" cy="55" rx="16" ry="26" fill="#A8D8B9" opacity=".3" transform="rotate(180,200,200)"/>
+      <ellipse cx="200" cy="55" rx="16" ry="26" fill="#A8D8B9" opacity=".3" transform="rotate(225,200,200)"/>
+      <ellipse cx="200" cy="55" rx="16" ry="26" fill="#A8D8B9" opacity=".3" transform="rotate(270,200,200)"/>
+      <ellipse cx="200" cy="55" rx="16" ry="26" fill="#A8D8B9" opacity=".3" transform="rotate(315,200,200)"/>
+      <circle cx="200" cy="200" r="10" fill="#A8D8B9" opacity=".5"/>
+    </svg>
+    <svg style="position:absolute;bottom:-50px;left:-70px;width:320px;height:320px;opacity:.4" viewBox="0 0 300 300">
+      <circle cx="150" cy="150" r="125" fill="none" stroke="#C97B63" stroke-width=".8" stroke-dasharray="4 9"/>
+      <ellipse cx="150" cy="42" rx="11" ry="20" fill="#C97B63" opacity=".25" transform="rotate(0,150,150)"/>
+      <ellipse cx="150" cy="42" rx="11" ry="20" fill="#C97B63" opacity=".18" transform="rotate(60,150,150)"/>
+      <ellipse cx="150" cy="42" rx="11" ry="20" fill="#C97B63" opacity=".18" transform="rotate(120,150,150)"/>
+      <ellipse cx="150" cy="42" rx="11" ry="20" fill="#C97B63" opacity=".18" transform="rotate(180,150,150)"/>
+      <ellipse cx="150" cy="42" rx="11" ry="20" fill="#C97B63" opacity=".18" transform="rotate(240,150,150)"/>
+      <ellipse cx="150" cy="42" rx="11" ry="20" fill="#C97B63" opacity=".18" transform="rotate(300,150,150)"/>
+    </svg>
+  </div>
 
-    .trekan-bot-bubble {
-      position: fixed; bottom: 25px; right: 20px; width: 62px; height: 62px;
-      border-radius: 50%; background: #fff; padding: 0; cursor: pointer;
-      border: 2px solid #2E5E4E;
-      box-shadow: 0 6px 20px rgba(46,94,78,0.35), 0 0 0 0 rgba(168,216,185,0.6);
-      z-index: 9998; transition: transform 0.25s ease, box-shadow 0.25s ease;
-      animation: trekan-bot-pulse 2.5s ease-out infinite;
-      overflow: hidden; display: flex; align-items: center; justify-content: center;
-    }
-    .trekan-bot-bubble img { width: 145%; height: 145%; object-fit: cover; pointer-events: none; }
-    .trekan-bot-bubble:hover { transform: scale(1.08); box-shadow: 0 8px 28px rgba(46,94,78,0.5); }
-    .trekan-bot-bubble:active { transform: scale(0.95); }
-    
-    @keyframes trekan-bot-pulse {
-      0%   { box-shadow: 0 6px 20px rgba(46,94,78,0.35), 0 0 0 0 rgba(168,216,185,0.6); }
-      70%  { box-shadow: 0 6px 20px rgba(46,94,78,0.35), 0 0 0 14px rgba(168,216,185,0); }
-      100% { box-shadow: 0 6px 20px rgba(46,94,78,0.35), 0 0 0 0 rgba(168,216,185,0); }
-    }
-    .trekan-bot-bubble.open { animation: none; }
-    
-    .trekan-bot-tooltip {
-      position: fixed; bottom: 43px; right: 92px; background: #fff; color: #1a2e25;
-      padding: 10px 16px; border-radius: 20px 20px 4px 20px;
-      font-family: 'Quicksand', sans-serif; font-size: 0.9rem; font-weight: 500;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.15); z-index: 9997;
-      opacity: 0; transform: translateX(10px);
-      transition: opacity 0.35s ease, transform 0.35s ease;
-      pointer-events: none; white-space: nowrap;
-    }
-    .trekan-bot-tooltip.visible { opacity: 1; transform: translateX(0); }
-    .trekan-bot-tooltip::after {
-      content: ''; position: absolute; right: -6px; bottom: 8px;
-      width: 12px; height: 12px; background: #fff; transform: rotate(45deg);
-      box-shadow: 2px 2px 3px rgba(0,0,0,0.08);
-    }
-    
-    .trekan-bot-overlay {
-      position: fixed; inset: 0; background: rgba(26,46,37,0.4);
-      z-index: 9998; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-    }
-    .trekan-bot-overlay.visible { opacity: 1; pointer-events: auto; }
-    
-    .trekan-bot-panel {
-      position: fixed; bottom: 100px; right: 25px; width: 400px; height: 620px;
-      max-height: calc(100vh - 130px); background: #fff; border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(26,46,37,0.25); z-index: 9999;
-      display: flex; flex-direction: column; overflow: hidden;
-      transform: translateY(20px) scale(0.95); opacity: 0; pointer-events: none;
-      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease;
-      transform-origin: bottom right; font-family: 'Quicksand', sans-serif;
-    }
-    .trekan-bot-panel.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
-    
-    .trekan-bot-header {
-      background: linear-gradient(135deg, #2E5E4E 0%, #3d7a66 100%);
-      color: #fff; padding: 14px 18px; display: flex; align-items: center;
-      justify-content: space-between; flex-shrink: 0;
-    }
-    .trekan-bot-header-info { display: flex; align-items: center; gap: 12px; }
-    .trekan-bot-avatar {
-      width: 38px; height: 38px; border-radius: 50%; background: #fff;
-      display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 3px;
-    }
-    .trekan-bot-avatar img { width: 145%; height: 145%; object-fit: cover; }
-    .trekan-bot-header-text h4 { margin: 0; font-size: 1.05rem; font-weight: 700; line-height: 1.2; }
-    .trekan-bot-header-text span { font-size: 0.8rem; opacity: 0.9; display: flex; align-items: center; gap: 5px; }
-    .trekan-bot-status-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 6px rgba(74,222,128,0.5); }
-    
-    .trekan-bot-header-actions { display: flex; align-items: center; gap: 6px; }
-    .trekan-bot-action-btn {
-      background: rgba(255,255,255,0.15); border: none; color: #fff;
-      width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1.2rem;
-      display: flex; align-items: center; justify-content: center; transition: background 0.2s; font-family: inherit;
-    }
-    .trekan-bot-action-btn:hover { background: rgba(255,255,255,0.3); }
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Admisión 2026 · Abierta todo el año</span>
+    <h1>Donde el niño camina<br><em>con voluntad</em></h1>
+    <p class="hero-prose">
+      <em>Trekan</em> significa caminante en mapudungun. Es el nombre que elegimos para este espacio donde niñas y niños de 3 a 14 años aprenden a través del arte, el ritmo y la vida — acompañados por maestros que los conocen de verdad, en grupos de no más de 16.
+    </p>
+    <p style="font-family:'Lora',serif;font-style:italic;font-size:1.05rem;color:var(--verde);max-width:480px;margin:-1rem auto 2.4rem;line-height:1.6;">
+      La mejor forma de saber si es para tu familia es venir una mañana.
+    </p>
+    <div class="hero-actions">
+      <a href="https://wa.me/56967765106?text=Hola!%20Quiero%20agendar%20una%20visita%20al%20Colegio%20Trekan%20%F0%9F%8C%B1%0AMi%20hijo%2Fa%20tiene%20___%20a%C3%B1os.%0A%C2%BFTienen%20horarios%20disponibles%3F" target="_blank" rel="noopener noreferrer" class="btn btn-verde btn-lg">🌿 Agendar visita al colegio</a>
+      <a href="#proceso" class="btn btn-outline btn-lg">Ver proceso de admisión</a>
+    </div>
+    <div class="hero-datos">
+      <div class="dato"><span class="dato-num">3 – 14</span><span class="dato-txt">años de edad</span></div>
+      <div class="dato"><span class="dato-num">16</span><span class="dato-txt">alumnos máx. por curso</span></div>
+      <div class="dato"><span class="dato-num">Las Azaleas 96</span><span class="dato-txt">Puerto Varas</span></div>
+    </div>
+  </div>
+</section>
 
-    /* Native Chat Body */
-    .trekan-bot-body {
-      flex: 1; overflow-y: auto; background: var(--chat-bg);
-      background-image: radial-gradient(ellipse at top left, rgba(46, 94, 78, 0.05), transparent 50%),
-                        radial-gradient(ellipse at bottom right, rgba(168, 216, 185, 0.08), transparent 50%);
-      padding: 20px 16px 10px; display: flex; flex-direction: column; gap: 16px; scroll-behavior: smooth;
-    }
-    .trekan-bot-body::-webkit-scrollbar { width: 6px; }
-    .trekan-bot-body::-webkit-scrollbar-thumb { background: #d0d5ce; border-radius: 10px; }
-    
-    .chat-msg { display: flex; gap: 10px; max-width: 88%; animation: chatSlideUp 0.3s ease; }
-    @keyframes chatSlideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .chat-msg.bot { align-self: flex-start; }
-    .chat-msg.user { align-self: flex-end; flex-direction: row-reverse; }
-    
-    .chat-avatar {
-      width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0;
-      background: var(--white); padding: 2px;
-    }
-    .chat-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-    .chat-msg.user .chat-avatar { background: #d4a574; color: white; font-size: 12px; font-weight: 700; padding: 0; }
-    
-    .chat-bubble {
-      padding: 12px 15px; border-radius: 14px; font-size: 0.92rem; line-height: 1.5;
-      color: var(--chat-ink); word-wrap: break-word; white-space: pre-wrap;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.04);
-    }
-    .chat-msg.bot .chat-bubble { background: var(--chat-bot); border-bottom-left-radius: 4px; }
-    .chat-msg.user .chat-bubble { background: var(--chat-user); color: white; border-bottom-right-radius: 4px; }
-    
-    .chat-bubble a { color: var(--chat-accent); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
-    .chat-msg.user .chat-bubble a { color: #ffe0b3; }
-    .chat-bubble ul, .chat-bubble ol { margin: 6px 0 0 18px; }
-    .chat-bubble li { margin: 3px 0; }
-    
-    .chat-source-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em; padding: 1px 6px; border-radius: 4px; margin-right: 6px; vertical-align: 1px; }
-    .chat-source-tag.kb { background: #A8D8B9; color: #1a2e25; }
-    .chat-source-tag.ai { background: #f5e2c4; color: #8a5a2e; }
-    
-    .chat-time { font-size: 0.65rem; color: var(--chat-mute); margin-top: 4px; padding: 0 4px; }
-    .chat-msg.user .chat-time { text-align: right; }
-    
-    .chat-typing { display: flex; gap: 4px; padding: 4px; }
-    .chat-typing span {
-      width: 6px; height: 6px; background: var(--chat-accent); border-radius: 50%;
-      animation: chatTypingBounce 1.2s infinite; opacity: 0.6;
-    }
-    .chat-typing span:nth-child(2) { animation-delay: 0.15s; }
-    .chat-typing span:nth-child(3) { animation-delay: 0.3s; }
-    @keyframes chatTypingBounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-4px); opacity: 1; } }
-    
-    .chat-quick-replies { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 12px 56px; animation: chatSlideUp 0.4s ease 0.1s both; }
-    .chat-chip {
-      background: var(--white); border: 1px solid #A8D8B9; color: var(--chat-accent);
-      padding: 7px 12px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
-    }
-    .chat-chip:hover { background: var(--chat-accent); color: white; border-color: var(--chat-accent); transform: translateY(-1px); }
-    
-    .trekan-bot-footer { padding: 12px 16px; border-top: 1px solid var(--chat-border); background: var(--white); }
-    .chat-input-wrap {
-      display: flex; gap: 8px; background: var(--chat-bg); border: 1px solid var(--chat-border);
-      border-radius: 24px; padding: 6px 6px 6px 16px; align-items: flex-end; transition: border-color 0.2s;
-    }
-    .chat-input-wrap:focus-within { border-color: var(--chat-accent); }
-    .chat-input {
-      flex: 1; border: none; background: transparent; outline: none; font-size: 0.92rem;
-      color: var(--chat-ink); padding: 8px 0; resize: none; max-height: 90px; font-family: inherit;
-    }
-    .chat-input::placeholder { color: var(--chat-mute); }
-    .chat-send-btn {
-      background: var(--chat-accent); color: white; border: none; border-radius: 50%;
-      width: 34px; height: 34px; display: grid; place-items: center; cursor: pointer; transition: 0.2s; flex-shrink: 0;
-    }
-    .chat-send-btn:hover:not(:disabled) { background: var(--chat-accent-hover); transform: scale(1.05); }
-    .chat-send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-    .chat-credit { text-align: center; font-size: 0.65rem; color: var(--chat-mute); margin-top: 8px; font-style: italic; }
-    
-    @media (max-width: 600px) {
-      .trekan-bot-panel { bottom: 0; right: 0; left: 0; width: 100%; height: 100dvh; max-height: 100dvh; border-radius: 0; }
-      .trekan-bot-tooltip { bottom: 43px; right: 92px; font-size: 0.85rem; padding: 8px 14px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .trekan-bot-bubble, .chat-msg, .chat-quick-replies { animation: none; }
-      .trekan-bot-panel, .trekan-bot-tooltip, .trekan-bot-overlay { transition: opacity 0.15s ease; }
-    }
-    #cookie-banner.visible ~ .trekan-bot-bubble,
-    #cookie-banner.visible ~ .trekan-bot-tooltip { transform: translateY(-80px); transition: transform 0.3s ease; }
-  </style>
+<div class="wave"><svg viewBox="0 0 1440 70" preserveAspectRatio="none" height="60"><path d="M0,35 Q360,70 720,28 Q1080,-8 1440,38 L1440,70 L0,70 Z" fill="#F8F3EC"/><path d="M0,48 Q500,18 900,50 Q1200,72 1440,45 L1440,70 L0,70 Z" fill="#F0F7F3"/></svg></div>
 
-  <div id="trekan-bot-tooltip" class="trekan-bot-tooltip" aria-hidden="true">¿Tienes dudas? Pregúntame 🌱</div>
-  <button id="trekan-bot-bubble" class="trekan-bot-bubble" aria-label="Abrir asistente virtual Trekan" aria-expanded="false" aria-controls="trekan-bot-panel">
-    <img src="assets/logo.png" alt="" aria-hidden="true">
-  </button>
-  <div id="trekan-bot-overlay" class="trekan-bot-overlay" aria-hidden="true"></div>
-  <div id="trekan-bot-panel" class="trekan-bot-panel" role="dialog" aria-label="Asistente virtual Trekan" aria-hidden="true">
-    <div class="trekan-bot-header">
-      <div class="trekan-bot-header-info">
-        <div class="trekan-bot-avatar"><img src="assets/logo.png" alt="" aria-hidden="true"></div>
-        <div class="trekan-bot-header-text">
-          <h4>Asistente Trekan</h4>
-          <span><span class="trekan-bot-status-dot"></span> En línea</span>
+<!-- PROCESO -->
+<section class="sec bg-pal" id="proceso">
+  <div class="inner">
+    <div class="inner-sm">
+      <span class="eyebrow rev">El camino juntos</span>
+      <h2 class="sec-title rev">Cómo es llegar a Trekan</h2>
+      <p class="sec-prose rev">No es una inscripción — es un encuentro. Por eso, el primer paso siempre es visitarnos — que vengas con tu familia a conocer el lugar antes de cualquier formulario.</p>
+    </div>
+      <div class="pasos">
+        <div class="paso"><div class="paso-num-wrap"><div class="paso-num">1</div><div class="paso-linea"></div></div><div class="paso-body"><h3>Agendas una visita</h3><p>Coordinamos una mañana para que conozcas el colegio en vivo — un mensaje por WhatsApp y buscamos juntos un día. Sin formularios, sin requisitos. Solo ven.</p></div></div>
+        <div class="paso"><div class="paso-num-wrap"><div class="paso-num">2</div><div class="paso-linea"></div></div><div class="paso-body"><h3>Vives una mañana en Trekan</h3><p>Caminas por los espacios, ves a los niños en su día, conversas con maestros. La mejor manera de conocer Trekan es vivirlo.</p></div></div>
+        <div class="paso"><div class="paso-num-wrap"><div class="paso-num">3</div><div class="paso-linea"></div></div><div class="paso-body"><h3>Conversamos en familia</h3><p>Una entrevista — no para evaluar, sino para conocernos. Queremos entender a tu hijo como persona, no solo como postulante.</p></div></div>
+        <div class="paso"><div class="paso-num-wrap"><div class="paso-num">4</div></div><div class="paso-body"><h3>Postulan formalmente y te acompañamos</h3><p>Cuando ambos sentimos que el camino calza, completas el formulario de postulación y trabajamos juntos para que la llegada de tu hijo sea una transición suave.</p></div></div>
+      </div>
+    <div style="text-align:center;margin-top:3rem" class="rev">
+      <a href="https://wa.me/56967765106?text=Hola!%20Quiero%20agendar%20una%20visita%20al%20Colegio%20Trekan%20%F0%9F%8C%B1%0AMi%20hijo%2Fa%20tiene%20___%20a%C3%B1os.%0A%C2%BFTienen%20horarios%20disponibles%3F" target="_blank" class="btn btn-verde btn-lg">🌿 Agendar una visita</a>
+    </div>
+  </div>
+</section>
+
+<div class="wave"><svg viewBox="0 0 1440 70" preserveAspectRatio="none" height="60"><path d="M0,18 Q500,68 900,22 Q1200,-5 1440,38 L1440,70 L0,70 Z" fill="#F0F7F3"/><path d="M0,32 Q360,72 800,30 Q1150,-2 1440,46 L1440,70 L0,70 Z" fill="#F8F3EC"/></svg></div>
+
+<!-- ARANCELES -->
+<section class="sec bg-beige" id="aranceles">
+  <div class="inner">
+    <div class="inner-sm">
+      <span class="eyebrow rev">Transparencia</span>
+      <h2 class="sec-title rev">Valores 2026</h2>
+      <p class="sec-prose rev">Queremos que las familias conozcan los costos desde el principio. Si necesitan apoyo económico, conversamos — siempre con empatía y sin juicio.</p>
+    </div>
+    <div class="arancel-lista">
+      <div class="arancel-fila"><div><div class="arancel-nombre">Matrícula</div><div class="arancel-det">En 2 cuotas: enero y febrero. No reembolsable.</div></div><div class="arancel-valor">$500.000</div></div>
+      <div class="arancel-fila"><div><div class="arancel-nombre">Escolaridad mensual</div><div class="arancel-det">Pago hasta el día 5 de cada mes.</div></div><div class="arancel-valor">$330.000</div></div>
+      <div class="arancel-fila"><div><div class="arancel-nombre">Responsabilidad Social</div><div class="arancel-det">Aporte voluntario. Sostiene becas para familias que necesitan apoyo.</div></div><div class="arancel-valor">$33.000<span style="font-size:.78rem;color:var(--soft)">/mes</span></div></div>
+      <div class="arancel-fila"><div><div class="arancel-nombre">Cuota de Materiales</div><div class="arancel-det">Anual, en 2 cuotas: marzo y junio.</div></div><div class="arancel-valor">$160.000</div></div>
+      <div class="arancel-fila"><div><div class="arancel-nombre">Cuota de Incorporación</div><div class="arancel-det">Se paga una sola vez al ingresar.</div></div><div class="arancel-valor">$330.000</div></div>
+    </div>
+    <div class="nota rev"><h4>🤝 Aranceles diferenciados</h4><p>Si quieres participar en el proyecto pero necesitas apoyo económico, conversaremos contigo con empatía. Evaluamos cada situación y buscamos opciones sostenibles, incluso con aporte en labores según tus habilidades.</p></div>
+    <div class="nota rev"><h4>💛 Política de devoluciones</h4><ul><li><strong>Antes de marzo:</strong> 100% de la escolaridad devuelta.</li><li><strong>Hasta el 2° semestre:</strong> Se devuelve la escolaridad del 2° semestre.</li><li><strong>Después del 2° semestre:</strong> Sin devoluciones.</li><li><strong>Matrícula:</strong> No reembolsable.</li></ul></div>
+    <div class="nota rev"><h4>🏥 Seguro escolar</h4><p>No es obligatorio. Opciones disponibles: Andes Salud o Clínica Puerto Varas.</p></div>
+    <div class="nota-mined rev"><h4>📋 Una cosa importante de saber</h4><p>Trekan no cuenta con reconocimiento oficial del Mineduc. Los estudiantes rinden <strong>Exámenes Libres de Validación de Estudios</strong> para certificar sus niveles — al aprobar reciben certificados equivalentes a los de cualquier colegio reconocido. Es una práctica habitual en la educación libre en Chile, y nuestros estudiantes la enfrentan con muy buenas calificaciones. <a href="https://www.ayudamineduc.cl/ficha/examenes-libres-menores-de-18-anos-11" target="_blank" rel="noopener noreferrer">Más información en Ayuda Mineduc →</a></p></div>
+  </div>
+</section>
+
+<div class="wave"><svg viewBox="0 0 1440 70" preserveAspectRatio="none" height="60"><path d="M0,42 Q400,8 800,46 Q1150,78 1440,30 L1440,70 L0,70 Z" fill="#F8F3EC"/><path d="M0,55 Q500,22 900,55 Q1200,78 1440,42 L1440,70 L0,70 Z" fill="#F0F7F3"/></svg></div>
+
+<!-- PARA TI -->
+<section class="sec bg-pal" id="para-ti">
+  <div class="inner">
+    <div class="inner-sm">
+      <span class="eyebrow rev">Honestidad antes que todo</span>
+      <h2 class="sec-title rev">¿Es Trekan para tu familia?</h2>
+      <p class="sec-prose rev">Cada familia es única. Preferimos ser honestos desde el principio — no porque queramos desanimar a nadie, sino porque cuando hay afinidad real, todo fluye de otra manera.</p>
+    </div>
+    <div class="para-grid">
+      <div class="para-card">
+        <div class="para-card-titulo"><span>🌿</span> Puede ser para ti si…</div>
+        <div class="para-items">
+          <div class="para-item"><span class="para-icono">✦</span> Buscas una educación que vea al niño completo — no solo lo académico</div>
+          <div class="para-item"><span class="para-icono">✦</span> Valoras el arte, la naturaleza y el ritmo como parte del aprendizaje</div>
+          <div class="para-item"><span class="para-icono">✦</span> Quieres que tu hijo sea conocido por su maestro — no solo atendido</div>
+          <div class="para-item"><span class="para-icono">✦</span> Te interesa participar en la vida comunitaria del colegio</div>
+          <div class="para-item"><span class="para-icono">✦</span> Estás abierto/a a un camino de certificación distinto al convencional</div>
         </div>
       </div>
-      <div class="trekan-bot-header-actions">
-        <button class="trekan-bot-action-btn" id="trekan-bot-clear" aria-label="Limpiar chat" title="Limpiar conversación">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-          </svg>
-        </button>
-        <button id="trekan-bot-close" class="trekan-bot-action-btn" aria-label="Cerrar asistente">×</button>
+      <div class="para-card" style="transition-delay:.1s">
+        <div class="para-card-titulo"><span>🍂</span> Puede que no sea el momento si…</div>
+        <div class="para-items">
+          <div class="para-item"><span class="para-icono" style="color:var(--soft)">○</span> Priorizas notas numéricas y rendimiento medible como principal referencia</div>
+          <div class="para-item"><span class="para-icono" style="color:var(--soft)">○</span> Necesitas un colegio con reconocimiento Mineduc sin proceso de exámenes libres</div>
+          <div class="para-item"><span class="para-icono" style="color:var(--soft)">○</span> No puedes comprometerte con la participación familiar que esta comunidad requiere</div>
+        </div>
+        <p style="font-size:.8rem;color:var(--soft);margin-top:1.2rem;font-style:italic;line-height:1.6">Si tienes dudas, conversa con nosotros antes de decidir. No hay apuro.</p>
       </div>
-    </div>
-    
-    <div class="trekan-bot-body" id="trekan-bot-messages"></div>
-    
-    <div class="trekan-bot-footer">
-      <div class="chat-input-wrap">
-        <textarea class="chat-input" id="trekan-bot-input" rows="1" placeholder="Escríbeme tu consulta..."></textarea>
-        <button class="chat-send-btn" id="trekan-bot-send" aria-label="Enviar">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12l14-7-7 14-2-5-5-2z"></path>
-          </svg>
-        </button>
-      </div>
-      <div class="chat-credit">Colegio Waldorf Trekan · Puerto Varas</div>
     </div>
   </div>
+</section>
 
-  <script>
-    (function() {
-      var bubble  = document.getElementById('trekan-bot-bubble');
-      var panel   = document.getElementById('trekan-bot-panel');
-      var closeBtn = document.getElementById('trekan-bot-close');
-      var clearBtn = document.getElementById('trekan-bot-clear');
-      var overlay = document.getElementById('trekan-bot-overlay');
-      var tooltip = document.getElementById('trekan-bot-tooltip');
-      
-      var messagesEl = document.getElementById('trekan-bot-messages');
-      var inputEl = document.getElementById('trekan-bot-input');
-      var sendBtn = document.getElementById('trekan-bot-send');
-      
-      var hasInteracted = localStorage.getItem('trekan-bot-seen') === '1';
-      var conversationHistory = [];
+<div class="wave"><svg viewBox="0 0 1440 70" preserveAspectRatio="none" height="60"><path d="M0,28 Q360,68 720,25 Q1080,-8 1440,38 L1440,70 L0,70 Z" fill="#F0F7F3"/><path d="M0,44 Q500,14 900,48 Q1200,72 1440,38 L1440,70 L0,70 Z" fill="#F8F3EC"/></svg></div>
 
-      // Chatbot Constants
-      var PROXY_URL = "https://chatbottrekan.vercel.app/api/chat";
-      var AI_MODEL = "llama-3.3-70b-versatile";
-      var CONFIG = {
-        botInitial: "T",
-        welcomeMessage: "¡Hola! 🌱 Soy el asistente virtual del <b>Colegio Waldorf Trekan</b>. Puedo contarte sobre nuestra pedagogía, admisión 2026, aranceles, horarios, el arriendo del salón y más. ¿En qué te ayudo hoy?",
-        fallbackMessage: "No pude entenderte del todo 🤔. ¿Podrías reformular? También puedes escribirnos por <a href='https://wa.me/56967765106' target='_blank'>WhatsApp</a>.",
-        quickReplies: [
-          "¿Cuáles son los aranceles 2026?",
-          "¿Cómo postulo?",
-          "¿Qué es la pedagogía Waldorf?",
-          "Arriendo del salón"
-        ]
-      };
-      // Minimal Knowledge Base extracted
-      var KNOWLEDGE_BASE = [
-        { keywords: ["hola","buenas","buenos dias","buenas tardes","buenas noches","hey","saludos","que tal"], response: "¡Hola! 🌱 Bienvenido a Trekan. ¿En qué te puedo ayudar hoy?" },
-        { keywords: ["horario","horarios","jornada","abren","atienden","hora de entrada","hora de salida"], response: "🕗 <b>Jornada escolar:</b> Lunes a Viernes de <b>8:00 a 14:00 hrs</b>." },
-        { keywords: ["arancel","aranceles","precio","precios","cuanto cuesta","cuanto vale","matricula","escolaridad","mensualidad","colegiatura"], response: "💰 <b>Aranceles 2026:</b><ul><li><b>Matrícula:</b> $500.000 (2 cuotas, ene+feb, no reembolsable)</li><li><b>Escolaridad:</b> $330.000/mes</li><li><b>Responsabilidad Social:</b> +$33.000/mes (voluntario, ayuda a becas)</li><li><b>Materiales:</b> $160.000/año (2 cuotas, mar+jun)</li><li><b>Incorporación:</b> $330.000 (una sola vez)</li></ul>Hay <b>aranceles diferenciados</b> para familias que lo necesiten 💚" },
-        { keywords: ["postular","postulacion","inscribir","inscripcion","admision","como me inscribo","como postulo","quiero postular","matricular"], response: "📝 El proceso de admisión está <b>abierto todo el año</b>, siempre que haya cupos.<br>👉 <a href='https://docs.google.com/forms/d/e/1FAIpQLSdXbiojPJFncN94G3AS5huINvHKjpv2xFLcEaMjsHiC8sHYSQ/viewform' target='_blank'>Postula aquí</a><br>O escríbenos por <a href='https://wa.me/56967765106' target='_blank'>WhatsApp</a> para orientarte." },
-        { keywords: ["waldorf","pedagogia","metodologia","metodo educativo","filosofia","enfoque","como ensenan"], response: "🌱 La pedagogía <b>Waldorf</b> acompaña el desarrollo integral del niño —<b>mente, corazón y manos</b>— a través de experiencias vivenciales, arte, naturaleza y comunidad. No solo enseñamos contenidos: cultivamos curiosidad, creatividad y voluntad." },
-        { keywords: ["salon","espacio trekan","arriendo","arrendar","alquilar","arrendar espacio"], response: "🏡 <b>Arriendo Espacio Trekan</b> — 25m² para hasta 20 personas, incluye mesas, sillas, cocina equipada, baño y estacionamiento.<ul><li>1-3 hrs: <b>$15.000/hora</b></li><li>4-6 hrs: <b>$13.000/hora</b></li><li>Jornada completa (7h): <b>$66.500</b></li><li>Kit audiovisual: +$25.000</li></ul>Consulta por <a href='https://wa.me/56967765106?text=Hola,%20quiero%20informacion%20sobre%20el%20arriendo%20del%20salon%20Trekan' target='_blank'>WhatsApp</a>." }
-      ];
+<!-- FAQ -->
+<section class="sec bg-beige" id="faq">
+  <div class="inner">
+    <div class="inner-sm">
+      <span class="eyebrow rev">Preguntas frecuentes</span>
+      <h2 class="sec-title rev">Lo que las familias siempre preguntan</h2>
+      <p class="sec-prose rev">Incluyendo las preguntas difíciles — porque la claridad es una forma de cuidado.</p>
+    </div>
+    <div class="faq-lista rev">
+      <div class="faq-item">
+        <button class="faq-q" onclick="faq(this)"><span class="faq-ico">🏛️</span><span style="flex:1">¿El colegio tiene reconocimiento oficial del Mineduc?</span><span class="faq-arr">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>No contamos con reconocimiento oficial. Los estudiantes rinden <strong>Exámenes Libres de Validación de Estudios</strong> en establecimientos designados por el Ministerio. Al aprobar, reciben certificados equivalentes a los de cualquier colegio reconocido. La inscripción la realiza cada familia online o en el Departamento Provincial de Educación.</p><p><a href="https://www.ayudamineduc.cl/ficha/examenes-libres-menores-de-18-anos-11" target="_blank" rel="noopener noreferrer">Más información en Ayuda Mineduc →</a></p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="faq(this)"><span class="faq-ico">📊</span><span style="flex:1">¿Cómo les va a los alumnos Waldorf en los exámenes libres?</span><span class="faq-arr">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Muy bien. Cerca del <strong>90% obtiene notas entre 5,0 y 7,0</strong> — bueno o sobresaliente según la escala chilena. Las reprobaciones son prácticamente inexistentes. La pedagogía Waldorf desarrolla herramientas de pensamiento y aprendizaje que les permiten enfrentar con éxito las evaluaciones del Estado.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="faq(this)"><span class="faq-ico">📋</span><span style="flex:1">¿Cómo evalúan sin notas tradicionales?</span><span class="faq-arr">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>A través de <strong>informes narrativos y portafolios personalizados</strong>. El maestro describe el desarrollo cognitivo, emocional, artístico y social de cada niño. No hay calificaciones numéricas — hay una mirada profunda y honesta sobre cómo está creciendo cada persona.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="faq(this)"><span class="faq-ico">🎨</span><span style="flex:1">¿Qué materias y experiencias tiene el colegio?</span><span class="faq-arr">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Los contenidos curriculares se integran con inglés, música, artes y manualidades, carpintería, huerta, cocina, euritmia y movimiento, y cuentos. Estas experiencias no son extracurriculares — son parte del corazón del día. El aprendizaje se vive con todo el ser.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="faq(this)"><span class="faq-ico">👥</span><span style="flex:1">¿Cuántos niños hay por curso?</span><span class="faq-arr">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Máximo <strong>16 niñas y niños por curso</strong>. No es un límite administrativo — es lo que permite que el maestro conozca de verdad a cada estudiante y pueda acompañar su desarrollo con presencia real.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="faq(this)"><span class="faq-ico">🚍</span><span style="flex:1">¿Hay transporte o alimentación?</span><span class="faq-arr">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Por ahora no ofrecemos transporte ni alimentación. Valoramos que las familias puedan acompañar a sus hijos al inicio y fin del día. Los niños traen su propio almuerzo — y promovemos la conciencia sobre lo que comemos como parte del aprendizaje.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="faq(this)"><span class="faq-ico">🏡</span><span style="flex:1">¿Puedo visitar antes de postular?</span><span class="faq-arr">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Sí, y lo recomendamos como primer paso. La mejor manera de conocer Trekan es <strong>vivir una mañana en nuestra comunidad</strong>. Escríbenos por WhatsApp y coordinamos la visita.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      var SYSTEM_PROMPT = `Eres el asistente virtual del COLEGIO WALDORF TREKAN, ubicado en Puerto Varas, Chile. Responde SIEMPRE en español, de forma cálida, breve (máximo 4-5 oraciones) y profesional, con el tono cercano de una comunidad educativa Waldorf.
+<!-- INVITACIÓN -->
+<div class="wave"><svg viewBox="0 0 1440 70" preserveAspectRatio="none" height="60"><path d="M0,48 Q400,8 800,50 Q1150,80 1440,32 L1440,70 L0,70 Z" fill="#F8F3EC"/><path d="M0,58 Q360,22 800,56 Q1100,80 1440,42 L1440,70 L0,70 Z" fill="#2E5E4E"/></svg></div>
 
-=== INFORMACIÓN DEL COLEGIO ===
-IDENTIDAD: Colegio Waldorf Trekan ("Trekan" significa "caminante" en mapudungun). Niños de 3 a 14 años. Las Azaleas 96, Parque Ivian 1, Puerto Varas. www.colegiowaldorftrekan.cl
-CONTACTO: WhatsApp: +56 9 6776 5106 | admision@colegiowaldorftrekan.cl | coordinacion@colegiowaldorftrekan.cl | IG: @waldorftrekanpv
-HORARIOS: Lunes a Viernes de 8:00 a 14:00 hrs
-ARANCELES 2026: Matrícula: $500.000 (2 cuotas). Escolaridad: $330.000/mes. Responsabilidad Social: +$33.000/mes (voluntario). Materiales: $160.000/año. Incorporación: $330.000. Hay aranceles diferenciados.
-DEVOLUCIONES: Antes de marzo: 100% escolaridad. Antes del 2° sem: devolución del 2° sem. Matrícula no reembolsable.
-ADMISIÓN 2026: Abierta todo el año. Máx 16 niños por curso. Formulario en la web.
-PEDAGOGÍA WALDORF: Desarrollo integral: mente, corazón, manos. Evaluación cualitativa (sin notas). Talleres integrados: carpintería, arte, cocina, huerta, etc.
-MINEDUC: NO tiene reconocimiento oficial. Rinden Exámenes Libres. Promedio 90% aprueba con buenas notas.
-SERVICIOS: NO hay transporte ni alimentación. Seguro escolar opcional (Andes Salud / Clínica Pto Varas).
-ARRIENDO ESPACIO: 25m², 20 pers. Tarifas: 1-3h $15.000/hr | 4-6h $13.000/hr | Jornada 7h $66.500 | Kit AV +$25.000
-REGLAS: NUNCA inventes precios o fechas. Tono cálido, usa emojis moderados.`;
+<section class="invit">
+  <div class="invit-deco">
+    <svg viewBox="0 0 500 350" width="500" height="350" style="position:absolute;right:-60px;top:-40px">
+      <circle cx="250" cy="175" r="200" fill="none" stroke="#A8D8B9" stroke-width="1" stroke-dasharray="4 11"/>
+      <ellipse cx="250" cy="50" rx="14" ry="24" fill="#A8D8B9" transform="rotate(0,250,175)"/>
+      <ellipse cx="250" cy="50" rx="14" ry="24" fill="#A8D8B9" transform="rotate(51.4,250,175)"/>
+      <ellipse cx="250" cy="50" rx="14" ry="24" fill="#A8D8B9" transform="rotate(102.8,250,175)"/>
+      <ellipse cx="250" cy="50" rx="14" ry="24" fill="#A8D8B9" transform="rotate(154.2,250,175)"/>
+      <ellipse cx="250" cy="50" rx="14" ry="24" fill="#A8D8B9" transform="rotate(205.6,250,175)"/>
+      <ellipse cx="250" cy="50" rx="14" ry="24" fill="#A8D8B9" transform="rotate(257,250,175)"/>
+      <ellipse cx="250" cy="50" rx="14" ry="24" fill="#A8D8B9" transform="rotate(308.4,250,175)"/>
+    </svg>
+  </div>
+  <div class="invit-inner">
+    <span class="eyebrow" style="font-style:italic">Una invitación abierta</span>
+    <h2>Ven a conocernos</h2>
+    <p>No necesitas tener todo claro para dar el primer paso. Muchas de las familias de Trekan llegaron con dudas y encontraron aquí algo que no sabían que estaban buscando. El camino empieza con una conversación.</p>
+    <div class="invit-btns">
+      <a href="https://wa.me/56967765106?text=Hola!%20Quiero%20agendar%20una%20visita%20al%20Colegio%20Trekan%20%F0%9F%8C%B1%0AMi%20hijo%2Fa%20tiene%20___%20a%C3%B1os.%0A%C2%BFTienen%20horarios%20disponibles%3F" target="_blank" rel="noopener noreferrer" class="btn btn-blanco btn-lg">🌿 Agendar una visita</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdXbiojPJFncN94G3AS5huINvHKjpv2xFLcEaMjsHiC8sHYSQ/viewform" target="_blank" rel="noopener noreferrer" class="btn btn-transp btn-lg">Postular formalmente</a>
+    </div>
+    <div class="invit-contacto">
+      📍 Las Azaleas 96, Parque Ivian 1 · Puerto Varas<br>
+      admision@colegiowaldorftrekan.cl · +56 9 6776 5106<br>
+      <a href="https://www.instagram.com/waldorftrekanpv/" target="_blank">@waldorftrekanpv</a>
+    </div>
+  </div>
+</section>
 
-      if (!hasInteracted) {
-        setTimeout(function() {
-          if (!panel.classList.contains('open')) {
-            tooltip.classList.add('visible');
-            setTimeout(function() { tooltip.classList.remove('visible'); }, 6000);
-          }
-        }, 5000);
-      }
+<footer>
+  <div style="margin-bottom: 15px; display: flex; justify-content: center; gap: 15px;">
+    <a href="https://www.facebook.com/profile.php?id=61573063135723" target="_blank" aria-label="Facebook" style="color: var(--verde-cl);"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg></a>
+    <a href="https://www.instagram.com/waldorftrekanpv/" target="_blank" aria-label="Instagram" style="color: var(--verde-cl);"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+  </div>
+  <p>© 2026 Colegio Waldorf Trekan · Puerto Varas · <a href="/">Volver al sitio</a></p>
+</footer>
 
-      function openBot() {
-        panel.classList.add('open'); bubble.classList.add('open'); overlay.classList.add('visible');
-        panel.setAttribute('aria-hidden', 'false'); bubble.setAttribute('aria-expanded', 'true');
-        tooltip.classList.remove('visible'); localStorage.setItem('trekan-bot-seen', '1');
-        if (messagesEl.children.length === 0) loadHistory();
-        setTimeout(function() { inputEl.focus(); }, 300);
-      }
+<!-- WA Popup -->
+<div class="wa-card" id="waCard" role="dialog" aria-modal="true" aria-label="Contacto WhatsApp">
+  <div class="wa-card-header" style="position:relative;">
+    <img class="wa-card-logo" src="assets/Coordinadora.png" alt="Ivonne Parada A.">
+    <div class="wa-card-identity">
+      <span class="wa-card-name">Ivonne Parada A.</span>
+      <span class="wa-card-role">Coordinadora General</span>
+    </div>
+    <button class="wa-card-close" onclick="waClose()" aria-label="Cerrar">✕</button>
+  </div>
+  <div class="wa-card-body">
+    <p class="wa-card-msg">Hola 👋 Escríbeme directamente, con gusto coordino tu visita o resuelvo tus dudas sobre admisión.</p>
+    <a class="wa-card-btn" href="https://wa.me/56967765106?text=Hola%20Ivonne!%20Quiero%20agendar%20una%20visita%20al%20Colegio%20Trekan%20%F0%9F%8C%B1%0AMi%20hijo%2Fa%20tiene%20___%20a%C3%B1os.%0A%C2%BFTienen%20horarios%20disponibles%3F" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Enviar mensaje
+    </a>
+  </div>
+</div>
+<button class="wa-trigger" id="waTrigger" aria-label="Contactar por WhatsApp" onclick="waToggle()">
+  <img src="assets/logo.png" alt="WhatsApp Trekan">
+</button>
+<script>
+function waToggle(){ document.getElementById('waCard').classList.toggle('open'); }
+function waClose(){ document.getElementById('waCard').classList.remove('open'); }
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') waClose(); });
+</script>
 
-      function closeBot() {
-        panel.classList.remove('open'); bubble.classList.remove('open'); overlay.classList.remove('visible');
-        panel.setAttribute('aria-hidden', 'true'); bubble.setAttribute('aria-expanded', 'false'); bubble.focus();
-      }
-
-      bubble.addEventListener('click', function() { panel.classList.contains('open') ? closeBot() : openBot(); });
-      closeBtn.addEventListener('click', closeBot);
-      overlay.addEventListener('click', closeBot);
-      document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && panel.classList.contains('open')) closeBot(); });
-
-      // Chat Logic
-      function formatTime(d) { return d.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' }); }
-
-      function renderMessage(text, sender, timestamp, source) {
-        var msg = document.createElement('div');
-        msg.className = 'chat-msg ' + sender;
-        var avatar = document.createElement('div');
-        avatar.className = 'chat-avatar';
-        if (sender === 'bot') {
-          avatar.innerHTML = '<img src="assets/logo.png" alt="">';
-        } else {
-          avatar.textContent = 'Tú';
-        }
-        var wrap = document.createElement('div');
-        var bubbleEl = document.createElement('div');
-        bubbleEl.className = 'chat-bubble';
-        
-        // Remove markdown tags if any
-        text = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
-
-        var prefix = '';
-        if (source === 'kb') prefix = '<span class="chat-source-tag kb">INFO</span>';
-        else if (source === 'ai') prefix = '<span class="chat-source-tag ai">IA</span>';
-        bubbleEl.innerHTML = prefix + text;
-
-        var time = document.createElement('div');
-        time.className = 'chat-time';
-        time.textContent = timestamp || formatTime(new Date());
-
-        wrap.appendChild(bubbleEl);
-        wrap.appendChild(time);
-        msg.appendChild(avatar);
-        msg.appendChild(wrap);
-        messagesEl.appendChild(msg);
-        messagesEl.scrollTop = messagesEl.scrollHeight;
-      }
-
-      function showTyping() {
-        var msg = document.createElement('div');
-        msg.className = 'chat-msg bot';
-        msg.id = 'typingIndicator';
-        msg.innerHTML = '<div class="chat-avatar"><img src="assets/logo.png" alt=""></div><div class="chat-bubble"><div class="chat-typing"><span></span><span></span><span></span></div></div>';
-        messagesEl.appendChild(msg);
-        messagesEl.scrollTop = messagesEl.scrollHeight;
-      }
-      function hideTyping() { var el = document.getElementById('typingIndicator'); if (el) el.remove(); }
-
-      function renderQuickReplies() {
-        var existing = document.querySelector('.chat-quick-replies');
-        if (existing) existing.remove();
-        var wrap = document.createElement('div');
-        wrap.className = 'chat-quick-replies';
-        CONFIG.quickReplies.forEach(function(text) {
-          var chip = document.createElement('button');
-          chip.className = 'chat-chip';
-          chip.textContent = text;
-          chip.onclick = function() { inputEl.value = text; doSendMessage(); };
-          wrap.appendChild(chip);
-        });
-        messagesEl.appendChild(wrap);
-        messagesEl.scrollTop = messagesEl.scrollHeight;
-      }
-
-      function saveHistory(sender, text, source) {
-        var h = JSON.parse(localStorage.getItem('trekan_chat_history') || '[]');
-        h.push({ sender: sender, text: text, source: source, time: formatTime(new Date()) });
-        if (h.length > 100) h.splice(0, h.length - 100);
-        localStorage.setItem('trekan_chat_history', JSON.stringify(h));
-      }
-
-      function loadHistory() {
-        var h = JSON.parse(localStorage.getItem('trekan_chat_history') || '[]');
-        if (h.length === 0) {
-          setTimeout(function() {
-            renderMessage(CONFIG.welcomeMessage, 'bot');
-            saveHistory('bot', CONFIG.welcomeMessage);
-            renderQuickReplies();
-          }, 300);
-        } else {
-          h.forEach(function(m) { renderMessage(m.text, m.sender, m.time, m.source); });
-          conversationHistory = h.slice(-12).map(function(m) {
-            return {
-              role: m.sender === 'user' ? 'user' : 'assistant',
-              content: m.text.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
-            };
-          });
-        }
-      }
-
-      function clearChatHistory() {
-        if (confirm('¿Borrar toda la conversación?')) {
-          localStorage.removeItem('trekan_chat_history');
-          conversationHistory = [];
-          messagesEl.innerHTML = '';
-          setTimeout(function() {
-            renderMessage(CONFIG.welcomeMessage, 'bot');
-            saveHistory('bot', CONFIG.welcomeMessage);
-            renderQuickReplies();
-          }, 200);
-        }
-      }
-      clearBtn.addEventListener('click', clearChatHistory);
-
-      function normalize(text) {
-        return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[¿?¡!.,;:()"']/g, "").trim();
-      }
-
-      function findBestKBResponse(userText) {
-        var nUser = normalize(userText);
-        var best = null;
-        for (var i = 0; i < KNOWLEDGE_BASE.length; i++) {
-          var entry = KNOWLEDGE_BASE[i];
-          for (var j = 0; j < entry.keywords.length; j++) {
-            if (nUser.indexOf(normalize(entry.keywords[j])) !== -1) {
-              best = entry; break;
-            }
-          }
-          if (best) break;
-        }
-        return best ? best.response : null;
-      }
-
-      async function callAI(userMessage) {
-        var history = conversationHistory.slice(-10);
-        var messages = [ { role: "system", content: SYSTEM_PROMPT } ].concat(history, [{ role: "user", content: userMessage }]);
-        try {
-          var res = await fetch(PROXY_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ messages: messages, model: AI_MODEL })
-          });
-          if (!res.ok) return "⏳ Hubo un pequeño problema al procesar tu mensaje. Escríbenos por WhatsApp.";
-          var data = await res.json();
-          return data.reply || CONFIG.fallbackMessage;
-        } catch (e) {
-          return "❌ No pude conectar. Revisa tu internet o escríbenos por WhatsApp.";
-        }
-      }
-
-      async function doSendMessage() {
-        var text = inputEl.value.trim();
-        if (!text) return;
-
-        renderMessage(text, 'user');
-        saveHistory('user', text);
-        conversationHistory.push({ role: "user", content: text });
-        inputEl.value = '';
-        inputEl.style.height = 'auto';
-
-        var qr = document.querySelector('.chat-quick-replies');
-        if (qr) qr.remove();
-
-        showTyping();
-        var kbResponse = findBestKBResponse(text);
-
-        if (kbResponse) {
-          setTimeout(function() {
-            hideTyping();
-            renderMessage(kbResponse, 'bot', null, 'kb');
-            saveHistory('bot', kbResponse, 'kb');
-            conversationHistory.push({ role: "assistant", content: kbResponse.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() });
-          }, 600);
-          return;
-        }
-
-        var aiResponse = await callAI(text);
-        hideTyping();
-        renderMessage(aiResponse, 'bot', null, 'ai');
-        saveHistory('bot', aiResponse, 'ai');
-        conversationHistory.push({ role: "assistant", content: aiResponse });
-      }
-
-      sendBtn.addEventListener('click', doSendMessage);
-      inputEl.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); doSendMessage(); }
-      });
-      inputEl.addEventListener('input', function() {
-        this.style.height = 'auto';
-        this.style.height = Math.min(this.scrollHeight, 90) + 'px';
-      });
-    })();
-  </script>
+<script>
+function faq(btn){
+  var a=btn.nextElementSibling,o=btn.classList.contains('open');
+  document.querySelectorAll('.faq-q.open').forEach(function(b){b.classList.remove('open');b.nextElementSibling.classList.remove('open');});
+  if(!o){btn.classList.add('open');a.classList.add('open');}
+}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.rev,.paso,.para-card,.arancel-fila').forEach(function(el,i){
+  if(el.classList.contains('arancel-fila'))el.style.transitionDelay=(i%5*65)+'ms';
+  io.observe(el);
+});
+</script>
 
   <div id="google_translate_element" style="display: none;"></div>
   <style>
@@ -1150,23 +480,18 @@ REGLAS: NUNCA inventes precios o fechas. Tono cálido, usa emojis moderados.`;
     .goog-te-banner-frame.skiptranslate { display: none !important; }
     body { top: 0px !important; }
     .VIpgJd-ZVi9od-vH1G0e-OEVmcd { display: none !important; }
-    .goog-tooltip { display: none !important; }
-    .goog-tooltip:hover { display: none !important; }
-    .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
   </style>
-  <script type="text/javascript">
+  <script>
     function googleTranslateElementInit() {
-      new google.translate.TranslateElement({pageLanguage: 'es', includedLanguages: 'en,de,es', autoDisplay: false}, 'google_translate_element');
+      new google.translate.TranslateElement({pageLanguage: 'es', includedLanguages: 'es,en,de', autoDisplay: false}, 'google_translate_element');
     }
     function translatePage(lang) {
-      var selectField = document.querySelector("#google_translate_element select");
-      if(selectField) {
-        selectField.value = lang;
-        selectField.dispatchEvent(new Event('change'));
+      var select = document.querySelector('.goog-te-combo');
+      if (select) {
+        select.value = lang;
+        select.dispatchEvent(new Event('change'));
       }
     }
   </script>
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
-</html>
