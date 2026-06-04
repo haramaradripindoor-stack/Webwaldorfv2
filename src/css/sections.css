@@ -2,22 +2,22 @@
    NOTICIAS
    ====================== */
 .news-grid {
-  column-count: 3;
-  column-gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
   margin-top: 2rem;
   width: 100%;
 }
 
 .news-card {
+  display: flex;
+  flex-direction: column;
   background: var(--white);
   border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: var(--transition);
-  break-inside: avoid;
-  margin-bottom: 2rem;
-  display: inline-block;
-  width: 100%;
+  margin-bottom: 0;
 }
 
 .news-card:hover {
@@ -27,10 +27,8 @@
 
 .news-image {
   width: 100%;
-  height: 200px;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
-  /* FIX CLS: aspecto fijo evita saltos de layout al cargar imágenes */
-  aspect-ratio: 16 / 8;
 }
 
 .news-image img {
@@ -45,7 +43,10 @@
 }
 
 .news-content {
-  padding: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .news-date {

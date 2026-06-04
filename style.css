@@ -1010,11 +1010,6 @@ picture img {
     gap: 1.2rem;
   }
 
-  .news-grid {
-    column-count: 1;
-    column-gap: 1.5rem;
-  }
-
   .grid-list {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 0.8rem;
@@ -1250,7 +1245,7 @@ picture img {
   .hero { padding: 3.5rem 0 2.5rem; }
   .features { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
   .about-grid { grid-template-columns: 1fr; gap: 1.2rem; }
-  .news-grid { column-count: 1; column-gap: 1.5rem; }
+  .news-grid { grid-template-columns: 1fr; gap: 1.5rem; }
   .grid-list { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem; }
   .slide { height: 300px; }
   .admission-table th, .admission-table td { padding: 0.7rem 0.6rem; font-size: 0.85rem; }
@@ -2399,22 +2394,22 @@ img.logo-mini {
    NOTICIAS
    ====================== */
 .news-grid {
-  column-count: 3;
-  column-gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
   margin-top: 2rem;
   width: 100%;
 }
 
 .news-card {
+  display: flex;
+  flex-direction: column;
   background: var(--white);
   border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: var(--transition);
-  break-inside: avoid;
-  margin-bottom: 2rem;
-  display: inline-block;
-  width: 100%;
+  margin-bottom: 0;
 }
 
 .news-card:hover {
@@ -2424,10 +2419,8 @@ img.logo-mini {
 
 .news-image {
   width: 100%;
-  height: 200px;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
-  /* FIX CLS: aspecto fijo evita saltos de layout al cargar imágenes */
-  aspect-ratio: 16 / 8;
 }
 
 .news-image img {
@@ -2442,7 +2435,10 @@ img.logo-mini {
 }
 
 .news-content {
-  padding: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .news-date {
