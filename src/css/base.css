@@ -26,6 +26,19 @@ body {
 /* ======================
    TIPOGRAFÍA
    ====================== */
+@font-face {
+  font-family: 'Antroposofia';
+  src: url('../fonts/Antroposofia.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-waldorf {
+  font-family: 'Antroposofia', 'Merriweather', serif !important;
+  font-weight: normal !important;
+  letter-spacing: 2px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Merriweather', serif;
   font-weight: 700;
