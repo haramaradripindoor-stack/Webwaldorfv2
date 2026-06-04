@@ -1130,7 +1130,7 @@ const verArchivoLink = totalNoticias > MAX_NOTICIAS
 
 // Link a calendario completo (si hay más actividades que el máximo visible)
 const verCalendarioLink = todasActividades.length > MAX_ACTIVIDADES
-  ? '\n\n        <div class="cms-ver-archivo"><a href="actividades.html">Ver calendario completo (' + todasActividades.length + ' actividades) →</a></div>'
+  ? '\n\n        <div class="cms-ver-archivo"><a href="actividades.html">Interesante, a ver todo el calendario (' + todasActividades.length + ' actividades) →</a></div>'
   : '';
 
 const noticiasBlock = noticiasVisibles.length
