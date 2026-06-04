@@ -33,7 +33,7 @@ collections:
         widget: "list"
         required: false
         hint: "Agrega fotos extra que aparecerán al final de la noticia."
-        field: {label: "Foto", name: "foto", widget: "image"}
+        field: {label: "Foto", widget: "image"}
 
   - name: "actividades"
     label: "Calendario (Actividades)"

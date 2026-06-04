@@ -483,6 +483,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       <!-- Google Translate Integration -->
       <div id="google_translate_element" style="display: none;"></div>
+      <style>
+        /* Ocultar elementos visuales molestos de Google Translate */
+        .VIpgJd-ZVi9od-ORHb-OEVmcd,
+        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        body { top: 0px !important; }
+        /* Ocultar el tooltip emergente al pasar el mouse sobre texto traducido */
+        .VIpgJd-ZVi9od-vH1G0e-OEVmcd { display: none !important; }
+        /* Ocultar cualquier otro borde o margen que agregue el widget */
+        .goog-tooltip { display: none !important; }
+        .goog-tooltip:hover { display: none !important; }
+        .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
+      </style>
       <script type="text/javascript">
         function googleTranslateElementInit() {
           new google.translate.TranslateElement({pageLanguage: 'es', includedLanguages: 'en,de,es', autoDisplay: false}, 'google_translate_element');
