@@ -1,17 +1,17 @@
 titulo: "Misión, Visión y Equipo"
 tarjetas:
-  - titulo: "🌱 Misión"
+  - titulo: "Misión"
     texto: "Formar personas libres, conscientes, creativas y comprometidas con su entorno, mediante una educación que armonice el conocimiento, el arte y la acción."
     imagen: "images/galeria1.webp"
     full_width: false
-  - titulo: "🔭 Visión"
+  - titulo: "Visión"
     texto: "Ser una comunidad educativa referente en el sur de Chile, por su capacidad de cultivar el respeto, la belleza y el sentido profundo del aprendizaje."
     imagen: "images/galeria7.webp"
     full_width: false
-  - titulo: "💖 Valores"
+  - titulo: "Valores"
     texto: "Respeto, cuidado del entorno, trabajo colaborativo, diversidad, libertad responsable, verdad y belleza."
     imagen: "images/galeria3.webp"
     full_width: false
-  - titulo: "👥 Equipo"
+  - titulo: "Equipo"
     texto: "**Yabel Painemil:** Comunicadora Audiovisual, docente intercultural bilingüe, formación Waldorf básica y especialista en Gimnasia Bothmer.\n\n**Javiera Ortega:** Profesora General Básica especialista en lenguaje, cursando formación Waldorf.\n\n**Hanna Lowen:** Profesora de Inglés.\n\n**Matías Valiente:** Profesor de Carpintería.\n\n**Sofía González Rodríguez:** Profesora de Música.\n\n**Ivonne Parada:** Familia Fundadora. Trabajadora Social UV, especialista en convivencia escolar con formación en peritaje social, polivagal, gestalt.\n\n**Sleater Martínez:** Familia Fundadora. Educadora de Párvulos, cursando formación Waldorf en fundación arche.\n\n**Felipe Vivanco Cornejo:** Familia Fundadora. Administrador Público UV, con formación en NICSP, Neurociencias, GYDP. Terapeuta, Escuela Arica.\n\n**Gerard Muñoz:** Familia Fundadora. Ingeniero en Informática."
     full_width: true
