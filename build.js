@@ -97,12 +97,23 @@ if (builtHtml) {
           const cleanAlt = t.titulo.replace(/[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]/g, '').trim();
           mediaHtml = `<img src="${imgSrc}" alt="${cleanAlt}" class="about-img" loading="lazy">`;
         }
-        tarjetasHtml += `
-        <div class="about-card${fullClass}" data-animate="fade-up" data-delay="${i * 100}">
-          ${mediaHtml}
-          <h3>${t.titulo}</h3>
-          ${mdToHtml(t.texto)}
-        </div>`;
+        if (t.full_width) {
+          tarjetasHtml += `
+          <div class="about-card full-width" data-animate="fade-up" data-delay="${i * 100}">
+            <h3>${t.titulo}</h3>
+            ${mdToHtml(t.texto)}
+          </div>`;
+        } else {
+          tarjetasHtml += `
+          <div class="about-card immersive" data-animate="fade-up" data-delay="${i * 100}">
+            ${mediaHtml}
+            <div class="overlay"></div>
+            <div class="content">
+              <h3>${t.titulo}</h3>
+              ${mdToHtml(t.texto)}
+            </div>
+          </div>`;
+        }
       });
     } else if (configQuienes.historia) {
       // Compatibilidad hacia atrás si usan el formato antiguo
@@ -120,19 +131,25 @@ if (builtHtml) {
     if (configPedagogia.pilares && configPedagogia.pilares.length > 0) {
       configPedagogia.pilares.forEach((p, i) => {
         let mediaHtml = '';
+        const match = p.titulo.match(/^([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/);
+        const icono = match ? match[0] : '✨';
+        const cleanTitle = p.titulo.replace(/^([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])\s*/, '');
+
         if (p.imagen) {
           const imgSrc = p.imagen.startsWith('/') ? p.imagen : '/' + p.imagen;
-          const cleanAlt = p.titulo.replace(/[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]/g, '').trim();
-          mediaHtml = `<img src="${imgSrc}" alt="${cleanAlt}" class="feature-img" loading="lazy">`;
+          mediaHtml = `
+            <div class="feature-media-wrap">
+              <img src="${imgSrc}" alt="${cleanTitle}" class="feature-img" loading="lazy">
+              <div class="feature-icon-overlap">${icono}</div>
+            </div>`;
         } else {
-          const icono = p.titulo.match(/^([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/) ? '' : '✨';
-          mediaHtml = `<div class="feature-icon">${icono}</div>`;
+          mediaHtml = `<div class="feature-icon-overlap solo">${icono}</div>`;
         }
-        
+
         pilaresHtml += `
         <div class="feature" data-animate="fade-up" data-delay="${i * 100}">
           ${mediaHtml}
-          <h3>${p.titulo}</h3>
+          <h3>${cleanTitle}</h3>
           <p>${p.descripcion}</p>
         </div>`;
       });

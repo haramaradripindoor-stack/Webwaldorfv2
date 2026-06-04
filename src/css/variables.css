@@ -9,8 +9,9 @@
   --text-dark: #2C3E50;
   --text-light: #7F8C8D;
   --white: #FFFFFF;
-  --light-gray: #F8F9FA;
-  --border-color: #E9ECEF;
+  --bg-color: #F9F6F0; /* Warm beige for organic feel */
+  --light-gray: #F4F1EA;
+  --border-color: #E6DFD3;
   --shadow: 0 2px 10px rgba(0,0,0,0.1);
   --shadow-hover: 0 4px 20px rgba(0,0,0,0.15);
   --transition: all 0.3s ease;

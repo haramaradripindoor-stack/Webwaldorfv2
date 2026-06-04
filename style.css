@@ -9,8 +9,9 @@
   --text-dark: #2C3E50;
   --text-light: #7F8C8D;
   --white: #FFFFFF;
-  --light-gray: #F8F9FA;
-  --border-color: #E9ECEF;
+  --bg-color: #F9F6F0; /* Warm beige for organic feel */
+  --light-gray: #F4F1EA;
+  --border-color: #E6DFD3;
   --shadow: 0 2px 10px rgba(0,0,0,0.1);
   --shadow-hover: 0 4px 20px rgba(0,0,0,0.15);
   --transition: all 0.3s ease;
@@ -44,7 +45,7 @@ body {
   font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   color: var(--text-dark);
-  background-color: var(--white);
+  background-color: var(--bg-color); /* Organic waldorf background */
   overflow-x: hidden;
   padding-top: var(--header-height); /* ✅ Evita que el nav tape el header */
 }
@@ -1624,9 +1625,38 @@ img.logo-mini {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: var(--radius-md);
-  margin-bottom: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  border-radius: var(--border-radius);
+  margin-bottom: 0;
+}
+
+.feature-media-wrap {
+  position: relative;
+  margin-bottom: 2.5rem;
+  border-radius: var(--border-radius);
+}
+
+.feature-icon-overlap {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  background: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  z-index: 2;
+  border: 1px solid var(--border-color);
+}
+
+.feature-icon-overlap.solo {
+  position: static;
+  transform: none;
+  margin: 0 auto 1.5rem auto;
 }
 
 .feature h3 {
@@ -1691,6 +1721,57 @@ img.logo-mini {
 .about-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-hover);
+}
+
+.about-card.immersive {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: var(--white);
+  border: none;
+}
+
+.about-card.immersive .about-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  margin: 0;
+  border-radius: 0;
+}
+
+.about-card.immersive .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%);
+  z-index: 2;
+}
+
+.about-card.immersive .content {
+  position: relative;
+  z-index: 3;
+  padding: 2rem;
+}
+
+.about-card.immersive h3 {
+  color: var(--white);
+  font-family: 'Antroposofia', 'Merriweather', serif;
+  margin-bottom: 0.5rem;
+}
+
+.about-card.immersive p {
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 0;
 }
 
 .about-card.full-width {
@@ -2843,7 +2924,7 @@ img.logo-mini {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--primary-green);
+  background: var(--accent-orange);
   color: var(--white);
   border-radius: var(--border-radius);
   padding: 0.8rem 1rem;
@@ -3190,21 +3271,36 @@ img.logo-mini {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
-  margin-top: 40px;
+  margin-top: 60px; /* increased to make room for avatar */
 }
 .testimonial-card {
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-  border-left: 5px solid #a8d8b9;
+  position: relative;
+  background: var(--white);
+  padding: 50px 30px 30px 30px; /* Extra padding top */
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.3s ease;
+  transition: var(--transition);
+  text-align: center;
+  border-top: 4px solid var(--secondary-green);
+}
+.testimonial-avatar-top {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--white);
+  box-shadow: var(--shadow);
 }
 .testimonial-card:hover {
   transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
 }
 .testimonial-content p {
   font-style: italic;
@@ -3213,26 +3309,20 @@ img.logo-mini {
 }
 .testimonial-author {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 5px;
 }
 .author-avatar {
-  font-size: 40px;
-  background: #f9f9f9;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: none; /* replaced by top image */
 }
 .author-info strong {
   display: block;
-  color: #2c5530;
+  color: var(--primary-green);
 }
 .author-info span {
   font-size: 0.85rem;
-  color: #777;
+  color: var(--text-light);
 }
 
 
