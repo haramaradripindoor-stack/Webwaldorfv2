@@ -1439,5 +1439,45 @@ function buildArriendoSalon() {
 
 console.log('\n🏠 Construyendo página dedicada de Arriendo de Salón...');
 buildArriendoSalon();
+
+// ═══════════════════════════════════════════════════════════════════════════
+// RECURSOS WALDORF CHILE
+// ═══════════════════════════════════════════════════════════════════════════
+function buildRecursosWaldorf() {
+  let recursosHtml = '';
+  const components = ['head', 'nav', 'recursos', 'footer', 'modals-scripts'];
+  for (const tpl of components) {
+    const p = path.join('src', 'templates', tpl + '.html');
+    if (fs.existsSync(p)) {
+      recursosHtml += fs.readFileSync(p, 'utf8') + '\n';
+    }
+  }
+  
+  if (fs.existsSync(path.join('_config', 'contacto.yml'))) {
+    let config = {};
+    try {
+      config = yaml.load(fs.readFileSync(path.join('_config', 'contacto.yml'), 'utf8'));
+    } catch (e) {}
+    const telClean = (config.telefono || '').replace(/\s+/g, '');
+    recursosHtml = recursosHtml.replace(/\{\{CONTACTO_TELEFONO\}\}/g, config.telefono || '');
+    recursosHtml = recursosHtml.replace(/\{\{CONTACTO_TEL_CLEAN\}\}/g, telClean);
+    recursosHtml = recursosHtml.replace(/\{\{CONTACTO_EMAIL_ADMISION\}\}/g, config.email_admision || '');
+    recursosHtml = recursosHtml.replace(/\{\{CONTACTO_DIRECCION\}\}/g, config.direccion || '');
+    recursosHtml = recursosHtml.replace(/\{\{CONTACTO_INSTAGRAM\}\}/g, config.instagram || '');
+    recursosHtml = recursosHtml.replace(/\{\{LINK_POSTULACION\}\}/g, config.link_postulacion || '');
+  }
+  
+  recursosHtml = injectCss(recursosHtml);
+  recursosHtml = injectJs(recursosHtml);
+  
+  recursosHtml = recursosHtml.replace(/<title>[\s\S]*?<\/title>/i, `<title>Directorio de Recursos Waldorf en Chile — Colegio Waldorf Trekan</title>`);
+  
+  fs.writeFileSync('recursos-waldorf-chile.html', recursosHtml, 'utf8');
+  console.log('   🔗 Recursos Waldorf -> recursos-waldorf-chile.html');
+}
+
+console.log('\n🌱 Construyendo página de Recursos Waldorf...');
+buildRecursosWaldorf();
+
 console.log('✅ Listo!');
 
