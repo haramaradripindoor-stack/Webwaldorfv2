@@ -48,6 +48,25 @@
             <span>🌿 Conocer admisión</span>
           </a>
         </li>
+        <!-- Language Switcher -->
+        <li class="dropdown lang-dropdown" style="display: flex; align-items: center; margin-left: 1rem;">
+          <a href="#" class="dropdown-toggle" style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 1.2rem;">🇪🇸</span> ES
+          </a>
+          <ul class="dropdown-menu" style="min-width: 120px;">
+            <li>
+              <a href="#" onclick="translatePage('de')" style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="font-size: 1.2rem;">🇩🇪</span> German
+              </a>
+            </li>
+            <li>
+              <a href="#" onclick="translatePage('en')" style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="font-size: 1.2rem;">🇬🇧</span> English
+              </a>
+            </li>
+          </ul>
+        </li>
+
       </ul>
 
       <!-- Botón Admisión — solo visible en desktop -->
@@ -56,6 +75,22 @@
          aria-label="Conocer el proceso de admisión">
         <span>🌿 Conocer admisión</span>
       </a>
+
+      <!-- Google Translate Integration -->
+      <div id="google_translate_element" style="display: none;"></div>
+      <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({pageLanguage: 'es', includedLanguages: 'en,de,es', autoDisplay: false}, 'google_translate_element');
+        }
+        function translatePage(lang) {
+          var selectField = document.querySelector("#google_translate_element select");
+          if(selectField) {
+            selectField.value = lang;
+            selectField.dispatchEvent(new Event('change'));
+          }
+        }
+      </script>
+      <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     </div>
-  </div>
   </nav>
