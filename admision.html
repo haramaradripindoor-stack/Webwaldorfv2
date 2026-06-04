@@ -318,6 +318,11 @@
     <div class="nav-brand-txt">Colegio Waldorf Trekan<span>Puerto Varas</span></div>
   </a>
   <div class="nav-links">
+    <div style="display:flex; gap:8px;">
+      <button onclick="translatePage('es')" class="btn btn-outline" style="padding: 8px 12px; font-size: 18px;" title="Español">🇪🇸</button>
+      <button onclick="translatePage('de')" class="btn btn-outline" style="padding: 8px 12px; font-size: 18px;" title="Deutsch">🇩🇪</button>
+      <button onclick="translatePage('en')" class="btn btn-outline" style="padding: 8px 12px; font-size: 18px;" title="English">🇬🇧</button>
+    </div>
     <a href="/" class="btn btn-outline">← Volver al sitio</a>
     <a href="https://wa.me/56967765106?text=Hola!%20Quiero%20agendar%20una%20visita%20al%20Colegio%20Trekan" target="_blank" class="btn btn-primary">▶ Agendar visita</a>
   </div>
@@ -1132,6 +1137,30 @@ REGLAS: NUNCA inventes precios o fechas. Tono cálido, usa emojis moderados.`;
       });
     })();
   </script>
+
+  <div id="google_translate_element" style="display: none;"></div>
+  <style>
+    .VIpgJd-ZVi9od-ORHb-OEVmcd,
+    .goog-te-banner-frame.skiptranslate { display: none !important; }
+    body { top: 0px !important; }
+    .VIpgJd-ZVi9od-vH1G0e-OEVmcd { display: none !important; }
+    .goog-tooltip { display: none !important; }
+    .goog-tooltip:hover { display: none !important; }
+    .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
+  </style>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'es', includedLanguages: 'en,de,es', autoDisplay: false}, 'google_translate_element');
+    }
+    function translatePage(lang) {
+      var selectField = document.querySelector("#google_translate_element select");
+      if(selectField) {
+        selectField.value = lang;
+        selectField.dispatchEvent(new Event('change'));
+      }
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
