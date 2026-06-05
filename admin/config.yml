@@ -3,9 +3,9 @@ backend:
   repo: haramaradripindoor-stack/Webwaldorfv2
   branch: main
 
-site_url: "https://www.colegiowaldorftrekan.cl"
-display_url: "https://www.colegiowaldorftrekan.cl"
-logo_url: "https://www.colegiowaldorftrekan.cl/assets/logo.png"
+site_url: "https://webwaldorfv2.vercel.app"
+display_url: "https://webwaldorfv2.vercel.app"
+logo_url: "https://webwaldorfv2.vercel.app/assets/logo.png"
 
 media_folder: "images"
 public_folder: "/images"
