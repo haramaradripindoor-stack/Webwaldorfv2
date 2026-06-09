@@ -192,7 +192,7 @@ if (builtHtml) {
 
 const cssModules = [
   'variables', 'base', 'layout', 'responsive', 'hero', 
-  'components', 'sections', 'utilities'
+  'components', 'sections', 'utilities', 'animations'
 ];
 
 let builtCss = '';

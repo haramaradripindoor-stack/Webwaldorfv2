@@ -878,3 +878,171 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+/* === DYNAMIC EFFECTS & SCROLL ANIMATIONS === */
+/* Added: scroll reveal observer, page-load trigger, auto-apply scroll-reveal,
+   WhatsApp attention badge, and navbar shrink on scroll.
+   All effects respect prefers-reduced-motion and are wrapped in IIFEs. */
+
+// ──────────────────────────────────────────────
+// 0. Shared reduced-motion check
+// ──────────────────────────────────────────────
+const __prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ──────────────────────────────────────────────
+// 1. PAGE LOAD ANIMATION TRIGGER
+//    Adds 'page-loaded' class so CSS can key
+//    entrance animations off it.
+// ──────────────────────────────────────────────
+window.addEventListener('load', () => {
+  document.body.classList.add('page-loaded');
+});
+
+// ──────────────────────────────────────────────
+// 2. AUTO-APPLY scroll-reveal CLASSES
+//    Runs on DOMContentLoaded so the classes are
+//    in place before the IntersectionObserver (3)
+//    starts observing.
+// ──────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Skip class application entirely when motion is reduced —
+  // the CSS will never transition anyway, but this keeps the
+  // DOM cleaner.
+  if (__prefersReducedMotion) return;
+
+  // Section titles
+  document.querySelectorAll('.section-title').forEach(el => {
+    if (!el.classList.contains('scroll-reveal')) {
+      el.classList.add('scroll-reveal', 'reveal-up');
+    }
+  });
+
+  // Feature cards (staggered)
+  document.querySelectorAll('.feature').forEach((el, i) => {
+    el.classList.add('scroll-reveal', 'reveal-up', `reveal-delay-${(i % 4) + 1}`);
+  });
+
+  // About cards (alternate left / right)
+  document.querySelectorAll('.about-card').forEach((el, i) => {
+    el.classList.add('scroll-reveal', i % 2 === 0 ? 'reveal-left' : 'reveal-right');
+  });
+
+  // News & activity cards (staggered)
+  document.querySelectorAll('.news-card, .actividad-card').forEach((el, i) => {
+    el.classList.add('scroll-reveal', 'reveal-up', `reveal-delay-${(i % 3) + 1}`);
+  });
+
+  // Quote blocks
+  document.querySelectorAll('.quote').forEach(el => {
+    el.classList.add('scroll-reveal', 'reveal-fade');
+  });
+
+  // Grid items (staggered scale)
+  document.querySelectorAll('.grid-item').forEach((el, i) => {
+    el.classList.add('scroll-reveal', 'reveal-scale', `reveal-delay-${(i % 5) + 1}`);
+  });
+});
+
+// ──────────────────────────────────────────────
+// 3. SCROLL REVEAL OBSERVER
+//    Uses IntersectionObserver to add 'revealed'
+//    class once elements enter the viewport.
+//    Each element animates only once.
+// ──────────────────────────────────────────────
+(function () {
+  if (__prefersReducedMotion) return;
+
+  // Defer observer setup until after auto-apply (2) has run
+  const initObserver = () => {
+    const reveals = document.querySelectorAll('.scroll-reveal');
+    if (!reveals.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target); // only animate once
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+  };
+
+  // If DOM is already interactive/complete, run immediately;
+  // otherwise wait for DOMContentLoaded.
+  if (document.readyState !== 'loading') {
+    // DOMContentLoaded already fired – schedule on next microtask
+    // so section (2) has had time to add classes.
+    Promise.resolve().then(initObserver);
+  } else {
+    document.addEventListener('DOMContentLoaded', initObserver);
+  }
+})();
+
+// ──────────────────────────────────────────────
+// 4. WHATSAPP ATTENTION BADGE
+//    Dynamically creates a tooltip-style badge
+//    on the floating WhatsApp button. Shows on
+//    page load, hides after 8 s, then pulses
+//    briefly every 30 s.
+// ──────────────────────────────────────────────
+(function () {
+  document.addEventListener('DOMContentLoaded', () => {
+    const waBtn = document.querySelector('.floating-whatsapp');
+    if (!waBtn) return;
+
+    // Create badge element
+    const badge = document.createElement('span');
+    badge.className = 'wa-badge';
+    badge.textContent = 'Escríbenos';
+    waBtn.style.position = 'fixed'; // ensure positioning context
+    waBtn.appendChild(badge);
+
+    // Skip timed show/hide when reduced motion is preferred
+    if (__prefersReducedMotion) {
+      badge.style.opacity = '1';
+      return;
+    }
+
+    // Show → hide cycle
+    let badgeVisible = true;
+
+    setTimeout(() => {
+      badge.style.opacity = '0';
+      badgeVisible = false;
+    }, 8000);
+
+    setInterval(() => {
+      if (!badgeVisible) {
+        badge.style.opacity = '1';
+        badgeVisible = true;
+        setTimeout(() => {
+          badge.style.opacity = '0';
+          badgeVisible = false;
+        }, 5000);
+      }
+    }, 30000);
+  });
+})();
+
+// ──────────────────────────────────────────────
+// 5. NAVBAR SHRINK ON SCROLL
+//    Adds 'nav-scrolled' class to .nav when the
+//    user scrolls past the hero area (100 px) so
+//    CSS can apply a more compact header style.
+// ──────────────────────────────────────────────
+(function () {
+  const nav = document.querySelector('.nav');
+  if (!nav) return;
+
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    if (currentScroll > 100) {
+      nav.classList.add('nav-scrolled');
+    } else {
+      nav.classList.remove('nav-scrolled');
+    }
+    lastScroll = currentScroll;
+  }, { passive: true });
+})();

@@ -885,3 +885,224 @@
 #share-btn { display: none; }
 
 
+/* ============================================================
+   🌿 CTA & WHATSAPP — ATTENTION ANIMATIONS
+   Organic, nature-inspired micro-interactions for conversions.
+   All animations gated behind prefers-reduced-motion.
+   ============================================================ */
+
+
+/* ----------------------------------------------------------
+   1. WHATSAPP FLOATING BUTTON — Ring-wave ripple + bounce
+   ---------------------------------------------------------- */
+
+/* Override the original pulse animation with a richer ripple effect */
+.floating-whatsapp {
+  animation: wa-ripple 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite,
+             wa-bounce 6s ease-in-out infinite;
+}
+
+/* Expanding rings that fade outward like water ripples */
+@keyframes wa-ripple {
+  0% {
+    box-shadow:
+      0 4px 20px rgba(37, 211, 102, 0.35),
+      0 0 0 0 rgba(37, 211, 102, 0.35),
+      0 0 0 0 rgba(37, 211, 102, 0.2);
+  }
+  40% {
+    box-shadow:
+      0 4px 20px rgba(37, 211, 102, 0.35),
+      0 0 0 12px rgba(37, 211, 102, 0.15),
+      0 0 0 4px rgba(37, 211, 102, 0.25);
+  }
+  100% {
+    box-shadow:
+      0 4px 20px rgba(37, 211, 102, 0.35),
+      0 0 0 22px rgba(37, 211, 102, 0),
+      0 0 0 14px rgba(37, 211, 102, 0);
+  }
+}
+
+/* Gentle hop every few seconds — like a leaf in the breeze */
+@keyframes wa-bounce {
+  0%, 85%, 100% { transform: translateY(0); }
+  90%           { transform: translateY(-6px); }
+  95%           { transform: translateY(-1px); }
+}
+
+
+/* ----------------------------------------------------------
+   2. WHATSAPP BADGE — "Escríbenos" floating tooltip
+   ---------------------------------------------------------- */
+
+.wa-badge {
+  position: absolute;
+  top: -8px;
+  left: 58px;                            /* sits to the right of the button */
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;                  /* pill shape */
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
+  pointer-events: none;                  /* don't steal clicks */
+  animation: wa-badge-bob 3s ease-in-out infinite;
+}
+
+/* Small caret pointing toward the button */
+.wa-badge::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -5px;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-right-color: #25D366;
+}
+
+/* Gentle bobbing — like floating on calm water */
+@keyframes wa-badge-bob {
+  0%, 100% { transform: translateY(0);    opacity: 1;   }
+  50%      { transform: translateY(-4px); opacity: 0.92; }
+}
+
+/* On small screens, reposition badge above the button */
+@media (max-width: 480px) {
+  .wa-badge {
+    top: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.68rem;
+    padding: 0.25rem 0.6rem;
+  }
+  .wa-badge::before {
+    top: auto;
+    bottom: -9px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #25D366;
+  }
+  @keyframes wa-badge-bob {
+    0%, 100% { transform: translateX(-50%) translateY(0);    opacity: 1;   }
+    50%      { transform: translateX(-50%) translateY(-3px); opacity: 0.92; }
+  }
+}
+
+
+/* ----------------------------------------------------------
+   3. CONTACT SUBMIT — Shimmer / shine sweep
+   ---------------------------------------------------------- */
+
+.contact-submit {
+  position: relative;
+  overflow: hidden;          /* clip the shimmer band */
+}
+
+/* Diagonal light band that sweeps across periodically */
+.contact-submit::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0)   35%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0)   65%,
+    transparent 100%
+  );
+  animation: shimmer-sweep 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer-sweep {
+  0%, 100% { left: -100%; }
+  50%      { left: 140%;  }
+}
+
+
+/* ----------------------------------------------------------
+   4. BTN-PRIMARY — Subtle organic glow pulse
+   ---------------------------------------------------------- */
+
+.btn-primary {
+  position: relative;      /* needed for pseudo-element glow layer */
+}
+
+/* Breathing glow — like sunlight filtering through leaves */
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+  opacity: 0;
+  z-index: -1;
+  filter: blur(8px);
+  animation: btn-glow-breathe 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes btn-glow-breathe {
+  0%, 100% { opacity: 0;    transform: scale(1);   }
+  50%      { opacity: 0.45; transform: scale(1.06); }
+}
+
+
+/* ----------------------------------------------------------
+   5. NAV-APPLY-BTN — Gentle attention pulse ("Postula aquí")
+   ---------------------------------------------------------- */
+
+.nav-apply-btn {
+  animation: nav-apply-pulse 3.5s ease-in-out infinite;
+}
+
+@keyframes nav-apply-pulse {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(212, 165, 116, 0.25);
+  }
+  50% {
+    box-shadow:
+      0 2px 12px rgba(212, 165, 116, 0.45),
+      0 0 0 6px rgba(212, 165, 116, 0.12);
+  }
+}
+
+
+/* ----------------------------------------------------------
+   ♿ ACCESSIBILITY — Disable all CTA animations when the
+   user requests reduced motion.
+   ---------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .floating-whatsapp {
+    animation: none;
+  }
+
+  .wa-badge {
+    animation: none;
+  }
+
+  .contact-submit::after {
+    animation: none;
+    display: none;           /* remove shimmer entirely */
+  }
+
+  .btn-primary::before {
+    animation: none;
+    display: none;
+  }
+
+  .nav-apply-btn {
+    animation: none;
+  }
+}
