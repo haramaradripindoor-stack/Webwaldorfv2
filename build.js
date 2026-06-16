@@ -205,8 +205,29 @@ for (const mod of cssModules) {
   }
 }
 if (builtCss) {
-  fs.writeFileSync('style.css', builtCss.trim() + '\n', 'utf8');
-  console.log('   ✅ style.css generado desde src/css');
+  try {
+    const CleanCSS = require('clean-css');
+    const minified = new CleanCSS().minify(builtCss);
+    fs.writeFileSync('style.css', minified.styles + '\n', 'utf8');
+    console.log('   ✅ style.css generado y minificado desde src/css');
+  } catch (e) {
+    fs.writeFileSync('style.css', builtCss.trim() + '\n', 'utf8');
+    console.log('   ✅ style.css generado (sin minificar) desde src/css');
+  }
+}
+
+// ── Minificación de JS ───────────────────────────────────────────────────────
+try {
+  const terser = require('terser');
+  const jsContent = fs.readFileSync(path.join('js', 'script.js'), 'utf8');
+  terser.minify(jsContent).then(result => {
+    if (result.code) {
+      fs.writeFileSync(path.join('js', 'script.min.js'), result.code, 'utf8');
+      console.log('   ✅ script.min.js generado y minificado desde js/script.js');
+    }
+  });
+} catch(e) {
+  console.warn('   ⚠️ Error al minificar script.js:', e.message);
 }
 
 
