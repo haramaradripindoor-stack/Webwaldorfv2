@@ -274,7 +274,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
         navLinks.forEach(link => {
           link.classList.remove('active');
-          if (link.getAttribute('href') === `#${sectionId}`) {
+          const href = link.getAttribute('href');
+          if (href === `#${sectionId}` || href === `index.html#${sectionId}`) {
             link.classList.add('active');
           }
         });

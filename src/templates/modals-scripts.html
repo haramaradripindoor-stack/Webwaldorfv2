@@ -248,8 +248,10 @@
       .trekan-bot-bubble, .chat-msg, .chat-quick-replies { animation: none; }
       .trekan-bot-panel, .trekan-bot-tooltip, .trekan-bot-overlay { transition: opacity 0.15s ease; }
     }
-    #cookie-banner.visible ~ .trekan-bot-bubble,
-    #cookie-banner.visible ~ .trekan-bot-tooltip { transform: translateY(-80px); transition: transform 0.3s ease; }
+    body:has(#cookie-banner.visible) .trekan-bot-bubble,
+    body:has(#cookie-banner.visible) .trekan-bot-tooltip,
+    body:has(#cookie-banner.visible) .wa-trigger,
+    body:has(#cookie-banner.visible) .wa-card { transform: translateY(-80px); transition: transform 0.3s ease; }
   </style>
 
   <div id="trekan-bot-tooltip" class="trekan-bot-tooltip" aria-hidden="true">¿Tienes dudas? Pregúntame 🌱</div>
