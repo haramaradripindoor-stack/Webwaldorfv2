@@ -27,8 +27,8 @@ async function run() {
     console.error('Error al crear usuario:', error.message);
   } else {
     console.log('¡Usuario creado con éxito!');
-    console.log('Email: admin@colegiowaldorftrekan.cl');
-    console.log('Contraseña: TrekanAdmin2026');
+    console.log('Email:', email);
+    console.log('Contraseña:', password);
   }
 }
 
