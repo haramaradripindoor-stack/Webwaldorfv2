@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { createClient } from '@/utils/supabase/client';
-import { Plus, Trash2, Edit, Image as ImageIcon, Loader2 } from 'lucide-react';
+import { Plus, Trash2, Edit, Image as ImageIcon, Loader2, FileUp } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
+import Papa from 'papaparse';
 
 export default function NoticiasAdmin() {
   const [noticias, setNoticias] = useState<any[]>([]);
@@ -100,6 +101,43 @@ export default function NoticiasAdmin() {
     }
   };
 
+  const handleCsvUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0) return;
+    const file = e.target.files[0];
+    
+    setLoading(true);
+    Papa.parse(file, {
+      header: true,
+      skipEmptyLines: true,
+      complete: async (results) => {
+        const rows = results.data as any[];
+        
+        const newNoticias = rows.map(row => ({
+          title: row.titulo || row.title,
+          slug: (row.titulo || row.title || '').toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') + '-' + uuidv4().slice(0,6),
+          excerpt: row.resumen || row.excerpt || '',
+          content: row.contenido || row.content || '',
+          image_url: row.imagen || row.image_url || '/images/galeria3.webp',
+          published_at: row.fecha || row.published_at || new Date().toISOString()
+        })).filter(n => n.title); // Asegurar que tenga título
+
+        if (newNoticias.length > 0) {
+          const { error } = await supabase.from('noticias').insert(newNoticias);
+          if (error) alert('Error importando CSV: ' + error.message);
+          else alert(`¡Se importaron ${newNoticias.length} noticias exitosamente!`);
+          fetchNoticias();
+        } else {
+          setLoading(false);
+          alert('El archivo CSV está vacío o no tiene la columna "titulo".');
+        }
+      },
+      error: (error) => {
+        alert('Error al leer el CSV: ' + error.message);
+        setLoading(false);
+      }
+    });
+  };
+
   if (loading && noticias.length === 0) {
     return <div className="flex items-center justify-center h-64"><Loader2 className="w-8 h-8 animate-spin text-[var(--color-waldorf-moss)]" /></div>;
   }
@@ -108,12 +146,18 @@ export default function NoticiasAdmin() {
     <div>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold font-serif text-gray-800">Gestión de Noticias</h2>
-        <button 
-          onClick={() => setShowForm(!showForm)}
-          className="bg-[var(--color-waldorf-moss)] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-green-800 transition"
-        >
-          {showForm ? 'Cancelar' : <><Plus className="w-4 h-4" /> Nueva Noticia</>}
-        </button>
+        <div className="flex gap-2">
+          <label className="cursor-pointer bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition">
+            <FileUp className="w-4 h-4" /> Importar CSV
+            <input type="file" accept=".csv" className="hidden" onChange={handleCsvUpload} disabled={loading} />
+          </label>
+          <button 
+            onClick={() => setShowForm(!showForm)}
+            className="bg-[var(--color-waldorf-moss)] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-green-800 transition"
+          >
+            {showForm ? 'Cancelar' : <><Plus className="w-4 h-4" /> Nueva Noticia</>}
+          </button>
+        </div>
       </div>
 
       {showForm && (

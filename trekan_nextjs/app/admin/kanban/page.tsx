@@ -12,20 +12,30 @@ const supabase = createClient(
 
 type Lead = {
   id: string;
-  nombre: string;
+  nombre: string; // Nombre apoderado fallback
+  apoderado_nombre?: string;
+  apoderado_email: string;
+  apoderado_telefono: string;
+  horario_contacto: string;
+  nino_nombre: string;
+  nino_edad: string;
+  curso_postula: string;
+  nee: string;
+  nivel_interes: string;
   servicio: string;
   clasificacion: 'HOT' | 'WARM' | 'COLD';
-  estado: 'nuevo' | 'contactado' | 'pagado' | 'perdido';
-  canal: 'web' | 'whatsapp';
+  estado: 'ingreso' | 'entrevista' | 'aceptado' | 'matriculado' | 'perdido';
+  canal: 'web' | 'whatsapp' | 'formulario';
   ultimo_mensaje: string;
   requiere_humano: boolean;
   created_at: string;
 };
 
 const columns = [
-  { id: 'nuevo', title: 'Ingreso de IA', icon: Clock, color: 'cyan' },
-  { id: 'contactado', title: 'En Conversación', icon: MessageSquare, color: 'yellow' },
-  { id: 'pagado', title: 'Pagos Verificados', icon: CheckCircle, color: 'emerald' },
+  { id: 'ingreso', title: 'Nuevas Postulaciones', icon: Clock, color: 'cyan' },
+  { id: 'entrevista', title: 'En Entrevista', icon: MessageSquare, color: 'yellow' },
+  { id: 'aceptado', title: 'Aceptados', icon: CheckCircle, color: 'emerald' },
+  { id: 'matriculado', title: 'Matriculados', icon: Flame, color: 'purple' },
 ];
 
 function LeadCard({ lead, onMove, onDelete }: { lead: Lead; onMove: (id: string, estado: string) => void; onDelete: (id: string) => void }) {
@@ -35,7 +45,12 @@ function LeadCard({ lead, onMove, onDelete }: { lead: Lead; onMove: (id: string,
     COLD: { bg: 'bg-blue-500/20', text: 'text-blue-400', icon: Clock },
   };
 
-  const style = classColors[lead.clasificacion] || classColors.COLD;
+  // Asignar clasificación basada en nivel_interes si existe
+  let finalClass = lead.clasificacion;
+  if (lead.nivel_interes && lead.nivel_interes.includes('Listo')) finalClass = 'HOT';
+  else if (lead.nivel_interes && lead.nivel_interes.includes('Muy interesado')) finalClass = 'WARM';
+
+  const style = classColors[finalClass] || classColors.COLD;
   const ClassIcon = style.icon;
   const timeAgo = getTimeAgo(lead.created_at);
 
@@ -45,46 +60,49 @@ function LeadCard({ lead, onMove, onDelete }: { lead: Lead; onMove: (id: string,
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9 }}
-      className="bg-surface p-4 rounded-xl border border-hairline mb-3 shadow-lg hover:border-white/20 transition-all"
+      className="bg-surface p-4 rounded-xl border border-hairline mb-3 shadow-lg hover:border-white/20 transition-all text-left"
     >
       <div className="flex items-start justify-between mb-2">
         <div>
-          <h4 className="text-white font-bold text-sm">{lead.nombre}</h4>
-          <p className="text-xs text-gray-400">{lead.servicio === 'none' ? 'Sin especificar' : lead.servicio}</p>
+          <h4 className="text-white font-bold text-sm">{lead.apoderado_nombre || lead.nombre}</h4>
+          <p className="text-xs text-gray-400">{lead.curso_postula || lead.servicio || 'Sin curso especificado'}</p>
         </div>
         <span className={`flex items-center gap-1 text-[10px] px-2 py-1 rounded-full font-bold ${style.bg} ${style.text}`}>
           <ClassIcon className="w-3 h-3" />
-          {lead.clasificacion}
+          {finalClass}
         </span>
       </div>
 
-      {lead.ultimo_mensaje && (
+      {(lead.nino_nombre || lead.nino_edad) && (
+        <div className="mb-3 bg-white/5 p-2 rounded-lg border border-white/10">
+          <p className="text-xs text-gray-300 font-semibold">Postulante: {lead.nino_nombre} ({lead.nino_edad} años)</p>
+          {lead.nee === 'Sí' && <p className="text-[10px] text-red-400 mt-1 font-bold">⚠️ Reporta NEE</p>}
+        </div>
+      )}
+
+      {lead.ultimo_mensaje && !lead.nino_nombre && (
         <p className="text-xs text-gray-500 italic mb-3 line-clamp-2">&quot;{lead.ultimo_mensaje}&quot;</p>
       )}
 
-      <div className="flex items-center justify-between">
-        <span className="text-[10px] text-gray-600">{timeAgo} · {lead.canal}</span>
-        <div className="flex gap-1">
-          {lead.estado === 'nuevo' && (
-            <button
-              onClick={() => onMove(lead.id, 'contactado')}
-              className="text-[10px] px-2 py-1 rounded-lg bg-yellow-500/10 text-yellow-400 hover:bg-yellow-500/20 transition-colors cursor-pointer"
-            >
-              Contactado
+      <div className="flex items-center justify-between mt-3">
+        <span className="text-[10px] text-gray-600">{timeAgo} · {lead.canal || 'formulario'}</span>
+        <div className="flex gap-1 flex-wrap justify-end">
+          {lead.estado === 'ingreso' && (
+            <button onClick={() => onMove(lead.id, 'entrevista')} className="text-[10px] px-2 py-1 rounded-lg bg-yellow-500/10 text-yellow-400 hover:bg-yellow-500/20 transition-colors">
+              A Entrevista
             </button>
           )}
-          {lead.estado === 'contactado' && (
-            <button
-              onClick={() => onMove(lead.id, 'pagado')}
-              className="text-[10px] px-2 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 transition-colors cursor-pointer"
-            >
-              Pagó ✓
+          {lead.estado === 'entrevista' && (
+            <button onClick={() => onMove(lead.id, 'aceptado')} className="text-[10px] px-2 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 transition-colors">
+              Aceptar
             </button>
           )}
-          <button
-            onClick={() => onDelete(lead.id)}
-            className="text-[10px] px-1.5 py-1 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-colors cursor-pointer"
-          >
+          {lead.estado === 'aceptado' && (
+            <button onClick={() => onMove(lead.id, 'matriculado')} className="text-[10px] px-2 py-1 rounded-lg bg-purple-500/10 text-purple-400 hover:bg-purple-500/20 transition-colors">
+              Matricular
+            </button>
+          )}
+          <button onClick={() => onDelete(lead.id)} className="text-[10px] px-1.5 py-1 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-colors">
             <Trash2 className="w-3 h-3" />
           </button>
         </div>
@@ -139,17 +157,16 @@ export default function KanbanPage() {
   }, []);
 
   const handleMove = async (id: string, newEstado: string) => {
-    await fetch('/api/leads', {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, estado: newEstado })
-    });
-    fetchLeads();
+    const { error } = await supabase.from('chat_leads').update({ estado: newEstado }).eq('id', id);
+    if (error) alert('Error: ' + error.message);
+    else fetchLeads();
   };
 
   const handleDelete = async (id: string) => {
-    await fetch(`/api/leads?id=${id}`, { method: 'DELETE' });
-    fetchLeads();
+    if (!confirm('¿Estás seguro de eliminar este prospecto?')) return;
+    const { error } = await supabase.from('chat_leads').delete().eq('id', id);
+    if (error) alert('Error: ' + error.message);
+    else fetchLeads();
   };
 
   return (

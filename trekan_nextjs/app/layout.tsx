@@ -5,6 +5,7 @@ import Script from 'next/script'
 import CustomCursor from '@/components/CustomCursor'
 import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import AIChatWidget from '@/components/AIChatWidget'
+import SmoothScroll from '@/components/SmoothScroll'
 
 const quicksand = Quicksand({ 
   subsets: ['latin'],
@@ -112,7 +113,9 @@ export default function RootLayout({
           `}
         </Script>
 
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
         
         {/* Widgets Flotantes Globales */}
         <AIChatWidget />

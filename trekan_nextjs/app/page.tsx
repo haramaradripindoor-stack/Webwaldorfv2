@@ -1,4 +1,3 @@
-import SmoothScroll from '@/components/SmoothScroll'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import MissionSection from '@/components/MissionSection'
@@ -44,24 +43,22 @@ export default async function Home() {
   }
 
   return (
-    <SmoothScroll>
-      <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-hidden">
-        <Navbar />
-        <Hero />
-        <MissionSection />
-        <BentoGrid />
-        <ComunidadSection />
-        <ActividadesSection />
-        <NewsSection displayNews={displayNews} />
-        <MasonryGallery />
-        <TeamSection />
-        <AdmisionSection />
-        <FAQSection />
-        <ContactSection />
-        <MapSection />
-        <InstagramSection />
-        <Footer />
-      </main>
-    </SmoothScroll>
+    <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-hidden">
+      <Navbar />
+      <Hero />
+      <MissionSection />
+      <BentoGrid />
+      <ComunidadSection />
+      <ActividadesSection />
+      <NewsSection displayNews={displayNews} />
+      <MasonryGallery />
+      <TeamSection />
+      <AdmisionSection />
+      <FAQSection />
+      <ContactSection />
+      <MapSection />
+      <InstagramSection />
+      <Footer />
+    </main>
   )
 }
