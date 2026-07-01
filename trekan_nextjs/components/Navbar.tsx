@@ -61,6 +61,7 @@ export default function Navbar() {
           >
             <Link href="/#quienes-somos" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text-light)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Quiénes Somos</Link>
             <Link href="/#pedagogia" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text-light)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Pedagogía Waldorf</Link>
+            <Link href="/recursos" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text-light)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Recursos Waldorf</Link>
             <Link href="/#comunidad" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text-light)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Comunidad</Link>
             <Link href="/#actividades" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text-light)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Actividades</Link>
             <Link href="/#noticias" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text-light)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Noticias</Link>
@@ -131,6 +132,7 @@ export default function Navbar() {
             <div className="flex flex-col pl-4 gap-3">
               <Link href="/#quienes-somos" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Quiénes Somos</Link>
               <Link href="/#pedagogia" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Pedagogía Waldorf</Link>
+              <Link href="/recursos" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Recursos Waldorf</Link>
               <Link href="/#comunidad" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Comunidad</Link>
               <Link href="/#actividades" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Actividades</Link>
               <Link href="/#noticias" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Noticias</Link>
