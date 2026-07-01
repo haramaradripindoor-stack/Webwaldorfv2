@@ -41,20 +41,56 @@ async function generateCohereEmbedding(text: string) {
       body: JSON.stringify({
         texts: [text],
         model: 'embed-multilingual-v3.0',
-        input_type: 'search_document',
+        input_type: 'search_query', // Mejorado para queries
         embedding_types: ['float']
       })
     });
 
     const data = await response.json();
     if (!response.ok) {
-      console.error('Cohere API Error:', data);
+      console.error('Cohere Embed API Error:', data);
       return null;
     }
     return data.embeddings.float[0];
   } catch (err) {
     console.error('Error fetching embedding:', err);
     return null;
+  }
+}
+
+async function rerankChunks(query: string, chunks: any[]) {
+  const cohereApiKey = process.env.COHERE_API_KEY;
+  if (!cohereApiKey || chunks.length === 0) return chunks;
+
+  const documents = chunks.map(c => c.content);
+
+  try {
+    const response = await fetch('https://api.cohere.ai/v1/rerank', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${cohereApiKey}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        model: 'rerank-multilingual-v3.0',
+        query: query,
+        documents: documents,
+        top_n: 3
+      })
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      console.error('Cohere Rerank API Error:', data);
+      return chunks.slice(0, 3); // Fallback a los 3 mejores de Supabase
+    }
+    
+    // data.results contiene los indices ordenados
+    return data.results.map((r: any) => chunks[r.index]);
+  } catch (err) {
+    console.error('Error in rerank:', err);
+    return chunks.slice(0, 3); // Fallback
   }
 }
 
@@ -85,25 +121,27 @@ export async function POST(req: Request) {
       const queryEmbedding = await generateCohereEmbedding(lastUserMessage);
       
       if (queryEmbedding) {
-        // 3. Buscar en Supabase
+        // 3. Buscar en Supabase (Traemos 10 candidatos para el Rerank)
         const { data: chunks, error } = await supabaseAdmin.rpc('match_knowledge_chunks', {
           query_embedding: queryEmbedding,
-          match_threshold: 0.3,
-          match_count: 3
+          match_threshold: 0.2, // Umbral más bajo para traer más variedad
+          match_count: 10
         });
 
         if (error) {
           console.error('Error querying Supabase RPC:', error);
         } else if (chunks && chunks.length > 0) {
-          ragContext = chunks.map((c: any) => c.content).join('\\n\\n');
+          // 4. Rerank con Cohere para elegir los 3 mejores absolutos
+          const rerankedChunks = await rerankChunks(lastUserMessage, chunks);
+          ragContext = rerankedChunks.map((c: any) => c.content).join('\n\n');
         }
       }
     }
 
     // Construir el System Prompt final con el contexto inyectado
-    const finalSystemPrompt = \`\${BASE_SYSTEM_PROMPT}\\n\\nBASE DE CONOCIMIENTOS RECUPERADA (RAG):\\n\${ragContext ? ragContext : 'No se encontró información específica adicional, básate en la información clave general.'}\`;
+    const finalSystemPrompt = `${BASE_SYSTEM_PROMPT}\n\nBASE DE CONOCIMIENTOS RECUPERADA (RAG):\n${ragContext ? ragContext : 'No se encontró información específica adicional, básate en la información clave general.'}`;
 
-    // 4. Generar respuesta con Llama 3 (Groq) usando ai-sdk
+    // 5. Generar respuesta con Llama 3 (Groq) usando ai-sdk
     const result = await streamText({
       model: groq('llama-3.3-70b-versatile'),
       system: finalSystemPrompt,
