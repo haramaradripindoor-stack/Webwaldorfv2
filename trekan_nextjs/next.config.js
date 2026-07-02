@@ -4,15 +4,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Serve static assets from the parent project's images/ and assets/ folders
-  async rewrites() {
-    return [
-      {
-        source: '/images/:path*',
-        destination: '/images/:path*',
-      },
-    ]
-  },
 }
 
 module.exports = nextConfig

@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Leaf } from 'lucide-react'
 import { useRef } from 'react'
 import Image from 'next/image'
+import MagneticButton from './MagneticButton'
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null)
@@ -53,15 +54,14 @@ export default function Hero() {
       
       <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col items-center text-center mt-12">
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
           style={{ y: yText, opacity: opacityText }}
           className="flex flex-col items-center"
         >
           <motion.div 
             className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[var(--color-waldorf-cream)] text-xs font-semibold tracking-widest uppercase mb-8 shadow-2xl"
-            variants={itemVariants}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
           >
             <Leaf size={14} className="text-[var(--color-waldorf-mustard)]" />
             Educación en Armonía con la Naturaleza
@@ -70,7 +70,9 @@ export default function Hero() {
           <motion.h1 
             className="font-bold tracking-tight mb-6 leading-[1.05] font-serif text-white drop-shadow-2xl"
             style={{ fontSize: 'var(--text-fluid-hero)' }}
-            variants={itemVariants}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
             Pedagogía con el <br className="hidden md:block"/>
             <span className="text-[var(--color-waldorf-mustard)] relative whitespace-nowrap inline-block">
@@ -83,22 +85,30 @@ export default function Hero() {
 
           <motion.p 
             className="text-lg md:text-2xl text-[var(--color-waldorf-cream)] font-medium max-w-2xl mx-auto mb-10 font-sans drop-shadow-md opacity-90"
-            variants={itemVariants}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
           >
             Colegio Waldorf Trekan en Puerto Varas. Un espacio diseñado para que los niños de 3 a 14 años crezcan libres, conscientes y conectados con su entorno.
           </motion.p>
 
           <motion.div 
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            variants={itemVariants}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
           >
-            <a href="#admision" className="w-full sm:w-auto px-8 py-4 rounded-full bg-[var(--color-waldorf-mustard)] text-[#1a2e25] font-bold text-sm shadow-[0_0_40px_rgba(224,169,109,0.4)] hover:shadow-[0_0_60px_rgba(224,169,109,0.6)] transition-all duration-300 flex items-center justify-center gap-2 group">
-              Admisión 2026 Abierta
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a href="#pedagogia" className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 backdrop-blur-md text-white font-semibold text-sm hover:bg-white/20 transition-colors border border-white/20">
-              Descubrir Pedagogía
-            </a>
+            <MagneticButton magneticStrength={0.4}>
+              <a href="#admision" className="w-full sm:w-auto px-8 py-4 rounded-full bg-[var(--color-waldorf-mustard)] text-[#1a2e25] font-bold text-sm shadow-[0_0_40px_rgba(224,169,109,0.4)] hover:shadow-[0_0_60px_rgba(224,169,109,0.6)] transition-all duration-300 flex items-center justify-center gap-2 group">
+                Admisión 2026 Abierta
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </a>
+            </MagneticButton>
+            <MagneticButton magneticStrength={0.2}>
+              <a href="#pedagogia" className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 backdrop-blur-md text-white font-semibold text-sm hover:bg-white/20 transition-colors border border-white/20 flex items-center justify-center">
+                Descubrir Pedagogía
+              </a>
+            </MagneticButton>
           </motion.div>
         </motion.div>
       </div>

@@ -67,17 +67,14 @@ export default function BentoGrid() {
         <h2 className="text-3xl md:text-5xl font-bold font-serif text-[var(--color-waldorf-moss)]">Un Ecosistema para Crecer</h2>
       </div>
 
-      <motion.div 
-        className="grid grid-cols-1 md:grid-cols-3 gap-6 md:auto-rows-[280px]"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-      >
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:auto-rows-[280px]">
         {cards.map((card, index) => (
           <motion.div
             key={index}
-            variants={cardVariants}
+            initial={{ y: 30, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
             className={`relative overflow-hidden rounded-[32px] p-8 ${card.bg} border border-[var(--color-waldorf-sage)]/10 flex flex-col justify-between group hover:border-[var(--color-waldorf-sage)]/30 transition-all duration-500 earth-shadow earth-shadow-hover ${card.size}`}
           >
             {card.image && (
@@ -112,7 +109,7 @@ export default function BentoGrid() {
             </div>
           </motion.div>
         ))}
-      </motion.div>
+      </div>
     </section>
   )
 }
