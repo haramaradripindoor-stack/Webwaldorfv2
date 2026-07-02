@@ -13,7 +13,7 @@ export default function CustomCursor() {
     const isDesktop = window.matchMedia('(min-width: 768px)').matches
     if (!isDesktop) return
 
-    document.documentElement.style.cursor = 'none'
+    // Native cursor stays visible - custom cursor is decorative only
 
     const cursor = cursorRef.current
     if (!cursor) return
@@ -61,7 +61,7 @@ export default function CustomCursor() {
     window.addEventListener('mouseout', onMouseOut)
 
     return () => {
-      document.documentElement.style.cursor = 'auto'
+      // Cleanup
       window.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('mouseover', onMouseOver)
       window.removeEventListener('mouseout', onMouseOut)
@@ -71,7 +71,7 @@ export default function CustomCursor() {
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 w-4 h-4 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none z-[9999] mix-blend-difference bg-white hidden md:block transition-colors duration-300"
+      className="fixed top-0 left-0 w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none z-[9999] bg-[var(--color-waldorf-terracotta)] hidden md:block transition-all duration-300 opacity-70"
     />
   )
 }

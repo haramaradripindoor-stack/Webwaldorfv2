@@ -38,14 +38,14 @@ export default function NewsSection({ displayNews }: { displayNews: MarkdownPost
           </div>
           <div className="flex items-center gap-4">
             <div className="flex gap-2 mr-4 hidden md:flex">
-              <button onClick={() => scroll('left')} className="w-10 h-10 rounded-full bg-white border border-[var(--color-waldorf-sage)]/30 flex items-center justify-center text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-sage)]/10 transition-colors cursor-none">
+              <button onClick={() => scroll('left')} className="w-10 h-10 rounded-full bg-white border border-[var(--color-waldorf-sage)]/30 flex items-center justify-center text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-sage)]/10 transition-colors">
                 <ArrowLeft size={18} />
               </button>
-              <button onClick={() => scroll('right')} className="w-10 h-10 rounded-full bg-white border border-[var(--color-waldorf-sage)]/30 flex items-center justify-center text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-sage)]/10 transition-colors cursor-none">
+              <button onClick={() => scroll('right')} className="w-10 h-10 rounded-full bg-white border border-[var(--color-waldorf-sage)]/30 flex items-center justify-center text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-sage)]/10 transition-colors">
                 <ArrowRight size={18} />
               </button>
             </div>
-            <Link href="/noticias" className="text-sm font-semibold text-[var(--color-waldorf-moss)] hover:text-[var(--color-waldorf-terracotta)] transition-colors flex items-center gap-2 group interactive cursor-none bg-white px-6 py-3 rounded-full earth-shadow border border-[var(--color-waldorf-sage)]/20">
+            <Link href="/noticias" className="text-sm font-semibold text-[var(--color-waldorf-moss)] hover:text-[var(--color-waldorf-terracotta)] transition-colors flex items-center gap-2 group interactive bg-white px-6 py-3 rounded-full earth-shadow border border-[var(--color-waldorf-sage)]/20">
               Ver todo
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -64,7 +64,7 @@ export default function NewsSection({ displayNews }: { displayNews: MarkdownPost
             return (
               <article 
                 key={post.id}
-                className="group flex flex-col bg-white rounded-xl overflow-hidden earth-shadow hover:shadow-xl transition-all duration-500 cursor-none flex-shrink-0 snap-start
+                className="group flex flex-col bg-white rounded-xl overflow-hidden earth-shadow hover:shadow-xl transition-all duration-500 flex-shrink-0 snap-start
                            w-[85vw] sm:w-[380px] md:w-[420px]"
               >
                 {/* Text Content (Top) */}
@@ -119,7 +119,7 @@ export default function NewsSection({ displayNews }: { displayNews: MarkdownPost
           
           {/* Tarjeta final "Ver más" para rellenar el final del scroll */}
           <div className="flex-shrink-0 w-[85vw] sm:w-[380px] md:w-[420px] flex items-center justify-center p-8 snap-start">
-             <Link href="/noticias" className="flex flex-col items-center gap-4 text-[var(--color-waldorf-moss)] hover:text-[var(--color-waldorf-terracotta)] transition-colors group cursor-none interactive">
+             <Link href="/noticias" className="flex flex-col items-center gap-4 text-[var(--color-waldorf-moss)] hover:text-[var(--color-waldorf-terracotta)] transition-colors group interactive">
                 <div className="w-16 h-16 rounded-full border-2 border-current flex items-center justify-center group-hover:scale-110 transition-transform">
                   <ArrowRight size={24} />
                 </div>

@@ -33,7 +33,7 @@ export default function InstagramSection() {
             href="https://www.instagram.com/waldorftrekanpv/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="px-6 py-3 rounded-full bg-[var(--color-waldorf-paper)] text-[var(--color-waldorf-moss)] font-bold text-sm hover:bg-[var(--color-waldorf-cream)] border border-[var(--color-waldorf-sage)]/20 earth-shadow transition-colors cursor-none"
+            className="px-6 py-3 rounded-full bg-[var(--color-waldorf-paper)] text-[var(--color-waldorf-moss)] font-bold text-sm hover:bg-[var(--color-waldorf-cream)] border border-[var(--color-waldorf-sage)]/20 earth-shadow transition-colors"
           >
             Seguir en Instagram
           </a>
@@ -48,7 +48,7 @@ export default function InstagramSection() {
                 href={post.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative w-64 md:w-80 aspect-square rounded-[32px] overflow-hidden group earth-shadow flex-shrink-0 cursor-none"
+                className="relative w-64 md:w-80 aspect-square rounded-[32px] overflow-hidden group earth-shadow flex-shrink-0"
               >
                 <Image
                   src={post.img}

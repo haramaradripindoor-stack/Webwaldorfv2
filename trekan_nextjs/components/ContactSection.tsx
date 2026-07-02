@@ -114,7 +114,7 @@ END:VCARD`
           <div>
             <button 
               onClick={handleDownloadVCard}
-              className="inline-flex items-center gap-2 bg-white border border-[var(--color-waldorf-sage)]/30 text-[var(--color-waldorf-moss)] px-6 py-3 rounded-full font-semibold hover:bg-[var(--color-waldorf-sage)]/10 transition-colors earth-shadow cursor-none group"
+              className="inline-flex items-center gap-2 bg-white border border-[var(--color-waldorf-sage)]/30 text-[var(--color-waldorf-moss)] px-6 py-3 rounded-full font-semibold hover:bg-[var(--color-waldorf-sage)]/10 transition-colors earth-shadow group"
             >
               <UserPlus size={18} className="group-hover:scale-110 transition-transform" />
               Guardar Contacto (vCard)
@@ -138,7 +138,7 @@ END:VCARD`
                   <p className="text-[var(--color-waldorf-text-light)] mb-8">Gracias por escribirnos. Nos pondremos en contacto contigo lo antes posible.</p>
                   <button 
                     onClick={() => setSuccess(false)}
-                    className="px-8 py-3 rounded-full bg-[var(--color-waldorf-paper)] text-[var(--color-waldorf-moss)] font-bold hover:bg-[var(--color-waldorf-cream)] transition-colors border border-[var(--color-waldorf-sage)]/20 cursor-none"
+                    className="px-8 py-3 rounded-full bg-[var(--color-waldorf-paper)] text-[var(--color-waldorf-moss)] font-bold hover:bg-[var(--color-waldorf-cream)] transition-colors border border-[var(--color-waldorf-sage)]/20"
                   >
                     Enviar otro mensaje
                   </button>
@@ -173,7 +173,7 @@ END:VCARD`
               <button 
                 type="submit" 
                 disabled={isSubmitting}
-                className="w-full py-4 rounded-full bg-[var(--color-waldorf-moss)] text-white font-bold earth-shadow hover:bg-[#3A4A3F] transition-colors disabled:opacity-50 flex items-center justify-center gap-2 cursor-none mt-2"
+                className="w-full py-4 rounded-full bg-[var(--color-waldorf-moss)] text-white font-bold earth-shadow hover:bg-[#3A4A3F] transition-colors disabled:opacity-50 flex items-center justify-center gap-2 mt-2"
               >
                 {isSubmitting ? (
                   <><Loader2 className="animate-spin" size={20} /> Enviando...</>

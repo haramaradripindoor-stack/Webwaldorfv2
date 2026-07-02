@@ -36,7 +36,7 @@ export default function MapSection() {
           <p className="text-[var(--color-waldorf-text-light)] text-sm font-medium">
             Las Azaleas 96, Parque Ivian 1<br/>Puerto Varas, Los Lagos
           </p>
-          <a href="https://www.google.com/maps/search/?api=1&query=Colegio+Waldorf+Trekan+Puerto+Varas" target="_blank" rel="noopener noreferrer" className="mt-4 inline-block text-[var(--color-waldorf-terracotta)] text-sm font-bold hover:underline cursor-none">
+          <a href="https://www.google.com/maps/search/?api=1&query=Colegio+Waldorf+Trekan+Puerto+Varas" target="_blank" rel="noopener noreferrer" className="mt-4 inline-block text-[var(--color-waldorf-terracotta)] text-sm font-bold hover:underline">
             Abrir en Google Maps →
           </a>
         </div>

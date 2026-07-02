@@ -78,7 +78,7 @@ export default function BentoGrid() {
           <motion.div
             key={index}
             variants={cardVariants}
-            className={`relative overflow-hidden rounded-[32px] p-8 ${card.bg} border border-[var(--color-waldorf-sage)]/10 flex flex-col justify-between group hover:border-[var(--color-waldorf-sage)]/30 transition-all duration-500 cursor-none earth-shadow earth-shadow-hover ${card.size}`}
+            className={`relative overflow-hidden rounded-[32px] p-8 ${card.bg} border border-[var(--color-waldorf-sage)]/10 flex flex-col justify-between group hover:border-[var(--color-waldorf-sage)]/30 transition-all duration-500 earth-shadow earth-shadow-hover ${card.size}`}
           >
             {card.image && (
               <>

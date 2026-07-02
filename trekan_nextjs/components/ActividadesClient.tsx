@@ -48,7 +48,7 @@ export default function ActividadesClient({ actividades }: { actividades: Markdo
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-none ${
+            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
               activeTab === tab 
                 ? 'bg-[var(--color-waldorf-moss)] text-white shadow-md' 
                 : 'bg-white border border-[var(--color-waldorf-sage)]/30 text-[var(--color-waldorf-text-light)] hover:border-[var(--color-waldorf-moss)] hover:text-[var(--color-waldorf-moss)]'

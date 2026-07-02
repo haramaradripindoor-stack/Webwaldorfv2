@@ -19,12 +19,6 @@
 }
 
 @layer base {
-  @media (min-width: 768px) {
-    * {
-      cursor: none !important;
-    }
-  }
-
   body {
     background-color: var(--color-waldorf-cream);
     color: var(--color-waldorf-text);

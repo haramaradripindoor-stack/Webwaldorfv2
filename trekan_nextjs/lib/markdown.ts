@@ -53,7 +53,13 @@ export function getMarkdownPosts(folder: '_noticias' | '_actividades'): Markdown
         title: data.title || data.nombre || data.titulo || 'Sin título',
         excerpt: data.excerpt || data.descripcion || content.substring(0, 150) + '...',
         content,
-        image_url: data.image_url || data.imagen || data.foto || '/images/galeria3.webp',
+        image_url: (() => {
+          let img = data.image_url || data.imagen || data.foto || '/images/galeria3.webp';
+          if (img && !img.startsWith('/') && !img.startsWith('http')) {
+            img = '/' + img;
+          }
+          return img;
+        })(),
         published_at: validDate,
         fecha_display: data.fecha || null, // Guardamos el string original en español por si se quiere mostrar
         ...data,

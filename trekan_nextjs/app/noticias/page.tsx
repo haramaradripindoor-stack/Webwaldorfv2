@@ -52,7 +52,7 @@ export default async function NoticiasPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {allNews.map((post: MarkdownPost) => (
-              <Link href={`/noticias/${post.slug}`} key={post.id} className="cursor-none">
+              <Link href={`/noticias/${post.slug}`} key={post.id}>
                 <article 
                   className="group flex flex-col h-full bg-[var(--color-waldorf-cream)] rounded-3xl overflow-hidden border border-[var(--color-waldorf-sage)]/20 hover:border-[var(--color-waldorf-sage)]/40 earth-shadow earth-shadow-hover transition-all duration-500 interactive"
                 >

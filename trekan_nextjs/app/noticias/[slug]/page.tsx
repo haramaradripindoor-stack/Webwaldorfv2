@@ -45,7 +45,7 @@ export default function NoticiaPage({ params }: { params: { slug: string } }) {
         <Navbar />
         
         <article className="pt-32 pb-24 px-6 max-w-3xl mx-auto">
-          <Link href="/#noticias" className="inline-flex items-center gap-2 text-[var(--color-waldorf-moss)] hover:text-[var(--color-waldorf-terracotta)] transition-colors mb-10 text-sm font-semibold cursor-none">
+          <Link href="/#noticias" className="inline-flex items-center gap-2 text-[var(--color-waldorf-moss)] hover:text-[var(--color-waldorf-terracotta)] transition-colors mb-10 text-sm font-semibold">
             <ArrowLeft size={16} /> Volver a noticias
           </Link>
 

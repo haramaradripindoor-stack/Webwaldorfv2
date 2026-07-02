@@ -92,11 +92,11 @@ export default function Hero() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
             variants={itemVariants}
           >
-            <a href="#admision" className="w-full sm:w-auto px-8 py-4 rounded-full bg-[var(--color-waldorf-mustard)] text-[#1a2e25] font-bold text-sm shadow-[0_0_40px_rgba(224,169,109,0.4)] hover:shadow-[0_0_60px_rgba(224,169,109,0.6)] transition-all duration-300 flex items-center justify-center gap-2 group cursor-none">
+            <a href="#admision" className="w-full sm:w-auto px-8 py-4 rounded-full bg-[var(--color-waldorf-mustard)] text-[#1a2e25] font-bold text-sm shadow-[0_0_40px_rgba(224,169,109,0.4)] hover:shadow-[0_0_60px_rgba(224,169,109,0.6)] transition-all duration-300 flex items-center justify-center gap-2 group">
               Admisión 2026 Abierta
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </a>
-            <a href="#pedagogia" className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 backdrop-blur-md text-white font-semibold text-sm hover:bg-white/20 transition-colors border border-white/20 cursor-none">
+            <a href="#pedagogia" className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 backdrop-blur-md text-white font-semibold text-sm hover:bg-white/20 transition-colors border border-white/20">
               Descubrir Pedagogía
             </a>
           </motion.div>

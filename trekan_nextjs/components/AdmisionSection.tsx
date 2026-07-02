@@ -81,7 +81,7 @@ export default function AdmisionSection() {
             href={ADMISION_FORM}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-[var(--color-waldorf-moss)] text-[var(--color-waldorf-cream)] font-semibold text-base earth-shadow earth-shadow-hover group cursor-none transition-transform hover:-translate-y-1"
+            className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-[var(--color-waldorf-moss)] text-[var(--color-waldorf-cream)] font-semibold text-base earth-shadow earth-shadow-hover group transition-transform hover:-translate-y-1"
           >
             🌿 Postular Ahora — Admisión 2026
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />

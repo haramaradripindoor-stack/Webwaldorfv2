@@ -102,7 +102,7 @@ export default function RecursosPage() {
                 <ul className="space-y-3">
                   {seccion.links.map((link, lidx) => (
                     <li key={lidx}>
-                      <a href={link.url} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-[var(--color-waldorf-moss)] font-semibold text-sm hover:text-[var(--color-waldorf-terracotta)] transition-colors group cursor-none">
+                      <a href={link.url} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-[var(--color-waldorf-moss)] font-semibold text-sm hover:text-[var(--color-waldorf-terracotta)] transition-colors group">
                         <ExternalLink size={14} className="opacity-50 group-hover:opacity-100" />
                         {link.name}
                       </a>

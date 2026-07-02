@@ -104,7 +104,7 @@ export default function FAQSection() {
             >
               <button
                 onClick={() => setOpenIndex(isOpen ? null : i)}
-                className="w-full flex items-center justify-between gap-4 p-6 text-left cursor-none"
+                className="w-full flex items-center justify-between gap-4 p-6 text-left"
               >
                 <span className={`font-semibold text-[15px] transition-colors ${isOpen ? 'text-[var(--color-waldorf-terracotta)]' : 'text-[var(--color-waldorf-text)]'}`}>
                   {faq.q}

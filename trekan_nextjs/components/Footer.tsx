@@ -24,10 +24,10 @@ export default function Footer() {
             Un espacio educativo independiente inspirado en la pedagogía Waldorf, comprometido con el florecimiento libre e íntegro de la infancia en el sur de Chile.
           </p>
           <div className="flex gap-4">
-            <a href="https://www.instagram.com/waldorftrekanpv/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[var(--color-waldorf-cream)] border border-[var(--color-waldorf-sage)]/20 flex items-center justify-center text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-moss)] hover:text-[var(--color-waldorf-cream)] transition-all duration-300 cursor-none earth-shadow">
+            <a href="https://www.instagram.com/waldorftrekanpv/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[var(--color-waldorf-cream)] border border-[var(--color-waldorf-sage)]/20 flex items-center justify-center text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-moss)] hover:text-[var(--color-waldorf-cream)] transition-all duration-300 earth-shadow">
               <Instagram size={18} />
             </a>
-            <a href="https://www.facebook.com/profile.php?id=61573063135723" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[var(--color-waldorf-cream)] border border-[var(--color-waldorf-sage)]/20 flex items-center justify-center text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-moss)] hover:text-[var(--color-waldorf-cream)] transition-all duration-300 cursor-none earth-shadow">
+            <a href="https://www.facebook.com/profile.php?id=61573063135723" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[var(--color-waldorf-cream)] border border-[var(--color-waldorf-sage)]/20 flex items-center justify-center text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-moss)] hover:text-[var(--color-waldorf-cream)] transition-all duration-300 earth-shadow">
               <Facebook size={18} />
             </a>
           </div>

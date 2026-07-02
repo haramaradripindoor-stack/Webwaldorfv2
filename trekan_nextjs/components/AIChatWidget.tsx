@@ -239,7 +239,7 @@ export default function AIChatWidget() {
             setShowPulse(false)
           }}
           whileTap={{ scale: 0.9 }}
-          className="relative w-16 h-16 rounded-full bg-gradient-to-tr from-[#128C7E] to-[#25D366] shadow-xl shadow-[#25D366]/40 flex items-center justify-center text-white hover:scale-105 transition-all duration-300 cursor-none"
+          className="relative w-16 h-16 rounded-full bg-gradient-to-tr from-[#128C7E] to-[#25D366] shadow-xl shadow-[#25D366]/40 flex items-center justify-center text-white hover:scale-105 transition-all duration-300"
           aria-label="Abrir Chat"
         >
           <AnimatePresence mode="wait">
