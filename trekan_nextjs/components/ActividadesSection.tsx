@@ -49,13 +49,23 @@ export default async function ActividadesSection() {
                 Momentos importantes para nuestra comunidad. ¡Te esperamos!
               </p>
             </div>
+            
+            <a 
+              href="/actividades" 
+              className="px-6 py-3 rounded-full bg-white text-[var(--color-waldorf-moss)] font-bold text-sm hover:bg-[var(--color-waldorf-cream)] border border-[var(--color-waldorf-sage)]/20 earth-shadow transition-colors interactive flex items-center gap-2 group whitespace-nowrap"
+            >
+              Ver calendario completo
+              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
           </div>
 
           <div className="flex flex-col gap-16">
-            {Object.entries(actividadesPorMes).map(([mes, actividades]) => (
+            {Object.entries(actividadesPorMes).slice(0, 1).map(([mes, actividades]) => (
               <div key={mes}>
                 <h3 className="text-2xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-8 border-b border-[var(--color-waldorf-sage)]/20 pb-4 inline-block w-full">
-                  Mes de {mes}
+                  Próximas en {mes}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {(actividades as any[]).map((post: any) => {
