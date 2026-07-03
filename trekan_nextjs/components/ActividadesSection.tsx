@@ -23,8 +23,17 @@ export default async function ActividadesSection() {
     allActividades = getMarkdownPosts('_actividades').sort((a, b) => new Date(a.published_at).getTime() - new Date(b.published_at).getTime())
   }
 
-  // Agrupar actividades por mes
-  const actividadesPorMes = allActividades.reduce((acc, curr) => {
+  // Filtrar actividades pasadas (mantener desde el inicio del mes actual en adelante)
+  const now = new Date()
+  const currentMonthStart = new Date(now.getFullYear(), now.getMonth(), 1)
+  
+  const upcomingActividades = allActividades.filter(post => {
+    const postDate = new Date(post.published_at || post.date)
+    return postDate >= currentMonthStart
+  })
+
+  // Agrupar actividades futuras por mes
+  const actividadesPorMes = upcomingActividades.reduce((acc, curr) => {
     const mes = curr.mes?.toUpperCase() || 'OTROS'
     if (!acc[mes]) {
       acc[mes] = []
@@ -32,6 +41,16 @@ export default async function ActividadesSection() {
     acc[mes].push(curr)
     return acc
   }, {} as Record<string, any[]>)
+  
+  // Si no hay actividades futuras, podemos mostrar el último mes disponible como fallback
+  const mesesAgrupados = Object.keys(actividadesPorMes).length > 0 
+    ? actividadesPorMes 
+    : allActividades.slice(-4).reduce((acc, curr) => {
+        const mes = curr.mes?.toUpperCase() || 'OTROS'
+        if (!acc[mes]) acc[mes] = []
+        acc[mes].push(curr)
+        return acc
+      }, {} as Record<string, any[]>)
 
   return (
     <section id="actividades" className="py-24 px-6 md:px-12 bg-[var(--color-waldorf-cream)] relative overflow-hidden">
@@ -62,7 +81,7 @@ export default async function ActividadesSection() {
           </div>
 
           <div className="flex flex-col gap-16">
-            {Object.entries(actividadesPorMes).slice(0, 1).map(([mes, actividades]) => (
+            {Object.entries(mesesAgrupados).slice(0, 1).map(([mes, actividades]) => (
               <div key={mes}>
                 <h3 className="text-2xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-8 border-b border-[var(--color-waldorf-sage)]/20 pb-4 inline-block w-full">
                   Próximas en {mes}
