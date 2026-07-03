@@ -1,4 +1,12 @@
 {
-  "outputDirectory": ".",
-  "buildCommand": "node build.js"
+  "buildCommand": "cd trekan_nextjs && npm install && npm run build",
+  "outputDirectory": "trekan_nextjs/.next",
+  "installCommand": "cd trekan_nextjs && npm install",
+  "framework": "nextjs",
+  "crons": [
+    {
+      "path": "/api/cron/keep-alive",
+      "schedule": "*/5 * * * *"
+    }
+  ]
 }
