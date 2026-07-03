@@ -1,7 +1,7 @@
 ---
 titulo: Fiesta de la Luz
 fecha: 21 de junio de 2025
-foto: /images/fiesta de la luz2026.jpg
+foto: /images/fiesta-de-la-luz2026.jpg
 foto_alt: Fiesta de la Luz en Colegio Waldorf Trekan
 video_id: eOsbR_QoNAY
 galeria:

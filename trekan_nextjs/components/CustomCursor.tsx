@@ -1,77 +1,106 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
 
 export default function CustomCursor() {
-  const cursorRef = useRef<HTMLDivElement>(null)
+  const dotRef = useRef<HTMLDivElement>(null)
+  const ringRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    // Hide default cursor on desktop
+    // Only on desktop
     const isDesktop = window.matchMedia('(min-width: 768px)').matches
     if (!isDesktop) return
 
-    // Native cursor stays visible - custom cursor is decorative only
+    const dot = dotRef.current
+    const ring = ringRef.current
+    if (!dot || !ring) return
 
-    const cursor = cursorRef.current
-    if (!cursor) return
-
-    const xTo = gsap.quickTo(cursor, 'x', { duration: 0.15, ease: 'power3' })
-    const yTo = gsap.quickTo(cursor, 'y', { duration: 0.15, ease: 'power3' })
+    let mouseX = 0, mouseY = 0
+    let ringX = 0, ringY = 0
+    let animFrame: number
 
     const onMouseMove = (e: MouseEvent) => {
-      xTo(e.clientX)
-      yTo(e.clientY)
+      mouseX = e.clientX
+      mouseY = e.clientY
+      dot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`
+      dot.style.opacity = '1'
+      ring.style.opacity = '1'
+    }
+
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t
+
+    const animate = () => {
+      ringX = lerp(ringX, mouseX, 0.12)
+      ringY = lerp(ringY, mouseY, 0.12)
+      ring.style.transform = `translate(${ringX - 16}px, ${ringY - 16}px)`
+      animFrame = requestAnimationFrame(animate)
     }
 
     const onMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement
-      if (target.closest('.no-cursor-scale')) return
-      
-      if (
-        target.tagName === 'A' || 
-        target.tagName === 'BUTTON' || 
-        target.closest('a') || 
-        target.closest('button') || 
+      const isInteractive =
+        target.tagName === 'A' ||
+        target.tagName === 'BUTTON' ||
+        target.closest('a') ||
+        target.closest('button') ||
         target.classList.contains('interactive')
-      ) {
-        gsap.to(cursor, { scale: 3.5, backgroundColor: '#ffffff', duration: 0.3 })
+
+      if (isInteractive) {
+        ring.style.transform += ' scale(2.2)'
+        ring.style.borderColor = 'var(--color-waldorf-terracotta)'
+        dot.style.opacity = '0'
+      } else {
+        ring.style.borderColor = 'var(--color-waldorf-moss)'
+        dot.style.opacity = '1'
       }
     }
 
-    const onMouseOut = (e: MouseEvent) => {
-      const target = e.target as HTMLElement
-      if (target.closest('.no-cursor-scale')) return
-
-      if (
-        target.tagName === 'A' || 
-        target.tagName === 'BUTTON' || 
-        target.closest('a') || 
-        target.closest('button') || 
-        target.classList.contains('interactive')
-      ) {
-        gsap.to(cursor, { scale: 1, backgroundColor: '#ffffff', duration: 0.3 })
-      }
+    const onMouseLeave = () => {
+      dot.style.opacity = '0'
+      ring.style.opacity = '0'
     }
 
     window.addEventListener('mousemove', onMouseMove)
     window.addEventListener('mouseover', onMouseOver)
-    window.addEventListener('mouseout', onMouseOut)
+    document.addEventListener('mouseleave', onMouseLeave)
+    animFrame = requestAnimationFrame(animate)
 
     return () => {
-      // Cleanup
       window.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('mouseover', onMouseOver)
-      window.removeEventListener('mouseout', onMouseOut)
+      document.removeEventListener('mouseleave', onMouseLeave)
+      cancelAnimationFrame(animFrame)
     }
   }, [])
 
   return (
-    <div
-      ref={cursorRef}
-      className="fixed top-0 left-0 w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none z-[9999] bg-[var(--color-waldorf-terracotta)] hidden md:block transition-all duration-300 opacity-70"
-    />
+    <>
+      {/* Dot — instantáneo */}
+      <div
+        ref={dotRef}
+        className="fixed top-0 left-0 pointer-events-none z-[9999] opacity-0 transition-opacity duration-200"
+        style={{
+          width: 8,
+          height: 8,
+          borderRadius: '50%',
+          backgroundColor: 'var(--color-waldorf-moss)',
+          mixBlendMode: 'multiply',
+        }}
+      />
+      {/* Ring — lerp suave */}
+      <div
+        ref={ringRef}
+        className="fixed top-0 left-0 pointer-events-none z-[9998] opacity-0 transition-[opacity,border-color] duration-200"
+        style={{
+          width: 32,
+          height: 32,
+          borderRadius: '50%',
+          border: '1.5px solid var(--color-waldorf-moss)',
+          mixBlendMode: 'multiply',
+        }}
+      />
+    </>
   )
 }

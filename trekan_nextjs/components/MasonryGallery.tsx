@@ -4,13 +4,13 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
 
 const images = [
-  { src: '/images/galeria1.webp', alt: 'Niños aprendiendo', span: 'row-span-2' },
-  { src: '/images/galeria2.webp', alt: 'Aprendizaje vivencial', span: '' },
-  { src: '/images/galeria3.webp', alt: 'Valores Waldorf', span: '' },
-  { src: '/images/galeria7.webp', alt: 'Visión educativa', span: 'row-span-2' },
-  { src: '/images/galeria8.webp', alt: 'Maestro guía', span: '' },
-  { src: '/images/galeria10.webp', alt: 'Bloques temáticos', span: '' },
-  { src: '/images/fondo-natural.jpg', alt: 'Naturaleza en Puerto Varas', span: 'col-span-2 row-span-2' },
+  { src: '/images/galeria1.webp', alt: 'Niños aprendiendo', span: 'col-span-1 md:col-span-2 row-span-2 md:row-span-2' },
+  { src: '/images/galeria2.webp', alt: 'Aprendizaje vivencial', span: 'col-span-1 row-span-1' },
+  { src: '/images/galeria3.webp', alt: 'Valores Waldorf', span: 'col-span-1 row-span-2' },
+  { src: '/images/galeria7.webp', alt: 'Visión educativa', span: 'col-span-1 row-span-1' },
+  { src: '/images/galeria8.webp', alt: 'Maestro guía', span: 'col-span-2 row-span-1' },
+  { src: '/images/galeria5.webp', alt: 'Conexión Naturaleza', span: 'col-span-1 row-span-1' },
+  { src: '/images/galeria6.webp', alt: 'Trabajo con las manos', span: 'col-span-1 row-span-1' },
 ]
 
 export default function MasonryGallery() {

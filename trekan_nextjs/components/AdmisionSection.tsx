@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight, CalendarCheck, Users, Sparkles } from 'lucide-react'
+import Link from 'next/link'
 
 const ADMISION_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSdXbiojPJFncN94G3AS5huINvHKjpv2xFLcEaMjsHiC8sHYSQ/viewform'
 
@@ -72,21 +73,30 @@ export default function AdmisionSection() {
 
         {/* CTA */}
         <motion.div
-          className="text-center"
+          className="text-center flex flex-col items-center justify-center gap-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <a
-            href={ADMISION_FORM}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-[var(--color-waldorf-moss)] text-[var(--color-waldorf-cream)] font-semibold text-base earth-shadow earth-shadow-hover group transition-transform hover:-translate-y-1"
-          >
-            🌿 Postular Ahora — Admisión 2026
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </a>
-          <p className="text-[var(--color-waldorf-sage)] font-semibold text-xs mt-6 uppercase tracking-wider">Cupos limitados · Máximo 16 niños por curso</p>
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+            <a
+              href={ADMISION_FORM}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[var(--color-waldorf-moss)] text-[var(--color-waldorf-cream)] font-semibold text-base earth-shadow earth-shadow-hover group transition-transform hover:-translate-y-1"
+            >
+              🌿 Postular Ahora
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </a>
+            
+            <Link
+              href="/admision"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-[var(--color-waldorf-moss)] font-semibold text-base border border-[var(--color-waldorf-sage)]/20 earth-shadow earth-shadow-hover group transition-transform hover:-translate-y-1"
+            >
+              Ver Valores y Aranceles
+            </Link>
+          </div>
+          <p className="text-[var(--color-waldorf-sage)] font-semibold text-xs mt-4 uppercase tracking-wider">Cupos limitados · Máximo 16 niños por curso</p>
         </motion.div>
       </div>
     </section>

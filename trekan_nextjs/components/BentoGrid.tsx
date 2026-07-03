@@ -31,6 +31,8 @@ export default function BentoGrid() {
       icon: <Trees className="text-[var(--color-waldorf-moss)]" size={24} />,
       size: 'md:col-span-1 md:row-span-1',
       bg: 'bg-[var(--color-waldorf-sage)]/20',
+      image: '/images/galeria5.webp',
+      lightText: true,
     },
     {
       title: 'Bloques Temáticos',
