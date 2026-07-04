@@ -487,7 +487,13 @@ function videoHtml(d) {
   }).join('');
 }
 
-function toWebp(src) { return src.replace(/\.(jpg|jpeg|png)$/i, '.webp'); }
+function toWebp(src) {
+  // Solo convierte a .webp si el archivo .webp existe en disco
+  // Si no existe, devuelve el src original para que <img> fallback funcione
+  const webpPath = src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+  const localPath = path.join(__dirname, webpPath.startsWith('/') ? webpPath.slice(1) : webpPath);
+  return fs.existsSync(localPath) ? webpPath : src;
+}
 
 const TIPO_LABEL = {
   asamblea: 'Asamblea', celebracion: 'Celebración', admision: 'Admisión',
@@ -500,7 +506,7 @@ function noticiaHtml(n, i) {
   const galeId = `n${i}`;
   const imagenes = Array.isArray(d.galeria) && d.galeria.length
     ? d.galeria
-    : d.foto ? [d.foto] : ['images/noticia1.jpg'];
+    : d.foto ? [d.foto] : ['/images/noticia1.jpg'];
 
   const fotoMain = imagenes[0];
   const webpMain = toWebp(fotoMain);
