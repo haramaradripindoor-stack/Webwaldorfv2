@@ -7,6 +7,14 @@ import { MarkdownPost } from '@/lib/markdown'
 import Link from 'next/link'
 
 // Este componente ahora es 'use client' para permitir el scroll horizontal interactivo
+
+// Sanitiza URLs de imagen que vienen de Supabase o archivos .md
+function getImageSrc(url?: string | null): string {
+  if (!url) return '/images/galeria3.webp'
+  if (url.startsWith('http') || url.startsWith('/')) return url
+  return '/' + url  // Corrige paths relativos sin slash inicial ej: 'images/noticia1.jpg'
+}
+
 export default function NewsSection({ displayNews }: { displayNews: MarkdownPost[] }) {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   
@@ -25,7 +33,7 @@ export default function NewsSection({ displayNews }: { displayNews: MarkdownPost
   }
 
   return (
-    <section id="comunidad" className="py-24 bg-[#F9F8F6] relative overflow-hidden">
+    <section id="noticias" className="py-24 bg-[#F9F8F6] relative overflow-hidden">
       {/* Fondo orgánico */}
       <div className="absolute top-0 right-0 w-[50vw] h-[60vh] rounded-[100%] bg-gradient-to-bl from-[var(--color-waldorf-mustard)]/10 via-transparent to-transparent blur-[80px] pointer-events-none transform translate-x-1/4 -translate-y-1/4" />
       
@@ -108,7 +116,7 @@ export default function NewsSection({ displayNews }: { displayNews: MarkdownPost
                   ) : (
                     <Link href={`/noticias/${post.slug}`}>
                       <div className="relative w-full h-[200px] rounded-[12px] overflow-hidden group-hover:scale-[1.01] transition-transform duration-500 earth-shadow">
-                        <Image src={post.image_url || '/images/galeria3.webp'} alt={post.title} fill className="object-cover" />
+                        <Image src={getImageSrc(post.image_url)} alt={post.title} fill className="object-cover" />
                       </div>
                     </Link>
                   )}

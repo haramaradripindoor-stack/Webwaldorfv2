@@ -27,15 +27,19 @@ export default function Navbar() {
       
       {/* Logo */}
       <Link href="/" className="flex items-center gap-3 group no-cursor-scale">
-        <div className="relative w-12 h-12 flex items-center group-hover:scale-105 transition-transform origin-left">
+        <div className="relative w-14 h-14 flex-shrink-0 group-hover:scale-105 transition-transform origin-left">
           <Image 
             src="/assets/logo-mini.webp" 
             alt="Colegio Waldorf Trekan" 
             fill
-            className="object-contain object-left mix-blend-multiply"
+            className="object-contain mix-blend-multiply"
             priority
-            sizes="48px"
+            sizes="56px"
           />
+        </div>
+        <div className="hidden sm:flex flex-col leading-none">
+          <span className="text-sm font-bold text-[var(--color-waldorf-moss)] tracking-tight">Colegio Waldorf</span>
+          <span className="text-lg font-bold font-serif text-[var(--color-waldorf-moss)] tracking-tight leading-none">Trekan</span>
         </div>
       </Link>
 
@@ -64,7 +68,7 @@ export default function Navbar() {
             <Link href="/recursos" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Recursos Waldorf</Link>
             <Link href="/#comunidad" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Comunidad</Link>
             <Link href="/#actividades" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Actividades</Link>
-            <Link href="/#noticias" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Noticias</Link>
+            <Link href="/noticias" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Noticias</Link>
           </div>
         </div>
 
@@ -135,7 +139,7 @@ export default function Navbar() {
               <Link href="/recursos" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Recursos Waldorf</Link>
               <Link href="/#comunidad" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Comunidad</Link>
               <Link href="/#actividades" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Actividades</Link>
-              <Link href="/#noticias" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Noticias</Link>
+              <Link href="/noticias" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Noticias</Link>
             </div>
           </div>
 

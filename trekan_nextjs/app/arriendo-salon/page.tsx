@@ -11,8 +11,8 @@ export default function ArriendoSalonPage() {
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6 md:px-12 bg-[#2d3a2e] text-white overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-20">
-           <Image src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop" fill className="object-cover" alt="Salón" priority />
+        <div className="absolute inset-0 z-0 opacity-40">
+           <Image src="/images/salon-principal.webp" fill className="object-cover" alt="Salón Trekan" priority />
         </div>
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-sm font-bold tracking-widest uppercase mb-6 text-[#d4af37]">

@@ -76,3 +76,39 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* ============================================
+   GOOGLE TRANSLATE — HEADLESS MODE (Awwwards)
+   Suprime el banner feo que Google inyecta.
+   Los botones ES|DE|EN del Navbar controlan
+   la traducción sin mostrar la UI de Google.
+   ============================================ */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+.goog-te-banner-frame {
+  display: none !important;
+}
+body {
+  top: 0px !important;
+  position: static !important;
+}
+.goog-logo-link {
+  display: none !important;
+}
+.goog-te-gadget {
+  color: transparent !important;
+  font-size: 0 !important;
+}
+.goog-te-gadget img {
+  display: none !important;
+}
+#goog-gt-tt,
+.goog-te-balloon-frame,
+div#goog-gt- {
+  display: none !important;
+}
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}
