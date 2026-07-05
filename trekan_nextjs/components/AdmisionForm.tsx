@@ -63,6 +63,12 @@ export default function AdmisionForm() {
                 />
               </div>
 
+              {/* Honeypot anti-spam */}
+              <div className="absolute opacity-0 -z-10" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-white/90 mb-1">Correo Electrónico</label>
