@@ -104,7 +104,7 @@ END:VCARD`
               </div>
               <div>
                 <h4 className="font-bold text-[var(--color-waldorf-moss)]">Correo</h4>
-                <a href="mailto:admision@colegiowaldorftrekan.cl" className="text-[var(--color-waldorf-text-light)] hover:text-[var(--color-waldorf-terracotta)] transition-colors">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=admision@colegiowaldorftrekan.cl&su=Contacto%20Sitio%20Web" target="_blank" rel="noreferrer" className="text-[var(--color-waldorf-text-light)] hover:text-[var(--color-waldorf-terracotta)] transition-colors">
                   admision@colegiowaldorftrekan.cl
                 </a>
               </div>

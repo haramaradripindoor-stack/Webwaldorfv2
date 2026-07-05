@@ -127,7 +127,7 @@ export default function RecursosPage() {
           <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto relative z-10">
             Ayúdanos a expandir esta red colaborativa. Si conoces algún proyecto o profesional afín, no dudes en escribirnos.
           </p>
-          <a href="mailto:coordinacion@colegiowaldorftrekan.cl" className="inline-block bg-white text-[var(--color-waldorf-moss)] px-8 py-4 rounded-full font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform duration-300 relative z-10">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=coordinacion@colegiowaldorftrekan.cl&su=Consulta%20sobre%20Recursos%20Waldorf" target="_blank" rel="noreferrer" className="inline-block bg-white text-[var(--color-waldorf-moss)] px-8 py-4 rounded-full font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform duration-300 relative z-10">
             Sugerir Recurso
           </a>
         </div>

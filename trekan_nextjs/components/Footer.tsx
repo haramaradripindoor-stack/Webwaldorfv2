@@ -42,7 +42,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-3 text-[var(--color-waldorf-text-light)] hover:text-[var(--color-waldorf-terracotta)] transition-colors text-sm font-medium">
               <Mail size={16} className="text-[var(--color-waldorf-sage)]" />
-              <a href="mailto:admision@colegiowaldorftrekan.cl">admision@colegiowaldorftrekan.cl</a>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=admision@colegiowaldorftrekan.cl&su=Contacto%20Sitio%20Web" target="_blank" rel="noreferrer">admision@colegiowaldorftrekan.cl</a>
             </li>
             <li className="flex items-start gap-3 text-[var(--color-waldorf-text-light)] hover:text-[var(--color-waldorf-terracotta)] transition-colors text-sm font-medium">
               <MapPin size={16} className="text-[var(--color-waldorf-sage)] shrink-0 mt-0.5" />
