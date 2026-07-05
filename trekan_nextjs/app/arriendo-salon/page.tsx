@@ -127,7 +127,7 @@ export default function ArriendoSalonPage() {
                </ul>
 
                <div className="flex flex-col sm:flex-row gap-4">
-                 <a href="mailto:coordinacion@colegiowaldorftrekan.cl" className="flex-1 bg-white text-[var(--color-waldorf-moss)] px-4 py-3 rounded-xl font-bold text-center flex items-center justify-center gap-2 hover:bg-[var(--color-waldorf-paper)] transition-colors">
+                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=coordinacion@colegiowaldorftrekan.cl&su=Consulta%20por%20Arriendo%20de%20Sal%C3%B3n" target="_blank" rel="noreferrer" className="flex-1 bg-white text-[var(--color-waldorf-moss)] px-4 py-3 rounded-xl font-bold text-center flex items-center justify-center gap-2 hover:bg-[var(--color-waldorf-paper)] transition-colors">
                    <Mail size={18} />
                    Email
                  </a>
