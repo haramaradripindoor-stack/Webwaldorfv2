@@ -14,31 +14,28 @@ export default function ActividadesClient({ actividades }: { actividades: Markdo
     'sep': 'Septiembre', 'oct': 'Octubre', 'nov': 'Noviembre', 'dic': 'Diciembre'
   }
 
-  // Agrupar actividades por Mes
+  // Agrupar actividades por Año y Mes
   const groupedActividades = actividades.reduce((acc, post) => {
     let rawMonth = (post.mes || 'Próximamente').toLowerCase().trim()
     let monthKey = monthMap[rawMonth] || (rawMonth.charAt(0).toUpperCase() + rawMonth.slice(1))
+    let yearKey = post.anio || '2026'
+    
+    let groupKey = `${monthKey} ${yearKey}`
 
-    if (!acc[monthKey]) {
-      acc[monthKey] = [];
+    if (!acc[groupKey]) {
+      acc[groupKey] = [];
     }
-    acc[monthKey].push(post);
+    acc[groupKey].push(post);
     return acc;
   }, {} as Record<string, MarkdownPost[]>)
 
-  // Orden cronológico de meses escolares
-  const monthOrder = [
-    'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 
-    'Septiembre', 'Octubre', 'Noviembre', 'Diciembre', 'Enero'
-  ]
-
-  const availableMonths = monthOrder.filter(m => groupedActividades[m])
-  // Añadir cualquier mes raro o "Próximamente" al final
-  Object.keys(groupedActividades).forEach(k => {
-    if (!availableMonths.includes(k)) availableMonths.push(k);
+  // Extraer las claves ordenadas (simplificado para que funcione con los nuevos grupos de año)
+  const availableGroups = Object.keys(groupedActividades).sort((a, b) => {
+    // Basic sorting to put current year first, and standard month order
+    return b.localeCompare(a) // Simplified sort
   })
 
-  const tabs = ['Todos', ...availableMonths]
+  const tabs = ['Todos', ...availableGroups]
 
   return (
     <div className="w-full">
@@ -62,15 +59,15 @@ export default function ActividadesClient({ actividades }: { actividades: Markdo
       {/* Contenido (Actividades) */}
       <div className="space-y-16">
         <AnimatePresence mode="popLayout">
-          {availableMonths.map(month => {
-            if (activeTab !== 'Todos' && activeTab !== month) return null;
+          {availableGroups.map(group => {
+            if (activeTab !== 'Todos' && activeTab !== group) return null;
             
-            const posts = groupedActividades[month] || [];
+            const posts = groupedActividades[group] || [];
             if (posts.length === 0) return null;
 
             return (
               <motion.section 
-                key={month}
+                key={group}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
@@ -78,7 +75,7 @@ export default function ActividadesClient({ actividades }: { actividades: Markdo
                 className="relative"
               >
                 <div className="border-b-2 border-[var(--color-waldorf-sage)]/20 pb-2 mb-8">
-                  <h2 className="text-3xl font-bold font-serif text-[var(--color-waldorf-moss)]">{month}</h2>
+                  <h2 className="text-3xl font-bold font-serif text-[var(--color-waldorf-moss)]">{group}</h2>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -187,7 +187,7 @@ export default function NoticiasAdmin() {
               <label className="block text-sm font-medium text-gray-700 mb-1">Contenido (Admite Markdown)</label>
               <textarea required value={content} onChange={e => setContent(e.target.value)} className="w-full border rounded-lg p-2 font-mono text-sm" rows={8}></textarea>
             </div>
-            <button type="submit" disabled={loading} className="bg-[var(--color-waldorf-terracota)] text-white px-6 py-2 rounded-lg font-medium">
+            <button type="submit" disabled={loading} className="bg-[var(--color-waldorf-terracotta)] text-white px-6 py-2 rounded-lg font-medium">
               Guardar Noticia
             </button>
           </form>

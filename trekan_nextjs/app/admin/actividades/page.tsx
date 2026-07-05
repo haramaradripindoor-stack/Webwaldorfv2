@@ -16,6 +16,7 @@ export default function ActividadesAdmin() {
   const [excerpt, setExcerpt] = useState('');
   const [content, setContent] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [anio, setAnio] = useState('');
   const [mes, setMes] = useState('');
   const [dia, setDia] = useState('');
   const [tipo, setTipo] = useState('');
@@ -78,6 +79,7 @@ export default function ActividadesAdmin() {
         excerpt,
         content,
         image_url: imageUrl || '/images/galeria3.webp',
+        anio: anio || '2026',
         mes,
         dia,
         tipo,
@@ -95,7 +97,7 @@ export default function ActividadesAdmin() {
       setExcerpt('');
       setContent('');
       setImageUrl('');
-      setMes(''); setDia(''); setTipo(''); setLugar(''); setHora('');
+      setAnio(''); setMes(''); setDia(''); setTipo(''); setLugar(''); setHora('');
       fetchActividades();
     }
     setLoading(false);
@@ -111,7 +113,7 @@ export default function ActividadesAdmin() {
   };
 
   if (loading && actividades.length === 0) {
-    return <div className="flex items-center justify-center h-64"><Loader2 className="w-8 h-8 animate-spin text-[var(--color-waldorf-terracota)]" /></div>;
+    return <div className="flex items-center justify-center h-64"><Loader2 className="w-8 h-8 animate-spin text-[var(--color-waldorf-terracotta)]" /></div>;
   }
 
   return (
@@ -120,7 +122,7 @@ export default function ActividadesAdmin() {
         <h2 className="text-2xl font-bold font-serif text-gray-800">Gestión de Actividades</h2>
         <button 
           onClick={() => setShowForm(!showForm)}
-          className="bg-[var(--color-waldorf-terracota)] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-orange-700 transition"
+          className="bg-[var(--color-waldorf-terracotta)] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-orange-700 transition"
         >
           {showForm ? 'Cancelar' : <><Plus className="w-4 h-4" /> Nueva Actividad</>}
         </button>
@@ -134,6 +136,10 @@ export default function ActividadesAdmin() {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Título</label>
                 <input type="text" required value={title} onChange={e => setTitle(e.target.value)} className="w-full border rounded-lg p-2" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Año (ej. 2026)</label>
+                <input type="text" value={anio} onChange={e => setAnio(e.target.value)} placeholder="2026" className="w-full border rounded-lg p-2" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Mes (ej. MAYO)</label>
@@ -176,7 +182,7 @@ export default function ActividadesAdmin() {
               <label className="block text-sm font-medium text-gray-700 mb-1">Contenido</label>
               <textarea required value={content} onChange={e => setContent(e.target.value)} className="w-full border rounded-lg p-2 font-mono text-sm" rows={4}></textarea>
             </div>
-            <button type="submit" disabled={loading} className="bg-[var(--color-waldorf-terracota)] text-white px-6 py-2 rounded-lg font-medium">
+            <button type="submit" disabled={loading} className="bg-[var(--color-waldorf-terracotta)] text-white px-6 py-2 rounded-lg font-medium">
               Guardar Actividad
             </button>
           </form>
@@ -196,7 +202,7 @@ export default function ActividadesAdmin() {
             {actividades.map((a) => (
               <tr key={a.id} className="border-b last:border-0 hover:bg-gray-50">
                 <td className="p-4 text-sm text-gray-500">
-                  {a.dia} {a.mes}
+                  {a.dia} {a.mes} {a.anio}
                 </td>
                 <td className="p-4 font-medium text-gray-800">{a.title}</td>
                 <td className="p-4 flex gap-2">
@@ -206,14 +212,12 @@ export default function ActividadesAdmin() {
                       setExcerpt(a.excerpt || '');
                       setContent(a.content || '');
                       setImageUrl(a.image_url || '');
+                      setAnio(a.anio || '');
                       setMes(a.mes || '');
                       setDia(a.dia || '');
                       setTipo(a.tipo || '');
                       setLugar(a.lugar || '');
                       setHora(a.hora || '');
-                      // Set an active ID to update instead of insert (store in a ref or state, but for simplicity we can just delete and recreate with same slug, or just use upsert with slug)
-                      // Upsert uses the unique slug, so if we don't change the title it will overwrite. But if they change title, it creates a new one. 
-                      // To make it proper, let's just use the form. Upsert based on slug will work if slug matches.
                       setShowForm(true);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }} 

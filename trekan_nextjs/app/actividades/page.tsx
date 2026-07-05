@@ -1,4 +1,4 @@
-import { getMarkdownPosts } from '@/lib/markdown'
+import { createClient } from '@/utils/supabase/server'
 import { Calendar } from 'lucide-react'
 import ActividadesClient from '@/components/ActividadesClient'
 
@@ -7,8 +7,16 @@ export const metadata = {
   description: 'Revisa el calendario completo de nuestras próximas asambleas, festividades, y encuentros para padres.',
 }
 
-export default function ActividadesPage() {
-  const allActividades = getMarkdownPosts('_actividades').sort((a, b) => new Date(a.published_at).getTime() - new Date(b.published_at).getTime())
+export const revalidate = 0; // Disable cache so it updates when admin saves
+
+export default async function ActividadesPage() {
+  const supabase = createClient();
+  const { data: actividades } = await supabase
+    .from('actividades')
+    .select('*')
+    .order('published_at', { ascending: false });
+
+  const allActividades = actividades || [];
 
   return (
     <main className="min-h-screen bg-[var(--color-waldorf-cream)] pt-32 pb-24">
