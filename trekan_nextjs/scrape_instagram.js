@@ -7,24 +7,8 @@ async function scrapeInstagram() {
     try {
         let wsEndpoint;
         
-        // Attempt to connect via Local API
-        try {
-            console.log("Intentando conectar a AdsPower Local API...");
-            const response = await axios.get('http://local.adspower.net:50325/api/v1/browser/active');
-            
-            // The API returns active profiles.
-            if (response.data.code === 0 && response.data.data.ws) {
-                wsEndpoint = response.data.data.ws.puppeteer;
-            } else if (response.data.code === 0 && Array.isArray(response.data.data)) {
-                 const activeSession = response.data.data.find(s => s.ws && s.ws.puppeteer);
-                 if (activeSession) {
-                     wsEndpoint = activeSession.ws.puppeteer;
-                 }
-            }
-        } catch (e) {
-            console.log("Fallo API Local, mensaje:", e.message);
-        }
-
+        wsEndpoint = 'ws://127.0.0.1:60849/devtools/browser/8abd0d5a-d9fd-4da3-85c4-ae927f677cc5';
+        
         if (!wsEndpoint) {
             console.log("Buscando todos los perfiles activos para encontrar wsEndpoint...");
             try {
