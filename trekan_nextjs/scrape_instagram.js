@@ -50,31 +50,44 @@ async function scrapeInstagram() {
             await page.waitForTimeout(2000);
         }
 
-        console.log("Extrayendo imágenes de los posts...");
-        const imageSrcs = await page.evaluate(() => {
-            const images = Array.from(document.querySelectorAll('img'));
-            return images
+        console.log("Extrayendo imágenes y videos de los posts...");
+        const mediaUrls = await page.evaluate(() => {
+            const imgs = Array.from(document.querySelectorAll('img'))
+                .filter(img => img.width > 200)
                 .map(img => img.src)
-                .filter(src => src && src.includes('scontent') && !src.includes('150x150'));
+                .filter(src => src && !src.includes('data:image') && !src.includes('150x150'));
+            
+            const vids = Array.from(document.querySelectorAll('video'))
+                .map(v => v.src || (v.querySelector('source') && v.querySelector('source').src))
+                .filter(src => src);
+
+            return [...new Set([...imgs, ...vids])];
         });
 
-        const targetImages = imageSrcs.slice(0, 6);
-        console.log(`Encontradas ${targetImages.length} imágenes para descargar.`);
+        const targetMedia = mediaUrls.slice(0, 10);
+        console.log(`Encontrados ${targetMedia.length} archivos multimedia para descargar.`);
 
         const outputDir = 'C:\\Users\\FELIP\\Documents\\GitHub\\Webwaldorfv2\\trekan_nextjs\\public\\assets\\ig';
         if (!fs.existsSync(outputDir)){
             fs.mkdirSync(outputDir, { recursive: true });
         }
 
-        for (let i = 0; i < targetImages.length; i++) {
-            const src = targetImages[i];
-            console.log(`Descargando imagen ${i+1}...`);
+        for (let i = 0; i < targetMedia.length; i++) {
+            const src = targetMedia[i];
+            const isVideo = src.includes('.mp4') || src.includes('video');
+            const ext = isVideo ? 'mp4' : 'jpg';
+            console.log(`Descargando archivo ${i+1}...`);
             try {
-                const imgRes = await axios.get(src, { responseType: 'arraybuffer' });
-                fs.writeFileSync(path.join(outputDir, `ig_post_${i+1}.jpg`), imgRes.data);
-                console.log(`Imagen ${i+1} guardada con éxito.`);
+                // If it's a blob, axios won't work. We might need to download it via page.evaluate
+                if (src.startsWith('blob:')) {
+                    console.log(`Saltando blob URL: ${src}`);
+                    continue;
+                }
+                const res = await axios.get(src, { responseType: 'arraybuffer' });
+                fs.writeFileSync(path.join(outputDir, `ig_post_${i+1}.${ext}`), res.data);
+                console.log(`Archivo ${i+1}.${ext} guardado con éxito.`);
             } catch (err) {
-                console.log(`Error descargando imagen ${i+1}:`, err.message);
+                console.log(`Error descargando archivo ${i+1}:`, err.message);
             }
         }
 
