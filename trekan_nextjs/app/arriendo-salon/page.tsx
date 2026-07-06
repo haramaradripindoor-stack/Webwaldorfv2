@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Check, Clock, Calendar, Info, Mail } from 'lucide-react';
 import Image from 'next/image';
-
+import CotizadorSalon from '@/components/CotizadorSalon';
 export default function ArriendoSalonPage() {
   return (
     <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-hidden">
@@ -138,6 +138,11 @@ export default function ArriendoSalonPage() {
             </div>
 
           </div>
+        </div>
+
+        {/* Cotizador Interactivo */}
+        <div className="max-w-5xl mx-auto mt-20">
+          <CotizadorSalon />
         </div>
       </section>
       

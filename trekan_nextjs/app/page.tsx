@@ -7,11 +7,13 @@ import BentoGrid from '@/components/BentoGrid'
 import MasonryGallery from '@/components/MasonryGallery'
 import TeamSection from '@/components/TeamSection'
 import ComunidadSection from '@/components/ComunidadSection'
-import AdmisionSection from '@/components/AdmisionSection'
+import ImmersiveTestimonials from '@/components/ImmersiveTestimonials'
 import FAQSection from '@/components/FAQSection'
+import MicroSegmentador from '@/components/MicroSegmentador'
 import ContactSection from '@/components/ContactSection'
 import MapSection from '@/components/MapSection'
 import InstagramSection from '@/components/InstagramSection'
+import RadicalTransparency from '@/components/RadicalTransparency'
 import Footer from '@/components/Footer'
 import { getMarkdownPosts } from '@/lib/markdown'
 import { createClient } from '@/utils/supabase/server'
@@ -50,14 +52,16 @@ export default async function Home() {
       <BentoGrid />
       <ComunidadSection />
       <ActividadesSection />
+      <ImmersiveTestimonials />
       <NewsSection displayNews={displayNews} />
       <MasonryGallery />
       <TeamSection />
-      <AdmisionSection />
+      <MicroSegmentador />
       <FAQSection />
       <ContactSection />
       <MapSection />
       <InstagramSection />
+      <RadicalTransparency />
       <Footer />
     </main>
   )
