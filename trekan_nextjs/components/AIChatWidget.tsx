@@ -16,6 +16,7 @@ export default function AIChatWidget() {
   // Fases del widget: 'lead_capture' -> 'chat'
   const [phase, setPhase] = useState<'lead_capture' | 'chat'>('lead_capture')
   const [leadData, setLeadData] = useState({ name: '', phone: '', email: '' })
+  const [showFaq, setShowFaq] = useState(true)
   
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
@@ -59,6 +60,24 @@ export default function AIChatWidget() {
     const text = `Hola Ivonne! Soy ${leadData.name}. Estuve hablando con tu asistente por la página web y me gustaría agendar una visita o resolver dudas finales. 🌱`
     return `https://wa.me/56967765106?text=${encodeURIComponent(text)}`
   }
+
+  const handleFaqClick = (question: string, answer: string) => {
+    // Aquí podríamos inyectar la pregunta y respuesta al array de mensajes del chat
+    // Por simplicidad, esconderemos los FAQs y mostraremos un mensaje especial
+    setShowFaq(false)
+    handleInputChange({ target: { value: question } } as any)
+    // Luego simulamos enviar el form
+    setTimeout(() => {
+      const form = document.getElementById('chat-form') as HTMLFormElement
+      if (form) form.requestSubmit()
+    }, 100)
+  }
+
+  const faqs = [
+    { q: '¿Tienen cupos para 2026?', a: 'Sí, estamos en proceso de admisión 2026. Te sugiero hablar con Ivonne para coordinar una visita.' },
+    { q: '¿Cuáles son los aranceles?', a: 'Nuestros aranceles varían por nivel. Ivonne puede enviarte la tabla detallada por WhatsApp.' },
+    { q: 'Quiero hablar con Ivonne', a: 'Derivación directa' }
+  ]
 
   return (
     <div className="fixed bottom-6 right-6 z-[9998] flex flex-col items-end gap-3">
@@ -188,15 +207,55 @@ export default function AIChatWidget() {
                       </div>
                     </div>
                   )}
+
+                  {/* FAQs y Derivación Estratégica */}
+                  {showFaq && messages.length <= 2 && (
+                    <div className="flex flex-col gap-2 mt-4">
+                      <p className="text-xs text-[var(--color-waldorf-moss)] font-bold uppercase tracking-wider mb-1">Preguntas Frecuentes</p>
+                      {faqs.map((faq, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => {
+                            if (faq.q === 'Quiero hablar con Ivonne') {
+                              window.open(getWhatsAppDerivation(), '_blank')
+                            } else {
+                              handleFaqClick(faq.q, faq.a)
+                            }
+                          }}
+                          className="text-left text-sm bg-white border border-[var(--color-waldorf-sage)]/20 p-3 rounded-xl hover:bg-[var(--color-waldorf-sage)]/5 transition-colors text-[var(--color-waldorf-text)] shadow-sm flex items-center justify-between group"
+                        >
+                          <span>{faq.q}</span>
+                          <span className="text-[var(--color-waldorf-moss)] opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Sugerencia de Derivación después de un rato */}
+                  {!showFaq && messages.length > 3 && (
+                    <div className="mt-4 p-4 bg-[var(--color-waldorf-sage)]/10 rounded-2xl border border-[var(--color-waldorf-sage)]/20 text-center">
+                      <p className="text-sm text-[var(--color-waldorf-text)] mb-3">¿Prefieres coordinar directamente el día ideal para tu visita?</p>
+                      <a 
+                        href={getWhatsAppDerivation()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-[#25D366] text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-md hover:bg-[#128C7E] transition-colors"
+                      >
+                        <MessageCircle size={18} />
+                        Hablar con Ivonne
+                      </a>
+                    </div>
+                  )}
                   
                   <div ref={messagesEndRef} />
                 </div>
               )}
             </div>
 
-            {/* Input Area */}
+            {/* Footer / Input */}
             {phase === 'chat' && (
-              <form onSubmit={handleSubmit} className="p-3 bg-white border-t border-[var(--color-waldorf-sage)]/10 flex gap-2 shrink-0">
+              <div className="p-3 bg-white border-t border-[var(--color-waldorf-sage)]/10 shrink-0">
+                <form id="chat-form" onSubmit={handleSubmit} className="flex items-end gap-2 relative">
                 <input
                   value={input}
                   onChange={handleInputChange}
@@ -212,6 +271,7 @@ export default function AIChatWidget() {
                   <Send size={16} className="-ml-0.5" />
                 </button>
               </form>
+              </div>
             )}
           </motion.div>
         )}

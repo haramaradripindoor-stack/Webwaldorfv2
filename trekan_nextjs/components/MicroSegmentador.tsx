@@ -17,6 +17,7 @@ export default function MicroSegmentador() {
     enfoque: null,
     experiencia: null
   })
+  const [selectedDay, setSelectedDay] = useState<string | null>(null)
   
   // Para la micro-interacción de selección
   const [animatingId, setAnimatingId] = useState<string | null>(null)
@@ -209,16 +210,27 @@ export default function MicroSegmentador() {
                   {/* Phygital Simulated Calendar Interface */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {['Lunes', 'Martes', 'Jueves', 'Viernes'].map(dia => (
-                      <button key={dia} className="py-3 px-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/20 hover:border-white/30 transition-colors text-sm font-medium">
+                      <button 
+                        key={dia} 
+                        onClick={() => setSelectedDay(dia)}
+                        className={`py-3 px-4 rounded-xl border transition-colors text-sm font-medium ${selectedDay === dia ? 'bg-[var(--color-waldorf-mustard)] text-[#1a2e25] border-transparent scale-105 shadow-lg' : 'bg-white/5 border-white/10 hover:bg-white/20 hover:border-white/30 text-white'}`}
+                      >
                         {dia} <br/>
-                        <span className="text-xs opacity-60">Mañana</span>
+                        <span className={`text-xs ${selectedDay === dia ? 'opacity-80' : 'opacity-60'}`}>Mañana</span>
                       </button>
                     ))}
                   </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button onClick={() => alert("Simulación de Agendamiento")} className="px-8 py-4 rounded-full bg-[var(--color-waldorf-mustard)] text-[#1a2e25] font-bold text-sm shadow-[0_0_30px_rgba(224,169,109,0.3)] hover:shadow-[0_0_50px_rgba(224,169,109,0.6)] transition-all duration-300 flex items-center justify-center gap-2 group">
+                  <button 
+                    onClick={() => {
+                      const text = `Hola Ivonne, soy familia buscando nivel para ${data.nivel || 'mi hijo'}. Me encantaría agendar una visita el día ${selectedDay || 'que tengan disponibilidad'}.`;
+                      const whatsappUrl = `https://wa.me/56987654321?text=${encodeURIComponent(text)}`;
+                      window.open(whatsappUrl, '_blank');
+                    }} 
+                    className="px-8 py-4 rounded-full bg-[var(--color-waldorf-mustard)] text-[#1a2e25] font-bold text-sm shadow-[0_0_30px_rgba(224,169,109,0.3)] hover:shadow-[0_0_50px_rgba(224,169,109,0.6)] transition-all duration-300 flex items-center justify-center gap-2 group"
+                  >
                     Confirmar Entrevista
                     <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </button>

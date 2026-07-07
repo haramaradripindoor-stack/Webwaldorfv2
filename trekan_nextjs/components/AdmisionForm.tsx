@@ -1,56 +1,45 @@
 'use client'
 
 import { useState } from 'react'
-import { submitLead } from '@/app/actions/submitLead'
-import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
+import { Send, CalendarClock } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function AdmisionForm() {
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [errorMessage, setErrorMessage] = useState('')
+  const [selectedDay, setSelectedDay] = useState<string | null>(null)
+  
+  // Handlers para el form
+  const [formData, setFormData] = useState({
+    parentName: '',
+    childrenAges: '',
+    message: ''
+  })
 
-  async function handleAction(formData: FormData) {
-    setStatus('loading')
-    const result = await submitLead(formData)
-    
-    if (result.success) {
-      setStatus('success')
-    } else {
-      setStatus('error')
-      setErrorMessage(result.error || 'Ocurrió un error inesperado.')
-    }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleWhatsAppRoute = (e: React.FormEvent) => {
+    e.preventDefault();
+    const text = `Hola Ivonne, soy ${formData.parentName}, me interesa postular para edades: ${formData.childrenAges}. ${formData.message ? `Adicionalmente: ${formData.message}` : ''} Me gustaría agendar una visita el día ${selectedDay || 'que tengan disponibilidad'}.`;
+    const whatsappUrl = `https://wa.me/56987654321?text=${encodeURIComponent(text)}`;
+    window.open(whatsappUrl, '_blank');
   }
 
   return (
-    <div className="w-full max-w-xl mx-auto mt-12 bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 text-left">
+    <div className="w-full max-w-2xl mx-auto mt-12 bg-white/5 backdrop-blur-md p-8 md:p-10 rounded-[2.5rem] border border-[var(--color-waldorf-mustard)]/20 shadow-2xl text-left">
       <AnimatePresence mode="wait">
-        {status === 'success' ? (
-          <motion.div 
-            key="success"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="flex flex-col items-center justify-center text-center py-8"
-          >
-            <div className="w-16 h-16 bg-[var(--color-waldorf-sage)]/20 rounded-full flex items-center justify-center mb-4">
-              <CheckCircle2 size={32} className="text-[#25D366]" />
+        <motion.div 
+          key="form"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <form onSubmit={handleWhatsAppRoute} className="space-y-6">
+            <div className="text-center mb-10">
+              <h3 className="text-3xl font-serif font-bold text-white mb-2">Postulación 2026</h3>
+              <p className="text-white/70 text-sm">Conversemos directamente por WhatsApp para coordinar tu visita.</p>
             </div>
-            <h3 className="text-2xl font-serif font-bold text-white mb-2">¡Solicitud Enviada!</h3>
-            <p className="text-white/80">
-              Hemos recibido tus datos correctamente. Ivonne te contactará muy pronto para coordinar el siguiente paso.
-            </p>
-          </motion.div>
-        ) : (
-          <motion.div 
-            key="form"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            <form action={handleAction} className="space-y-4">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-serif font-bold text-white mb-2">Postulación 2026</h3>
-                <p className="text-white/70 text-sm">Completa tus datos y nos pondremos en contacto contigo.</p>
-              </div>
 
+            <div className="space-y-4">
               <div>
                 <label htmlFor="parentName" className="block text-sm font-medium text-white/90 mb-1">Tu Nombre Completo *</label>
                 <input 
@@ -58,46 +47,22 @@ export default function AdmisionForm() {
                   id="parentName"
                   name="parentName"
                   required 
+                  value={formData.parentName}
+                  onChange={handleChange}
                   className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[var(--color-waldorf-mustard)] transition-colors"
                   placeholder="Ej: María González"
                 />
               </div>
 
-              {/* Honeypot anti-spam */}
-              <div className="absolute opacity-0 -z-10" aria-hidden="true">
-                <label htmlFor="website">Website</label>
-                <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-white/90 mb-1">Correo Electrónico</label>
-                  <input 
-                    type="email" 
-                    id="email"
-                    name="email"
-                    className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[var(--color-waldorf-mustard)] transition-colors"
-                    placeholder="tucorreo@ejemplo.com"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-white/90 mb-1">Teléfono (WhatsApp)</label>
-                  <input 
-                    type="tel" 
-                    id="phone"
-                    name="phone"
-                    className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[var(--color-waldorf-mustard)] transition-colors"
-                    placeholder="+56 9 1234 5678"
-                  />
-                </div>
-              </div>
-
               <div>
-                <label htmlFor="childrenAges" className="block text-sm font-medium text-white/90 mb-1">Edades de los niños/as a postular</label>
+                <label htmlFor="childrenAges" className="block text-sm font-medium text-white/90 mb-1">Edades de los niños/as a postular *</label>
                 <input 
                   type="text" 
                   id="childrenAges"
                   name="childrenAges"
+                  required
+                  value={formData.childrenAges}
+                  onChange={handleChange}
                   className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[var(--color-waldorf-mustard)] transition-colors"
                   placeholder="Ej: 4 y 7 años"
                 />
@@ -108,39 +73,45 @@ export default function AdmisionForm() {
                 <textarea 
                   id="message"
                   name="message"
-                  rows={3}
+                  rows={2}
+                  value={formData.message}
+                  onChange={handleChange}
                   className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[var(--color-waldorf-mustard)] transition-colors resize-none"
                   placeholder="¿Hay algo más que debamos saber?"
                 />
               </div>
+            </div>
 
-              {status === 'error' && (
-                <div className="bg-red-500/20 border border-red-500/50 text-white p-3 rounded-xl flex items-center gap-2 text-sm">
-                  <AlertCircle size={16} className="shrink-0" />
-                  <p>{errorMessage}</p>
-                </div>
-              )}
+            {/* Selector de Días Integrado */}
+            <div className="bg-black/20 p-6 rounded-2xl border border-white/10 mt-8">
+              <h4 className="text-lg font-bold mb-4 flex items-center gap-3 text-white">
+                <CalendarClock className="text-[var(--color-waldorf-mustard)]" />
+                Día preferido para la visita
+              </h4>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {['Lunes', 'Martes', 'Jueves', 'Viernes'].map(dia => (
+                  <button 
+                    key={dia} 
+                    type="button"
+                    onClick={() => setSelectedDay(dia)}
+                    className={`py-3 px-4 rounded-xl border transition-colors text-sm font-medium ${selectedDay === dia ? 'bg-[var(--color-waldorf-mustard)] text-[#1a2e25] border-transparent scale-105 shadow-lg' : 'bg-white/5 border-white/10 hover:bg-white/20 hover:border-white/30 text-white'}`}
+                  >
+                    {dia} <br/>
+                    <span className={`text-xs ${selectedDay === dia ? 'opacity-80' : 'opacity-60'}`}>Mañana</span>
+                  </button>
+                ))}
+              </div>
+            </div>
 
-              <button 
-                type="submit" 
-                disabled={status === 'loading'}
-                className="w-full bg-white text-[var(--color-waldorf-moss)] py-4 rounded-xl font-bold hover:bg-[var(--color-waldorf-paper)] transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-4"
-              >
-                {status === 'loading' ? (
-                  <>
-                    <Loader2 size={20} className="animate-spin" />
-                    Enviando...
-                  </>
-                ) : (
-                  <>
-                    <Send size={18} />
-                    Enviar Postulación
-                  </>
-                )}
-              </button>
-            </form>
-          </motion.div>
-        )}
+            <button 
+              type="submit" 
+              className="w-full bg-[var(--color-waldorf-mustard)] text-[#1a2e25] py-4 rounded-xl font-bold hover:bg-[#e6a55e] transition-colors flex items-center justify-center gap-2 mt-8 text-lg shadow-[0_0_20px_rgba(224,169,109,0.2)] hover:shadow-[0_0_30px_rgba(224,169,109,0.4)]"
+            >
+              <Send size={20} />
+              Conversar con Ivonne
+            </button>
+          </form>
+        </motion.div>
       </AnimatePresence>
     </div>
   )

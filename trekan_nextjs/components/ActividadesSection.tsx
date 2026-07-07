@@ -80,57 +80,72 @@ export default async function ActividadesSection() {
             </a>
           </div>
 
-          <div className="flex flex-col gap-16">
+          <div className="flex flex-col border-t border-[var(--color-waldorf-sage)]/20 mt-12">
             {Object.entries(mesesAgrupados).slice(0, 1).map(([mes, actividades]) => (
-              <div key={mes}>
-                <h3 className="text-2xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-8 border-b border-[var(--color-waldorf-sage)]/20 pb-4 inline-block w-full">
+              <div key={mes} className="w-full">
+                <h3 className="text-sm font-bold font-mono tracking-widest text-[var(--color-waldorf-terracotta)] uppercase py-8">
                   Próximas en {mes}
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {(actividades as any[]).map((post: any) => {
+                
+                <div className="flex flex-col w-full">
+                  {(actividades as any[]).map((post: any, i: number) => {
                     const isCelebracion = post.tipo?.toLowerCase() === 'celebracion' || post.tipo?.toLowerCase() === 'celebración';
-                    const tagColor = isCelebracion ? 'bg-[var(--color-waldorf-sage)]/20 text-[var(--color-waldorf-moss)]' : 'bg-purple-100 text-purple-700';
-                    const dateBlockBg = isCelebracion ? 'bg-[var(--color-waldorf-moss)]' : 'bg-[#c6a382]';
+                    const tagColor = isCelebracion ? 'text-[var(--color-waldorf-moss)]' : 'text-[var(--color-waldorf-terracotta)]';
+                    // We'll use a placeholder beautiful image based on index for the hover reveal
+                    const fallbackImages = ['/assets/fb/fb_post_1.jpg', '/assets/fb/fb_post_3.jpg', '/assets/fb/fb_post_5.jpg', '/assets/fb/fb_post_6.jpg'];
+                    const hoverImg = post.image || fallbackImages[i % fallbackImages.length];
 
                     return (
-                      <article 
+                      <a 
+                        href={`/actividades`}
                         key={post.id} 
-                        className="flex bg-white rounded-2xl overflow-hidden border border-[var(--color-waldorf-sage)]/10 earth-shadow hover:-translate-y-1 transition-transform duration-300"
+                        className="group relative flex flex-col md:flex-row items-start md:items-center justify-between py-10 border-b border-[var(--color-waldorf-sage)]/20 hover:border-[var(--color-waldorf-moss)] transition-colors duration-500 w-full"
                       >
-                        <div className={`${dateBlockBg} flex flex-col items-center justify-center p-6 text-white min-w-[100px]`}>
-                          <span className="text-3xl font-bold font-serif leading-none mb-1">{post.dia || '00'}</span>
-                          <span className="text-xs font-bold tracking-widest uppercase">{post.mes || 'MES'}</span>
+                        {/* Hover Image Reveal (Absolute, follows row on hover) */}
+                        <div className="hidden md:block absolute right-1/4 top-1/2 -translate-y-1/2 w-80 h-48 opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-700 pointer-events-none z-0 rounded-2xl overflow-hidden shadow-2xl origin-center rotate-3 group-hover:rotate-0">
+                          <div 
+                            className="w-full h-full bg-cover bg-center"
+                            style={{ backgroundImage: `url(${hoverImg})` }}
+                          />
                         </div>
-                        
-                        <div className="p-6 flex flex-col flex-grow">
-                          <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase mb-3 w-fit ${tagColor}`}>
+
+                        {/* Date & Type (Left) */}
+                        <div className="w-full md:w-1/4 flex flex-col mb-4 md:mb-0 relative z-10">
+                           <span className={`text-xs font-bold tracking-widest uppercase mb-2 ${tagColor}`}>
                             {post.tipo || 'ACTIVIDAD'}
                           </span>
-                          
-                          <h4 className="text-xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-3 leading-tight">
-                            {post.title}
-                          </h4>
-                          
-                          <p className="text-[var(--color-waldorf-text-light)] text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
-                            {post.excerpt}
-                          </p>
-                          
-                          <div className="flex flex-col gap-2 mt-auto pt-4 border-t border-gray-100">
-                            {post.lugar && (
-                              <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
-                                <MapPin size={14} />
-                                {post.lugar}
-                              </div>
-                            )}
-                            {post.hora && (
-                              <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
-                                <Clock size={14} />
-                                {post.hora}
-                              </div>
-                            )}
+                          <div className="flex items-baseline gap-2 text-[#1a2e25]">
+                            <span className="text-4xl md:text-5xl font-serif font-bold leading-none">{post.dia || '00'}</span>
+                            <span className="text-sm font-bold uppercase tracking-wider">{post.mes || 'MES'}</span>
                           </div>
                         </div>
-                      </article>
+                        
+                        {/* Title & Desc (Middle) */}
+                        <div className="w-full md:w-1/2 relative z-10 transition-transform duration-500 group-hover:translate-x-4">
+                          <h4 className="text-2xl md:text-4xl font-serif font-bold text-[#1a2e25] mb-2 leading-tight group-hover:text-[var(--color-waldorf-moss)] transition-colors">
+                            {post.title}
+                          </h4>
+                          <p className="text-[#1a2e25]/60 text-sm md:text-base line-clamp-1 max-w-lg font-light">
+                            {post.excerpt}
+                          </p>
+                        </div>
+                        
+                        {/* Meta (Right) */}
+                        <div className="w-full md:w-1/4 flex flex-col md:items-end gap-2 mt-4 md:mt-0 relative z-10">
+                          {post.lugar && (
+                            <div className="flex items-center gap-2 text-sm text-[#1a2e25]/60 font-medium">
+                              <MapPin size={16} />
+                              {post.lugar}
+                            </div>
+                          )}
+                          {post.hora && (
+                            <div className="flex items-center gap-2 text-sm text-[#1a2e25]/60 font-medium">
+                              <Clock size={16} />
+                              {post.hora}
+                            </div>
+                          )}
+                        </div>
+                      </a>
                     )
                   })}
                 </div>

@@ -118,7 +118,7 @@ export default function RootLayout({
         </SmoothScroll>
         
         {/* Widgets Flotantes Globales */}
-        <AIChatWidget />
+        <FloatingWhatsApp />
       </body>
     </html>
   )

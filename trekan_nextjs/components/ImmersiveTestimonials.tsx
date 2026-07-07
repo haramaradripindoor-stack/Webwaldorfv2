@@ -14,11 +14,18 @@ export default function ImmersiveTestimonials() {
   const xLeft = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"])
   const xRight = useTransform(scrollYProgress, [0, 1], ["-50%", "0%"])
 
-  const testimonials = [
+  const testimonialsRow1 = [
     { text: "Nuestra hija recuperó el asombro por aprender.", author: "Familia González", media: "/assets/testimonial.mp4", type: "video" },
     { text: "La conexión con la naturaleza es invaluable.", author: "Familia Silva", media: "/assets/fb/fb_post_2.jpg", type: "image" },
     { text: "Una comunidad que abraza y sostiene.", author: "Apoderada de Básica", media: "/assets/fb/fb_post_4.jpg", type: "image" },
     { text: "El arte es el corazón del currículo.", author: "Apoderado de Media", media: "/assets/ig/post_5.jpg", type: "image" }
+  ]
+
+  const testimonialsRow2 = [
+    { text: "Verlos amasar el pan cada semana es mágico.", author: "Mamá de Jardín", media: "/assets/fb/fb_post_6.jpg", type: "image" },
+    { text: "Aprenden matemáticas tejiendo y cantando.", author: "Familia Rojas", media: "/assets/fb/fb_post_1.jpg", type: "image" },
+    { text: "No hay notas, hay un profundo respeto por sus ritmos.", author: "Apoderado Nuevo", media: "/assets/fb/fb_post_3.jpg", type: "image" },
+    { text: "El vínculo con su Maestro Guía es para toda la vida.", author: "Familia de 5° Básico", media: "/assets/ig/post_4.jpg", type: "image" }
   ]
 
   return (
@@ -34,7 +41,7 @@ export default function ImmersiveTestimonials() {
       <div className="flex flex-col gap-8 relative z-10">
         {/* Row 1 moving left */}
         <motion.div style={{ x: xLeft }} className="flex gap-8 whitespace-nowrap px-6">
-          {[...testimonials, ...testimonials].map((t, i) => (
+          {[...testimonialsRow1, ...testimonialsRow1].map((t, i) => (
             <div key={i} className="flex-shrink-0 w-[400px] md:w-[600px] h-[300px] relative rounded-3xl overflow-hidden group">
               {t.type === 'video' ? (
                 <video 
@@ -65,7 +72,7 @@ export default function ImmersiveTestimonials() {
 
         {/* Row 2 moving right */}
         <motion.div style={{ x: xRight }} className="flex gap-8 whitespace-nowrap px-6">
-          {[...testimonials].reverse().concat([...testimonials].reverse()).map((t, i) => (
+          {[...testimonialsRow2, ...testimonialsRow2].map((t, i) => (
             <div key={i} className="flex-shrink-0 w-[400px] md:w-[600px] h-[300px] relative rounded-3xl overflow-hidden group">
               {t.type === 'video' ? (
                 <video 
