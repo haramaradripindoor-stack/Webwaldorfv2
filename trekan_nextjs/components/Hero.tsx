@@ -54,7 +54,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A10]/90 via-[#0A0A10]/20 to-[#0A0A10] mix-blend-multiply" />
         <div className="absolute inset-0 bg-[var(--color-waldorf-moss)]/20 mix-blend-overlay" />
         {/* Film grain layer */}
-        <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-20 mix-blend-overlay pointer-events-none" />
+
       </motion.div>
       
       {/* Audio Control (Organic Audio) */}

@@ -23,7 +23,7 @@ export default function ImmersiveTestimonials() {
 
   return (
     <section ref={containerRef} className="py-32 bg-[#1a2e25] text-[var(--color-waldorf-cream)] overflow-hidden relative">
-      <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-5 mix-blend-overlay pointer-events-none" />
+
       
       <div className="max-w-7xl mx-auto px-6 mb-16 relative z-10">
         <h2 className="text-4xl md:text-6xl font-serif font-bold text-[var(--color-waldorf-mustard)]">
