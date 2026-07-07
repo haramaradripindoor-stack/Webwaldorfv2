@@ -1,104 +1,76 @@
-# Playwright E2E Test Suite Infrastructure - Webwaldorfv2
+# E2E Test Infrastructure - Colegio Waldorf Trekan
 
-This document outlines the features and the 49 test cases designed to test the frontend interactions and animations of the Colegio Waldorf Trekan website.
-
-## Feature Inventory
-
-1. **Hero Section Animation**
-   - Implemented via a custom Javascript slideshow.
-   - Supports fade transition, active class manipulation, dot controls, automatic slide intervals (5000ms), paused-on-hover state, swipe gestures, and transitions lock flag (`isAnimating`).
-
-2. **Asymmetric Masonry Layout**
-   - Implemented via CSS columns (`columns: 1`, `columns: 2`, `columns: 3`) on `.cms-archivo-grid`.
-   - Incorporates `.cms-archivo-card` elements with `break-inside: avoid`.
-   - Category filtering (via chips) dynamically updates visibility, with keyboard navigation support on images.
-
-3. **WhatsApp Float Widget**
-   - Composed of `#waTrigger`, `#waCard`, overlay, close button, and redirection links.
-   - Incorporates a custom attention badge showing/hiding dynamically on intervals.
-
-4. **Smooth Scroll & Navigation**
-   - Global sticky navbar (`#navbar`) shrinking on scroll down (`.nav-scrolled`, `.scrolled`) and hiding when scrolling down, revealing when scrolling up.
-   - Smooth page scrolling offset calculation to account for navbar height.
-   - Back-to-top button (`.back-to-top`) appearing after 300px and scrolling smoothly to top.
+This document outlines the testing philosophy, architecture, feature inventory, and test scenarios designed for the Waldorf Trekan Next.js project.
 
 ---
 
-## E2E Test Case Matrix (49 Cases)
-
-### Tier 1: Unit & Component level checks (20 tests)
-#### Hero Section Animation
-1. **test_hero_initial_active_slide**: Verify the first slide starts with the `.active` class and opacity 1.
-2. **test_hero_slides_present**: Check that at least one `.slide` exists inside the slideshow container.
-3. **test_hero_first_dot_active**: Check that the first dot has the `.active` class on initial load.
-4. **test_hero_global_api_present**: Verify that the global slideshow functions `changeSlide` and `currentSlide` exist on `window`.
-5. **test_hero_container_exists**: Verify the `.slideshow-container` is rendered.
-
-#### Asymmetric Masonry Layout
-6. **test_masonry_grid_exists**: Verify `.cms-archivo-grid` exists on `noticias.html`.
-7. **test_masonry_cards_present**: Verify that `.cms-archivo-card` elements exist within the grid.
-8. **test_masonry_column_css**: Check that the grid container has the CSS column layout structure.
-9. **test_masonry_break_inside**: Verify that `.cms-archivo-card` elements have `break-inside: avoid` styling.
-10. **test_masonry_responsive_viewport**: Verify different column counts are configured in CSS media queries.
-
-#### WhatsApp Float Widget
-11. **test_whatsapp_trigger_rendered**: Verify the float button trigger `#waTrigger` exists.
-12. **test_whatsapp_card_rendered**: Verify the card dialog `#waCard` exists.
-13. **test_whatsapp_closed_initially**: Verify the card does not have the `.open` class on load.
-14. **test_whatsapp_target_links**: Verify the link redirect is formatted with `wa.me` and the correct number.
-15. **test_whatsapp_avatar_rendered**: Verify the coordinator's avatar image is present in the card.
-
-#### Smooth Scroll & Sticky Nav
-16. **test_scroll_progress_rendered**: Verify the scroll progress indicator `#scroll-progress` is present.
-17. **test_sticky_nav_rendered**: Verify the navigation bar `#navbar` is present.
-18. **test_back_to_top_present**: Verify the `.back-to-top` button has been appended to the body.
-19. **test_nav_anchors_present**: Verify that scroll links (e.g. `a[href^="#"]`) are present.
-20. **test_lang_switcher_present**: Verify language dropdown selection is available.
+## 1. Testing Philosophy
+Our E2E testing strategy is built upon the **Integrity Mandate (Zero-Cheat Policy)**:
+* **Genuine Interactions:** Every test performs real browser interactions (clicks, fills, keyboard presses, window/API mocks).
+* **State and Behavior:** Verification relies on the actual visual state, DOM attributes, and calculated variables, rather than hardcoded mock outputs.
+* **Intended Failures:** We do not fake success for known bugs. For instance, the Booking Calculator's Step 2 does not have active event handlers to update the total price in state; thus, Tier 3 and Tier 4 calculator tests are *expected to fail* until the feature is fixed.
 
 ---
 
-### Tier 2: Behavioral & Interactive checks (20 tests)
-#### Hero Section Animation
-21. **test_hero_next_click**: Clicking the next button changes the active slide.
-22. **test_hero_prev_click**: Clicking the previous button changes the active slide.
-23. **test_hero_dot_click**: Clicking a dot transitions directly to that specific slide.
-24. **test_hero_animation_lock**: Rapid clicks are ignored while `isAnimating` is true.
-25. **test_hero_hover_pause**: Hovering over the slideshow stops the auto-slide timer.
-
-#### Asymmetric Masonry Layout
-26. **test_masonry_chip_filtering**: Clicking a category chip hides non-matching cards.
-27. **test_masonry_chip_active_state**: Clicking a chip adds the active class and removes it from others.
-28. **test_masonry_empty_state**: Verify display behavior when no items match selected chip.
-29. **test_masonry_keyboard_nav**: Pressing Enter on focused image thumb opens modal.
-30. **test_masonry_dynamic_reflow**: Viewport resize adjusts layout and visibility.
-
-#### WhatsApp Float Widget
-31. **test_whatsapp_trigger_toggle**: Clicking the trigger toggles `.open` on `#waCard`.
-32. **test_whatsapp_close_btn**: Clicking the close button inside `#waCard` hides the card.
-33. **test_whatsapp_escape_dismiss**: Pressing Escape hides `#waCard`.
-34. **test_whatsapp_outside_dismiss**: Clicking outside the WhatsApp card closes it.
-35. **test_whatsapp_attention_badge_timer**: The `wa-badge` fades out after 8 seconds (manipulated clock).
-
-#### Smooth Scroll & Sticky Nav
-36. **test_scroll_offset_navigation**: Clicking nav links scrolls the page with correct offset.
-37. **test_back_to_top_behavior**: Clicking back-to-top scrolls page smoothly back to top.
-38. **test_scroll_progress_update**: Scrolling updates the progress bar width percentage.
-39. **test_navbar_hide_scroll_down**: Scrolling down hides the navbar.
-40. **test_navbar_show_scroll_up**: Scrolling up reveals the navbar.
+## 2. Test Architecture
+* **Runner:** Playwright Test.
+* **Workspace:** `trekan_nextjs/`
+* **Port / baseURL:** `http://127.0.0.1:3000` (IPv4 loopback to avoid Windows IPv6 localhost lookup resolution delays).
+* **WebServer Integration:** Configured to reuse the development server (`npm run dev`) or spin it up automatically.
+* **Project Defaults:** Configured with `chromium` for optimal performance and reliable execution under Windows.
+* **Execution Mode:** Serial execution (`fullyParallel: false` with 1 worker) to prevent database locks and ensure UI transaction stability.
 
 ---
 
-### Tier 3: Edge-cases and combination checks (4 tests)
-41. **test_combo_whatsapp_cookie_banner**: When the cookie banner is visible, the WhatsApp bubble shifts up (`translateY(-80px)`).
-42. **test_combo_active_nav_highlighting**: Scrolling to a section highlights its respective link in the nav menu.
-43. **test_combo_gallery_scroll_lock**: Opening an image modal applies `overflow: hidden` to document body.
-44. **test_combo_mobile_menu_scroll_override**: Scrolling down does not hide the navbar when the mobile menu is active.
+## 3. Feature Inventory & Routes Checked
+The test suite covers all primary customer-facing routes:
+1. **Homepage (`/`)**
+   * Background Video backdrop verification.
+   * Kinetic cursor interaction & custom cursor presence.
+   * Audio controller ("Atmósfera" toggle mute state).
+   * Floating WhatsApp widget (loading, open, close, and validation of phone number redirect link).
+   * AI Chatbot toggle (opening lead form, verifying closed state).
+   * Asymmetric Gallery & Lightbox keyboard navigation (ArrowRight and Escape transitions).
+2. **Admission (`/admision`)**
+   * Happy-path contact form inputs.
+   * Field validation constraints (required fields `parentName`, `childrenAges`).
+   * FAQ accordion selection.
+3. **Booking/Salon Rental (`/arriendo-salon`)**
+   * Interacting with the Booking date-time calculator.
+   * Boundary checks: Past date blocker (the `min` attribute set dynamically to `today`).
+   * Capacity limits text displays.
+   * Dynamic quote combination math (base hour price vs. Step 2 add-on services like Kit Audiovisual).
+4. **Resources Directory (`/recursos` & `/recursos-waldorf-chile`)**
+   * Masonry columns layout existence.
+   * CSS Column break boundaries prevent truncation (`break-inside: avoid`).
+   * Contact details download verification (vCard).
+5. **News & Blog (`/noticias` & `/noticias/[slug]`)**
+   * News list page loading.
+   * Detail page transition (decoding slug routing).
+   * Back button visibility.
 
 ---
 
-### Tier 4: Scenario-based verification (5 tests)
-45. **test_scenario_news_navigation_and_filter**: Navigate to news archive, filter by year, test masonry alignment.
-46. **test_scenario_image_modal_full_interaction**: Open an image lightbox, swipe/arrow navigate, zoom, close.
-47. **test_scenario_contact_form_feedback**: Fill out and submit contact form, verify button text updates to "Enviando...".
-48. **test_scenario_chatbot_complete_interaction**: Open assistant, choose quick reply, verify local response.
-49. **test_scenario_admission_funnel_journey**: A complete user flow accepting cookies, checking pricing, opening whatsapp, and reviewing FAQ items.
+## 4. Four-Tier Scenario Inventory
+
+### Tier 1: Happy-Path Features
+* **Booking Selector Loading:** Ensures the date and time inputs exist and are fillable.
+* **Admission Form Inputs:** Fills out the parent contact data.
+* **News page & categories:** Confirms articles are rendered from Supabase / Markdown fallback.
+* **Custom Cursor Presence:** Confirms target DOM elements for custom cursor style exist.
+* **Chatbot Toggle:** Toggles chatbot modal open and close.
+* **Recursos Page Layout:** Confirms directory structures and links.
+
+### Tier 2: Boundaries
+* **Admission Fields Validation:** Confirms `required` constraints are set on `parentName` and `childrenAges`.
+* **Past Date Block in Calendar:** Validates that `min` date attribute on the HTML date input matches `today` to prevent booking in the past.
+* **Guest Limits in Booking:** Verifies page shows the maximum capacity limit ("hasta 20 personas").
+
+### Tier 3: Combinations
+* **Booking Calculator Add-on Services:** Selects date-time range and toggles extra services (e.g. Kit Audiovisual Completo) in Step 2 to assert they increment the total price. *(Expected to fail due to missing event handlers in the UI).*
+* **Navbar Mobile Menu Toggle:** Simulates viewport resizing (375x667) and verifies mobile navigation visibility toggling.
+
+### Tier 4: Real-world User Journeys
+* **Journey 1: Home to FAQ to Admission Submit:** Opens homepage, clicks FAQ dropdowns, navigates to `/admision`, fills parent name, age of children, and preferred day, clicks submit, and confirms dynamic wa.me redirect URL is formatted correctly.
+* **Journey 2: Booking with Dynamic Quote Validation:** Selects date/time for 3 hours, navigates to Step 2, selects Kit Audiovisual, and asserts the total price reflects `$50.000` ($30k base + $20k kit). *(Expected to fail).*
+* **Journey 3: News Navigation and Details:** Goes to `/noticias`, selects the first article card, navigates to detail slug, and verifies the article markdown content and back link are rendered.

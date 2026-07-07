@@ -119,6 +119,7 @@ export default function RootLayout({
         
         {/* Widgets Flotantes Globales */}
         <FloatingWhatsApp />
+        <AIChatWidget />
       </body>
     </html>
   )

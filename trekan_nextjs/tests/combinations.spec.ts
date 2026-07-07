@@ -1,64 +1,48 @@
 import { test, expect } from '@playwright/test';
 
-test.beforeEach(async ({ page }) => {
-  await page.goto('/index.html');
-});
-
 test.describe('Combinations & Integration (Tier 3)', () => {
-  test('test_combo_whatsapp_cookie_banner: WhatsApp trigger shifts up when cookie banner is visible', async ({ page }) => {
-    const banner = page.locator('#cookie-banner');
-    const trigger = page.locator('#waTrigger');
+  
+  test('test_booking_calculator_combination: selecting add-on services in step 2 should increase total price', async ({ page }) => {
+    await page.goto('/arriendo-salon');
     
-    // Make the cookie banner visible programmatically (or wait, let's verify if the class visible is added)
-    await page.evaluate(() => {
-      const b = document.getElementById('cookie-banner');
-      if (b) b.classList.add('visible');
-    });
+    // Set a date and time for 2 hours (2 * $10,000 = $20,000 base cost)
+    const todayStr = new Date().toISOString().split('T')[0];
+    await page.locator('input[type="date"]').fill(todayStr);
+    await page.locator('input[type="time"]').first().fill('09:00');
+    await page.locator('input[type="time"]').last().fill('11:00');
     
-    // Verify style of trigger has transform translateY(-80px)
-    const transform = await trigger.evaluate(el => window.getComputedStyle(el).transform);
-    // Since transform in getComputedStyle returns matrix(1, 0, 0, 1, 0, -80) for translateY(-80px)
-    expect(transform).toContain('matrix');
-    expect(transform).toContain('-80');
-  });
-
-  test('test_combo_active_nav_highlighting: scrolling highlights current section link', async ({ page }) => {
-    const pedagogiaSection = page.locator('#pedagogia');
-    const pedagogiaLink = page.locator('a[href="index.html#pedagogia"]').first();
-    
-    // Scroll pedagogia section into view
-    await pedagogiaSection.scrollIntoViewIfNeeded();
-    await page.waitForTimeout(500); // wait for scroll highlight handler
-    
-    await expect(pedagogiaLink).toHaveClass(/active/);
-  });
-
-  test('test_combo_gallery_scroll_lock: opening image gallery modal locks body scroll', async ({ page }) => {
-    const firstImg = page.locator('.news-image img, .news-gallery-item img, .cms-gallery-thumb img').first();
-    
-    // Click image to open modal
-    await firstImg.click();
+    // Wait for the total to update
     await page.waitForTimeout(500);
     
-    // Body should have overflow: hidden
-    const overflow = await page.evaluate(() => window.getComputedStyle(document.body).overflow);
-    expect(overflow).toBe('hidden');
+    // Go to step 2 (Servicios adicionales)
+    await page.locator('button:has-text("Siguiente")').click();
+    
+    // Try to toggle "Kit Audiovisual Completo (+$20.000)"
+    await page.locator('text=Kit Audiovisual Completo').click();
+    
+    // Check that extra services is $20.000 and total is $40.000
+    // This is expected to FAIL because step 2 is broken and has no onClick handlers or checkboxes to update the state!
+    const extraServicesVal = page.locator('text=Servicios Extra').locator('..').locator('p.text-xl');
+    await expect(extraServicesVal).toContainText('$20.000');
   });
 
-  test('test_combo_mobile_menu_scroll_override: scrolling down does not hide navbar when mobile menu is active', async ({ page }) => {
-    const navbar = page.locator('#navbar');
-    const menuToggle = page.locator('#mobile-menu');
-    const navMenu = page.locator('#nav-menu');
+  test('test_navbar_mobile_menu_toggle: open mobile menu and verify layout transitions', async ({ page }) => {
+    await page.goto('/');
     
-    // Open mobile menu
-    await menuToggle.click();
-    await expect(navMenu).toHaveClass(/active/);
+    // Set mobile viewport size
+    await page.setViewportSize({ width: 375, height: 667 });
     
-    // Scroll down
-    await page.evaluate(() => window.scrollTo(0, 500));
-    await page.waitForTimeout(500);
+    // Locate and click mobile menu toggle button
+    const toggleBtn = page.locator('nav button.lg\\:hidden');
+    await expect(toggleBtn).toBeVisible();
+    await toggleBtn.click();
     
-    // Navbar should NOT hide (should not have class 'hide')
-    await expect(navbar).not.toHaveClass(/hide/);
+    // Mobile links should now be visible
+    const contactMobileLink = page.locator('a[href="/#contacto"]').last();
+    await expect(contactMobileLink).toBeVisible();
+    
+    // Close mobile menu
+    await toggleBtn.click();
+    await expect(contactMobileLink).not.toBeVisible();
   });
 });
