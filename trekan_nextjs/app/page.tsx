@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
-import MissionSection from '@/components/MissionSection'
+import PedagogiaHorizontal from '@/components/PedagogiaHorizontal'
 import ActividadesSection from '@/components/ActividadesSection'
 import NewsSection from '@/components/NewsSection'
 import BentoGrid from '@/components/BentoGrid'
@@ -10,6 +10,7 @@ import ComunidadSection from '@/components/ComunidadSection'
 import ImmersiveTestimonials from '@/components/ImmersiveTestimonials'
 import FAQSection from '@/components/FAQSection'
 import MicroSegmentador from '@/components/MicroSegmentador'
+import DeslizadorCompromiso from '@/components/DeslizadorCompromiso'
 import ContactSection from '@/components/ContactSection'
 import MapSection from '@/components/MapSection'
 import InstagramSection from '@/components/InstagramSection'
@@ -48,7 +49,7 @@ export default async function Home() {
     <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-hidden">
       <Navbar />
       <Hero />
-      <MissionSection />
+      <PedagogiaHorizontal />
       <BentoGrid />
       <ComunidadSection />
       <ActividadesSection />
@@ -56,6 +57,7 @@ export default async function Home() {
       <NewsSection displayNews={displayNews} />
       <MasonryGallery />
       <TeamSection />
+      <DeslizadorCompromiso />
       <MicroSegmentador />
       <FAQSection />
       <ContactSection />
