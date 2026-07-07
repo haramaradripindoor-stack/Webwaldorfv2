@@ -15,10 +15,10 @@ export default function ImmersiveTestimonials() {
   const xRight = useTransform(scrollYProgress, [0, 1], ["-50%", "0%"])
 
   const testimonials = [
-    { text: "Nuestra hija recuperó el asombro por aprender.", author: "Familia González" },
-    { text: "La conexión con la naturaleza es invaluable.", author: "Familia Silva" },
-    { text: "Una comunidad que abraza y sostiene.", author: "Apoderada de Básica" },
-    { text: "El arte es el corazón del currículo.", author: "Apoderado de Media" }
+    { text: "Nuestra hija recuperó el asombro por aprender.", author: "Familia González", media: "/assets/testimonial.mp4", type: "video" },
+    { text: "La conexión con la naturaleza es invaluable.", author: "Familia Silva", media: "/assets/fb/fb_post_2.jpg", type: "image" },
+    { text: "Una comunidad que abraza y sostiene.", author: "Apoderada de Básica", media: "/assets/fb/fb_post_4.jpg", type: "image" },
+    { text: "El arte es el corazón del currículo.", author: "Apoderado de Media", media: "/assets/ig/post_5.jpg", type: "image" }
   ]
 
   return (
@@ -36,14 +36,22 @@ export default function ImmersiveTestimonials() {
         <motion.div style={{ x: xLeft }} className="flex gap-8 whitespace-nowrap px-6">
           {[...testimonials, ...testimonials].map((t, i) => (
             <div key={i} className="flex-shrink-0 w-[400px] md:w-[600px] h-[300px] relative rounded-3xl overflow-hidden group">
-              <video 
-                src="/assets/testimonial.mp4"
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
-              />
+              {t.type === 'video' ? (
+                <video 
+                  src={t.media}
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                />
+              ) : (
+                <img 
+                  src={t.media}
+                  alt={t.author}
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                />
+              )}
               <div className="absolute inset-0 bg-[var(--color-waldorf-moss)]/20 mix-blend-multiply pointer-events-none" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e25] via-[#1a2e25]/50 to-transparent pointer-events-none" />
               
@@ -59,16 +67,23 @@ export default function ImmersiveTestimonials() {
         <motion.div style={{ x: xRight }} className="flex gap-8 whitespace-nowrap px-6">
           {[...testimonials].reverse().concat([...testimonials].reverse()).map((t, i) => (
             <div key={i} className="flex-shrink-0 w-[400px] md:w-[600px] h-[300px] relative rounded-3xl overflow-hidden group">
-              <video 
-                src="/assets/testimonial.mp4"
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
-                style={{ animationDelay: `${i * 0.5}s` }}
-              />
-              <div className="absolute inset-0 bg-[var(--color-waldorf-terracotta)]/20 mix-blend-multiply pointer-events-none" />
+              {t.type === 'video' ? (
+                <video 
+                  src={t.media}
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                />
+              ) : (
+                <img 
+                  src={t.media}
+                  alt={t.author}
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                />
+              )}
+              <div className="absolute inset-0 bg-[var(--color-waldorf-moss)]/20 mix-blend-multiply pointer-events-none" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e25] via-[#1a2e25]/50 to-transparent pointer-events-none" />
               
               <div className="absolute bottom-0 left-0 p-8 w-full whitespace-normal relative z-10">

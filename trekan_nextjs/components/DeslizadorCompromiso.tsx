@@ -26,12 +26,13 @@ export default function DeslizadorCompromiso() {
         transition={{ duration: 1.5, ease: 'easeInOut' }}
       >
         <Image 
-          src="/assets/ig/post_3.jpg" 
+          src="/images/equipoescolar.jpg" 
           alt="Bosque Waldorf" 
           fill 
-          className="object-cover opacity-20"
+          className="object-cover transition-opacity duration-1000"
+          style={{ opacity: isSolidario ? 0.7 : 0.2 }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e25] via-[#1a2e25]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1a2e25] via-[#1a2e25]/80 to-transparent" />
       </motion.div>
 
       <div className="max-w-6xl mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">

@@ -38,7 +38,7 @@ export default function MasonryGallery() {
   }, [lightbox])
 
   return (
-    <section ref={containerRef} id="galeria" className="py-24 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
+    <section ref={containerRef} id="galeria" className="py-24 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden relative">
       <div className="mb-16 text-center md:text-left relative z-10">
         <span className="text-[var(--color-waldorf-terracotta)] text-xs font-bold tracking-widest uppercase block mb-4">
           Nuestro Mundo

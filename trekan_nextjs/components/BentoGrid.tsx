@@ -13,7 +13,7 @@ export default function BentoGrid() {
       icon: <Heart className="text-[var(--color-waldorf-terracotta)]" size={24} />,
       size: 'md:col-span-2 md:row-span-1',
       bg: 'bg-[var(--color-waldorf-paper)]',
-      image: '/images/galeria3.webp',
+      image: '/assets/fb/fb_post_1.jpg',
       lightText: true,
     },
     {
@@ -22,7 +22,7 @@ export default function BentoGrid() {
       icon: <Users className="text-[var(--color-waldorf-moss)]" size={24} />,
       size: 'md:col-span-1 md:row-span-2',
       bg: 'bg-[var(--color-waldorf-sage)]/10',
-      image: '/images/galeria2.webp',
+      image: '/assets/fb/fb_post_3.jpg',
       lightText: true,
     },
     {
@@ -31,7 +31,7 @@ export default function BentoGrid() {
       icon: <Trees className="text-[var(--color-waldorf-moss)]" size={24} />,
       size: 'md:col-span-1 md:row-span-1',
       bg: 'bg-[var(--color-waldorf-sage)]/20',
-      image: '/images/galeria5.webp',
+      image: '/assets/fb/fb_post_5.jpg',
       lightText: true,
     },
     {
@@ -40,7 +40,7 @@ export default function BentoGrid() {
       icon: <Paintbrush className="text-[var(--color-waldorf-mustard)]" size={24} />,
       size: 'md:col-span-2 md:row-span-1',
       bg: 'bg-[var(--color-waldorf-mustard)]/10',
-      image: '/images/galeria4.webp',
+      image: '/assets/fb/fb_post_6.jpg',
       lightText: true,
     },
   ]
@@ -88,19 +88,26 @@ export default function BentoGrid() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className={`relative h-full w-full p-8 flex flex-col justify-between z-10 ${card.lightText ? 'text-white' : 'text-[#1a2e25]'}`}>
+              {/* Icon */}
+              <div className="flex justify-between items-start">
+                <div className="p-3 bg-white/20 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl group-hover:scale-110 transition-transform duration-500">
+                  {card.icon}
+                </div>
+                <span className="font-mono text-xs opacity-50 tracking-widest">{String(index + 1).padStart(2, '0')}</span>
+              </div>
+              
+              {/* Text Content */}
+              <div className="relative z-10 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <h3 className="text-3xl font-serif font-bold mb-3 drop-shadow-md">{card.title}</h3>
+                <p className="text-sm md:text-base font-sans opacity-0 group-hover:opacity-90 transition-opacity duration-500 delay-100 max-w-sm drop-shadow-sm leading-relaxed">
+                  {card.desc}
+                </p>
+              </div>
+            </div>
               </>
             )}
 
-            <div className="relative z-10 flex justify-between items-start mb-6">
-              <div className="p-3 rounded-2xl bg-white/80 backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-transform duration-300">
-                {card.icon}
-              </div>
-              <span className={`${card.lightText ? 'text-white/60' : 'text-[var(--color-waldorf-text-light)]/30'} text-sm font-bold font-serif`}>
-                0{index + 1}
-              </span>
-            </div>
-            
             <div className="relative z-10 mt-auto">
               <h3 className={`text-2xl font-bold mb-3 font-serif ${card.lightText ? 'text-white' : 'text-[var(--color-waldorf-moss)]'}`}>
                 {card.title}
