@@ -46,7 +46,7 @@ export default async function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-hidden">
+    <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-x-hidden">
       <Navbar />
       <Hero />
       <PedagogiaHorizontal />

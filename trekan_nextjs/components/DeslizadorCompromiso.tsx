@@ -8,7 +8,7 @@ export default function DeslizadorCompromiso() {
   
   const handleWhatsApp = () => {
     const text = `Hola Ivonne, me interesa conocer más sobre los aranceles y el aporte solidario de Trekan.`;
-    const whatsappUrl = `https://wa.me/56987654321?text=${encodeURIComponent(text)}`;
+    const whatsappUrl = `https://wa.me/56967765106?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, '_blank');
   }
 

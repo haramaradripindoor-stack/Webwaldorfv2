@@ -21,7 +21,7 @@ export default function AdmisionForm() {
   const handleWhatsAppRoute = (e: React.FormEvent) => {
     e.preventDefault();
     const text = `Hola Ivonne, soy ${formData.parentName}, me interesa postular para edades: ${formData.childrenAges}. ${formData.message ? `Adicionalmente: ${formData.message}` : ''} Me gustaría agendar una visita el día ${selectedDay || 'que tengan disponibilidad'}.`;
-    const whatsappUrl = `https://wa.me/56987654321?text=${encodeURIComponent(text)}`;
+    const whatsappUrl = `https://wa.me/56967765106?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, '_blank');
   }
 

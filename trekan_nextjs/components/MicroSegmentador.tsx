@@ -226,7 +226,7 @@ export default function MicroSegmentador() {
                   <button 
                     onClick={() => {
                       const text = `Hola Ivonne, soy familia buscando nivel para ${data.nivel || 'mi hijo'}. Me encantaría agendar una visita el día ${selectedDay || 'que tengan disponibilidad'}.`;
-                      const whatsappUrl = `https://wa.me/56987654321?text=${encodeURIComponent(text)}`;
+                      const whatsappUrl = `https://wa.me/56967765106?text=${encodeURIComponent(text)}`;
                       window.open(whatsappUrl, '_blank');
                     }} 
                     className="px-8 py-4 rounded-full bg-[var(--color-waldorf-mustard)] text-[#1a2e25] font-bold text-sm shadow-[0_0_30px_rgba(224,169,109,0.3)] hover:shadow-[0_0_50px_rgba(224,169,109,0.6)] transition-all duration-300 flex items-center justify-center gap-2 group"

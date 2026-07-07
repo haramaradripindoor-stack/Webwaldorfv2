@@ -1,214 +1,230 @@
+'use client'
+
+import { useRef } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { Calendar, Users, MapPin, ArrowRight, CheckCircle2, XCircle, Info, HelpCircle } from 'lucide-react'
-import Link from 'next/link'
+import { Calendar, Users, MapPin, CheckCircle2, XCircle, ArrowRight } from 'lucide-react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import SmoothScroll from '@/components/SmoothScroll'
 import AdmisionForm from '@/components/AdmisionForm'
 import FAQSection from '@/components/FAQSection'
 
 export default function AdmisionPage() {
+  const heroRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ["start start", "end start"] })
+  const yHero = useTransform(heroScroll, [0, 1], ["0%", "30%"])
+  const opacityHero = useTransform(heroScroll, [0, 1], [1, 0])
+
+  const steps = [
+    { title: "Agendas una visita", text: "Coordinamos una mañana para que conozcas el colegio en vivo — un mensaje por WhatsApp y buscamos juntos un día. Sin formularios, sin requisitos. Solo ven." },
+    { title: "Vives una mañana", text: "Caminas por los espacios, ves a los niños en su día, conversas con maestros. La mejor manera de conocer Trekan es vivirlo." },
+    { title: "Conversamos en familia", text: "Una entrevista — no para evaluar, sino para conocernos. Queremos entender a tu hijo como persona, no solo como postulante." },
+    { title: "Postulan formalmente", text: "Cuando ambos sentimos que el camino calza, completas el formulario de postulación y trabajamos juntos para que la llegada sea suave." }
+  ]
+
   return (
     <SmoothScroll>
       <main className="min-h-screen bg-[var(--color-waldorf-cream)]">
         <Navbar />
 
         {/* HERO ADMISIÓN */}
-        <section className="relative pt-32 pb-24 px-6 overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none">
-             <div className="absolute top-1/4 right-10 w-[40vw] h-[40vw] rounded-full bg-[var(--color-waldorf-mustard)]/10 blur-[80px]" />
-             <div className="absolute bottom-1/4 left-10 w-[30vw] h-[30vw] rounded-full bg-[var(--color-waldorf-sage)]/10 blur-[80px]" />
+        <section ref={heroRef} className="relative pt-40 pb-32 px-6 overflow-hidden min-h-[90vh] flex items-center justify-center">
+          <div className="absolute inset-0 pointer-events-none z-0">
+             <motion.div 
+               animate={{ scale: [1, 1.1, 1], rotate: [0, 5, 0] }}
+               transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+               className="absolute top-1/4 right-10 w-[40vw] h-[40vw] rounded-full bg-[var(--color-waldorf-mustard)]/10 blur-[100px]" 
+             />
+             <motion.div 
+               animate={{ scale: [1, 1.2, 1], rotate: [0, -5, 0] }}
+               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+               className="absolute bottom-1/4 left-10 w-[30vw] h-[30vw] rounded-full bg-[var(--color-waldorf-sage)]/10 blur-[100px]" 
+             />
           </div>
 
-          <div className="max-w-4xl mx-auto text-center relative z-10">
-            <span className="text-[var(--color-waldorf-mustard)] text-xs font-bold tracking-widest uppercase block mb-4">
+          <motion.div style={{ y: yHero, opacity: opacityHero }} className="max-w-5xl mx-auto text-center relative z-10">
+            <motion.span 
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
+              className="text-[var(--color-waldorf-mustard)] text-sm font-bold tracking-widest uppercase block mb-6"
+            >
               Admisión 2026 · Abierta todo el año
-            </span>
-            <h1 className="text-5xl md:text-7xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-6 leading-tight">
+            </motion.span>
+            
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2 }}
+              className="text-5xl md:text-8xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-8 leading-tight tracking-tight"
+            >
               Donde el niño camina <br/>
-              <span className="text-[var(--color-waldorf-terracotta)] italic">con voluntad</span>
-            </h1>
-            <p className="text-[var(--color-waldorf-text-light)] text-lg md:text-xl leading-relaxed mb-8 max-w-2xl mx-auto">
-              <em>Trekan</em> significa caminante en mapudungun. Es el nombre que elegimos para este espacio donde niñas y niños de 3 a 14 años aprenden a través del arte, el ritmo y la vida — acompañados por maestros que los conocen de verdad, en grupos de no más de 16.
-            </p>
-            <p className="font-serif italic text-xl text-[var(--color-waldorf-moss)] mb-10">
-              La mejor forma de saber si es para tu familia es venir una mañana.
-            </p>
+              <span className="text-[var(--color-waldorf-terracotta)] italic font-light">con voluntad</span>
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.4 }}
+              className="text-[var(--color-waldorf-text-light)] text-lg md:text-2xl leading-relaxed mb-10 max-w-3xl mx-auto font-medium"
+            >
+              <em>Trekan</em> significa caminante en mapudungun. Un espacio donde niñas y niños de 3 a 14 años aprenden a través del arte, el ritmo y la vida — en grupos de no más de 16.
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-              <a href="https://wa.me/56967765106" target="_blank" rel="noreferrer" className="bg-[var(--color-waldorf-moss)] text-white px-8 py-4 rounded-full font-semibold hover:bg-[var(--color-waldorf-moss)]/90 transition-all flex items-center gap-2">
-                🌿 Agendar visita al colegio
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20"
+            >
+              <a href="https://wa.me/56967765106" target="_blank" rel="noreferrer" className="group relative overflow-hidden bg-[var(--color-waldorf-moss)] text-white px-10 py-5 rounded-full font-bold text-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-3">
+                <span className="relative z-10">Agendar visita al colegio</span>
+                <ArrowRight className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 rounded-full" />
               </a>
-              <a href="#proceso" className="bg-transparent text-[var(--color-waldorf-moss)] border-2 border-[var(--color-waldorf-sage)] px-8 py-4 rounded-full font-semibold hover:bg-[var(--color-waldorf-sage)]/20 transition-all">
+              <a href="#proceso" className="text-[var(--color-waldorf-moss)] font-bold text-lg hover:text-[var(--color-waldorf-terracotta)] transition-colors underline-offset-4 hover:underline">
                 Ver proceso de admisión
               </a>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-wrap justify-center gap-12 md:gap-24 text-[var(--color-waldorf-moss)]">
-              <div className="text-center">
-                <span className="block text-4xl font-serif font-bold text-[var(--color-waldorf-terracotta)]">3 - 14</span>
-                <span className="text-sm font-bold tracking-widest uppercase opacity-70">años de edad</span>
+            <motion.div 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.8 }}
+              className="flex flex-wrap justify-center gap-16 md:gap-32 text-[var(--color-waldorf-moss)] border-t border-[var(--color-waldorf-moss)]/10 pt-10"
+            >
+              <div className="text-center group">
+                <span className="block text-5xl font-serif font-bold text-[var(--color-waldorf-terracotta)] mb-2 group-hover:scale-110 transition-transform">3-14</span>
+                <span className="text-sm font-bold tracking-widest uppercase opacity-60">años de edad</span>
               </div>
-              <div className="text-center">
-                <span className="block text-4xl font-serif font-bold text-[var(--color-waldorf-terracotta)]">16</span>
-                <span className="text-sm font-bold tracking-widest uppercase opacity-70">alumnos máx.</span>
+              <div className="text-center group">
+                <span className="block text-5xl font-serif font-bold text-[var(--color-waldorf-terracotta)] mb-2 group-hover:scale-110 transition-transform">16</span>
+                <span className="text-sm font-bold tracking-widest uppercase opacity-60">alumnos máx.</span>
               </div>
-              <div className="text-center">
-                <span className="block text-4xl font-serif font-bold text-[var(--color-waldorf-terracotta)] text-center w-full">📍</span>
-                <span className="text-sm font-bold tracking-widest uppercase opacity-70">Puerto Varas</span>
+              <div className="text-center group">
+                <span className="block text-5xl font-serif font-bold text-[var(--color-waldorf-terracotta)] mb-2 group-hover:scale-110 transition-transform">📍</span>
+                <span className="text-sm font-bold tracking-widest uppercase opacity-60">Puerto Varas</span>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </section>
 
         {/* PROCESO */}
-        <section id="proceso" className="py-24 px-6 bg-[var(--color-waldorf-paper)]">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-16">
-              <span className="font-serif italic text-[var(--color-waldorf-terracotta)] text-lg mb-2 block">El camino juntos</span>
-              <h2 className="text-4xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-6">Cómo es llegar a Trekan</h2>
-              <p className="text-[var(--color-waldorf-text-light)] text-lg">
-                No es una inscripción — es un encuentro. Por eso, el primer paso siempre es visitarnos — que vengas con tu familia a conocer el lugar antes de cualquier formulario.
+        <section id="proceso" className="py-32 px-6 bg-[#1a2e25] text-[var(--color-waldorf-cream)] relative">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-24">
+              <span className="font-serif italic text-[var(--color-waldorf-mustard)] text-xl mb-4 block">El camino juntos</span>
+              <h2 className="text-5xl font-bold font-serif mb-8">Cómo es llegar a Trekan</h2>
+              <p className="text-white/70 text-xl max-w-2xl mx-auto">
+                No es una inscripción — es un encuentro. Por eso, el primer paso siempre es visitarnos.
               </p>
             </div>
 
-            <div className="space-y-12 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-[var(--color-waldorf-sage)] before:to-transparent">
-              {/* Paso 1 */}
-              <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[var(--color-waldorf-moss)] text-white font-serif font-bold text-xl shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-lg z-10">1</div>
-                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-6 rounded-2xl shadow-sm border border-[var(--color-waldorf-sage)]/20">
-                  <h3 className="text-xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-2">Agendas una visita</h3>
-                  <p className="text-[var(--color-waldorf-text-light)] text-sm leading-relaxed">Coordinamos una mañana para que conozcas el colegio en vivo — un mensaje por WhatsApp y buscamos juntos un día. Sin formularios, sin requisitos. Solo ven.</p>
-                </div>
-              </div>
-              {/* Paso 2 */}
-              <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[var(--color-waldorf-moss)] text-white font-serif font-bold text-xl shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-lg z-10">2</div>
-                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-6 rounded-2xl shadow-sm border border-[var(--color-waldorf-sage)]/20">
-                  <h3 className="text-xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-2">Vives una mañana</h3>
-                  <p className="text-[var(--color-waldorf-text-light)] text-sm leading-relaxed">Caminas por los espacios, ves a los niños en su día, conversas con maestros. La mejor manera de conocer Trekan es vivirlo.</p>
-                </div>
-              </div>
-              {/* Paso 3 */}
-              <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[var(--color-waldorf-moss)] text-white font-serif font-bold text-xl shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-lg z-10">3</div>
-                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-6 rounded-2xl shadow-sm border border-[var(--color-waldorf-sage)]/20">
-                  <h3 className="text-xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-2">Conversamos en familia</h3>
-                  <p className="text-[var(--color-waldorf-text-light)] text-sm leading-relaxed">Una entrevista — no para evaluar, sino para conocernos. Queremos entender a tu hijo como persona, no solo como postulante.</p>
-                </div>
-              </div>
-              {/* Paso 4 */}
-              <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[var(--color-waldorf-moss)] text-white font-serif font-bold text-xl shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-lg z-10">4</div>
-                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-6 rounded-2xl shadow-sm border border-[var(--color-waldorf-sage)]/20">
-                  <h3 className="text-xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-2">Postulan formalmente</h3>
-                  <p className="text-[var(--color-waldorf-text-light)] text-sm leading-relaxed">Cuando ambos sentimos que el camino calza, completas el formulario de postulación y trabajamos juntos para que la llegada sea suave.</p>
-                </div>
-              </div>
+            <div className="space-y-0 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-px before:bg-[var(--color-waldorf-mustard)]/20">
+              {steps.map((step, idx) => (
+                <motion.div 
+                  key={idx}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8 }}
+                  className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group py-12"
+                >
+                  <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[var(--color-waldorf-mustard)] text-[#1a2e25] font-serif font-bold text-2xl shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_30px_rgba(224,169,109,0.3)] z-10">
+                    {idx + 1}
+                  </div>
+                  <div className="w-[calc(100%-5rem)] md:w-[calc(50%-4rem)] bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors">
+                    <h3 className="text-2xl font-bold font-serif text-[var(--color-waldorf-mustard)] mb-4">{step.title}</h3>
+                    <p className="text-white/70 text-base leading-relaxed">{step.text}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* VALORES Y ARANCELES */}
-        <section className="py-24 px-6 max-w-4xl mx-auto">
-          <div className="mb-12">
-            <span className="font-serif italic text-[var(--color-waldorf-terracotta)] text-lg mb-2 block">Transparencia</span>
-            <h2 className="text-4xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-4">Valores 2026</h2>
-            <p className="text-[var(--color-waldorf-text-light)] text-lg">
-              Queremos que las familias conozcan los costos desde el principio. Si necesitan apoyo económico, conversamos — siempre con empatía y sin juicio.
+        <section className="py-32 px-6 max-w-6xl mx-auto">
+          <div className="mb-16 text-center">
+            <span className="font-serif italic text-[var(--color-waldorf-terracotta)] text-xl mb-4 block">Transparencia</span>
+            <h2 className="text-5xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-6">Valores 2026</h2>
+            <p className="text-[var(--color-waldorf-text-light)] text-xl max-w-2xl mx-auto">
+              Queremos que las familias conozcan los costos desde el principio. 
             </p>
           </div>
 
-          <div className="bg-white rounded-3xl shadow-sm border border-[var(--color-waldorf-sage)]/20 overflow-hidden mb-12">
-            <div className="divide-y divide-[var(--color-waldorf-sage)]/10">
-              <div className="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                  <h4 className="font-bold text-[var(--color-waldorf-moss)] text-lg">Matrícula</h4>
-                  <p className="text-sm text-[var(--color-waldorf-text-light)]">En 2 cuotas: enero y febrero. No reembolsable.</p>
-                </div>
-                <div className="text-2xl font-serif font-bold text-[var(--color-waldorf-terracotta)] whitespace-nowrap">$500.000</div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            
+            <motion.div whileHover={{ y: -10 }} className="bg-white p-10 rounded-3xl shadow-xl border border-gray-100 flex flex-col justify-between">
+              <div>
+                <h4 className="font-bold text-[var(--color-waldorf-moss)] text-xl mb-2">Matrícula</h4>
+                <p className="text-sm text-gray-500 mb-8">En 2 cuotas: enero y febrero. No reembolsable.</p>
               </div>
-              <div className="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                  <h4 className="font-bold text-[var(--color-waldorf-moss)] text-lg">Escolaridad mensual</h4>
-                  <p className="text-sm text-[var(--color-waldorf-text-light)]">Pago hasta el día 5 de cada mes.</p>
-                </div>
-                <div className="text-2xl font-serif font-bold text-[var(--color-waldorf-terracotta)] whitespace-nowrap">$330.000<span className="text-sm text-[var(--color-waldorf-text-light)] font-sans font-normal">/mes</span></div>
+              <div className="text-4xl font-serif font-bold text-[var(--color-waldorf-terracotta)]">$500.000</div>
+            </motion.div>
+            
+            <motion.div whileHover={{ y: -10 }} className="bg-[#1a2e25] text-white p-10 rounded-3xl shadow-2xl relative overflow-hidden flex flex-col justify-between scale-105 z-10">
+              <div className="absolute -right-10 -top-10 w-32 h-32 bg-[var(--color-waldorf-sage)]/20 rounded-full blur-2xl" />
+              <div className="relative z-10">
+                <span className="inline-block bg-[var(--color-waldorf-mustard)] text-[#1a2e25] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">Mensual</span>
+                <h4 className="font-bold text-2xl mb-2">Escolaridad</h4>
+                <p className="text-sm text-white/60 mb-8">Pago hasta el día 5 de cada mes.</p>
               </div>
-              <div className="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                  <h4 className="font-bold text-[var(--color-waldorf-moss)] text-lg">Responsabilidad Social</h4>
-                  <p className="text-sm text-[var(--color-waldorf-text-light)]">Aporte voluntario. Sostiene becas para familias que necesitan apoyo.</p>
-                </div>
-                <div className="text-2xl font-serif font-bold text-[var(--color-waldorf-terracotta)] whitespace-nowrap">$33.000<span className="text-sm text-[var(--color-waldorf-text-light)] font-sans font-normal">/mes</span></div>
+              <div className="relative z-10 flex items-baseline gap-2">
+                <div className="text-5xl font-serif font-bold text-[var(--color-waldorf-mustard)]">$330.000</div>
+                <span className="text-white/60">/mes</span>
               </div>
-              <div className="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                  <h4 className="font-bold text-[var(--color-waldorf-moss)] text-lg">Cuota de Materiales</h4>
-                  <p className="text-sm text-[var(--color-waldorf-text-light)]">Anual, en 2 cuotas: marzo y junio.</p>
-                </div>
-                <div className="text-2xl font-serif font-bold text-[var(--color-waldorf-terracotta)] whitespace-nowrap">$160.000</div>
-              </div>
-              <div className="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                  <h4 className="font-bold text-[var(--color-waldorf-moss)] text-lg">Cuota de Incorporación</h4>
-                  <p className="text-sm text-[var(--color-waldorf-text-light)]">Se paga una sola vez al ingresar.</p>
-                </div>
-                <div className="text-2xl font-serif font-bold text-[var(--color-waldorf-terracotta)] whitespace-nowrap">$330.000</div>
-              </div>
-            </div>
+            </motion.div>
+
+            <motion.div whileHover={{ y: -10 }} className="bg-white p-10 rounded-3xl shadow-xl border border-gray-100 flex flex-col justify-between">
+               <div>
+                 <span className="inline-block bg-[var(--color-waldorf-terracotta)]/10 text-[var(--color-waldorf-terracotta)] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">Aporte Comunitario</span>
+                 <h4 className="font-bold text-[var(--color-waldorf-moss)] text-xl mb-2">Resp. Social</h4>
+                 <p className="text-sm text-gray-500 mb-8">Aporte voluntario sugerido para sostener becas internas.</p>
+               </div>
+               <div className="flex items-baseline gap-2">
+                 <div className="text-4xl font-serif font-bold text-[var(--color-waldorf-terracotta)]">$33.000</div>
+                 <span className="text-gray-500 font-medium">/mes</span>
+               </div>
+            </motion.div>
+            
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-2xl border-l-4 border-[var(--color-waldorf-sage)] shadow-sm">
-              <h4 className="font-serif font-bold text-lg text-[var(--color-waldorf-moss)] mb-2 flex items-center gap-2">🤝 Aranceles diferenciados</h4>
-              <p className="text-sm text-[var(--color-waldorf-text-light)] leading-relaxed">
-                Si quieres participar en el proyecto pero necesitas apoyo económico, conversaremos contigo con empatía. Evaluamos cada situación y buscamos opciones sostenibles, incluso con aporte en labores según tus habilidades.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl border-l-4 border-[var(--color-waldorf-terracotta)]/50 shadow-sm">
-              <h4 className="font-serif font-bold text-lg text-[var(--color-waldorf-moss)] mb-2 flex items-center gap-2">💛 Política de devoluciones</h4>
-              <ul className="text-sm text-[var(--color-waldorf-text-light)] leading-relaxed space-y-1 list-disc pl-4">
-                <li><strong>Antes de marzo:</strong> 100% de la escolaridad devuelta.</li>
-                <li><strong>Hasta el 2° semestre:</strong> Se devuelve la escolaridad del 2° semestre.</li>
-                <li><strong>Después del 2° semestre:</strong> Sin devoluciones.</li>
-                <li><strong>Matrícula:</strong> No reembolsable.</li>
-              </ul>
-            </div>
-            <div className="bg-white p-6 rounded-2xl border-l-4 border-[var(--color-waldorf-mustard)] shadow-sm md:col-span-2">
-              <h4 className="font-serif font-bold text-lg text-[#5A3E12] mb-2 flex items-center gap-2">📋 Exámenes Libres (Mineduc)</h4>
-              <p className="text-sm text-[#6B4F1C] leading-relaxed">
-                Trekan no cuenta con reconocimiento oficial del Mineduc. Los estudiantes rinden <strong>Exámenes Libres de Validación de Estudios</strong> para certificar sus niveles — al aprobar reciben certificados equivalentes a los de cualquier colegio reconocido. Es una práctica habitual en la educación libre en Chile, y nuestros estudiantes la enfrentan con muy buenas calificaciones.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+             <div className="bg-[#FAF8F5] p-8 rounded-3xl">
+               <h4 className="font-bold text-[var(--color-waldorf-moss)] text-lg mb-2 flex justify-between items-center">
+                 Cuota de Materiales <span className="font-serif text-2xl text-[var(--color-waldorf-terracotta)]">$160.000</span>
+               </h4>
+               <p className="text-sm text-gray-600">Anual, en 2 cuotas (marzo y junio).</p>
+             </div>
+             <div className="bg-[#FAF8F5] p-8 rounded-3xl">
+               <h4 className="font-bold text-[var(--color-waldorf-moss)] text-lg mb-2 flex justify-between items-center">
+                 Cuota Incorporación <span className="font-serif text-2xl text-[var(--color-waldorf-terracotta)]">$330.000</span>
+               </h4>
+               <p className="text-sm text-gray-600">Pago único al ingresar al colegio por primera vez.</p>
+             </div>
           </div>
         </section>
 
         {/* PARA TI */}
-        <section className="py-24 px-6 bg-[var(--color-waldorf-paper)]">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <span className="font-serif italic text-[var(--color-waldorf-terracotta)] text-lg mb-2 block">Honestidad antes que todo</span>
-              <h2 className="text-4xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-6">¿Es Trekan para tu familia?</h2>
+        <section className="py-32 px-6 bg-[var(--color-waldorf-moss)] text-white">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-20">
+              <span className="font-serif italic text-[var(--color-waldorf-mustard)] text-xl mb-4 block">Honestidad antes que todo</span>
+              <h2 className="text-5xl font-bold font-serif mb-6">¿Es Trekan para tu familia?</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white p-8 rounded-3xl shadow-sm">
-                <h3 className="font-serif font-bold text-xl text-[var(--color-waldorf-moss)] mb-6 flex items-center gap-2">🌿 Puede ser para ti si…</h3>
-                <ul className="space-y-4">
-                  <li className="flex gap-3 text-sm text-[var(--color-waldorf-text-light)]"><CheckCircle2 className="text-[var(--color-waldorf-sage)] shrink-0" size={20}/> Buscas una educación que vea al niño completo — no solo lo académico.</li>
-                  <li className="flex gap-3 text-sm text-[var(--color-waldorf-text-light)]"><CheckCircle2 className="text-[var(--color-waldorf-sage)] shrink-0" size={20}/> Valoras el arte, la naturaleza y el ritmo como parte del aprendizaje.</li>
-                  <li className="flex gap-3 text-sm text-[var(--color-waldorf-text-light)]"><CheckCircle2 className="text-[var(--color-waldorf-sage)] shrink-0" size={20}/> Quieres que tu hijo sea conocido por su maestro — no solo atendido.</li>
-                  <li className="flex gap-3 text-sm text-[var(--color-waldorf-text-light)]"><CheckCircle2 className="text-[var(--color-waldorf-sage)] shrink-0" size={20}/> Te interesa participar en la vida comunitaria del colegio.</li>
+              <motion.div whileHover={{ scale: 1.02 }} className="bg-white/5 backdrop-blur-md p-10 rounded-3xl border border-white/10">
+                <h3 className="font-serif font-bold text-2xl text-[var(--color-waldorf-mustard)] mb-8 flex items-center gap-3">
+                  <CheckCircle2 size={28}/> Puede ser para ti si…
+                </h3>
+                <ul className="space-y-6">
+                  <li className="flex gap-4 text-white/80 leading-relaxed text-lg"><div className="w-2 h-2 rounded-full bg-[var(--color-waldorf-mustard)] mt-2 shrink-0"/> Buscas una educación que vea al niño completo — no solo lo académico.</li>
+                  <li className="flex gap-4 text-white/80 leading-relaxed text-lg"><div className="w-2 h-2 rounded-full bg-[var(--color-waldorf-mustard)] mt-2 shrink-0"/> Valoras el arte, la naturaleza y el ritmo como parte del aprendizaje.</li>
+                  <li className="flex gap-4 text-white/80 leading-relaxed text-lg"><div className="w-2 h-2 rounded-full bg-[var(--color-waldorf-mustard)] mt-2 shrink-0"/> Quieres que tu hijo sea conocido por su maestro — no solo atendido.</li>
                 </ul>
-              </div>
-              <div className="bg-white p-8 rounded-3xl shadow-sm">
-                <h3 className="font-serif font-bold text-xl text-[var(--color-waldorf-moss)] mb-6 flex items-center gap-2">🍂 Puede que no sea el momento si…</h3>
-                <ul className="space-y-4">
-                  <li className="flex gap-3 text-sm text-[var(--color-waldorf-text-light)]"><XCircle className="text-[var(--color-waldorf-mustard)] opacity-50 shrink-0" size={20}/> Priorizas notas numéricas y rendimiento medible como principal referencia.</li>
-                  <li className="flex gap-3 text-sm text-[var(--color-waldorf-text-light)]"><XCircle className="text-[var(--color-waldorf-mustard)] opacity-50 shrink-0" size={20}/> Necesitas un colegio con reconocimiento Mineduc sin proceso de exámenes libres.</li>
-                  <li className="flex gap-3 text-sm text-[var(--color-waldorf-text-light)]"><XCircle className="text-[var(--color-waldorf-mustard)] opacity-50 shrink-0" size={20}/> No puedes comprometerte con la participación familiar que requiere la comunidad.</li>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.02 }} className="bg-black/20 backdrop-blur-md p-10 rounded-3xl border border-black/10">
+                <h3 className="font-serif font-bold text-2xl text-white/50 mb-8 flex items-center gap-3">
+                  <XCircle size={28}/> Puede que no calce si…
+                </h3>
+                <ul className="space-y-6">
+                  <li className="flex gap-4 text-white/50 leading-relaxed text-lg"><div className="w-2 h-2 rounded-full bg-white/20 mt-2 shrink-0"/> Priorizas notas numéricas y rendimiento medible como principal referencia.</li>
+                  <li className="flex gap-4 text-white/50 leading-relaxed text-lg"><div className="w-2 h-2 rounded-full bg-white/20 mt-2 shrink-0"/> Necesitas un colegio con reconocimiento Mineduc directo (usamos Exámenes Libres).</li>
+                  <li className="flex gap-4 text-white/50 leading-relaxed text-lg"><div className="w-2 h-2 rounded-full bg-white/20 mt-2 shrink-0"/> No puedes comprometerte con la participación familiar.</li>
                 </ul>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -217,11 +233,11 @@ export default function AdmisionPage() {
         <FAQSection />
         
         {/* INVITACIÓN */}
-        <section className="bg-[var(--color-waldorf-moss)] py-24 px-6 text-center text-white">
+        <section className="bg-[#FAF8F5] py-32 px-6 text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-serif font-bold mb-6">Ven a conocernos</h2>
-            <p className="text-white/80 text-lg mb-4 leading-relaxed max-w-2xl mx-auto">
-              No necesitas tener todo claro para dar el primer paso. Muchas familias llegaron con dudas y encontraron aquí algo que no sabían que buscaban. El camino empieza con una conversación.
+            <h2 className="text-5xl font-serif font-bold text-[var(--color-waldorf-moss)] mb-6">Ven a conocernos</h2>
+            <p className="text-[var(--color-waldorf-text-light)] text-xl mb-12 leading-relaxed max-w-2xl mx-auto">
+              No necesitas tener todo claro para dar el primer paso. El camino empieza con una conversación sincera.
             </p>
             
             <AdmisionForm />
