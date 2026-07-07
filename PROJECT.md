@@ -16,10 +16,10 @@ The project is built using Next.js 14 (App Router) with Tailwind CSS, Framer Mot
 | # | Name | Scope | Dependencies | Status |
 |---|------|-------|-------------|--------|
 | M1 | Exploration & Audit | Deep source audit for hydration mismatches, layout shifts, SEO gaps, responsive bugs, and Awwwards styling opportunities. | None | DONE |
-| M2 | E2E Test Suite | Design comprehensive E2E tests covering 4 tiers (Feature coverage, boundaries, combinations, workloads) in Playwright. | None | IN_PROGRESS |
-| M3 | Hydration & Performance Optimizations | Fix typescript compilation error in `ActividadesClient.tsx`, database schema mapping mismatch in `ActividadesSection.tsx`, date hydration mismatches in `CotizadorSalon.tsx` and `NewsSection.tsx`, enable Next.js image optimizations, optimize preloaded videos, delete duplicate route `/recursos-waldorf-chile`. | M1, M2 | PLANNED |
-| M4 | Awwwards UX/UI & Motion Hardening | Fix Cotizador Step 2 selections, fix visual contrast in `AdmisionForm.tsx`, sync Lenis scroll ticker with GSAP, fix custom cursor visibility & double cursor, correct nested button/anchor tags in Hero, render `AIChatWidget` in layout, add missing sitemap/robots.txt, and export dynamic/custom metadata for client/server subpages. Render Navbar/Footer on `/actividades`. | M1, M3 | PLANNED |
-| M5 | Final Validation & Build Audit | Build project with `npm run build` and run Challenger and Forensic Auditor checks. | M2, M3, M4 | PLANNED |
+| M2 | E2E Test Suite | Design comprehensive E2E tests covering 4 tiers (Feature coverage, boundaries, combinations, workloads) in Playwright. | None | DONE |
+| M3 | Hydration & Performance Optimizations | Fix typescript compilation error in `ActividadesClient.tsx`, database schema mapping mismatch in `ActividadesSection.tsx`, date hydration mismatches in `CotizadorSalon.tsx` and `NewsSection.tsx`, enable Next.js image optimizations, optimize preloaded videos, delete duplicate route `/recursos-waldorf-chile`. | M1, M2 | DONE |
+| M4 | Awwwards UX/UI & Motion Hardening | Fix Cotizador Step 2 selections, fix visual contrast in `AdmisionForm.tsx`, sync Lenis scroll ticker with GSAP, fix custom cursor visibility & double cursor, correct nested button/anchor tags in Hero, render `AIChatWidget` in layout, add missing sitemap/robots.txt, and export dynamic/custom metadata for client/server subpages. Render Navbar/Footer on `/actividades`. | M1, M3 | DONE |
+| M5 | Final Validation & Build Audit | Build project with `npm run build` and run Challenger and Forensic Auditor checks. | M2, M3, M4 | DONE |
 
 ## Interface Contracts
 ### Client components ↔ Supabase Database

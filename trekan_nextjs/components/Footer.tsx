@@ -65,7 +65,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto border-t border-[var(--color-waldorf-sage)]/10 mt-16 pt-8 flex flex-col items-center gap-2 text-xs text-[var(--color-waldorf-sage)] font-medium relative z-10 text-center">
         <p>&copy; {new Date().getFullYear()} Colegio Waldorf Trekan - Puerto Varas</p>
         <p>Construyendo comunidad, educación y voluntad. Todos los derechos reservados.</p>
-        <Link href="/recursos-waldorf-chile" className="mt-2 text-[var(--color-waldorf-sage)]/80 hover:text-[var(--color-waldorf-terracotta)] border-b border-dotted border-[var(--color-waldorf-sage)]/40 hover:border-transparent transition-colors">
+        <Link href="/recursos" className="mt-2 text-[var(--color-waldorf-sage)]/80 hover:text-[var(--color-waldorf-terracotta)] border-b border-dotted border-[var(--color-waldorf-sage)]/40 hover:border-transparent transition-colors">
           Directorio de Recursos Waldorf y Antroposóficos en Chile
         </Link>
       </div>

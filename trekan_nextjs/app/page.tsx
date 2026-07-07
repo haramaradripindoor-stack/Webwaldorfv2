@@ -18,6 +18,7 @@ import RadicalTransparency from '@/components/RadicalTransparency'
 import Footer from '@/components/Footer'
 import { getMarkdownPosts } from '@/lib/markdown'
 import { createClient } from '@/utils/supabase/server'
+import SmoothScroll from '@/components/SmoothScroll'
 
 export const revalidate = 0; // Para que actualice siempre que haya cambios en BD
 
@@ -46,25 +47,27 @@ export default async function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-x-hidden">
-      <Navbar />
-      <Hero />
-      <PedagogiaHorizontal />
-      <BentoGrid />
-      <ComunidadSection />
-      <ActividadesSection />
-      <ImmersiveTestimonials />
-      <NewsSection displayNews={displayNews} />
-      <MasonryGallery />
-      <TeamSection />
-      <DeslizadorCompromiso />
-      <MicroSegmentador />
-      <FAQSection />
-      <ContactSection />
-      <MapSection />
-      <InstagramSection />
-      <RadicalTransparency />
-      <Footer />
-    </main>
+    <SmoothScroll>
+      <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-x-hidden">
+        <Navbar />
+        <Hero />
+        <PedagogiaHorizontal />
+        <BentoGrid />
+        <ComunidadSection />
+        <ActividadesSection />
+        <ImmersiveTestimonials />
+        <NewsSection displayNews={displayNews} />
+        <MasonryGallery />
+        <TeamSection />
+        <DeslizadorCompromiso />
+        <MicroSegmentador />
+        <FAQSection />
+        <ContactSection />
+        <MapSection />
+        <InstagramSection />
+        <RadicalTransparency />
+        <Footer />
+      </main>
+    </SmoothScroll>
   )
 }

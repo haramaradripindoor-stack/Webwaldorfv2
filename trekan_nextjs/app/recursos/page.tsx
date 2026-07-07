@@ -3,6 +3,15 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { ExternalLink, BookOpen, HeartPulse, Users, Bookmark, FileText } from 'lucide-react';
 import Image from 'next/image';
+import SmoothScroll from '@/components/SmoothScroll';
+
+export const metadata = {
+  title: 'Recursos Waldorf en Chile | Directorio y Comunidad',
+  description: 'Directorio nacional de iniciativas comunitarias, centros de salud, profesionales, librerías y de la visión antroposófica en Chile.',
+  alternates: {
+    canonical: 'https://www.colegiowaldorftrekan.cl/recursos',
+  },
+}
 
 const RECURSOS = [
   {
@@ -60,80 +69,82 @@ const RECURSOS = [
 
 export default function RecursosPage() {
   return (
-    <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-hidden selection:bg-[var(--color-waldorf-sage)] selection:text-white">
-      <Navbar />
-      
-      {/* Hero */}
-      <section className="relative pt-40 pb-24 px-6 md:px-12 bg-white overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--color-waldorf-sage)]/10 rounded-full blur-[100px] -mr-40 -mt-20 z-0"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#c6a382]/10 rounded-full blur-[80px] -ml-20 -mb-20 z-0"></div>
+    <SmoothScroll>
+      <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-hidden selection:bg-[var(--color-waldorf-sage)] selection:text-white">
+        <Navbar />
         
-        <div className="max-w-5xl mx-auto relative z-10 text-center">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--color-waldorf-sage)]/10 text-[var(--color-waldorf-moss)] text-sm font-bold tracking-widest uppercase mb-6">
-            Directorio Nacional
-          </span>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-6 leading-[1.1] tracking-tight">
-            Recursos Waldorf en Chile
-          </h1>
-          <p className="text-lg md:text-xl text-[var(--color-waldorf-text-light)] max-w-2xl mx-auto font-medium leading-relaxed">
-            Como parte de nuestra misión de fomentar la educación y la filosofía antroposófica, compartimos este directorio de iniciativas comunitarias, centros de salud, editoriales y asociaciones.
-          </p>
-        </div>
-      </section>
-
-      {/* Directorio Masonry */}
-      <section className="py-20 px-6 md:px-12 relative z-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-            
-            {RECURSOS.map((cat, idx) => (
-              <div key={idx} className="break-inside-avoid bg-white rounded-3xl p-8 border border-[var(--color-waldorf-sage)]/15 earth-shadow hover:-translate-y-1 transition-transform duration-500">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 bg-[var(--color-waldorf-sage)]/20 text-[var(--color-waldorf-moss)] rounded-2xl">
-                    {cat.icono}
-                  </div>
-                  <h2 className="text-2xl font-bold font-serif text-[var(--color-waldorf-moss)] leading-tight">{cat.titulo}</h2>
-                </div>
-                
-                <p className="text-[var(--color-waldorf-text-light)] mb-8 text-sm leading-relaxed border-b border-gray-100 pb-6">
-                  {cat.descripcion}
-                </p>
-
-                <div className="flex flex-col gap-6">
-                  {cat.items.map((item, i) => (
-                    <div key={i} className="group cursor-pointer">
-                      <h4 className="font-bold text-[var(--color-waldorf-text)] mb-2 flex items-center justify-between group-hover:text-[var(--color-waldorf-moss)] transition-colors">
-                        {item.name}
-                        <ExternalLink size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#c6a382]" />
-                      </h4>
-                      <p className="text-sm text-[var(--color-waldorf-text-light)] leading-relaxed">{item.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-            
+        {/* Hero */}
+        <section className="relative pt-40 pb-24 px-6 md:px-12 bg-white overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--color-waldorf-sage)]/10 rounded-full blur-[100px] -mr-40 -mt-20 z-0"></div>
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#c6a382]/10 rounded-full blur-[80px] -ml-20 -mb-20 z-0"></div>
+          
+          <div className="max-w-5xl mx-auto relative z-10 text-center">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--color-waldorf-sage)]/10 text-[var(--color-waldorf-moss)] text-sm font-bold tracking-widest uppercase mb-6">
+              Directorio Nacional
+            </span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-6 leading-[1.1] tracking-tight">
+              Recursos Waldorf en Chile
+            </h1>
+            <p className="text-lg md:text-xl text-[var(--color-waldorf-text-light)] max-w-2xl mx-auto font-medium leading-relaxed">
+              Como parte de nuestra misión de fomentar la educación y la filosofía antroposófica, compartimos este directorio de iniciativas comunitarias, centros de salud, editoriales y asociaciones.
+            </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Final */}
-      <section className="py-24 px-6 md:px-12 relative z-10">
-        <div className="max-w-4xl mx-auto bg-[var(--color-waldorf-moss)] rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden earth-shadow">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-[80px]"></div>
-          <h2 className="text-3xl md:text-5xl font-bold font-serif text-white mb-6 relative z-10">
-            ¿Conoces otra iniciativa?
-          </h2>
-          <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto relative z-10">
-            Ayúdanos a expandir esta red colaborativa. Si conoces algún proyecto o profesional afín, no dudes en escribirnos.
-          </p>
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=coordinacion@colegiowaldorftrekan.cl&su=Consulta%20sobre%20Recursos%20Waldorf" target="_blank" rel="noreferrer" className="inline-block bg-white text-[var(--color-waldorf-moss)] px-8 py-4 rounded-full font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform duration-300 relative z-10">
-            Sugerir Recurso
-          </a>
-        </div>
-      </section>
-      
-      <Footer />
-    </main>
+        {/* Directorio Masonry */}
+        <section className="py-20 px-6 md:px-12 relative z-10">
+          <div className="max-w-7xl mx-auto">
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+              
+              {RECURSOS.map((cat, idx) => (
+                <div key={idx} className="break-inside-avoid bg-white rounded-3xl p-8 border border-[var(--color-waldorf-sage)]/15 earth-shadow hover:-translate-y-1 transition-transform duration-500">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-3 bg-[var(--color-waldorf-sage)]/20 text-[var(--color-waldorf-moss)] rounded-2xl">
+                      {cat.icono}
+                    </div>
+                    <h2 className="text-2xl font-bold font-serif text-[var(--color-waldorf-moss)] leading-tight">{cat.titulo}</h2>
+                  </div>
+                  
+                  <p className="text-[var(--color-waldorf-text-light)] mb-8 text-sm leading-relaxed border-b border-gray-100 pb-6">
+                    {cat.descripcion}
+                  </p>
+
+                  <div className="flex flex-col gap-6">
+                    {cat.items.map((item, i) => (
+                      <div key={i} className="group cursor-pointer">
+                        <h4 className="font-bold text-[var(--color-waldorf-text)] mb-2 flex items-center justify-between group-hover:text-[var(--color-waldorf-moss)] transition-colors">
+                          {item.name}
+                          <ExternalLink size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#c6a382]" />
+                        </h4>
+                        <p className="text-sm text-[var(--color-waldorf-text-light)] leading-relaxed">{item.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Final */}
+        <section className="py-24 px-6 md:px-12 relative z-10">
+          <div className="max-w-4xl mx-auto bg-[var(--color-waldorf-moss)] rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden earth-shadow">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-[80px]"></div>
+            <h2 className="text-3xl md:text-5xl font-bold font-serif text-white mb-6 relative z-10">
+              ¿Conoces otra iniciativa?
+            </h2>
+            <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto relative z-10">
+              Ayúdanos a expandir esta red colaborativa. Si conoces algún proyecto o profesional afín, no dudes en escribirnos.
+            </p>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=coordinacion@colegiowaldorftrekan.cl&su=Consulta%20sobre%20Recursos%20Waldorf" target="_blank" rel="noreferrer" className="inline-block bg-white text-[var(--color-waldorf-moss)] px-8 py-4 rounded-full font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform duration-300 relative z-10">
+              Sugerir Recurso
+            </a>
+          </div>
+        </section>
+        
+        <Footer />
+      </main>
+    </SmoothScroll>
   );
 }

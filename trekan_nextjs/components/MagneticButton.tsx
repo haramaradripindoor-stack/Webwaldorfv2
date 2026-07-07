@@ -1,11 +1,10 @@
 'use client'
 
-import React, { useRef, useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import React, { useRef, useState } from 'react'
+import { motion, HTMLMotionProps } from 'framer-motion'
 
-interface MagneticButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface MagneticButtonProps extends HTMLMotionProps<'div'> {
   children: React.ReactNode
-  className?: string
   magneticStrength?: number
 }
 
@@ -15,10 +14,10 @@ export default function MagneticButton({
   magneticStrength = 0.5,
   ...props
 }: MagneticButtonProps) {
-  const buttonRef = useRef<HTMLButtonElement>(null)
+  const buttonRef = useRef<HTMLDivElement>(null)
   const [position, setPosition] = useState({ x: 0, y: 0 })
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!buttonRef.current) return
     const { clientX, clientY } = e
     const { left, top, width, height } = buttonRef.current.getBoundingClientRect()
@@ -32,7 +31,7 @@ export default function MagneticButton({
   }
 
   return (
-    <motion.button
+    <motion.div
       ref={buttonRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -41,7 +40,7 @@ export default function MagneticButton({
       className={`relative inline-flex items-center justify-center overflow-hidden ${className}`}
       {...props}
     >
-      <span className="relative z-10 flex items-center justify-center">{children}</span>
-    </motion.button>
+      <span className="relative z-10 flex items-center justify-center w-full">{children}</span>
+    </motion.div>
   )
 }

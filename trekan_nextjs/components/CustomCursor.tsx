@@ -49,10 +49,10 @@ export default function CustomCursor() {
 
       if (isInteractive) {
         ring.style.transform += ' scale(2.2)'
-        ring.style.borderColor = 'var(--color-waldorf-terracotta)'
+        ring.style.borderColor = 'white'
         dot.style.opacity = '0'
       } else {
-        ring.style.borderColor = 'var(--color-waldorf-moss)'
+        ring.style.borderColor = 'white'
         dot.style.opacity = '1'
       }
     }
@@ -85,8 +85,8 @@ export default function CustomCursor() {
           width: 8,
           height: 8,
           borderRadius: '50%',
-          backgroundColor: 'var(--color-waldorf-moss)',
-          mixBlendMode: 'multiply',
+          backgroundColor: 'white',
+          mixBlendMode: 'difference',
         }}
       />
       {/* Ring — lerp suave */}
@@ -97,8 +97,8 @@ export default function CustomCursor() {
           width: 32,
           height: 32,
           borderRadius: '50%',
-          border: '1.5px solid var(--color-waldorf-moss)',
-          mixBlendMode: 'multiply',
+          border: '1.5px solid white',
+          mixBlendMode: 'difference',
         }}
       />
     </>

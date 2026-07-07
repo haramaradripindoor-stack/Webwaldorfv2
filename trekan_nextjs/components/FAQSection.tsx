@@ -104,6 +104,9 @@ export default function FAQSection() {
             >
               <button
                 onClick={() => setOpenIndex(isOpen ? null : i)}
+                aria-expanded={isOpen}
+                aria-controls={`faq-content-${i}`}
+                id={`faq-button-${i}`}
                 className="w-full flex items-center justify-between gap-4 p-6 text-left"
               >
                 <span className={`font-semibold text-[15px] transition-colors ${isOpen ? 'text-[var(--color-waldorf-terracotta)]' : 'text-[var(--color-waldorf-text)]'}`}>
@@ -117,6 +120,9 @@ export default function FAQSection() {
               <AnimatePresence>
                 {isOpen && (
                   <motion.div
+                    id={`faq-content-${i}`}
+                    role="region"
+                    aria-labelledby={`faq-button-${i}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}

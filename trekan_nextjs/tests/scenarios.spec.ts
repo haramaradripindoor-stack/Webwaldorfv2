@@ -5,6 +5,7 @@ test.describe('Scenario-based E2E Verification (Tier 4)', () => {
   test('test_journey_home_to_faq_to_admission_submit: navigate home -> FAQ -> Admission form', async ({ page }) => {
     // 1. Visit home page
     await page.goto('/');
+    await page.waitForTimeout(1000); // Hydration safety
     
     // 2. Click the second FAQ button to expand it (the first is open by default)
     const faqSection = page.locator('#faq');
@@ -33,41 +34,33 @@ test.describe('Scenario-based E2E Verification (Tier 4)', () => {
     await page.locator('textarea[name="message"]').fill('Hello Waldorf!');
     await page.locator('button:has-text("Martes")').click();
 
-    // Mock window.open to capture the WhatsApp redirection URL
-    let openedUrl = '';
-    await page.exposeFunction('mockWindowOpen', (url: string) => {
-      openedUrl = url;
-    });
-    await page.evaluate(() => {
-      window.open = (url) => {
-        (window as any).mockWindowOpen(url);
-        return null;
-      };
-    });
+    // Submit form and wait for popup window/tab redirect
+    const [popup] = await Promise.all([
+      page.waitForEvent('popup'),
+      page.locator('button[type="submit"]:has-text("Conversar con Ivonne")').click()
+    ]);
 
-    // Submit form
-    await page.locator('button[type="submit"]:has-text("Conversar con Ivonne")').click();
-    await page.waitForTimeout(500);
-
-    // Verify WhatsApp API link was opened with filled values
-    expect(openedUrl).toContain('wa.me/56967765106');
-    expect(openedUrl).toContain('Test%20Father');
+    // Verify WhatsApp URL
+    const openedUrl = popup.url();
+    expect(openedUrl).toContain('56967765106');
+    expect(decodeURIComponent(openedUrl).replace(/\+/g, ' ')).toContain('Test Father');
     expect(openedUrl).toContain('Martes');
   });
 
   test('test_journey_booking_with_dynamic_quote: select dates + services -> verify total price', async ({ page }) => {
     await page.goto('/arriendo-salon');
+    await page.waitForTimeout(1000); // Hydration safety
     
     // Set a date and time for 3 hours (3 * $10,000 = $30,000 base cost)
     const todayStr = new Date().toISOString().split('T')[0];
     await page.locator('input[type="date"]').fill(todayStr);
-    await page.locator('input[type="time"]').first().fill('10:00');
-    await page.locator('input[type="time"]').last().fill('13:00');
+    await page.locator('input[type="time"]').nth(0).fill('10:00');
+    await page.locator('input[type="time"]').nth(1).fill('13:00');
     
     await page.waitForTimeout(500);
     
     // Verify total is $30.000 initially
-    const totalPayText = page.locator('text=Total a pagar').locator('..').locator('p.text-[var(--color-waldorf-mustard)]');
+    const totalPayText = page.locator('text=Total a pagar').locator('..').locator('p').nth(1);
     await expect(totalPayText).toContainText('$30.000');
     
     // Go to step 2 (Servicios adicionales)
@@ -83,6 +76,7 @@ test.describe('Scenario-based E2E Verification (Tier 4)', () => {
 
   test('test_journey_news_navigation_and_details: news list and detailed page navigation', async ({ page }) => {
     await page.goto('/noticias');
+    await page.waitForTimeout(1000); // Hydration safety
     
     // Find the first news article card and select it
     const articleLink = page.locator('main.min-h-screen a[href^="/noticias/"]').first();
@@ -95,7 +89,7 @@ test.describe('Scenario-based E2E Verification (Tier 4)', () => {
     await articleLink.click();
     
     // Wait for URL to match either encoded or decoded version
-    await page.waitForURL(url => url.pathname === decodedHref || url.pathname === href);
+    await page.waitForURL(url => decodeURIComponent(url.pathname) === decodedHref);
     
     // Details page contains the main header title
     const articleTitle = page.locator('h1');

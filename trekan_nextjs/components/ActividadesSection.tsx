@@ -93,7 +93,7 @@ export default async function ActividadesSection() {
                     const tagColor = isCelebracion ? 'text-[var(--color-waldorf-moss)]' : 'text-[var(--color-waldorf-terracotta)]';
                     // We'll use a placeholder beautiful image based on index for the hover reveal
                     const fallbackImages = ['/assets/fb/fb_post_1.jpg', '/assets/fb/fb_post_3.jpg', '/assets/fb/fb_post_5.jpg', '/assets/fb/fb_post_6.jpg'];
-                    const hoverImg = post.image || fallbackImages[i % fallbackImages.length];
+                    const hoverImg = post.image_url || post.image || fallbackImages[i % fallbackImages.length];
 
                     return (
                       <a 

@@ -64,8 +64,8 @@ export default function AIChatWidget() {
   const handleFaqClick = (question: string, answer: string) => {
     // Aquí podríamos inyectar la pregunta y respuesta al array de mensajes del chat
     // Por simplicidad, esconderemos los FAQs y mostraremos un mensaje especial
-    setShowFaq(false)
-    handleInputChange({ target: { value: question } } as any)
+    // @ts-ignore
+    handleInputChange({ target: { value: question } });
     // Luego simulamos enviar el form
     setTimeout(() => {
       const form = document.getElementById('chat-form') as HTMLFormElement
@@ -77,7 +77,7 @@ export default function AIChatWidget() {
     { q: '¿Tienen cupos para 2026?', a: 'Sí, estamos en proceso de admisión 2026. Te sugiero hablar con Ivonne para coordinar una visita.' },
     { q: '¿Cuáles son los aranceles?', a: 'Nuestros aranceles varían por nivel. Ivonne puede enviarte la tabla detallada por WhatsApp.' },
     { q: 'Quiero hablar con Ivonne', a: 'Derivación directa' }
-  ]
+  ];
 
   return (
     <div className="fixed bottom-6 right-6 z-[9998] flex flex-col items-end gap-3">

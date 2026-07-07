@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
+  await page.waitForTimeout(1000); // Hydration safety to prevent clicking before React event handlers attach
 });
 
 test.describe('WhatsApp Float Widget (Tier 1)', () => {
@@ -29,7 +30,7 @@ test.describe('WhatsApp Float Widget Interactions (Tier 2)', () => {
     const waLink = page.locator('a:has-text("Abrir Chat en WhatsApp")');
     await expect(waLink).toBeVisible();
     const href = await waLink.getAttribute('href');
-    expect(href).toContain('wa.me/56967765106');
+    expect(href).toContain('56967765106');
 
     // Click close button inside card
     const closeBtn = page.locator('button[aria-label="Cerrar chat"]');

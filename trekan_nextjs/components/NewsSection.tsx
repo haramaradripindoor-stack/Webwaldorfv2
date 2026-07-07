@@ -17,6 +17,11 @@ function getImageSrc(url?: string | null): string {
 
 export default function NewsSection({ displayNews }: { displayNews: MarkdownPost[] }) {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
   
   if (!displayNews || displayNews.length === 0) {
     return null
@@ -78,9 +83,9 @@ export default function NewsSection({ displayNews }: { displayNews: MarkdownPost
                 {/* Text Content (Top) */}
                 <Link href={`/noticias/${post.slug}`} className="p-8 md:p-10 pb-6 flex flex-col flex-grow">
                   <time className="text-[13px] font-medium text-[#8F8D8B] mb-5 block">
-                    {post.fecha_display || new Date(post.published_at).toLocaleDateString('es-CL', {
+                    {mounted ? (post.fecha_display || new Date(post.published_at).toLocaleDateString('es-CL', {
                       year: 'numeric', month: 'long', day: 'numeric'
-                    })}
+                    })) : ""}
                   </time>
                   <h3 className="text-3xl md:text-[36px] font-bold font-serif text-[var(--color-waldorf-moss)] mb-5 leading-[1.15] group-hover:text-[var(--color-waldorf-terracotta)] transition-colors">
                     {post.title}

@@ -112,3 +112,10 @@ div#goog-gt- {
   background: none !important;
   box-shadow: none !important;
 }
+
+@media (min-width: 768px) {
+  html, body, a, button, input, select, textarea, [role="button"] {
+    cursor: none !important;
+  }
+}
+

@@ -7,6 +7,7 @@ import Link from 'next/link'
 import SmoothScroll from '@/components/SmoothScroll'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { Metadata } from 'next'
 
 // Generar rutas estáticas
 export async function generateStaticParams() {
@@ -14,6 +15,33 @@ export async function generateStaticParams() {
   return posts.map((post) => ({
     slug: post.slug,
   }))
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const { slug } = params
+  const decodedSlug = decodeURIComponent(slug)
+  const posts = getMarkdownPosts('_noticias')
+  
+  const post = posts.find((p) => 
+    p.slug === slug || 
+    p.slug === decodedSlug ||
+    decodeURIComponent(p.slug) === decodedSlug ||
+    p.slug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") === decodedSlug.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  )
+
+  if (!post) {
+    return {
+      title: 'Noticia no encontrada | Colegio Waldorf Trekan',
+    }
+  }
+
+  return {
+    title: `${post.title} | Colegio Waldorf Trekan`,
+    description: post.excerpt || 'Noticias y crónicas de la comunidad Waldorf Trekan.',
+    alternates: {
+      canonical: `https://www.colegiowaldorftrekan.cl/noticias/${post.slug}`,
+    }
+  }
 }
 
 export default function NoticiaPage({ params }: { params: { slug: string } }) {

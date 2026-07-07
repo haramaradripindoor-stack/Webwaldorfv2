@@ -42,6 +42,17 @@ test.describe('Navbar & Global Widgets (Tier 1)', () => {
     await expect(deBtn).toBeVisible();
     await expect(enBtn).toBeVisible();
   });
+
+  test('test_vcard_download: click vCard button triggers download', async ({ page }) => {
+    const vcardBtn = page.locator('button:has-text("Guardar Contacto (vCard)")');
+    await expect(vcardBtn).toBeVisible();
+
+    const downloadPromise = page.waitForEvent('download');
+    await vcardBtn.click();
+    const download = await downloadPromise;
+
+    expect(download.suggestedFilename()).toBe('colegio_trekan.vcf');
+  });
 });
 
 test.describe('Boundaries (Tier 2)', () => {
@@ -56,9 +67,8 @@ test.describe('Boundaries (Tier 2)', () => {
   test('test_past_date_block_in_booking_calendar: date picker blocks past dates', async ({ page }) => {
     await page.goto('/arriendo-salon');
     const dateInput = page.locator('input[type="date"]');
-    const minAttr = await dateInput.getAttribute('min');
     const todayStr = new Date().toISOString().split('T')[0];
-    expect(minAttr).toBe(todayStr);
+    await expect(dateInput).toHaveAttribute('min', todayStr);
   });
 
   test('test_guest_limits_in_booking: arriendo-salon displays capacity limit', async ({ page }) => {

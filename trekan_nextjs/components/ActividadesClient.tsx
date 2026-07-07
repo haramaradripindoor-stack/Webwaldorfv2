@@ -83,7 +83,7 @@ export default function ActividadesClient({ actividades }: { actividades: Markdo
                     const isCelebracion = post.tipo?.toLowerCase() === 'celebracion' || post.tipo?.toLowerCase() === 'celebración';
                     // Extraer día y mes abreviado de la fecha
                     let postDay = post.dia || '00';
-                    let postMonthAbbr = post.mes || month.substring(0, 3).toUpperCase();
+                    let postMonthAbbr = post.mes || (post.published_at ? new Date(post.published_at).toLocaleString('es-CL', { month: 'short' }).replace('.', '').toUpperCase() : 'ACT');
 
                     return (
                       <article 

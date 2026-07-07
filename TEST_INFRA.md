@@ -1,76 +1,86 @@
-# E2E Test Infrastructure - Colegio Waldorf Trekan
+# Test Infrastructure & Strategy (TEST_INFRA.md)
 
-This document outlines the testing philosophy, architecture, feature inventory, and test scenarios designed for the Waldorf Trekan Next.js project.
+This document details the E2E testing strategy, configuration, architecture, and feature coverage for the Waldorf Trekan Next.js application.
 
 ---
 
-## 1. Testing Philosophy
-Our E2E testing strategy is built upon the **Integrity Mandate (Zero-Cheat Policy)**:
-* **Genuine Interactions:** Every test performs real browser interactions (clicks, fills, keyboard presses, window/API mocks).
-* **State and Behavior:** Verification relies on the actual visual state, DOM attributes, and calculated variables, rather than hardcoded mock outputs.
-* **Intended Failures:** We do not fake success for known bugs. For instance, the Booking Calculator's Step 2 does not have active event handlers to update the total price in state; thus, Tier 3 and Tier 4 calculator tests are *expected to fail* until the feature is fixed.
+## 1. Test Philosophy
+
+Our testing approach prioritizes **real-world reliability, correct state transitions, and user experience consistency** across all main user journeys of the Colegio Waldorf Trekan website. Given the highly custom aesthetic and interactive design (Awwwards-level cursor, smooth scroll, responsive layout, bento grids, and interactive forms), E2E testing using **Playwright** guarantees that components compile, render, hydrate, and function seamlessly across web browsers.
+
+Our core testing principles are:
+- **Behavior-Driven Testing**: We test what the user actually sees and interacts with, rather than internal component states.
+- **Dynamic Price and State Validation**: Ensuring the Booking Calculator and Admission Forms accurately compute costs and serialize inputs.
+- **Fail-Safe Integrity**: Real data pathways (e.g., booking form submission, lead capture, and language switches) must perform correctly without silent errors.
 
 ---
 
 ## 2. Test Architecture
-* **Runner:** Playwright Test.
-* **Workspace:** `trekan_nextjs/`
-* **Port / baseURL:** `http://127.0.0.1:3000` (IPv4 loopback to avoid Windows IPv6 localhost lookup resolution delays).
-* **WebServer Integration:** Configured to reuse the development server (`npm run dev`) or spin it up automatically.
-* **Project Defaults:** Configured with `chromium` for optimal performance and reliable execution under Windows.
-* **Execution Mode:** Serial execution (`fullyParallel: false` with 1 worker) to prevent database locks and ensure UI transaction stability.
+
+The test suite is built on top of **Playwright**, integrated directly into the Next.js workspace:
+
+- **Config Path**: `trekan_nextjs/playwright.config.ts`
+- **Specs Path**: `trekan_nextjs/tests/`
+- **Target URL (baseURL)**: `http://localhost:3000` (allowing local testing)
+- **Local Web Server Integration**: Playwright starts the Next.js development server automatically using `npm run dev` or the production build via `npm run start` on port 3000.
+- **Concurrency & Parallelism**: Configured with `fullyParallel: false` and `workers: 1` to prevent port collisons and database concurrency issues during sequential user flow testing.
+- **Browser Profile**: Target execution primarily runs on `chromium` configured with desktop viewports.
 
 ---
 
-## 3. Feature Inventory & Routes Checked
-The test suite covers all primary customer-facing routes:
+## 3. Feature Inventory
+
+The following application routes and functional zones are covered by our test inventory:
+
 1. **Homepage (`/`)**
-   * Background Video backdrop verification.
-   * Kinetic cursor interaction & custom cursor presence.
-   * Audio controller ("Atmósfera" toggle mute state).
-   * Floating WhatsApp widget (loading, open, close, and validation of phone number redirect link).
-   * AI Chatbot toggle (opening lead form, verifying closed state).
-   * Asymmetric Gallery & Lightbox keyboard navigation (ArrowRight and Escape transitions).
+   - Sticky navbar presence and styling (`fixed`).
+   - Hero video backdrop rendering.
+   - Interactive Waldorf atmosphere audio toggle.
+   - Custom pointer/cursor dot element attachment in the DOM.
+   - Floating WhatsApp button widget + info card display.
+   - Floating AI Lead Capture Chatbot toggle.
+   - Contact Section vCard (`.vcf`) download trigger.
 2. **Admission (`/admision`)**
-   * Happy-path contact form inputs.
-   * Field validation constraints (required fields `parentName`, `childrenAges`).
-   * FAQ accordion selection.
-3. **Booking/Salon Rental (`/arriendo-salon`)**
-   * Interacting with the Booking date-time calculator.
-   * Boundary checks: Past date blocker (the `min` attribute set dynamically to `today`).
-   * Capacity limits text displays.
-   * Dynamic quote combination math (base hour price vs. Step 2 add-on services like Kit Audiovisual).
-4. **Resources Directory (`/recursos` & `/recursos-waldorf-chile`)**
-   * Masonry columns layout existence.
-   * CSS Column break boundaries prevent truncation (`break-inside: avoid`).
-   * Contact details download verification (vCard).
-5. **News & Blog (`/noticias` & `/noticias/[slug]`)**
-   * News list page loading.
-   * Detail page transition (decoding slug routing).
-   * Back button visibility.
+   - Form field constraints (required inputs, name & child age).
+   - Form submission and dynamic redirect to WhatsApp with pre-filled customer message.
+3. **Booking Calendar (`/arriendo-salon`)**
+   - Space layout and capacity info display.
+   - Date picker boundaries (prevents past dates).
+   - Step 1: Input date/time validation.
+   - Step 2: Interactive additional services toggle (e.g., Kit Audiovisual, Firewood Heating).
+   - Step 3: Digital signature, pricing sidebar calculations, and final submission via EmailJS.
+4. **Resources (`/recursos`)**
+   - Asymmetric masonry layout rendering (columns-1, md:columns-2, lg:columns-3).
+   - Card block layout constraints (`break-inside: avoid`).
+   - Resource directories and external website links.
+5. **News (`/noticias` & `/noticias/[slug]`)**
+   - Dynamic news feed loaded from markdown or Supabase.
+   - Slug routing, title display, and "back to news" link verification.
 
 ---
 
-## 4. Four-Tier Scenario Inventory
+## 4. Test Scenarios (4-Tier Matrix)
 
-### Tier 1: Happy-Path Features
-* **Booking Selector Loading:** Ensures the date and time inputs exist and are fillable.
-* **Admission Form Inputs:** Fills out the parent contact data.
-* **News page & categories:** Confirms articles are rendered from Supabase / Markdown fallback.
-* **Custom Cursor Presence:** Confirms target DOM elements for custom cursor style exist.
-* **Chatbot Toggle:** Toggles chatbot modal open and close.
-* **Recursos Page Layout:** Confirms directory structures and links.
+### Tier 1: Happy-Path Features (`hero.spec.ts`, `scroll.spec.ts`, `whatsapp.spec.ts`, `masonry.spec.ts`)
+- **Hero elements**: Video is attached, atmosphere audio toggles properly.
+- **Language switcher**: `ES`, `DE`, and `EN` buttons are rendered and visible.
+- **Chatbot interaction**: Clicking chatbot button opens the form and displays lead inputs.
+- **Custom Cursor**: Dot is attached to the DOM with pointer-events disabled.
+- **vCard Download**: Clicking the vCard button downloads the correct `.vcf` file.
+- **WhatsApp Widget**: Clicking WhatsApp floating icon opens the contact card with coordinate details.
+- **Masonry Grid**: Resources page shows masonry columns layout with cards that avoid breaks inside columns.
 
-### Tier 2: Boundaries
-* **Admission Fields Validation:** Confirms `required` constraints are set on `parentName` and `childrenAges`.
-* **Past Date Block in Calendar:** Validates that `min` date attribute on the HTML date input matches `today` to prevent booking in the past.
-* **Guest Limits in Booking:** Verifies page shows the maximum capacity limit ("hasta 20 personas").
+### Tier 2: Boundary Constraints (`scroll.spec.ts`, `masonry.spec.ts`)
+- **Form Validation**: Admission fields (`parentName` and `childrenAges`) must enforce the `required` attribute.
+- **Past Date Block**: Booking page date inputs must restrict selection using the `min` attribute set to today.
+- **Capacity limits**: Displays "hasta 20 personas" limits.
+- **Lightbox Navigation**: Homepage gallery items open lightbox. Arrow keys cycle through images and update the image source dynamically.
 
-### Tier 3: Combinations
-* **Booking Calculator Add-on Services:** Selects date-time range and toggles extra services (e.g. Kit Audiovisual Completo) in Step 2 to assert they increment the total price. *(Expected to fail due to missing event handlers in the UI).*
-* **Navbar Mobile Menu Toggle:** Simulates viewport resizing (375x667) and verifies mobile navigation visibility toggling.
+### Tier 3: State Combinations (`combinations.spec.ts`)
+- **Booking Calculator Add-Ons**: Toggling additional options like "Kit Audiovisual" (+$20,000) updates state and recalculates prices instantly.
+- **Responsive Layout Menu**: Resizing the browser viewport to mobile width (375px) shows the mobile menu trigger. Clicking toggles mobile link visibility.
 
-### Tier 4: Real-world User Journeys
-* **Journey 1: Home to FAQ to Admission Submit:** Opens homepage, clicks FAQ dropdowns, navigates to `/admision`, fills parent name, age of children, and preferred day, clicks submit, and confirms dynamic wa.me redirect URL is formatted correctly.
-* **Journey 2: Booking with Dynamic Quote Validation:** Selects date/time for 3 hours, navigates to Step 2, selects Kit Audiovisual, and asserts the total price reflects `$50.000` ($30k base + $20k kit). *(Expected to fail).*
-* **Journey 3: News Navigation and Details:** Goes to `/noticias`, selects the first article card, navigates to detail slug, and verifies the article markdown content and back link are rendered.
+### Tier 4: Real-World User Journeys (`scenarios.spec.ts`)
+- **FAQ-to-Admission Flow**: A parent visits the homepage, expands a question in the FAQ accordion, clicks the Navbar dropdown to navigate to the Admission form, fills out the details, and clicks submit, verifying it redirects to the WhatsApp endpoint with the correctly formatted message parameters.
+- **Dynamic Booking Quote validation**: A client chooses a 3-hour slot on the booking calendar ($30,000), goes to step 2, checks "Kit Audiovisual" (+$20,000), and validates that the dynamic sidebar recalculates the total price to exactly $50,000.
+- **News Navigation & Detail View**: A user enters the news directory, clicks on the first article card, lands on the corresponding detail page with matching title metadata, and verifies the "Volver a noticias" button.

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
-import { Plus, X, Send, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { Plus, X, Send, ChevronRight, CheckCircle2, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface DayEntry {
@@ -28,8 +28,10 @@ export default function CotizadorSalon() {
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ text: string; type: 'success' | 'error' } | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const today = new Date().toISOString().split('T')[0];
     setFechaFirma(today);
   }, []);
@@ -124,7 +126,7 @@ export default function CotizadorSalon() {
     }
   };
 
-  const todayStr = new Date().toISOString().split('T')[0];
+  const todayStr = mounted ? new Date().toISOString().split('T')[0] : '';
 
   const InputField = ({ label, type = "text", value, onChange, required = false, placeholder = "" }: any) => (
     <div className="relative mb-6">
@@ -237,7 +239,10 @@ export default function CotizadorSalon() {
                 <h2 className="text-4xl font-serif font-bold text-[var(--color-waldorf-moss)] mb-8">Servicios adicionales</h2>
                 
                 <div className="space-y-4">
-                  <label className={`flex items-start gap-4 p-6 rounded-2xl cursor-pointer border-2 transition-all ${kitCompleto ? 'border-[var(--color-waldorf-moss)] bg-[var(--color-waldorf-sage)]/10' : 'border-gray-100 hover:border-gray-200 bg-white'}`}>
+                  <label 
+                    onClick={() => setKitCompleto(!kitCompleto)}
+                    className={`flex items-start gap-4 p-6 rounded-2xl cursor-pointer border-2 transition-all ${kitCompleto ? 'border-[var(--color-waldorf-moss)] bg-[var(--color-waldorf-sage)]/10' : 'border-gray-100 hover:border-gray-200 bg-white'}`}
+                  >
                     <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 mt-1 transition-colors ${kitCompleto ? 'border-[var(--color-waldorf-moss)] bg-[var(--color-waldorf-moss)] text-white' : 'border-gray-300'}`}>
                       {kitCompleto && <Check size={14} />}
                     </div>
@@ -247,7 +252,10 @@ export default function CotizadorSalon() {
                     </div>
                   </label>
 
-                  <label className={`flex items-start gap-4 p-6 rounded-2xl cursor-pointer border-2 transition-all ${calefaccion ? 'border-[var(--color-waldorf-moss)] bg-[var(--color-waldorf-sage)]/10' : 'border-gray-100 hover:border-gray-200 bg-white'}`}>
+                  <label 
+                    onClick={() => setCalefaccion(!calefaccion)}
+                    className={`flex items-start gap-4 p-6 rounded-2xl cursor-pointer border-2 transition-all ${calefaccion ? 'border-[var(--color-waldorf-moss)] bg-[var(--color-waldorf-sage)]/10' : 'border-gray-100 hover:border-gray-200 bg-white'}`}
+                  >
                     <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 mt-1 transition-colors ${calefaccion ? 'border-[var(--color-waldorf-moss)] bg-[var(--color-waldorf-moss)] text-white' : 'border-gray-300'}`}>
                       {calefaccion && <Check size={14} />}
                     </div>

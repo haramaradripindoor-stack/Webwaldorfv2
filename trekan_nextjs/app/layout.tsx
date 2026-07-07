@@ -113,9 +113,7 @@ export default function RootLayout({
           `}
         </Script>
 
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+        {children}
         
         {/* Widgets Flotantes Globales */}
         <FloatingWhatsApp />

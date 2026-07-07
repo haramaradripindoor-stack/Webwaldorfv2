@@ -39,6 +39,11 @@ const columns = [
 ];
 
 function LeadCard({ lead, onMove, onDelete }: { lead: Lead; onMove: (id: string, estado: string) => void; onDelete: (id: string) => void }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const classColors = {
     HOT: { bg: 'bg-red-500/20', text: 'text-red-400', icon: Flame },
     WARM: { bg: 'bg-yellow-500/20', text: 'text-yellow-400', icon: Thermometer },
@@ -52,7 +57,7 @@ function LeadCard({ lead, onMove, onDelete }: { lead: Lead; onMove: (id: string,
 
   const style = classColors[finalClass] || classColors.COLD;
   const ClassIcon = style.icon;
-  const timeAgo = getTimeAgo(lead.created_at);
+  const timeAgo = mounted ? getTimeAgo(lead.created_at) : '';
 
   return (
     <motion.div

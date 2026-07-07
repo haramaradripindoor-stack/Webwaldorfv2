@@ -26,7 +26,7 @@ export default function AdmisionForm() {
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto mt-12 bg-white/5 backdrop-blur-md p-8 md:p-10 rounded-[2.5rem] border border-[var(--color-waldorf-mustard)]/20 shadow-2xl text-left">
+    <div className="w-full max-w-2xl mx-auto mt-12 bg-[var(--color-waldorf-moss)] p-8 md:p-10 rounded-[2.5rem] border border-[var(--color-waldorf-mustard)]/20 shadow-2xl text-left">
       <AnimatePresence mode="wait">
         <motion.div 
           key="form"

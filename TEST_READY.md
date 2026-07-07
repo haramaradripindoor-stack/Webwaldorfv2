@@ -1,62 +1,59 @@
-# Playwright E2E Test Suite - Readiness Report
+# E2E Test Suite Status (TEST_READY.md)
 
-This report summarizes the E2E test commands, scope, tiers coverage, and checklist.
+This document provides a quick overview of the current status, runner command, and test coverage checklist for the Waldorf Trekan E2E test suite.
 
 ---
 
-## 1. E2E Execution Command
-To execute the tests locally from the `trekan_nextjs/` directory:
+## 1. Playwright E2E Runner Command
+
+All tests should be run from within the `trekan_nextjs/` folder. Use the following command:
+
 ```bash
+# Navigate to the Next.js app directory
+cd trekan_nextjs
+
+# Run the full Playwright test suite
 npx playwright test
 ```
 
-To run a specific test file (e.g., Hero checks):
-```bash
-npx playwright test tests/hero.spec.ts
-```
-
-To open the interactive Playwright UI:
-```bash
-npx playwright test --ui
-```
+*Note: The test runner will automatically build or launch the Next.js development server on port 3000 as configured in `playwright.config.ts`.*
 
 ---
 
 ## 2. Test Tiers Count
-The test suite consists of **22 test scenarios** mapped across **4 Tiers**:
-* **Tier 1 (Happy-Path Features):** 11 tests
-* **Tier 2 (Boundaries & Validations):** 7 tests
-* **Tier 3 (Combinations & Responsive Triggers):** 2 tests
-* **Tier 4 (Real-world User Journeys):** 2 tests
 
-*Note: Two tests related to Step 2 of the Booking Calculator (toggling add-ons to increase total price) are expected to fail until the UI component state handles click/change events.*
+The test suite covers **4 Tiers** of verification:
+
+1. **Tier 1: Happy-path features** (Navbar components, hero, audio controllers, custom cursor, WhatsApp and chatbot widgets, resources cards, and vCard download).
+2. **Tier 2: Boundary limits** (Admission required field inputs, past-date calendar selection blocks, capacity description, and gallery lightbox keyboard transitions).
+3. **Tier 3: Combinations** (Booking calculator add-on services price updates, mobile browser layout and viewport menu toggles).
+4. **Tier 4: Real-world user journeys** (FAQ-to-Admission navigation & submission flow, dynamic booking quote validation, and news catalog to detailed article reading flow).
 
 ---
 
 ## 3. Coverage Checklist
 
-### Route Coverage
-- [x] Homepage (`/`)
-- [x] Admission (`/admision`)
-- [x] Booking / Salon Rental (`/arriendo-salon`)
-- [x] Resources Directory (`/recursos`)
-- [x] Resources Directory Alternative (`/recursos-waldorf-chile`)
-- [x] News List (`/noticias`)
-- [x] News Detail (`/noticias/[slug]`)
-
-### Feature Coverage Checklist
-- [x] **Hero Section Video Background:** Presence validation.
-- [x] **Hero Atmospheric Audio control:** Mute/unmute interaction check.
-- [x] **Custom Kinetic Cursor:** Presence verification in DOM.
-- [x] **AI Chatbot Toggle:** Window open, lead input visibility, and close button check.
-- [x] **Floating WhatsApp Trigger:** Open/close card and wa.me redirect verification.
-- [x] **Masonry Layout:** `.columns-1` columns rendering and `break-inside: avoid` check on Resources page.
-- [x] **Contact vCard Download:** download triggers correctly (in Homepage footer).
-- [x] **Gallery Lightbox Interaction:** Opening image, keyboard ArrowRight next-slide, and closing lightbox.
-- [x] **Admission Field Validation:** `parentName` and `childrenAges` require non-empty strings.
-- [x] **Booking Calendar Limits:** Block past dates by asserting `min` input attribute is set to `today`.
-- [x] **Booking Capacity Check:** Display capacity warning for up to 20 people.
-- [x] **Mobile Menu Navigation:** Viewport resizing, toggle state check.
-- [x] **Multi-Page Journeys:** Home -> FAQ expand -> Admission Navigation -> WhatsApp API Submit redirection.
-- [x] **Dynamic Quote Journey:** Calculating booking cost based on hour selections.
-- [x] **News Slug details routing:** Navigating from list to decoded detailed view.
+- [x] **Homepage (`/`)**
+  - [x] Navbar rendered fixed in viewport.
+  - [x] Hero video and audio atmosphere control.
+  - [x] Custom cursor dot attachment.
+  - [x] Chatbot toggle & input fields.
+  - [x] WhatsApp contact badge triggers and link parameters.
+  - [x] vCard contact download file verification.
+  - [x] Lightbox keyboard navigation (ArrowRight/ArrowLeft/Close).
+- [x] **Admission (`/admision`)**
+  - [x] Enforces `required` validation on parents and age fields.
+  - [x] Correct serialization and redirection parameters to WA.
+- [x] **Booking Calendar (`/arriendo-salon`)**
+  - [x] Renders capacity limits text.
+  - [x] Prevents booking past dates (min date is today).
+  - [x] Dynamic quotation recalculation when toggling additional services (Kit Audiovisual / Calefacción).
+- [x] **Resources (`/recursos`)**
+  - [x] Masonry columns-1 container is visible.
+  - [x] Directory items avoid break-inside layout issues.
+- [x] **News Feed (`/noticias`)**
+  - [x] Lists markdown/Supabase articles.
+  - [x] Click links navigate to correct slug-based URLs.
+- [x] **News Details (`/noticias/[slug]`)**
+  - [x] Renders page header title.
+  - [x] Display back button to main news.
