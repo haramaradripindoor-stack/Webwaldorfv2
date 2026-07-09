@@ -1,61 +1,62 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Leaf, BookOpen, Globe, Hammer, Music, Heart, Flower, Compass, Laptop } from 'lucide-react'
 
 const team = [
   {
     name: 'Yabel Painemil',
     role: 'Docente Intercultural',
     bio: 'Comunicadora Audiovisual, docente intercultural bilingüe, formación Waldorf básica y especialista en Gimnasia Bothmer.',
-    emoji: '🌿',
+    Icon: Leaf,
   },
   {
     name: 'Javiera Ortega',
     role: 'Profesora General Básica',
     bio: 'Especialista en lenguaje, cursando formación Waldorf.',
-    emoji: '📖',
+    Icon: BookOpen,
   },
   {
     name: 'Hanna Lowen',
     role: 'Profesora de Inglés',
     bio: 'Enseñanza del inglés con enfoque vivencial y artístico.',
-    emoji: '🌍',
+    Icon: Globe,
   },
   {
     name: 'Matías Valiente',
     role: 'Profesor de Carpintería',
     bio: 'Maestro de oficios que guía a los niños en el trabajo con la madera y las manos.',
-    emoji: '🪵',
+    Icon: Hammer,
   },
   {
     name: 'Sofía González Rodríguez',
     role: 'Profesora de Música',
     bio: 'La música como lenguaje del alma en cada jornada escolar.',
-    emoji: '🎵',
+    Icon: Music,
   },
   {
     name: 'Ivonne Parada',
     role: 'Familia Fundadora · Convivencia Escolar',
     bio: 'Trabajadora Social UV, especialista en convivencia escolar con formación en peritaje social, polivagal y gestalt.',
-    emoji: '💛',
+    Icon: Heart,
   },
   {
     name: 'Sleater Martínez',
     role: 'Familia Fundadora · Educadora de Párvulos',
     bio: 'Cursando formación Waldorf en Fundación Arche.',
-    emoji: '🌸',
+    Icon: Flower,
   },
   {
     name: 'Felipe Vivanco Cornejo',
     role: 'Familia Fundadora · Administración',
     bio: 'Administrador Público UV, formación en NICSP, Neurociencias y GYDP. Terapeuta, Escuela Arica.',
-    emoji: '🧭',
+    Icon: Compass,
   },
   {
     name: 'Gerard Muñoz',
     role: 'Familia Fundadora · Tecnología',
     bio: 'Ingeniero en Informática.',
-    emoji: '💻',
+    Icon: Laptop,
   },
 ]
 
@@ -85,8 +86,8 @@ export default function TeamSection() {
             transition={{ delay: i * 0.06, duration: 0.5 }}
           >
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-white border border-[var(--color-waldorf-sage)]/10 flex items-center justify-center text-2xl shrink-0 shadow-sm transition-colors group-hover:border-[var(--color-waldorf-mustard)]/40">
-                {person.emoji}
+              <div className="w-12 h-12 rounded-xl bg-[var(--color-waldorf-mustard)]/10 border border-[var(--color-waldorf-mustard)]/20 flex items-center justify-center text-[var(--color-waldorf-terracotta)] shrink-0 shadow-sm transition-colors group-hover:bg-[var(--color-waldorf-mustard)]/20">
+                <person.Icon size={22} strokeWidth={1.5} />
               </div>
               <div>
                 <h3 className="font-bold text-[var(--color-waldorf-moss)] text-sm group-hover:text-[var(--color-waldorf-terracotta)] transition-colors font-serif">

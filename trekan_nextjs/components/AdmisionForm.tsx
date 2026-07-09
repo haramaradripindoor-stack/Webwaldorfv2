@@ -20,6 +20,23 @@ export default function AdmisionForm() {
 
   const handleWhatsAppRoute = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Disparar Eventos de Conversión
+    try {
+      // @ts-ignore
+      if (typeof window !== 'undefined' && window.fbq) {
+        // @ts-ignore
+        window.fbq('track', 'Lead');
+      }
+      // @ts-ignore
+      if (typeof window !== 'undefined' && window.dataLayer) {
+        // @ts-ignore
+        window.dataLayer.push({'event': 'generar_lead'});
+      }
+    } catch (error) {
+      console.error('Error tracking conversion', error);
+    }
+
     const text = `Hola Ivonne, soy ${formData.parentName}, me interesa postular para edades: ${formData.childrenAges}. ${formData.message ? `Adicionalmente: ${formData.message}` : ''} Me gustaría agendar una visita el día ${selectedDay || 'que tengan disponibilidad'}.`;
     const whatsappUrl = `https://wa.me/56967765106?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, '_blank');
@@ -88,13 +105,13 @@ export default function AdmisionForm() {
                 <CalendarClock className="text-[var(--color-waldorf-mustard)]" />
                 Día preferido para la visita
               </h4>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {['Lunes', 'Martes', 'Jueves', 'Viernes'].map(dia => (
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                {['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'].map(dia => (
                   <button 
                     key={dia} 
                     type="button"
                     onClick={() => setSelectedDay(dia)}
-                    className={`py-3 px-4 rounded-xl border transition-colors text-sm font-medium ${selectedDay === dia ? 'bg-[var(--color-waldorf-mustard)] text-[#1a2e25] border-transparent scale-105 shadow-lg' : 'bg-white/5 border-white/10 hover:bg-white/20 hover:border-white/30 text-white'}`}
+                    className={`py-3 px-2 md:px-4 rounded-xl border transition-colors text-sm font-medium ${selectedDay === dia ? 'bg-[var(--color-waldorf-mustard)] text-[#1a2e25] border-transparent scale-105 shadow-lg' : 'bg-white/5 border-white/10 hover:bg-white/20 hover:border-white/30 text-white'}`}
                   >
                     {dia} <br/>
                     <span className={`text-xs ${selectedDay === dia ? 'opacity-80' : 'opacity-60'}`}>Mañana</span>

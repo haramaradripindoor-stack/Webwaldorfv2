@@ -1,31 +1,34 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Quicksand, Merriweather } from 'next/font/google'
 import Script from 'next/script'
 import CustomCursor from '@/components/CustomCursor'
-import FloatingWhatsApp from '@/components/FloatingWhatsApp'
 import AIChatWidget from '@/components/AIChatWidget'
 import SmoothScroll from '@/components/SmoothScroll'
+import LiquidSplash from '@/components/LiquidSplash'
 
-const quicksand = Quicksand({ 
-  subsets: ['latin'],
-  variable: '--font-quicksand',
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-})
-
-const merriweather = Merriweather({
-  subsets: ['latin'],
-  variable: '--font-merriweather',
-  weight: ['300', '400', '700'],
-  display: 'swap',
-})
+const quicksand = { variable: 'font-sans' }
+const merriweather = { variable: 'font-serif' }
 
 export const metadata: Metadata = {
   title: 'Colegio Waldorf Trekan | Educación y Armonía - Puerto Varas',
   description: 'Espacio educativo en armonía con la naturaleza en Puerto Varas. Pedagogía Waldorf para niños de 3 a 14 años. Admisión 2026 abierta.',
   alternates: {
     canonical: 'https://www.colegiowaldorftrekan.cl',
+  },
+  openGraph: {
+    title: 'Colegio Waldorf Trekan | Puerto Varas',
+    description: 'Educación con el corazón en armonía con la naturaleza. Pedagogía Waldorf para niños de 3 a 14 años.',
+    url: 'https://www.colegiowaldorftrekan.cl',
+    siteName: 'Colegio Waldorf Trekan',
+    images: [
+      {
+        url: 'https://www.colegiowaldorftrekan.cl/images/paseocerro20261.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Niños explorando la naturaleza - Colegio Waldorf Trekan',
+      },
+    ],
+    type: 'website',
   },
 }
 
@@ -80,6 +83,21 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','${GTM_ID}');
           `}
         </Script>
+        {/* Meta Pixel Code */}
+        <Script id="meta-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1111111111111111'); // TODO: REEMPLAZAR CON PIXEL ID REAL
+            fbq('track', 'PageView');
+          `}
+        </Script>
       </head>
       <body className="font-sans antialiased bg-[var(--color-waldorf-cream)] text-[var(--color-waldorf-text)]">
         {/* Google Tag Manager (noscript) */}
@@ -91,7 +109,14 @@ export default function RootLayout({
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
+        {/* Meta Pixel (noscript) */}
+        <noscript>
+          <img height="1" width="1" style={{display: 'none'}}
+               src="https://www.facebook.com/tr?id=1111111111111111&ev=PageView&noscript=1"
+          />
+        </noscript>
         
+        <LiquidSplash />
         <CustomCursor />
         {/* Awwwards Film Grain */}
         <div className="awwwards-noise" />
@@ -115,8 +140,7 @@ export default function RootLayout({
 
         {children}
         
-        {/* Widgets Flotantes Globales */}
-        <FloatingWhatsApp />
+        {/* Widget Flotante Global */}
         <AIChatWidget />
       </body>
     </html>

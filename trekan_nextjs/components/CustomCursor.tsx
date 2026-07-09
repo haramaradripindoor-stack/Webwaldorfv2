@@ -1,104 +1,101 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
+import { motion, useSpring } from 'framer-motion'
 
 export default function CustomCursor() {
-  const dotRef = useRef<HTMLDivElement>(null)
-  const ringRef = useRef<HTMLDivElement>(null)
+  const [isHovering, setIsHovering] = useState(false)
+  const [hoverText, setHoverText] = useState('')
+  const [isVisible, setIsVisible] = useState(false)
+
+  const springConfig = { damping: 25, stiffness: 400, mass: 0.5 }
+  const trailingConfig = { damping: 20, stiffness: 200, mass: 1.5 }
+  const cursorX = useSpring(0, springConfig)
+  const cursorY = useSpring(0, springConfig)
+  const trailingX = useSpring(0, trailingConfig)
+  const trailingY = useSpring(0, trailingConfig)
 
   useEffect(() => {
-    if (typeof window === 'undefined') return
-
-    // Only on desktop
-    const isDesktop = window.matchMedia('(min-width: 768px)').matches
-    if (!isDesktop) return
-
-    const dot = dotRef.current
-    const ring = ringRef.current
-    if (!dot || !ring) return
-
-    let mouseX = 0, mouseY = 0
-    let ringX = 0, ringY = 0
-    let animFrame: number
-
-    const onMouseMove = (e: MouseEvent) => {
-      mouseX = e.clientX
-      mouseY = e.clientY
-      dot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`
-      dot.style.opacity = '1'
-      ring.style.opacity = '1'
+    // Only show custom cursor on non-touch devices
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches) {
+      setIsVisible(true)
     }
 
-    const lerp = (a: number, b: number, t: number) => a + (b - a) * t
-
-    const animate = () => {
-      ringX = lerp(ringX, mouseX, 0.12)
-      ringY = lerp(ringY, mouseY, 0.12)
-      ring.style.transform = `translate(${ringX - 16}px, ${ringY - 16}px)`
-      animFrame = requestAnimationFrame(animate)
+    const moveCursor = (e: MouseEvent) => {
+      cursorX.set(e.clientX - 16) // Center offset (w-8 h-8 = 32px / 2 = 16px)
+      cursorY.set(e.clientY - 16)
+      trailingX.set(e.clientX - 4) // Center offset for small trailing dot (w-2 h-2 = 8px / 2 = 4px)
+      trailingY.set(e.clientY - 4)
     }
 
-    const onMouseOver = (e: MouseEvent) => {
+    const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement
-      const isInteractive =
-        target.tagName === 'A' ||
-        target.tagName === 'BUTTON' ||
-        target.closest('a') ||
-        target.closest('button') ||
-        target.classList.contains('interactive')
+      // Check if we are hovering a button, link, or image
+      const isClickable = target.closest('a') || target.closest('button')
+      const isImage = target.closest('img') || target.tagName.toLowerCase() === 'img'
 
-      if (isInteractive) {
-        ring.style.transform += ' scale(2.2)'
-        ring.style.borderColor = 'white'
-        dot.style.opacity = '0'
+      if (isClickable) {
+        setIsHovering(true)
+        setHoverText('')
+      } else if (isImage) {
+        setIsHovering(true)
+        setHoverText('Ver')
       } else {
-        ring.style.borderColor = 'white'
-        dot.style.opacity = '1'
+        setIsHovering(false)
+        setHoverText('')
       }
     }
 
-    const onMouseLeave = () => {
-      dot.style.opacity = '0'
-      ring.style.opacity = '0'
-    }
-
-    window.addEventListener('mousemove', onMouseMove)
-    window.addEventListener('mouseover', onMouseOver)
-    document.addEventListener('mouseleave', onMouseLeave)
-    animFrame = requestAnimationFrame(animate)
+    window.addEventListener('mousemove', moveCursor)
+    window.addEventListener('mouseover', handleMouseOver)
 
     return () => {
-      window.removeEventListener('mousemove', onMouseMove)
-      window.removeEventListener('mouseover', onMouseOver)
-      document.removeEventListener('mouseleave', onMouseLeave)
-      cancelAnimationFrame(animFrame)
+      window.removeEventListener('mousemove', moveCursor)
+      window.removeEventListener('mouseover', handleMouseOver)
     }
-  }, [])
+  }, [cursorX, cursorY])
+
+  if (!isVisible) return null
 
   return (
     <>
-      {/* Dot — instantáneo */}
-      <div
-        ref={dotRef}
-        className="fixed top-0 left-0 pointer-events-none z-[9999] opacity-0 transition-opacity duration-200"
+      {/* Hide native cursor globally */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        * {
+          cursor: none !important;
+        }
+      `}} />
+      <motion.div
+        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[10000] flex items-center justify-center text-[8px] font-bold tracking-widest uppercase text-white"
         style={{
-          width: 8,
-          height: 8,
-          borderRadius: '50%',
-          backgroundColor: 'white',
-          mixBlendMode: 'difference',
+          x: cursorX,
+          y: cursorY,
+          mixBlendMode: 'difference', // <-- Awwwards secret for contrast
+          backgroundColor: isHovering && hoverText ? 'white' : 'transparent',
+          border: '1px solid white',
+          backdropFilter: isHovering && !hoverText ? 'invert(100%)' : 'none'
         }}
-      />
-      {/* Ring — lerp suave */}
-      <div
-        ref={ringRef}
-        className="fixed top-0 left-0 pointer-events-none z-[9998] opacity-0 transition-[opacity,border-color] duration-200"
+        animate={{
+          scale: isHovering ? (hoverText ? 2.5 : 0.5) : 1,
+          backgroundColor: isHovering && hoverText 
+            ? 'white' 
+            : 'transparent'
+        }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      >
+        <span className="opacity-0 transition-opacity duration-300" style={{ opacity: hoverText ? 1 : 0 }}>
+          {hoverText}
+        </span>
+      </motion.div>
+
+      {/* Trailing Physics Dot */}
+      <motion.div
+        className="fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-[9999]"
         style={{
-          width: 32,
-          height: 32,
-          borderRadius: '50%',
-          border: '1.5px solid white',
+          x: trailingX,
+          y: trailingY,
           mixBlendMode: 'difference',
+          opacity: isHovering ? 0 : 1
         }}
       />
     </>

@@ -54,7 +54,13 @@ export default function Navbar() {
           <button 
             className="flex items-center gap-1 text-sm font-medium text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] transition-colors py-2"
             onMouseEnter={() => setDropdownOpen('nosotros')}
-            onClick={() => setDropdownOpen(dropdownOpen === 'nosotros' ? null : 'nosotros')}
+            onClick={(e) => {
+              if (typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches) {
+                setDropdownOpen('nosotros');
+              } else {
+                setDropdownOpen(dropdownOpen === 'nosotros' ? null : 'nosotros');
+              }
+            }}
           >
             Nosotros <ChevronDown size={14} className={`transition-transform duration-200 ${dropdownOpen === 'nosotros' ? 'rotate-180' : ''}`} />
           </button>
@@ -77,7 +83,13 @@ export default function Navbar() {
           <button 
             className="flex items-center gap-1 text-sm font-medium text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] transition-colors py-2"
             onMouseEnter={() => setDropdownOpen('admision')}
-            onClick={() => setDropdownOpen(dropdownOpen === 'admision' ? null : 'admision')}
+            onClick={(e) => {
+              if (typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches) {
+                setDropdownOpen('admision');
+              } else {
+                setDropdownOpen(dropdownOpen === 'admision' ? null : 'admision');
+              }
+            }}
           >
             Admisión 2026 <ChevronDown size={14} className={`transition-transform duration-200 ${dropdownOpen === 'admision' ? 'rotate-180' : ''}`} />
           </button>

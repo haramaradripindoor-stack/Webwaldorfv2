@@ -10,9 +10,13 @@ export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isMuted, setIsMuted] = useState(true)
   const [isMounted, setIsMounted] = useState(false)
+  const [showScroll, setShowScroll] = useState(false)
 
   useEffect(() => {
     setIsMounted(true)
+    // Aparece 1s después de que termina el splash (~8.2s)
+    const t = setTimeout(() => setShowScroll(true), 9000)
+    return () => clearTimeout(t)
   }, [])
 
   const { scrollYProgress } = useScroll({
@@ -43,7 +47,7 @@ export default function Hero() {
       <motion.div style={{ y: yBg, scale: scaleBg }} className="absolute inset-0 w-full h-[120%] -top-[10%] z-0">
         <video
           ref={videoRef}
-          src="/assets/testimonial.mp4" // Placeholder until the 4K drone shot is uploaded
+          src="/assets/testimonial.mp4" 
           autoPlay
           loop
           muted={isMuted}
@@ -138,18 +142,25 @@ export default function Hero() {
         </motion.div>
       </div>
       
-      {/* Kinetic Scroll Indicator */}
-      <motion.div 
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-10 text-white/40 mix-blend-screen"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
+      {/* Scroll Indicator — aparece solo después del splash */}
+      <motion.div
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10 cursor-pointer"
+        initial={{ opacity: 0, y: 10 }}
+        animate={showScroll ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        onClick={() => window.scrollBy({ top: window.innerHeight * 0.9, behavior: 'smooth' })}
       >
-        <span className="text-[10px] uppercase tracking-[0.4em] font-medium">Descubrir</span>
-        <motion.div 
-          animate={{ y: [0, 10, 0] }} 
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="w-[1px] h-16 bg-gradient-to-b from-white/50 to-transparent" 
+        <span className="text-[10px] uppercase tracking-[0.4em] font-mono text-white/50">Descubrir</span>
+        {/* Línea que respira — como latido orgánico */}
+        <motion.div
+          animate={{ scaleY: [1, 1.4, 1], opacity: [0.4, 0.9, 0.4] }}
+          transition={{ repeat: Infinity, duration: 2.4, ease: 'easeInOut' }}
+          className="w-[1px] h-14 bg-gradient-to-b from-white/60 to-transparent origin-top"
+        />
+        <motion.div
+          animate={{ y: [0, 6, 0], opacity: [0.6, 1, 0.6] }}
+          transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+          className="w-1.5 h-1.5 rounded-full bg-[var(--color-waldorf-mustard)]"
         />
       </motion.div>
     </section>

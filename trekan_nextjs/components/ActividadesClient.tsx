@@ -29,12 +29,29 @@ export default function ActividadesClient({ actividades }: { actividades: Markdo
     return acc;
   }, {} as Record<string, MarkdownPost[]>)
 
-  // Extraer las claves ordenadas (simplificado para que funcione con los nuevos grupos de año)
-  const availableGroups = Object.keys(groupedActividades).sort((a, b) => {
-    // Basic sorting to put current year first, and standard month order
-    return b.localeCompare(a) // Simplified sort
-  })
+  const monthIndex: Record<string, number> = {
+    'Enero': 0, 'Febrero': 1, 'Marzo': 2, 'Abril': 3,
+    'Mayo': 4, 'Junio': 5, 'Julio': 6, 'Agosto': 7,
+    'Septiembre': 8, 'Octubre': 9, 'Noviembre': 10, 'Diciembre': 11
+  }
 
+  // Extraer las claves ordenadas chronológicamente
+  const availableGroups = Object.keys(groupedActividades).sort((a, b) => {
+    const [monthA, yearA] = a.split(' ')
+    const [monthB, yearB] = b.split(' ')
+    
+    const numYearA = parseInt(yearA) || 0
+    const numYearB = parseInt(yearB) || 0
+    
+    if (numYearA !== numYearB) {
+      return numYearA - numYearB // Ascendente por año
+    }
+    
+    const numMonthA = monthIndex[monthA] ?? 99
+    const numMonthB = monthIndex[monthB] ?? 99
+    
+    return numMonthA - numMonthB // Ascendente por mes
+  })
   const tabs = ['Todos', ...availableGroups]
 
   return (

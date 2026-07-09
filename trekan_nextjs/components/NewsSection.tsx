@@ -65,10 +65,10 @@ export default function NewsSection({ displayNews }: { displayNews: MarkdownPost
           </div>
         </div>
 
-        {/* Contenedor de Scroll Horizontal (Carousel) */}
+        {/* Contenedor: Vertical en celular, Scroll Horizontal en escritorio */}
         <div 
           ref={scrollContainerRef}
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-12 pr-6 md:pr-12"
+          className="flex flex-col md:flex-row gap-8 md:gap-6 md:overflow-x-auto md:snap-x md:snap-mandatory no-scrollbar md:pb-12 pr-6 md:pr-12"
         >
           {displayNews.map((post: MarkdownPost) => {
             const hasVideo = !!post.video_id;
@@ -77,8 +77,8 @@ export default function NewsSection({ displayNews }: { displayNews: MarkdownPost
             return (
               <article 
                 key={post.id}
-                className="group flex flex-col bg-white rounded-xl overflow-hidden earth-shadow hover:shadow-xl transition-all duration-500 flex-shrink-0 snap-start
-                           w-[85vw] sm:w-[380px] md:w-[420px]"
+                className="group flex flex-col bg-white rounded-xl overflow-hidden earth-shadow hover:shadow-xl transition-all duration-500 flex-shrink-0 md:snap-start
+                           w-full sm:w-[380px] md:w-[420px]"
               >
                 {/* Text Content (Top) */}
                 <Link href={`/noticias/${post.slug}`} className="p-8 md:p-10 pb-6 flex flex-col flex-grow">

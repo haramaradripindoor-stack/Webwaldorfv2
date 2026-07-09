@@ -14,7 +14,7 @@ export default function RadicalTransparency() {
             src="/assets/colegio-fondo.webp" 
             alt="Materiales nobles en pedagogía Waldorf" 
             fill 
-            className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+            className="object-cover transition-transform duration-1000 hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-tr from-[#1a2e25]/40 to-transparent" />
           

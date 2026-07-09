@@ -17,7 +17,7 @@ export default async function ActividadesPage() {
   const { data: actividades } = await supabase
     .from('actividades')
     .select('*')
-    .order('published_at', { ascending: false });
+    .order('published_at', { ascending: true });
 
   const allActividades = actividades || [];
 

@@ -63,7 +63,7 @@ export default async function NoticiasPage() {
                   >
                     <div className="relative h-64 w-full overflow-hidden">
                       <Image
-                        src={post.image_url || '/images/galeria3.webp'} 
+                        src={post.image_url || '/images/equipoescolar.jpg'} 
                         alt={post.title}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"

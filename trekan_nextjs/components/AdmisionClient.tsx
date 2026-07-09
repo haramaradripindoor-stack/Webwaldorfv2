@@ -69,7 +69,7 @@ export default function AdmisionClient() {
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20"
             >
-              <a href="https://wa.me/56967765106" target="_blank" rel="noreferrer" className="group relative overflow-hidden bg-[var(--color-waldorf-moss)] text-white px-10 py-5 rounded-full font-bold text-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-3">
+              <a href="https://wa.me/56967765106?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20visita%20al%20Colegio%20Waldorf%20Trekan%20para%20conocer%20el%20proyecto%20educativo.%20%F0%9F%8C%BF" target="_blank" rel="noreferrer" className="group relative overflow-hidden bg-[var(--color-waldorf-moss)] text-white px-10 py-5 rounded-full font-bold text-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-3">
                 <span className="relative z-10">Agendar visita al colegio</span>
                 <ArrowRight className="relative z-10 group-hover:translate-x-1 transition-transform" />
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 rounded-full" />

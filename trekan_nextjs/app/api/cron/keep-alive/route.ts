@@ -1,6 +1,8 @@
 import { createClient } from '@/utils/supabase/server'
 import { NextResponse } from 'next/server'
 
+export const dynamic = 'force-dynamic'
+
 // Este endpoint se ejecuta cada 5 minutos vía Vercel Cron
 // para mantener vivo el proyecto (Supabase Free Tier se pausa tras 1 semana de inactividad)
 export async function GET() {

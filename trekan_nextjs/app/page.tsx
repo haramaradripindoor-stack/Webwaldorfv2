@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
+import TextReveal from '@/components/TextReveal'
 import PedagogiaHorizontal from '@/components/PedagogiaHorizontal'
 import ActividadesSection from '@/components/ActividadesSection'
 import NewsSection from '@/components/NewsSection'
@@ -48,9 +49,10 @@ export default async function Home() {
 
   return (
     <SmoothScroll>
-      <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-x-hidden">
+      <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-x-clip">
         <Navbar />
         <Hero />
+        <TextReveal text="Educar no es llenar un cubo, es encender un fuego. En Trekan, respetamos el ritmo natural de cada niño, cultivando la cabeza, el corazón y las manos en perfecta armonía." />
         <PedagogiaHorizontal />
         <BentoGrid />
         <ComunidadSection />

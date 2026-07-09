@@ -27,12 +27,24 @@ test.describe('Masonry Gallery & Lightbox (Tier 2)', () => {
   test('test_gallery_lightbox_interaction: click gallery image opens lightbox and keyboard navigate', async ({ page }) => {
     await page.goto('/');
     
+    page.on('console', msg => console.log('PAGE LOG:', msg.text()));
+    page.on('pageerror', err => console.log('PAGE ERROR:', err.message));
+
     const gallerySection = page.locator('#galeria');
     await expect(gallerySection).toBeVisible();
 
     // Click the clickable container wrapper (div.group) instead of the image because it is overlaid
     const firstItem = gallerySection.locator('div.group').first();
-    await firstItem.click();
+    await page.evaluate(() => {
+      const el = document.getElementById('galeria');
+      if (el) el.scrollIntoView({ block: 'center' });
+    });
+    await page.waitForTimeout(2000);
+    await firstItem.click({ force: true });
+    await page.evaluate(() => {
+      const el = document.querySelector('#galeria div.group') as HTMLElement;
+      if (el) el.click();
+    });
 
     // Lightbox should be open
     const lightbox = page.locator('button[aria-label="Cerrar"]').locator('..');

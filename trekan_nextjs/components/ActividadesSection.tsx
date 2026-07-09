@@ -1,6 +1,7 @@
 import { getMarkdownPosts, MarkdownPost } from '@/lib/markdown'
 import { Calendar, Clock, MapPin } from 'lucide-react'
 import { createClient } from '@/utils/supabase/server'
+import VideoHoverReveal from './VideoHoverReveal'
 
 export const revalidate = 0; // Para que actualice siempre que haya cambios en BD
 
@@ -92,7 +93,7 @@ export default async function ActividadesSection() {
                     const isCelebracion = post.tipo?.toLowerCase() === 'celebracion' || post.tipo?.toLowerCase() === 'celebración';
                     const tagColor = isCelebracion ? 'text-[var(--color-waldorf-moss)]' : 'text-[var(--color-waldorf-terracotta)]';
                     // We'll use a placeholder beautiful image based on index for the hover reveal
-                    const fallbackImages = ['/assets/fb/fb_post_1.jpg', '/assets/fb/fb_post_3.jpg', '/assets/fb/fb_post_5.jpg', '/assets/fb/fb_post_6.jpg'];
+                    const fallbackImages = ['/images/fiesta de la luz20261.jpg', '/images/actividapedagogicahumedales1.jpg', '/images/paseocerro20261.jpg', '/images/comisionobraymantencion2.webp', '/images/photo_2025-06-11_11-43-23.jpg'];
                     const hoverImg = post.image_url || post.image || fallbackImages[i % fallbackImages.length];
 
                     return (
@@ -101,12 +102,20 @@ export default async function ActividadesSection() {
                         key={post.id} 
                         className="group relative flex flex-col md:flex-row items-start md:items-center justify-between py-10 border-b border-[var(--color-waldorf-sage)]/20 hover:border-[var(--color-waldorf-moss)] transition-colors duration-500 w-full"
                       >
-                        {/* Hover Image Reveal (Absolute, follows row on hover) */}
+                        {/* Hover Reveal — video para celebraciones, imagen para el resto */}
                         <div className="hidden md:block absolute right-1/4 top-1/2 -translate-y-1/2 w-80 h-48 opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-700 pointer-events-none z-0 rounded-2xl overflow-hidden shadow-2xl origin-center rotate-3 group-hover:rotate-0">
-                          <div 
-                            className="w-full h-full bg-cover bg-center"
-                            style={{ backgroundImage: `url(${hoverImg})` }}
-                          />
+                          {isCelebracion ? (
+                            <VideoHoverReveal
+                              videoSrc="/images/Candlelight_glow_in_forest_202607082057.mp4"
+                              fallbackImg="/images/fiesta de la luz20261.jpg"
+                              showLogo={true}
+                            />
+                          ) : (
+                            <div
+                              className="w-full h-full bg-cover bg-center"
+                              style={{ backgroundImage: `url(${hoverImg})` }}
+                            />
+                          )}
                         </div>
 
                         {/* Date & Type (Left) */}

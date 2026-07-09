@@ -44,7 +44,7 @@ export default function MapSection() {
         <div className="absolute inset-0 bg-[#1a2e25] mix-blend-overlay opacity-30 pointer-events-none z-0" />
 
         {/* Tarjeta de Información Flotante (Glassmorphism) - Ahora en el iframe */}
-        <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 z-10 bg-white/95 backdrop-blur-xl p-8 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-[var(--color-waldorf-sage)]/10 max-w-sm pointer-events-auto transition-transform duration-500 hover:-translate-y-1">
+        <div className="absolute bottom-4 left-4 right-4 md:bottom-12 md:left-12 md:right-auto z-10 bg-white/95 backdrop-blur-xl p-6 md:p-8 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-[var(--color-waldorf-sage)]/10 md:max-w-sm pointer-events-auto transition-transform duration-500 hover:-translate-y-1">
           <div className="flex items-center gap-4 mb-4">
             <div className="w-12 h-12 rounded-full bg-[var(--color-waldorf-cream)] flex items-center justify-center text-[var(--color-waldorf-moss)] border border-[var(--color-waldorf-sage)]/20">
               <MapPin size={24} />

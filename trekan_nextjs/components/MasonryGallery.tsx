@@ -1,16 +1,16 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 const images = [
-  { src: '/images/galeria1.webp', alt: 'Niños aprendiendo', span: 'col-span-1 md:col-span-2 row-span-2 md:row-span-2' },
-  { src: '/images/galeria2.webp', alt: 'Aprendizaje vivencial', span: 'col-span-1 row-span-1' },
-  { src: '/images/galeria3.webp', alt: 'Valores Waldorf', span: 'col-span-1 row-span-2' },
-  { src: '/images/galeria7.webp', alt: 'Visión educativa', span: 'col-span-1 row-span-1' },
-  { src: '/images/galeria8.webp', alt: 'Maestro guía', span: 'col-span-2 row-span-1' },
-  { src: '/images/galeria5.webp', alt: 'Conexión Naturaleza', span: 'col-span-1 row-span-1' },
-  { src: '/images/galeria6.webp', alt: 'Trabajo con las manos', span: 'col-span-1 row-span-1' },
+  { src: '/images/paseocerro20264.jpg', alt: 'Exploración en la naturaleza', span: 'col-span-2 row-span-2' },
+  { src: '/images/actividapedagogicahumedales5.jpg', alt: 'Conexión vivencial', span: 'col-span-1 row-span-1' },
+  { src: '/images/fiesta%20de%20la%20luz202610.jpg', alt: 'Ritmos y tradiciones', span: 'col-span-1 row-span-2' },
+  { src: '/images/paseocerro20268.jpg', alt: 'Comunidad en movimiento', span: 'col-span-1 row-span-1' },
+  { src: '/images/actividapedagogicahumedales6.jpg', alt: 'Aprendizaje en el entorno', span: 'col-span-2 row-span-1' },
+  { src: '/images/paseocerro20269.jpg', alt: 'Libertad y asombro', span: 'col-span-1 row-span-1' },
+  { src: '/images/fiesta%20de%20la%20luz20268.jpg', alt: 'Luz y calidez', span: 'col-span-1 row-span-1' },
 ]
 
 export default function MasonryGallery() {
@@ -22,9 +22,12 @@ export default function MasonryGallery() {
     offset: ["start end", "end start"]
   })
 
-  // Distintos niveles de parallax
-  const yFast = useTransform(scrollYProgress, [0, 1], [100, -100])
-  const ySlow = useTransform(scrollYProgress, [0, 1], [50, -50])
+  // Contenedor principal Parallax (Valores reducidos drásticamente para no romper el grid en móvil)
+  const yFast = useTransform(scrollYProgress, [0, 1], [40, -40])
+  const ySlow = useTransform(scrollYProgress, [0, 1], [15, -15])
+
+  // Lando Norris Internal Image Displacement (La imagen se mueve dentro del contenedor)
+  const imageParallax = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"])
 
   // Close lightbox with Escape
   useEffect(() => {
@@ -38,41 +41,44 @@ export default function MasonryGallery() {
   }, [lightbox])
 
   return (
-    <section ref={containerRef} id="galeria" className="py-24 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden relative">
-      <div className="mb-16 text-center md:text-left relative z-10">
-        <span className="text-[var(--color-waldorf-terracotta)] text-xs font-bold tracking-widest uppercase block mb-4">
+    <section ref={containerRef} id="galeria" className="py-32 px-6 md:px-12 max-w-7xl mx-auto overflow-visible relative">
+      <div className="mb-24 text-center md:text-left relative z-10 max-w-3xl">
+        <span className="text-[var(--color-waldorf-terracotta)] text-sm font-bold tracking-widest uppercase block mb-6">
           Nuestro Mundo
         </span>
-        <h2 className="text-3xl md:text-5xl font-bold font-serif text-[var(--color-waldorf-moss)]">
+        <h2 className="text-5xl md:text-7xl font-bold font-serif text-[var(--color-waldorf-moss)] leading-[1.1] tracking-tighter">
           La Vida en Trekan
         </h2>
       </div>
 
       {/* Masonry Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px] gap-3 md:gap-4 relative z-0">
+      <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] md:auto-rows-[260px] gap-6 md:gap-8 relative z-0">
         {images.map((img, i) => {
-          // Asignar parallax intercalado
           const yTransform = i % 2 === 0 ? yFast : ySlow
           
           return (
             <motion.div
               key={i}
               style={{ y: yTransform }}
-              className={`relative rounded-3xl overflow-hidden group cursor-pointer earth-shadow ${img.span}`}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.08, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className={`relative overflow-hidden group cursor-pointer ${img.span}`}
+              initial={{ clipPath: 'inset(100% 0 0 0)' }}
+              whileInView={{ clipPath: 'inset(0% 0 0 0)' }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.2, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => setLightbox(i)}
             >
-              <img
-                src={img.src}
-                alt={img.alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-[var(--color-waldorf-moss)]/40 transition-all duration-500 flex items-end p-5">
-                <span className="text-[var(--color-waldorf-cream)] text-sm font-medium opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+              {/* Contenedor interno que escala para dar espacio al parallax */}
+              <motion.div className="w-full h-full relative" style={{ y: imageParallax, scale: 1.3 }}>
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </motion.div>
+
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-[var(--color-waldorf-moss)]/40 transition-colors duration-700 flex items-end p-6 md:p-8">
+                <span className="text-white text-lg font-medium opacity-0 group-hover:opacity-100 translate-y-8 group-hover:translate-y-0 transition-all duration-700 ease-[0.16,1,0.3,1]">
                   {img.alt}
                 </span>
               </div>
@@ -87,37 +93,40 @@ export default function MasonryGallery() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[9999] bg-[var(--color-waldorf-text)]/95 flex items-center justify-center p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-[9999] bg-[#0A0A10]/95 flex items-center justify-center p-4 backdrop-blur-md"
           onClick={() => setLightbox(null)}
         >
           <button
             onClick={() => setLightbox(null)}
-            className="absolute top-4 right-4 text-[var(--color-waldorf-cream)]/60 hover:text-[var(--color-waldorf-cream)] text-2xl z-10"
+            className="absolute top-8 right-8 text-white/60 hover:text-white text-4xl z-10 transition-colors"
             aria-label="Cerrar"
           >
             ✕
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); setLightbox((lightbox - 1 + images.length) % images.length) }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-waldorf-cream)]/40 hover:text-[var(--color-waldorf-cream)] text-3xl z-10"
+            className="absolute left-8 top-1/2 -translate-y-1/2 text-white/40 hover:text-white text-6xl z-10 transition-colors"
             aria-label="Anterior"
           >
             ‹
           </button>
-          <img
+          <motion.img
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             src={images[lightbox].src}
             alt={images[lightbox].alt}
-            className="max-w-[90vw] max-h-[85vh] object-contain rounded-xl shadow-2xl"
+            className="max-w-[90vw] max-h-[85vh] object-contain shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           />
           <button
             onClick={(e) => { e.stopPropagation(); setLightbox((lightbox + 1) % images.length) }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color-waldorf-cream)]/40 hover:text-[var(--color-waldorf-cream)] text-3xl z-10"
+            className="absolute right-8 top-1/2 -translate-y-1/2 text-white/40 hover:text-white text-6xl z-10 transition-colors"
             aria-label="Siguiente"
           >
             ›
           </button>
-          <span className="absolute bottom-6 text-[var(--color-waldorf-cream)]/60 text-sm font-mono">
+          <span className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 text-sm font-mono tracking-widest">
             {lightbox + 1} / {images.length}
           </span>
         </motion.div>
