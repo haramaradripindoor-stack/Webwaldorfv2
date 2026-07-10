@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
-import { Plus, Trash2, Edit, Image as ImageIcon, Loader2, FileUp } from 'lucide-react';
+import { Plus, Trash2, Edit, Image as ImageIcon, Loader2, FileUp, Sparkles } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import Papa from 'papaparse';
 
@@ -11,12 +11,14 @@ export default function NoticiasAdmin() {
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
   
   // Form State
   const [title, setTitle] = useState('');
   const [excerpt, setExcerpt] = useState('');
   const [content, setContent] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [keywords, setKeywords] = useState('');
   
   const supabase = createClient();
 
@@ -61,13 +63,44 @@ export default function NoticiasAdmin() {
     setUploading(false);
   };
 
+  const generateWithAI = async () => {
+    if (!title) {
+      alert('Por favor, escribe un título o tema base antes de usar la IA.');
+      return;
+    }
+    
+    setIsGenerating(true);
+    try {
+      const response = await fetch('/api/seo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: title })
+      });
+      
+      if (!response.ok) throw new Error('Error en la API');
+      
+      const data = await response.json();
+      
+      if (data.title) setTitle(data.title);
+      if (data.excerpt) setExcerpt(data.excerpt);
+      if (data.content) setContent(data.content);
+      if (data.keywords) setKeywords(data.keywords);
+      
+    } catch (error) {
+      console.error(error);
+      alert('Error generando contenido con IA. Revisa los logs.');
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     
-    // Generar un slug simple
     const slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') + '-' + Date.now();
 
+    // Nota: Asegúrate de tener las columnas 'meta_keywords' si las vas a guardar
     const { error } = await supabase.from('noticias').insert([
       {
         slug,
@@ -87,6 +120,7 @@ export default function NoticiasAdmin() {
       setExcerpt('');
       setContent('');
       setImageUrl('');
+      setKeywords('');
       fetchNoticias();
     }
     setLoading(false);
@@ -119,7 +153,7 @@ export default function NoticiasAdmin() {
           content: row.contenido || row.content || '',
           image_url: row.imagen || row.image_url || '/images/galeria3.webp',
           published_at: row.fecha || row.published_at || new Date().toISOString()
-        })).filter(n => n.title); // Asegurar que tenga título
+        })).filter(n => n.title); 
 
         if (newNoticias.length > 0) {
           const { error } = await supabase.from('noticias').insert(newNoticias);
@@ -145,15 +179,18 @@ export default function NoticiasAdmin() {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold font-serif text-gray-800">Gestión de Noticias</h2>
+        <div>
+          <h2 className="text-2xl font-bold font-serif text-[var(--color-waldorf-moss)]">Gestión de Noticias & SEO</h2>
+          <p className="text-[var(--color-waldorf-text-light)] text-sm">Genera contenido posicionado automáticamente</p>
+        </div>
         <div className="flex gap-2">
-          <label className="cursor-pointer bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition">
+          <label className="cursor-pointer bg-white text-gray-700 border border-[var(--color-waldorf-sage)]/30 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition">
             <FileUp className="w-4 h-4" /> Importar CSV
             <input type="file" accept=".csv" className="hidden" onChange={handleCsvUpload} disabled={loading} />
           </label>
           <button 
             onClick={() => setShowForm(!showForm)}
-            className="bg-[var(--color-waldorf-moss)] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-green-800 transition"
+            className="bg-[var(--color-waldorf-moss)] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-green-800 transition shadow-md shadow-green-900/10"
           >
             {showForm ? 'Cancelar' : <><Plus className="w-4 h-4" /> Nueva Noticia</>}
           </button>
@@ -161,52 +198,79 @@ export default function NoticiasAdmin() {
       </div>
 
       {showForm && (
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-8">
-          <h3 className="text-lg font-bold mb-4">Crear Nueva Noticia</h3>
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-[var(--color-waldorf-sage)]/20 mb-8 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--color-waldorf-cream)] rounded-bl-full -z-10 opacity-50" />
+          
+          <div className="flex items-center justify-between mb-6 border-b border-[var(--color-waldorf-sage)]/20 pb-4">
+            <h3 className="text-lg font-bold text-[var(--color-waldorf-moss)]">Redactor SEO</h3>
+            <button 
+              type="button"
+              onClick={generateWithAI}
+              disabled={isGenerating || !title}
+              className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg shadow-blue-500/30 hover:scale-105 transition-all disabled:opacity-50 disabled:hover:scale-100"
+            >
+              {isGenerating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+              {isGenerating ? 'Escribiendo...' : 'Redactar con IA'}
+            </button>
+          </div>
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Título</label>
-              <input type="text" required value={title} onChange={e => setTitle(e.target.value)} className="w-full border rounded-lg p-2" />
+              <label className="block text-sm font-bold text-[var(--color-waldorf-text)] mb-1">Título (o Tema para la IA)</label>
+              <input type="text" required value={title} onChange={e => setTitle(e.target.value)} placeholder="Ej: Importancia de la lana en el invierno Waldorf..." className="w-full border border-[var(--color-waldorf-sage)]/30 rounded-xl p-3 focus:border-[var(--color-waldorf-moss)] outline-none" />
             </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-bold text-[var(--color-waldorf-text)] mb-1">Resumen (Meta Description SEO)</label>
+                <textarea required value={excerpt} onChange={e => setExcerpt(e.target.value)} className="w-full border border-[var(--color-waldorf-sage)]/30 rounded-xl p-3 focus:border-[var(--color-waldorf-moss)] outline-none" rows={3}></textarea>
+                <p className="text-[10px] text-gray-400 mt-1">Este texto aparecerá en Google cuando busquen el colegio.</p>
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-[var(--color-waldorf-text)] mb-1">Palabras Clave (SEO Keywords)</label>
+                <textarea value={keywords} onChange={e => setKeywords(e.target.value)} placeholder="colegio waldorf, pedagogía, puerto varas..." className="w-full border border-[var(--color-waldorf-sage)]/30 rounded-xl p-3 focus:border-[var(--color-waldorf-moss)] outline-none" rows={3}></textarea>
+              </div>
+            </div>
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Imagen Principal</label>
-              <div className="flex items-center gap-4">
-                <label className="cursor-pointer bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 border hover:bg-gray-200">
+              <label className="block text-sm font-bold text-[var(--color-waldorf-text)] mb-1">Contenido (Admite Markdown)</label>
+              <textarea required value={content} onChange={e => setContent(e.target.value)} className="w-full border border-[var(--color-waldorf-sage)]/30 rounded-xl p-3 font-mono text-sm focus:border-[var(--color-waldorf-moss)] outline-none" rows={12}></textarea>
+            </div>
+
+            <div>
+              <label className="block text-sm font-bold text-[var(--color-waldorf-text)] mb-1">Imagen Principal</label>
+              <div className="flex items-center gap-4 bg-[var(--color-waldorf-paper)] p-4 rounded-xl border border-[var(--color-waldorf-sage)]/20">
+                <label className="cursor-pointer bg-white text-[var(--color-waldorf-moss)] px-4 py-2 rounded-lg flex items-center gap-2 border hover:bg-gray-50 shadow-sm font-medium text-sm">
                   <ImageIcon className="w-4 h-4" /> Subir Foto
                   <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={uploading} />
                 </label>
-                {uploading && <span className="text-sm text-gray-500">Subiendo...</span>}
-                {imageUrl && <img src={imageUrl} alt="Preview" className="h-12 w-12 object-cover rounded" />}
+                {uploading && <span className="text-sm text-[var(--color-waldorf-terracotta)] animate-pulse font-medium flex items-center gap-2"><Loader2 className="w-4 h-4 animate-spin" /> Subiendo a Supabase...</span>}
+                {imageUrl && <img src={imageUrl} alt="Preview" className="h-12 w-12 object-cover rounded shadow-sm border border-gray-200" />}
               </div>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Resumen Corto</label>
-              <textarea required value={excerpt} onChange={e => setExcerpt(e.target.value)} className="w-full border rounded-lg p-2" rows={2}></textarea>
+
+            <div className="pt-4 flex justify-end">
+              <button type="submit" disabled={loading} className="bg-[var(--color-waldorf-terracotta)] text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-[#b04a32]/30 hover:bg-[#b04a32] transition-colors">
+                Publicar Noticia
+              </button>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Contenido (Admite Markdown)</label>
-              <textarea required value={content} onChange={e => setContent(e.target.value)} className="w-full border rounded-lg p-2 font-mono text-sm" rows={8}></textarea>
-            </div>
-            <button type="submit" disabled={loading} className="bg-[var(--color-waldorf-terracotta)] text-white px-6 py-2 rounded-lg font-medium">
-              Guardar Noticia
-            </button>
           </form>
         </div>
       )}
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-sm border border-[var(--color-waldorf-sage)]/20 overflow-hidden">
         <table className="w-full text-left">
-          <thead className="bg-gray-50 border-b">
+          <thead className="bg-[var(--color-waldorf-paper)] border-b border-[var(--color-waldorf-sage)]/20">
             <tr>
-              <th className="p-4 font-medium text-gray-600">Fecha</th>
-              <th className="p-4 font-medium text-gray-600">Título</th>
-              <th className="p-4 font-medium text-gray-600">Acciones</th>
+              <th className="p-4 font-bold text-[var(--color-waldorf-moss)] text-sm uppercase tracking-wider">Fecha</th>
+              <th className="p-4 font-bold text-[var(--color-waldorf-moss)] text-sm uppercase tracking-wider">Título</th>
+              <th className="p-4 font-bold text-[var(--color-waldorf-moss)] text-sm uppercase tracking-wider">Acciones</th>
             </tr>
           </thead>
           <tbody>
             {noticias.map((n) => (
-              <tr key={n.id} className="border-b last:border-0 hover:bg-gray-50">
-                <td className="p-4 text-sm text-gray-500">
+              <tr key={n.id} className="border-b last:border-0 hover:bg-gray-50 transition-colors">
+                <td className="p-4 text-sm text-gray-500 font-medium">
                   {new Date(n.published_at).toLocaleDateString('es-CL')}
                 </td>
                 <td className="p-4 font-medium text-gray-800">{n.title}</td>
@@ -220,12 +284,11 @@ export default function NoticiasAdmin() {
                       setShowForm(true);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }} 
-                    className="text-blue-500 hover:bg-blue-50 p-2 rounded-lg"
-                    title="Editar (Se abrirá en el formulario arriba)"
+                    className="text-blue-500 hover:bg-blue-50 p-2 rounded-lg transition-colors"
                   >
                     <Edit className="w-4 h-4" />
                   </button>
-                  <button onClick={() => handleDelete(n.id)} className="text-red-500 hover:bg-red-50 p-2 rounded-lg" title="Eliminar">
+                  <button onClick={() => handleDelete(n.id)} className="text-red-500 hover:bg-red-50 p-2 rounded-lg transition-colors">
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </td>

@@ -19,9 +19,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const navItems = [
     { name: 'Dashboard', href: '/admin', icon: Home },
     { name: 'Portada', href: '/admin/portada', icon: LayoutTemplate },
-    { name: 'Cerebro IA', href: '/admin/cerebro', icon: Brain },
-    { name: 'Noticias', href: '/admin/noticias', icon: Newspaper },
+    { name: 'Admisiones CRM', href: '/admin/admisiones', icon: Brain },
+    { name: 'Noticias / SEO', href: '/admin/noticias', icon: Newspaper },
     { name: 'Actividades', href: '/admin/actividades', icon: CalendarDays },
+    { name: 'Prospectos (Growth)', href: '/admin/prospectos', icon: LayoutTemplate },
   ];
 
   return (
