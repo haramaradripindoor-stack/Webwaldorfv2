@@ -128,8 +128,26 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
             />
           </div>
 
-          <div className="prose prose-lg prose-p:text-[var(--color-waldorf-text-light)] prose-p:leading-relaxed prose-headings:font-serif prose-headings:text-[var(--color-waldorf-moss)] prose-a:text-[var(--color-waldorf-terracotta)] mx-auto max-w-none">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <div className="mx-auto max-w-3xl">
+            <ReactMarkdown 
+              remarkPlugins={[remarkGfm]}
+              components={{
+                h1: ({node, ...props}) => <h1 className="text-4xl md:text-5xl font-serif text-[var(--color-waldorf-moss)] mt-12 mb-6 leading-tight" {...props} />,
+                h2: ({node, ...props}) => <h2 className="text-3xl md:text-4xl font-serif text-[var(--color-waldorf-moss)] mt-10 mb-4 leading-snug" {...props} />,
+                h3: ({node, ...props}) => <h3 className="text-2xl font-serif text-[var(--color-waldorf-moss)] mt-8 mb-4 leading-snug" {...props} />,
+                p: ({node, ...props}) => <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6 font-light tracking-wide" {...props} />,
+                ul: ({node, ...props}) => <ul className="list-none pl-0 mb-8 space-y-4 text-lg md:text-xl text-gray-700 font-light" {...props} />,
+                li: ({node, ...props}) => (
+                  <li className="flex items-start">
+                    <span className="text-[var(--color-waldorf-terracotta)] mr-3 mt-1 text-xl">•</span>
+                    <span {...props} />
+                  </li>
+                ),
+                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-[var(--color-waldorf-terracotta)] pl-6 italic text-xl md:text-2xl text-[var(--color-waldorf-moss)] my-10 bg-[var(--color-waldorf-sage)]/10 py-6 pr-6 rounded-r-2xl" {...props} />,
+                a: ({node, ...props}) => <a className="text-[var(--color-waldorf-terracotta)] hover:text-[#903a22] hover:underline underline-offset-4 font-medium transition-colors" {...props} />,
+                strong: ({node, ...props}) => <strong className="font-semibold text-gray-900" {...props} />
+              }}
+            >
               {post.content}
             </ReactMarkdown>
           </div>
