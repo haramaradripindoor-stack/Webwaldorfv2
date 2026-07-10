@@ -13,7 +13,7 @@ export default function PortadaEditor() {
 
   // Content state
   const [content, setContent] = useState<any>({
-    hero_section: { title: 'La Vida en Trekan', subtitle: 'Educación con sentido', media_url: '/videos/Waldorf_school_logo_animation_202607082053.mp4', media_type: 'video' },
+    hero_section: { title: 'La Vida en Trekan', subtitle: 'Educación con sentido', media_url: '/assets/testimonial.mp4', media_type: 'video' },
     text_reveal: 'Educar no es llenar un cubo, es encender un fuego. En Trekan, respetamos el ritmo natural de cada niño, cultivando la cabeza, el corazón y las manos en perfecta armonía.',
     masonry_gallery: [
       { url: '/images/paseocerro20264.jpg', alt: 'Exploración en la naturaleza', span: 'col-span-2 row-span-2' },
