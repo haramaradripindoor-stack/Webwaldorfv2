@@ -55,7 +55,7 @@ export default function MasonryGallery({ data }: { data?: any }) {
 
       {/* Masonry Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] md:auto-rows-[260px] gap-6 md:gap-8 relative z-0">
-        {images.map((img, i) => {
+        {images.map((img: any, i: number) => {
           const yTransform = i % 2 === 0 ? yFast : ySlow
           
           return (
