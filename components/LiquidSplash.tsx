@@ -20,7 +20,7 @@ export default function LiquidSplash() {
 
   useEffect(() => {
     // Fallback máximo: si el video demora en cargar, lo quitamos igual
-    const max = setTimeout(dismiss, 10000)
+    const max = setTimeout(dismiss, 15000)
     return () => clearTimeout(max)
   }, [])
 
@@ -45,15 +45,6 @@ export default function LiquidSplash() {
             className="w-full h-full object-contain md:object-cover"
             // Cuando el video termina naturalmente → desmontar
             onEnded={dismiss}
-          />
-
-          {/* Fade-out a CREMA (no negro) al final — transición suave a la web */}
-          <motion.div
-            className="absolute inset-0 pointer-events-none"
-            style={{ backgroundColor: '#FAF8F5' }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 6.2, duration: 1.2, ease: 'easeInOut' }}
           />
         </motion.div>
       )}
