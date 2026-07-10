@@ -1,12 +1,4 @@
-import { createOpenAI } from '@ai-sdk/openai';
-import { generateObject } from 'ai';
 import { NextResponse } from 'next/server';
-import { z } from 'zod';
-
-const groq = createOpenAI({
-  baseURL: 'https://api.groq.com/openai/v1',
-  apiKey: process.env.GROQ_API_KEY,
-});
 
 export async function POST(req: Request) {
   try {
@@ -16,28 +8,58 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Falta el prompt (título o tema)' }, { status: 400 });
     }
 
-    const { object } = await generateObject({
-      model: groq('llama-3.3-70b-versatile'),
-      system: `Eres un experto redactor SEO y especialista en Pedagogía Waldorf. 
-      Tu objetivo es generar artículos perfectos para el blog del Colegio Waldorf Trekan (Puerto Varas).
-      Deben ser cálidos, profesionales, orientados a padres y optimizados para SEO local.
-      Responde SOLO con el JSON estructurado.`,
-      prompt: `Genera un artículo de blog sobre el siguiente tema o título: "${prompt}". 
-      Proporciona:
-      1. title: Un título atractivo (máx 60 caracteres).
-      2. excerpt: Una meta descripción persuasiva para Google (máx 155 caracteres).
-      3. keywords: 5 a 7 palabras clave separadas por comas.
-      4. content: El contenido del artículo formateado en Markdown (mínimo 300 palabras). Incluye subtítulos (H2, H3), viñetas y un llamado a la acción invitando a conocer el proceso de admisión 2026 del Colegio Trekan.`,
-      schema: z.object({
-        title: z.string(),
-        excerpt: z.string(),
-        keywords: z.string(),
-        content: z.string()
-      }),
-      temperature: 0.7,
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        response_format: { type: 'json_object' },
+        temperature: 0.7,
+        messages: [
+          {
+            role: 'system',
+            content: `Eres un experto redactor SEO y especialista en Pedagogía Waldorf. 
+Tu objetivo es generar artículos perfectos para el blog del Colegio Waldorf Trekan (Puerto Varas).
+Deben ser cálidos, profesionales, orientados a padres y optimizados para SEO local.
+
+REGLA CRÍTICA: Responde ÚNICA Y EXCLUSIVAMENTE con un objeto JSON válido (sin código markdown extra alrededor) con la siguiente estructura exacta:
+{
+  "title": "Un título atractivo (máx 60 caracteres)",
+  "excerpt": "Una meta descripción persuasiva para Google (máx 155 caracteres)",
+  "keywords": "5 a 7 palabras clave separadas por comas",
+  "content": "El contenido del artículo formateado en Markdown (mínimo 300 palabras). Incluye subtítulos (H2, H3), viñetas y un llamado a la acción invitando a postular."
+}`
+          },
+          {
+            role: 'user',
+            content: `Genera el artículo JSON para el siguiente tema o título: "${prompt}"`
+          }
+        ]
+      })
     });
 
-    return NextResponse.json(object);
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Groq API Error Response:', errorText);
+      return NextResponse.json({ error: 'Error del proveedor de IA' }, { status: 500 });
+    }
+
+    const data = await response.json();
+    const jsonString = data.choices[0].message.content;
+    
+    // Parse the JSON safely
+    let parsedData;
+    try {
+      parsedData = JSON.parse(jsonString);
+    } catch (e) {
+      console.error('Failed to parse Groq response as JSON:', jsonString);
+      return NextResponse.json({ error: 'La IA no devolvió un JSON válido' }, { status: 500 });
+    }
+
+    return NextResponse.json(parsedData);
 
   } catch (error) {
     console.error('Error generando SEO con IA:', error);
