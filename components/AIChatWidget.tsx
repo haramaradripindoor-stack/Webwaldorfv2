@@ -48,6 +48,11 @@ export default function AIChatWidget() {
 
       if (error) throw error
 
+      // Disparar evento de Meta Pixel para marcar la conversión
+      if (typeof window !== 'undefined' && (window as any).fbq) {
+        (window as any).fbq('track', 'Lead');
+      }
+
       setIsSuccess(true)
       setTimeout(() => {
         setIsOpen(false)
