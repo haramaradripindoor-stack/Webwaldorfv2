@@ -55,15 +55,7 @@ export default function ActividadRow({ post, isCelebracion, tagColor, hoverImg }
               onCanPlay={() => setVideoReady(true)}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-            <div className="absolute top-3 left-3 z-10">
-              <Image
-                src="/assets/logo.png"
-                alt="Colegio Waldorf Trekan"
-                width={64}
-                height={64}
-                className="object-contain drop-shadow-lg opacity-90"
-              />
-            </div>
+
             <div className="absolute bottom-3 left-3 z-10">
               <span className="text-[10px] font-mono tracking-widest uppercase text-white/80 font-bold bg-black/30 backdrop-blur-sm px-2 py-1 rounded-full">
                 ✦ Celebración
