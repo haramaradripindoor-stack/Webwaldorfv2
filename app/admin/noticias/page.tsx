@@ -282,6 +282,7 @@ export default function NoticiasAdmin() {
                       setExcerpt(n.excerpt || '');
                       setContent(n.content || '');
                       setImageUrl(n.image_url || '');
+                      setKeywords(n.meta_keywords || '');
                       setShowForm(true);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }} 
