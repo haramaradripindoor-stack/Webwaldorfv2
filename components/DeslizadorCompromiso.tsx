@@ -75,7 +75,7 @@ export default function DeslizadorCompromiso() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-3xl text-white"
+              className="absolute bottom-4 left-4 right-4 md:bottom-8 md:left-8 md:right-8 bg-white/10 backdrop-blur-md border border-white/20 p-4 md:p-6 rounded-3xl text-white"
             >
               <h4 className="font-serif font-bold text-2xl mb-2 text-[var(--color-waldorf-mustard)]">¿Cómo funciona?</h4>
               <p className="text-sm text-white/90 leading-relaxed">

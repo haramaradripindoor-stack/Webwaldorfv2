@@ -169,7 +169,7 @@ export default function PedagogiaHorizontal() {
       style={{ height: `${totalVh}vh` }}
     >
       {/* STICKY */}
-      <div className="sticky top-0 h-screen overflow-hidden bg-[#FAF8F5] flex flex-col">
+      <div className="sticky top-0 h-[100dvh] overflow-hidden bg-[#FAF8F5] flex flex-col">
 
         {/* Header compacto fijo */}
         <div className="shrink-0 pt-8 pb-2 px-6 md:px-20 z-20 bg-gradient-to-b from-[#FAF8F5] to-transparent">

@@ -29,7 +29,7 @@ function BentoCard({ card, index }: { card: any, index: number }) {
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative overflow-hidden rounded-[2rem] p-10 ${card.bg} flex flex-col justify-end group cursor-none ${card.size}`}
+      className={`relative overflow-hidden rounded-[2rem] p-10 min-h-[320px] md:min-h-0 ${card.bg} flex flex-col justify-end group cursor-none ${card.size}`}
       style={{
         // Borde luminoso sutil basado en el mouse (MotionSites effect)
         boxShadow: opacity ? '0 0 40px rgba(0,0,0,0.1)' : '0 4px 20px rgba(0,0,0,0.05)'

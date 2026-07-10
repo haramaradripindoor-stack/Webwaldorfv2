@@ -42,7 +42,7 @@ export default function ImmersiveTestimonials() {
         {/* Row 1 moving left */}
         <motion.div style={{ x: xLeft }} className="flex gap-8 whitespace-nowrap px-6">
           {[...testimonialsRow1, ...testimonialsRow1].map((t, i) => (
-            <div key={i} className="flex-shrink-0 w-[400px] md:w-[600px] h-[300px] relative rounded-3xl overflow-hidden group">
+            <div key={i} className="flex-shrink-0 w-[85vw] sm:w-[400px] md:w-[600px] h-[300px] relative rounded-3xl overflow-hidden group">
               {t.type === 'video' ? (
                 <video 
                   src={t.media}
@@ -62,7 +62,7 @@ export default function ImmersiveTestimonials() {
               <div className="absolute inset-0 bg-[var(--color-waldorf-moss)]/20 mix-blend-multiply pointer-events-none" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e25] via-[#1a2e25]/50 to-transparent pointer-events-none" />
               
-              <div className="absolute bottom-0 left-0 p-8 w-full whitespace-normal relative z-10">
+              <div className="absolute bottom-0 left-0 p-6 md:p-8 w-full whitespace-normal relative z-10">
                 <p className="text-2xl md:text-3xl font-serif font-bold mb-4 leading-tight">"{t.text}"</p>
                 <p className="text-sm font-sans tracking-widest uppercase opacity-70">{t.author}</p>
               </div>
@@ -73,7 +73,7 @@ export default function ImmersiveTestimonials() {
         {/* Row 2 moving right */}
         <motion.div style={{ x: xRight }} className="flex gap-8 whitespace-nowrap px-6">
           {[...testimonialsRow2, ...testimonialsRow2].map((t, i) => (
-            <div key={i} className="flex-shrink-0 w-[400px] md:w-[600px] h-[300px] relative rounded-3xl overflow-hidden group">
+            <div key={i} className="flex-shrink-0 w-[85vw] sm:w-[400px] md:w-[600px] h-[300px] relative rounded-3xl overflow-hidden group">
               {t.type === 'video' ? (
                 <video 
                   src={t.media}
@@ -93,7 +93,7 @@ export default function ImmersiveTestimonials() {
               <div className="absolute inset-0 bg-[var(--color-waldorf-moss)]/20 mix-blend-multiply pointer-events-none" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e25] via-[#1a2e25]/50 to-transparent pointer-events-none" />
               
-              <div className="absolute bottom-0 left-0 p-8 w-full whitespace-normal relative z-10">
+              <div className="absolute bottom-0 left-0 p-6 md:p-8 w-full whitespace-normal relative z-10">
                 <p className="text-2xl md:text-3xl font-serif font-bold mb-4 leading-tight">"{t.text}"</p>
                 <p className="text-sm font-sans tracking-widest uppercase opacity-70">{t.author}</p>
               </div>
