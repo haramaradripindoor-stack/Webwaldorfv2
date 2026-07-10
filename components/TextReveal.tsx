@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useRef } from 'react'
 
 interface TextRevealProps {
@@ -9,11 +9,6 @@ interface TextRevealProps {
 
 export default function TextReveal({ text }: TextRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start 85%', 'end 20%']
-  })
 
   const words = text.split(' ')
 
@@ -24,16 +19,13 @@ export default function TextReveal({ text }: TextRevealProps) {
     >
       <p className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-[var(--color-waldorf-moss)] leading-[1.15] tracking-tight text-center flex flex-wrap justify-center gap-x-4 gap-y-1">
         {words.map((word, i) => {
-          const start = i / words.length
-          const end = Math.min(start + 1.5 / words.length, 1)
-          // Solo opacidad — sin y, sin blur, sin rotación — 100% sereno
-          // eslint-disable-next-line react-hooks/rules-of-hooks
-          const opacity = useTransform(scrollYProgress, [start, end], [0.08, 1])
-
           return (
             <motion.span
               key={i}
-              style={{ opacity }}
+              initial={{ opacity: 0.1, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
               className="inline-block"
             >
               {word}

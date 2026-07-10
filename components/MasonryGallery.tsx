@@ -63,14 +63,14 @@ export default function MasonryGallery({ data }: { data?: any }) {
               key={i}
               style={{ y: yTransform }}
               className={`relative overflow-hidden group cursor-pointer ${img.span}`}
-              initial={{ clipPath: 'inset(100% 0 0 0)' }}
-              whileInView={{ clipPath: 'inset(0% 0 0 0)' }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1.2, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "0px" }}
+              transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => setLightbox(i)}
             >
               {/* Contenedor interno que escala para dar espacio al parallax */}
-              <motion.div className="w-full h-full relative" style={{ y: imageParallax, scale: 1.3 }}>
+              <motion.div className="w-full h-full relative" style={{ scale: 1.1 }}>
                 <img
                   src={img.url || img.src}
                   alt={img.alt}
