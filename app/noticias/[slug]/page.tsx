@@ -8,26 +8,37 @@ import SmoothScroll from '@/components/SmoothScroll'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Metadata } from 'next'
+import { createClient } from '@/utils/supabase/server'
 
-// Generar rutas estáticas
-export async function generateStaticParams() {
-  const posts = getMarkdownPosts('_noticias')
-  return posts.map((post) => ({
-    slug: post.slug,
-  }))
-}
+// Removed generateStaticParams since we are now fully dynamic with Supabase
+// (or we could fetch from Supabase to generate static params, but dynamic is better for CMS)
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const { slug } = params
   const decodedSlug = decodeURIComponent(slug)
-  const posts = getMarkdownPosts('_noticias')
   
-  const post = posts.find((p) => 
-    p.slug === slug || 
-    p.slug === decodedSlug ||
-    decodeURIComponent(p.slug) === decodedSlug ||
-    p.slug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") === decodedSlug.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-  )
+  const supabase = createClient()
+  let post = null
+
+  // Intentar buscar en Supabase primero
+  const { data } = await supabase
+    .from('noticias')
+    .select('*')
+    .eq('slug', decodedSlug)
+    .single()
+
+  if (data) {
+    post = data
+  } else {
+    // Fallback a archivos Markdown
+    const posts = getMarkdownPosts('_noticias')
+    post = posts.find((p) => 
+      p.slug === slug || 
+      p.slug === decodedSlug ||
+      decodeURIComponent(p.slug) === decodedSlug ||
+      p.slug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") === decodedSlug.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    )
+  }
 
   if (!post) {
     return {
@@ -38,23 +49,39 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${post.title} | Colegio Waldorf Trekan`,
     description: post.excerpt || 'Noticias y crónicas de la comunidad Waldorf Trekan.',
+    keywords: post.meta_keywords || 'colegio waldorf, pedagogia waldorf, puerto varas, educacion alternativa',
     alternates: {
       canonical: `https://www.colegiowaldorftrekan.cl/noticias/${post.slug}`,
     }
   }
 }
 
-export default function NoticiaPage({ params }: { params: { slug: string } }) {
+export default async function NoticiaPage({ params }: { params: { slug: string } }) {
   const { slug } = params
   const decodedSlug = decodeURIComponent(slug)
-  const posts = getMarkdownPosts('_noticias')
   
-  const post = posts.find((p) => 
-    p.slug === slug || 
-    p.slug === decodedSlug ||
-    decodeURIComponent(p.slug) === decodedSlug ||
-    p.slug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") === decodedSlug.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-  )
+  const supabase = createClient()
+  let post = null
+
+  // Intentar buscar en Supabase primero
+  const { data } = await supabase
+    .from('noticias')
+    .select('*')
+    .eq('slug', decodedSlug)
+    .single()
+
+  if (data) {
+    post = data
+  } else {
+    // Fallback a archivos Markdown
+    const posts = getMarkdownPosts('_noticias')
+    post = posts.find((p) => 
+      p.slug === slug || 
+      p.slug === decodedSlug ||
+      decodeURIComponent(p.slug) === decodedSlug ||
+      p.slug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") === decodedSlug.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    )
+  }
 
   if (!post) {
     return (

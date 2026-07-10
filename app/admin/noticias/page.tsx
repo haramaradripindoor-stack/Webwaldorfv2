@@ -107,6 +107,7 @@ export default function NoticiasAdmin() {
         title,
         excerpt,
         content,
+        meta_keywords: keywords,
         image_url: imageUrl || '/images/galeria3.webp',
         published_at: new Date().toISOString()
       }
