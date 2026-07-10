@@ -5,12 +5,18 @@ import { ArrowRight, Leaf, Volume2, VolumeX } from 'lucide-react'
 import { useRef, useState, useEffect } from 'react'
 import MagneticButton from './MagneticButton'
 
-export default function Hero() {
+export default function Hero({ data }: { data?: any }) {
   const containerRef = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isMuted, setIsMuted] = useState(true)
   const [isMounted, setIsMounted] = useState(false)
   const [showScroll, setShowScroll] = useState(false)
+
+  // Datos dinámicos con fallback
+  const title = data?.title || "Donde el niño camina con voluntad"
+  const subtitle = data?.subtitle || "Colegio Waldorf Trekan. Un espacio diseñado para que los niños crezcan libres, conscientes y profundamente conectados con su entorno."
+  const mediaUrl = data?.media_url || "/assets/testimonial.mp4"
+  const mediaType = data?.media_type || "video"
 
   useEffect(() => {
     setIsMounted(true)
@@ -38,22 +44,30 @@ export default function Hero() {
   }
 
   // Animaciones para las palabras (efecto líquido/fluido)
-  const titleWords = "Donde el niño camina con voluntad".split(" ")
+  const titleWords = title.split(" ")
 
   return (
     <section ref={containerRef} id="inicio" className="relative min-h-screen flex items-center justify-center pt-32 pb-24 px-6 md:px-12 overflow-hidden bg-[#0A0A10]">
       
       {/* Cinematic 4K Video Background with Parallax */}
       <motion.div style={{ y: yBg, scale: scaleBg }} className="absolute inset-0 w-full h-[120%] -top-[10%] z-0">
-        <video
-          ref={videoRef}
-          src="/assets/testimonial.mp4" 
-          autoPlay
-          loop
-          muted={isMuted}
-          playsInline
-          className="object-cover object-center w-full h-full opacity-80"
-        />
+        {mediaType === 'video' ? (
+          <video
+            ref={videoRef}
+            src={mediaUrl} 
+            autoPlay
+            loop
+            muted={isMuted}
+            playsInline
+            className="object-cover object-center w-full h-full opacity-80"
+          />
+        ) : (
+          <img 
+            src={mediaUrl} 
+            alt="Hero Background"
+            className="object-cover object-center w-full h-full opacity-80"
+          />
+        )}
         {/* Gradients for extreme contrast and mood */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A10]/90 via-[#0A0A10]/20 to-[#0A0A10] mix-blend-multiply" />
         <div className="absolute inset-0 bg-[var(--color-waldorf-moss)]/20 mix-blend-overlay" />
@@ -62,7 +76,7 @@ export default function Hero() {
       </motion.div>
       
       {/* Audio Control (Organic Audio) */}
-      {isMounted && (
+      {isMounted && mediaType === 'video' && (
         <motion.button
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -123,7 +137,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 2, delay: 1.2 }}
           >
-            Colegio Waldorf Trekan. Un espacio diseñado para que los niños crezcan libres, conscientes y profundamente conectados con su entorno.
+            {subtitle}
           </motion.p>
 
           <motion.div 

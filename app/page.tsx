@@ -26,6 +26,22 @@ export const revalidate = 0; // Para que actualice siempre que haya cambios en B
 export default async function Home() {
   const supabase = createClient();
   
+  // Fetch Homepage Content CMS
+  let homeContent = null;
+  try {
+    const { data, error } = await supabase.from('homepage_content').select('*').eq('id', 1).single();
+    if (data && !error) {
+      homeContent = data;
+    }
+  } catch (e) {
+    console.error('Error fetching home content:', e);
+  }
+
+  // Fallback defaults si falla la DB o no existe la fila
+  const heroData = homeContent?.hero_section || { title: 'La Vida en Trekan', subtitle: 'Educación con sentido', media_url: '/videos/Waldorf_school_logo_animation_202607082053.mp4', media_type: 'video' };
+  const textRevealData = homeContent?.text_reveal || "Educar no es llenar un cubo, es encender un fuego. En Trekan, respetamos el ritmo natural de cada niño, cultivando la cabeza, el corazón y las manos en perfecta armonía.";
+  const masonryData = homeContent?.masonry_gallery || null;
+
   // Intentar obtener noticias de Supabase
   let displayNews = [];
   try {
@@ -51,15 +67,15 @@ export default async function Home() {
     <SmoothScroll>
       <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-x-clip">
         <Navbar />
-        <Hero />
-        <TextReveal text="Educar no es llenar un cubo, es encender un fuego. En Trekan, respetamos el ritmo natural de cada niño, cultivando la cabeza, el corazón y las manos en perfecta armonía." />
+        <Hero data={heroData} />
+        <TextReveal text={textRevealData} />
         <PedagogiaHorizontal />
         <BentoGrid />
         <ComunidadSection />
         <ActividadesSection />
         <ImmersiveTestimonials />
         <NewsSection displayNews={displayNews} />
-        <MasonryGallery />
+        <MasonryGallery data={masonryData} />
         <TeamSection />
         <DeslizadorCompromiso />
         <MicroSegmentador />

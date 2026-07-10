@@ -3,19 +3,21 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 
-const images = [
-  { src: '/images/paseocerro20264.jpg', alt: 'Exploración en la naturaleza', span: 'col-span-2 row-span-2' },
-  { src: '/images/actividapedagogicahumedales5.jpg', alt: 'Conexión vivencial', span: 'col-span-1 row-span-1' },
-  { src: '/images/fiesta%20de%20la%20luz202610.jpg', alt: 'Ritmos y tradiciones', span: 'col-span-1 row-span-2' },
-  { src: '/images/paseocerro20268.jpg', alt: 'Comunidad en movimiento', span: 'col-span-1 row-span-1' },
-  { src: '/images/actividapedagogicahumedales6.jpg', alt: 'Aprendizaje en el entorno', span: 'col-span-2 row-span-1' },
-  { src: '/images/paseocerro20269.jpg', alt: 'Libertad y asombro', span: 'col-span-1 row-span-1' },
-  { src: '/images/fiesta%20de%20la%20luz20268.jpg', alt: 'Luz y calidez', span: 'col-span-1 row-span-1' },
+const fallbackImages = [
+  { url: '/images/paseocerro20264.jpg', alt: 'Exploración en la naturaleza', span: 'col-span-2 row-span-2' },
+  { url: '/images/actividapedagogicahumedales5.jpg', alt: 'Conexión vivencial', span: 'col-span-1 row-span-1' },
+  { url: '/images/fiesta%20de%20la%20luz202610.jpg', alt: 'Ritmos y tradiciones', span: 'col-span-1 row-span-2' },
+  { url: '/images/paseocerro20268.jpg', alt: 'Comunidad en movimiento', span: 'col-span-1 row-span-1' },
+  { url: '/images/actividapedagogicahumedales6.jpg', alt: 'Aprendizaje en el entorno', span: 'col-span-2 row-span-1' },
+  { url: '/images/paseocerro20269.jpg', alt: 'Libertad y asombro', span: 'col-span-1 row-span-1' },
+  { url: '/images/fiesta%20de%20la%20luz20268.jpg', alt: 'Luz y calidez', span: 'col-span-1 row-span-1' },
 ]
 
-export default function MasonryGallery() {
+export default function MasonryGallery({ data }: { data?: any }) {
   const [lightbox, setLightbox] = useState<number | null>(null)
   
+  const images = data || fallbackImages;
+
   const containerRef = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -70,7 +72,7 @@ export default function MasonryGallery() {
               {/* Contenedor interno que escala para dar espacio al parallax */}
               <motion.div className="w-full h-full relative" style={{ y: imageParallax, scale: 1.3 }}>
                 <img
-                  src={img.src}
+                  src={img.url || img.src}
                   alt={img.alt}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                   loading="lazy"
@@ -114,7 +116,7 @@ export default function MasonryGallery() {
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            src={images[lightbox].src}
+            src={images[lightbox].url || images[lightbox].src}
             alt={images[lightbox].alt}
             className="max-w-[90vw] max-h-[85vh] object-contain shadow-2xl"
             onClick={(e) => e.stopPropagation()}
