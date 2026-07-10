@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  serverComponentsExternalPackages: ['gray-matter'],
+  experimental: {
+    serverComponentsExternalPackages: ['gray-matter']
+  },
   images: {
     remotePatterns: [
       {
