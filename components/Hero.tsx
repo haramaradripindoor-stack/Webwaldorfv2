@@ -44,7 +44,7 @@ export default function Hero({ data }: { data?: any }) {
   }
 
   // Animaciones para las palabras (efecto líquido/fluido)
-  const titleWords = title.split(" ")
+  const titleWords: string[] = (title || "").toString().split(" ")
 
   return (
     <section ref={containerRef} id="inicio" className="relative min-h-screen flex items-center justify-center pt-32 pb-24 px-6 md:px-12 overflow-hidden bg-[#0A0A10]">
