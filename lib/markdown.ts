@@ -2,6 +2,8 @@ import fs from 'fs'
 import path from 'path'
 
 const rootDirectory = process.cwd()
+const noticiasDirectory = path.join(rootDirectory, '_noticias')
+const actividadesDirectory = path.join(rootDirectory, '_actividades')
 
 function parseFrontMatter(fileContents: string) {
   const match = fileContents.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
@@ -36,7 +38,7 @@ export interface MarkdownPost {
 }
 
 export function getMarkdownPosts(folder: '_noticias' | '_actividades'): MarkdownPost[] {
-  const directory = path.join(rootDirectory, folder)
+  const directory = folder === '_noticias' ? noticiasDirectory : actividadesDirectory
   
   if (!fs.existsSync(directory)) {
     return []
