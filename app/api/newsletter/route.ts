@@ -29,8 +29,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Error consultando destinatarios' }, { status: 500 });
     }
 
-    // Deduplicate emails
-    const emails = [...new Set(leads.map(l => l.apoderado_email.trim().toLowerCase()).filter(Boolean))];
+    // Deduplicate emails using Array.from to avoid TS downlevelIteration error
+    const emails = Array.from(new Set(leads.map(l => l.apoderado_email.trim().toLowerCase()).filter(Boolean)));
 
     if (emails.length === 0) {
       return NextResponse.json({ error: 'No hay correos registrados en el CRM' }, { status: 400 });
