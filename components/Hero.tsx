@@ -50,8 +50,14 @@ export default function Hero({ data }: { data?: any }) {
     <section ref={containerRef} id="inicio" className="relative min-h-screen flex items-center justify-center pt-32 pb-24 px-6 md:px-12 overflow-hidden bg-[#0A0A10]">
       
       {/* Cinematic 4K Video Background with Parallax */}
-      <motion.div style={{ y: yBg, scale: scaleBg }} className="absolute inset-0 w-full h-[120%] -top-[10%] z-0">
-        {mediaType === 'video' ? (
+      <motion.div style={{ y: yBg, scale: scaleBg }} className="absolute inset-0 w-full h-[120%] -top-[10%] z-0 overflow-hidden">
+        {(mediaUrl?.includes('youtube.com') || mediaUrl?.includes('youtu.be')) ? (
+          <iframe 
+            src={`https://www.youtube.com/embed/${mediaUrl.split('v=')[1]?.split('&')[0] || mediaUrl.split('youtu.be/')[1]}?autoplay=1&mute=${isMuted ? '1' : '0'}&loop=1&playlist=${mediaUrl.split('v=')[1]?.split('&')[0] || mediaUrl.split('youtu.be/')[1]}&controls=0`} 
+            className="absolute top-1/2 left-1/2 w-[150vw] h-[150vh] -translate-x-1/2 -translate-y-1/2 opacity-80 pointer-events-none"
+            allow="autoplay; fullscreen"
+          />
+        ) : mediaUrl?.match(/\.(mp4|webm|ogg|mov)$/i) || mediaType === 'video' ? (
           <video
             ref={videoRef}
             src={mediaUrl} 

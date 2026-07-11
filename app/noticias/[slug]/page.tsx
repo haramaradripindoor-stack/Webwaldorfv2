@@ -109,15 +109,25 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
 
           {/* Photographic Right Side (Sticky Parallax effect via sticky container) */}
           <div className="w-full md:w-1/2 h-[60vh] md:h-screen sticky top-0">
-            <div className="absolute inset-0 bg-[#2C3E35]/20 mix-blend-multiply z-10" />
-            <Image
-              src={post.image_url || '/images/galeria3.webp'}
-              alt={post.title}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
+            <div className="absolute inset-0 bg-[#2C3E35]/20 mix-blend-multiply z-10 pointer-events-none" />
+            {(post.image_url?.includes('youtube.com') || post.image_url?.includes('youtu.be')) ? (
+              <iframe 
+                src={`https://www.youtube.com/embed/${post.image_url.split('v=')[1]?.split('&')[0] || post.image_url.split('youtu.be/')[1]}?autoplay=1&mute=1&loop=1&playlist=${post.image_url.split('v=')[1]?.split('&')[0] || post.image_url.split('youtu.be/')[1]}&controls=0`} 
+                className="absolute top-1/2 left-1/2 w-[150vw] md:w-[150vh] h-[150vh] md:h-[150vw] -translate-x-1/2 -translate-y-1/2 object-cover"
+                allow="autoplay; fullscreen"
+              />
+            ) : post.image_url?.match(/\.(mp4|webm|ogg|mov)$/i) ? (
+              <video src={post.image_url} className="w-full h-full object-cover" autoPlay muted loop playsInline />
+            ) : (
+              <Image
+                src={post.image_url || '/images/galeria3.webp'}
+                alt={post.title}
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            )}
           </div>
         </section>
 
