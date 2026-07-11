@@ -20,6 +20,7 @@ export default function NoticiasAdmin() {
   const [content, setContent] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [keywords, setKeywords] = useState('');
+  const [editId, setEditId] = useState<string | null>(null);
   
   const supabase = createClient();
 
@@ -101,23 +102,39 @@ export default function NoticiasAdmin() {
     
     const slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') + '-' + Date.now();
 
-    // Nota: Asegúrate de tener las columnas 'meta_keywords' si las vas a guardar
-    const { error } = await supabase.from('noticias').insert([
-      {
-        slug,
+    let error;
+
+    if (editId) {
+      // Modo Edición
+      const { error: updateError } = await supabase.from('noticias').update({
         title,
         excerpt,
         content,
         meta_keywords: keywords,
         image_url: imageUrl || '/images/galeria3.webp',
-        published_at: new Date().toISOString()
-      }
-    ]);
+      }).eq('id', editId);
+      error = updateError;
+    } else {
+      // Modo Creación
+      const { error: insertError } = await supabase.from('noticias').insert([
+        {
+          slug,
+          title,
+          excerpt,
+          content,
+          meta_keywords: keywords,
+          image_url: imageUrl || '/images/galeria3.webp',
+          published_at: new Date().toISOString()
+        }
+      ]);
+      error = insertError;
+    }
 
     if (error) {
       alert('Error al guardar: ' + error.message);
     } else {
       setShowForm(false);
+      setEditId(null);
       setTitle('');
       setExcerpt('');
       setContent('');
@@ -219,7 +236,15 @@ export default function NoticiasAdmin() {
             <input type="file" accept=".csv" className="hidden" onChange={handleCsvUpload} disabled={loading} />
           </label>
           <button 
-            onClick={() => setShowForm(!showForm)}
+            onClick={() => {
+              setShowForm(!showForm);
+              if (showForm) setEditId(null); // Limpiar ID si cancela
+              setTitle('');
+              setExcerpt('');
+              setContent('');
+              setImageUrl('');
+              setKeywords('');
+            }}
             className="bg-[var(--color-waldorf-moss)] text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-green-800 transition shadow-md shadow-green-900/10"
           >
             {showForm ? 'Cancelar' : <><Plus className="w-4 h-4" /> Nueva Noticia</>}
@@ -281,7 +306,7 @@ export default function NoticiasAdmin() {
 
             <div className="pt-4 flex justify-end">
               <button type="submit" disabled={loading} className="bg-[var(--color-waldorf-terracotta)] text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-[#b04a32]/30 hover:bg-[#b04a32] transition-colors">
-                Publicar Noticia
+                {editId ? 'Guardar Cambios' : 'Publicar Noticia'}
               </button>
             </div>
           </form>
@@ -307,6 +332,7 @@ export default function NoticiasAdmin() {
                 <td className="p-4 flex gap-2">
                   <button 
                     onClick={() => {
+                      setEditId(n.id);
                       setTitle(n.title);
                       setExcerpt(n.excerpt || '');
                       setContent(n.content || '');
