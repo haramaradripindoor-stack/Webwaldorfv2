@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
-import { Plus, Trash2, Edit, Image as ImageIcon, Loader2, FileUp, Sparkles } from 'lucide-react';
+import { Plus, Trash2, Edit, Image as ImageIcon, Loader2, FileUp, Sparkles, Mail } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import Papa from 'papaparse';
 
@@ -12,6 +12,7 @@ export default function NoticiasAdmin() {
   const [showForm, setShowForm] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [sendingNewsletterId, setSendingNewsletterId] = useState<string | null>(null);
   
   // Form State
   const [title, setTitle] = useState('');
@@ -133,6 +134,34 @@ export default function NoticiasAdmin() {
     const { error } = await supabase.from('noticias').delete().eq('id', id);
     if (!error) {
       fetchNoticias();
+    }
+  };
+
+  const handleSendNewsletter = async (noticia: any) => {
+    if (!confirm(`¿Estás seguro de enviar la noticia "${noticia.title}" por correo a todos tus leads?`)) return;
+    
+    setSendingNewsletterId(noticia.id);
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: noticia.title,
+          excerpt: noticia.excerpt,
+          slug: noticia.slug,
+          image_url: noticia.image_url
+        })
+      });
+      
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Error en el envío');
+      
+      alert(`¡Campaña enviada con éxito a ${data.count} destinatarios!`);
+    } catch (error: any) {
+      console.error(error);
+      alert('Error enviando newsletter: ' + error.message);
+    } finally {
+      setSendingNewsletterId(null);
     }
   };
 
@@ -287,10 +316,19 @@ export default function NoticiasAdmin() {
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }} 
                     className="text-blue-500 hover:bg-blue-50 p-2 rounded-lg transition-colors"
+                    title="Editar noticia"
                   >
                     <Edit className="w-4 h-4" />
                   </button>
-                  <button onClick={() => handleDelete(n.id)} className="text-red-500 hover:bg-red-50 p-2 rounded-lg transition-colors">
+                  <button 
+                    onClick={() => handleSendNewsletter(n)} 
+                    disabled={sendingNewsletterId === n.id}
+                    className="text-amber-500 hover:bg-amber-50 p-2 rounded-lg transition-colors disabled:opacity-50"
+                    title="Enviar a Apoderados (Newsletter)"
+                  >
+                    {sendingNewsletterId === n.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Mail className="w-4 h-4" />}
+                  </button>
+                  <button onClick={() => handleDelete(n.id)} className="text-red-500 hover:bg-red-50 p-2 rounded-lg transition-colors" title="Eliminar noticia">
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </td>
