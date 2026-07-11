@@ -164,9 +164,11 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
                         <span className="leading-relaxed" {...props} />
                       </li>
                     ),
-                    blockquote: ({node, ...props}) => (
+                    blockquote: ({node, children}) => (
                       <blockquote className="my-16 md:my-24 py-8 md:py-12 border-t border-b border-[#2C3E35]/20">
-                        <p className="font-serif text-3xl md:text-5xl text-[#2C3E35] leading-tight text-center italic" {...props} />
+                        <p className="font-serif text-3xl md:text-5xl text-[#2C3E35] leading-tight text-center italic">
+                          {children}
+                        </p>
                       </blockquote>
                     ),
                     a: ({node, ...props}) => <a className="text-[#D35D3E] hover:text-[#903a22] hover:bg-[#D35D3E]/10 underline underline-offset-8 decoration-1 font-medium transition-all px-1 -mx-1" {...props} />,
