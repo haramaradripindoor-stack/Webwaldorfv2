@@ -293,16 +293,34 @@ export default function NoticiasAdmin() {
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-[var(--color-waldorf-text)] mb-1">Imagen Principal</label>
-              <div className="flex items-center gap-4 bg-[var(--color-waldorf-paper)] p-4 rounded-xl border border-[var(--color-waldorf-sage)]/20">
-                <label className="cursor-pointer bg-white text-[var(--color-waldorf-moss)] px-4 py-2 rounded-lg flex items-center gap-2 border hover:bg-gray-50 shadow-sm font-medium text-sm">
-                  <ImageIcon className="w-4 h-4" /> Subir Foto
-                  <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={uploading} />
+              <label className="block text-sm font-bold text-[var(--color-waldorf-text)] mb-1">Imagen o Video Principal (Archivo o YouTube)</label>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-[var(--color-waldorf-paper)] p-4 rounded-xl border border-[var(--color-waldorf-sage)]/20">
+                <input 
+                  type="text" 
+                  placeholder="URL de YouTube (opcional)" 
+                  value={imageUrl.includes('youtube.com') || imageUrl.includes('youtu.be') ? imageUrl : ''}
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  className="w-full sm:w-1/2 border border-[var(--color-waldorf-sage)]/30 rounded-lg p-2 text-sm focus:border-[var(--color-waldorf-moss)] outline-none"
+                />
+                <span className="text-gray-400 text-sm font-medium">o</span>
+                <label className="cursor-pointer bg-white text-[var(--color-waldorf-moss)] px-4 py-2 rounded-lg flex items-center gap-2 border hover:bg-gray-50 shadow-sm font-medium text-sm shrink-0">
+                  <ImageIcon className="w-4 h-4" /> Subir Archivo
+                  <input type="file" className="hidden" accept="image/*,video/*" onChange={handleImageUpload} disabled={uploading} />
                 </label>
                 {uploading && <span className="text-sm text-[var(--color-waldorf-terracotta)] animate-pulse font-medium flex items-center gap-2"><Loader2 className="w-4 h-4 animate-spin" /> Subiendo a Supabase...</span>}
                 {imageUrl && (
                   <a href={imageUrl} target="_blank" rel="noopener noreferrer" title="Clic para ver tamaño completo" className="block hover:opacity-80 transition-opacity">
-                    <img src={imageUrl} alt="Preview" className="h-24 w-32 object-cover rounded shadow-sm border border-[var(--color-waldorf-sage)]/50" />
+                    {(imageUrl.includes('youtube.com') || imageUrl.includes('youtu.be')) ? (
+                      <iframe 
+                        src={`https://www.youtube.com/embed/${imageUrl.split('v=')[1]?.split('&')[0] || imageUrl.split('youtu.be/')[1]}`} 
+                        className="h-24 w-32 object-cover rounded shadow-sm border border-[var(--color-waldorf-sage)]/50" 
+                        allowFullScreen 
+                      />
+                    ) : imageUrl.match(/\.(mp4|webm|ogg|mov)$/i) ? (
+                      <video src={imageUrl} className="h-24 w-32 object-cover rounded shadow-sm border border-[var(--color-waldorf-sage)]/50" autoPlay muted loop />
+                    ) : (
+                      <img src={imageUrl} alt="Preview" className="h-24 w-32 object-cover rounded shadow-sm border border-[var(--color-waldorf-sage)]/50" />
+                    )}
                   </a>
                 )}
               </div>

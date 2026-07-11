@@ -198,16 +198,33 @@ export default function PortadaEditor() {
             />
           </div>
           <div>
-            <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Video o Imagen de Fondo</label>
-            <div className="flex gap-4 items-center">
-              {content.hero_section.media_type === 'video' ? (
-                <video src={content.hero_section.media_url} className="w-48 h-32 object-cover rounded-xl border border-gray-700" autoPlay muted loop />
-              ) : (
-                <img src={content.hero_section.media_url} className="w-48 h-32 object-cover rounded-xl border border-gray-700" />
-              )}
-              <div className="flex-1">
-                <p className="text-sm text-gray-400 mb-3">Sube un nuevo archivo (Video MP4 o Imagen JPG/PNG)</p>
-                <input type="file" accept="video/*,image/*" onChange={handleHeroMediaChange} className="text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-cyan-500 file:text-black hover:file:bg-cyan-400 cursor-pointer" />
+            <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Video o Imagen de Fondo (Archivo o YouTube)</label>
+            <div className="flex gap-4 items-start">
+              <div className="shrink-0">
+                {(content.hero_section.media_url?.includes('youtube.com') || content.hero_section.media_url?.includes('youtu.be')) ? (
+                  <iframe 
+                    src={`https://www.youtube.com/embed/${content.hero_section.media_url.split('v=')[1]?.split('&')[0] || content.hero_section.media_url.split('youtu.be/')[1]}`} 
+                    className="w-48 h-32 object-cover rounded-xl border border-gray-700" 
+                    allowFullScreen 
+                  />
+                ) : content.hero_section.media_type === 'video' ? (
+                  <video src={content.hero_section.media_url} className="w-48 h-32 object-cover rounded-xl border border-gray-700" autoPlay muted loop />
+                ) : (
+                  <img src={content.hero_section.media_url} className="w-48 h-32 object-cover rounded-xl border border-gray-700" />
+                )}
+              </div>
+              <div className="flex-1 space-y-3">
+                <input 
+                  type="text" 
+                  placeholder="URL de YouTube (opcional)" 
+                  value={(content.hero_section.media_url?.includes('youtube.com') || content.hero_section.media_url?.includes('youtu.be')) ? content.hero_section.media_url : ''}
+                  onChange={(e) => updateHero('media_url', e.target.value)}
+                  className="w-full bg-black/50 border border-gray-700 rounded-xl p-2 text-white focus:border-cyan-500 outline-none text-sm"
+                />
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-400 text-sm">o sube archivo:</span>
+                  <input type="file" accept="video/*,image/*" onChange={handleHeroMediaChange} className="text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-cyan-500 file:text-black hover:file:bg-cyan-400 cursor-pointer" />
+                </div>
               </div>
             </div>
           </div>

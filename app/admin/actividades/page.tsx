@@ -164,14 +164,38 @@ export default function ActividadesAdmin() {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Imagen Principal</label>
-              <div className="flex items-center gap-4">
-                <label className="cursor-pointer bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 border hover:bg-gray-200">
-                  <ImageIcon className="w-4 h-4" /> Subir Foto
-                  <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={uploading} />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Imagen o Video Principal (Archivo o YouTube)</label>
+              <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+                <input 
+                  type="text" 
+                  placeholder="URL de YouTube (opcional)" 
+                  value={imageUrl.includes('youtube.com') || imageUrl.includes('youtu.be') ? imageUrl : ''}
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  className="w-full md:w-1/2 border rounded-lg p-2 text-sm"
+                />
+                <span className="text-gray-400 text-sm">o</span>
+                <label className="cursor-pointer bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 border hover:bg-gray-200 shrink-0">
+                  <ImageIcon className="w-4 h-4" /> Subir Archivo
+                  <input type="file" className="hidden" accept="image/*,video/*" onChange={handleImageUpload} disabled={uploading} />
                 </label>
                 {uploading && <span className="text-sm text-gray-500">Subiendo...</span>}
-                {imageUrl && <img src={imageUrl} alt="Preview" className="h-12 w-12 object-cover rounded" />}
+              </div>
+              <div className="mt-4">
+                {imageUrl && (
+                  <div className="relative h-32 w-48 rounded-xl overflow-hidden border border-gray-200">
+                    {(imageUrl.includes('youtube.com') || imageUrl.includes('youtu.be')) ? (
+                      <iframe 
+                        src={`https://www.youtube.com/embed/${imageUrl.split('v=')[1]?.split('&')[0] || imageUrl.split('youtu.be/')[1]}`} 
+                        className="w-full h-full object-cover" 
+                        allowFullScreen 
+                      />
+                    ) : imageUrl.match(/\.(mp4|webm|ogg|mov)$/i) ? (
+                      <video src={imageUrl} className="w-full h-full object-cover" autoPlay muted loop />
+                    ) : (
+                      <img src={imageUrl} alt="Preview" className="w-full h-full object-cover" />
+                    )}
+                  </div>
+                )}
               </div>
             </div>
             <div>
