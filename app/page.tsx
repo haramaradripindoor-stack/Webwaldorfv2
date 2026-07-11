@@ -29,7 +29,7 @@ export default async function Home() {
   // Fetch Homepage Content CMS
   let homeContent = null;
   try {
-    const { data, error } = await supabase.from('homepage_content').select('*').eq('id', 1).single();
+    const { data, error } = await supabase.from('homepage_content').select('*').eq('id', 1).maybeSingle();
     if (data && !error) {
       homeContent = data;
     }

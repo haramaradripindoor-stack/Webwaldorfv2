@@ -40,7 +40,7 @@ export default function PortadaEditor() {
           .from('homepage_content')
           .select('*')
           .eq('id', 1)
-          .single();
+          .maybeSingle();
 
         if (error) throw error;
         if (data) {
@@ -61,13 +61,13 @@ export default function PortadaEditor() {
     try {
       const { error } = await supabase
         .from('homepage_content')
-        .update({
+        .upsert({
+          id: 1,
           hero_section: content.hero_section,
           text_reveal: content.text_reveal,
           masonry_gallery: content.masonry_gallery,
           updated_at: new Date().toISOString()
-        })
-        .eq('id', 1);
+        });
 
       if (error) throw error;
       showMessage('success', 'Cambios guardados exitosamente. Visita la página pública para verlos.');
