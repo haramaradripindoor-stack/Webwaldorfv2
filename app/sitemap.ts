@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next'
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.colegiowaldorftrekan.cl'
   
-  const routes = [
+  const baseRoutes = [
     '',
     '/admision',
     '/arriendo-salon',
@@ -17,5 +17,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '' ? 1.0 : 0.8,
   }))
 
-  return routes
+  const cities = [
+    'puerto-varas',
+    'puerto-montt',
+    'frutillar',
+    'llanquihue',
+    'osorno',
+    'valdivia',
+    'chiloe',
+    'santiago'
+  ]
+
+  const cityRoutes = cities.map((city) => ({
+    url: `${baseUrl}/colegio-waldorf-${city}`,
+    lastModified: new Date().toISOString().split('T')[0],
+    changeFrequency: 'weekly' as const,
+    priority: 0.9,
+  }))
+
+  return [...baseRoutes, ...cityRoutes]
 }
