@@ -300,7 +300,11 @@ export default function NoticiasAdmin() {
                   <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={uploading} />
                 </label>
                 {uploading && <span className="text-sm text-[var(--color-waldorf-terracotta)] animate-pulse font-medium flex items-center gap-2"><Loader2 className="w-4 h-4 animate-spin" /> Subiendo a Supabase...</span>}
-                {imageUrl && <img src={imageUrl} alt="Preview" className="h-12 w-12 object-cover rounded shadow-sm border border-gray-200" />}
+                {imageUrl && (
+                  <a href={imageUrl} target="_blank" rel="noopener noreferrer" title="Clic para ver tamaño completo" className="block hover:opacity-80 transition-opacity">
+                    <img src={imageUrl} alt="Preview" className="h-24 w-32 object-cover rounded shadow-sm border border-[var(--color-waldorf-sage)]/50" />
+                  </a>
+                )}
               </div>
             </div>
 
