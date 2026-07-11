@@ -22,6 +22,14 @@ const nextConfig = {
       },
     ]
   },
+  async rewrites() {
+    return [
+      {
+        source: '/colegio-waldorf-:ciudad',
+        destination: '/ciudades/:ciudad',
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
