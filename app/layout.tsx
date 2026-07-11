@@ -10,14 +10,15 @@ const quicksand = { variable: 'font-sans' }
 const merriweather = { variable: 'font-serif' }
 
 export const metadata: Metadata = {
-  title: 'Colegio Waldorf Trekan | Educación y Armonía - Puerto Varas',
-  description: 'Espacio educativo en armonía con la naturaleza en Puerto Varas. Pedagogía Waldorf para niños de 3 a 14 años. Admisión 2026 abierta.',
+  title: 'Colegio Waldorf Trekan | Pedagogía Waldorf en Puerto Varas, Chile',
+  description: 'Colegio Waldorf Trekan en Puerto Varas. Educación con metodología Waldorf para niños de 3 a 14 años. Conoce nuestro proyecto de educación hacia la libertad. Admisión 2026 abierta.',
+  keywords: ['colegio waldorf', 'pedagogia waldorf', 'educacion waldorf', 'metodo waldorf', 'colegios waldorf chile', 'colegio waldorf puerto varas', 'metodología waldorf', 'colegios con metodología waldorf'],
   alternates: {
     canonical: 'https://www.colegiowaldorftrekan.cl',
   },
   openGraph: {
-    title: 'Colegio Waldorf Trekan | Puerto Varas',
-    description: 'Educación con el corazón en armonía con la naturaleza. Pedagogía Waldorf para niños de 3 a 14 años.',
+    title: 'Colegio Waldorf Trekan | Pedagogía Waldorf en Puerto Varas',
+    description: 'Educación con el corazón en armonía con la naturaleza. Colegio con metodología Waldorf para niños de 3 a 14 años.',
     url: 'https://www.colegiowaldorftrekan.cl',
     siteName: 'Colegio Waldorf Trekan',
     images: [

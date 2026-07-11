@@ -174,10 +174,10 @@ export default function PedagogiaHorizontal() {
         {/* Header compacto fijo */}
         <div className="shrink-0 pt-8 pb-2 px-6 md:px-20 z-20 bg-gradient-to-b from-[#FAF8F5] to-transparent">
           <span className="text-[10px] font-mono tracking-widest uppercase text-[var(--color-waldorf-terracotta)] font-bold block mb-1">
-            Pedagogía Waldorf
+            Metodología Waldorf
           </span>
           <h2 className="text-2xl md:text-4xl font-serif font-bold text-[#1a2e25] leading-tight">
-            El Viaje del Caminante
+            Pedagogía Waldorf: El Viaje del Caminante
           </h2>
         </div>
 
