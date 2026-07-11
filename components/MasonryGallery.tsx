@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
+import Image from 'next/image'
 
 const fallbackImages = [
   { url: '/images/paseocerro20264.jpg', alt: 'Exploración en la naturaleza', span: 'col-span-2 row-span-2' },
@@ -71,11 +72,12 @@ export default function MasonryGallery({ data }: { data?: any }) {
             >
               {/* Contenedor interno que escala para dar espacio al parallax */}
               <motion.div className="w-full h-full relative" style={{ scale: 1.1 }}>
-                <img
+                <Image
                   src={img.url || img.src}
                   alt={img.alt}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                  loading="lazy"
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
               </motion.div>
 

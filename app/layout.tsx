@@ -40,11 +40,12 @@ export default function RootLayout({
 }) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
+    "@type": ["EducationalOrganization", "LocalBusiness", "School"],
     "name": "Colegio Waldorf Trekan",
+    "alternateName": "Trekan Puerto Varas",
     "url": "https://www.colegiowaldorftrekan.cl",
     "logo": "https://www.colegiowaldorftrekan.cl/assets/logo.png",
-    "description": "Colegio Waldorf en Puerto Varas para niños de 3 a 14 años. Educación con el corazón, en armonía con la naturaleza.",
+    "description": "Colegio Waldorf en Puerto Varas para niños de 3 a 14 años. Educación con metodología Waldorf hacia la libertad, en armonía con la naturaleza.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Las Azaleas 96, Parque Ivian 1",
@@ -53,6 +54,11 @@ export default function RootLayout({
       "postalCode": "5550000",
       "addressCountry": "CL"
     },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "-41.319460",
+      "longitude": "-72.985380"
+    },
     "telephone": "+56 9 6776 5106",
     "email": "admision@colegiowaldorftrekan.cl",
     "sameAs": [
@@ -60,6 +66,7 @@ export default function RootLayout({
       "https://www.facebook.com/profile.php?id=61573063135723"
     ],
     "openingHours": "Mo,Tu,We,Th,Fr 08:00-14:00",
+    "priceRange": "$$",
     "educationalProgram": "Pedagogía Waldorf para niños de 3 a 14 años"
   }
 
