@@ -91,7 +91,7 @@ export default function AIChatWidget() {
                 <X size={20} />
               </button>
               <div className="pr-6">
-                <h4 className="text-[var(--color-waldorf-cream)] font-bold text-lg font-serif mb-1">Hablemos</h4>
+                <h4 className="text-[var(--color-waldorf-cream)] font-bold text-lg font-serif mb-1">Conversar con Ivonne</h4>
                 <p className="text-[var(--color-waldorf-cream)]/80 text-xs font-medium leading-relaxed">
                   Déjanos tus datos y la coordinadora de admisión te contactará para agendar una visita o resolver tus dudas.
                 </p>
@@ -213,7 +213,7 @@ export default function AIChatWidget() {
             ) : (
               <motion.div key="chat" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }} className="flex items-center gap-3">
                 <MessageCircle size={26} fill="currentColor" />
-                <span className="font-bold text-lg tracking-wide whitespace-nowrap">Hablemos</span>
+                <span className="font-bold text-lg tracking-wide whitespace-nowrap">Conversar con Ivonne</span>
               </motion.div>
             )}
           </AnimatePresence>
