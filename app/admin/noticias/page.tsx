@@ -111,7 +111,7 @@ export default function NoticiasAdmin() {
         excerpt,
         content,
         meta_keywords: keywords,
-        image_url: imageUrl || '/images/galeria3.webp',
+        image_url: imageUrl || 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/galeria3.webp',
       }).eq('id', editId);
       error = updateError;
     } else {
@@ -123,7 +123,7 @@ export default function NoticiasAdmin() {
           excerpt,
           content,
           meta_keywords: keywords,
-          image_url: imageUrl || '/images/galeria3.webp',
+          image_url: imageUrl || 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/galeria3.webp',
           published_at: new Date().toISOString()
         }
       ]);
@@ -198,7 +198,7 @@ export default function NoticiasAdmin() {
           slug: (row.titulo || row.title || '').toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') + '-' + uuidv4().slice(0,6),
           excerpt: row.resumen || row.excerpt || '',
           content: row.contenido || row.content || '',
-          image_url: row.imagen || row.image_url || '/images/galeria3.webp',
+          image_url: row.imagen || row.image_url || 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/galeria3.webp',
           published_at: row.fecha || row.published_at || new Date().toISOString()
         })).filter(n => n.title); 
 

@@ -26,3 +26,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# Ignore local heavy media files (now in Supabase CDN)
+public/images/

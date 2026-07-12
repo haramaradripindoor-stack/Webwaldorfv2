@@ -5,13 +5,13 @@ import { useRef, useState, useEffect } from 'react'
 import Image from 'next/image'
 
 const fallbackImages = [
-  { url: '/images/paseocerro20264.jpg', alt: 'Exploración en la naturaleza', span: 'col-span-2 row-span-2' },
-  { url: '/images/actividapedagogicahumedales5.jpg', alt: 'Conexión vivencial', span: 'col-span-1 row-span-1' },
-  { url: '/images/fiesta%20de%20la%20luz202610.jpg', alt: 'Ritmos y tradiciones', span: 'col-span-1 row-span-2' },
-  { url: '/images/paseocerro20268.jpg', alt: 'Comunidad en movimiento', span: 'col-span-1 row-span-1' },
-  { url: '/images/actividapedagogicahumedales6.jpg', alt: 'Aprendizaje en el entorno', span: 'col-span-2 row-span-1' },
-  { url: '/images/paseocerro20269.jpg', alt: 'Libertad y asombro', span: 'col-span-1 row-span-1' },
-  { url: '/images/fiesta%20de%20la%20luz20268.jpg', alt: 'Luz y calidez', span: 'col-span-1 row-span-1' },
+  { url: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20264.jpg', alt: 'Exploración en la naturaleza', span: 'col-span-2 row-span-2' },
+  { url: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/actividapedagogicahumedales5.jpg', alt: 'Conexión vivencial', span: 'col-span-1 row-span-1' },
+  { url: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/fiesta%20de%20la%20luz202610.jpg', alt: 'Ritmos y tradiciones', span: 'col-span-1 row-span-2' },
+  { url: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20268.jpg', alt: 'Comunidad en movimiento', span: 'col-span-1 row-span-1' },
+  { url: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/actividapedagogicahumedales6.jpg', alt: 'Aprendizaje en el entorno', span: 'col-span-2 row-span-1' },
+  { url: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20269.jpg', alt: 'Libertad y asombro', span: 'col-span-1 row-span-1' },
+  { url: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/fiesta%20de%20la%20luz20268.jpg', alt: 'Luz y calidez', span: 'col-span-1 row-span-1' },
 ]
 
 export default function MasonryGallery({ data }: { data?: any }) {

@@ -5,10 +5,10 @@ import { Instagram } from 'lucide-react'
 import Image from 'next/image'
 
 const posts = [
-  { img: '/images/galeria3.webp', link: 'https://www.instagram.com/waldorftrekanpv/', delay: 0 },
-  { img: '/images/galeria7.webp', link: 'https://www.instagram.com/waldorftrekanpv/', delay: 0.1 },
-  { img: '/images/galeria10.webp', link: 'https://www.instagram.com/waldorftrekanpv/', delay: 0.2 },
-  { img: '/images/galeria8.webp', link: 'https://www.instagram.com/waldorftrekanpv/', delay: 0.3 },
+  { img: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/galeria3.webp', link: 'https://www.instagram.com/waldorftrekanpv/', delay: 0 },
+  { img: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/galeria7.webp', link: 'https://www.instagram.com/waldorftrekanpv/', delay: 0.1 },
+  { img: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/galeria10.webp', link: 'https://www.instagram.com/waldorftrekanpv/', delay: 0.2 },
+  { img: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/galeria8.webp', link: 'https://www.instagram.com/waldorftrekanpv/', delay: 0.3 },
 ]
 
 export default function InstagramSection() {

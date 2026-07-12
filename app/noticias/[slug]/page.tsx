@@ -120,7 +120,7 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
               <video src={post.image_url} className="w-full h-full object-cover" autoPlay muted loop playsInline />
             ) : (
               <Image
-                src={post.image_url || '/images/galeria3.webp'}
+                src={post.image_url || 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/galeria3.webp'}
                 alt={post.title}
                 fill
                 className="object-cover"

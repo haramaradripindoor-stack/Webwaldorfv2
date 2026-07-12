@@ -46,7 +46,7 @@ export default function ActividadRow({ post, isCelebracion, tagColor, hoverImg }
             )}
             <video
               ref={videoRef}
-              src="/images/Candlelight_glow_in_forest_202607082057.mp4"
+              src="https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/Candlelight_glow_in_forest_202607082057.mp4"
               muted
               playsInline
               loop

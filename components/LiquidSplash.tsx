@@ -38,7 +38,7 @@ export default function LiquidSplash() {
         >
           {/* Video generado por Veo 3.1 */}
           <video
-            src="/images/Waldorf_school_logo_animation_202607082053.mp4"
+            src="https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/Waldorf_school_logo_animation_202607082053.mp4"
             autoPlay
             muted
             playsInline

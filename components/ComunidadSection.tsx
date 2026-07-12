@@ -126,7 +126,7 @@ const pillars = [
     tag: 'El pilar pedagógico',
     description: 'Acompaña a la generación durante años, formando un vínculo profundo de respeto, amor y conocimiento de cada niño. Es la autoridad amorosa en el aula.',
     icon: User,
-    image: '/images/equipoescolar.jpg',
+    image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/equipoescolar.jpg',
     color: 'bg-[var(--color-waldorf-mustard)]'
   },
   {
@@ -134,7 +134,7 @@ const pillars = [
     tag: 'Gestión horizontal',
     description: 'El corazón administrativo de nuestra comunidad. Un espacio transparente donde apoderados y maestros deciden juntos el futuro del colegio.',
     icon: Users,
-    image: '/images/photo_2026-06-29_12-10-23.jpg',
+    image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/photo_2026-06-29_12-10-23.jpg',
     color: 'bg-[#1a2e25]'
   },
   {
@@ -142,7 +142,7 @@ const pillars = [
     tag: 'Ritmo y fraternidad',
     description: 'Encuentros regulares donde compartimos el avance de las clases, las festividades del mes y cultivamos la fraternidad entre las familias.',
     icon: CalendarHeart,
-    image: '/images/photo_2026-06-29_12-10-14.jpg',
+    image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/photo_2026-06-29_12-10-14.jpg',
     color: 'bg-[var(--color-waldorf-terracotta)]'
   },
   {
@@ -150,7 +150,7 @@ const pillars = [
     tag: 'Naturaleza y celebración',
     description: 'Fiestas de la Cosecha, Faroles, Espiral de Adviento. Marcamos el ritmo de la naturaleza celebrando juntos los cambios de cada estación.',
     icon: Trees,
-    image: '/images/fiesta-de-la-luz2026.jpg',
+    image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/fiesta-de-la-luz2026.jpg',
     color: 'bg-[var(--color-waldorf-sage)]'
   },
   {
@@ -158,7 +158,7 @@ const pillars = [
     tag: 'Manos en la tierra',
     description: 'Mantenimiento del espacio, bazar, huerto escolar. Las manos de nuestra comunidad construyen y cuidan el entorno de nuestros niños.',
     icon: Sparkles,
-    image: '/images/comisionobraymantencion2.webp',
+    image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/comisionobraymantencion2.webp',
     color: 'bg-[var(--color-waldorf-moss)]'
   },
   {
@@ -166,7 +166,7 @@ const pillars = [
     tag: 'Transparencia pedagógica',
     description: 'Una gestión participativa, horizontal y transparente que une las esferas pedagógica, administrativa y comunitaria en perfecta armonía.',
     icon: BookOpen,
-    image: '/images/photo_2025-06-24_08-26-33.jpg',
+    image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/photo_2025-06-24_08-26-33.jpg',
     color: 'bg-[#1a2e25]'
   }
 ]

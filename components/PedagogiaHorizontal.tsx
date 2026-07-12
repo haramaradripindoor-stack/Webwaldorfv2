@@ -8,28 +8,28 @@ const septenios = [
     titulo: 'Jardín de Infantes',
     edad: 'Primer Septenio · 3-6 años',
     descripcion: 'El mundo es bueno. A través del juego libre, la imitación y el ritmo, el niño construye su cuerpo físico y desarrolla la voluntad en un entorno hogareño y cálido.',
-    image: '/images/photo_2026-06-29_12-10-23.jpg',
+    image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/photo_2026-06-29_12-10-23.jpg',
     num: '01'
   },
   {
     titulo: 'Enseñanza Básica',
     edad: 'Segundo Septenio · 7-12 años',
     descripcion: 'El mundo es bello. Guiados por el maestro de clase y a través del arte, la imaginación y las narraciones, los niños cultivan su mundo emocional y su conexión con el entorno.',
-    image: '/images/actividapedagogicahumedales2.jpg',
+    image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/actividapedagogicahumedales2.jpg',
     num: '02'
   },
   {
     titulo: 'El Paso del Rubicón',
     edad: 'Crisis de los 9 años',
     descripcion: 'Un hito emocional profundo. El niño comienza a experimentar su propia individualidad, separándose del mundo que lo rodea. Lo acompañamos con firmeza y amor.',
-    image: '/images/paseocerro20261.jpg',
+    image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20261.jpg',
     num: '03'
   },
   {
     titulo: 'Hacia la Adolescencia',
     edad: 'Transición · 13-14 años',
     descripcion: 'El mundo es verdadero. Despierta el pensamiento lógico y crítico. Los jóvenes buscan comprender el mundo a través de su propio juicio y experimentación.',
-    image: '/images/actividapedagogicahumedales1.jpg',
+    image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/actividapedagogicahumedales1.jpg',
     num: '04'
   }
 ]
