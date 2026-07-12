@@ -11,8 +11,10 @@ import Link from 'next/link'
 // Sanitiza URLs de imagen que vienen de Supabase o archivos .md
 function getImageSrc(url?: string | null): string {
   if (!url) return 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/galeria3.webp'
+  if (url.startsWith('/images/')) return url.replace('/images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/')
+  if (url.startsWith('images/')) return url.replace('images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/')
   if (url.startsWith('http') || url.startsWith('/')) return url
-  return '/' + url  // Corrige paths relativos sin slash inicial ej: 'images/noticia1.jpg'
+  return '/' + url  // Corrige paths relativos sin slash inicial ej: 'noticia1.jpg'
 }
 
 export default function NewsSection({ displayNews }: { displayNews: MarkdownPost[] }) {
@@ -111,10 +113,10 @@ export default function NewsSection({ displayNews }: { displayNews: MarkdownPost
                     <Link href={`/noticias/${post.slug}`}>
                       <div className="grid grid-cols-2 gap-3 h-[200px] group-hover:scale-[1.01] transition-transform duration-500">
                         <div className="relative w-full h-full rounded-[12px] overflow-hidden earth-shadow">
-                          <Image src={post.galeria[0]} alt="Gallery 1" fill className="object-cover" />
+                          <Image src={getImageSrc(post.galeria[0])} alt="Gallery 1" fill className="object-cover" />
                         </div>
                         <div className="relative w-full h-full rounded-[12px] overflow-hidden earth-shadow">
-                          <Image src={post.galeria[1]} alt="Gallery 2" fill className="object-cover" />
+                          <Image src={getImageSrc(post.galeria[1])} alt="Gallery 2" fill className="object-cover" />
                         </div>
                       </div>
                     </Link>

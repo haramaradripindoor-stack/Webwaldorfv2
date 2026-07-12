@@ -77,6 +77,12 @@ export function getMarkdownPosts(folder: '_noticias' | '_actividades'): Markdown
         content,
         image_url: (() => {
           let img = data.image_url || data.imagen || data.foto || 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/galeria3.webp';
+          if (img && img.startsWith('/images/')) {
+            return img.replace('/images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/');
+          }
+          if (img && img.startsWith('images/')) {
+            return img.replace('images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/');
+          }
           if (img && !img.startsWith('/') && !img.startsWith('http')) {
             img = '/' + img;
           }

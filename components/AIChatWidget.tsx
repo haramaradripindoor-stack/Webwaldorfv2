@@ -30,23 +30,14 @@ export default function AIChatWidget() {
     e.preventDefault()
     setIsSubmitting(true)
     
-    const supabase = createClient();
-    
     try {
-      const { error } = await supabase.from('leads_admision').insert([
-        {
-          nombre_apoderado: formData.nombre_apoderado,
-          telefono_apoderado: formData.telefono_apoderado,
-          email_apoderado: formData.email_apoderado,
-          nombre_nino: formData.nombre_nino,
-          edad_nino: formData.edad_nino,
-          curso_postula: formData.curso_postula,
-          estado: 'nuevo',
-          origen: 'Formulario Web'
-        }
-      ])
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
 
-      if (error) throw error
+      if (!response.ok) throw new Error('Error enviando formulario')
 
       // Disparar evento de Meta Pixel para marcar la conversión
       if (typeof window !== 'undefined' && (window as any).fbq) {
@@ -54,14 +45,21 @@ export default function AIChatWidget() {
       }
 
       setIsSuccess(true)
+      
+      // Armar el mensaje pre-llenado para WhatsApp
+      const mensajeWhatsApp = `Hola Ivonne, soy ${formData.nombre_apoderado} y me gustaría recibir información de admisión.\n\nDatos de mi hijo/a:\n- Nombre: ${formData.nombre_nino}\n- Edad: ${formData.edad_nino}\n- Curso: ${formData.curso_postula}\n\nMi correo es: ${formData.email_apoderado}`;
+      const whatsappUrl = `https://wa.me/56967765106?text=${encodeURIComponent(mensajeWhatsApp)}`;
+
+      // Redirigir a WhatsApp después de 1.5 segundos
       setTimeout(() => {
+        window.open(whatsappUrl, '_blank')
         setIsOpen(false)
         setIsSuccess(false)
         setFormData({
           nombre_apoderado: '', telefono_apoderado: '', email_apoderado: '',
           nombre_nino: '', edad_nino: '', curso_postula: ''
         })
-      }, 3000)
+      }, 1500)
     } catch (error) {
       console.error('Error enviando formulario:', error)
       alert('Hubo un error al enviar tu solicitud. Inténtalo de nuevo.')
@@ -91,7 +89,7 @@ export default function AIChatWidget() {
                 <X size={20} />
               </button>
               <div className="pr-6">
-                <h4 className="text-[var(--color-waldorf-cream)] font-bold text-lg font-serif mb-1">Conversar con Ivonne</h4>
+                <h4 className="text-[var(--color-waldorf-cream)] font-bold text-lg font-serif mb-1">Hablemos</h4>
                 <p className="text-[var(--color-waldorf-cream)]/80 text-xs font-medium leading-relaxed">
                   Déjanos tus datos y la coordinadora de admisión te contactará para agendar una visita o resolver tus dudas.
                 </p>
@@ -213,7 +211,7 @@ export default function AIChatWidget() {
             ) : (
               <motion.div key="chat" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }} className="flex items-center gap-3">
                 <MessageCircle size={26} fill="currentColor" />
-                <span className="font-bold text-lg tracking-wide whitespace-nowrap">Conversar con Ivonne</span>
+                <span className="font-bold text-lg tracking-wide whitespace-nowrap">Hablemos</span>
               </motion.div>
             )}
           </AnimatePresence>
