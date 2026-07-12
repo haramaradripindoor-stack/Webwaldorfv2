@@ -41,7 +41,7 @@ export default function ActividadRow({ post, isCelebracion, tagColor, hoverImg }
             {!videoReady && (
               <div
                 className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
-                style={{ backgroundImage: `url(/images/fiesta\\ de\\ la\\ luz20261.jpg)` }}
+                style={{ backgroundImage: `url(https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/fiesta%20de%20la%20luz20261.jpg)` }}
               />
             )}
             <video
