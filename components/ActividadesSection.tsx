@@ -94,7 +94,17 @@ export default async function ActividadesSection() {
                     const tagColor = isCelebracion ? 'text-[var(--color-waldorf-moss)]' : 'text-[var(--color-waldorf-terracotta)]';
                     // We'll use a placeholder beautiful image based on index for the hover reveal
                     const fallbackImages = ['https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/fiesta%20de%20la%20luz20261.jpg', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/actividapedagogicahumedales1.jpg', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20261.jpg', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/comisionobraymantencion2.webp', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/photo_2025-06-11_11-43-23.jpg'];
-                    const hoverImg = post.image_url || post.image || fallbackImages[i % fallbackImages.length];
+                    
+                    let rawHover = post.image_url || post.image || fallbackImages[i % fallbackImages.length];
+                    if (rawHover.startsWith('/images/')) {
+                      rawHover = rawHover.replace('/images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/');
+                    } else if (rawHover.startsWith('images/')) {
+                      rawHover = rawHover.replace('images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/');
+                    }
+                    // Handle spaces
+                    rawHover = rawHover.replace(/ /g, '%20');
+                    
+                    const hoverImg = rawHover;
 
                     return (
                       <ActividadRow 
