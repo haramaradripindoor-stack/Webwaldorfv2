@@ -84,4 +84,4 @@ DROP POLICY IF EXISTS "Acceso publico lectura" ON public.lead_magnets;
 CREATE POLICY "Acceso publico lectura" ON public.lead_magnets FOR SELECT TO anon USING (true);
 
 DROP POLICY IF EXISTS "Acceso publico lectura" ON public.blog_posts;
-CREATE POLICY "Acceso publico lectura" ON public.blog_posts FOR SELECT TO anon USING (true) WHERE (status = 'published');
+CREATE POLICY "Acceso publico lectura" ON public.blog_posts FOR SELECT TO anon USING (status = 'published');
