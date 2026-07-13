@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
-import { Plus, Trash2, Edit, Image as ImageIcon, Loader2, FileUp, Sparkles, Mail } from 'lucide-react';
+import { Plus, Trash2, Edit, Image as ImageIcon, Loader2, FileUp, Sparkles, Mail, Eye } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import Papa from 'papaparse';
 
@@ -352,6 +352,15 @@ export default function NoticiasAdmin() {
                 </td>
                 <td className="p-4 font-medium text-gray-800">{n.title}</td>
                 <td className="p-4 flex gap-2">
+                  <a 
+                    href={`/noticias/${n.slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-emerald-500 hover:bg-emerald-50 p-2 rounded-lg transition-colors"
+                    title="Ver noticia"
+                  >
+                    <Eye className="w-4 h-4" />
+                  </a>
                   <button 
                     onClick={() => {
                       setEditId(n.id);
