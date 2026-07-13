@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
+import { saveHomepageContent } from './actions';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Save, Image as ImageIcon, Video, Type, CheckCircle, LayoutTemplate } from 'lucide-react';
 
@@ -59,17 +60,9 @@ export default function PortadaEditor() {
   const handleSave = async () => {
     setIsSaving(true);
     try {
-      const { error } = await supabase
-        .from('homepage_content')
-        .upsert({
-          id: 1,
-          hero_section: content.hero_section,
-          text_reveal: content.text_reveal,
-          masonry_gallery: content.masonry_gallery,
-          updated_at: new Date().toISOString()
-        });
+      const result = await saveHomepageContent(content);
 
-      if (error) throw error;
+      if (!result.success) throw new Error(result.error);
       showMessage('success', 'Cambios guardados exitosamente. Visita la página pública para verlos.');
     } catch (err: any) {
       console.error(err);
