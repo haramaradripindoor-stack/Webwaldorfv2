@@ -87,7 +87,7 @@ function StoryHeader() {
   return (
     <motion.div ref={ref} style={{ opacity, y, filter }} className="pt-28 pb-16 px-6 md:px-20 max-w-5xl mx-auto">
       <span className="text-xs font-mono tracking-widest uppercase text-[var(--color-waldorf-terracotta)] font-bold block mb-4">
-        Nuestra Tribu
+        Nuestra Comunidad
       </span>
       <h2 className="text-5xl md:text-7xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-6 leading-[1.05]">
         Vida<br />
