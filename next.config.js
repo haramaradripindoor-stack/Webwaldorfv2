@@ -20,6 +20,11 @@ const nextConfig = {
         destination: '/recursos',
         permanent: true,
       },
+      {
+        source: '/postula',
+        destination: '/admision',
+        permanent: true,
+      },
     ]
   },
   async rewrites() {
