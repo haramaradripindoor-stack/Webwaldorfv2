@@ -8,7 +8,7 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function run() {
-    const { data: noticia, error } = await supabase.from('noticias').select('*').like('title', '%Pedagogía Waldorf%');
+    const { data: noticia, error } = await supabase.from('noticias').select('*').like('title', '%Pedagogía Waldorf vs Tradicional%');
     console.log(noticia);
 }
 
