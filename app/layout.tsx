@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: 'Colegio Waldorf Trekan',
     images: [
       {
-        url: 'https://www.colegiowaldorftrekan.cl/images/paseocerro20261.jpg',
+        url: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20261.jpg',
         width: 1200,
         height: 630,
         alt: 'Niños explorando la naturaleza - Colegio Waldorf Trekan',
@@ -31,6 +31,10 @@ export const metadata: Metadata = {
     ],
     type: 'website',
   },
+  icons: {
+    icon: '/assets/logo-mini.webp',
+    shortcut: '/assets/logo-mini.webp',
+  }
 }
 
 export default function RootLayout({
