@@ -1,26 +1,32 @@
-import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
+import dotenv from 'dotenv';
+dotenv.config({ path: '.env.local' });
 
-export async function POST(req: Request) {
-  try {
-    const data = await req.json();
+const resend = new Resend(process.env.RESEND_API_KEY);
+const data = {
+    nombre: "TEST AUTOMATIZADO - AGENTE IA",
+    telefono: "+56 9 9999 9999",
+    email: "fvivancorne@gmail.com",
+    firma: "Felipe V (Prueba)",
+    fecha_firma: "2026-07-14",
+    detalle_horas: "Total: 3.0 horas en 1 día(s)",
+    costo_salones: "Salón: 30.000 CLP",
+    costo_equipos: "Servicios adicionales: 20.000 CLP",
+    total_costo: "$ 50.000",
+    pago_reserva: "Reserva (30%): $ 15.000",
+    pago_saldo: "Saldo (70%): $ 35.000",
+    kit_completo: "Sí",
+    calefaccion: "No solicitada",
+    otro_servicio: "Ninguno",
+    consultas: "ESTO ES UNA PRUEBA AUTOMÁTICA DEL SISTEMA.",
+    dias_detalle: "Día 1: 2026-07-15 de 15:00 a 18:00"
+};
 
-    // Configurar Nodemailer con Gmail SMTP
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
-      auth: {
-        user: process.env.GMAIL_USER, // Ej: tu correo de gmail
-        pass: process.env.GMAIL_APP_PASSWORD, // La contraseña de aplicación de 16 letras
-      },
-    });
-
-    const htmlContent = `
+const htmlContent = `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
         <div style="background-color: #3b533d; color: white; padding: 20px; text-align: center;">
           <h2 style="margin: 0;">Nueva Cotización Recibida</h2>
-          <p style="margin: 5px 0 0 0; opacity: 0.8;">Salón Trekan</p>
+          <p style="margin: 5px 0 0 0; opacity: 0.8;">Salón Trekan (PRUEBA)</p>
         </div>
         
         <div style="padding: 20px;">
@@ -53,16 +59,18 @@ export async function POST(req: Request) {
       </div>
     `;
 
-    // 1. Enviar alerta a la administración
-    await transporter.sendMail({
-      from: '"Colegio Waldorf Trekan" <' + process.env.GMAIL_USER + '>',
-      to: 'Coordinacion@colegiowaldorftrekan.cl, administracion@colegiowaldorftrekan.cl',
-      subject: \`Nueva Cotización Salón: ${data.nombre}\`,
+async function test() {
+    console.log("Enviando correo al admin...");
+    const { data: responseData, error } = await resend.emails.send({
+      from: 'Colegio Waldorf Trekan <noreply@colegiowaldorftrekan.cl>',
+      to: ['Coordinacion@colegiowaldorftrekan.cl', 'administracion@colegiowaldorftrekan.cl'],
+      subject: `Nueva Cotización Salón: ${data.nombre}`,
       html: htmlContent,
-      replyTo: data.email,
+      reply_to: data.email,
     });
-
-    // 2. Enviar comprobante al cliente
+    console.log("Respuesta Admin:", responseData, error);
+    
+    console.log("Enviando correo resumen al cliente...");
     const clientHtmlContent = `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; margin-bottom: 20px;">
         <p>Hola <strong>${data.nombre}</strong>,</p>
@@ -71,16 +79,12 @@ export async function POST(req: Request) {
       ${htmlContent}
     `;
 
-    await transporter.sendMail({
-      from: '"Colegio Waldorf Trekan" <' + process.env.GMAIL_USER + '>',
-      to: data.email,
-      subject: 'Resumen de tu Cotización - Salón Trekan',
+    const res2 = await resend.emails.send({
+      from: 'Colegio Waldorf Trekan <noreply@colegiowaldorftrekan.cl>',
+      to: [data.email],
+      subject: `Resumen de tu Cotización - Salón Trekan`,
       html: clientHtmlContent,
     });
-
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error('Error enviando correo SMTP:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
-  }
+    console.log("Respuesta Cliente:", res2);
 }
+test();
