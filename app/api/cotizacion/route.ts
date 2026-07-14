@@ -57,7 +57,7 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: '"Colegio Waldorf Trekan" <' + process.env.GMAIL_USER + '>',
       to: 'Coordinacion@colegiowaldorftrekan.cl, administracion@colegiowaldorftrekan.cl',
-      subject: \`Nueva Cotización Salón: ${data.nombre}\`,
+      subject: `Nueva Cotización Salón: ${data.nombre}`,
       html: htmlContent,
       replyTo: data.email,
     });
