@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import emailjs from '@emailjs/browser';
 import { Plus, X, Send, ChevronRight, CheckCircle2, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -115,7 +114,14 @@ export default function CotizadorSalon() {
     };
 
     try {
-      await emailjs.send("service_46eazsr", "template_stlro1d", data, "cXLMWeJ-pUVRay1Ia");
+      const res = await fetch('/api/cotizacion', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      
+      if (!res.ok) throw new Error('Error enviando cotización');
+
       setMessage({ text: 'Tu solicitud ha sido enviada con éxito.', type: 'success' });
       setStep(4); // Success step
     } catch (error) {
