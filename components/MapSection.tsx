@@ -50,7 +50,7 @@ export default function MapSection() {
               <MapPin size={24} />
             </div>
             <div>
-              <h3 className="font-bold text-[var(--color-waldorf-moss)] font-serif text-2xl drop-shadow-sm">Colegio Trekan</h3>
+              <h3 className="font-bold text-[var(--color-waldorf-moss)] font-serif text-2xl drop-shadow-sm">Colegio Waldorf Trekan</h3>
               <p className="text-[var(--color-waldorf-terracotta)] text-xs font-bold tracking-widest uppercase mt-1">Parque Ivian, Puerto Varas</p>
             </div>
           </div>

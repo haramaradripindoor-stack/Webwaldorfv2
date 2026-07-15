@@ -37,7 +37,7 @@ export default function Navbar() {
             sizes="56px"
           />
         </div>
-        <div className="hidden sm:flex flex-col leading-none">
+        <div className="hidden sm:flex flex-col leading-none notranslate">
           <span className="text-sm font-bold text-[var(--color-waldorf-moss)] tracking-tight">Colegio Waldorf</span>
           <span className="text-lg font-bold font-serif text-[var(--color-waldorf-moss)] tracking-tight leading-none">Trekan</span>
         </div>

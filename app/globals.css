@@ -83,15 +83,16 @@
    Los botones ES|DE|EN del Navbar controlan
    la traducción sin mostrar la UI de Google.
    ============================================ */
-.goog-te-banner-frame.skiptranslate {
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.skiptranslate {
   display: none !important;
+  visibility: hidden !important;
 }
-.goog-te-banner-frame {
-  display: none !important;
-}
-body {
+html, body {
   top: 0px !important;
   position: static !important;
+  margin-top: 0px !important;
 }
 .goog-logo-link {
   display: none !important;

@@ -62,7 +62,7 @@ const team = [
 
 export default function TeamSection() {
   return (
-    <section id="equipo" className="py-24 px-6 md:px-12 max-w-7xl mx-auto bg-[var(--color-waldorf-paper)] rounded-[40px] my-12 earth-shadow">
+    <section id="quienes-somos" className="py-24 px-6 md:px-12 max-w-7xl mx-auto bg-[var(--color-waldorf-paper)] rounded-[40px] my-12 earth-shadow">
       <div className="mb-16 text-center md:text-left">
         <span className="text-[var(--color-waldorf-mustard)] text-xs font-bold tracking-widest uppercase block mb-4">
           Quiénes Somos

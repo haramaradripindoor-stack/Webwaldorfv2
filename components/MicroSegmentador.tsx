@@ -208,8 +208,8 @@ export default function MicroSegmentador() {
                   <p className="text-sm opacity-80 mb-6">En el modelo Waldorf, preferimos que conozcas nuestro espacio y conversemos antes de cualquier trámite formal. Selecciona un horario para visitarnos.</p>
                   
                   {/* Phygital Simulated Calendar Interface */}
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    {['Lunes', 'Martes', 'Jueves', 'Viernes'].map(dia => (
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                    {['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'].map(dia => (
                       <button 
                         key={dia} 
                         onClick={() => setSelectedDay(dia)}
