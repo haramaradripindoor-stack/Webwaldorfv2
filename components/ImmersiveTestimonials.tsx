@@ -70,7 +70,7 @@ export default function ImmersiveTestimonials() {
               
               <div className="absolute bottom-0 left-0 p-8 md:p-10 w-full whitespace-normal relative z-10 transition-transform duration-700 md:group-hover:translate-x-4">
                 <p className="text-2xl md:text-3xl font-serif font-bold mb-4 leading-tight drop-shadow-md">"{t.text}"</p>
-                <p className="text-sm font-serif italic opacity-90 drop-shadow-sm">~ {t.author} ~</p>
+                <p className="text-base font-serif italic opacity-90 drop-shadow-sm">— {t.author}</p>
               </div>
             </div>
             )
@@ -108,7 +108,7 @@ export default function ImmersiveTestimonials() {
               
               <div className="absolute bottom-0 left-0 p-8 md:p-10 w-full whitespace-normal relative z-10 transition-transform duration-700 md:group-hover:translate-x-4">
                 <p className="text-2xl md:text-3xl font-serif font-bold mb-4 leading-tight drop-shadow-md">"{t.text}"</p>
-                <p className="text-sm font-serif italic opacity-90 drop-shadow-sm">~ {t.author} ~</p>
+                <p className="text-base font-serif italic opacity-90 drop-shadow-sm">— {t.author}</p>
               </div>
             </div>
             )

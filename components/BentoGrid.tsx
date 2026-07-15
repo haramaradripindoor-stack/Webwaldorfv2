@@ -69,7 +69,7 @@ function BentoCard({ card, index }: { card: any, index: number }) {
       
       <div className={`relative z-20 ${card.lightText ? 'text-white' : 'text-[#1a2e25]'} transform transition-transform duration-700 translate-y-4 group-hover:translate-y-0`}>
         <span className="text-sm italic font-serif mb-2 block opacity-80">
-          ~ {card.subtitle} ~
+          {card.subtitle}
         </span>
         <h3 className="text-3xl md:text-4xl font-serif font-bold mb-3 leading-tight drop-shadow-sm">
           {card.title}

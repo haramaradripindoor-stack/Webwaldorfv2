@@ -95,47 +95,50 @@ export default function ActividadesClient({ actividades }: { actividades: Markdo
                   <h2 className="text-3xl font-bold font-serif text-[var(--color-waldorf-moss)]">{group}</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {posts.map((post: MarkdownPost) => {
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {posts.map((post: MarkdownPost, i: number) => {
                     const isCelebracion = post.tipo?.toLowerCase() === 'celebracion' || post.tipo?.toLowerCase() === 'celebración';
                     // Extraer día y mes abreviado de la fecha
                     let postDay = post.dia || '00';
                     let postMonthAbbr = post.mes || (post.published_at ? new Date(post.published_at).toLocaleString('es-CL', { month: 'short' }).replace('.', '').toUpperCase() : 'ACT');
+                    
+                    const borderRadiuses = ['2rem 3.5rem 1.5rem 2.5rem', '3.5rem 2rem 2.5rem 1.5rem', '1.5rem 2.5rem 2rem 3.5rem', '2.5rem 1.5rem 3.5rem 2rem'];
 
                     return (
                       <article 
                         key={post.id} 
-                        className="bg-white rounded-2xl border border-[var(--color-waldorf-sage)]/20 p-6 flex gap-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 earth-shadow group"
+                        className="bg-white p-8 flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-700 earth-shadow group relative overflow-hidden"
+                        style={{ borderRadius: borderRadiuses[i % 4] }}
                       >
-                        {/* Bloque de Fecha estilo Tarjeta */}
-                        <div className="bg-[#c6a382] group-hover:bg-[var(--color-waldorf-terracotta)] transition-colors rounded-xl flex flex-col items-center justify-center p-3 w-16 h-20 text-white shrink-0 shadow-sm">
-                          <span className="text-2xl font-bold font-serif leading-none">{postDay}</span>
-                          <span className="text-[10px] font-bold tracking-widest uppercase mt-1 opacity-90">{postMonthAbbr}</span>
+                        {/* Fecha */}
+                        <div className="flex items-baseline gap-2 text-[#1a2e25] mb-6 border-b-2 border-[var(--color-waldorf-mustard)]/30 pb-4">
+                          <span className="text-5xl font-serif font-bold leading-none">{postDay}</span>
+                          <span className="text-lg font-serif italic text-[var(--color-waldorf-sage)] capitalize">{postMonthAbbr.toLowerCase()}</span>
                         </div>
                         
                         <div className="flex flex-col flex-grow">
-                          <span className="inline-block px-2 py-1 rounded bg-blue-50 text-blue-600 text-[10px] font-bold tracking-wider uppercase w-fit mb-2">
-                            {post.tipo || 'ACTIVIDAD'}
+                          <span className={`text-sm italic font-serif mb-3 ${isCelebracion ? 'text-[var(--color-waldorf-moss)]' : 'text-[var(--color-waldorf-terracotta)]'}`}>
+                            ~ {post.tipo?.toLowerCase() || 'actividad'} ~
                           </span>
                           
-                          <h3 className="text-lg font-bold font-serif text-[var(--color-waldorf-moss)] mb-2 leading-tight group-hover:text-[var(--color-waldorf-terracotta)] transition-colors">
+                          <h3 className="text-2xl font-bold font-serif text-[#1a2e25] mb-4 leading-tight group-hover:text-[var(--color-waldorf-moss)] transition-colors duration-700">
                             {post.title}
                           </h3>
                           
-                          <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-grow">
+                          <p className="text-[#1a2e25]/70 text-base leading-relaxed mb-8 flex-grow font-medium">
                             {post.excerpt}
                           </p>
                           
-                          <div className="flex flex-col gap-1 mt-auto pt-4 border-t border-gray-100">
+                          <div className="flex flex-col gap-3 mt-auto pt-6 border-t border-[var(--color-waldorf-sage)]/20">
                             {post.lugar && (
-                              <div className="flex items-center gap-2 text-[11px] text-gray-400 font-medium uppercase tracking-wide">
-                                <MapPin size={12} />
+                              <div className="flex items-center gap-3 text-sm text-[#1a2e25]/60 font-medium">
+                                <MapPin size={16} strokeWidth={1.5} className="text-[var(--color-waldorf-moss)]" />
                                 {post.lugar}
                               </div>
                             )}
                             {post.hora && (
-                              <div className="flex items-center gap-2 text-[11px] text-gray-400 font-medium uppercase tracking-wide">
-                                <Clock size={12} />
+                              <div className="flex items-center gap-3 text-sm text-[#1a2e25]/60 font-medium">
+                                <Clock size={16} strokeWidth={1.5} className="text-[var(--color-waldorf-moss)]" />
                                 {post.hora}
                               </div>
                             )}

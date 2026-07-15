@@ -30,7 +30,7 @@ export default function ActividadRow({ post, isCelebracion, tagColor, hoverImg }
   return (
     <a 
       href={`/actividades`}
-      className="group relative flex flex-col md:flex-row items-start md:items-center justify-between py-12 w-full"
+      className="group relative flex flex-col md:flex-row items-start md:items-center justify-between py-8 w-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

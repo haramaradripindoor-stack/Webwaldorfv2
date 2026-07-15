@@ -54,7 +54,7 @@ export default async function ActividadesSection() {
       }, {} as Record<string, any[]>)
 
   return (
-    <section id="actividades" className="py-24 px-6 md:px-12 bg-[var(--color-waldorf-cream)] relative overflow-hidden">
+    <section id="actividades" className="scroll-mt-32 py-24 px-6 md:px-12 bg-[var(--color-waldorf-cream)] relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-16">
@@ -82,12 +82,22 @@ export default async function ActividadesSection() {
           </div>
 
           <div className="flex flex-col mt-8 relative">
-            {Object.entries(mesesAgrupados).slice(0, 1).map(([mes, actividades]) => (
+            {Object.entries(mesesAgrupados).slice(0, 1).map(([mes, actividades]) => {
+              const getFullMonthName = (shortMonth: string) => {
+                const months: Record<string, string> = {
+                  'ENE': 'enero', 'FEB': 'febrero', 'MAR': 'marzo', 'ABR': 'abril',
+                  'MAY': 'mayo', 'JUN': 'junio', 'JUL': 'julio', 'AGO': 'agosto',
+                  'SEP': 'septiembre', 'OCT': 'octubre', 'NOV': 'noviembre', 'DIC': 'diciembre'
+                };
+                return months[shortMonth.toUpperCase()] || shortMonth.toLowerCase();
+              };
+              
+              return (
               <div key={mes} className="w-full">
                 <div className="py-10 mb-4 flex items-center justify-center">
                    <div className="h-[1px] w-12 bg-[var(--color-waldorf-terracotta)]/30 mr-4" />
                    <h3 className="text-2xl md:text-3xl italic font-serif text-[var(--color-waldorf-moss)] capitalize">
-                     El ritmo de {mes?.toLowerCase()}
+                     El ritmo de {getFullMonthName(mes)}
                    </h3>
                    <div className="h-[1px] w-12 bg-[var(--color-waldorf-terracotta)]/30 ml-4" />
                 </div>
