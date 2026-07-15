@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Leaf, Volume2, VolumeX } from 'lucide-react'
 import { useRef, useState, useEffect } from 'react'
 import MagneticButton from './MagneticButton'
@@ -11,6 +11,7 @@ export default function Hero({ data }: { data?: any }) {
   const [isMuted, setIsMuted] = useState(true)
   const [isMounted, setIsMounted] = useState(false)
   const [showScroll, setShowScroll] = useState(false)
+  const [showSoundPrompt, setShowSoundPrompt] = useState(false)
 
   // Datos dinámicos con fallback
   const title = data?.title || "Donde el niño camina con voluntad"
@@ -22,7 +23,16 @@ export default function Hero({ data }: { data?: any }) {
     setIsMounted(true)
     // Aparece 1s después de que termina el splash (~8.2s)
     const t = setTimeout(() => setShowScroll(true), 9000)
-    return () => clearTimeout(t)
+    
+    // Sugerencia de sonido aparece a los 4s y desaparece a los 10s
+    const soundTimeout1 = setTimeout(() => setShowSoundPrompt(true), 4000)
+    const soundTimeout2 = setTimeout(() => setShowSoundPrompt(false), 10000)
+    
+    return () => {
+      clearTimeout(t)
+      clearTimeout(soundTimeout1)
+      clearTimeout(soundTimeout2)
+    }
   }, [])
 
   const { scrollYProgress } = useScroll({
@@ -83,18 +93,34 @@ export default function Hero({ data }: { data?: any }) {
       
       {/* Audio Control (Organic Audio) */}
       {isMounted && mediaType === 'video' && (
-        <motion.button
+        <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 2, duration: 1 }}
-          onClick={toggleAudio}
-          className="absolute bottom-12 right-12 z-50 flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-white/70 hover:text-white hover:bg-white/10 transition-all cursor-pointer group"
+          className="absolute bottom-12 right-12 z-50 flex items-center gap-4"
         >
-          <span className="text-xs uppercase tracking-widest font-mono opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all">
-            {isMuted ? 'Atmósfera' : 'Silenciar'}
-          </span>
-          {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-        </motion.button>
+          <AnimatePresence>
+            {showSoundPrompt && isMuted && (
+               <motion.span 
+                 initial={{ opacity: 0, filter: 'blur(4px)', x: 10 }}
+                 animate={{ opacity: 1, filter: 'blur(0px)', x: 0 }}
+                 exit={{ opacity: 0, filter: 'blur(4px)', x: 10 }}
+                 className="text-[10px] uppercase tracking-widest font-mono text-white/50 pointer-events-none hidden sm:block"
+               >
+                 Experiencia con sonido
+               </motion.span>
+            )}
+          </AnimatePresence>
+          <button
+            onClick={toggleAudio}
+            className="relative flex items-center justify-center p-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-white/70 hover:text-white hover:bg-white/10 transition-all cursor-pointer group"
+          >
+            {isMuted && (
+              <span className="absolute inset-0 rounded-full border border-white/30 animate-[ping_3s_ease-in-out_infinite] opacity-50"></span>
+            )}
+            {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+          </button>
+        </motion.div>
       )}
 
       <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col items-center text-center mt-12">

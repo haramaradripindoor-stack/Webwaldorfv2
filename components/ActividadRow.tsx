@@ -35,17 +35,21 @@ export default function ActividadRow({ post, isCelebracion, tagColor, hoverImg }
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Background Organic Reveal */}
+      {/* Background Organic Reveal (Permanent on mobile, Hover on desktop) */}
       <div 
-        className="hidden md:block absolute right-8 top-1/2 -translate-y-1/2 w-72 h-48 opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-700 pointer-events-none z-0 overflow-hidden shadow-lg" 
+        className="absolute z-0 overflow-hidden transition-all duration-700 pointer-events-none
+                   inset-0 w-full h-full opacity-30
+                   md:inset-auto md:right-8 md:top-1/2 md:-translate-y-1/2 md:w-72 md:h-48 md:opacity-0 md:group-hover:opacity-100 md:scale-95 md:group-hover:scale-100 md:shadow-lg" 
         style={{ borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%' }}
       >
         {isCelebracion ? (
           <div className="relative w-full h-full bg-[#0A0A10]">
             {!videoReady && (
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
-                style={{ backgroundImage: `url(https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/fiesta%20de%20la%20luz20261.jpg)` }}
+              <img
+                src="https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/fiesta%20de%20la%20luz20261.jpg"
+                alt="Celebración"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
               />
             )}
             <video
@@ -54,17 +58,25 @@ export default function ActividadRow({ post, isCelebracion, tagColor, hoverImg }
               muted
               playsInline
               loop
-              preload="auto"
+              preload="none"
               className="absolute inset-0 w-full h-full object-cover opacity-90"
               onCanPlay={() => setVideoReady(true)}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent md:block" />
+            {/* Gradient to protect text legibility on mobile */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-waldorf-cream)] via-[var(--color-waldorf-cream)]/70 to-transparent z-10 md:hidden" />
           </div>
         ) : (
-          <div
-            className="w-full h-full bg-cover bg-center opacity-100"
-            style={{ backgroundImage: `url(${hoverImg})` }}
-          />
+          <div className="relative w-full h-full">
+            <img
+              src={hoverImg}
+              alt={post.title || "Actividad"}
+              loading="lazy"
+              className="w-full h-full object-cover"
+            />
+            {/* Gradient to protect text legibility on mobile */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-waldorf-cream)] via-[var(--color-waldorf-cream)]/70 to-transparent z-10 md:hidden" />
+          </div>
         )}
       </div>
 
