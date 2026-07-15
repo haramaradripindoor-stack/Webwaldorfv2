@@ -19,6 +19,15 @@ function BentoCard({ card, index }: { card: any, index: number }) {
   const handleMouseEnter = () => setOpacity(1)
   const handleMouseLeave = () => setOpacity(0)
 
+  // Variaciones sutiles y orgánicas de los bordes para romper la geometría perfecta
+  const borderRadiuses = [
+    '2rem 3.5rem 1.5rem 2.5rem',
+    '3.5rem 2rem 2.5rem 1.5rem',
+    '1.5rem 2.5rem 2rem 3.5rem',
+    '2.5rem 1.5rem 3.5rem 2rem',
+  ]
+  const organicRadius = borderRadiuses[index % 4]
+
   return (
     <motion.div
       ref={divRef}
@@ -29,10 +38,11 @@ function BentoCard({ card, index }: { card: any, index: number }) {
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative overflow-hidden rounded-[2rem] p-10 min-h-[320px] md:min-h-0 ${card.bg} flex flex-col justify-end group cursor-none ${card.size}`}
+      className={`relative overflow-hidden p-10 min-h-[320px] md:min-h-0 ${card.bg} flex flex-col justify-end group cursor-none ${card.size}`}
       style={{
+        borderRadius: organicRadius,
         // Borde luminoso sutil basado en el mouse (MotionSites effect)
-        boxShadow: opacity ? '0 0 40px rgba(0,0,0,0.1)' : '0 4px 20px rgba(0,0,0,0.05)'
+        boxShadow: opacity ? '0 0 40px rgba(0,0,0,0.1)' : '0 4px 20px rgba(0,0,0,0.03)'
       }}
     >
       {/* Efecto Spotlight que sigue el mouse */}
@@ -46,25 +56,25 @@ function BentoCard({ card, index }: { card: any, index: number }) {
 
       {card.image && (
         <>
-          <div className="absolute inset-0 bg-black/20 z-10 group-hover:bg-black/40 transition-colors duration-700" />
+          <div className="absolute inset-0 bg-black/10 z-10 group-hover:bg-black/30 transition-colors duration-700" />
           <Image 
             src={card.image}
             alt={card.title}
             fill
-            className="object-cover transition-transform duration-1000 group-hover:scale-110"
+            className="object-cover transition-transform duration-1000 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         </>
       )}
       
-      <div className={`relative z-20 ${card.lightText ? 'text-white' : 'text-[#1a2e25]'} transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0`}>
-        <span className="text-xs font-bold tracking-widest uppercase mb-3 block opacity-70">
-          {card.subtitle}
+      <div className={`relative z-20 ${card.lightText ? 'text-white' : 'text-[#1a2e25]'} transform transition-transform duration-700 translate-y-4 group-hover:translate-y-0`}>
+        <span className="text-sm italic font-serif mb-2 block opacity-80">
+          ~ {card.subtitle} ~
         </span>
-        <h3 className="text-3xl md:text-4xl font-serif font-bold mb-4 leading-tight">
+        <h3 className="text-3xl md:text-4xl font-serif font-bold mb-3 leading-tight drop-shadow-sm">
           {card.title}
         </h3>
-        <p className="text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 font-light max-w-sm">
+        <p className="text-base md:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100 font-medium max-w-sm drop-shadow-sm">
           {card.desc}
         </p>
       </div>

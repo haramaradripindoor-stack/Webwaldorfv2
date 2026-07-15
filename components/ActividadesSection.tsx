@@ -81,14 +81,18 @@ export default async function ActividadesSection() {
             </a>
           </div>
 
-          <div className="flex flex-col border-t border-[var(--color-waldorf-sage)]/20 mt-12">
+          <div className="flex flex-col mt-8 relative">
             {Object.entries(mesesAgrupados).slice(0, 1).map(([mes, actividades]) => (
               <div key={mes} className="w-full">
-                <h3 className="text-sm font-bold font-mono tracking-widest text-[var(--color-waldorf-terracotta)] uppercase py-8">
-                  Próximas en {mes}
-                </h3>
+                <div className="py-10 mb-4 flex items-center justify-center">
+                   <div className="h-[1px] w-12 bg-[var(--color-waldorf-terracotta)]/30 mr-4" />
+                   <h3 className="text-2xl md:text-3xl italic font-serif text-[var(--color-waldorf-moss)] capitalize">
+                     El ritmo de {mes?.toLowerCase()}
+                   </h3>
+                   <div className="h-[1px] w-12 bg-[var(--color-waldorf-terracotta)]/30 ml-4" />
+                </div>
                 
-                <div className="flex flex-col w-full">
+                <div className="flex flex-col w-full relative">
                   {(actividades as any[]).map((post: any, i: number) => {
                     const isCelebracion = post.tipo?.toLowerCase() === 'celebracion' || post.tipo?.toLowerCase() === 'celebración';
                     const tagColor = isCelebracion ? 'text-[var(--color-waldorf-moss)]' : 'text-[var(--color-waldorf-terracotta)]';
