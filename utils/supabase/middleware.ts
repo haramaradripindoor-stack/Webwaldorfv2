@@ -59,10 +59,24 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser()
 
   // Proteger la ruta /admin (excepto /admin/login si existiera o /login)
-  if (!user && request.nextUrl.pathname.startsWith('/admin')) {
-    const url = request.nextUrl.clone()
-    url.pathname = '/login'
-    return NextResponse.redirect(url)
+  if (request.nextUrl.pathname.startsWith('/admin')) {
+    if (!user) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/login'
+      return NextResponse.redirect(url)
+    }
+
+    // Validar rol de administrador o correos de administrador conocidos
+    const isAdmin = 
+      user.user_metadata?.role === 'admin' || 
+      user.email === 'trekancomunicaciones2025@gmail.com' || 
+      user.email === 'fvivancorne@gmail.com';
+
+    if (!isAdmin) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/'
+      return NextResponse.redirect(url)
+    }
   }
 
   // Redirigir al admin si ya está logueado y entra al login

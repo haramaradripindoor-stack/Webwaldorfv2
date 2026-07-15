@@ -3,9 +3,10 @@
 import { useState, useRef, useEffect } from 'react'
 import { MapPin, Clock } from 'lucide-react'
 import Image from 'next/image'
+import { MarkdownPost } from '@/lib/markdown'
 
 interface ActividadRowProps {
-  post: any;
+  post: MarkdownPost;
   isCelebracion: boolean;
   tagColor: string;
   hoverImg: string;

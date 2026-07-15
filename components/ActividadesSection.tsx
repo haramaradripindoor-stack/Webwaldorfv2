@@ -7,7 +7,7 @@ export const revalidate = 0; // Para que actualice siempre que haya cambios en B
 
 export default async function ActividadesSection() {
   const supabase = createClient();
-  let allActividades: any[] = [];
+  let allActividades: MarkdownPost[] = [];
   
   try {
     const { data, error } = await supabase
@@ -41,7 +41,7 @@ export default async function ActividadesSection() {
     }
     acc[mes].push(curr)
     return acc
-  }, {} as Record<string, any[]>)
+  }, {} as Record<string, MarkdownPost[]>)
   
   // Si no hay actividades futuras, podemos mostrar el último mes disponible como fallback
   const mesesAgrupados = Object.keys(actividadesPorMes).length > 0 
@@ -51,7 +51,7 @@ export default async function ActividadesSection() {
         if (!acc[mes]) acc[mes] = []
         acc[mes].push(curr)
         return acc
-      }, {} as Record<string, any[]>)
+      }, {} as Record<string, MarkdownPost[]>)
 
   return (
     <section id="actividades" className="scroll-mt-32 py-24 px-6 md:px-12 bg-[var(--color-waldorf-cream)] relative overflow-hidden">
@@ -103,7 +103,7 @@ export default async function ActividadesSection() {
                 </div>
                 
                 <div className="flex flex-col w-full relative">
-                  {(actividades as any[]).map((post: any, i: number) => {
+                  {(actividades as MarkdownPost[]).map((post: MarkdownPost, i: number) => {
                     const isCelebracion = post.tipo?.toLowerCase() === 'celebracion' || post.tipo?.toLowerCase() === 'celebración';
                     const tagColor = isCelebracion ? 'text-[var(--color-waldorf-moss)]' : 'text-[var(--color-waldorf-terracotta)]';
                     // We'll use a placeholder beautiful image based on index for the hover reveal
@@ -132,7 +132,8 @@ export default async function ActividadesSection() {
                   })}
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
 
         </div>

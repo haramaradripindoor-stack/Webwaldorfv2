@@ -29,3 +29,9 @@ yarn-error.log*
 
 # Ignore local heavy media files (now in Supabase CDN)
 public/images/
+
+# Security and one-off scripts
+scripts/one-off/
+*.csv
+*.log
+screenshot*.png
