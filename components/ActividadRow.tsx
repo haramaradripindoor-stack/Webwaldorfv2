@@ -34,9 +34,9 @@ export default function ActividadRow({ post, isCelebracion, tagColor, hoverImg }
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Background Organic Reveal (Blur to Focus, Organic shape) */}
+      {/* Background Organic Reveal */}
       <div 
-        className="hidden md:block absolute right-1/4 top-1/2 -translate-y-1/2 w-80 h-56 opacity-0 group-hover:opacity-100 blur-xl group-hover:blur-0 transition-all duration-1000 pointer-events-none z-0 overflow-hidden" 
+        className="hidden md:block absolute right-8 top-1/2 -translate-y-1/2 w-72 h-48 opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-700 pointer-events-none z-0 overflow-hidden shadow-lg" 
         style={{ borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%' }}
       >
         {isCelebracion ? (
@@ -54,14 +54,14 @@ export default function ActividadRow({ post, isCelebracion, tagColor, hoverImg }
               playsInline
               loop
               preload="auto"
-              className="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-80"
+              className="absolute inset-0 w-full h-full object-cover opacity-90"
               onCanPlay={() => setVideoReady(true)}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
           </div>
         ) : (
           <div
-            className="w-full h-full bg-cover bg-center mix-blend-multiply opacity-80"
+            className="w-full h-full bg-cover bg-center opacity-100"
             style={{ backgroundImage: `url(${hoverImg})` }}
           />
         )}
