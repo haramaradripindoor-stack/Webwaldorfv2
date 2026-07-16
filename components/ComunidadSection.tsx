@@ -105,9 +105,9 @@ function StoryHeader() {
 // Frase intermedia de Scrollytelling — emerge entre pilares para mantener el ritmo narrativo
 function NarrativeQuote({ text, index }: { text: string; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 90%', 'start 30%'] })
-  // Fix: no fade-out al final (0.8→1 se mantiene en 1, no baja a 0.4)
-  const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1])
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 85%', 'start 25%'] })
+  // El fade-out es intencional: la frase cede el protagonismo a la imagen que emerge debajo
+  const opacity = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [0, 1, 1, 0.4])
   const y       = useTransform(scrollYProgress, [0, 0.4], [20, 0])
   const blur    = useTransform(scrollYProgress, [0, 0.35], [6, 0])
   const filter  = useTransform(blur, (b) => `blur(${b}px)`)
