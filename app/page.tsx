@@ -67,23 +67,38 @@ export default async function Home() {
     <SmoothScroll>
       <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-x-clip">
         <Navbar />
+        
+        {/* 1. EL DESPERTAR (Inspiración y Manifiesto) */}
         <Hero data={heroData} />
         <TextReveal text={textRevealData} />
+        
+        {/* 2. LA EXPERIENCIA VISUAL (Mostrar el ambiente antes de la teoría) */}
+        <MasonryGallery data={masonryData} />
+        
+        {/* 3. EL CAMINO EDUCATIVO (Qué hacemos y nuestros pilares) */}
         <PedagogiaHorizontal />
         <BentoGrid />
+        
+        {/* 4. EL ELEMENTO HUMANO Y EL RITMO (Maestros, Vida Comunitaria y Calendario) */}
+        <TeamSection />
         <ComunidadSection />
         <ActividadesSection />
+        
+        {/* 5. VALIDACIÓN Y FILTRO (Prueba social y autoevaluación para prospectos) */}
         <ImmersiveTestimonials />
-        <NewsSection displayNews={displayNews} />
-        <MasonryGallery data={masonryData} />
-        <TeamSection />
-        <DeslizadorCompromiso />
         <MicroSegmentador />
+        <DeslizadorCompromiso />
+        
+        {/* 6. EL PULSO ACTUAL (Noticias y Redes Sociales) */}
+        <NewsSection displayNews={displayNews} />
+        <InstagramSection />
+        
+        {/* 7. RESOLUCIÓN DE DUDAS Y CONVERSIÓN (El paso final hacia la admisión) */}
         <FAQSection />
         <ContactSection />
         <MapSection />
-        <InstagramSection />
         <RadicalTransparency />
+        
         <Footer />
       </main>
     </SmoothScroll>
