@@ -48,8 +48,8 @@ function PillarCard({ pillar, index }: { pillar: any; index: number }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent z-10" />
         <div className={`absolute inset-0 ${pillar.color} mix-blend-multiply opacity-30 z-10`} />
 
-        {/* Número decorativo */}
-        <div className="absolute top-6 right-8 text-white/[0.07] font-serif font-bold text-[9rem] leading-none select-none z-10">
+        {/* Número decorativo — reducido para no sangrar a través del overlay oscuro */}
+        <div className="absolute top-6 right-8 text-white/[0.04] font-serif font-bold text-[6rem] leading-none select-none z-10">
           {String(index + 1).padStart(2, '0')}
         </div>
 
@@ -105,15 +105,16 @@ function StoryHeader() {
 // Frase intermedia de Scrollytelling — emerge entre pilares para mantener el ritmo narrativo
 function NarrativeQuote({ text, index }: { text: string; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 85%', 'start 25%'] })
-  const opacity = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [0, 1, 1, 0.4])
-  const y       = useTransform(scrollYProgress, [0, 0.4], [30, 0])
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 90%', 'start 30%'] })
+  // Fix: no fade-out al final (0.8→1 se mantiene en 1, no baja a 0.4)
+  const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1])
+  const y       = useTransform(scrollYProgress, [0, 0.4], [20, 0])
   const blur    = useTransform(scrollYProgress, [0, 0.35], [6, 0])
   const filter  = useTransform(blur, (b) => `blur(${b}px)`)
 
   return (
-    <motion.div ref={ref} style={{ opacity, y, filter }} className="py-16 px-6 md:px-20 max-w-4xl mx-auto text-center">
-      <p className="text-2xl md:text-4xl font-serif italic text-[var(--color-waldorf-moss)] leading-relaxed">
+    <motion.div ref={ref} style={{ opacity, y, filter }} className="py-10 px-6 md:px-20 max-w-4xl mx-auto text-center">
+      <p className="text-xl md:text-3xl font-serif italic text-[var(--color-waldorf-moss)]/70 leading-relaxed">
         "{text}"
       </p>
     </motion.div>
@@ -186,7 +187,7 @@ export default function ComunidadSection() {
       <StoryHeader />
 
       {/* Acto II — Sentir: las imágenes emergen mientras se cuenta la historia */}
-      <div className="max-w-6xl mx-auto px-4 md:px-8 flex flex-col gap-6">
+      <div className="max-w-6xl mx-auto px-4 md:px-8 flex flex-col gap-4">
         {pillars.map((pillar, i) => (
           <div key={i}>
             <PillarCard pillar={pillar} index={i} />

@@ -74,7 +74,8 @@ function BentoCard({ card, index }: { card: any, index: number }) {
         <h3 className="text-3xl md:text-4xl font-serif font-bold mb-3 leading-tight drop-shadow-sm">
           {card.title}
         </h3>
-        <p className="text-base md:text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100 font-medium max-w-sm drop-shadow-sm">
+        {/* Siempre visible en mobile, aparece en hover solo en desktop */}
+        <p className="text-base md:text-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-700 delay-100 font-medium max-w-sm drop-shadow-sm">
           {card.desc}
         </p>
       </div>
@@ -99,8 +100,8 @@ export default function BentoGrid() {
       desc: 'Acompaña al niño durante años, creando un refugio seguro.',
       size: 'md:col-span-1 md:row-span-1',
       bg: 'bg-[var(--color-waldorf-mustard)]',
-      image: '',
-      lightText: false,
+      image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/equipoescolar.jpg',
+      lightText: true,
     },
     {
       title: 'Conexión Natural',
