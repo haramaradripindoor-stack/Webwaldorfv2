@@ -13,16 +13,29 @@ export const metadata = {
   },
 }
 
-const RECURSOS = [
+type RecursoItem = {
+  name: string;
+  desc: string;
+  url?: string;
+};
+
+type RecursoCategory = {
+  titulo: string;
+  icono: React.ReactNode;
+  descripcion: string;
+  items: RecursoItem[];
+};
+
+const RECURSOS: RecursoCategory[] = [
   {
     titulo: 'Medicina y Farmacias Antroposóficas',
     icono: <HeartPulse size={24} />,
     descripcion: 'Lugares de confianza para medicina natural, preparados magistrales Wala y cuidado integral bajo la visión antroposófica.',
     items: [
-      { name: 'Farmacia Tríodo', desc: 'Expertos en farmacia antroposófica, preparaciones magistrales y medicamentos Wala/Abnoba.' },
-      { name: 'Weleda Chile', desc: 'Cosmética natural y remedios homeopáticos inspirados en la antroposofía.' },
-      { name: 'Farmacia Alquimist', desc: 'Recetario magistral, fitoterapia y medicina antroposófica en Santiago.' },
-      { name: 'AMA Chile', desc: 'Directorio oficial de médicos y terapeutas antroposóficos en Chile.' },
+      { name: 'Farmacia Tríodo', desc: 'Expertos en farmacia antroposófica, preparaciones magistrales y medicamentos Wala/Abnoba.', url: 'https://farmaciatriodo.cl/' },
+      { name: 'Weleda Chile', desc: 'Cosmética natural y remedios homeopáticos inspirados en la antroposofía.', url: 'https://www.weleda.cl/' },
+      { name: 'Farmacia Alquimist', desc: 'Recetario magistral, fitoterapia y medicina antroposófica en Santiago.', url: 'https://www.alquimist.cl/' },
+      { name: 'AMA Chile', desc: 'Directorio oficial de médicos y terapeutas antroposóficos en Chile.', url: 'https://www.amachile.cl/' },
     ]
   },
   {
@@ -30,10 +43,10 @@ const RECURSOS = [
     icono: <Users size={24} />,
     descripcion: 'Organizaciones formativas y proyectos de impacto basados en la filosofía impulsada por Rudolf Steiner.',
     items: [
-      { name: 'Centro de Formación Arché', desc: 'Centro de investigación y formación pedagógica Waldorf en Chile.' },
-      { name: 'Sociedad Antroposófica en Chile', desc: 'Sede nacional para el estudio y la difusión de la antroposofía.' },
-      { name: 'Banca Ética / Doble Impacto', desc: 'Plataforma de finanzas éticas inspirada en los principios sociales del banco Triodos.' },
-      { name: 'Librería Antroposófica', desc: 'Catálogo completo de obras de Steiner y pedagogía Waldorf.' },
+      { name: 'Centro de Formación Arché', desc: 'Centro de investigación y formación pedagógica Waldorf en Chile.', url: 'https://arche.cl/' },
+      { name: 'Sociedad Antroposófica en Chile', desc: 'Sede nacional para el estudio y la difusión de la antroposofía.', url: 'https://sociedadantroposofica.cl/' },
+      { name: 'Banca Ética / Doble Impacto', desc: 'Plataforma de finanzas éticas inspirada en los principios sociales del banco Triodos.', url: 'https://www.dobleimpacto.cl/' },
+      { name: 'Librería Antroposófica', desc: 'Catálogo completo de obras de Steiner y pedagogía Waldorf.', url: 'https://www.libreriaantroposofica.cl/' },
     ]
   },
   {
@@ -52,17 +65,17 @@ const RECURSOS = [
     icono: <FileText size={24} />,
     descripcion: 'Médicos y odontólogos especializados en la visión integrativa de la antroposofía.',
     items: [
-      { name: 'Dra. Ana María Toro', desc: 'Especialista en Odontopediatría Antroposófica, certificada por la Sección Médica del Goetheanum.' },
-      { name: 'Dr. Pablo Porcel', desc: 'Médico general de adultos y niños, docente y referente en medicina antroposófica en Chile.' },
+      { name: 'Dra. Ana María Toro', desc: 'Especialista en Odontopediatría Antroposófica, certificada por la Sección Médica del Goetheanum.', url: 'https://www.amachile.cl/directorio' },
+      { name: 'Dr. Pablo Porcel', desc: 'Médico general de adultos y niños, docente y referente en medicina antroposófica en Chile.', url: 'https://www.amachile.cl/directorio' },
     ]
   },
   {
-    titulo: 'Contenido para Niños (Argentina)',
+    titulo: 'Contenido para Niños',
     icono: <Bookmark size={24} />,
-    descripcion: 'Iniciativas destacadas del país vecino para complementar la crianza y el juego en casa.',
+    descripcion: 'Iniciativas destacadas para complementar la crianza y el juego en casa.',
     items: [
-      { name: 'Jugar i Jugar / Juguetes Naturales', desc: 'Cultura de juego libre con materiales nobles, madera y juguetes no estructurados.' },
-      { name: 'Comunidad Waldorf Argentina', desc: 'Recursos, cuentos infantiles y orientación para familias en toda la región.' },
+      { name: 'Jugar i Jugar / Juguetes Naturales', desc: 'Cultura de juego libre con materiales nobles, madera y juguetes no estructurados.', url: 'https://www.jugarijugar.com/' },
+      { name: 'Comunidad Waldorf Argentina', desc: 'Recursos, cuentos infantiles y orientación para familias en toda la región.', url: 'https://comunidadwaldorf.com/' },
     ]
   }
 ];
@@ -110,15 +123,22 @@ export default function RecursosPage() {
                   </p>
 
                   <div className="flex flex-col gap-6">
-                    {cat.items.map((item, i) => (
-                      <div key={i} className="group cursor-pointer">
-                        <h4 className="font-bold text-[var(--color-waldorf-text)] mb-2 flex items-center justify-between group-hover:text-[var(--color-waldorf-moss)] transition-colors">
-                          {item.name}
-                          <ExternalLink size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#c6a382]" />
-                        </h4>
-                        <p className="text-sm text-[var(--color-waldorf-text-light)] leading-relaxed">{item.desc}</p>
-                      </div>
-                    ))}
+                    {cat.items.map((item, i) => {
+                      const Wrapper = item.url ? 'a' : 'div';
+                      const linkProps = item.url ? { href: item.url, target: '_blank', rel: 'noopener noreferrer' } : {};
+                      
+                      return (
+                        <Wrapper key={i} {...linkProps} className={`group block ${item.url ? 'cursor-pointer' : ''}`}>
+                          <h4 className={`font-bold text-[var(--color-waldorf-text)] mb-2 flex items-center justify-between ${item.url ? 'group-hover:text-[var(--color-waldorf-moss)] transition-colors' : ''}`}>
+                            {item.name}
+                            {item.url && (
+                              <ExternalLink size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#c6a382]" />
+                            )}
+                          </h4>
+                          <p className="text-sm text-[var(--color-waldorf-text-light)] leading-relaxed">{item.desc}</p>
+                        </Wrapper>
+                      );
+                    })}
                   </div>
                 </div>
               ))}
@@ -137,7 +157,7 @@ export default function RecursosPage() {
             <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto relative z-10">
               Ayúdanos a expandir esta red colaborativa. Si conoces algún proyecto o profesional afín, no dudes en escribirnos.
             </p>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=coordinacion@colegiowaldorftrekan.cl&su=Consulta%20sobre%20Recursos%20Waldorf" target="_blank" rel="noreferrer" className="inline-block bg-white text-[var(--color-waldorf-moss)] px-8 py-4 rounded-full font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform duration-300 relative z-10">
+            <a href="mailto:coordinacion@colegiowaldorftrekan.cl?subject=Sugerir%20Recurso%20Waldorf" className="inline-block bg-white text-[var(--color-waldorf-moss)] px-8 py-4 rounded-full font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform duration-300 relative z-10">
               Sugerir Recurso
             </a>
           </div>

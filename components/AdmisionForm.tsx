@@ -18,8 +18,11 @@ export default function AdmisionForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleWhatsAppRoute = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleWhatsAppRoute = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
     // Disparar Eventos de Conversión
     try {
@@ -37,9 +40,32 @@ export default function AdmisionForm() {
       console.error('Error tracking conversion', error);
     }
 
+    // 1. Guardar silenciosamente el lead en Supabase CRM antes del redirect
+    try {
+      await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nombre_apoderado: formData.parentName,
+          telefono_apoderado: 'Vía WhatsApp (Pendiente)', 
+          email_apoderado: 'Pendiente',
+          nombre_nino: 'No especificado',
+          edad_nino: formData.childrenAges,
+          curso_postula: `Visita preferida: ${selectedDay || 'Cualquier día'}. Notas: ${formData.message || 'Ninguna'}`
+        })
+      });
+    } catch (error) {
+      console.error('Error saving lead to CRM', error);
+      // Si falla, continuamos igual al WhatsApp para no bloquear al apoderado
+    }
+
+    // 2. Redirigir a WhatsApp
     const text = `Hola Ivonne, soy ${formData.parentName}, me interesa postular para edades: ${formData.childrenAges}. ${formData.message ? `Adicionalmente: ${formData.message}` : ''} Me gustaría agendar una visita el día ${selectedDay || 'que tengan disponibilidad'}.`;
     const whatsappUrl = `https://wa.me/56967765106?text=${encodeURIComponent(text)}`;
-    window.open(whatsappUrl, '_blank');
+    
+    // Usamos location.href en lugar de window.open porque los navegadores bloquean 
+    // ventanas nuevas (popups) que ocurren después de un await asíncrono
+    window.location.href = whatsappUrl;
   }
 
   return (
@@ -122,10 +148,13 @@ export default function AdmisionForm() {
 
             <button 
               type="submit" 
-              className="w-full bg-[var(--color-waldorf-mustard)] text-[#1a2e25] py-4 rounded-xl font-bold hover:bg-[#e6a55e] transition-colors flex items-center justify-center gap-2 mt-8 text-lg shadow-[0_0_20px_rgba(224,169,109,0.2)] hover:shadow-[0_0_30px_rgba(224,169,109,0.4)]"
+              disabled={isSubmitting}
+              className={`w-full text-[#1a2e25] py-4 rounded-xl font-bold transition-colors flex items-center justify-center gap-2 mt-8 text-lg shadow-[0_0_20px_rgba(224,169,109,0.2)] hover:shadow-[0_0_30px_rgba(224,169,109,0.4)] ${
+                isSubmitting ? 'bg-[#e6a55e]/70 cursor-not-allowed' : 'bg-[var(--color-waldorf-mustard)] hover:bg-[#e6a55e]'
+              }`}
             >
-              <Send size={20} />
-              Conversar con Ivonne
+              <Send size={20} className={isSubmitting ? "animate-pulse" : ""} />
+              {isSubmitting ? 'Conectando...' : 'Conversar con Ivonne'}
             </button>
           </form>
         </motion.div>

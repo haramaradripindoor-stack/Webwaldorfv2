@@ -25,26 +25,20 @@ export default function MapSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        {/* Google Maps Embed con filtro de inversión (Dark Green / Sage aesthetic) */}
+        {/* Google Maps Embed sin filtros oscuros para mantener la legibilidad y estética limpia */}
         <iframe 
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11961.341148810057!2d-72.973406!3d-41.328328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96183aef542dfdd1%3A0x6a2c206a4b1262d!2sColegio%20Waldorf%20Trekan!5e0!3m2!1ses-419!2scl!4v1718000000000!5m2!1ses-419!2scl" 
           width="100%" 
           height="100%" 
-          style={{ 
-            border: 0, 
-            filter: 'grayscale(60%) contrast(1.1) opacity(0.9) sepia(20%) hue-rotate(80deg)'
-          }} 
+          style={{ border: 0 }} 
           allowFullScreen 
           loading="lazy" 
           referrerPolicy="no-referrer-when-downgrade"
           className="absolute inset-0 z-0"
         />
 
-        {/* Capa de mezcla (Mix-blend) para unificar colores */}
-        <div className="absolute inset-0 bg-[#1a2e25] mix-blend-overlay opacity-30 pointer-events-none z-0" />
-
-        {/* Tarjeta de Información Flotante (Glassmorphism) - Ahora en el iframe */}
-        <div className="absolute bottom-4 left-4 right-4 md:bottom-12 md:left-12 md:right-auto z-10 bg-white/95 backdrop-blur-xl p-6 md:p-8 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-[var(--color-waldorf-sage)]/10 md:max-w-sm pointer-events-auto transition-transform duration-500 hover:-translate-y-1">
+        {/* Tarjeta de Información Flotante (Glassmorphism) */}
+        <div className="absolute top-1/2 -translate-y-1/2 left-4 right-4 md:left-12 md:right-auto z-10 bg-white/95 backdrop-blur-xl p-6 md:p-8 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-[var(--color-waldorf-sage)]/10 md:max-w-sm pointer-events-auto transition-transform duration-500 hover:-translate-y-1 hover:scale-[1.02]">
           <div className="flex items-center gap-4 mb-4">
             <div className="w-12 h-12 rounded-full bg-[var(--color-waldorf-cream)] flex items-center justify-center text-[var(--color-waldorf-moss)] border border-[var(--color-waldorf-sage)]/20">
               <MapPin size={24} />
