@@ -58,6 +58,7 @@ const RECURSOS: RecursoCategory[] = [
       { name: 'La voluntad en la pedagogía Waldorf', desc: 'Por Valentin Wember. Profundiza de forma práctica en cómo cultivar y guiar la voluntad del niño en sus distintas etapas.' },
       { name: 'La gestión de la escuela (Parte 1)', desc: 'Por Valentin Wember. Una guía para las escuelas Waldorf.', url: '/assets/libros/gestion-escuela-waldorf-1.pdf' },
       { name: 'La gestión de la escuela (Parte 2)', desc: 'Por Valentin Wember. Continuación de la guía de gestión escolar.', url: '/assets/libros/gestion-escuela-waldorf-2.pdf' },
+      { name: 'Pediatría para la familia', desc: 'Por Wolfgang Goebel y Michaela Glöckler. Guía médica antroposófica para el cuidado integral de los niños.', url: '/assets/libros/pediatria-para-la-familia.pdf' },
       { name: 'La educación del niño a la luz de la antroposofía', desc: 'Por Rudolf Steiner. El texto fundacional indispensable para padres y maestros.' },
       { name: 'Usted es el primer profesor de su hijo', desc: 'Por Rahima Baldwin Dancy. Guía esencial para aplicar los principios Waldorf en la crianza desde el nacimiento hasta los 7 años.' },
       { name: 'El reino de la infancia', desc: 'Por Rudolf Steiner. Serie de conferencias introductorias que explican la esencia del trato y respeto por la etapa infantil.' },
