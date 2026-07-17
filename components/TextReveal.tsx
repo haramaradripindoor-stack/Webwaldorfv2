@@ -17,7 +17,7 @@ export default function TextReveal({ text }: TextRevealProps) {
       ref={containerRef}
       className="py-32 px-6 md:px-16 max-w-6xl mx-auto flex items-center justify-center min-h-[60vh]"
     >
-      <p className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-[var(--color-waldorf-moss)] leading-[1.15] tracking-tight text-center flex flex-wrap justify-center gap-x-4 gap-y-1">
+      <p className="text-4xl md:text-6xl lg:text-7xl font-[family-name:var(--font-antroposofia)] font-normal text-[var(--color-waldorf-moss)] leading-[1.3] tracking-wider text-center flex flex-wrap justify-center gap-x-4 gap-y-1">
         {words.map((word, i) => {
           return (
             <motion.span

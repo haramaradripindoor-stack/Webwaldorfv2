@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Antroposofia';
+  src: url('/fonts/antroposofia.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 @theme {
   --color-waldorf-cream: #FAF9F6;
   --color-waldorf-paper: #FDFBF7;
@@ -12,6 +19,7 @@
   
   --font-quicksand: 'Quicksand', sans-serif;
   --font-merriweather: 'Merriweather', serif;
+  --font-antroposofia: 'Antroposofia', sans-serif;
 
   /* Fluid Math */
   --text-fluid-hero: clamp(3rem, 1.25rem + 8vw, 9rem);
