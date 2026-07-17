@@ -3,7 +3,6 @@
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, Mail, MapPin, Send, Loader2, CheckCircle2, UserPlus } from 'lucide-react'
-import emailjs from '@emailjs/browser'
 
 export default function ContactSection() {
   const formRef = useRef<HTMLFormElement>(null)
@@ -35,25 +34,39 @@ END:VCARD`
     document.body.removeChild(a)
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
     setErrorMsg('')
 
-    // Usando las mismas credenciales de arriendo-salon (deben configurarse según las de Trekan)
-    // El template debería estar configurado para recibir: user_name, user_email, message
-    emailjs.sendForm('service_46eazsr', 'template_stlro1d', formRef.current!, 'cXLMWeJ-pUVRay1Ia')
-      .then(() => {
+    const formData = new FormData(e.currentTarget)
+    const data = {
+      user_name: formData.get('user_name'),
+      user_email: formData.get('user_email'),
+      message: formData.get('message')
+    }
+
+    try {
+      const response = await fetch('/api/contacto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+
+      const result = await response.json()
+
+      if (response.ok && result.success) {
         setSuccess(true)
         formRef.current?.reset()
-      })
-      .catch((err) => {
-        console.error("Error enviando correo:", err)
-        setErrorMsg('Ocurrió un error al enviar tu mensaje. Por favor, contáctanos vía WhatsApp.')
-      })
-      .finally(() => {
-        setIsSubmitting(false)
-      })
+      } else {
+        throw new Error(result.error || 'Error del servidor')
+      }
+    } catch (err) {
+      console.error("Error enviando correo:", err)
+      setErrorMsg('Ocurrió un error al enviar tu mensaje. Por favor, contáctanos vía WhatsApp.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
