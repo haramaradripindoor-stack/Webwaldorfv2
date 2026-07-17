@@ -28,20 +28,23 @@ export default function TrimembracionSocial() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Encabezado */}
-        <div className="text-center mb-24 max-w-3xl mx-auto">
-          <span className="text-[var(--color-waldorf-mustard)] text-sm font-bold tracking-[0.2em] uppercase block mb-6">
-            Estructura Orgánica
+        {/* Encabezado: Esencia y Enfoque */}
+        <div className="text-center mb-24 max-w-4xl mx-auto space-y-8">
+          <span className="text-[var(--color-waldorf-mustard)] text-sm font-bold tracking-[0.2em] uppercase block">
+            Estructura Orgánica & Esencia
           </span>
-          <h2 className="text-4xl md:text-6xl font-serif font-light mb-8 leading-tight">
+          <h2 className="text-4xl md:text-6xl font-serif font-light leading-tight">
             Trimembración <span className="font-bold italic">Social</span>
           </h2>
-          <p className="text-lg md:text-xl opacity-80 font-medium">
-            Una escuela Waldorf no es solo un centro educativo, es un organismo vivo. Nos organizamos bajo tres esferas autónomas pero profundamente interconectadas, inspiradas en los ideales de Libertad, Igualdad y Fraternidad.
+          <p className="text-xl md:text-2xl font-serif text-[var(--color-waldorf-mustard)] font-light italic leading-relaxed">
+            "Trekan significa caminante en mapudungun: un ser que decide encaminarse hacia el mundo… y hacia sí mismo."
+          </p>
+          <p className="text-lg opacity-80 font-medium max-w-3xl mx-auto">
+            Inspirados en Rudolf Steiner, entendemos al niño como un ser espiritual en evolución. Nuestra educación armoniza el pensamiento, el sentir y la voluntad. Una escuela Waldorf no es solo un centro educativo, es un organismo vivo bajo tres esferas autónomas.
           </p>
         </div>
 
-        {/* Las Tres Esferas */}
+        {/* Las Tres Esferas (Trimembración) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-32 relative">
           {/* Esfera 1: Cultural / Pedagógica */}
           <motion.div 
@@ -92,31 +95,44 @@ export default function TrimembracionSocial() {
           </motion.div>
         </div>
 
-        {/* Misión y Visión */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-16 border-t border-white/10">
+        {/* Misión, Visión y Valores (Desde Trekan Antigua) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-16 border-t border-white/10">
           <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="pr-0 md:pr-12"
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="md:pr-8"
           >
-            <h3 className="text-3xl font-serif font-bold text-[var(--color-waldorf-mustard)] mb-6">Nuestra Esencia</h3>
-            <p className="text-lg opacity-90 leading-relaxed font-medium italic">
-              "Trekan significa caminante en mapudungun: un ser que decide encaminarse hacia el mundo… y hacia sí mismo."
+            <h3 className="text-3xl font-serif font-bold text-[var(--color-waldorf-mustard)] mb-4">Misión</h3>
+            <p className="text-lg opacity-90 leading-relaxed font-medium">
+              Formar personas libres, conscientes, creativas y comprometidas con su entorno, mediante una educación que armonice el conocimiento, el arte y la acción.
             </p>
           </motion.div>
 
           <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="pl-0 md:pl-12 md:border-l md:border-white/10"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="md:px-8 md:border-l md:border-white/10"
           >
-            <h3 className="text-3xl font-serif font-bold text-[var(--color-waldorf-terracotta)] mb-6">Enfoque Pedagógico Waldorf</h3>
-            <p className="text-lg opacity-90 leading-relaxed font-medium italic">
-              "Inspirados en Rudolf Steiner, entendemos al niño como un ser espiritual en evolución. Nuestra educación armoniza el <strong className="font-bold">pensamiento, el sentir y la voluntad</strong> a través del arte, el ritmo y el movimiento."
+            <h3 className="text-3xl font-serif font-bold text-[var(--color-waldorf-terracotta)] mb-4">Visión</h3>
+            <p className="text-lg opacity-90 leading-relaxed font-medium">
+              Ser una comunidad educativa referente en el sur de Chile, por su capacidad de cultivar el respeto, la belleza y el sentido profundo del aprendizaje.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="md:pl-8 md:border-l md:border-white/10"
+          >
+            <h3 className="text-3xl font-serif font-bold text-[#c6a382] mb-4">Valores</h3>
+            <p className="text-lg opacity-90 leading-relaxed font-medium">
+              Respeto, cuidado del entorno, trabajo colaborativo, diversidad, libertad responsable, verdad y belleza.
             </p>
           </motion.div>
         </div>
