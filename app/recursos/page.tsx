@@ -54,7 +54,8 @@ const RECURSOS: RecursoCategory[] = [
     icono: <BookOpen size={24} />,
     descripcion: 'Obras clave y más buscadas para comprender a profundidad la pedagogía Waldorf y la antroposofía.',
     items: [
-      { name: 'Las 5 dimensiones de la pedagogía Waldorf', desc: 'Por Valentin Wember. Considerada una de las obras más importantes para entender el "ADN" de este sistema educativo.' },
+      { name: 'Las 5 dimensiones de la pedagogía Waldorf', desc: 'Por Valentin Wember. Considerada una de las obras más importantes para entender el "ADN" de este sistema educativo.', url: 'https://es.scribd.com/document/439801803/valentin-wember' },
+      { name: 'La voluntad en la pedagogía Waldorf', desc: 'Por Valentin Wember. Profundiza de forma práctica en cómo cultivar y guiar la voluntad del niño en sus distintas etapas.' },
       { name: 'La educación del niño a la luz de la antroposofía', desc: 'Por Rudolf Steiner. El texto fundacional indispensable para padres y maestros.' },
       { name: 'Usted es el primer profesor de su hijo', desc: 'Por Rahima Baldwin Dancy. Guía esencial para aplicar los principios Waldorf en la crianza desde el nacimiento hasta los 7 años.' },
       { name: 'El reino de la infancia', desc: 'Por Rudolf Steiner. Serie de conferencias introductorias que explican la esencia del trato y respeto por la etapa infantil.' },

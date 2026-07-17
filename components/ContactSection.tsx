@@ -81,10 +81,10 @@ END:VCARD`
           <div>
             <span className="font-serif italic text-[var(--color-waldorf-terracotta)] text-lg mb-2 block">Hablemos</span>
             <h2 className="text-4xl md:text-5xl font-bold font-serif text-[var(--color-waldorf-moss)] leading-tight">
-              ¿Tienes dudas o quieres visitarnos?
+              Ven a conocernos
             </h2>
             <p className="mt-6 text-[var(--color-waldorf-text-light)] text-lg leading-relaxed max-w-md">
-              Escríbenos. Nos encanta recibir a nuevas familias, responder preguntas y abrir las puertas de nuestra comunidad.
+              No necesitas tener todo claro para dar el primer paso. Muchas de las familias de Trekan llegaron con dudas y encontraron aquí algo que no sabían que estaban buscando. El camino empieza con una conversación.
             </p>
           </div>
 

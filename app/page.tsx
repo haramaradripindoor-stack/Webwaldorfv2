@@ -7,6 +7,7 @@ import NewsSection from '@/components/NewsSection'
 import BentoGrid from '@/components/BentoGrid'
 import MasonryGallery from '@/components/MasonryGallery'
 import TeamSection from '@/components/TeamSection'
+import TrimembracionSocial from '@/components/TrimembracionSocial'
 import ComunidadSection from '@/components/ComunidadSection'
 import ImmersiveTestimonials from '@/components/ImmersiveTestimonials'
 import FAQSection from '@/components/FAQSection'
@@ -81,6 +82,7 @@ export default async function Home() {
         
         {/* 4. EL ELEMENTO HUMANO Y EL RITMO (Maestros, Vida Comunitaria y Calendario) */}
         <TeamSection />
+        <TrimembracionSocial />
         <ComunidadSection />
         <ActividadesSection />
         
