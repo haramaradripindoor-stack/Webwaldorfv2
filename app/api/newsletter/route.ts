@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/requireAdmin';
 import { Resend } from 'resend';
 import { createClient } from '@supabase/supabase-js';
 
@@ -11,6 +12,11 @@ const supabase = createClient(
 
 export async function POST(req: Request) {
   try {
+    const auth = await requireAdmin();
+    if (!auth.authorized) {
+      return NextResponse.json({ error: auth.error }, { status: auth.status });
+    }
+
     const { title, excerpt, slug, image_url } = await req.json();
 
     if (!title || !slug) {

@@ -1,7 +1,13 @@
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/requireAdmin';
 
 export async function POST(req: Request) {
   try {
+    const auth = await requireAdmin();
+    if (!auth.authorized) {
+      return NextResponse.json({ error: auth.error }, { status: auth.status });
+    }
+
     const { prompt } = await req.json();
 
     if (!prompt) {

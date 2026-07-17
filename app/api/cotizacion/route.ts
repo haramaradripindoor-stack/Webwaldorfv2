@@ -3,7 +3,22 @@ import nodemailer from 'nodemailer';
 
 export async function POST(req: Request) {
   try {
-    const data = await req.json();
+    const rawData = await req.json();
+
+    const escapeHTML = (str: string) => str ? String(str).replace(/[&<>'"]/g, 
+      tag => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        }[tag] || tag)
+    ) : '';
+
+    const data: any = {};
+    for (const key in rawData) {
+      data[key] = escapeHTML(rawData[key]);
+    }
 
     // Configurar Nodemailer con Gmail SMTP
     const transporter = nodemailer.createTransport({

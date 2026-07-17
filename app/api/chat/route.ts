@@ -97,7 +97,26 @@ async function rerankChunks(query: string, chunks: any[]) {
 export async function POST(req: Request) {
   try {
     const body = await req.json()
-    const { messages, leadData } = body
+    let { messages, leadData } = body
+
+    if (!Array.isArray(messages)) {
+      return NextResponse.json({ error: 'Formato inválido' }, { status: 400 })
+    }
+
+    // Limit history length to last 20 messages to prevent excessive token usage
+    if (messages.length > 20) {
+      messages = messages.slice(-20)
+    }
+
+    // Validate and truncate each message to 1500 chars max
+    messages = messages.map((m: any) => ({
+      role: m.role === 'user' || m.role === 'assistant' ? m.role : 'user',
+      content: typeof m.content === 'string' ? m.content.substring(0, 1500) : ''
+    })).filter((m: any) => m.content.trim().length > 0)
+
+    if (messages.length === 0) {
+      return NextResponse.json({ error: 'Mensaje vacío' }, { status: 400 })
+    }
 
     // 1. Guardar o actualizar Lead en Supabase
     if (leadData && leadData.email && messages.length <= 2) {

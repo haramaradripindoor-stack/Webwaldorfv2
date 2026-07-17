@@ -12,10 +12,15 @@ if (!supabaseUrl || !supabaseKey) {
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function run() {
-  const email = 'administracion@colegiowaldorftrekan.cl';
-  const password = 'Fviva*2026';
+  const email = process.env.ADMIN_EMAIL || 'administracion@colegiowaldorftrekan.cl';
+  const password = process.env.ADMIN_PASSWORD;
+
+  if (!password) {
+    console.error('ERROR: Debes proveer ADMIN_PASSWORD como variable de entorno');
+    process.exit(1);
+  }
   
-  console.log('Creando usuario administrador...');
+  console.log(`Creando usuario administrador: ${email}...`);
 
   const { data, error } = await supabase.auth.admin.createUser({
     email: email,
@@ -28,7 +33,7 @@ async function run() {
   } else {
     console.log('¡Usuario creado con éxito!');
     console.log('Email:', email);
-    console.log('Contraseña:', password);
+    console.log('Contraseña: [OCULTA]');
   }
 }
 

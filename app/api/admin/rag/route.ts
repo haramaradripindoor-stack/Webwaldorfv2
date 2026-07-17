@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase-admin';
+import { requireAdmin } from '@/lib/auth/requireAdmin';
 
 // Helper to generate embedding via Cohere
 async function generateCohereEmbedding(text: string) {
@@ -31,6 +32,11 @@ async function generateCohereEmbedding(text: string) {
 // GET all knowledge chunks
 export async function GET() {
   try {
+    const auth = await requireAdmin();
+    if (!auth.authorized) {
+      return NextResponse.json({ error: auth.error }, { status: auth.status });
+    }
+
     const { data, error } = await supabaseAdmin
       .from('knowledge_chunks')
       .select('id, content, created_at')
@@ -47,6 +53,11 @@ export async function GET() {
 // POST a new knowledge chunk
 export async function POST(req: Request) {
   try {
+    const auth = await requireAdmin();
+    if (!auth.authorized) {
+      return NextResponse.json({ error: auth.error }, { status: auth.status });
+    }
+
     const { content } = await req.json();
     if (!content || typeof content !== 'string') {
       return NextResponse.json({ error: 'El contenido es requerido y debe ser texto' }, { status: 400 });
@@ -78,6 +89,11 @@ export async function POST(req: Request) {
 // DELETE a knowledge chunk
 export async function DELETE(req: Request) {
   try {
+    const auth = await requireAdmin();
+    if (!auth.authorized) {
+      return NextResponse.json({ error: auth.error }, { status: auth.status });
+    }
+
     const { searchParams } = new URL(req.url);
     const id = searchParams.get('id');
 

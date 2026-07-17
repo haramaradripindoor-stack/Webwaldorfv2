@@ -11,8 +11,24 @@ const supabase = createClient(
 export async function POST(req: Request) {
   try {
     const data = await req.json();
+
+    const escapeHTML = (str: string) => str ? String(str).replace(/[&<>'"]/g, 
+      tag => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        }[tag] || tag)
+    ) : '';
     
-    const { nombre_apoderado, telefono_apoderado, email_apoderado, nombre_nino, edad_nino, curso_postula } = data;
+    let { nombre_apoderado, telefono_apoderado, email_apoderado, nombre_nino, edad_nino, curso_postula } = data;
+    nombre_apoderado = escapeHTML(nombre_apoderado);
+    telefono_apoderado = escapeHTML(telefono_apoderado);
+    email_apoderado = escapeHTML(email_apoderado);
+    nombre_nino = escapeHTML(nombre_nino);
+    edad_nino = escapeHTML(edad_nino);
+    curso_postula = escapeHTML(curso_postula);
 
     // 1. Guardar en Supabase CRM
     const { error: dbError } = await supabase.from('leads_admision').insert([{
