@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     await resend.emails.send({
       from: 'Colegio Waldorf Trekan <onboarding@resend.dev>', // Fallback seguro
       to: 'admision@colegiowaldorftrekan.cl',
-      reply_to: user_email, // Permite responder directamente al usuario
+      replyTo: user_email, // Permite responder directamente al usuario
       subject: `NUEVO MENSAJE WEB: ${user_name}`,
       html: htmlContent
     });
