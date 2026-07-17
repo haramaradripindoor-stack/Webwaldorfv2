@@ -128,7 +128,7 @@ export default function RecursosPage() {
                       const linkProps = item.url ? { href: item.url, target: '_blank', rel: 'noopener noreferrer' } : {};
                       
                       return (
-                        <Wrapper key={i} {...linkProps} className={`group block ${item.url ? 'cursor-pointer' : ''}`}>
+                        <Wrapper key={i} {...linkProps} className={`group relative z-20 block ${item.url ? 'cursor-pointer' : ''}`}>
                           <h4 className={`font-bold text-[var(--color-waldorf-text)] mb-2 flex items-center justify-between ${item.url ? 'group-hover:text-[var(--color-waldorf-moss)] transition-colors' : ''}`}>
                             {item.name}
                             {item.url && (
@@ -157,7 +157,7 @@ export default function RecursosPage() {
             <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto relative z-10">
               Ayúdanos a expandir esta red colaborativa. Si conoces algún proyecto o profesional afín, no dudes en escribirnos.
             </p>
-            <a href="mailto:coordinacion@colegiowaldorftrekan.cl?subject=Sugerir%20Recurso%20Waldorf" className="inline-block bg-white text-[var(--color-waldorf-moss)] px-8 py-4 rounded-full font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform duration-300 relative z-10">
+            <a href="/#contacto" className="inline-block bg-white text-[var(--color-waldorf-moss)] px-8 py-4 rounded-full font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform duration-300 relative z-20">
               Sugerir Recurso
             </a>
           </div>

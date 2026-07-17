@@ -38,7 +38,7 @@ function BentoCard({ card, index }: { card: any, index: number }) {
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative overflow-hidden p-10 min-h-[320px] md:min-h-0 ${card.bg} flex flex-col justify-end group cursor-none ${card.size}`}
+      className={`relative overflow-hidden p-10 min-h-[420px] md:min-h-0 ${card.bg} flex flex-col justify-end group cursor-none ${card.size}`}
       style={{
         borderRadius: organicRadius,
         // Borde luminoso sutil basado en el mouse (MotionSites effect)
@@ -67,7 +67,7 @@ function BentoCard({ card, index }: { card: any, index: number }) {
         </>
       )}
       
-      <div className={`relative z-20 ${card.lightText ? 'text-white' : 'text-[#1a2e25]'} transform transition-transform duration-700 translate-y-4 group-hover:translate-y-0`}>
+      <div className={`relative z-20 ${card.lightText ? 'text-white' : 'text-[#1a2e25]'} transform transition-transform duration-700 md:translate-y-4 group-hover:translate-y-0`}>
         <span className="text-sm italic font-serif mb-2 block opacity-80">
           {card.subtitle}
         </span>
