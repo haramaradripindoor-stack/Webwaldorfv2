@@ -35,7 +35,7 @@ const RECURSOS: RecursoCategory[] = [
       { name: 'Farmacia Tríodo', desc: 'Expertos en farmacia antroposófica, preparaciones magistrales y medicamentos Wala/Abnoba.', url: 'https://farmaciatriodo.cl/' },
       { name: 'Weleda Chile', desc: 'Cosmética natural y remedios homeopáticos inspirados en la antroposofía.', url: 'https://www.weleda.cl/' },
       { name: 'Farmacia Alquimist', desc: 'Recetario magistral, fitoterapia y medicina antroposófica en Santiago.', url: 'https://www.alquimist.cl/' },
-      { name: 'AMA Chile', desc: 'Directorio oficial de médicos y terapeutas antroposóficos en Chile.', url: 'https://www.amachile.cl/' },
+      { name: 'AMA Chile', desc: 'Directorio oficial de médicos y terapeutas antroposóficos en Chile.', url: 'https://medicina-antroposofica.cl/' },
     ]
   },
   {
@@ -43,10 +43,10 @@ const RECURSOS: RecursoCategory[] = [
     icono: <Users size={24} />,
     descripcion: 'Organizaciones formativas y proyectos de impacto basados en la filosofía impulsada por Rudolf Steiner.',
     items: [
-      { name: 'Centro de Formación Arché', desc: 'Centro de investigación y formación pedagógica Waldorf en Chile.', url: 'https://arche.cl/' },
+      { name: 'Centro de Formación Arché', desc: 'Centro de investigación y formación pedagógica Waldorf en Chile.', url: 'https://fundacionarche.cl/' },
       { name: 'Sociedad Antroposófica en Chile', desc: 'Sede nacional para el estudio y la difusión de la antroposofía.', url: 'https://sociedadantroposofica.cl/' },
       { name: 'Banca Ética / Doble Impacto', desc: 'Plataforma de finanzas éticas inspirada en los principios sociales del banco Triodos.', url: 'https://www.dobleimpacto.cl/' },
-      { name: 'Librería Antroposófica', desc: 'Catálogo completo de obras de Steiner y pedagogía Waldorf.', url: 'https://www.libreriaantroposofica.cl/' },
+      { name: 'Obras de Rudolf Steiner', desc: 'Catálogo completo de obras de Steiner y pedagogía Waldorf.', url: 'https://medicina-antroposofica.cl/obra-steiner' },
     ]
   },
   {
@@ -56,6 +56,8 @@ const RECURSOS: RecursoCategory[] = [
     items: [
       { name: 'Las 5 dimensiones de la pedagogía Waldorf', desc: 'Por Valentin Wember. Considerada una de las obras más importantes para entender el "ADN" de este sistema educativo.', url: 'https://es.scribd.com/document/439801803/valentin-wember' },
       { name: 'La voluntad en la pedagogía Waldorf', desc: 'Por Valentin Wember. Profundiza de forma práctica en cómo cultivar y guiar la voluntad del niño en sus distintas etapas.' },
+      { name: 'La gestión de la escuela (Parte 1)', desc: 'Por Valentin Wember. Una guía para las escuelas Waldorf.', url: '/assets/libros/gestion-escuela-waldorf-1.pdf' },
+      { name: 'La gestión de la escuela (Parte 2)', desc: 'Por Valentin Wember. Continuación de la guía de gestión escolar.', url: '/assets/libros/gestion-escuela-waldorf-2.pdf' },
       { name: 'La educación del niño a la luz de la antroposofía', desc: 'Por Rudolf Steiner. El texto fundacional indispensable para padres y maestros.' },
       { name: 'Usted es el primer profesor de su hijo', desc: 'Por Rahima Baldwin Dancy. Guía esencial para aplicar los principios Waldorf en la crianza desde el nacimiento hasta los 7 años.' },
       { name: 'El reino de la infancia', desc: 'Por Rudolf Steiner. Serie de conferencias introductorias que explican la esencia del trato y respeto por la etapa infantil.' },
@@ -66,8 +68,8 @@ const RECURSOS: RecursoCategory[] = [
     icono: <FileText size={24} />,
     descripcion: 'Médicos y odontólogos especializados en la visión integrativa de la antroposofía.',
     items: [
-      { name: 'Dra. Ana María Toro', desc: 'Especialista en Odontopediatría Antroposófica, certificada por la Sección Médica del Goetheanum.', url: 'https://www.amachile.cl/directorio' },
-      { name: 'Dr. Pablo Porcel', desc: 'Médico general de adultos y niños, docente y referente en medicina antroposófica en Chile.', url: 'https://www.amachile.cl/directorio' },
+      { name: 'Dra. Ana María Toro', desc: 'Especialista en Odontopediatría Antroposófica, certificada por la Sección Médica del Goetheanum.', url: 'https://www.draanamariatoro.com/' },
+      { name: 'Dr. Pablo Porcel', desc: 'Médico general de adultos y niños, docente y referente en medicina antroposófica en Chile.', url: 'https://medicina-antroposofica.cl/' },
     ]
   },
   {
