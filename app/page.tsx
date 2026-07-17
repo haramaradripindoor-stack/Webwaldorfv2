@@ -43,25 +43,37 @@ export default async function Home() {
   const textRevealData = homeContent?.text_reveal || "Educar no es llenar un cubo, es encender un fuego. En Trekan, respetamos el ritmo natural de cada niño, cultivando la cabeza, el corazón y las manos en perfecta armonía.";
   const masonryData = homeContent?.masonry_gallery || null;
 
-  // Intentar obtener noticias de Supabase
-  let displayNews = [];
+  // Obtener noticias de Supabase y Markdown, y combinarlas
+  let displayNews: any[] = [];
   try {
+    // 1. Obtener de Supabase
+    let supabaseNews: any[] = [];
     const { data, error } = await supabase
       .from('noticias')
       .select('*')
       .order('published_at', { ascending: false })
-      .limit(5);
+      .limit(10);
       
-    if (data && !error && data.length > 0) {
-      displayNews = data;
-    } else {
-      // Fallback a Markdown si falla o está vacío
-      const allNews = getMarkdownPosts('_noticias')
-      displayNews = allNews.slice(0, 5)
+    if (data && !error) {
+      supabaseNews = data;
     }
+
+    // 2. Obtener de Markdown
+    const markdownNews = getMarkdownPosts('_noticias');
+
+    // 3. Combinar y ordenar por fecha
+    const allCombinedNews = [...supabaseNews, ...markdownNews].sort((a, b) => {
+      const dateA = new Date(a.published_at || a.created_at).getTime() || 0;
+      const dateB = new Date(b.published_at || b.created_at).getTime() || 0;
+      return dateB - dateA;
+    });
+
+    // 4. Tomar las 5 más recientes
+    displayNews = allCombinedNews.slice(0, 5);
   } catch (e) {
-    const allNews = getMarkdownPosts('_noticias')
-    displayNews = allNews.slice(0, 5)
+    console.error('Error fetching news:', e);
+    const allNews = getMarkdownPosts('_noticias');
+    displayNews = allNews.slice(0, 5);
   }
 
   return (
