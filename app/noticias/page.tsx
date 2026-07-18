@@ -70,16 +70,18 @@ export default async function NoticiasPage() {
                   <article 
                     className="group flex flex-col h-full bg-[var(--color-waldorf-cream)] rounded-3xl overflow-hidden border border-[var(--color-waldorf-sage)]/20 hover:border-[var(--color-waldorf-sage)]/40 earth-shadow earth-shadow-hover transition-all duration-500 interactive"
                   >
-                    <div className="relative h-64 w-full overflow-hidden">
-                      <Image
-                        src={post.image_url?.startsWith('/images/') ? post.image_url.replace('/images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/') : (post.image_url || 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/equipoescolar.jpg')}
-                        alt={post.title}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    </div>
+                    {post.image_url && (
+                      <div className="relative h-64 w-full overflow-hidden shrink-0 border-b border-[var(--color-waldorf-sage)]/10">
+                        <Image
+                          src={post.image_url.startsWith('/images/') ? post.image_url.replace('/images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/') : post.image_url}
+                          alt={post.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      </div>
+                    )}
                     
                     <div className="p-8 flex flex-col flex-grow">
                       <time className="text-xs font-semibold text-[var(--color-waldorf-terracotta)] flex items-center gap-2 mb-4">

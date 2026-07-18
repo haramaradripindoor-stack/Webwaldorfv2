@@ -82,53 +82,55 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
         </div>
 
         {/* HERO SECTION - SPLIT LAYOUT AWWWARDS STYLE */}
-        <section className="relative w-full min-h-[90vh] flex flex-col md:flex-row pt-24 md:pt-0">
-          {/* Typographic Left Side */}
-          <div className="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-16 lg:px-24 py-12 z-10">
-            <Link href="/#noticias" className="group inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-[#2C3E35] hover:text-[#D35D3E] transition-colors mb-16 w-fit">
+        <section className={`relative w-full min-h-[90vh] flex flex-col pt-24 md:pt-0 ${post.image_url ? 'md:flex-row' : 'items-center justify-center'}`}>
+          {/* Typographic Side */}
+          <div className={`w-full flex flex-col justify-center px-6 md:px-16 lg:px-24 py-12 z-10 ${post.image_url ? 'md:w-1/2' : 'max-w-5xl items-center text-center'}`}>
+            <Link href="/#noticias" className={`group inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-[#2C3E35] hover:text-[#D35D3E] transition-colors mb-16 w-fit ${!post.image_url && 'mx-auto'}`}>
               <span className="w-8 h-[1px] bg-[#2C3E35] group-hover:bg-[#D35D3E] group-hover:w-12 transition-all duration-300"></span>
               Volver a Diario
             </Link>
 
-            <div className="flex gap-4 items-center mb-8">
+            <div className={`flex gap-4 items-center mb-8 ${!post.image_url && 'justify-center'}`}>
               <span className="text-xs font-bold uppercase tracking-widest text-[#D35D3E]">{dateStr}</span>
               <span className="w-1 h-1 rounded-full bg-gray-300"></span>
               <span className="text-xs font-bold uppercase tracking-widest text-gray-500">{readTime}</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-[#2C3E35] leading-[0.95] tracking-tight mb-8">
+            <h1 className={`text-5xl md:text-7xl lg:text-8xl font-serif text-[#2C3E35] leading-[0.95] tracking-tight mb-8 ${!post.image_url && 'text-center mx-auto'}`}>
               {post.title}
             </h1>
 
             {post.excerpt && (
-              <p className="text-xl md:text-2xl text-gray-500 font-light max-w-md leading-relaxed border-l-2 border-[#D35D3E] pl-6 mt-8">
+              <p className={`text-xl md:text-2xl text-gray-500 font-light max-w-md leading-relaxed ${post.image_url ? 'border-l-2 pl-6' : 'border-t-2 pt-6 text-center mx-auto'} border-[#D35D3E] mt-8`}>
                 {post.excerpt}
               </p>
             )}
           </div>
 
-          {/* Photographic Right Side (Sticky Parallax effect via sticky container) */}
-          <div className="w-full md:w-1/2 h-[60vh] md:h-screen sticky top-0">
-            <div className="absolute inset-0 bg-[#2C3E35]/20 mix-blend-multiply z-10 pointer-events-none" />
-            {(post.image_url?.includes('youtube.com') || post.image_url?.includes('youtu.be')) ? (
-              <iframe 
-                src={`https://www.youtube.com/embed/${post.image_url.split('v=')[1]?.split('&')[0] || post.image_url.split('youtu.be/')[1]}?autoplay=1&mute=1&loop=1&playlist=${post.image_url.split('v=')[1]?.split('&')[0] || post.image_url.split('youtu.be/')[1]}&controls=0`} 
-                className="absolute top-1/2 left-1/2 w-[150vw] md:w-[150vh] h-[150vh] md:h-[150vw] -translate-x-1/2 -translate-y-1/2 object-cover"
-                allow="autoplay; fullscreen"
-              />
-            ) : post.image_url?.match(/\.(mp4|webm|ogg|mov)$/i) ? (
-              <video src={post.image_url} className="w-full h-full object-cover" autoPlay muted loop playsInline />
-            ) : (
-              <Image
-                src={post.image_url?.startsWith('/images/') ? post.image_url.replace('/images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/') : post.image_url?.startsWith('images/') ? post.image_url.replace('images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/') : (post.image_url || 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/galeria3.webp')}
-                alt={post.title}
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            )}
-          </div>
+          {/* Photographic Right Side (Only if image exists) */}
+          {post.image_url && (
+            <div className="w-full md:w-1/2 h-[60vh] md:h-screen sticky top-0">
+              <div className="absolute inset-0 bg-[#2C3E35]/20 mix-blend-multiply z-10 pointer-events-none" />
+              {(post.image_url.includes('youtube.com') || post.image_url.includes('youtu.be')) ? (
+                <iframe 
+                  src={`https://www.youtube.com/embed/${post.image_url.split('v=')[1]?.split('&')[0] || post.image_url.split('youtu.be/')[1]}?autoplay=1&mute=1&loop=1&playlist=${post.image_url.split('v=')[1]?.split('&')[0] || post.image_url.split('youtu.be/')[1]}&controls=0`} 
+                  className="absolute top-1/2 left-1/2 w-[150vw] md:w-[150vh] h-[150vh] md:h-[150vw] -translate-x-1/2 -translate-y-1/2 object-cover"
+                  allow="autoplay; fullscreen"
+                />
+              ) : post.image_url.match(/\.(mp4|webm|ogg|mov)$/i) ? (
+                <video src={post.image_url} className="w-full h-full object-cover" autoPlay muted loop playsInline />
+              ) : (
+                <Image
+                  src={post.image_url.startsWith('/images/') ? post.image_url.replace('/images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/') : post.image_url.startsWith('images/') ? post.image_url.replace('images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/') : post.image_url}
+                  alt={post.title}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              )}
+            </div>
+          )}
         </section>
 
         {/* EDITORIAL CONTENT SECTION */}
