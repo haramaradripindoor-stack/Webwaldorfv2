@@ -12,7 +12,7 @@ El Claustro de Maestros (o Colegio de Profesores) asume la responsabilidad inali
 ### La Autoridad Basada en el Conocimiento Fenomenológico
 En la escuela Waldorf, la autoridad no se decreta mediante estatutos, sino que emana de la profundidad del quehacer pedagógico. Cuando el Claustro se reúne, su labor principal trasciende la mera logística operativa; se constituye como un espacio de investigación clínica y antropológica. 
 
-El núcleo metodológico de esta instancia es el **Estudio del Niño** (Kínderbesprechung). A través de una observación fenomenológica desprovista de juicios de valor prematuros, el colectivo docente analiza el desarrollo físico, anímico y volitivo de los estudiantes. Esta aproximación científico-espiritual permite diseñar estrategias de intervención pedagógica altamente individualizadas, requiriendo un claustro cohesionado, erudito y profundamente conectado con la antropología steineriana.
+El núcleo metodológico de esta instancia es el **Estudio del Niño** (Kínderbesprechung). A través de una observación fenomenológica desprovista de juicios de valor prematuros, el colectivo docente analiza el desarrollo físico, anímico y volitivo de los estudiantes. Esta aproximación científico-espiritual permite diseñar estrategias de intervención pedagógica altamente individualizadas, requiriendo un claustro cohesionado, erudito y profundamente conectado con la Antroposofía.
 
 ### Exigencias de la Autogestión Colegiada
 Wember es categórico al advertir los riesgos inherentes a la autogestión. Para que el modelo colegiado sea funcional y no derive en asambleísmo inoperante, se requiere:
