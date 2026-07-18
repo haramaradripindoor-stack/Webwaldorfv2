@@ -19,16 +19,25 @@ export default async function NoticiasPage() {
   let allNews: any[] = [];
   
   try {
+    let supabaseNews: any[] = [];
     const { data, error } = await supabase
       .from('noticias')
       .select('*')
       .order('published_at', { ascending: false });
       
-    if (data && !error && data.length > 0) {
-      allNews = data;
-    } else {
-      allNews = getMarkdownPosts('_noticias');
+    if (data && !error) {
+      supabaseNews = data;
     }
+    
+    const markdownNews = getMarkdownPosts('_noticias');
+    
+    const combinedNews = [...supabaseNews, ...markdownNews].sort((a, b) => {
+      const dateA = new Date(a.published_at || a.created_at).getTime() || 0;
+      const dateB = new Date(b.published_at || b.created_at).getTime() || 0;
+      return dateB - dateA;
+    });
+
+    allNews = combinedNews;
   } catch (e) {
     allNews = getMarkdownPosts('_noticias');
   }
