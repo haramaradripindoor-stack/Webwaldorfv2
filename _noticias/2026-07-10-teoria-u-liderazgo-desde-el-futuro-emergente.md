@@ -10,7 +10,7 @@ Frente a los desafíos crecientes de administrar un organismo educativo complejo
 ### Descendiendo por la "U": Suspensión del Juicio
 Cuando un colegio enfrenta una crisis (ya sea financiera, comunitaria o pedagógica), la reacción automática (la "descarga") es aplicar soluciones conocidas que perpetúan los mismos resultados. La Teoría U nos invita a detener este automatismo.
 
-El primer paso es **Descender**. Esto exige de los administradores y maestros una capacidad radical: *suspender la voz del juicio, la voz del cinismo y la voz del miedo*. Significa observar la realidad de la escuela con la "mente abierta", recopilando información fenomenológica sin apresurarse a etiquetarla. En el ámbito Waldorf, esto resuena directamente con el estudio antropológico fenomenológico: observar al niño o a la institución sin prejuicios.
+El primer paso es **Descender**. Esto exige de los administradores y maestros una capacidad radical: *suspender la voz del juicio, la voz del cinismo y la voz del miedo*. Significa observar la realidad de la escuela con la "mente abierta", recopilando información fenomenológica sin apresurarse a etiquetarla. En el ámbito Waldorf, esto resuena directamente con el estudio antroposófico fenomenológico: observar al niño o a la institución sin prejuicios.
 
 ### El Fondo de la U: "Presencing"
 El punto más profundo de este viaje organizacional se denomina *Presencing* (Presenciar). Es un estado de quietud reflexiva. Tras observar la realidad desde múltiples perspectivas, el equipo de gestión detiene la actividad externa para conectarse con su fuente interior. 

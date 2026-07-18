@@ -1,5 +1,5 @@
 ---
-title: "El Estudio del Niño: Rigor Antropológico y Diagnóstico Colegiado"
+title: "El Estudio del Niño: Rigor Antroposófico y Diagnóstico Colegiado"
 excerpt: "Explorando la Kínderbesprechung, el núcleo científico-espiritual de la reunión de maestros, donde se analiza colegiadamente la fenomenología de cada estudiante."
 published_at: "2026-07-15"
 image_url: "/assets/noticias/claustro.webp"
