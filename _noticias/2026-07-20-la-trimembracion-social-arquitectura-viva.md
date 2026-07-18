@@ -7,6 +7,7 @@ image_url: "/assets/noticias/trimembracion.webp"
 
 La administración contemporánea a menudo concibe a las instituciones educativas bajo paradigmas mecanicistas, estructurándolas mediante jerarquías verticales rígidas. En contraposición a esta visión, la pedagogía Waldorf —fundamentada en la antroposofía de Rudolf Steiner— postula que una escuela debe ser comprendida y administrada como un **organismo vivo**. Esta comprensión se materializa a través del principio de la Trimembración Social (Soziale Dreigliederung).
 
+![La Escuela como Organismo Triformado](/assets/noticias/organismo-triformado.png)
 Valentin Wember, en su indispensable tratado *"La Gestión de la Escuela"*, expone que la salud institucional depende inexorablemente de la interacción armónica, mas estrictamente autónoma, de tres esferas sistémicas. 
 
 ### 1. La Esfera Cultural-Espiritual: El Principio de Libertad
@@ -19,4 +20,7 @@ Representada por el Directorio Institucional o Entidad Sostenedora. Esta esfera 
 Alejada diametralmente de la visión de "clientes comprando un servicio", la economía escolar Waldorf se sostiene bajo el paradigma de la Fraternidad. Las familias, donantes y administradores financieros conforman un tejido de solidaridad donde los recursos se gestionan para asegurar la viabilidad del proyecto educativo y el bienestar de quienes laboran en él. Wember es enfático: el flujo de capital en la escuela tiene un fin posibilitador, destinado a nutrir el desarrollo del espíritu humano.
 
 ### Equilibrio y Sinergia Organizacional
+
+![Estructura Organizacional Waldorf](/assets/noticias/estructura-organizacional.png)
+
 El desafío supremo de la gestión en una institución Waldorf, como el Colegio Trekan, radica en evitar la hipertrofia de una esfera sobre las demás. Cuando la administración jurídica pretende dictar normas pedagógicas, o cuando la presión económica vulnera la equidad de los derechos, el organismo escolar enferma. La madurez institucional se alcanza únicamente mediante un liderazgo capaz de sostener este equilibrio dinámico, garantizando que cada miembro de la comunidad opere con excelencia desde su ámbito de competencia.
