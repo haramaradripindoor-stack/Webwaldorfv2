@@ -29,13 +29,13 @@ const team = [
     Icon: Hammer,
   },
   {
-    name: 'Sofía González Rodríguez',
+    name: 'Verónica Sepúlveda Caro',
     role: 'Profesora de Música',
     bio: 'La música como lenguaje del alma en cada jornada escolar.',
     Icon: Music,
   },
   {
-    name: 'Ivonne Parada',
+    name: 'Ivonne Parada Aravena',
     role: 'Familia Fundadora · Convivencia Escolar',
     bio: 'Trabajadora Social UV, especialista en convivencia escolar con formación en peritaje social, polivagal y gestalt.',
     Icon: Heart,
