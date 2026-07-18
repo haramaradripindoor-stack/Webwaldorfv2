@@ -1,28 +1,31 @@
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import TextReveal from '@/components/TextReveal'
-import PedagogiaHorizontal from '@/components/PedagogiaHorizontal'
-import ActividadesSection from '@/components/ActividadesSection'
-import NewsSection from '@/components/NewsSection'
-import BentoGrid from '@/components/BentoGrid'
 import MasonryGallery from '@/components/MasonryGallery'
-import TeamSection from '@/components/TeamSection'
-import TrimembracionSocial from '@/components/TrimembracionSocial'
-import ComunidadSection from '@/components/ComunidadSection'
-import ImmersiveTestimonials from '@/components/ImmersiveTestimonials'
-import FAQSection from '@/components/FAQSection'
-import MicroSegmentador from '@/components/MicroSegmentador'
-import DeslizadorCompromiso from '@/components/DeslizadorCompromiso'
-import ContactSection from '@/components/ContactSection'
-import MapSection from '@/components/MapSection'
-import InstagramSection from '@/components/InstagramSection'
-import RadicalTransparency from '@/components/RadicalTransparency'
+import dynamic from 'next/dynamic'
+
+// Lazy loaded client components (Code Splitting)
+const PedagogiaHorizontal = dynamic(() => import('@/components/PedagogiaHorizontal'))
+const ActividadesSection = dynamic(() => import('@/components/ActividadesSection'))
+const NewsSection = dynamic(() => import('@/components/NewsSection'))
+const BentoGrid = dynamic(() => import('@/components/BentoGrid'))
+const TeamSection = dynamic(() => import('@/components/TeamSection'))
+const TrimembracionSocial = dynamic(() => import('@/components/TrimembracionSocial'))
+const ComunidadSection = dynamic(() => import('@/components/ComunidadSection'))
+const ImmersiveTestimonials = dynamic(() => import('@/components/ImmersiveTestimonials'), { ssr: false })
+const FAQSection = dynamic(() => import('@/components/FAQSection'))
+const MicroSegmentador = dynamic(() => import('@/components/MicroSegmentador'), { ssr: false })
+const DeslizadorCompromiso = dynamic(() => import('@/components/DeslizadorCompromiso'), { ssr: false })
+const ContactSection = dynamic(() => import('@/components/ContactSection'))
+const MapSection = dynamic(() => import('@/components/MapSection'), { ssr: false })
+const InstagramSection = dynamic(() => import('@/components/InstagramSection'), { ssr: false })
+const RadicalTransparency = dynamic(() => import('@/components/RadicalTransparency'))
 import Footer from '@/components/Footer'
 import { getMarkdownPosts } from '@/lib/markdown'
 import { createClient } from '@/utils/supabase/server'
 import SmoothScroll from '@/components/SmoothScroll'
 
-export const revalidate = 0; // Para que actualice siempre que haya cambios en BD
+export const revalidate = 3600; // Cache de 1 hora para Vercel Edge
 
 export default async function Home() {
   const supabase = createClient();

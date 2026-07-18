@@ -61,8 +61,11 @@ export default function CustomCursor() {
     <>
       {/* Hide native cursor globally */}
       <style dangerouslySetInnerHTML={{ __html: `
-        * {
+        body, a, button {
           cursor: none !important;
+        }
+        input, textarea {
+          cursor: text !important;
         }
       `}} />
       <motion.div

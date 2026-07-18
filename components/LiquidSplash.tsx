@@ -46,6 +46,12 @@ export default function LiquidSplash() {
             // Cuando el video termina naturalmente → desmontar
             onEnded={dismiss}
           />
+          <button
+            onClick={dismiss}
+            className="absolute bottom-10 right-10 text-white/50 hover:text-white uppercase tracking-widest text-sm z-50 transition-colors"
+          >
+            Saltar Intro
+          </button>
         </motion.div>
       )}
     </AnimatePresence>

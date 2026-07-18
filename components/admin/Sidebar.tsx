@@ -1,35 +1,28 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Users, Image as ImageIcon, Settings, Bot, MessageSquare, TrendingUp, ClipboardList, UserCircle, BarChart3, Bell, FileJson, FileText } from 'lucide-react';
+import { LayoutDashboard, Image as ImageIcon, Users, BookOpen, Calendar, Database, Settings } from 'lucide-react';
 
 export default function Sidebar() {
   const pathname = usePathname();
 
   const links = [
-    { name: 'Inicio (Resumen)', href: '/admin', icon: LayoutDashboard },
-    { name: 'Métricas (Dashboard)', href: '/admin/dashboard', icon: BarChart3 },
-    { name: 'Kanban Clínico', href: '/admin/kanban', icon: Users },
-    { name: 'Pacientes y Fichas', href: '/admin/pacientes', icon: LayoutDashboard },
-    { name: 'CMS de IA', href: '/admin/cms-ia', icon: Bot },
-    { name: 'Auditoría IA', href: '/admin/chats', icon: MessageSquare },
-    { name: 'Galería CMS', href: '/admin/cms', icon: ImageIcon },
-    { name: 'Blog CMS', href: '/admin/blog', icon: FileText },
-    { name: 'Recursos / PDFs', href: '/admin/cms/recursos', icon: FileJson },
-    { name: 'Tarifario', href: '/admin/servicios', icon: ClipboardList },
-    { name: 'Finanzas', href: '/admin/finanzas', icon: TrendingUp },
-    { name: 'Campañas Email', href: '/admin/campanas', icon: MessageSquare },
-    { name: 'Notificaciones Push', href: '/admin/push', icon: Bell },
+    { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+    { name: 'Portada CMS', href: '/admin/portada', icon: ImageIcon },
+    { name: 'Admisiones CRM', href: '/admin/admisiones', icon: Users },
+    { name: 'Noticias y SEO', href: '/admin/noticias', icon: BookOpen },
+    { name: 'Actividades', href: '/admin/actividades', icon: Calendar },
+    { name: 'Prospectos / Leads', href: '/admin/prospectos', icon: Users },
+    { name: 'Cerebro RAG (IA)', href: '/admin/cerebro', icon: Database },
     { name: 'Ajustes', href: '/admin/settings', icon: Settings },
-    { name: 'Portal Paciente', href: '/dashboard', icon: UserCircle },
   ];
 
   return (
-    <aside className="w-64 bg-[#050508] border-r border-hairline-soft flex flex-col">
-      <div className="p-6 border-b border-hairline-soft">
+    <aside className="w-64 bg-white border-r border-[var(--color-waldorf-sage)]/20 flex flex-col shadow-sm">
+      <div className="p-6 border-b border-[var(--color-waldorf-sage)]/20">
         <Link href="/admin">
-          <h2 className="text-xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 uppercase hover:opacity-80 transition-opacity">
-            León<span className="text-white">Admin</span>
+          <h2 className="text-xl font-bold font-serif text-[var(--color-waldorf-moss)] uppercase hover:opacity-80 transition-opacity">
+            Trekan<span className="text-[var(--color-waldorf-terracotta)]">Admin</span>
           </h2>
         </Link>
       </div>
@@ -42,7 +35,7 @@ export default function Sidebar() {
             <Link 
               key={link.name} 
               href={link.href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl font-semibold transition-all duration-300 ${isActive ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20' : 'text-gray-500 hover:text-white hover:bg-foreground/5'}`}
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-300 ${isActive ? 'bg-[var(--color-waldorf-sage)]/20 text-[var(--color-waldorf-moss)] border border-[var(--color-waldorf-sage)]/40' : 'text-[var(--color-waldorf-text-light)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)]'}`}
             >
               <Icon size={18} />
               {link.name}
@@ -51,12 +44,12 @@ export default function Sidebar() {
         })}
       </nav>
 
-      <div className="p-4 border-t border-hairline-soft">
-        <div className="flex items-center gap-3 px-4 py-3 bg-foreground/5 rounded-xl border border-hairline">
-          <div className="w-8 h-8 rounded-full bg-cyan-500 flex items-center justify-center text-black font-bold">BL</div>
+      <div className="p-4 border-t border-[var(--color-waldorf-sage)]/20">
+        <div className="flex items-center gap-3 px-4 py-3 bg-[var(--color-waldorf-cream)] rounded-xl border border-[var(--color-waldorf-sage)]/20">
+          <div className="w-8 h-8 rounded-full bg-[var(--color-waldorf-moss)] flex items-center justify-center text-white font-bold">CW</div>
           <div className="text-sm">
-            <p className="text-white font-bold">Benjamín León</p>
-            <p className="text-gray-500 text-xs">Administrador</p>
+            <p className="text-[var(--color-waldorf-moss)] font-bold">Colegio Trekan</p>
+            <p className="text-[var(--color-waldorf-text-light)] text-xs">Administrador</p>
           </div>
         </div>
       </div>
