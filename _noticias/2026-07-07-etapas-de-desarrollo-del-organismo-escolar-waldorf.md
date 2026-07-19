@@ -2,7 +2,6 @@
 title: "Etapas de Desarrollo: La Biografía del Organismo Escolar Waldorf"
 excerpt: "Al igual que el ser humano, un colegio transita por septenios de desarrollo. Comprender si estamos en la fase Pionera, de Institucionalización o de Renovación es clave para la gestión."
 published_at: "2026-07-07"
-image_url: "/assets/noticias/trimembracion.webp"
 ---
 
 Las escuelas Waldorf, fundadas bajo el impulso de la antroposofía, rechazan la concepción mecanicista de ser meras "organizaciones prestadoras de servicios". Son, fundamentalmente, **organismos vivos**. Y como todo ser viviente, poseen una biografía. Tienen un nacimiento, transitan por fases de crecimiento (similares a los septenios humanos), experimentan crisis biográficas y requieren profundas metamorfosis para no envejecer prematuramente.

@@ -2,7 +2,6 @@
 title: "El Claustro de Maestros: Gobernanza Colegiada y Rigor Espiritual"
 excerpt: "Abordaje exhaustivo de la función directiva del Claustro de Maestros, su responsabilidad como órgano colegiado y la exigencia de un desarrollo ontológico continuo."
 published_at: "2026-07-19"
-image_url: "/assets/noticias/claustro.webp"
 ---
 
 Uno de los paradigmas más complejos de asimilar para los profesionales ajenos a la pedagogía Waldorf es la ausencia de una figura rectora unilateral —el director jerárquico— en la conducción académica del colegio. Valentin Wember subraya que esta aparente "ausencia de jefatura" no implica un vacío de autoridad, sino una evolución hacia una forma de gobernanza superior: el **Liderazgo Colegiado**.

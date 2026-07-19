@@ -2,7 +2,6 @@
 title: "El Claustro de Maestros: El corazón de la escuela"
 excerpt: "Un análisis del rol espiritual y pedagógico del Claustro de Maestros en las escuelas Waldorf, según las directrices de Valentin Wember."
 published_at: "2026-07-16"
-image_url: "/assets/noticias/claustro.webp"
 ---
 
 Uno de los pilares más incomprendidos desde fuera de la pedagogía Waldorf es el **Claustro de Maestros**. En su texto "La Gestión de la Escuela", Valentin Wember dedica una profunda reflexión a la función de este órgano vital, dejándonos en claro que no se trata de un simple "grupo de empleados", sino del corazón que bombea vida a todo el proyecto educativo.

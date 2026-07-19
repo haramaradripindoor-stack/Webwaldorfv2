@@ -2,7 +2,6 @@
 title: "El Rol Evolutivo de la Familia: La Comunidad Abierta"
 excerpt: "El ingreso a una escuela Waldorf implica un proceso de transformación biográfica familiar, donde el apoderado abandona la pasividad para construir el tejido social escolar."
 published_at: "2026-07-14"
-image_url: "/assets/noticias/comunidad.webp"
 ---
 
 El acto de matricular a un niño en un colegio Waldorf no constituye un mero trámite administrativo, sino el inicio de un **proceso biográfico** para todo el núcleo familiar. La pedagogía fundamentada por Rudolf Steiner requiere de un entorno ecológico coherente entre el hogar y el aula; una dicotomía severa entre los valores promovidos en la escuela y el estilo de vida doméstico debilita estructuralmente el desarrollo del infante.

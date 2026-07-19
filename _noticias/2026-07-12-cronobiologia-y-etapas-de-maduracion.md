@@ -2,7 +2,6 @@
 title: "Cronobiología y Etapas de Maduración: Interpelando el Dogma Escolar"
 excerpt: "Una reflexión profunda sobre cómo la neurociencia moderna respalda la flexibilidad de horarios y cómo el colegio, en su madurez, debe trascender el dogma para servir al niño real."
 published_at: "2026-07-12"
-image_url: "/assets/noticias/claustro.webp"
 ---
 
 El desarrollo de una escuela Waldorf, al igual que el de un ser humano, transita por distintas **etapas de maduración**. Valentin Wember describe con agudeza cómo las instituciones pasan de una fase "Pionera" fundacional (llena de entusiasmo pero estructuralmente frágil), a una fase de "Institucionalización", para finalmente enfrentar el riesgo del estancamiento dogmático. La verdadera madurez institucional, afirma Wember, se alcanza cuando el colegio posee la flexibilidad intelectual y espiritual para **interpelar sus propias prácticas** a la luz del presente.

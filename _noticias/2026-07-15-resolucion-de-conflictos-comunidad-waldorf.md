@@ -2,7 +2,6 @@
 title: "Resolución de Conflictos en la Comunidad Escolar"
 excerpt: "Valentin Wember nos entrega las claves para enfrentar y resolver los conflictos naturales que surgen en una comunidad educativa autogestionada."
 published_at: "2026-07-15"
-image_url: "/assets/noticias/comunidad.webp"
 ---
 
 Cualquier organismo vivo enfrenta crisis y los colegios Waldorf no son la excepción. En una estructura donde prima la autogestión y el involucramiento profundo de los padres (Esfera Comunitaria) y maestros (Esfera Pedagógica), es natural que surjan diferencias de visión. 

@@ -2,7 +2,6 @@
 title: "Sociocracia en la Escuela: Del Consenso Paralizante al Consentimiento Dinámico"
 excerpt: "Cómo la integración de herramientas como la Objeción Constructiva y el Principio de Consentimiento salvan a los organismos educativos del estancamiento."
 published_at: "2026-07-11"
-image_url: "/assets/noticias/trimembracion.webp"
 ---
 
 Uno de los mitos organizacionales más destructivos dentro de las comunidades educativas horizontales es la creencia de que la armonía depende de lograr siempre un **consenso unánime**. Esta utopía, si bien nace de un buen impulso, rápidamente degenera en lo que la administración moderna denomina "la tiranía de la minoría": cuando una sola voz disidente logra vetar y paralizar el avance de toda la institución.
