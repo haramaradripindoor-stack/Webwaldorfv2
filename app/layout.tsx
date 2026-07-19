@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     description: 'Educación con el corazón en armonía con la naturaleza. Colegio con metodología Waldorf para niños de 3 a 14 años.',
     url: 'https://www.colegiowaldorftrekan.cl',
     siteName: 'Colegio Waldorf Trekan',
+    locale: 'es_CL',
     images: [
       {
         url: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20261.jpg',
@@ -30,6 +31,12 @@ export const metadata: Metadata = {
       },
     ],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Colegio Waldorf Trekan | Pedagogía Waldorf en Puerto Varas',
+    description: 'Educación con el corazón en armonía con la naturaleza. Colegio con metodología Waldorf para niños de 3 a 14 años.',
+    images: ['https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20261.jpg'],
   },
   icons: {
     icon: '/assets/logo-mini.webp',
