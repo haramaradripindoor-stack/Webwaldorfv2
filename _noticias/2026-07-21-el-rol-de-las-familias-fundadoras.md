@@ -13,9 +13,9 @@ Desde la fundación de la primera escuela en Stuttgart (1919) bajo la dirección
 
 En los primeros septenios de vida de un organismo escolar, el rol de las familias fundadoras es abarcador y casi heroico. Valentin Wember describe cómo en estas etapas iniciales, las fronteras de la *Trimembración Social* suelen estar difuminadas por pura necesidad de supervivencia.
 
-Los fundadores son simultáneamente quienes pintan las salas de clases, organizan ferias para recaudar fondos, asumen roles en el Directorio legal y sostienen emocionalmente a los primeros maestros. Operan desde una voluntad inquebrantable, tejiendo la red de soporte material y social (la **Esfera Económica y de Derechos**) para que la pedagogía (la **Esfera Cultural-Espiritual**) pueda germinar. 
+Como señala el diagnóstico institucional de Wember, **es totalmente necesario que los fundadores hagan de todo en un principio (administración, limpieza, docencia, finanzas)**. Operan desde una voluntad inquebrantable, tejiendo la red de soporte material y social (la **Esfera Económica y de Derechos**) para que la pedagogía (la **Esfera Cultural-Espiritual**) pueda germinar. 
 
-Este esfuerzo conjunto crea una atmósfera de intimidad y pertenencia única. Sin embargo, el verdadero desafío para este grupo pionero no radica en el inicio, sino en la transición hacia la madurez institucional.
+Sin embargo, si esa energía "heroica" no se retira a tiempo, se convierte en un cuello de botella. Los fundadores terminan acaparando decisiones que deberían ser técnicas o colegiadas, asfixiando a la escuela en su intento por protegerla. Una institución educativa en vías de madurez no puede sostenerse bajo la dinámica de **"un grupo de amigos decidiendo todo"**, sino que exige transitar hacia estructuras objetivas, delimitadas y profesionales.
 
 ### El Desafío del Desapego: Soltar para Crecer
 
