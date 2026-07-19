@@ -2,6 +2,7 @@
 title: "La Disposición Interior: El Arte Oculto de las Reuniones Efectivas"
 excerpt: "Por qué el éxito de una reunión administrativa o pedagógica no depende solo de la agenda, sino del estado anímico, la escucha activa y la preparación espiritual de sus integrantes."
 published_at: "2026-07-08"
+image_url: "/images/estacionamiento.webp"
 ---
 
 En la cultura organizacional moderna, la eficiencia de una reunión suele medirse por la velocidad con la que se vacía una lista de tareas (agenda). Sin embargo, en el contexto de una institución regida por principios antroposóficos, esta métrica es superficial. Si el colegio es verdaderamente un organismo vivo, la calidad de las decisiones que se toman en sus comisiones depende directamente de un factor intangible: la **disposición interior** de cada uno de sus participantes.

@@ -2,6 +2,7 @@
 title: "Profesionalización y Voluntad: La Gestión Institucional Contemporánea"
 excerpt: "La integración de la filosofía administrativa antroposófica con las más altas exigencias de gestión moderna, conformando equipos de dirección sólidamente acreditados."
 published_at: "2026-07-13"
+image_url: "/images/estacionamiento.webp"
 ---
 
 Uno de los postulados más exigentes de la obra de Valentin Wember sobre la administración escolar Waldorf radica en la erradicación del romanticismo burocrático. Conducir una institución educativa en el siglo XXI no puede depender únicamente del idealismo bienintencionado; exige una convergencia estricta entre el impulso espiritual originario y el máximo rigor de la administración corporativa y educacional moderna.

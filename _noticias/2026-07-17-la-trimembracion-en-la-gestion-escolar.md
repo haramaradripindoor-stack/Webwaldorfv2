@@ -2,6 +2,7 @@
 title: "La Trimembración Social en la Gestión Escolar"
 excerpt: "Explorando las ideas de Valentin Wember sobre cómo organizar una escuela Waldorf de forma orgánica, dividiéndola en tres esferas autónomas pero interconectadas."
 published_at: "2026-07-17"
+image_url: "/images/estacionamiento.webp"
 ---
 
 En su libro *"La Gestión de la Escuela - Una guía para las escuelas Waldorf"*, Valentin Wember nos invita a repensar la forma en que estructuramos nuestras comunidades educativas. Wember retoma los conceptos fundamentales de Rudolf Steiner sobre la Trimembración Social y los aplica magistralmente al organismo escolar.

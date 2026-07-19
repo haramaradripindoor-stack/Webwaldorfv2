@@ -2,6 +2,7 @@
 title: "La Trimembración Social: Arquitectura Viva de la Gestión Escolar Waldorf"
 excerpt: "Un análisis riguroso de la estructura orgánica de las escuelas Waldorf y cómo la Trimembración Social fundamenta una administración basada en la autonomía de esferas."
 published_at: "2026-07-20"
+image_url: "/images/estacionamiento.webp"
 ---
 
 La administración contemporánea a menudo concibe a las instituciones educativas bajo paradigmas mecanicistas, estructurándolas mediante jerarquías verticales rígidas. En contraposición a esta visión, la pedagogía Waldorf —fundamentada en la antroposofía de Rudolf Steiner— postula que una escuela debe ser comprendida y administrada como un **organismo vivo**. Esta comprensión se materializa a través del principio de la Trimembración Social (Soziale Dreigliederung).

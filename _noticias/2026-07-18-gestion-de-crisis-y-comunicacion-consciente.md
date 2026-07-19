@@ -2,6 +2,7 @@
 title: "Gestión de Crisis y Comunicación Consciente: El Abordaje Antroposófico del Conflicto"
 excerpt: "Un marco normativo e institucional para la resolución de conflictos en el organismo escolar, enfatizando la erradicación del rumor y el diálogo directo."
 published_at: "2026-07-18"
+image_url: "/images/estacionamiento.webp"
 ---
 
 Toda institución humana de carácter complejo está inherentemente expuesta a la tensión y al conflicto. En los colegios Waldorf, donde la gestión involucra la participación activa de padres y maestros bajo un esquema no jerárquico tradicional, la aparición de discrepancias no representa un fracaso del sistema, sino un síntoma natural de su vitalidad. No obstante, la salud a largo plazo de la escuela depende críticamente de la **metodología** empleada para tramitar dichas crisis.

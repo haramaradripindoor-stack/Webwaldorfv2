@@ -2,6 +2,7 @@
 title: "Teoría U: Liderando la Escuela desde el Futuro a Medida que Emerge"
 excerpt: "La aplicación de la Teoría U de Otto Scharmer en la gestión de colegios Waldorf, permitiendo a los equipos directivos superar los patrones del pasado y conectar con su máximo potencial."
 published_at: "2026-07-10"
+image_url: "/images/estacionamiento.webp"
 ---
 
 Frente a los desafíos crecientes de administrar un organismo educativo complejo en el siglo XXI, las herramientas convencionales de planificación estratégica —basadas exclusivamente en la extrapolación de datos del pasado— a menudo resultan insuficientes. Es aquí donde la **Teoría U**, desarrollada por Otto Scharmer en el MIT, converge profundamente con la visión antroposófica, ofreciendo una tecnología de consciencia vital para los Equipos de Gestión y el Claustro de Maestros.

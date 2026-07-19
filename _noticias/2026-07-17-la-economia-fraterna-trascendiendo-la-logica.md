@@ -2,6 +2,7 @@
 title: "La Economía Fraterna: Trascendiendo la Dinámica Transaccional en la Educación"
 excerpt: "Un análisis riguroso sobre el financiamiento de las escuelas Waldorf, la sustentabilidad institucional y la transformación del pago en un acto de fraternidad social."
 published_at: "2026-07-17"
+image_url: "/images/estacionamiento.webp"
 ---
 
 Dentro de la arquitectura de la Trimembración Social que sostiene a las instituciones Waldorf, la Esfera Económica representa, sin lugar a dudas, uno de los desafíos paradigmáticos más profundos para las familias que ingresan al sistema. Acostumbrados a una lógica de libre mercado, es habitual que el apoderado inicialmente asuma un rol de "cliente" que "compra un servicio educativo". 
