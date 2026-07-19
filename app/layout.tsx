@@ -44,34 +44,81 @@ export default function RootLayout({
 }) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": ["EducationalOrganization", "LocalBusiness", "School"],
-    "name": "Colegio Waldorf Trekan",
-    "alternateName": "Trekan Puerto Varas",
-    "url": "https://www.colegiowaldorftrekan.cl",
-    "logo": "https://www.colegiowaldorftrekan.cl/assets/logo.png",
-    "description": "Colegio Waldorf en Puerto Varas para niños de 3 a 14 años. Educación con metodología Waldorf hacia la libertad, en armonía con la naturaleza.",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Las Azaleas 96, Parque Ivian 1",
-      "addressLocality": "Puerto Varas",
-      "addressRegion": "Región de Los Lagos",
-      "postalCode": "5550000",
-      "addressCountry": "CL"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "-41.319460",
-      "longitude": "-72.985380"
-    },
-    "telephone": "+56 9 6776 5106",
-    "email": "admision@colegiowaldorftrekan.cl",
-    "sameAs": [
-      "https://www.instagram.com/waldorftrekanpv/",
-      "https://www.facebook.com/profile.php?id=61573063135723"
-    ],
-    "openingHours": "Mo,Tu,We,Th,Fr 08:00-14:00",
-    "priceRange": "$$",
-    "educationalProgram": "Pedagogía Waldorf para niños de 3 a 14 años"
+    "@graph": [
+      {
+        "@type": ["EducationalOrganization", "School", "LocalBusiness"],
+        "@id": "https://www.colegiowaldorftrekan.cl/#organization",
+        "name": "Colegio Waldorf Trekan",
+        "alternateName": "Trekan Puerto Varas",
+        "url": "https://www.colegiowaldorftrekan.cl",
+        "logo": "https://www.colegiowaldorftrekan.cl/assets/logo.png",
+        "image": "https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20261.jpg",
+        "description": "Colegio Waldorf en Puerto Varas para niños de 3 a 14 años. Educación hacia la libertad sustentada en la Antroposofía y la Trimembración Social.",
+        "telephone": "+56 9 6776 5106",
+        "email": "admision@colegiowaldorftrekan.cl",
+        "sameAs": [
+          "https://www.instagram.com/waldorftrekanpv/",
+          "https://www.facebook.com/profile.php?id=61573063135723"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Las Azaleas 96, Parque Ivian 1",
+          "addressLocality": "Puerto Varas",
+          "addressRegion": "Región de Los Lagos",
+          "postalCode": "5550000",
+          "addressCountry": "CL"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "-41.319460",
+          "longitude": "-72.985380"
+        },
+        "areaServed": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": "-41.319460",
+            "longitude": "-72.985380"
+          },
+          "geoRadius": "50000"
+        },
+        "founder": {
+          "@id": "https://www.colegiowaldorftrekan.cl/#ivonneparada"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Programas Educativos Waldorf",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "EducationalOccupationalProgram",
+                "name": "Jardín Infantil Waldorf",
+                "description": "Programa preescolar enfocado en el juego libre, el ritmo y la conexión con la naturaleza."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "EducationalOccupationalProgram",
+                "name": "Educación Básica Waldorf",
+                "description": "Educación primaria basada en currículum Waldorf, arte, música y desarrollo anímico."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.colegiowaldorftrekan.cl/#ivonneparada",
+        "name": "Ivonne Parada Aravena",
+        "jobTitle": "Familia Fundadora y Especialista en Convivencia Escolar",
+        "worksFor": {
+          "@id": "https://www.colegiowaldorftrekan.cl/#organization"
+        },
+        "description": "Trabajadora Social UV, especialista en convivencia escolar con formación en peritaje social, polivagal y gestalt."
+      }
+    ]
   }
 
   // ID de Google Tag Manager extraído de las capturas
