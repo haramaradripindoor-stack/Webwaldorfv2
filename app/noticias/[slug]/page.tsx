@@ -71,8 +71,39 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
   const dateStr = new Date(post.published_at).toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric' })
   const readTime = Math.ceil((post.content?.split(' ').length || 300) / 200) + ' min de lectura'
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "image": post.image_url ? [
+      post.image_url.startsWith('/') 
+        ? `https://www.colegiowaldorftrekan.cl${post.image_url}` 
+        : post.image_url.replace('/images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/')
+    ] : ["https://www.colegiowaldorftrekan.cl/assets/logo.png"],
+    "datePublished": new Date(post.published_at).toISOString(),
+    "dateModified": new Date(post.published_at).toISOString(),
+    "author": {
+      "@type": "Organization",
+      "name": post.author || "Colegio Waldorf Trekan",
+      "url": "https://www.colegiowaldorftrekan.cl"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Colegio Waldorf Trekan",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.colegiowaldorftrekan.cl/assets/logo.png"
+      }
+    },
+    "description": post.excerpt || "Noticia del Colegio Waldorf Trekan"
+  };
+
   return (
     <SmoothScroll>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <main className="min-h-screen bg-[#FAF9F6] selection:bg-[#D35D3E] selection:text-white relative">
         <Navbar />
         
