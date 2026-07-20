@@ -139,6 +139,8 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+      </head>
+      <body className="font-sans antialiased bg-[var(--color-waldorf-cream)] text-[var(--color-waldorf-text)]">
         {/* Google Tag Manager - DataLayer Init */}
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`
@@ -164,8 +166,6 @@ export default function RootLayout({
             fbq('track', 'PageView');
           `}
         </Script>
-      </head>
-      <body className="font-sans antialiased bg-[var(--color-waldorf-cream)] text-[var(--color-waldorf-text)]">
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe 
