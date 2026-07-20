@@ -1,7 +1,9 @@
 import { MetadataRoute } from 'next'
 import { getMarkdownPosts } from '@/lib/markdown'
+import { createClient } from '@/utils/supabase/server'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const supabase = createClient()
   const baseUrl = 'https://www.colegiowaldorftrekan.cl'
   
   const baseRoutes = [
@@ -36,7 +38,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }))
 
-  const noticias = getMarkdownPosts('_noticias').map((post) => {
+  const { data: dbNoticias } = await supabase.from('noticias').select('slug, published_at')
+  
+  const dbNoticiasUrls = (dbNoticias || []).map((post) => {
+    let lastMod = new Date().toISOString().split('T')[0];
+    try {
+      if (post.published_at) lastMod = new Date(post.published_at).toISOString().split('T')[0];
+    } catch (e) {}
+    return {
+      url: `${baseUrl}/noticias/${post.slug}`,
+      lastModified: lastMod,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }
+  })
+
+  const mdNoticiasUrls = getMarkdownPosts('_noticias').map((post) => {
     // Evitar errores con fechas inválidas
     let lastMod = new Date().toISOString().split('T')[0];
     try {
@@ -50,6 +67,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     }
   })
+
+  // Deduplicar URLs (por si una noticia está en ambos lados)
+  const urlsMap = new Map()
+  ;[...dbNoticiasUrls, ...mdNoticiasUrls].forEach(item => {
+    urlsMap.set(item.url, item)
+  })
+  const todasLasNoticias = Array.from(urlsMap.values())
 
   const actividades = getMarkdownPosts('_actividades').map((post) => {
     let lastMod = new Date().toISOString().split('T')[0];
@@ -65,5 +89,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   })
 
-  return [...baseRoutes, ...cityRoutes, ...noticias, ...actividades]
+  return [...baseRoutes, ...cityRoutes, ...todasLasNoticias, ...actividades]
 }
