@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, ArrowLeft, CheckCircle2, User, Baby, Users, HeartPulse, MapPin, Send } from 'lucide-react'
 
@@ -34,6 +34,7 @@ export default function FormularioPostulacionCompleto() {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const formRef = useRef<HTMLDivElement>(null);
 
   const [formData, setFormData] = useState<PostulacionData>({
     parentName: '', parentEmail: '', parentPhone: '', contactTime: '',
@@ -59,11 +60,20 @@ export default function FormularioPostulacionCompleto() {
   };
 
   const nextStep = () => {
-    // Scroll al top del form
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Scroll suave y focalizado solo al inicio del formulario, no a toda la página
+    if (formRef.current) {
+      const y = formRef.current.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
     setStep(s => s + 1);
   };
-  const prevStep = () => setStep(s => s - 1);
+  const prevStep = () => {
+    if (formRef.current) {
+      const y = formRef.current.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+    setStep(s => s - 1);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -128,7 +138,7 @@ export default function FormularioPostulacionCompleto() {
   }
 
   return (
-    <div className="w-full max-w-3xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 min-h-[600px] flex flex-col relative">
+    <div ref={formRef} className="w-full max-w-3xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 min-h-[600px] flex flex-col relative">
       
       {/* ProgressBar Header */}
       <div className="bg-[var(--color-waldorf-moss)] h-2 w-full flex">
