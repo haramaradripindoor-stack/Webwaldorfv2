@@ -1,6 +1,6 @@
 ---
 title: "De la Etapa Pionera a la Madurez: El Cuidado del Maestro Waldorf"
-date: '2026-07-22'
+date: '2026-07-19'
 excerpt: "Inspirado en la visión de Valentin Wember, exploramos cómo las escuelas Waldorf transitan desde el heroísmo de los fundadores hacia una gobernanza colegiada que protege y acompaña a sus maestros."
 coverImage: "/assets/blog/madurez-institucional.jpg"
 author: "Colegio Waldorf Trekan"
