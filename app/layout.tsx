@@ -1,9 +1,9 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import Script from 'next/script'
-import CustomCursor from '@/components/CustomCursor'
+import MagneticCursor from '@/components/MagneticCursor'
 import AIChatWidget from '@/components/AIChatWidget'
-import SmoothScroll from '@/components/SmoothScroll'
+import SmoothScroller from '@/components/SmoothScroller'
 import LiquidSplash from '@/components/LiquidSplash'
 
 const quicksand = { variable: 'font-sans' }
@@ -183,7 +183,7 @@ export default function RootLayout({
         </noscript>
         
         <LiquidSplash />
-        <CustomCursor />
+        <MagneticCursor />
         {/* Awwwards Film Grain */}
         <div className="awwwards-noise" />
         
@@ -204,7 +204,9 @@ export default function RootLayout({
           `}
         </Script>
 
-        {children}
+        <SmoothScroller>
+          {children}
+        </SmoothScroller>
         
         {/* Widget Flotante Global */}
         <AIChatWidget />
