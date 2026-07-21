@@ -29,33 +29,34 @@ export default function AdmisionClient() {
 
         {/* HERO ADMISIÓN */}
         <section ref={heroRef} className="relative pt-40 pb-32 px-6 overflow-hidden min-h-[90vh] flex items-center justify-center">
-          <div className="absolute inset-0 pointer-events-none z-0">
-             <motion.div 
-               animate={{ scale: [1, 1.1, 1], rotate: [0, 5, 0] }}
-               transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-               className="absolute top-1/4 right-10 w-[40vw] h-[40vw] rounded-full bg-[var(--color-waldorf-mustard)]/10 blur-[100px]" 
-             />
-             <motion.div 
-               animate={{ scale: [1, 1.2, 1], rotate: [0, -5, 0] }}
-               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-               className="absolute bottom-1/4 left-10 w-[30vw] h-[30vw] rounded-full bg-[var(--color-waldorf-sage)]/10 blur-[100px]" 
-             />
-          </div>
+          {/* Fondo fotográfico con zoom lento */}
+          <motion.div 
+            style={{ y: yHero, scale: useTransform(heroScroll, [0, 1], [1, 1.1]) }} 
+            className="absolute inset-0 z-0"
+          >
+            <div className="absolute inset-0 bg-black/40 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-waldorf-cream)] via-transparent to-[var(--color-waldorf-cream)]/20 z-10" />
+            <img 
+              src="https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20264.jpg" 
+              alt="Bosque Sur" 
+              className="w-full h-full object-cover opacity-60"
+            />
+          </motion.div>
 
-          <motion.div style={{ y: yHero, opacity: opacityHero }} className="max-w-5xl mx-auto text-center relative z-10">
+          <motion.div style={{ y: yHero, opacity: opacityHero }} className="max-w-5xl mx-auto text-center relative z-20">
             <motion.span 
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
-              className="text-[var(--color-waldorf-mustard)] text-sm font-bold tracking-widest uppercase block mb-6"
+              className="text-[var(--color-waldorf-mustard)] text-sm font-bold tracking-widest uppercase block mb-6 drop-shadow-md"
             >
               Admisión 2026 · Abierta todo el año
             </motion.span>
             
             <motion.h1 
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2 }}
-              className="text-5xl md:text-8xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-8 leading-tight tracking-tight"
+              className="text-5xl md:text-8xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-8 leading-tight tracking-tight drop-shadow-lg"
             >
               Donde el niño camina <br/>
-              <span className="text-[var(--color-waldorf-terracotta)] italic font-light">con voluntad</span>
+              <span className="text-[var(--color-waldorf-terracotta)] italic font-light drop-shadow-sm">con voluntad</span>
             </motion.h1>
             
             <motion.p 
