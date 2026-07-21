@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Image as ImageIcon, Users, BookOpen, Calendar, Database, Settings } from 'lucide-react';
+import { LayoutDashboard, Image as ImageIcon, Users, BookOpen, Calendar, Database, Settings, Mail } from 'lucide-react';
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -13,6 +13,7 @@ export default function Sidebar() {
     { name: 'Noticias y SEO', href: '/admin/noticias', icon: BookOpen },
     { name: 'Actividades', href: '/admin/actividades', icon: Calendar },
     { name: 'Prospectos / Leads', href: '/admin/prospectos', icon: Users },
+    { name: 'Campañas Email', href: '/admin/campanas', icon: Mail },
     { name: 'Cerebro RAG (IA)', href: '/admin/cerebro', icon: Database },
     { name: 'Ajustes', href: '/admin/settings', icon: Settings },
   ];
