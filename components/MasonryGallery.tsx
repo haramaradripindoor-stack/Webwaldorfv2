@@ -176,12 +176,15 @@ export default function MasonryGallery({ data }: { data?: any }) {
             ‹
           </button>
           
-          <img
-            src={images[lightbox].url || images[lightbox].src}
-            alt={images[lightbox].alt}
-            className="max-w-[90vw] max-h-[85vh] object-contain shadow-2xl animate-fade-in"
-            onClick={(e) => e.stopPropagation()}
-          />
+          <div className="relative max-w-[90vw] max-h-[85vh] w-full h-full" onClick={(e) => e.stopPropagation()}>
+            <Image
+              src={images[lightbox].url || images[lightbox].src}
+              alt={images[lightbox].alt}
+              fill
+              sizes="90vw"
+              className="object-contain shadow-2xl animate-fade-in"
+            />
+          </div>
           
           <button
             onClick={(e) => { e.stopPropagation(); setLightbox((lightbox + 1) % images.length) }}

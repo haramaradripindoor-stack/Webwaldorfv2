@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import MagneticCursor from '@/components/MagneticCursor'
 import AIChatWidget from '@/components/AIChatWidget'
-import SmoothScroller from '@/components/SmoothScroller'
+import SmoothScroll from '@/components/SmoothScroll'
 import LiquidSplash from '@/components/LiquidSplash'
 
 const quicksand = { variable: 'font-sans' }
@@ -204,9 +204,9 @@ export default function RootLayout({
           `}
         </Script>
 
-        <SmoothScroller>
+        <SmoothScroll>
           {children}
-        </SmoothScroller>
+        </SmoothScroll>
         
         {/* Widget Flotante Global */}
         <AIChatWidget />
