@@ -1,6 +1,6 @@
 ---
 title: "La Trimembración Social: Arquitectura Viva de la Gestión Escolar Waldorf"
-excerpt: "Un análisis riguroso de la estructura orgánica de las escuelas Waldorf y cómo la Trimembración Social fundamenta una administración basada en la autonomía de esferas."
+excerpt: "Un análisis riguroso de la estructura orgánica de las Escuelas Waldorf Trekan y cómo la Trimembración Social fundamenta una administración basada en la autonomía de esferas."
 published_at: "2026-07-20"
 image_url: "/images/estacionamiento.webp"
 ---

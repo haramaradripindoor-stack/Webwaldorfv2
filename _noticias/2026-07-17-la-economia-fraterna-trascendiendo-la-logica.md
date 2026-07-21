@@ -1,6 +1,6 @@
 ---
 title: "La Economía Fraterna: Trascendiendo la Dinámica Transaccional en la Educación"
-excerpt: "Un análisis riguroso sobre el financiamiento de las escuelas Waldorf, la sustentabilidad institucional y la transformación del pago en un acto de fraternidad social."
+excerpt: "Un análisis riguroso sobre el financiamiento de las Escuelas Waldorf Trekan, la sustentabilidad institucional y la transformación del pago en un acto de fraternidad social."
 published_at: "2026-07-17"
 image_url: "/images/estacionamiento.webp"
 ---
@@ -17,6 +17,6 @@ Bajo este modelo, la colegiatura o aporte financiero mensual no representa un pa
 ### Sustentabilidad y Corresponsabilidad
 La gestión financiera de la escuela exige un rigor técnico absoluto por parte del Directorio y los equipos de gestión. Para que la fraternidad opere, la institución debe proveer **transparencia administrativa**, elaborando presupuestos meticulosos y planes estratégicos a largo plazo.
 
-Simultáneamente, exige de la comunidad de familias una corresponsabilidad activa. Las escuelas Waldorf logran su máxima eficiencia cuando los talentos profesionales, técnicos y logísticos de la comunidad de apoderados se ponen al servicio del proyecto, complementando el flujo financiero con aportes de infraestructura, mantención o gestión de recursos.
+Simultáneamente, exige de la comunidad de familias una corresponsabilidad activa. Las Escuelas Waldorf Trekan logran su máxima eficiencia cuando los talentos profesionales, técnicos y logísticos de la comunidad de apoderados se ponen al servicio del proyecto, complementando el flujo financiero con aportes de infraestructura, mantención o gestión de recursos.
 
 Trascender la mentalidad de "cliente" para asumir la de "corresponsable" es el salto cualitativo indispensable que garantiza la sustentabilidad del colegio y permite que la labor pedagógica de los maestros fluya sin el asedio constante del déficit o la precariedad.

@@ -5,7 +5,7 @@ published_at: "2026-07-07"
 image_url: "/images/estacionamiento.webp"
 ---
 
-Las escuelas Waldorf, fundadas bajo el impulso de la antroposofía, rechazan la concepción mecanicista de ser meras "organizaciones prestadoras de servicios". Son, fundamentalmente, **organismos vivos**. Y como todo ser viviente, poseen una biografía. Tienen un nacimiento, transitan por fases de crecimiento (similares a los septenios humanos), experimentan crisis biográficas y requieren profundas metamorfosis para no envejecer prematuramente.
+Las Escuelas Waldorf Trekan, fundadas bajo el impulso de la antroposofía, rechazan la concepción mecanicista de ser meras "organizaciones prestadoras de servicios". Son, fundamentalmente, **organismos vivos**. Y como todo ser viviente, poseen una biografía. Tienen un nacimiento, transitan por fases de crecimiento (similares a los septenios humanos), experimentan crisis biográficas y requieren profundas metamorfosis para no envejecer prematuramente.
 
 Comprender en qué etapa de maduración se encuentra la escuela es la tarea más urgente del Claustro de Maestros y el Equipo de Gestión. Exigir comportamientos maduros a un proyecto recién nacido es tan frustrante como pretender gobernar una institución consolidada utilizando la improvisación de sus primeros días.
 

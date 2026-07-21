@@ -26,6 +26,6 @@ Al migrar a zonas como Puerto Varas, Llanquihue o Frutillar, los niños vuelven 
 
 Para las familias que dan este gran paso biográfico, la elección del colegio es fundamental. No basta con vivir rodeados de naturaleza si el entorno escolar repite los patrones de estrés, competencia e intelectualización prematura de la ciudad.
 
-Buscar un **Colegio Waldorf en el sur de Chile** asegura que la transición sea armónica. En la Escuela Trekan, el aula es una extensión de la calidez del hogar y del entorno natural. Los materiales nobles, el ritmo de la clase (inspirado en la inhalación y exhalación) y el trabajo con las manos (huerta, oficios, arte) permiten que el niño integre el paisaje exterior en su paisaje interior.
+Buscar un **Colegio Waldorf Trekan en el sur de Chile** asegura que la transición sea armónica. En el Colegio Waldorf Trekan, el aula es una extensión de la calidez del hogar y del entorno natural. Los materiales nobles, el ritmo de la clase (inspirado en la inhalación y exhalación) y el trabajo con las manos (huerta, oficios, arte) permiten que el niño integre el paisaje exterior en su paisaje interior.
 
 Migrar al sur es escuchar un llamado profundo del alma familiar. Es elegir conscientemente un entorno que diga al niño: *"El mundo es bueno, el mundo es bello y tienes tiempo para crecer"*.

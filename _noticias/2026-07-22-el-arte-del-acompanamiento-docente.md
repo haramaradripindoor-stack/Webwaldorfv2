@@ -1,12 +1,12 @@
 ---
 title: "De la Etapa Pionera a la Madurez: El Cuidado del Maestro Waldorf"
 date: '2026-07-19'
-excerpt: "Inspirado en la visión de Valentin Wember, exploramos cómo las escuelas Waldorf transitan desde el heroísmo de los fundadores hacia una gobernanza colegiada que protege y acompaña a sus maestros."
+excerpt: "Inspirado en la visión de Valentin Wember, exploramos cómo las Escuelas Waldorf Trekan transitan desde el heroísmo de los fundadores hacia una gobernanza colegiada que protege y acompaña a sus maestros."
 coverImage: "/assets/blog/madurez-institucional.jpg"
 author: "Colegio Waldorf Trekan"
 ---
 
-El nacimiento de una escuela Waldorf es siempre un acto de profunda voluntad humana. Un grupo pionero de fundadores —padres y maestros— entrega su tiempo, energía y recursos para dar vida a un impulso espiritual. En esta **Fase Pionera**, descrita ampliamente por autores de gestión antroposófica como Valentin Wember, la comunidad funciona como una tribu unida por la supervivencia y el entusiasmo. 
+El nacimiento de una Escuela Waldorf Trekan es siempre un acto de profunda voluntad humana. Un grupo pionero de fundadores —padres y maestros— entrega su tiempo, energía y recursos para dar vida a un impulso espiritual. En esta **Fase Pionera**, descrita ampliamente por autores de gestión antroposófica como Valentin Wember, la comunidad funciona como una tribu unida por la supervivencia y el entusiasmo. 
 
 Sin embargo, para que el organismo escolar crezca sano, llega un momento inevitable: **la transición hacia la madurez institucional**.
 
@@ -31,6 +31,6 @@ En el camino Waldorf, ningún maestro llega siendo un producto terminado. Rudolf
 
 A menudo, por las necesidades mismas de la escuela en crecimiento, se le pide a los maestros que asuman desafíos enormes (como tomar cursos superiores o unir grupos). Cuando el maestro acepta este reto por amor a la escuela y encuentra dificultades naturales en el proceso, la respuesta institucional de una comunidad madura nunca es punitiva, sino **fraternal**.
 
-Las escuelas Waldorf de vanguardia no descartan a quienes están aprendiendo; instauran sistemas de **Acompañamiento y Padrinazgo (Mentoring)**. Un maestro con más experiencia (interno o externo) acompaña, observa y guía al educador en formación, fijando metas objetivas para el año. 
+Las Escuelas Waldorf Trekan de vanguardia no descartan a quienes están aprendiendo; instauran sistemas de **Acompañamiento y Padrinazgo (Mentoring)**. Un maestro con más experiencia (interno o externo) acompaña, observa y guía al educador en formación, fijando metas objetivas para el año. 
 
 Al proteger y nutrir a sus maestros en desarrollo, el colegio no solo honra la biografía de ese ser humano, sino que encarna verdaderamente los principios de la economía fraterna y la educación hacia la libertad.

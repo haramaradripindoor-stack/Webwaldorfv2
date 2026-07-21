@@ -5,7 +5,7 @@ published_at: "2026-07-15"
 image_url: "/images/estacionamiento.webp"
 ---
 
-La reunión semanal del Claustro de Maestros en una escuela Waldorf dista profundamente de un mero consejo administrativo. Si bien se destinan fracciones de tiempo a la logística escolar, el núcleo indisoluble de esta congregación es de carácter científico y ontológico: el **Estudio del Niño** o Kínderbesprechung.
+La reunión semanal del Claustro de Maestros en una Escuela Waldorf Trekan dista profundamente de un mero consejo administrativo. Si bien se destinan fracciones de tiempo a la logística escolar, el núcleo indisoluble de esta congregación es de carácter científico y ontológico: el **Estudio del Niño** o Kínderbesprechung.
 
 Como estipula Valentin Wember y la vasta literatura antroposófica, el maestro Waldorf no se limita a dictar contenidos; actúa como un observador clínico del desarrollo biográfico del infante.
 

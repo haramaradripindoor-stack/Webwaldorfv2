@@ -5,7 +5,7 @@ published_at: "2026-07-12"
 image_url: "/images/estacionamiento.webp"
 ---
 
-El desarrollo de una escuela Waldorf, al igual que el de un ser humano, transita por distintas **etapas de maduración**. Valentin Wember describe con agudeza cómo las instituciones pasan de una fase "Pionera" fundacional (llena de entusiasmo pero estructuralmente frágil), a una fase de "Institucionalización", para finalmente enfrentar el riesgo del estancamiento dogmático. La verdadera madurez institucional, afirma Wember, se alcanza cuando el colegio posee la flexibilidad intelectual y espiritual para **interpelar sus propias prácticas** a la luz del presente.
+El desarrollo de una Escuela Waldorf Trekan, al igual que el de un ser humano, transita por distintas **etapas de maduración**. Valentin Wember describe con agudeza cómo las instituciones pasan de una fase "Pionera" fundacional (llena de entusiasmo pero estructuralmente frágil), a una fase de "Institucionalización", para finalmente enfrentar el riesgo del estancamiento dogmático. La verdadera madurez institucional, afirma Wember, se alcanza cuando el colegio posee la flexibilidad intelectual y espiritual para **interpelar sus propias prácticas** a la luz del presente.
 
 Uno de los campos donde esta madurez se hace más evidente es en la reevaluación de la estructura temporal de la jornada escolar, cruzando los impulsos originales de Rudolf Steiner con la neurociencia contemporánea.
 

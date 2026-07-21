@@ -15,6 +15,6 @@ Valentin Wember clarifica de forma taxativa que el Directorio no tiene competenc
 3. **Equilibrio Presupuestario:** Administrar los ingresos de la Esfera Económica con prudencia y visión estratégica, garantizando que el diseño de remuneraciones sea justo, equitativo y sustentable en el tiempo.
 
 ### El Arte de Proteger sin Invadir
-El liderazgo administrativo en una escuela Waldorf exige un profundo discernimiento. Los directores y gestores deben poseer competencias profesionales de alto nivel (como sucede en Colegio Waldorf Trekan a través de perfiles universitarios en administración y dirección), pero deben someter dichas herramientas a la filosofía de la institución. 
+El liderazgo administrativo en una Escuela Waldorf Trekan exige un profundo discernimiento. Los directores y gestores deben poseer competencias profesionales de alto nivel (como sucede en Colegio Waldorf Trekan a través de perfiles universitarios en administración y dirección), pero deben someter dichas herramientas a la filosofía de la institución. 
 
 Un Directorio maduro comprende que su mayor indicador de éxito no es acumular poder de decisión, sino **proteger celosamente la autonomía del Claustro de Maestros**. Cuando el Directorio absorbe el estrés legal y financiero, los profesores pueden concentrar sus energías exclusivamente en el desarrollo espiritual e intelectual de los niños. Este equilibrio de respeto mutuo es el sello distintivo de una gestión institucional de excelencia.

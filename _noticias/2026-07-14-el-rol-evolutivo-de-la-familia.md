@@ -1,6 +1,6 @@
 ---
 title: "El Rol Evolutivo de la Familia: La Comunidad Abierta"
-excerpt: "El ingreso a una escuela Waldorf implica un proceso de transformación biográfica familiar, donde el apoderado abandona la pasividad para construir el tejido social escolar."
+excerpt: "El ingreso a una Escuela Waldorf Trekan implica un proceso de transformación biográfica familiar, donde el apoderado abandona la pasividad para construir el tejido social escolar."
 published_at: "2026-07-14"
 image_url: "/images/estacionamiento.webp"
 ---

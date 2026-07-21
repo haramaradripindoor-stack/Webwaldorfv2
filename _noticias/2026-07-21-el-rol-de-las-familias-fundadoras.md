@@ -5,7 +5,7 @@ published_at: "2026-07-21"
 image_url: "/images/estacionamiento.webp"
 ---
 
-A diferencia de la educación pública o privada tradicional, que suele nacer de políticas de Estado o modelos de inversión comercial, las escuelas Waldorf nacen de un impulso puramente espiritual y cultural. En el corazón de este impulso no hay, inicialmente, una infraestructura ni un modelo de negocios, sino un grupo de seres humanos impulsados por una convicción profunda: **las Familias Fundadoras**.
+A diferencia de la educación pública o privada tradicional, que suele nacer de políticas de Estado o modelos de inversión comercial, las Escuelas Waldorf Trekan nacen de un impulso puramente espiritual y cultural. En el corazón de este impulso no hay, inicialmente, una infraestructura ni un modelo de negocios, sino un grupo de seres humanos impulsados por una convicción profunda: **las Familias Fundadoras**.
 
 Desde la fundación de la primera escuela en Stuttgart (1919) bajo la dirección de Rudolf Steiner, hasta el nacimiento del Colegio Waldorf Trekan, el patrón se repite. Son los padres pioneros quienes, movilizados por la necesidad de una educación que honre el desarrollo anímico de sus hijos, deciden levantar una escuela desde cero.
 
@@ -31,4 +31,4 @@ La literatura antroposófica sobre gestión comunitaria advierte sobre un fenóm
 
 Si los pioneros logran dar este paso hacia un costado operativamente, asumen entonces su rol más elevado: el de **guardianes del impulso original**. 
 
-No se trata de imponer sus visiones del pasado, sino de mantener viva la llama de los ideales antroposóficos que dieron origen a la escuela, recordando siempre que una escuela Waldorf no es un fin en sí misma, sino un organismo vivo al servicio de la evolución humana.
+No se trata de imponer sus visiones del pasado, sino de mantener viva la llama de los ideales antroposóficos que dieron origen a la escuela, recordando siempre que una Escuela Waldorf Trekan no es un fin en sí misma, sino un organismo vivo al servicio de la evolución humana.
