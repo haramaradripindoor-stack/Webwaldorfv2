@@ -1,8 +1,11 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import Image from 'next/image'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const fallbackImages = [
   { url: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20264.jpg', alt: 'Exploración en la naturaleza', span: 'col-span-2 row-span-2' },
@@ -16,23 +19,94 @@ const fallbackImages = [
 
 export default function MasonryGallery({ data }: { data?: any }) {
   const [lightbox, setLightbox] = useState<number | null>(null)
-  
   const images = data || fallbackImages;
 
-  const containerRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  })
+  const sectionRef = useRef<HTMLElement>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  const subtitleRef = useRef<HTMLSpanElement>(null)
 
-  // Contenedor principal Parallax (Valores reducidos drásticamente para no romper el grid en móvil)
-  const yFast = useTransform(scrollYProgress, [0, 1], [40, -40])
-  const ySlow = useTransform(scrollYProgress, [0, 1], [15, -15])
+  useEffect(() => {
+    if (!sectionRef.current || !gridRef.current) return;
 
-  // Lando Norris Internal Image Displacement (La imagen se mueve dentro del contenedor)
-  const imageParallax = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"])
+    const cards = gridRef.current.children;
+    const ctx = gsap.context(() => {
 
-  // Close lightbox with Escape
+      // 1. Animación del Título (Sprout Text)
+      gsap.fromTo([subtitleRef.current, titleRef.current], 
+        { y: 50, opacity: 0, clipPath: 'inset(100% 0 0 0)' },
+        { 
+          y: 0, 
+          opacity: 1, 
+          clipPath: 'inset(0% 0 0 0)', 
+          duration: 1.2, 
+          stagger: 0.1,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+          }
+        }
+      );
+
+      // 2. Parallax Asimétrico en las Cajas del Grid
+      // Cada tarjeta sube a velocidades distintas a medida que scrolleamos
+      Array.from(cards).forEach((card, i) => {
+        const speed = i % 2 === 0 ? 0.05 : 0.15; // Velocidades alternas
+        const yOffset = i % 2 === 0 ? 100 : 200; // Desplazamiento inicial
+
+        // Entrada inicial (Brotar)
+        gsap.fromTo(card, 
+          { y: yOffset, opacity: 0, scale: 0.9 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1.5,
+            ease: "expo.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 95%", // Apenas entra a la pantalla brota
+            }
+          }
+        );
+
+        // Parallax continuo (Scrub)
+        gsap.to(card, {
+          y: () => -window.innerHeight * speed, // Desfase según scroll
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1 // Conectado orgánicamente al Lenis
+          }
+        });
+        
+        // Efecto Parallax en la Imagen interna
+        const img = card.querySelector('img');
+        if(img) {
+            gsap.fromTo(img, 
+                { y: '-10%', scale: 1.15 },
+                {
+                    y: '10%',
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1.5
+                    }
+                }
+            );
+        }
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [])
+
+  // Lightbox keyboard controls
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setLightbox(null)
@@ -44,96 +118,81 @@ export default function MasonryGallery({ data }: { data?: any }) {
   }, [lightbox])
 
   return (
-    <section ref={containerRef} id="galeria" className="py-32 px-6 md:px-12 max-w-7xl mx-auto overflow-visible relative">
+    <section ref={sectionRef} id="galeria" className="py-32 px-6 md:px-12 max-w-7xl mx-auto relative overflow-hidden">
       <div className="mb-24 text-center md:text-left relative z-10 max-w-3xl">
-        <span className="text-[var(--color-waldorf-terracotta)] text-sm font-bold tracking-widest uppercase block mb-6">
+        <span ref={subtitleRef} className="text-[var(--color-waldorf-terracotta)] text-sm font-bold tracking-widest uppercase block mb-6">
           Nuestro Mundo
         </span>
-        <h2 className="text-5xl md:text-7xl font-bold font-serif text-[var(--color-waldorf-moss)] leading-[1.1] tracking-tighter">
+        <h2 ref={titleRef} className="text-5xl md:text-7xl font-bold font-serif text-[var(--color-waldorf-moss)] leading-[1.1] tracking-tighter">
           La Vida en Trekan
         </h2>
       </div>
 
-      {/* Masonry Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] md:auto-rows-[260px] gap-6 md:gap-8 relative z-0">
-        {images.map((img: any, i: number) => {
-          const yTransform = i % 2 === 0 ? yFast : ySlow
-          
-          return (
-            <motion.div
-              key={i}
-              style={{ y: yTransform }}
-              className={`relative overflow-hidden group cursor-pointer ${img.span}`}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "0px" }}
-              transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              onClick={() => setLightbox(i)}
-            >
-              {/* Contenedor interno que escala para dar espacio al parallax */}
-              <motion.div className="w-full h-full relative" style={{ scale: 1.1 }}>
+      {/* Masonry Asimétrico */}
+      <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] md:auto-rows-[280px] gap-6 md:gap-8 relative z-0">
+        {images.map((img: any, i: number) => (
+          <div
+            key={i}
+            className={`relative overflow-hidden group cursor-pointer ${img.span} rounded-xl will-change-transform`}
+            onClick={() => setLightbox(i)}
+          >
+            <div className="w-full h-full relative overflow-hidden">
                 <Image
-                  src={img.url || img.src}
-                  alt={img.alt}
-                  fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                src={img.url || img.src}
+                alt={img.alt}
+                fill
+                sizes="(max-width: 768px) 50vw, 25vw"
+                className="object-cover transition-transform duration-1000 group-hover:scale-105 will-change-transform"
                 />
-              </motion.div>
+            </div>
 
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-[var(--color-waldorf-moss)]/40 transition-colors duration-700 flex items-end p-6 md:p-8">
-                <span className="text-white text-lg font-medium opacity-0 group-hover:opacity-100 translate-y-8 group-hover:translate-y-0 transition-all duration-700 ease-[0.16,1,0.3,1]">
-                  {img.alt}
-                </span>
-              </div>
-            </motion.div>
-          )
-        })}
+            {/* Capa de Hover */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-[#1a2e25]/50 transition-colors duration-700 flex items-end p-6 md:p-8 pointer-events-none">
+              <span className="text-white text-lg font-medium opacity-0 group-hover:opacity-100 translate-y-8 group-hover:translate-y-0 transition-all duration-700 ease-[0.16,1,0.3,1]">
+                {img.alt}
+              </span>
+            </div>
+          </div>
+        ))}
       </div>
 
-      {/* Lightbox */}
+      {/* Lightbox Minimalista */}
       {lightbox !== null && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[9999] bg-[#0A0A10]/95 flex items-center justify-center p-4 backdrop-blur-md"
+        <div
+          className="fixed inset-0 z-[9999] bg-[#0A0A10]/95 flex items-center justify-center p-4 backdrop-blur-md transition-opacity"
           onClick={() => setLightbox(null)}
         >
           <button
             onClick={() => setLightbox(null)}
-            className="absolute top-8 right-8 text-white/60 hover:text-white text-4xl z-10 transition-colors"
+            className="absolute top-8 right-8 text-white/60 hover:text-white text-4xl z-10 transition-colors mix-blend-difference"
             aria-label="Cerrar"
           >
             ✕
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); setLightbox((lightbox - 1 + images.length) % images.length) }}
-            className="absolute left-8 top-1/2 -translate-y-1/2 text-white/40 hover:text-white text-6xl z-10 transition-colors"
-            aria-label="Anterior"
+            className="absolute left-8 top-1/2 -translate-y-1/2 text-white/40 hover:text-white text-6xl z-10 transition-colors mix-blend-difference hidden md:block"
           >
             ‹
           </button>
-          <motion.img
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          
+          <img
             src={images[lightbox].url || images[lightbox].src}
             alt={images[lightbox].alt}
-            className="max-w-[90vw] max-h-[85vh] object-contain shadow-2xl"
+            className="max-w-[90vw] max-h-[85vh] object-contain shadow-2xl animate-fade-in"
             onClick={(e) => e.stopPropagation()}
           />
+          
           <button
             onClick={(e) => { e.stopPropagation(); setLightbox((lightbox + 1) % images.length) }}
-            className="absolute right-8 top-1/2 -translate-y-1/2 text-white/40 hover:text-white text-6xl z-10 transition-colors"
-            aria-label="Siguiente"
+            className="absolute right-8 top-1/2 -translate-y-1/2 text-white/40 hover:text-white text-6xl z-10 transition-colors mix-blend-difference hidden md:block"
           >
             ›
           </button>
-          <span className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 text-sm font-mono tracking-widest">
+          <span className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 text-sm font-mono tracking-widest mix-blend-difference">
             {lightbox + 1} / {images.length}
           </span>
-        </motion.div>
+        </div>
       )}
     </section>
   )

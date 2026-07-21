@@ -23,7 +23,7 @@ const RadicalTransparency = dynamic(() => import('@/components/RadicalTransparen
 import Footer from '@/components/Footer'
 import { getMarkdownPosts } from '@/lib/markdown'
 import { createClient } from '@/utils/supabase/server'
-import SmoothScroll from '@/components/SmoothScroll'
+
 
 export const revalidate = 3600; // Cache de 1 hora para Vercel Edge
 
@@ -80,7 +80,6 @@ export default async function Home() {
   }
 
   return (
-    <SmoothScroll>
       <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-x-clip">
         <Navbar />
         
@@ -118,6 +117,6 @@ export default async function Home() {
         
         <Footer />
       </main>
-    </SmoothScroll>
+
   )
 }
