@@ -48,9 +48,8 @@ function SeptenioCard({
 }) {
   const start = index / total
   const end = (index + 1) / total
-  const fade = 0.12 // Transición mucho más suave y extendida
+  const fade = 0.12
 
-  // Determinar los puntos de entrada y salida basados en el índice
   let input, outputOpacity, outputY, outputBlur, outputScale
 
   if (index === 0) {
@@ -150,8 +149,8 @@ function ProgressDot({ index, total, scrollYProgress }: {
 export default function PedagogiaHorizontal() {
   const sectionRef = useRef<HTMLDivElement>(null)
 
-  // 120vh por tarjeta
-  const totalVh = septenios.length * 120
+  // 80vh por tarjeta para que no sea tan largo
+  const totalVh = septenios.length * 80
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
