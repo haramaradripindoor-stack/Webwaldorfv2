@@ -1,12 +1,19 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.GMAIL_USER, // Ej: trekancomisiondeaministracion@gmail.com
+    pass: process.env.GMAIL_APP_PASSWORD, // Contraseña de Aplicación
+  },
+});
 
 export async function GET() {
   try {
@@ -15,7 +22,6 @@ export async function GET() {
       .select('*')
       .order('created_at', { ascending: false });
       
-    // En caso de que la tabla aún no exista, capturamos el error sin romper el panel
     if (error) {
        console.log("Aviso: No se pudo leer el historial de email_campaigns:", error.message);
        return NextResponse.json({ success: true, data: [] });
@@ -35,7 +41,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, error: 'No se seleccionaron destinatarios' }, { status: 400 });
     }
 
-    // 1. Guardar la campaña en el historial (si la tabla existe)
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+      return NextResponse.json({ success: false, error: 'Credenciales SMTP (GMAIL_USER/GMAIL_APP_PASSWORD) no configuradas en Vercel' }, { status: 500 });
+    }
+
+    // 1. Guardar la campaña en el historial
     let campaignId = null;
     const { data: newCamp, error: insertError } = await supabase
       .from('email_campaigns')
@@ -52,8 +62,8 @@ export async function POST(req: Request) {
        campaignId = newCamp.id;
     }
 
-    // 2. Enviar correos en BATCH (lotes de 50) usando Resend BCC para proteger privacidad
-    const chunkSize = 50;
+    // 2. Enviar correos en BATCH usando Nodemailer BCC
+    const chunkSize = 50; // Agrupamos en bloques de 50 para evitar time-outs del servidor SMTP
     let sentCount = 0;
     let failedCount = 0;
 
@@ -61,16 +71,16 @@ export async function POST(req: Request) {
       const chunk = recipients.slice(i, i + chunkSize);
       
       try {
-        await resend.emails.send({
-          from: 'Colegio Waldorf Trekan <onboarding@resend.dev>', // Usamos el fallback seguro de desarrollo
-          to: 'admision@colegiowaldorftrekan.cl',
+        await transporter.sendMail({
+          from: `"Colegio Waldorf Trekan" <${process.env.GMAIL_USER}>`,
+          to: process.env.GMAIL_USER, // Se envía a sí mismo (como blind carbon copy a los demás)
           bcc: chunk,
           subject: subject,
           html: body_html
         });
         sentCount += chunk.length;
       } catch (err) {
-        console.error('Error enviando lote:', err);
+        console.error('Error enviando lote SMTP:', err);
         failedCount += chunk.length;
       }
     }
@@ -96,3 +106,4 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: false, error: err.message }, { status: 500 });
   }
 }
+
