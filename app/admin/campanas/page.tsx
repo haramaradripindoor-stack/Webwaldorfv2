@@ -250,25 +250,25 @@ export default function CampanasPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-8">
+    <div className="w-full">
       {/* Header */}
-      <header className="mb-10 border-b border-hairline pb-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+      <header className="mb-10 border-b border-[var(--color-waldorf-sage)]/20 pb-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+          <h1 className="text-3xl font-extrabold font-serif text-[var(--color-waldorf-moss)]">
             Campañas Email Masivo
           </h1>
-          <p className="text-gray-400 mt-2">Envía comunicaciones, promociones y recordatorios a tus pacientes y leads.</p>
+          <p className="text-[var(--color-waldorf-text-light)] mt-2 font-medium">Envía comunicaciones, boletines y recordatorios a la comunidad escolar y prospectos.</p>
         </div>
         
         {/* Main Tabs */}
-        <div className="flex bg-surface border border-hairline rounded-xl p-1 shadow-lg overflow-x-auto w-full md:w-auto">
-          <button onClick={() => setActiveTab('compose')} className={`flex items-center whitespace-nowrap gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'compose' ? 'bg-cyan-500/20 text-cyan-400' : 'text-gray-500 hover:text-white'}`}>
+        <div className="flex bg-white border border-[var(--color-waldorf-sage)]/20 rounded-xl p-1 shadow-sm overflow-x-auto w-full md:w-auto">
+          <button onClick={() => setActiveTab('compose')} className={`flex items-center whitespace-nowrap gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'compose' ? 'bg-[var(--color-waldorf-cream)] text-[var(--color-waldorf-moss)] shadow-sm' : 'text-gray-500 hover:text-[var(--color-waldorf-moss)]'}`}>
             <Send className="w-4 h-4" /> Componer
           </button>
-          <button onClick={() => setActiveTab('contacts')} className={`flex items-center whitespace-nowrap gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'contacts' ? 'bg-purple-500/20 text-purple-400' : 'text-gray-500 hover:text-white'}`}>
+          <button onClick={() => setActiveTab('contacts')} className={`flex items-center whitespace-nowrap gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'contacts' ? 'bg-[var(--color-waldorf-cream)] text-[var(--color-waldorf-moss)] shadow-sm' : 'text-gray-500 hover:text-[var(--color-waldorf-moss)]'}`}>
             <Users className="w-4 h-4" /> Directorio ({contacts.length})
           </button>
-          <button onClick={() => setActiveTab('history')} className={`flex items-center whitespace-nowrap gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'history' ? 'bg-amber-500/20 text-amber-400' : 'text-gray-500 hover:text-white'}`}>
+          <button onClick={() => setActiveTab('history')} className={`flex items-center whitespace-nowrap gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'history' ? 'bg-[var(--color-waldorf-cream)] text-[var(--color-waldorf-moss)] shadow-sm' : 'text-gray-500 hover:text-[var(--color-waldorf-moss)]'}`}>
             <History className="w-4 h-4" /> Historial
           </button>
         </div>
@@ -293,15 +293,15 @@ export default function CampanasPage() {
           {/* COMPOSER */}
           {activeTab === 'compose' && (
             <div className="flex flex-col gap-8">
-              <div className="bg-surface rounded-3xl p-6 border border-hairline-soft shadow-xl">
-                <h2 className="text-xl font-bold mb-6 flex items-center justify-between text-white w-full">
+              <div className="bg-white rounded-3xl p-6 border border-[var(--color-waldorf-sage)]/20 shadow-sm">
+                <h2 className="text-xl font-bold mb-6 flex items-center justify-between text-[var(--color-waldorf-moss)] w-full">
                   <div className="flex items-center gap-2">
-                    <Mail className="w-5 h-5 text-cyan-400" /> Creador Visual de Campañas
+                    <Mail className="w-5 h-5 text-[var(--color-waldorf-terracotta)]" /> Creador Visual de Campañas
                   </div>
                   
                   {/* Selector de Plantillas Pre-armadas */}
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-gray-400 font-bold uppercase tracking-widest hidden md:inline-block">Plantillas:</span>
+                    <span className="text-xs text-[var(--color-waldorf-text-light)] font-bold uppercase tracking-widest hidden md:inline-block">Plantillas:</span>
                     <div className="relative">
                       <select 
                         onChange={(e) => {
@@ -313,7 +313,7 @@ export default function CampanasPage() {
                           e.target.value = ''; // Reset select
                         }}
                         defaultValue=""
-                        className="appearance-none bg-[#1A1A24] border border-hairline text-cyan-400 text-sm font-bold rounded-xl px-4 py-2 pr-10 focus:outline-none focus:border-cyan-500 cursor-pointer transition-colors hover:bg-[#20202C]"
+                        className="appearance-none bg-white border border-[var(--color-waldorf-sage)]/30 text-[var(--color-waldorf-moss)] text-sm font-bold rounded-xl px-4 py-2 pr-10 focus:outline-none focus:border-[var(--color-waldorf-moss)] cursor-pointer transition-colors hover:bg-gray-50 shadow-sm"
                       >
                         <option value="" disabled>Seleccionar Diseño...</option>
                         {emailTemplates.map(t => (
@@ -321,7 +321,7 @@ export default function CampanasPage() {
                         ))}
                       </select>
                       <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
-                        <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg className="w-4 h-4 text-[var(--color-waldorf-moss)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                       </div>
                     </div>
                   </div>
@@ -329,30 +329,30 @@ export default function CampanasPage() {
                 
                 <div className="grid md:grid-cols-2 gap-5 mb-6">
                   <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Destinatarios ({selectedContacts.length})</label>
-                    <div className="bg-background border border-hairline rounded-xl p-3 flex justify-between items-center text-sm">
-                      <span className="text-gray-400">
+                    <label className="block text-xs font-bold text-[var(--color-waldorf-text-light)] uppercase tracking-widest mb-2">Destinatarios ({selectedContacts.length})</label>
+                    <div className="bg-[var(--color-waldorf-paper)] border border-[var(--color-waldorf-sage)]/20 rounded-xl p-3 flex justify-between items-center text-sm shadow-inner">
+                      <span className="text-[var(--color-waldorf-moss)] font-medium">
                         {selectAll ? 'Todos los contactos seleccionados' : `${selectedContacts.length} contactos seleccionados`}
                       </span>
-                      <button onClick={() => setActiveTab('contacts')} className="text-cyan-400 hover:text-cyan-300 font-bold text-xs flex items-center">
+                      <button onClick={() => setActiveTab('contacts')} className="text-[var(--color-waldorf-terracotta)] hover:opacity-80 font-bold text-xs flex items-center">
                         Editar Lista <ChevronRight className="w-4 h-4" />
                       </button>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Asunto del Correo</label>
+                    <label className="block text-xs font-bold text-[var(--color-waldorf-text-light)] uppercase tracking-widest mb-2">Asunto del Correo</label>
                     <input 
                       type="text" 
                       value={subject} 
                       onChange={e => setSubject(e.target.value)} 
                       placeholder="Ej: ¡Aprovecha un 20% de descuento en tu evaluación!" 
-                      className="w-full bg-background border border-hairline rounded-xl p-3 text-sm focus:border-cyan-500 outline-none transition-colors text-white" 
+                      className="w-full bg-[var(--color-waldorf-paper)] border border-[var(--color-waldorf-sage)]/20 rounded-xl p-3 text-sm focus:border-[var(--color-waldorf-moss)] outline-none transition-colors text-[var(--color-waldorf-text)] shadow-inner" 
                     />
                   </div>
                 </div>
 
-                <div className="mb-6 rounded-xl overflow-hidden border border-hairline bg-white" style={{ minHeight: '600px' }}>
+                <div className="mb-6 rounded-xl overflow-hidden border border-[var(--color-waldorf-sage)]/20 bg-white shadow-sm" style={{ minHeight: '600px' }}>
                   <EmailEditor 
                     ref={emailEditorRef} 
                     minHeight="600px"
@@ -367,7 +367,7 @@ export default function CampanasPage() {
                 <button 
                   onClick={handleSendCampaign} 
                   disabled={sending || selectedContacts.length === 0} 
-                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold py-4 rounded-xl hover:opacity-90 transition disabled:opacity-50 flex justify-center items-center gap-2 text-lg shadow-lg"
+                  className="w-full bg-[var(--color-waldorf-terracotta)] text-white font-bold py-4 rounded-xl hover:bg-[var(--color-waldorf-moss)] transition-colors disabled:opacity-50 flex justify-center items-center gap-2 text-lg shadow-md"
                 >
                   {sending ? <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <Send className="w-5 h-5" />}
                   {sending ? 'Enviando Campaña...' : `Enviar Diseño a ${selectedContacts.length} contactos`}
@@ -378,9 +378,9 @@ export default function CampanasPage() {
 
           {/* CONTACTS DIRECTORY */}
           {activeTab === 'contacts' && (
-            <div className="bg-surface rounded-3xl border border-hairline-soft overflow-hidden shadow-xl">
-              <div className="p-6 border-b border-hairline-soft flex justify-between items-center">
-                <h2 className="text-xl font-bold text-purple-400 flex items-center gap-2">
+            <div className="bg-white rounded-3xl border border-[var(--color-waldorf-sage)]/20 overflow-hidden shadow-sm">
+              <div className="p-6 border-b border-[var(--color-waldorf-sage)]/20 flex justify-between items-center bg-[var(--color-waldorf-paper)]">
+                <h2 className="text-xl font-bold text-[var(--color-waldorf-moss)] flex items-center gap-2">
                   <Users className="w-5 h-5" /> Directorio Unificado
                 </h2>
                 <div className="flex items-center gap-2 md:gap-4 flex-wrap">
@@ -391,15 +391,15 @@ export default function CampanasPage() {
                     ref={fileInputRef} 
                     onChange={handleImportCSV} 
                   />
-                  <button onClick={() => fileInputRef.current?.click()} className="flex items-center gap-2 text-xs font-bold bg-foreground/5 hover:bg-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-lg transition-colors">
+                  <button onClick={() => fileInputRef.current?.click()} className="flex items-center gap-2 text-xs font-bold bg-white border border-[var(--color-waldorf-sage)]/30 hover:bg-[var(--color-waldorf-cream)] text-[var(--color-waldorf-moss)] px-3 py-1.5 rounded-lg transition-colors shadow-sm">
                     <Upload className="w-3.5 h-3.5" /> Importar CSV
                   </button>
-                  <button onClick={handleExportCSV} className="flex items-center gap-2 text-xs font-bold bg-foreground/5 hover:bg-blue-500/20 text-blue-400 px-3 py-1.5 rounded-lg transition-colors">
+                  <button onClick={handleExportCSV} className="flex items-center gap-2 text-xs font-bold bg-white border border-[var(--color-waldorf-sage)]/30 hover:bg-[var(--color-waldorf-cream)] text-[var(--color-waldorf-moss)] px-3 py-1.5 rounded-lg transition-colors shadow-sm">
                     <Download className="w-3.5 h-3.5" /> Exportar CSV
                   </button>
-                  <div className="w-px h-6 bg-foreground/10 mx-1 hidden md:block"></div>
-                  <span className="text-sm text-gray-400 font-bold hidden md:inline">{selectedContacts.length} sel.</span>
-                  <button onClick={toggleSelectAll} className="text-xs font-bold bg-foreground/5 hover:bg-foreground/10 px-3 py-1.5 rounded-lg transition-colors">
+                  <div className="w-px h-6 bg-[var(--color-waldorf-sage)]/30 mx-1 hidden md:block"></div>
+                  <span className="text-sm text-[var(--color-waldorf-text-light)] font-bold hidden md:inline">{selectedContacts.length} sel.</span>
+                  <button onClick={toggleSelectAll} className="text-xs font-bold bg-white border border-[var(--color-waldorf-sage)]/30 hover:bg-[var(--color-waldorf-cream)] text-[var(--color-waldorf-moss)] px-3 py-1.5 rounded-lg transition-colors shadow-sm">
                     {selectAll ? 'Deseleccionar Todos' : 'Seleccionar Todos'}
                   </button>
                 </div>
@@ -407,41 +407,41 @@ export default function CampanasPage() {
               
               <div className="overflow-x-auto max-h-[600px] custom-scrollbar">
                 <table className="w-full text-left text-sm">
-                  <thead className="bg-background text-xs uppercase text-gray-500 sticky top-0 z-10">
+                  <thead className="bg-[var(--color-waldorf-paper)] text-xs uppercase text-[var(--color-waldorf-moss)] font-bold sticky top-0 z-10 border-b border-[var(--color-waldorf-sage)]/20">
                     <tr>
-                      <th className="px-6 py-4 font-medium w-16 text-center">Sel.</th>
-                      <th className="px-6 py-4 font-medium">Email</th>
-                      <th className="px-6 py-4 font-medium">Nombre / Origen</th>
-                      <th className="px-6 py-4 font-medium">Fuente</th>
-                      <th className="px-6 py-4 font-medium">Fecha Captura</th>
+                      <th className="px-6 py-4 text-center">Sel.</th>
+                      <th className="px-6 py-4">Email</th>
+                      <th className="px-6 py-4">Nombre / Origen</th>
+                      <th className="px-6 py-4">Fuente</th>
+                      <th className="px-6 py-4">Fecha Captura</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-white/5">
+                  <tbody className="divide-y divide-[var(--color-waldorf-sage)]/10">
                     {contacts.map((c, i) => (
-                      <tr key={i} onClick={() => toggleContact(c.email)} className={`cursor-pointer transition-colors ${selectedContacts.includes(c.email) ? 'bg-purple-500/5' : 'hover:bg-foreground/5'}`}>
+                      <tr key={i} onClick={() => toggleContact(c.email)} className={`cursor-pointer transition-colors ${selectedContacts.includes(c.email) ? 'bg-[var(--color-waldorf-cream)]' : 'hover:bg-gray-50'}`}>
                         <td className="px-6 py-4 text-center">
-                          <div className={`w-5 h-5 rounded border flex items-center justify-center mx-auto transition-colors ${selectedContacts.includes(c.email) ? 'bg-purple-500 border-purple-500' : 'border-gray-600 bg-background'}`}>
-                            {selectedContacts.includes(c.email) && <CheckCircle2 className="w-3 h-3 text-white" />}
+                          <div className={`w-5 h-5 rounded flex items-center justify-center mx-auto transition-colors border ${selectedContacts.includes(c.email) ? 'bg-[var(--color-waldorf-terracotta)] border-[var(--color-waldorf-terracotta)]' : 'border-gray-300 bg-white'}`}>
+                            {selectedContacts.includes(c.email) && <CheckCircle2 className="w-3.5 h-3.5 text-white" />}
                           </div>
                         </td>
-                        <td className="px-6 py-4 font-mono text-gray-300">{c.email}</td>
-                        <td className="px-6 py-4 font-semibold">{c.nombre}</td>
+                        <td className="px-6 py-4 font-mono text-[var(--color-waldorf-text-light)] text-xs">{c.email}</td>
+                        <td className="px-6 py-4 font-bold text-[var(--color-waldorf-moss)]">{c.nombre || 'Desconocido'}</td>
                         <td className="px-6 py-4">
-                          <span className={`text-[10px] uppercase font-black px-2 py-1 rounded-full ${
-                            c.fuente === 'chatbot' ? 'bg-emerald-500/10 text-emerald-400' :
-                            c.fuente === 'checkout' ? 'bg-blue-500/10 text-blue-400' :
-                            'bg-violet-500/10 text-violet-400'
+                          <span className={`text-[10px] uppercase font-bold px-2 py-1 rounded-full border ${
+                            c.fuente === 'chatbot' ? 'bg-emerald-50 text-emerald-600 border-emerald-200' :
+                            c.fuente === 'checkout' ? 'bg-blue-50 text-blue-600 border-blue-200' :
+                            'bg-violet-50 text-violet-600 border-violet-200'
                           }`}>
                             {c.fuente}
                           </span>
                         </td>
-                        <td className="px-6 py-4 text-gray-500 font-mono text-xs">
+                        <td className="px-6 py-4 text-[var(--color-waldorf-text-light)] font-mono text-xs">
                           {new Date(c.fecha).toLocaleDateString()}
                         </td>
                       </tr>
                     ))}
                     {contacts.length === 0 && (
-                      <tr><td colSpan={5} className="px-6 py-12 text-center text-gray-500 font-medium">No hay contactos registrados aún en la base de datos.</td></tr>
+                      <tr><td colSpan={5} className="px-6 py-12 text-center text-[var(--color-waldorf-text-light)] font-medium">No hay contactos registrados aún en la base de datos.</td></tr>
                     )}
                   </tbody>
                 </table>
@@ -451,54 +451,54 @@ export default function CampanasPage() {
 
           {/* HISTORY */}
           {activeTab === 'history' && (
-            <div className="bg-surface rounded-3xl border border-hairline-soft overflow-hidden shadow-xl">
-              <div className="p-6 border-b border-hairline-soft">
-                <h2 className="text-xl font-bold text-amber-400 flex items-center gap-2">
+            <div className="bg-white rounded-3xl border border-[var(--color-waldorf-sage)]/20 overflow-hidden shadow-sm">
+              <div className="p-6 border-b border-[var(--color-waldorf-sage)]/20 bg-[var(--color-waldorf-paper)]">
+                <h2 className="text-xl font-bold text-[var(--color-waldorf-moss)] flex items-center gap-2">
                   <History className="w-5 h-5" /> Historial de Envíos
                 </h2>
               </div>
               
               <div className="overflow-x-auto max-h-[600px] custom-scrollbar">
                 <table className="w-full text-left text-sm">
-                  <thead className="bg-background text-xs uppercase text-gray-500 sticky top-0 z-10">
+                  <thead className="bg-[var(--color-waldorf-paper)] text-xs uppercase text-[var(--color-waldorf-moss)] font-bold sticky top-0 z-10 border-b border-[var(--color-waldorf-sage)]/20">
                     <tr>
-                      <th className="px-6 py-4 font-medium">Asunto</th>
-                      <th className="px-6 py-4 font-medium">Fecha Envío</th>
-                      <th className="px-6 py-4 font-medium text-center">Exitosos</th>
-                      <th className="px-6 py-4 font-medium text-center">Fallidos</th>
-                      <th className="px-6 py-4 font-medium text-center">Aperturas (Únicas / Totales)</th>
-                      <th className="px-6 py-4 font-medium text-center">Tasa Apertura</th>
-                      <th className="px-6 py-4 font-medium">Estado</th>
+                      <th className="px-6 py-4">Asunto</th>
+                      <th className="px-6 py-4">Fecha Envío</th>
+                      <th className="px-6 py-4 text-center">Exitosos</th>
+                      <th className="px-6 py-4 text-center">Fallidos</th>
+                      <th className="px-6 py-4 text-center">Aperturas (Únicas / Totales)</th>
+                      <th className="px-6 py-4 text-center">Tasa Apertura</th>
+                      <th className="px-6 py-4">Estado</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-white/5">
+                  <tbody className="divide-y divide-[var(--color-waldorf-sage)]/10">
                     {campaigns.map((camp) => (
-                      <tr key={camp.id} className="hover:bg-foreground/5 transition-colors">
-                        <td className="px-6 py-4 font-semibold text-gray-300 max-w-xs truncate">{camp.subject}</td>
-                        <td className="px-6 py-4 font-mono text-gray-500 text-xs">
+                      <tr key={camp.id} className="hover:bg-gray-50 transition-colors">
+                        <td className="px-6 py-4 font-bold text-[var(--color-waldorf-moss)] max-w-xs truncate">{camp.subject}</td>
+                        <td className="px-6 py-4 font-mono text-[var(--color-waldorf-text-light)] text-xs">
                           {new Date(camp.created_at).toLocaleString()}
                         </td>
                         <td className="px-6 py-4 text-center">
-                          <span className="font-mono text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded font-bold">{camp.sent_count}</span>
+                          <span className="font-mono text-emerald-600 bg-emerald-50 border border-emerald-200 px-2 py-1 rounded font-bold">{camp.sent_count}</span>
                         </td>
                         <td className="px-6 py-4 text-center">
-                          <span className="font-mono text-red-400 bg-red-500/10 px-2 py-1 rounded font-bold">{camp.failed_count}</span>
+                          <span className="font-mono text-red-600 bg-red-50 border border-red-200 px-2 py-1 rounded font-bold">{camp.failed_count}</span>
                         </td>
                         <td className="px-6 py-4 text-center font-mono">
-                          <span className="text-cyan-400 font-bold">{camp.unique_opens ?? 0}</span>
-                          <span className="text-gray-500"> / </span>
-                          <span className="text-gray-400">{camp.total_opens ?? 0}</span>
+                          <span className="text-[var(--color-waldorf-moss)] font-bold">{camp.unique_opens ?? 0}</span>
+                          <span className="text-[var(--color-waldorf-text-light)]"> / </span>
+                          <span className="text-[var(--color-waldorf-text-light)]">{camp.total_opens ?? 0}</span>
                         </td>
-                        <td className="px-6 py-4 text-center font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
+                        <td className="px-6 py-4 text-center font-mono font-bold text-[var(--color-waldorf-terracotta)]">
                           {camp.sent_count > 0 
                             ? `${((camp.unique_opens ?? 0) / camp.sent_count * 100).toFixed(1)}%` 
                             : '0.0%'}
                         </td>
                         <td className="px-6 py-4">
-                          <span className={`text-[10px] uppercase font-black px-2 py-1 rounded-full ${
-                            camp.status === 'sent' ? 'bg-emerald-500/10 text-emerald-400' :
-                            camp.status === 'sending' ? 'bg-blue-500/10 text-blue-400 animate-pulse' :
-                            'bg-red-500/10 text-red-400'
+                          <span className={`text-[10px] uppercase font-black px-2 py-1 rounded-full border ${
+                            camp.status === 'sent' ? 'bg-emerald-50 text-emerald-600 border-emerald-200' :
+                            camp.status === 'sending' ? 'bg-blue-50 text-blue-600 border-blue-200 animate-pulse' :
+                            'bg-red-50 text-red-600 border-red-200'
                           }`}>
                             {camp.status === 'sent' ? 'Completado' : camp.status}
                           </span>
@@ -506,7 +506,7 @@ export default function CampanasPage() {
                       </tr>
                     ))}
                     {campaigns.length === 0 && (
-                      <tr><td colSpan={7} className="px-6 py-12 text-center text-gray-500 font-medium">No se han enviado campañas aún.</td></tr>
+                      <tr><td colSpan={7} className="px-6 py-12 text-center text-[var(--color-waldorf-text-light)] font-medium">No se han enviado campañas aún.</td></tr>
                     )}
                   </tbody>
                 </table>
