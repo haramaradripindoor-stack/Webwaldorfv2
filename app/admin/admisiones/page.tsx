@@ -84,7 +84,13 @@ function LeadCard({ lead, onDelete }: { lead: LeadAdmision; onDelete?: (id: stri
             <User className="w-3 h-3 text-[var(--color-waldorf-terracotta)]" />
             {lead.nombre_apoderado || 'Sin nombre'}
           </h4>
-          <p className="text-xs text-[var(--color-waldorf-text-light)] truncate max-w-[150px]">{lead.email_apoderado}</p>
+          <p className="text-xs text-[var(--color-waldorf-text-light)] truncate max-w-[150px] mt-0.5">{lead.email_apoderado}</p>
+          {lead.telefono_apoderado && (
+            <p className="text-xs text-[var(--color-waldorf-moss)] font-medium truncate max-w-[150px] flex items-center gap-1 mt-0.5">
+              <span className="w-3 h-3 flex items-center justify-center">📱</span>
+              {lead.telefono_apoderado}
+            </p>
+          )}
         </div>
       </div>
 
