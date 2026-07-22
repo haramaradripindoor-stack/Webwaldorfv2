@@ -65,13 +65,28 @@ function LeadCard({ lead, onMove, onDelete }: { lead: LeadAdmision; onMove: (id:
             </button>
           )}
           {lead.estado === 'entrevista' && (
-            <button onClick={() => onMove(lead.id, 'evaluacion')} className="text-[10px] px-2 py-1 rounded-lg bg-purple-50 text-purple-600 hover:bg-purple-100 transition-colors font-medium">
-              A Evaluar
-            </button>
+            <>
+              <button onClick={() => onMove(lead.id, 'nuevo')} className="text-[10px] px-2 py-1 rounded-lg bg-gray-50 text-gray-600 hover:bg-gray-200 transition-colors font-medium">
+                Devolver
+              </button>
+              <button onClick={() => onMove(lead.id, 'evaluacion')} className="text-[10px] px-2 py-1 rounded-lg bg-purple-50 text-purple-600 hover:bg-purple-100 transition-colors font-medium">
+                A Evaluar
+              </button>
+            </>
           )}
           {lead.estado === 'evaluacion' && (
-            <button onClick={() => onMove(lead.id, 'matriculado')} className="text-[10px] px-2 py-1 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition-colors font-medium">
-              Matricular
+            <>
+              <button onClick={() => onMove(lead.id, 'entrevista')} className="text-[10px] px-2 py-1 rounded-lg bg-gray-50 text-gray-600 hover:bg-gray-200 transition-colors font-medium">
+                Devolver
+              </button>
+              <button onClick={() => onMove(lead.id, 'matriculado')} className="text-[10px] px-2 py-1 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition-colors font-medium">
+                Matricular
+              </button>
+            </>
+          )}
+          {lead.estado === 'matriculado' && (
+            <button onClick={() => onMove(lead.id, 'evaluacion')} className="text-[10px] px-2 py-1 rounded-lg bg-gray-50 text-gray-600 hover:bg-gray-200 transition-colors font-medium">
+              Devolver
             </button>
           )}
           <button onClick={() => onDelete(lead.id)} className="text-[10px] px-1.5 py-1 rounded-lg bg-red-50 text-red-500 hover:bg-red-100 transition-colors">
