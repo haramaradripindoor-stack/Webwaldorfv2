@@ -72,8 +72,8 @@ export async function POST(req: Request) {
       
       try {
         await transporter.sendMail({
-          from: `"Colegio Waldorf Trekan" <${process.env.GMAIL_USER}>`,
-          to: process.env.GMAIL_USER, // Se envía a sí mismo (como blind carbon copy a los demás)
+          from: `"Colegio Waldorf Trekan" <administracion@colegiowaldorftrekan.cl>`,
+          to: 'administracion@colegiowaldorftrekan.cl', // Se envía a sí mismo (como blind carbon copy a los demás)
           bcc: chunk,
           subject: subject,
           html: body_html
