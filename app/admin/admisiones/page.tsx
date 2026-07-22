@@ -2,8 +2,24 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
-import { Clock, CheckCircle, MessageSquare, Flame, Trash2, Calendar, User } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Clock, CheckCircle, MessageSquare, Flame, Trash2, Calendar, User, GripVertical } from 'lucide-react';
+import {
+  DndContext,
+  DragOverlay,
+  closestCorners,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  useDroppable
+} from '@dnd-kit/core';
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+  useSortable
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 const supabase = createClient();
 
@@ -27,24 +43,45 @@ const columns = [
   { id: 'matriculado', title: 'Matriculados', icon: CheckCircle, color: 'text-emerald-600', bg: 'bg-emerald-100' },
 ];
 
-function LeadCard({ lead, onMove, onDelete }: { lead: LeadAdmision; onMove: (id: string, estado: string) => void; onDelete: (id: string) => void }) {
+function LeadCard({ lead, onDelete }: { lead: LeadAdmision; onDelete?: (id: string) => void }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    id: lead.id,
+    data: { type: 'Lead', lead },
+  });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
   const timeAgo = mounted ? getTimeAgo(lead.created_at) : '';
 
+  if (isDragging) {
+    return (
+      <div ref={setNodeRef} style={style} className="opacity-50 bg-white p-4 rounded-xl border-2 border-dashed border-[var(--color-waldorf-terracotta)] mb-3 min-h-[140px]" />
+    );
+  }
+
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      className="bg-white p-4 rounded-xl border border-[var(--color-waldorf-sage)]/20 mb-3 shadow-sm hover:shadow-md transition-all text-left"
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className="bg-white p-4 rounded-xl border border-[var(--color-waldorf-sage)]/20 mb-3 shadow-sm hover:shadow-md transition-all text-left cursor-grab active:cursor-grabbing touch-none relative group"
     >
+      {/* Indicador de Drag */}
+      <div className="absolute top-4 right-2 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity">
+        <GripVertical size={16} />
+      </div>
+
       <div className="flex items-start justify-between mb-2">
         <div>
-          <h4 className="text-[var(--color-waldorf-moss)] font-bold text-sm flex items-center gap-1">
-            <User className="w-3 h-3" />
+          <h4 className="text-[var(--color-waldorf-moss)] font-bold text-sm flex items-center gap-1 pr-6">
+            <User className="w-3 h-3 text-[var(--color-waldorf-terracotta)]" />
             {lead.nombre_apoderado || 'Sin nombre'}
           </h4>
           <p className="text-xs text-[var(--color-waldorf-text-light)] truncate max-w-[150px]">{lead.email_apoderado}</p>
@@ -58,43 +95,61 @@ function LeadCard({ lead, onMove, onDelete }: { lead: LeadAdmision; onMove: (id:
 
       <div className="flex items-center justify-between mt-3">
         <span className="text-[10px] text-[var(--color-waldorf-terracotta)] font-medium">{timeAgo} · {lead.origen || 'Web'}</span>
-        <div className="flex gap-1 flex-wrap justify-end">
-          {lead.estado === 'nuevo' && (
-            <button onClick={() => onMove(lead.id, 'entrevista')} className="text-[10px] px-2 py-1 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors font-medium">
-              Agendar
+        <div className="flex gap-1 flex-wrap justify-end relative z-10">
+          {onDelete && (
+            <button 
+              onPointerDown={(e) => e.stopPropagation()} 
+              onClick={(e) => { e.stopPropagation(); onDelete(lead.id); }} 
+              className="text-[10px] px-1.5 py-1 rounded-lg bg-red-50 text-red-500 hover:bg-red-100 transition-colors"
+              title="Eliminar Postulación"
+            >
+              <Trash2 className="w-3 h-3" />
             </button>
           )}
-          {lead.estado === 'entrevista' && (
-            <>
-              <button onClick={() => onMove(lead.id, 'nuevo')} className="text-[10px] px-2 py-1 rounded-lg bg-gray-50 text-gray-600 hover:bg-gray-200 transition-colors font-medium">
-                Devolver
-              </button>
-              <button onClick={() => onMove(lead.id, 'evaluacion')} className="text-[10px] px-2 py-1 rounded-lg bg-purple-50 text-purple-600 hover:bg-purple-100 transition-colors font-medium">
-                A Evaluar
-              </button>
-            </>
-          )}
-          {lead.estado === 'evaluacion' && (
-            <>
-              <button onClick={() => onMove(lead.id, 'entrevista')} className="text-[10px] px-2 py-1 rounded-lg bg-gray-50 text-gray-600 hover:bg-gray-200 transition-colors font-medium">
-                Devolver
-              </button>
-              <button onClick={() => onMove(lead.id, 'matriculado')} className="text-[10px] px-2 py-1 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition-colors font-medium">
-                Matricular
-              </button>
-            </>
-          )}
-          {lead.estado === 'matriculado' && (
-            <button onClick={() => onMove(lead.id, 'evaluacion')} className="text-[10px] px-2 py-1 rounded-lg bg-gray-50 text-gray-600 hover:bg-gray-200 transition-colors font-medium">
-              Devolver
-            </button>
-          )}
-          <button onClick={() => onDelete(lead.id)} className="text-[10px] px-1.5 py-1 rounded-lg bg-red-50 text-red-500 hover:bg-red-100 transition-colors">
-            <Trash2 className="w-3 h-3" />
-          </button>
         </div>
       </div>
-    </motion.div>
+    </div>
+  );
+}
+
+function Column({ col, leads, onDelete, loading }: { col: any; leads: LeadAdmision[]; onDelete: (id: string) => void; loading: boolean }) {
+  const { setNodeRef } = useDroppable({
+    id: col.id,
+    data: { type: 'Column', col }
+  });
+  
+  const Icon = col.icon;
+  
+  return (
+    <div className="min-w-[320px] max-w-[320px] bg-[var(--color-waldorf-paper)] rounded-2xl border border-[var(--color-waldorf-sage)]/20 p-4 min-h-[500px] snap-start shadow-sm flex flex-col">
+      <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[var(--color-waldorf-sage)]/20">
+        <div className={`p-1.5 rounded-lg ${col.bg}`}>
+          <Icon className={`w-4 h-4 ${col.color}`} />
+        </div>
+        <h2 className="text-sm font-bold text-[var(--color-waldorf-moss)]">{col.title}</h2>
+        <span className="ml-auto text-xs font-bold text-white bg-[var(--color-waldorf-terracotta)] px-2.5 py-0.5 rounded-full shadow-sm">{leads.length}</span>
+      </div>
+
+      <SortableContext items={leads.map(l => l.id)} strategy={verticalListSortingStrategy}>
+        <div ref={setNodeRef} className="flex-1 overflow-y-auto pr-1 custom-scrollbar min-h-[150px] pb-20">
+          {leads.map((lead) => (
+            <LeadCard key={lead.id} lead={lead} onDelete={onDelete} />
+          ))}
+
+          {leads.length === 0 && !loading && (
+            <div className="text-sm text-[var(--color-waldorf-text-light)] text-center py-8 font-medium border-2 border-dashed border-[var(--color-waldorf-sage)]/20 rounded-xl mt-4 pointer-events-none">
+              Arrastra familias aquí 🌱
+            </div>
+          )}
+
+          {loading && (
+            <div className="flex justify-center py-8">
+              <span className="w-6 h-6 border-2 border-[var(--color-waldorf-terracotta)]/30 border-t-[var(--color-waldorf-terracotta)] rounded-full animate-spin" />
+            </div>
+          )}
+        </div>
+      </SortableContext>
+    </div>
   );
 }
 
@@ -114,6 +169,18 @@ function getTimeAgo(dateStr: string): string {
 export default function AdmisionesPage() {
   const [leads, setLeads] = useState<LeadAdmision[]>([]);
   const [loading, setLoading] = useState(true);
+  const [activeLead, setActiveLead] = useState<LeadAdmision | null>(null);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5, // Permite hacer clics en botones sin iniciar drag
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
 
   const fetchLeads = async () => {
     const { data, error } = await supabase
@@ -142,17 +209,54 @@ export default function AdmisionesPage() {
     };
   }, []);
 
-  const handleMove = async (id: string, newEstado: string) => {
-    const { error } = await supabase.from('leads_admision').update({ estado: newEstado }).eq('id', id);
-    if (error) alert('Error: ' + error.message);
-    else fetchLeads();
-  };
-
   const handleDelete = async (id: string) => {
     if (!confirm('¿Estás seguro de eliminar este prospecto?')) return;
     const { error } = await supabase.from('leads_admision').delete().eq('id', id);
     if (error) alert('Error: ' + error.message);
     else fetchLeads();
+  };
+
+  const onDragStart = (event: any) => {
+    const { active } = event;
+    const lead = leads.find(l => l.id === active.id);
+    if (lead) setActiveLead(lead);
+  };
+
+  const onDragEnd = async (event: any) => {
+    setActiveLead(null);
+    const { active, over } = event;
+    if (!over) return;
+
+    const activeId = active.id;
+    const overId = over.id;
+
+    // Detectar a qué estado se movió
+    const isOverColumn = columns.map(c => c.id).includes(overId);
+    let targetEstado = '';
+
+    if (isOverColumn) {
+      targetEstado = overId;
+    } else {
+      const overLead = leads.find(l => l.id === overId);
+      if (overLead) targetEstado = overLead.estado;
+    }
+
+    const activeLead = leads.find(l => l.id === activeId);
+
+    if (activeLead && targetEstado && activeLead.estado !== targetEstado) {
+      // 1. Optimistic Update UI
+      setLeads(currentLeads => 
+        currentLeads.map(l => l.id === activeId ? { ...l, estado: targetEstado as any } : l)
+      );
+      
+      // 2. Real DB Update
+      const { error } = await supabase.from('leads_admision').update({ estado: targetEstado }).eq('id', activeId);
+      
+      if (error) {
+        alert('Error moviendo prospecto: ' + error.message);
+        fetchLeads(); // Rollback en caso de error
+      }
+    }
   };
 
   return (
@@ -166,43 +270,27 @@ export default function AdmisionesPage() {
         </div>
       </div>
 
-      {/* Columnas del Kanban */}
-      <div className="flex gap-6 overflow-x-auto pb-8 snap-x">
-        {columns.map((col) => {
-          const Icon = col.icon;
-          const colLeads = leads.filter(l => l.estado === col.id);
+      {/* Kanban Board DND Context */}
+      <DndContext 
+        sensors={sensors} 
+        collisionDetection={closestCorners}
+        onDragStart={onDragStart}
+        onDragEnd={onDragEnd}
+      >
+        <div className="flex gap-6 overflow-x-auto pb-8 snap-x">
+          {columns.map((col) => {
+            const colLeads = leads.filter(l => l.estado === col.id);
+            return <Column key={col.id} col={col} leads={colLeads} onDelete={handleDelete} loading={loading} />;
+          })}
+        </div>
 
-          return (
-            <div key={col.id} className="min-w-[320px] max-w-[320px] bg-[var(--color-waldorf-paper)] rounded-2xl border border-[var(--color-waldorf-sage)]/20 p-4 min-h-[500px] snap-start shadow-sm flex flex-col">
-              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[var(--color-waldorf-sage)]/20">
-                <div className={`p-1.5 rounded-lg ${col.bg}`}>
-                  <Icon className={`w-4 h-4 ${col.color}`} />
-                </div>
-                <h2 className="text-sm font-bold text-[var(--color-waldorf-moss)]">{col.title}</h2>
-                <span className="ml-auto text-xs font-bold text-white bg-[var(--color-waldorf-terracotta)] px-2.5 py-0.5 rounded-full shadow-sm">{colLeads.length}</span>
-              </div>
-
-              <div className="flex-1 overflow-y-auto pr-1 custom-scrollbar">
-                <AnimatePresence>
-                  {colLeads.map((lead) => (
-                    <LeadCard key={lead.id} lead={lead} onMove={handleMove} onDelete={handleDelete} />
-                  ))}
-                </AnimatePresence>
-
-                {colLeads.length === 0 && !loading && (
-                  <p className="text-sm text-[var(--color-waldorf-text-light)] text-center py-8 font-medium border-2 border-dashed border-[var(--color-waldorf-sage)]/20 rounded-xl mt-4">Soltamos y confiamos. Llegarán nuevas familias. 🌱</p>
-                )}
-
-                {loading && (
-                  <div className="flex justify-center py-8">
-                    <span className="w-6 h-6 border-2 border-[var(--color-waldorf-terracotta)]/30 border-t-[var(--color-waldorf-terracotta)] rounded-full animate-spin" />
-                  </div>
-                )}
-              </div>
-            </div>
-          );
-        })}
-      </div>
+        {/* Floating Overlay al arrastrar */}
+        <DragOverlay>
+          {activeLead ? (
+            <LeadCard lead={activeLead} />
+          ) : null}
+        </DragOverlay>
+      </DndContext>
     </div>
   );
 }
