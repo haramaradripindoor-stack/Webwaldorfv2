@@ -3,7 +3,7 @@
 import { createClient } from '@/utils/supabase/client';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { LogOut, Home, Newspaper, CalendarDays, Brain, LayoutTemplate } from 'lucide-react';
+import { LogOut, Home, Newspaper, CalendarDays, Brain, LayoutTemplate, Mail } from 'lucide-react';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -23,6 +23,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { name: 'Noticias / SEO', href: '/admin/noticias', icon: Newspaper },
     { name: 'Actividades', href: '/admin/actividades', icon: CalendarDays },
     { name: 'Prospectos (Growth)', href: '/admin/prospectos', icon: LayoutTemplate },
+    { name: 'Directorio / Campañas', href: '/admin/campanas', icon: Mail },
   ];
 
   return (
