@@ -13,3 +13,7 @@
 ## Reglas de SEO para Blog y Web (Prohibición de Hashtags)
 - **Prohibición de Hashtags en la Web:** NUNCA utilizar hashtags (ej. #Educacion) en los artículos del blog (archivos .md) ni en ningún componente de texto de Next.js. Esto confunde a los crawlers de Google y arruina el SEO Semántico.
 - **GEO (Generative Engine Optimization):** En lugar de hashtags, el SEO de la web se basa estrictamente en la inyección de palabras clave de alto intento (long-tail) dentro de los párrafos, H1 y H2 (ej. 'Buscando colegios alternativos en Puerto Varas').
+
+## Reglas de Interfaz de Usuario (UI/UX)
+- **Sistemas Kanban y CRM:** NUNCA utilizar botones dentro de las tarjetas para mover elementos entre columnas. TODO sistema tipo Kanban (como Admisiones o Gestión de Tareas) debe implementarse estrictamente utilizando una experiencia de 'Arrastrar y Soltar' (Drag and Drop).
+- **Librería Estándar:** Para implementar Drag and Drop en React/Next.js, utilizar SIEMPRE @dnd-kit/core y sus utilidades asociadas. Es el estándar moderno, ligero y accesible, preferido sobre react-beautiful-dnd.
