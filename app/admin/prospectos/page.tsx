@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
-import { Loader2, Search, ExternalLink, Heart, MessageCircle, CheckCircle, XCircle } from 'lucide-react';
+import { Loader2, Search, ExternalLink, Heart, MessageCircle, CheckCircle, XCircle, Trash2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const supabase = createClient();
@@ -39,6 +39,13 @@ export default function ProspectosPage() {
 
   const updateEstado = async (id: string, nuevoEstado: Prospecto['estado_cm']) => {
     const { error } = await supabase.from('prospectos_outbound').update({ estado_cm: nuevoEstado }).eq('id', id);
+    if (error) alert('Error: ' + error.message);
+    else fetchProspectos();
+  };
+
+  const deleteProspecto = async (id: string) => {
+    if (!confirm('¿Estás seguro de eliminar permanentemente a este prospecto de la base de datos?')) return;
+    const { error } = await supabase.from('prospectos_outbound').delete().eq('id', id);
     if (error) alert('Error: ' + error.message);
     else fetchProspectos();
   };
@@ -161,8 +168,11 @@ export default function ProspectosPage() {
                           <a href={`https://instagram.com/${p.ig_username}`} target="_blank" rel="noreferrer" className="p-1.5 bg-gray-100 hover:bg-blue-50 text-gray-500 hover:text-blue-500 rounded-md transition-colors" title="Comentar">
                             <MessageCircle className="w-4 h-4" />
                           </a>
-                          <button onClick={() => updateEstado(p.id, 'Convertido')} className="p-1.5 bg-gray-100 hover:bg-emerald-50 text-gray-500 hover:text-emerald-500 rounded-md transition-colors ml-2" title="Marcar como Convertido">
+                          <button onClick={() => updateEstado(p.id, 'Convertido')} className="p-1.5 bg-gray-100 hover:bg-emerald-50 text-gray-500 hover:text-emerald-500 rounded-md transition-colors ml-1" title="Marcar como Convertido">
                             <CheckCircle className="w-4 h-4" />
+                          </button>
+                          <button onClick={() => deleteProspecto(p.id)} className="p-1.5 bg-gray-100 hover:bg-red-50 text-gray-500 hover:text-red-500 rounded-md transition-colors ml-1" title="Eliminar Permanentemente">
+                            <Trash2 className="w-4 h-4" />
                           </button>
                         </div>
                       </td>
