@@ -5,6 +5,9 @@ import MagneticCursor from '@/components/MagneticCursor'
 import AIChatWidget from '@/components/AIChatWidget'
 import SmoothScroll from '@/components/SmoothScroll'
 import LiquidSplash from '@/components/LiquidSplash'
+import dynamic from 'next/dynamic'
+
+const MartinPescador3D = dynamic(() => import('@/components/MartinPescador3D'), { ssr: false })
 
 const quicksand = { variable: 'font-sans' }
 const merriweather = { variable: 'font-serif' }
@@ -207,6 +210,9 @@ export default function RootLayout({
         <SmoothScroll>
           {children}
         </SmoothScroll>
+        
+        {/* Modelo 3D Interactivo (Madera) */}
+        <MartinPescador3D />
         
         {/* Widget Flotante Global */}
         <AIChatWidget />
