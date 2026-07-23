@@ -94,8 +94,39 @@ async function rerankChunks(query: string, chunks: any[]) {
   }
 }
 
+const rateLimit = new Map<string, { count: number; resetTime: number }>();
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const windowMs = 60000; // 1 minuto
+  const maxRequests = 10; // Max 10 mensajes por minuto por IP
+  
+  if (!rateLimit.has(ip)) {
+    rateLimit.set(ip, { count: 1, resetTime: now + windowMs });
+    return true;
+  }
+  
+  const data = rateLimit.get(ip)!;
+  if (now > data.resetTime) {
+    rateLimit.set(ip, { count: 1, resetTime: now + windowMs });
+    return true;
+  }
+  
+  if (data.count >= maxRequests) {
+    return false;
+  }
+  
+  data.count++;
+  return true;
+}
+
 export async function POST(req: Request) {
   try {
+    const ip = req.headers.get('x-forwarded-for') || req.headers.get('cf-connecting-ip') || 'unknown';
+    if (!checkRateLimit(ip)) {
+      return NextResponse.json({ error: 'Demasiadas solicitudes. Por favor, espera un minuto.' }, { status: 429 });
+    }
+
     const body = await req.json()
     let { messages, leadData } = body
 

@@ -9,9 +9,9 @@ export async function requireAdmin() {
   }
 
   const isAdmin = 
-    user.user_metadata?.role === 'admin' || 
     user.email === 'trekancomunicaciones2025@gmail.com' || 
     user.email === 'fvivancorne@gmail.com' ||
+    user.email === 'administracion@colegiowaldorftrekan.cl' ||
     (process.env.ADMIN_EMAIL && user.email === process.env.ADMIN_EMAIL)
 
   if (!isAdmin) {
