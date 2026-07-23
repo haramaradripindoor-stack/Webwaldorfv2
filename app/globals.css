@@ -33,7 +33,14 @@
     overflow-x: hidden;
   }
   
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2 {
+    font-family: 'Antroposofia', 'Merriweather', Georgia, serif;
+    font-weight: 400; /* La fuente Antroposofia se ve mejor en peso normal */
+    color: var(--color-waldorf-moss);
+    letter-spacing: 0.02em;
+  }
+
+  h3, h4, h5, h6 {
     font-weight: 700;
     color: var(--color-waldorf-moss);
   }
