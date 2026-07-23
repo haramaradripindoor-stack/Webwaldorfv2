@@ -34,34 +34,35 @@ export default function AdmisionClient() {
             style={{ y: yHero, scale: useTransform(heroScroll, [0, 1], [1, 1.1]) }} 
             className="absolute inset-0 z-0"
           >
-            <div className="absolute inset-0 bg-black/40 z-10" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-waldorf-cream)] via-transparent to-[var(--color-waldorf-cream)]/20 z-10" />
+            <div className="absolute inset-0 bg-[#0A0A10]/50 z-10 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-[var(--color-waldorf-moss)]/20 z-10 mix-blend-overlay" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e25] via-transparent to-transparent z-10" />
             <img 
               src="https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20264.jpg" 
               alt="Bosque Sur" 
-              className="w-full h-full object-cover opacity-60"
+              className="w-full h-full object-cover"
             />
           </motion.div>
 
           <motion.div style={{ y: yHero, opacity: opacityHero }} className="max-w-5xl mx-auto text-center relative z-20">
             <motion.span 
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
-              className="text-[var(--color-waldorf-mustard)] text-sm font-bold tracking-widest uppercase block mb-6 drop-shadow-md"
+              className="inline-block px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[var(--color-waldorf-cream)] text-sm font-bold tracking-widest uppercase mb-8 shadow-2xl"
             >
               Admisión 2026 · Abierta todo el año
             </motion.span>
             
             <motion.h1 
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2 }}
-              className="text-5xl md:text-8xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-8 leading-tight tracking-tight drop-shadow-lg"
+              className="text-5xl md:text-8xl font-bold font-serif text-white mb-8 leading-tight tracking-tight drop-shadow-2xl"
             >
               Donde el niño camina <br/>
-              <span className="text-[var(--color-waldorf-terracotta)] italic font-light drop-shadow-sm">con voluntad</span>
+              <span className="text-[var(--color-waldorf-mustard)] italic font-light drop-shadow-lg">con voluntad</span>
             </motion.h1>
             
             <motion.p 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.4 }}
-              className="text-[var(--color-waldorf-text-light)] text-lg md:text-2xl leading-relaxed mb-10 max-w-3xl mx-auto font-medium"
+              className="text-[var(--color-waldorf-cream)]/90 text-lg md:text-2xl leading-relaxed mb-10 max-w-3xl mx-auto font-medium drop-shadow-md"
             >
               <em>Trekan</em> significa caminante en mapudungun. Un espacio donde niñas y niños de 3 a 14 años aprenden a través del arte, el ritmo y la vida — en grupos de no más de 16.
             </motion.p>
