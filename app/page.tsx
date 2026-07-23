@@ -20,7 +20,6 @@ const ContactSection = dynamic(() => import('@/components/ContactSection'))
 const MapSection = dynamic(() => import('@/components/MapSection'), { ssr: false })
 const InstagramSection = dynamic(() => import('@/components/InstagramSection'), { ssr: false })
 const RadicalTransparency = dynamic(() => import('@/components/RadicalTransparency'))
-const MartinPescador3D = dynamic(() => import('@/components/MartinPescador3D'), { ssr: false })
 import Footer from '@/components/Footer'
 import { getMarkdownPosts } from '@/lib/markdown'
 import { createClient } from '@/utils/supabase/server'
@@ -116,7 +115,6 @@ export default async function Home() {
         <MapSection />
         <RadicalTransparency />
         
-        <MartinPescador3D />
         <Footer />
       </main>
 
