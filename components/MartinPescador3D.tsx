@@ -52,8 +52,6 @@ export default function MartinPescador3D() {
         
         <PresentationControls 
           global 
-          config={{ mass: 2, tension: 500 }} 
-          snap={true}
           rotation={[0, -0.5, 0]} 
           polar={[-Math.PI / 4, Math.PI / 4]} 
           azimuth={[-Math.PI / 4, Math.PI / 4]}
