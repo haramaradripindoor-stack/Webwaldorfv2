@@ -17,8 +17,8 @@
   --color-waldorf-text: #2C2A29;
   --color-waldorf-text-light: #5A5755;
   
-  --font-quicksand: 'Quicksand', sans-serif;
-  --font-merriweather: 'Antroposofia', 'Merriweather', serif;
+  --font-sans: 'Quicksand', sans-serif;
+  --font-serif: 'Antroposofia', 'Merriweather', serif;
   --font-antroposofia: 'Antroposofia', sans-serif;
 
   /* Fluid Math */

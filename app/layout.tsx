@@ -9,8 +9,7 @@ import dynamic from 'next/dynamic'
 
 const MartinPescador3D = dynamic(() => import('@/components/MartinPescador3D'), { ssr: false })
 
-const quicksand = { variable: 'font-sans' }
-const merriweather = { variable: 'font-serif' }
+
 
 export const metadata: Metadata = {
   title: 'Colegio Waldorf Trekan | Pedagogía Waldorf en Puerto Varas, Chile',
@@ -135,7 +134,7 @@ export default function RootLayout({
   const GTM_ID = 'GTM-NWT7GVSD'
 
   return (
-    <html lang="es" className={`${quicksand.variable} ${merriweather.variable}`}>
+    <html lang="es">
       <head>
         {/* Schema JSON-LD */}
         <script
