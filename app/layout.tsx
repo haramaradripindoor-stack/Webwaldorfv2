@@ -6,6 +6,13 @@ import AIChatWidget from '@/components/AIChatWidget'
 import SmoothScroll from '@/components/SmoothScroll'
 import LiquidSplash from '@/components/LiquidSplash'
 import dynamic from 'next/dynamic'
+import { Quicksand } from 'next/font/google'
+
+const quicksand = Quicksand({ 
+  subsets: ['latin'], 
+  variable: '--font-sans',
+  display: 'swap',
+})
 
 const MartinPescador3D = dynamic(() => import('@/components/MartinPescador3D'), { ssr: false })
 
@@ -134,7 +141,7 @@ export default function RootLayout({
   const GTM_ID = 'GTM-NWT7GVSD'
 
   return (
-    <html lang="es">
+    <html lang="es" className={quicksand.variable}>
       <head>
         {/* Schema JSON-LD */}
         <script

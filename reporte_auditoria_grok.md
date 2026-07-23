@@ -1,591 +1,364 @@
-# Auditoría completa — Webwaldorfv2 (Colegio Waldorf Trekan)
+# Auditoría de UI — `globals.css` y `layout.tsx`
 
-| Campo | Valor |
-|--------|--------|
-| **Fecha** | 2026-07-16 |
-| **Repositorio** | `Webwaldorfv2` |
-| **Stack** | Next.js 14.2.4 (App Router), React 18, Supabase (Auth + DB + Storage), Tailwind 4, Groq/Cohere (IA/RAG), Resend/Nodemailer, Firebase Admin (push) |
-| **Alcance** | Seguridad, arquitectura, datos/PII, rendimiento, calidad de código, deuda operativa |
-| **Método** | Revisión estática del código, rutas API, middleware, scripts, dependencias (`npm audit`), configuración y patrones de auth/RLS |
+**Proyecto:** Webwaldorfv2 (Colegio Waldorf Trekan)  
+**Auditor:** Grok (xAI)  
+**Fecha:** 2026-07-23  
+**Alcance:** últimos cambios de UI en `app/globals.css` y `app/layout.tsx`, con impacto colateral en componentes/páginas relacionados  
+**Rama auditada:** `main` (working tree limpio, al día con `origin/main`)
 
 ---
 
 ## 1. Resumen ejecutivo
 
-El proyecto es un sitio público de colegio + panel admin/CRM + bot/RAG + webhooks de mensajería y pagos, construido en Next.js sobre Supabase. Funcionalmente cubre landing, admisión, noticias, arriendo de salón y un backoffice amplio.
+Los commits recientes refuerzan la identidad tipográfica Waldorf (fuente **Antroposofia** en títulos) e introducen un **modelo 3D global** (Martín Pescador de madera) como elemento de marca Awwwards-style. La dirección de arte es coherente con la paleta y el tono orgánico del sitio, pero la implementación actual tiene **riesgos serios de rendimiento y UX**, y al menos un **bug de doble montaje** en la home.
 
-**Estado general: funcional, pero con superficie de ataque y deuda arquitectónica altas.**
+| Severidad | Cantidad | Acción |
+|-----------|----------|--------|
+| Crítica   | 2        | Corregir antes de considerar el cambio “listo” en producción |
+| Alta      | 4        | Priorizar en el próximo ciclo |
+| Media     | 5        | Planificar mejoras |
+| Baja / OK | 4        | Mantener o pulir |
 
-Los problemas más graves no son de UI, sino de **confianza de seguridad**:
-
-1. APIs administrativas y de coste (IA, newsletter, RAG, leads) **sin autenticación de servidor**.
-2. Middleware de `/admin` con **autorización frágil** (emails hardcodeados + `user_metadata.role`).
-3. **Contraseña de admin en el repositorio Git** (`scripts/create_admin.mjs`).
-4. **Next.js 14.2.4 con vulnerabilidad crítica** y decenas de CVEs (cache poisoning, middleware bypass, DoS).
-5. Código y módulos **heredados de Clínica GAP** (pacientes, templates, webhooks Meta, AI fallback) que confunden dominio y aumentan mantenimiento.
-6. Cache desactivado en páginas públicas (`revalidate = 0`) y home muy pesada (muchos client components + video/animaciones).
-
-### Matriz de riesgo (priorizada)
-
-| Prioridad | Hallazgo | Impacto |
-|-----------|----------|---------|
-| **P0** | APIs abiertas (`/api/admin/rag`, `/api/seo`, `/api/newsletter`, `/api/chat`, webhooks sin firma) | Abuso de IA, spam masivo, manipulación de RAG/CRM, coste API |
-| **P0** | Password admin versionado en Git | Compromiso de cuenta admin |
-| **P0** | Next.js desactualizado (critical) | RCE/DoS/bypass según CVE |
-| **P1** | Admin auth por emails hardcodeados / metadata editable | Escalada de privilegios |
-| **P1** | Server Actions con service role sin re-chequeo de rol | Escritura no autorizada de CMS |
-| **P1** | XSS por interpolación HTML en emails (cotización/leads) | Phishing interno / robo de sesión de correo |
-| **P1** | Múltiples tablas de leads sin modelo unificado | Pérdida de datos, inconsistencia CRM |
-| **P2** | `revalidate = 0` + home monolitica | Lento, coste serverless alto |
-| **P2** | Código muerto / fork Clínica GAP | Complejidad, bugs silentes |
-| **P2** | Sin headers de seguridad, sin rate limit | Endurecimiento básico ausente |
-| **P3** | Scripts one-off, credenciales de scraping en `.env.local` | Riesgo operativo y legal |
+**Veredicto:** la tipografía global va en la dirección correcta; el layout global necesita **acotar el 3D**, **cargar fuentes de cuerpo de forma real** y **evitar efectos de marca en rutas admin**.
 
 ---
 
-## 2. Mapa del sistema (as-is)
+## 2. Commits revisados
 
-```
-[Visitante]
-   │
-   ├─► App Router público (/ , /admision, /noticias, /actividades, /arriendo-salon, /ciudades/…)
-   │      └─► Supabase (anon) + fallback markdown
-   │
-   ├─► Widgets (AIChatWidget → /api/leads → Resend + DB)
-   │
-   └─► /api/chat (RAG Cohere + Groq stream)  ← público, sin rate limit
+| Hash | Mensaje | Archivos UI relevantes |
+|------|---------|------------------------|
+| `d34e927` | UI: Inyectar modelo 3D del Martín Pescador… | `app/layout.tsx` |
+| `e7a626b` | UI: Restaurar fuente Antroposofia en h1/h2… | `app/globals.css` |
+| `4b059cc` | ok | `app/globals.css` (+ cursor, page) |
+| `d98e546` | l | `app/globals.css`, `app/layout.tsx` |
 
-[Admin UI /admin/*]
-   │  Middleware: sesión Supabase + emails hardcodeados / user_metadata.role
-   ├─► Cliente Supabase anon (depende de RLS)
-   └─► fetch a /api/*  (muchas rutas sin auth server-side)
-
-[Webhooks]
-   /api/webhook/meta | flow | mercadopago | google-forms
-   (firma/verificación incompleta o ausente)
-
-[Infra]
-   Vercel (vercel.json vacío) · Supabase · Gmail SMTP · Resend · Groq · Cohere · Firebase
-```
-
-### Superficie API actual
-
-| Ruta | Auth | Riesgo principal |
-|------|------|------------------|
-| `POST /api/chat` | No | Abuso IA + escritura leads + coste Cohere/Groq |
-| `POST /api/leads` | No | Spam CRM + emails |
-| `POST /api/cotizacion` | No | Spam SMTP + XSS en HTML de correo |
-| `POST /api/seo` | No | Abuso Groq desde admin UI (pero API pública) |
-| `POST /api/newsletter` | No | **Envío masivo a todos los leads** sin auth |
-| `GET/POST/DELETE /api/admin/rag` | No | Lectura/escritura/borrado knowledge base |
-| `GET /api/cron/keep-alive` | No | Endpoint público de health (bajo, pero ruidoso) |
-| `POST /api/webhook/*` | Débil/nula | Inyección de leads o activación premium falsa |
-| Referencias a `/api/patients`, `/api/campaigns`, `/api/cms`, `/api/rag/*`, `/api/push`, `/api/settings` | — | **Rutas referenciadas en admin que no existen en `app/api`** |
+**Nota de proceso:** mensajes `"ok"` y `"l"` dificultan el historial y futuras auditorías. Conviene commits descriptivos (`fix(ui): …` / `feat(ui): …`).
 
 ---
 
-## 3. Vulnerabilidades y riesgos de seguridad
+## 3. Cambios observados
 
-### 3.1 [CRÍTICO] Contraseña de administrador en el repositorio
+### 3.1 `app/globals.css`
 
-**Archivo:** `scripts/create_admin.mjs` (trackeado por Git)
+1. **Tokens de fuente renombrados a convención Tailwind**
+   - Antes: `--font-quicksand`, `--font-merriweather`
+   - Ahora: `--font-sans` → Quicksand; `--font-serif` → Antroposofia + Merriweather
+   - Se mantiene `--font-antroposofia`
+2. **`@layer base` diferencia h1/h2 de h3–h6**
+   - `h1, h2`: familia Antroposofia, `font-weight: 400`, color moss, `letter-spacing: 0.02em`
+   - `h3–h6`: solo `font-weight: 700` + color moss (sin familia explícita)
+3. **Base visual ya existente (contexto, no solo el diff)**
+   - Paleta Waldorf en `@theme`
+   - Film grain `.awwwards-noise`
+   - Glass / sombras orgánicas
+   - Google Translate headless
+   - `cursor: none !important` en desktop (`min-width: 768px`)
 
-```js
-const email = 'administracion@colegiowaldorftrekan.cl';
-const password = 'Fviva*2026';
-```
+### 3.2 `app/layout.tsx`
 
-**Impacto:** cualquiera con acceso al repo (o historial Git) conoce credenciales de admin.
-
-**Remediación inmediata:**
-1. Rotar la contraseña en Supabase Auth **ahora**.
-2. Eliminar el password del archivo; leer de env o generar y mostrar una sola vez.
-3. Purgar del historial si el repo es/fue público (`git filter-repo` / BFG).
-4. Añadir `scripts/create_admin.mjs` a `.gitignore` o reescribirlo sin secretos.
-
----
-
-### 3.2 [CRÍTICO] APIs sensibles sin autenticación ni autorización
-
-El middleware protege **páginas** `/admin/*`, no las **Route Handlers** bajo `/api/*`. Un atacante puede llamar las APIs directamente sin cookie de sesión.
-
-#### `/api/admin/rag` — CRUD completo de knowledge chunks con service role
-
-- `GET` lista todo el conocimiento del bot.
-- `POST` inserta contenido + embeddings (coste Cohere).
-- `DELETE` borra por `id`.
-- Usa `supabaseAdmin` (bypass RLS).
-
-#### `/api/newsletter` — broadcast masivo sin auth
-
-- Lee emails de `chat_leads` y envía por Resend en batches BCC.
-- Un atacante puede spammear la base de contactos o agotar cuota Resend.
-- HTML interpola `title`, `excerpt`, `image_url` sin sanitizar (XSS en clientes de correo).
-
-#### `/api/seo` — generación de artículos con Groq
-
-- Cualquiera puede gastar la API key con prompts arbitrarios.
-
-#### `/api/chat` — IA + RAG + upsert de leads
-
-- Sin rate limit, sin captcha, sin límite de tamaño de `messages`.
-- Vector search + rerank + LLM por request = vector de coste/DoS económico.
-- Acepta `messages` del cliente sin validación Zod ni tope de tokens.
-
-#### `/api/leads` y `/api/cotizacion`
-
-- Inserción/email sin honeypot (a diferencia de `submitLead`), sin rate limit, sin validación estricta.
-- Cotización arma HTML con `${data.nombre}`, etc. → **HTML injection en correo interno**.
-
-**Remediación:**
-- Helper `requireAdmin(request)` en todas las rutas admin (session + rol desde DB).
-- Rate limiting (Upstash Redis / Vercel KV / middleware) en chat, leads, cotización.
-- CAPTCHA o honeypot + Zod en todos los formularios públicos.
-- Webhooks: verificar firmas (Meta `X-Hub-Signature-256`, Flow, Mercado Pago).
+1. **Carga dinámica del 3D**
+   ```ts
+   const MartinPescador3D = dynamic(() => import('@/components/MartinPescador3D'), { ssr: false })
+   ```
+2. **Montaje global** del modelo junto a `AIChatWidget` (todas las rutas del root layout).
+3. **Limpieza de stubs de fuentes**
+   - Se eliminaron:
+     ```ts
+     const quicksand = { variable: 'font-sans' }
+     const merriweather = { variable: 'font-serif' }
+     ```
+   - Y el `className` en `<html>` que los aplicaba.
+   - Esos objetos **no eran** `next/font`; no cargaban archivos reales. Quitarlos es correcto, pero deja el vacío de carga más visible.
 
 ---
 
-### 3.3 [CRÍTICO] Dependencias: Next.js 14.2.4 con advisory critical
+## 4. Hallazgos
 
-`npm audit` reporta **1 critical + 7 moderate**, casi todas en `next@14.2.4`:
+### CRÍTICO
 
-- Cache poisoning, middleware authorization bypass, DoS en Image Optimizer / RSC, SSRF en redirects, request smuggling en rewrites, etc.
-- Fix sugerido: `next@14.2.35` (mínimo dentro de la línea 14.2.x); ideal evaluar 15.x con plan de migración.
+#### C1. Doble montaje del Martín Pescador en la homepage
 
-**Acción:** actualizar `next` (y `eslint-config-next` si aplica) de inmediato; re-ejecutar build y E2E Playwright.
+El componente se instancia en:
+
+- `app/layout.tsx` (global)
+- `app/page.tsx` (home, líneas 22 y 117)
+
+**Efecto en `/`:** dos canvases WebGL, dos árboles de React Three Fiber, posible doble descarga/parse del GLB (~**6,4 MB** en `public/assets/3d/martinpescador.glb`), y dos capas fijas `bottom-8 right-8` superpuestas.
+
+**Recomendación:** dejar **una sola fuente de verdad**.
+- Preferible: solo en `layout.tsx` **o** solo en la home.
+- Si es “mascota de marca global”, quitarlo de `page.tsx`.
+- Si es solo home, quitarlo de `layout.tsx`.
+
+#### C2. WebGL + GLB + Environment en **todas** las rutas del root layout
+
+`MartinPescador3D` vive en el root layout → también en `/admin/*`, `/login`, formularios, páginas SEO, etc.
+
+**Impacto:**
+- Coste de JS (three / R3F / drei) y GPU en paneles internos.
+- UI decorativa encima del CMS (z-index `40`, fixed).
+- Peor LCP/TBT/INP en móvil no aplica (hidden `md:block`), pero en desktop admin sí.
+
+**Recomendación:**
+- Montar solo en rutas públicas de marketing, **o**
+- feature-flag / pathname guard (`usePathname` + exclude `/admin`, `/login`), **o**
+- lazy real: montar tras idle + viewport + `prefers-reduced-motion: no-preference`.
 
 ---
 
-### 3.4 [ALTO] Autorización admin frágil
+### ALTA
 
-**Archivo:** `utils/supabase/middleware.ts`
+#### A1. Quicksand y Merriweather no se cargan en ningún lado
 
+Estado actual:
+
+| Fuente | Declarada en CSS | Archivo / CDN / next/font |
+|--------|------------------|---------------------------|
+| Antroposofia | `@font-face` → `/fonts/antroposofia.ttf` | **Sí** (~50 KB) |
+| Quicksand | `--font-sans` | **No** |
+| Merriweather | fallback de serif | **No** |
+
+No hay `next/font/google`, ni `<link>` a Google Fonts, ni `@font-face` adicionales. El body usa `font-sans` → el navegador cae al **sans-serif del sistema**. La identidad “Quicksand” del diseño **no está garantizada**.
+
+Los stubs eliminados en `layout.tsx` nunca resolvieron esto; solo maquillaban variables CSS.
+
+**Recomendación:**
 ```ts
-const isAdmin =
-  user.user_metadata?.role === 'admin' ||
-  user.email === 'trekancomunicaciones2025@gmail.com' ||
-  user.email === 'fvivancorne@gmail.com';
+// layout.tsx (ejemplo)
+import { Quicksand, Merriweather } from 'next/font/google'
+
+const quicksand = Quicksand({ subsets: ['latin'], variable: '--font-sans' })
+const merriweather = Merriweather({ subsets: ['latin'], weight: ['300','400','700'], variable: '--font-merriweather' })
+```
+Y alinear `@theme` / `@font-face` de Antroposofia con variables reales de Next (self-host + `font-display: swap` ya está bien en Antroposofia).
+
+#### A2. Antroposofia: un solo peso; el sitio fuerza bold en títulos
+
+`@font-face` solo declara `font-weight: normal`. En base, h1/h2 van a `400`, pero decenas de componentes usan `font-bold` / `font-bold font-serif` en h1/h2 (Hero, Admisión, FAQ, etc.).
+
+**Efecto:** *faux bold* del navegador → bordes irregulares, aspecto menos “artesanal”, peor legibilidad en fluid hero.
+
+**Recomendación:**
+- Si solo hay un master: **no usar bold** en títulos Antroposofia; reforzar con tamaño, tracking y color.
+- O exportar pesos reales (400/700) si el archivo lo permite.
+- Alinear utilidades: quitar `font-bold` de h1/h2 o forzar `font-normal` en base con mayor especificidad consciente.
+
+#### A3. Conflicto de cursores: `cursor: none` vs canvas 3D
+
+En `globals.css` (desktop):
+
+```css
+html, body, a, button, input, select, textarea, [role="button"] {
+  cursor: none !important;
+}
 ```
 
-**Problemas:**
-- `user_metadata` es **editable por el propio usuario** en muchos flujos de Supabase Auth (no usar para RBAC).
-- Emails hardcodeados: rotación de personal requiere deploy; fuga de PII en el código.
-- No hay tabla `profiles.role` / `app_metadata` (solo admin vía service role).
-- Cualquier usuario autenticado que no sea admin es redirigido a `/`, pero las políticas RLS de CMS dicen `TO authenticated … USING (true)` → **cualquier cuenta registrada podría mutar noticias/actividades** si se crea un usuario no-admin.
+Además `MagneticCursor` fuerza `document.body.style.cursor = 'none'`.
 
-**Políticas SQL revisadas** (`scripts/setup_cms.sql`):
+El canvas del 3D declara `cursor-grab` / `active:cursor-grabbing`, pero:
+- el body/cursores globales compiten con `!important`;
+- `PresentationControls` con prop **`global`** captura drag en toda la ventana, no solo en el cuadro 220×220.
 
-```sql
-CREATE POLICY "Allow authenticated full access to noticias"
-ON public.noticias FOR ALL TO authenticated USING (true) WITH CHECK (true);
+**Riesgo UX:** arrastrar “en cualquier parte” rota el pajarito y puede pelear con selección de texto, sliders, maps, formularios.
+
+**Recomendación:**
+- Quitar `global` de `PresentationControls` (limitar interacción al contenedor).
+- Excluir el contenedor 3D del cursor custom, o usar `cursor: grab` local sin `!important` global tan agresivo.
+- Respetar `prefers-reduced-motion` y dispositivos pointer coarse (ya hay hide en mobile del 3D; el cursor custom también detecta touch — bien).
+
+#### A4. Coste de runtime del 3D sin controles de carga
+
+`MartinPescador3D`:
+- `Canvas` + luces + **`Environment preset="forest"`** (HDRI de red/CDN de assets drei)
+- `Float` + `PresentationControls`
+- `useGLTF('/assets/3d/martinpescador.glb')` sin `preload` explícito ni dispose documentado
+- Solo gate `mounted` (hidratación), no idle/intersection
+
+**Recomendación mínima:**
+- `IntersectionObserver` o montar tras `requestIdleCallback`
+- `dpr={[1, 1.5]}` y `frameloop="demand"` cuando no hay interacción
+- Suspense + fallback null
+- No montar en admin
+- Considerar versión estática WebP en mobile (ya hidden) y low-power mode
+
+---
+
+### MEDIA
+
+#### M1. Token `--font-antroposofia` con fallback `sans-serif`
+
+```css
+--font-antroposofia: 'Antroposofia', sans-serif;
 ```
 
-Esto es equivalente a “cualquier login = editor total”.
+Debería ser `serif` / `Georgia, serif` para coherencia con h1/h2 y `--font-serif`.
 
-**Remediación:**
-- Roles en `auth.users.raw_app_meta_data` (solo service role) o tabla `profiles` con RLS.
-- Policies: `auth.jwt() ->> 'role' = 'admin'` o `exists (select 1 from profiles where id = auth.uid() and role = 'admin')`.
-- Quitar emails hardcodeados del middleware.
+#### M2. h3–h6 sin familia tipográfica en base
+
+Solo heredan color/peso. Si el body es Quicksand (o system sans), los h3 quedan en sans mientras el diseño usa mucho `font-serif` en componentes. No es bug grave, pero la base es **inconsistente**: h1/h2 “siempre Antroposofia”, h3 “solo si el componente lo pide”.
+
+**Recomendación de DA:** decidir si h3 también lleva Antroposofia o Merriweather y documentarlo en el design system.
+
+#### M3. Color base moss en h1/h2 vs títulos sobre foto/video
+
+La regla base pinta h1/h2 en `--color-waldorf-moss`. En Hero y otras zonas se anula con utilidades (`text-white`, gradients). Funciona por cascada de utilidades Tailwind, pero:
+
+- cualquier h1 “desnudo” sin clase de color quedará verde musgo (puede ser deseado);
+- en admin (`h2` del sidebar con `text-[var(--color-waldorf-cream)]`) depende de utilidades — OK, pero frágil si alguien olvida la clase.
+
+#### M4. Stack de efectos globales denso
+
+En el body del layout conviven a la vez:
+
+| Capa | Componente / clase | z-index aprox. |
+|------|--------------------|----------------|
+| Splash | `LiquidSplash` | — |
+| Cursor | `MagneticCursor` | 9999 |
+| Grain | `.awwwards-noise` | 9997 |
+| Scroll | `SmoothScroll` | — |
+| 3D | `MartinPescador3D` | 40 |
+| Chat | `AIChatWidget` | (propio) |
+| Tracking | GTM + Meta Pixel + Translate | — |
+
+Para un colegio (público familiar, conversión admisión), el stack es **muy “portfolio Awwwards”**. No es incorrecto, pero cada capa suma JS, repaints y superficie de bugs. El grain a opacity 0.04 es sutil y aceptable; el 3D global es el más caro.
+
+#### M5. `html, body { position: static !important; top: 0 !important }` (Google Translate)
+
+Necesario para matar el banner, pero puede interferir con sticky/fixed edge cases y con librerías de scroll suave. Conviene revalidar Navbar sticky y `SmoothScroll` tras traducir página.
 
 ---
 
-### 3.5 [ALTO] Server Action de portada sin verificación de identidad
+### BAJA / ASPECTOS POSITIVOS
 
-**Archivo:** `app/admin/portada/actions.ts`
+#### B1. Buenas prácticas detectadas
 
-- Usa `SUPABASE_SERVICE_ROLE_KEY` para upsert de `homepage_content`.
-- No llama a `supabase.auth.getUser()` ni valida rol.
-- En Next.js, las Server Actions son invocables si se conoce el endpoint/ID de acción.
+- `font-display: swap` en Antroposofia → menos FOIT.
+- `dynamic(..., { ssr: false })` para el 3D → evita SSR de WebGL.
+- Renombrar tokens a `--font-sans` / `--font-serif` alinea con utilidades `font-sans` / `font-serif` usadas en todo el codebase (decenas de archivos).
+- Separar h1/h2 (display) de h3–h6 es una decisión de DA razonable.
+- 3D oculto en mobile (`hidden md:block`) → buen criterio de performance móvil.
+- Paleta centralizada en `@theme` (cream, sage, moss, terracotta, mustard).
 
-**Remediación:** al inicio de cada Server Action admin:
+#### B2. SEO / metadata en layout (fuera de UI pura pero presente)
 
-```ts
-const supabase = await createClient() // server con cookies
-const { data: { user } } = await supabase.auth.getUser()
-if (!user || !(await isUserAdmin(user))) throw new Error('Unauthorized')
-// luego usar admin client solo si hace falta bypass RLS
+Open Graph, Twitter Cards, JSON-LD EducationalOrganization y GTM están en el mismo archivo. No son regresiones de este diff de UI; se mantienen. Vigilar que scripts de marketing no bloqueen interacción junto al 3D.
+
+#### B3. Duplicidad cosmética de estilos en `body`
+
+```tsx
+<body className="font-sans antialiased bg-[var(--color-waldorf-cream)] text-[var(--color-waldorf-text)]">
+```
+
+y en CSS:
+
+```css
+body {
+  background-color: var(--color-waldorf-cream);
+  color: var(--color-waldorf-text);
+}
+```
+
+Redundante, no roto. Preferir una sola fuente de verdad (CSS base o className).
+
+#### B4. Commits de cursor (relacionados, fuera del diff estricto)
+
+En `4b059cc`, el cursor pasó de blanco + `mix-blend-difference` a terracotta semitransparente. Mejor alineación de marca; pierde contraste en fondos terracotta/oscuro — validar en Hero oscuro y en footer.
+
+---
+
+## 5. Matriz de impacto por superficie
+
+| Superficie | Tipografía h1/h2 | 3D global | Cursor none | Notas |
+|------------|------------------|-----------|-------------|-------|
+| Home `/` | ✅ Antroposofia (con bold conflictivo) | ⚠️ **×2 instancias** | ✅ | Crítico |
+| Páginas marketing | ✅ | ⚠️ 1 instancia | ✅ | Coste WebGL |
+| Admin `/admin/*` | Aplica reglas base | ⚠️ 3D + grain + cursor | ✅ | No deseable |
+| Login | Aplica | ⚠️ | ✅ | No deseable |
+| Mobile | Fuente sí | 3D oculto | cursor default (media query) | Mejor que desktop admin |
+
+---
+
+## 6. Checklist de verificación manual sugerida
+
+- [ ] Home: DevTools → contar nodos canvas WebGL (debe ser **1**, no 2)
+- [ ] Network: una sola request a `martinpescador.glb` al navegar home
+- [ ] Navegar `/admin` y `/login`: **no** debe verse el pajarito 3D
+- [ ] Computed styles en h1 Hero: familia `Antroposofia`, peso sin faux-bold excesivo
+- [ ] Body: confirmar si Quicksand está en “Fonts” del inspector (hoy probablemente no)
+- [ ] Arrastrar en el centro de la página: **no** debe rotar el 3D si se quita `global`
+- [ ] Lighthouse desktop: TBT / Performance antes vs después de desmontar 3D
+- [ ] `prefers-reduced-motion: reduce`: idealmente sin Float ni auto-animación
+- [ ] Contraste cursor terracotta sobre Hero oscuro y sobre cream
+- [ ] Traducción ES→DE/EN: sin salto de layout por banner Google
+
+---
+
+## 7. Plan de remediación priorizado
+
+### Sprint inmediato (bloqueantes)
+
+1. **Eliminar duplicado** `MartinPescador3D` de `app/page.tsx` **o** de `layout.tsx` (una sola instancia).
+2. **Excluir** 3D (y ojalá cursor custom / grain) de rutas `/admin` y `/login`.
+3. **Quitar `global`** de `PresentationControls` en `MartinPescador3D.tsx`.
+
+### Siguiente iteración
+
+4. Cargar **Quicksand** (y Merriweather si se usa como fallback real) con `next/font`.
+5. Unificar pesos: o `font-normal` en títulos Antroposofia, o archivos multi-weight.
+6. Lazy-mount 3D (idle + reduced-motion + opcional “cerrar mascota”).
+7. Corregir fallback de `--font-antroposofia` a `serif`.
+8. Mensajes de commit claros en futuros cambios de UI.
+
+### Deuda de diseño/sistema
+
+9. Documentar scale tipográfico (qué nivel usa Antroposofia vs Quicksand).
+10. Revisar si el stack Awwwards (grain + magnetic cursor + liquid splash + 3D + smooth scroll) es el tono correcto para conversión de admisión familiar; medir con analítica (scroll depth, rage clicks, bounce en mobile desktop-emulado).
+
+---
+
+## 8. Fragmentos de referencia (estado auditado)
+
+### Tipografía base (`globals.css`)
+
+```css
+h1, h2 {
+  font-family: 'Antroposofia', 'Merriweather', Georgia, serif;
+  font-weight: 400;
+  color: var(--color-waldorf-moss);
+  letter-spacing: 0.02em;
+}
+```
+
+### Inyección global (`layout.tsx`)
+
+```tsx
+const MartinPescador3D = dynamic(() => import('@/components/MartinPescador3D'), { ssr: false })
+// ...
+<MartinPescador3D />
+<AIChatWidget />
+```
+
+### Duplicado en home (`page.tsx`) — a eliminar si el 3D es global
+
+```tsx
+const MartinPescador3D = dynamic(() => import('@/components/MartinPescador3D'), { ssr: false })
+// ...
+<MartinPescador3D />
 ```
 
 ---
 
-### 3.6 [ALTO] Webhooks sin verificación criptográfica
+## 9. Conclusión
 
-| Webhook | Problema |
-|---------|----------|
-| `meta` | Verify token con fallback `'tu_token_secreto'`; POST **sin** validar `X-Hub-Signature-256`. Cualquiera puede simular mensajes WhatsApp/IG. Logs dumpan body completo (PII en logs). |
-| `google-forms` | Sin secret compartido; cualquiera inserta en `chat_leads` con service role. |
-| `mercadopago` | No consulta API real de MP; **simula** `approved`. Sin firma de notificación. |
-| `flow` | Consulta status (bien), pero no valida IP/origen del webhook; `listUsers()` completo para encontrar email (O(n), y expone patrón peligroso). |
+Los últimos cambios de UI **aciertan en marca** (Antroposofia en títulos, tokens `font-sans`/`font-serif`, mascota 3D de madera) pero **no están listos como implementación global limpia**:
 
-**Código de dominio incorrecto en Meta:**
+1. Hay un **bug claro de doble instancia** en la home.  
+2. El **3D en el root layout** castiga admin y páginas que no lo necesitan.  
+3. La **carga real de fuentes de cuerpo** sigue incompleta.  
+4. Hay **fricciones de interacción** (cursor + PresentationControls global) y **pesos tipográficos** que pelean con un único master TTF.
 
-```ts
-const APP_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://clinicagap.cl';
-// mensaje por defecto: "Soy la IA de la clínica..."
-```
-
-Riesgo de reenviar tráfico a otro dominio o de respuestas de marca incorrecta.
+Corregidos C1–C2 y A1–A3, el resultado puede ser una UI distintiva y alineada con la pedagogía Waldorf sin sacrificar performance ni usabilidad del panel interno.
 
 ---
 
-### 3.7 [ALTO] XSS / inyección HTML en emails
-
-Rutas que interpolan input de usuario en HTML:
-
-- `app/api/cotizacion/route.ts` — `data.nombre`, `data.dias_detalle`, etc.
-- `app/api/leads/route.ts` — campos del formulario.
-- `app/actions/submitLead.ts` — similar (menor riesgo si Resend sanitiza, no confiar).
-- `app/api/newsletter/route.ts` — `title`, `excerpt`, `image_url` (admin o atacante vía API abierta).
-
-**Remediación:** escapar HTML (`escape-html` / template seguro) o usar componentes React-email; validar URLs de imagen (allowlist de host Supabase).
-
----
-
-### 3.8 [MEDIO] Exposición y gestión de secretos
-
-**Positivo:** `.env.local` está en `.gitignore`.
-
-**Negativo / operativo:**
-- `.env.local` concentra secretos de **múltiples negocios** (Trekan, cuentas ghost IG/FB, Apify de varias marcas, AdsPower, Gmail). Superficie de blast radius enorme si se filtra el archivo.
-- Duplicado `COHERE_API_KEY`.
-- Credenciales de redes sociales y scrapers en el mismo env del sitio público → riesgo legal (ToS de Meta) y de ban.
-- No hay `.env.example` documentando variables requeridas sin valores.
-- Scripts con service role (`create_admin`, `seed_rag`, `upload_to_supabase`) en el árbol principal.
-
-**Recomendación:** separar secrets por proyecto (1Password/Vault + Vercel envs por environment); nunca mezclar cuentas “fantasma” de growth con el monorepo del colegio en producción.
-
----
-
-### 3.9 [MEDIO] Cron keep-alive sin protección
-
-`GET /api/cron/keep-alive` es público. En Vercel se recomienda validar `Authorization: Bearer ${CRON_SECRET}` o header `x-vercel-cron`.
-
-`vercel.json` está vacío `{}` — el cron puede no estar configurado en repo (solo en dashboard), sin documentación en código.
-
----
-
-### 3.10 [MEDIO] Headers de seguridad ausentes
-
-`next.config.js` no define:
-
-- `Content-Security-Policy`
-- `X-Frame-Options` / `frame-ancestors`
-- `X-Content-Type-Options: nosniff`
-- `Referrer-Policy`
-- `Permissions-Policy`
-- `Strict-Transport-Security` (si no lo pone Vercel por defecto en custom domains)
-
-Imágenes: `remotePatterns` permite `*.supabase.co` — correcto y acotado.
-
----
-
-### 3.11 [MEDIO] Privacy / compliance (datos de menores y apoderados)
-
-El sistema almacena:
-
-- Nombres de niños, edades, NEE (necesidades educativas especiales), teléfonos y emails de apoderados.
-- Canales: web, WhatsApp, Google Forms, chat bot.
-
-**Implicaciones (Ley 19.628 / Ley 21.719 en Chile, y buenas prácticas):**
-- Base legal y aviso de privacidad en formularios (no auditado en UI completa).
-- Retención y derecho de eliminación.
-- Acceso al CRM solo admin (hoy depende de RLS débil).
-- Newsletter sin consentimiento explícito opt-in (envía a quienes “contactaron o postularon” — base legal débil para marketing).
-- Logs de Meta webhook con mensajes completos y números de teléfono.
-
----
-
-### 3.12 [BAJO–MEDIO] Otros
-
-| Tema | Detalle |
-|------|---------|
-| Fallback Ollama a `127.0.0.1` | Irrelevante en Vercel; ruido en cascada de errores. Modelo `clinicagap-cm`. |
-| Gemini API key en query string | Patrón de Google; preferir header si el API lo permite; no loguear URLs. |
-| Resend `from: onboarding@resend.dev` | Funcional en sandbox; emails de admisión pueden ir a spam o fallar en prod. |
-| Dual clients Supabase | `lib/supabase.ts` y `utils/supabase/client.ts` — inconsistencia. |
-| `knowledge_chunks` policy `Allow public select` | Expone contenido del cerebro del bot a anon (puede ser intencional; documentar). |
-
----
-
-## 4. Arquitectura — hallazgos y mejoras
-
-### 4.1 Deuda de fork / código de “Clínica GAP”
-
-El proyecto nació o se bifurcó de un producto clínico. Evidencia:
-
-| Área | Síntoma |
-|------|---------|
-| `lib/emailTemplates.ts` | Templates y links a `clinicagap.cl` |
-| `app/admin/pacientes` | CRUD de “pacientes”, mock data clínica |
-| `app/api/webhook/meta` | Default URL clínica, copy de clínica |
-| `lib/ai.ts` | Modelo Ollama `clinicagap-cm`; entidades `dolencia` en types |
-| `types/index.ts` | `extractedEntities.dolencia` |
-| Admin: `campanas`, `servicios`, `cms-ia`, `push`, `settings` | Llaman APIs inexistentes (`/api/campaigns`, `/api/services`, …) |
-| Sidebar admin | Solo 6 ítems; el resto de páginas existen como “órfanas” |
-
-**Impacto:** confusión de producto, bugs al desplegar features half-ported, peso de bundle/mantenimiento, riesgo de mostrar copy erróneo a familias.
-
-**Mejora:**
-1. Inventario “Trekan-core” vs “legado GAP”.
-2. Eliminar o aislar en `/legacy` lo no usado.
-3. Un solo dominio de lenguaje: **apoderados / postulantes / leads**, no pacientes.
-
----
-
-### 4.2 Modelo de datos fragmentado (CRM)
-
-Al menos **tres** destinos de leads:
-
-| Origen | Tabla |
-|--------|--------|
-| `submitLead` / chat upsert | `leads` |
-| Widget / `AdmisionForm` /api/leads | `leads_admision` |
-| Google Forms webhook / Kanban | `chat_leads` |
-
-**Consecuencias:** el admin de Admisiones no ve lo del bot; el newsletter solo lee `chat_leads`; reportes incompletos; duplicados por email.
-
-**Propuesta de arquitectura de datos:**
-
-```
-contacts (id, email, phone, name, …)
-  └─ opportunities / admissions (estado, curso, nino_*, source, …)
-  └─ interactions (channel, message, created_at)
-  └─ consent (newsletter, marketing, source)
-```
-
-Migración con vistas de compatibilidad temporal.
-
----
-
-### 4.3 Capas de acceso a datos inconsistentes
-
-Hoy coexisten:
-
-1. Server Components + `utils/supabase/server`
-2. Client Components + anon key + RLS
-3. `supabaseAdmin` / service role en routes y actions
-4. Instanciaciones locales `createClient(url, SERVICE_ROLE)` duplicadas en webhooks
-
-**Target architecture:**
-
-```
-app/ (UI)
-  → lib/services/* (reglas de negocio)
-      → lib/db/supabase-server | supabase-admin
-  → lib/auth/requireAdmin.ts
-  → lib/validation/*.ts (Zod)
-```
-
-- Un solo factory admin.
-- Nunca service role en client components (actualmente bien en la mayoría, mantenerlo).
-- Mutations admin vía Server Actions o route handlers **siempre** con `requireAdmin`.
-
----
-
-### 4.4 Admin UI sobredimensionado y desconectado
-
-- **21** páginas bajo `app/admin`.
-- Sidebar muestra ~6.
-- `cms-ia/page.tsx` (~66 KB) es el archivo más grande del repo y depende de APIs no presentes.
-- Kanban, pacientes, bot, finanzas, push, etc. en distinto estado de madurez.
-
-**Mejora:**
-- Definir MVP admin: Dashboard, Portada, Admisiones, Noticias, Actividades, Cerebro RAG, Settings.
-- Archivar el resto o completar APIs + tests.
-- Layout admin como Server Component + shell client solo para nav (ahora todo el layout es `'use client'`).
-
----
-
-### 4.5 IA / RAG — diseño actual y límites
-
-**Flujo chat:**
-
-1. Upsert lead si hay email.
-2. Embedding Cohere query.
-3. RPC `match_knowledge_chunks` (threshold 0.2, top 10).
-4. Rerank Cohere top 3.
-5. Stream Groq Llama 3.3 70B.
-
-**Problemas de diseño:**
-- Cascada `lib/ai.ts` (Groq → OpenRouter → Gemini → Ollama) **no se usa** en `/api/chat` (solo ai-sdk + Groq). Código muerto / divergente.
-- `/api/chat` devuelve stream de texto; webhook Meta espera **JSON** (`messageToUser`) → integración rota o inconsistente.
-- Sin guardrails de prompt injection (“ignora el system prompt…”).
-- Sin tope de historial de mensajes.
-- Sin observabilidad (traces, coste por request).
-
-**Mejoras:**
-- Unificar pipeline IA (un módulo, un contrato de respuesta).
-- Para WhatsApp: endpoint JSON no streaming, o adaptar el cliente Meta al stream.
-- System prompt + “solo responde con base en RAG; si no sabes, deriva a WhatsApp Ivonne”.
-- Métricas: tokens, latency p95, tasa de fallback.
-
----
-
-### 4.6 Content pipeline
-
-- CMS portada en JSON columns (`hero_section`, `text_reveal`, `masonry_gallery`).
-- Noticias/actividades en tablas + fallback markdown local (`lib/markdown.ts` con parser YAML casero).
-- `revalidate = 0` en home, ciudades, noticias, actividades → **sin ISR**.
-
-**Mejora:** `revalidate = 60` (o on-demand `revalidateTag` al guardar en admin). Eliminar markdown legacy cuando Supabase sea fuente de verdad.
-
----
-
-### 4.7 Testing
-
-Existen Playwright specs (`tests/*.spec.ts`) orientados a UI (hero, scroll, WhatsApp, cotizador).
-
-**Faltan:**
-- Tests de auth/middleware (usuario no admin no entra).
-- Tests de API (401 sin sesión en admin routes).
-- Tests de validación de formularios / honeypot.
-- CI (no hay workflow GitHub Actions visible en el árbol revisado).
-
----
-
-### 4.8 Observabilidad y ops
-
-- `console.log` abundante en webhooks (PII).
-- Sin estructura de logging (nivel, request id).
-- Sin Sentry/OpenTelemetry.
-- Sin health check autenticado más allá del keep-alive de Supabase free tier.
-- `package.json` name sigue siendo `"trekan-nextjs"` (ok), sin scripts de typecheck estricto en CI.
-
----
-
-## 5. Optimizaciones (rendimiento, coste, DX)
-
-### 5.1 Rendimiento web (Core Web Vitals)
-
-| Problema | Detalle | Acción |
-|----------|---------|--------|
-| Home con `revalidate = 0` | SSR en cada visita + queries Supabase | ISR 60–300s + `revalidatePath` en admin |
-| Muchos client components en home | GSAP, Framer, Lenis, cursor custom, video hero, marquee… | Code-split, `dynamic(() => import(), { ssr: false })` para below-fold |
-| Video/imágenes pesadas en `public/` | `public/images` gitignored pero `public/assets` con muchos jpg/mp4; también CDN Supabase | Preferir CDN + `next/image`; posters para video; no cargar todos los assets de galería al inicio |
-| Triple floating UI potencial | `AIChatWidget` en layout; también existen `FloatingWhatsApp` y `WhatsAppWidget` | Un solo CTA de contacto global |
-| Fuentes | Variables CSS mock (`quicksand`/`merriweather` no usan `next/font`) | `next/font/google` para eliminar FOIT y requests extra |
-| Custom cursor + liquid splash | Coste main-thread en móvil | Desactivar en `prefers-reduced-motion` y en touch devices |
-
-### 5.2 Coste de infraestructura e IA
-
-| Vector | Riesgo | Mitigación |
-|--------|--------|------------|
-| Chat público sin límite | Burn de Groq/Cohere | Rate limit IP + daily cap + cache embeddings frecuentes |
-| Newsletter API abierta | Burn Resend + reputación | Auth admin + confirmación UI + dry-run |
-| Keep-alive cada 5 min | Wakes free tier | Aceptable; o migrar a plan que no pause |
-| `listUsers()` en Flow webhook | Escala mal | Índice por email en `profiles` |
-| Embeddings por chunk en admin | OK si autenticado | Batch embed al reindexar |
-
-### 5.3 Bundle y dependencias
-
-- `firebase` + `firebase-admin` + `resend` + `nodemailer` + `ai` + `recharts` + `papaparse` + `react-email-editor` + dnd-kit: validar qué se usa en el path crítico del sitio público.
-- Admin-only libs deben importarse solo en rutas admin (tree-shaking por route).
-- Actualizar `next` a 14.2.35+; alinear `uuid` / postcss vía audit fix.
-
-### 5.4 DX y calidad de código
-
-| Mejora | Beneficio |
-|--------|-----------|
-| ESLint + Prettier + `tsc --noEmit` en CI | Evitar roturas |
-| `.env.example` | Onboarding |
-| Eliminar `scripts/one-off` del repo productivo o documentar “no deploy” | Ruido |
-| Tipos estrictos en leads (no `any[]` en admin) | Menos bugs CRM |
-| Unificar validación Zod (ya en `submitLead`) en todas las entradas | Seguridad + DX |
-| Commits con mensajes `"ok"` | Adoptar Conventional Commits |
-
-### 5.5 Imágenes y media
-
-- Ya hay migración a Supabase CDN (comentario en `.gitignore` sobre `public/images/`).
-- Completar: no versionar MP4 grandes; servir desde storage con CDN; tamaños responsive.
-- `next/image` con `remotePatterns` ya configurado para Supabase.
-
----
-
-## 6. Checklist de remediación recomendado
-
-### Sprint 0 — emergencia (1–2 días)
-
-- [ ] Rotar password `administracion@…` y cualquier otra cuenta expuesta.
-- [ ] Quitar secretos de `scripts/create_admin.mjs`; rotar si hubo push a remoto compartido.
-- [ ] Actualizar `next` a ≥ 14.2.35 y redesplegar.
-- [ ] Proteger con `requireAdmin`: `/api/admin/rag`, `/api/seo`, `/api/newsletter`.
-- [ ] Rate limit + validación Zod en `/api/chat`, `/api/leads`, `/api/cotizacion`.
-- [ ] Añadir secret a webhooks Meta/Google Forms; dejar de simular pagos MP.
-- [ ] Escapar HTML en templates de email.
-
-### Sprint 1 — seguridad y datos (1 semana)
-
-- [ ] RBAC real (`app_metadata` o `profiles.role`) + policies RLS admin-only en mutaciones.
-- [ ] Auth en Server Actions (`saveHomepageContent` y futuras).
-- [ ] Unificar tablas de leads o vista consolidada.
-- [ ] Headers de seguridad en `next.config.js`.
-- [ ] `CRON_SECRET` en keep-alive.
-- [ ] Revisar consentimiento newsletter y texto legal en formularios.
-
-### Sprint 2 — arquitectura (1–2 semanas)
-
-- [ ] Podar admin/páginas/APIs de legado Clínica GAP.
-- [ ] Unificar clientes Supabase y capa `lib/services`.
-- [ ] Alinear contrato chat stream vs webhooks Meta.
-- [ ] ISR + revalidación on-demand.
-- [ ] CI: lint, typecheck, Playwright smoke, `npm audit`.
-
-### Sprint 3 — producto y performance
-
-- [ ] Optimizar home (dynamic imports, font, media).
-- [ ] Observabilidad (Sentry + logs sin PII).
-- [ ] Documentación `README` + `.env.example` + diagrama de datos.
-- [ ] Tests de regresión en admisión y cotizador.
-
----
-
-## 7. Fortalezas del proyecto (para equilibrar)
-
-No todo es deuda; hay bases sólidas:
-
-1. **App Router + Server Components** en páginas públicas clave (`app/page.tsx`).
-2. **Honeypot + Zod** en `submitLead` (buen patrón a replicar).
-3. **RAG con pgvector + Cohere rerank** — arquitectura moderna para el bot de admisión.
-4. **Service role aislado en `lib/supabase-admin.ts`** con comentario de no usar en client.
-5. **Middleware de sesión Supabase SSR** presente (solo falta reforzar RBAC).
-6. **SEO** base: metadata, JSON-LD, sitemap/robots, redirects de URLs legacy.
-7. **Playwright** ya en el repo — se puede expandir a seguridad y regresión.
-8. Media y CMS orientados a no commitear assets pesados.
-
----
-
-## 8. Conclusión
-
-**Webwaldorfv2** es un producto ambicioso (sitio + CRM + IA + mensajería) con valor real para el colegio, pero hoy opera con un modelo de confianza implícito: “si la UI es admin, la API es segura”. Eso **no es cierto** en Next.js.
-
-Prioridad absoluta:
-
-1. **Cerrar APIs y rotar credenciales.**
-2. **Actualizar Next.js.**
-3. **RBAC + RLS correctos.**
-4. **Limpiar el fork clínico y unificar el CRM.**
-5. **Reactivar cache/ISR y reducir coste de IA.**
-
-Con el Sprint 0–1 el riesgo pasa de “explotable remotamente” a “base endurecida”. Con Sprint 2–3 el proyecto se vuelve mantenible a largo plazo como plataforma Trekan, no como monorepo multi-negocio.
-
----
-
-## 9. Apéndice — archivos críticos revisados
-
-| Archivo | Rol en la auditoría |
-|---------|---------------------|
-| `middleware.ts` / `utils/supabase/middleware.ts` | Authz admin |
-| `app/api/**/route.ts` | Superficie de ataque |
-| `app/actions/submitLead.ts` | Patrón bueno de validación |
-| `app/admin/portada/actions.ts` | Service role sin auth |
-| `lib/supabase-admin.ts`, `lib/ai.ts`, `lib/emailTemplates.ts` | Privilegios / legado |
-| `scripts/create_admin.mjs` | Secreto en Git |
-| `scripts/setup_cms.sql`, `setup_rag.sql` | RLS débil / público |
-| `package.json` / `npm audit` | CVEs Next |
-| `next.config.js` | Sin security headers |
-| `app/page.tsx` | `revalidate = 0`, composición home |
-| `app/admin/*` | Deuda y páginas huérfanas |
-
----
-
-*Informe generado por auditoría estática del repositorio local. No incluye pentest dinámico, revisión de políticas RLS reales en el proyecto Supabase cloud, ni escaneo de secretos en historial remoto completo. Se recomienda validar RLS en el dashboard de Supabase y ejecutar un smoke de auth en staging tras los fixes del Sprint 0.*
+*Fin del reporte. Archivo generado como `reporte_auditoria_grok.md` en la raíz del repositorio.*
