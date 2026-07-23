@@ -56,7 +56,7 @@ function BentoCard({ card, index }: { card: any, index: number }) {
 
       {card.image && (
         <>
-          <div className="absolute inset-0 bg-black/10 z-10 group-hover:bg-black/30 transition-colors duration-700" />
+          <div className="absolute inset-0 bg-black/30 z-10 group-hover:bg-black/50 transition-colors duration-700" />
           <Image 
             src={card.image}
             alt={card.title}

@@ -161,14 +161,6 @@ const pillars = [
     icon: Sparkles,
     image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/comisionobraymantencion2.webp',
     color: 'bg-[var(--color-waldorf-moss)]'
-  },
-  {
-    title: 'Trimembración Social',
-    tag: 'Transparencia pedagógica',
-    description: 'Una gestión participativa, horizontal y transparente que une las esferas pedagógica, administrativa y comunitaria en perfecta armonía.',
-    icon: BookOpen,
-    image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/photo_2025-06-24_08-26-33.jpg',
-    color: 'bg-[#1a2e25]'
   }
 ]
 
@@ -199,42 +191,7 @@ export default function ComunidadSection() {
         ))}
       </div>
 
-      {/* Acto III — Querer: CTA de admisión al final del journey */}
-      <CtaAdmision />
     </section>
   )
 }
 
-function CtaAdmision() {
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 80%', 'start 20%'] })
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1])
-  const y       = useTransform(scrollYProgress, [0, 0.5], [50, 0])
-  const blur    = useTransform(scrollYProgress, [0, 0.4], [10, 0])
-  const filter  = useTransform(blur, (b) => `blur(${b}px)`)
-
-  return (
-    <motion.div
-      ref={ref}
-      style={{ opacity, y, filter }}
-      className="py-32 px-6 md:px-20 max-w-4xl mx-auto text-center"
-    >
-      <span className="text-sm font-mono tracking-widest uppercase text-[var(--color-waldorf-terracotta)] font-bold block mb-8">
-        Admisión 2026
-      </span>
-      <h3 className="text-5xl md:text-8xl lg:text-[7rem] font-serif font-bold text-[#1a2e25] mb-8 leading-[1.05]">
-        Comencemos<br />el Viaje
-      </h3>
-      <p className="text-xl md:text-3xl text-[#1a2e25]/60 mb-14 font-light leading-relaxed max-w-2xl mx-auto">
-        Las familias de Trekan son protagonistas del proyecto educativo. Hay cupos disponibles para 2026.
-      </p>
-      <a
-        href="#admision"
-        className="inline-flex items-center gap-4 px-12 md:px-14 py-6 md:py-7 rounded-full bg-[var(--color-waldorf-moss)] text-white font-bold text-base md:text-lg tracking-wider shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-500"
-      >
-        Solicitar información
-        <span className="text-xl md:text-2xl">→</span>
-      </a>
-    </motion.div>
-  )
-}

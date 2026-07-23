@@ -42,7 +42,7 @@ export default function MagneticCursor() {
       gsap.to(cursor, { 
         scale: 3, 
         backgroundColor: 'transparent', 
-        border: '1px solid white', 
+        border: '1px solid var(--color-waldorf-terracotta)', 
         duration: 0.3,
         ease: 'power3.out'
       });
@@ -51,7 +51,7 @@ export default function MagneticCursor() {
     const onMouseLeave = () => {
       gsap.to(cursor, { 
         scale: 1, 
-        backgroundColor: 'white', 
+        backgroundColor: 'var(--color-waldorf-terracotta)', 
         border: 'none', 
         duration: 0.3,
         ease: 'power3.out'
@@ -100,7 +100,7 @@ export default function MagneticCursor() {
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 w-4 h-4 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference"
+      className="fixed top-0 left-0 w-4 h-4 bg-[var(--color-waldorf-terracotta)] opacity-60 rounded-full pointer-events-none z-[9999]"
       style={{ willChange: 'transform' }}
     />
   );

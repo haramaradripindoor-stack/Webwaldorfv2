@@ -10,7 +10,6 @@ const ActividadesSection = dynamic(() => import('@/components/ActividadesSection
 const NewsSection = dynamic(() => import('@/components/NewsSection'))
 const BentoGrid = dynamic(() => import('@/components/BentoGrid'))
 const TeamSection = dynamic(() => import('@/components/TeamSection'))
-const TrimembracionSocial = dynamic(() => import('@/components/TrimembracionSocial'))
 const ComunidadSection = dynamic(() => import('@/components/ComunidadSection'))
 const ImmersiveTestimonials = dynamic(() => import('@/components/ImmersiveTestimonials'), { ssr: false })
 const FAQSection = dynamic(() => import('@/components/FAQSection'))
@@ -97,7 +96,6 @@ export default async function Home() {
         
         {/* 4. EL ELEMENTO HUMANO Y EL RITMO (Maestros, Vida Comunitaria y Calendario) */}
         <TeamSection />
-        <TrimembracionSocial />
         <ComunidadSection />
         <ActividadesSection />
         
