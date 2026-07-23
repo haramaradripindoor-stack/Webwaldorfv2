@@ -35,6 +35,8 @@ export default function CampanasPage() {
   const [selectedContacts, setSelectedContacts] = useState<string[]>([]);
   const [selectAll, setSelectAll] = useState(true);
   const [sending, setSending] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [editorInstance, setEditorInstance] = useState<any>(null);
 
   // Plantillas eliminadas, ahora usamos el editor visual de Unlayer
 
@@ -78,11 +80,11 @@ export default function CampanasPage() {
     if (!subject) return showMessage('error', 'El asunto del correo es obligatorio.');
     if (selectedContacts.length === 0) return showMessage('error', 'Selecciona al menos un destinatario.');
 
-    if (!emailEditorRef.current?.editor) {
+    if (!editorInstance) {
       return showMessage('error', 'El editor visual no está listo aún.');
     }
 
-    emailEditorRef.current.editor.exportHtml(async (data: { html: string }) => {
+    editorInstance.exportHtml(async (data: { html: string }) => {
       const { html } = data;
       
       if (!html || html.trim() === '') {
@@ -121,6 +123,7 @@ export default function CampanasPage() {
   };
 
   const onEditorReady = (unlayer: unknown) => {
+    setEditorInstance(unlayer);
     const editor = unlayer as {
       registerCallback: (
         event: string,
@@ -306,9 +309,16 @@ export default function CampanasPage() {
                       <select 
                         onChange={(e) => {
                           const template = emailTemplates.find(t => t.id === e.target.value);
-                          if (template && emailEditorRef.current?.editor) {
-                            emailEditorRef.current.editor.loadDesign(template.design);
-                            showMessage('success', `Plantilla '${template.name}' cargada con éxito`);
+                          if (template) {
+                            if (editorInstance) {
+                              editorInstance.loadDesign(template.design);
+                              showMessage('success', `Plantilla '${template.name}' cargada con éxito`);
+                            } else if (emailEditorRef.current?.editor) {
+                              emailEditorRef.current.editor.loadDesign(template.design);
+                              showMessage('success', `Plantilla '${template.name}' cargada con éxito`);
+                            } else {
+                              showMessage('error', 'El editor aún no está listo. Espera unos segundos.');
+                            }
                           }
                           e.target.value = ''; // Reset select
                         }}
