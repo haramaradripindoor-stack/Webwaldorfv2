@@ -1,13 +1,23 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { createClient as createServerClient } from '@/utils/supabase/server';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
+    const supabaseAuth = createServerClient();
+    const { data: { user } } = await supabaseAuth.auth.getUser();
+    
+    if (!user) {
+      return NextResponse.json({ success: false, error: 'No autorizado' }, { status: 401 });
+    }
+
     // 1. Fetch leads_admision (formulario web y widget Hablemos)
     const { data: admisionLeads, error: err1 } = await supabase
       .from('leads_admision')
@@ -73,6 +83,13 @@ export async function GET() {
 
 export async function POST(req: Request) {
   try {
+    const supabaseAuth = createServerClient();
+    const { data: { user } } = await supabaseAuth.auth.getUser();
+    
+    if (!user) {
+      return NextResponse.json({ success: false, error: 'No autorizado' }, { status: 401 });
+    }
+
     const { email, nombre } = await req.json();
     if (!email) return NextResponse.json({ success: false, error: 'Email requerido' }, { status: 400 });
 
@@ -92,6 +109,13 @@ export async function POST(req: Request) {
 
 export async function PUT(req: Request) {
   try {
+    const supabaseAuth = createServerClient();
+    const { data: { user } } = await supabaseAuth.auth.getUser();
+    
+    if (!user) {
+      return NextResponse.json({ success: false, error: 'No autorizado' }, { status: 401 });
+    }
+
     const { oldEmail, newEmail, newNombre } = await req.json();
     if (!oldEmail) return NextResponse.json({ success: false, error: 'Email original requerido' }, { status: 400 });
 
@@ -121,6 +145,13 @@ export async function PUT(req: Request) {
 
 export async function DELETE(req: Request) {
   try {
+    const supabaseAuth = createServerClient();
+    const { data: { user } } = await supabaseAuth.auth.getUser();
+    
+    if (!user) {
+      return NextResponse.json({ success: false, error: 'No autorizado' }, { status: 401 });
+    }
+
     const { emails } = await req.json();
     if (!emails || !Array.isArray(emails) || emails.length === 0) {
       return NextResponse.json({ success: false, error: 'Emails requeridos' }, { status: 400 });

@@ -38,7 +38,7 @@ export default function MartinPescador3D() {
   if (!mounted) return null
 
   return (
-    <div className="fixed bottom-8 right-8 w-[220px] h-[220px] z-[40] hidden md:block">
+    <div className="fixed bottom-8 left-8 w-[220px] h-[220px] z-[40] hidden md:block pointer-events-auto">
       <Canvas camera={{ position: [0, 0, 5], fov: 45 }} className="w-full h-full cursor-grab active:cursor-grabbing">
         <ambientLight intensity={0.6} />
         {/* Luz principal */}
@@ -51,7 +51,6 @@ export default function MartinPescador3D() {
         <Environment preset="forest" />
         
         <PresentationControls 
-          global 
           rotation={[0, -0.5, 0]} 
           polar={[-Math.PI / 4, Math.PI / 4]} 
           azimuth={[-Math.PI / 4, Math.PI / 4]}

@@ -89,7 +89,7 @@ export default function NewsSection({ displayNews }: { displayNews: MarkdownPost
                       year: 'numeric', month: 'long', day: 'numeric'
                     })) : ""}
                   </time>
-                  <h3 className="text-3xl md:text-[36px] font-bold font-serif text-[var(--color-waldorf-moss)] mb-5 leading-[1.15] group-hover:text-[var(--color-waldorf-terracotta)] transition-colors">
+                  <h3 className="text-3xl md:text-[36px] font-bold font-sans text-[var(--color-waldorf-moss)] mb-5 leading-[1.15] group-hover:text-[var(--color-waldorf-terracotta)] transition-colors">
                     {post.title}
                   </h3>
                   <p className="text-[#5A5755] text-[15px] leading-[1.7] mb-2 line-clamp-4">
