@@ -132,6 +132,13 @@ export default function CampanasPage() {
           done: (data: { url?: string; error?: boolean }) => void
         ) => Promise<void>
       ) => void;
+      loadDesign: (design: any) => void;
+    };
+    
+    // Cargar la primera plantilla automáticamente para que no esté en blanco
+    if (emailTemplates && emailTemplates.length > 0) {
+      editor.loadDesign(emailTemplates[0].design);
+    }
     };
     editor.registerCallback('image', async (file, done) => {
       try {
