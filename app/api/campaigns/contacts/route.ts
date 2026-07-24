@@ -36,14 +36,27 @@ export async function GET() {
       console.error("Error leyendo leads_admision:", err1);
     }
 
-    // 3. Unificar todos los contactos, eliminando correos duplicados
+    // 3. Obtener lista negra de desuscritos (marcados con UNSUBSCRIBED)
+    const { data: unsubscribedLeads, error: err3 } = await supabase
+      .from('chat_leads')
+      .select('apoderado_email')
+      .eq('apoderado_name', 'UNSUBSCRIBED');
+      
+    const blacklistedEmails = new Set();
+    if (unsubscribedLeads && !err3) {
+      unsubscribedLeads.forEach(u => {
+        if (u.apoderado_email) blacklistedEmails.add(u.apoderado_email.trim().toLowerCase());
+      });
+    }
+
+    // 4. Unificar todos los contactos, eliminando duplicados y filtrando bajas
     const unifiedContacts: any[] = [];
     const seenEmails = new Set();
 
     if (admisionLeads) {
       admisionLeads.forEach(lead => {
         const email = lead.email_apoderado?.trim().toLowerCase();
-        if (email && !seenEmails.has(email)) {
+        if (email && !seenEmails.has(email) && !blacklistedEmails.has(email)) {
           seenEmails.add(email);
           unifiedContacts.push({
             email: email,
@@ -58,7 +71,8 @@ export async function GET() {
     if (chatLeads) {
       chatLeads.forEach(lead => {
         const email = lead.apoderado_email?.trim().toLowerCase();
-        if (email && !seenEmails.has(email)) {
+        // Evitamos meter los registros fantasmas de UNSUBSCRIBED en la lista
+        if (email && !seenEmails.has(email) && !blacklistedEmails.has(email) && lead.apoderado_name !== 'UNSUBSCRIBED') {
           seenEmails.add(email);
           unifiedContacts.push({
             email: email,
