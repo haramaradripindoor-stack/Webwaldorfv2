@@ -14,7 +14,7 @@ const quicksand = Quicksand({
   display: 'swap',
 })
 
-const MartinPescador3D = dynamic(() => import('@/components/MartinPescador3D'), { ssr: false })
+
 
 
 
@@ -217,8 +217,7 @@ export default function RootLayout({
           {children}
         </SmoothScroll>
         
-        {/* Modelo 3D Interactivo (Madera) */}
-        <MartinPescador3D />
+
         
         {/* Widget Flotante Global */}
         <AIChatWidget />
