@@ -2,7 +2,7 @@
 title: "La Magia del Ritmo: Creando un Entorno Predecible y Seguro en Casa"
 date: '2026-07-23'
 excerpt: "Por qué establecer ritmos saludables (en lugar de horarios rígidos) es la clave para la tranquilidad familiar, según la pedagogía Waldorf."
-coverImage: "/assets/blog/madurez-institucional.jpg"
+coverImage: "/assets/colegio-fondo-800.webp"
 author: "Colegio Waldorf Trekan"
 ---
 

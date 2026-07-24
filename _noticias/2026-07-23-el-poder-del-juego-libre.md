@@ -2,7 +2,7 @@
 title: "El Poder del Juego Libre: Construyendo la Autonomía Infantil"
 date: '2026-07-23'
 excerpt: "Descubre por qué el juego libre no estructurado es fundamental en la pedagogía Waldorf para desarrollar la creatividad y resiliencia de los niños en Puerto Varas."
-coverImage: "/assets/blog/madurez-institucional.jpg"
+coverImage: "https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20261.jpg"
 author: "Colegio Waldorf Trekan"
 ---
 

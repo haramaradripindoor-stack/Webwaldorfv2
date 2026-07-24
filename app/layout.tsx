@@ -143,6 +143,13 @@ export default function RootLayout({
   return (
     <html lang="es" className={quicksand.variable}>
       <head>
+        <link
+          rel="preload"
+          href="/fonts/antroposofia.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
         {/* Schema JSON-LD */}
         <script
           type="application/ld+json"
