@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { Mail, Send, Users, History, CheckCircle2, ChevronRight, FileJson, Download, Upload } from 'lucide-react';
+import { Mail, Send, Users, History, CheckCircle2, ChevronRight, FileJson, Download, Upload, Plus, Trash2, Edit2, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { emailTemplates } from '@/lib/emailTemplates';
 
@@ -38,11 +38,73 @@ export default function CampanasPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [editorInstance, setEditorInstance] = useState<any>(null);
 
+  // Contact CRUD state
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [contactModalMode, setContactModalMode] = useState<'create' | 'edit'>('create');
+  const [editingContact, setEditingContact] = useState<{ email: string; nombre: string; oldEmail?: string }>({ email: '', nombre: '' });
+  const [crudLoading, setCrudLoading] = useState(false);
+
   // Plantillas eliminadas, ahora usamos el editor visual de Unlayer
 
   const showMessage = (type: 'success' | 'error', text: string) => {
     setMessage({ type, text });
     setTimeout(() => setMessage(null), 5000);
+  };
+
+  const deleteContacts = async (emails: string[]) => {
+    if (!confirm(`¿Seguro que deseas eliminar permanentemente ${emails.length === 1 ? 'este contacto' : 'estos contactos'} de la base de datos?`)) return;
+
+    setLoading(true);
+    try {
+      const res = await fetch('/api/campaigns/contacts', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ emails })
+      });
+      const data = await res.json();
+      if (data.success) {
+        showMessage('success', `${emails.length} contactos eliminados.`);
+        setSelectedContacts(prev => prev.filter(e => !emails.includes(e)));
+        fetchData();
+      } else {
+        showMessage('error', data.error || 'Error al eliminar');
+      }
+    } catch {
+      showMessage('error', 'Error de red');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSaveContact = async () => {
+    if (!editingContact.email) return showMessage('error', 'El email es requerido');
+    
+    setCrudLoading(true);
+    try {
+      const method = contactModalMode === 'create' ? 'POST' : 'PUT';
+      const body = contactModalMode === 'create' 
+        ? { email: editingContact.email, nombre: editingContact.nombre }
+        : { oldEmail: editingContact.oldEmail, newEmail: editingContact.email, newNombre: editingContact.nombre };
+
+      const res = await fetch('/api/campaigns/contacts', {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      const data = await res.json();
+      
+      if (data.success) {
+        showMessage('success', contactModalMode === 'create' ? 'Contacto creado' : 'Contacto actualizado');
+        setIsContactModalOpen(false);
+        fetchData();
+      } else {
+        showMessage('error', data.error || 'Error al guardar contacto');
+      }
+    } catch {
+      showMessage('error', 'Error de red');
+    } finally {
+      setCrudLoading(false);
+    }
   };
 
   const fetchData = async () => {
@@ -408,6 +470,18 @@ export default function CampanasPage() {
                     ref={fileInputRef} 
                     onChange={handleImportCSV} 
                   />
+                  <button onClick={() => {
+                    setContactModalMode('create');
+                    setEditingContact({ email: '', nombre: '' });
+                    setIsContactModalOpen(true);
+                  }} className="flex items-center gap-2 text-xs font-bold bg-[var(--color-waldorf-moss)] text-white hover:bg-[#2b4c3b] px-3 py-1.5 rounded-lg transition-colors shadow-sm">
+                    <Plus className="w-3.5 h-3.5" /> Nuevo Contacto
+                  </button>
+                  {selectedContacts.length > 0 && (
+                    <button onClick={() => deleteContacts(selectedContacts)} className="flex items-center gap-2 text-xs font-bold bg-red-50 text-red-600 border border-red-200 hover:bg-red-100 px-3 py-1.5 rounded-lg transition-colors shadow-sm">
+                      <Trash2 className="w-3.5 h-3.5" /> Eliminar ({selectedContacts.length})
+                    </button>
+                  )}
                   <button onClick={() => fileInputRef.current?.click()} className="flex items-center gap-2 text-xs font-bold bg-white border border-[var(--color-waldorf-sage)]/30 hover:bg-[var(--color-waldorf-cream)] text-[var(--color-waldorf-moss)] px-3 py-1.5 rounded-lg transition-colors shadow-sm">
                     <Upload className="w-3.5 h-3.5" /> Importar CSV
                   </button>
@@ -431,11 +505,12 @@ export default function CampanasPage() {
                       <th className="px-6 py-4">Nombre / Origen</th>
                       <th className="px-6 py-4">Fuente</th>
                       <th className="px-6 py-4">Fecha Captura</th>
+                      <th className="px-6 py-4 text-right">Acciones</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[var(--color-waldorf-sage)]/10">
                     {contacts.map((c, i) => (
-                      <tr key={i} onClick={() => toggleContact(c.email)} className={`cursor-pointer transition-colors ${selectedContacts.includes(c.email) ? 'bg-[var(--color-waldorf-cream)]' : 'hover:bg-gray-50'}`}>
+                      <tr key={i} onClick={() => toggleContact(c.email)} className={`group cursor-pointer transition-colors ${selectedContacts.includes(c.email) ? 'bg-[var(--color-waldorf-cream)]' : 'hover:bg-gray-50'}`}>
                         <td className="px-6 py-4 text-center">
                           <div className={`w-5 h-5 rounded flex items-center justify-center mx-auto transition-colors border ${selectedContacts.includes(c.email) ? 'bg-[var(--color-waldorf-terracotta)] border-[var(--color-waldorf-terracotta)]' : 'border-gray-300 bg-white'}`}>
                             {selectedContacts.includes(c.email) && <CheckCircle2 className="w-3.5 h-3.5 text-white" />}
@@ -455,10 +530,26 @@ export default function CampanasPage() {
                         <td className="px-6 py-4 text-[var(--color-waldorf-text-light)] font-mono text-xs">
                           {new Date(c.fecha).toLocaleDateString()}
                         </td>
+                        <td className="px-6 py-4 flex gap-2 justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                          <button onClick={(e) => {
+                            e.stopPropagation();
+                            setContactModalMode('edit');
+                            setEditingContact({ email: c.email, nombre: c.nombre, oldEmail: c.email });
+                            setIsContactModalOpen(true);
+                          }} className="p-1.5 bg-gray-100 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors text-gray-500" title="Editar">
+                            <Edit2 className="w-3.5 h-3.5" />
+                          </button>
+                          <button onClick={(e) => {
+                            e.stopPropagation();
+                            deleteContacts([c.email]);
+                          }} className="p-1.5 bg-gray-100 hover:bg-red-100 hover:text-red-600 rounded-md transition-colors text-gray-500" title="Eliminar">
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </td>
                       </tr>
                     ))}
                     {contacts.length === 0 && (
-                      <tr><td colSpan={5} className="px-6 py-12 text-center text-[var(--color-waldorf-text-light)] font-medium">No hay contactos registrados aún en la base de datos.</td></tr>
+                      <tr><td colSpan={6} className="px-6 py-12 text-center text-[var(--color-waldorf-text-light)] font-medium">No hay contactos registrados aún en la base de datos.</td></tr>
                     )}
                   </tbody>
                 </table>
@@ -533,6 +624,54 @@ export default function CampanasPage() {
 
         </div>
       )}
+
+      {/* MODAL CRUD CONTACTO */}
+      <AnimatePresence>
+        {isContactModalOpen && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+            <motion.div initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }} className="bg-white rounded-2xl w-full max-w-md overflow-hidden shadow-2xl border border-[var(--color-waldorf-sage)]/30">
+              <div className="bg-[var(--color-waldorf-paper)] p-5 border-b border-[var(--color-waldorf-sage)]/20 flex justify-between items-center">
+                <h3 className="font-bold font-serif text-[var(--color-waldorf-moss)] text-lg">
+                  {contactModalMode === 'create' ? 'Crear Nuevo Contacto' : 'Editar Contacto'}
+                </h3>
+                <button onClick={() => setIsContactModalOpen(false)} className="text-gray-400 hover:text-gray-700 transition-colors">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="p-6 space-y-4">
+                <div>
+                  <label className="block text-xs font-bold text-[var(--color-waldorf-text-light)] uppercase tracking-widest mb-1">Nombre</label>
+                  <input
+                    type="text"
+                    value={editingContact.nombre}
+                    onChange={e => setEditingContact({...editingContact, nombre: e.target.value})}
+                    placeholder="Ej: Juan Pérez"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm focus:border-[var(--color-waldorf-moss)] outline-none transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-[var(--color-waldorf-text-light)] uppercase tracking-widest mb-1">Correo Electrónico *</label>
+                  <input
+                    type="email"
+                    value={editingContact.email}
+                    onChange={e => setEditingContact({...editingContact, email: e.target.value})}
+                    placeholder="Ej: correo@ejemplo.com"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm focus:border-[var(--color-waldorf-moss)] outline-none transition-colors"
+                  />
+                </div>
+              </div>
+              <div className="p-5 border-t border-[var(--color-waldorf-sage)]/10 bg-gray-50 flex justify-end gap-3">
+                <button onClick={() => setIsContactModalOpen(false)} className="px-4 py-2 text-sm font-bold text-gray-500 hover:text-gray-800 transition-colors">
+                  Cancelar
+                </button>
+                <button onClick={handleSaveContact} disabled={crudLoading} className="px-6 py-2 bg-[var(--color-waldorf-moss)] text-white text-sm font-bold rounded-lg hover:bg-[#2b4c3b] transition-colors disabled:opacity-50 flex items-center justify-center min-w-[100px]">
+                  {crudLoading ? <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : 'Guardar'}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

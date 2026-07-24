@@ -70,3 +70,75 @@ export async function GET() {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
 }
+
+export async function POST(req: Request) {
+  try {
+    const { email, nombre } = await req.json();
+    if (!email) return NextResponse.json({ success: false, error: 'Email requerido' }, { status: 400 });
+
+    const { error } = await supabase.from('leads_admision').insert([{
+      email_apoderado: email.trim().toLowerCase(),
+      nombre_apoderado: nombre || 'Desconocido',
+      origen: 'Directorio Manual',
+      estado: 'nuevo'
+    }]);
+
+    if (error) throw error;
+    return NextResponse.json({ success: true });
+  } catch (error: any) {
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+  }
+}
+
+export async function PUT(req: Request) {
+  try {
+    const { oldEmail, newEmail, newNombre } = await req.json();
+    if (!oldEmail) return NextResponse.json({ success: false, error: 'Email original requerido' }, { status: 400 });
+
+    const cleanOld = oldEmail.trim().toLowerCase();
+    const cleanNew = newEmail ? newEmail.trim().toLowerCase() : cleanOld;
+
+    // Intentar actualizar en ambas tablas (Supabase ignorará si no existe en una)
+    const [resAdmision, resChat] = await Promise.all([
+      supabase.from('leads_admision').update({
+        email_apoderado: cleanNew,
+        nombre_apoderado: newNombre || undefined
+      }).eq('email_apoderado', cleanOld),
+      supabase.from('chat_leads').update({
+        apoderado_email: cleanNew,
+        apoderado_name: newNombre || undefined
+      }).eq('apoderado_email', cleanOld)
+    ]);
+
+    if (resAdmision.error) console.error(resAdmision.error);
+    if (resChat.error) console.error(resChat.error);
+
+    return NextResponse.json({ success: true });
+  } catch (error: any) {
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+  }
+}
+
+export async function DELETE(req: Request) {
+  try {
+    const { emails } = await req.json();
+    if (!emails || !Array.isArray(emails) || emails.length === 0) {
+      return NextResponse.json({ success: false, error: 'Emails requeridos' }, { status: 400 });
+    }
+
+    const cleanEmails = emails.map(e => e.trim().toLowerCase());
+
+    // Eliminar de ambas tablas
+    const [resAdmision, resChat] = await Promise.all([
+      supabase.from('leads_admision').delete().in('email_apoderado', cleanEmails),
+      supabase.from('chat_leads').delete().in('apoderado_email', cleanEmails)
+    ]);
+
+    if (resAdmision.error) throw resAdmision.error;
+    if (resChat.error) throw resChat.error;
+
+    return NextResponse.json({ success: true });
+  } catch (error: any) {
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+  }
+}
