@@ -201,7 +201,6 @@ export default function CampanasPage() {
     if (emailTemplates && emailTemplates.length > 0) {
       editor.loadDesign(emailTemplates[0].design);
     }
-    };
     editor.registerCallback('image', async (file, done) => {
       try {
         if (!file) {
