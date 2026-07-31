@@ -78,7 +78,7 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
     "image": post.image_url ? [
       post.image_url.startsWith('/') 
         ? `https://www.colegiowaldorftrekan.cl${post.image_url}` 
-        : post.image_url.replace('/images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/')
+        : post.image_url.replace('/images/', '/imagenes-web/')
     ] : ["https://www.colegiowaldorftrekan.cl/assets/logo.png"],
     "datePublished": new Date(post.published_at).toISOString(),
     "dateModified": new Date(post.published_at).toISOString(),
@@ -152,7 +152,7 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
                 <video src={post.image_url} className="w-full h-full object-cover" autoPlay muted loop playsInline />
               ) : (
                 <Image
-                  src={post.image_url.startsWith('/images/') ? post.image_url.replace('/images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/') : post.image_url.startsWith('images/') ? post.image_url.replace('images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/') : post.image_url}
+                  src={post.image_url.startsWith('/images/') ? post.image_url.replace('/images/', '/imagenes-web/') : post.image_url.startsWith('images/') ? post.image_url.replace('images/', '/imagenes-web/') : post.image_url}
                   alt={post.title}
                   fill
                   className="object-cover"

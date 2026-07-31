@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const BASE = 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web'
+const BASE = '/imagenes-web'
 
 // Fotos reales del equipo desde Supabase.
 // NOTA: Cuando tengas fotos individuales de cada maestro, reemplaza aquí la URL.

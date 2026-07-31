@@ -73,7 +73,7 @@ export default async function NoticiasPage() {
                     {post.image_url && (
                       <div className="relative h-64 w-full overflow-hidden shrink-0 border-b border-[var(--color-waldorf-sage)]/10">
                         <Image
-                          src={post.image_url.startsWith('/images/') ? post.image_url.replace('/images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/') : post.image_url}
+                          src={post.image_url.startsWith('/images/') ? post.image_url.replace('/images/', '/imagenes-web/') : post.image_url}
                           alt={post.title}
                           fill
                           className="object-cover transition-transform duration-700 group-hover:scale-105"

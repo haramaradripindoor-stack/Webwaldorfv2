@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 
-const BASE = 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web'
+const BASE = '/imagenes-web'
 
 export default function ImmersiveTestimonials() {
   const containerRef = useRef<HTMLElement>(null)
