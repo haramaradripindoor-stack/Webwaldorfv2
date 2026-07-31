@@ -44,7 +44,7 @@ export async function POST(req: Request) {
 
     const BATCH_SIZE = 50; // Resend allows up to 50 recipients per batch request if using the batch API, or Bcc up to 50
     const articleUrl = `https://www.colegiowaldorftrekan.cl/noticias/${slug}`;
-    const coverImage = image_url || 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/galeria3.webp';
+    const coverImage = image_url || '/imagenes-web/galeria3.webp';
 
     const htmlContent = `
       <div style="font-family: 'Georgia', serif; background-color: #FAF9F6; color: #2C3E35; max-width: 600px; margin: 0 auto; padding: 40px 20px; border-radius: 12px;">

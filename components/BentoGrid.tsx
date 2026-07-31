@@ -91,7 +91,7 @@ export default function BentoGrid() {
       desc: 'Matemáticas, lenguaje e historia se viven con las manos, el corazón y la mente. No memorizamos, experimentamos.',
       size: 'md:col-span-2 md:row-span-2',
       bg: 'bg-[#1a2e25]',
-      image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/actividapedagogicahumedales3.jpg',
+      image: '/imagenes-web/actividapedagogicahumedales3.jpg',
       lightText: true,
     },
     {
@@ -100,7 +100,7 @@ export default function BentoGrid() {
       desc: 'Acompaña al niño durante años, creando un refugio seguro.',
       size: 'md:col-span-1 md:row-span-1',
       bg: 'bg-[var(--color-waldorf-mustard)]',
-      image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/equipoescolar.jpg',
+      image: '/imagenes-web/equipoescolar.jpg',
       lightText: true,
     },
     {
@@ -109,7 +109,7 @@ export default function BentoGrid() {
       desc: 'Huerta, carpintería y bosque.',
       size: 'md:col-span-1 md:row-span-2',
       bg: 'bg-transparent',
-      image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20267.jpg',
+      image: '/imagenes-web/paseocerro20267.jpg',
       lightText: true,
     },
     {
@@ -118,7 +118,7 @@ export default function BentoGrid() {
       desc: 'Semanas dedicadas a un solo tema para profundizar verdaderamente.',
       size: 'md:col-span-2 md:row-span-1',
       bg: 'bg-[var(--color-waldorf-terracotta)]',
-      image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/actividapedagogicahumedales4.jpg',
+      image: '/imagenes-web/actividapedagogicahumedales4.jpg',
       lightText: true,
     },
   ]

@@ -38,7 +38,7 @@ export default function AdmisionClient() {
             <div className="absolute inset-0 bg-[var(--color-waldorf-moss)]/20 z-10 mix-blend-overlay" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e25] via-transparent to-transparent z-10" />
             <img 
-              src="https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20264.jpg" 
+              src="/imagenes-web/paseocerro20264.jpg" 
               alt="Bosque Sur" 
               className="w-full h-full object-cover"
             />

@@ -30,7 +30,7 @@ export default function ArriendoSalonClient() {
         {/* Hero Section */}
         <section ref={heroRef} className="relative pt-40 pb-32 px-6 bg-[#1a2e25] text-white overflow-hidden min-h-[85vh] flex items-center justify-center">
           <motion.div style={{ y: yImage }} className="absolute inset-0 z-0 opacity-40">
-             <Image src="https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/galeria3.webp" fill className="object-cover" alt="Salón Trekan" priority />
+             <Image src="/imagenes-web/galeria3.webp" fill className="object-cover" alt="Salón Trekan" priority />
              <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e25] via-transparent to-transparent" />
           </motion.div>
 

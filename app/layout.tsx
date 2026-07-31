@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     locale: 'es_CL',
     images: [
       {
-        url: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20261.jpg',
+        url: 'https://www.colegiowaldorftrekan.cl/imagenes-web/paseocerro20261.jpg',
         width: 1200,
         height: 630,
         alt: 'Niños explorando la naturaleza - Colegio Waldorf Trekan',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Colegio Waldorf Trekan | Pedagogía Waldorf en Puerto Varas',
     description: 'Educación con el corazón en armonía con la naturaleza. Colegio con metodología Waldorf para niños de 3 a 14 años.',
-    images: ['https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20261.jpg'],
+    images: ['https://www.colegiowaldorftrekan.cl/imagenes-web/paseocerro20261.jpg'],
   },
   icons: {
     icon: '/assets/logo-mini.webp',
@@ -68,7 +68,7 @@ export default function RootLayout({
         "alternateName": "Trekan Puerto Varas",
         "url": "https://www.colegiowaldorftrekan.cl",
         "logo": "https://www.colegiowaldorftrekan.cl/assets/logo.png",
-        "image": "https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/paseocerro20261.jpg",
+        "image": "https://www.colegiowaldorftrekan.cl/imagenes-web/paseocerro20261.jpg",
         "description": "Colegio Waldorf en Puerto Varas para niños de 3 a 14 años. Educación hacia la libertad sustentada en la Antroposofía y la Trimembración Social.",
         "telephone": "+56 9 6776 5106",
         "email": "admision@colegiowaldorftrekan.cl",

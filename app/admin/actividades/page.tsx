@@ -78,7 +78,7 @@ export default function ActividadesAdmin() {
         title,
         excerpt,
         content,
-        image_url: imageUrl || 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/galeria3.webp',
+        image_url: imageUrl || '/imagenes-web/galeria3.webp',
         anio: anio || '2026',
         mes,
         dia,

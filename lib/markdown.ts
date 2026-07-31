@@ -76,12 +76,12 @@ export function getMarkdownPosts(folder: '_noticias' | '_actividades'): Markdown
         excerpt: data.excerpt || data.descripcion || content.substring(0, 150) + '...',
         content,
         image_url: (() => {
-          let img = data.image_url || data.imagen || data.foto || data.coverImage || 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/galeria3.webp';
+          let img = data.image_url || data.imagen || data.foto || data.coverImage || '/imagenes-web/galeria3.webp';
           if (img && img.startsWith('/images/')) {
-            return img.replace('/images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/');
+            return img.replace('/images/', '/imagenes-web/');
           }
           if (img && img.startsWith('images/')) {
-            return img.replace('images/', 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/');
+            return img.replace('images/', '/imagenes-web/');
           }
           if (img && !img.startsWith('/') && !img.startsWith('http')) {
             img = '/' + img;

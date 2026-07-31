@@ -127,7 +127,7 @@ const pillars = [
     tag: 'El pilar pedagógico',
     description: 'Acompaña a la generación durante años, formando un vínculo profundo de respeto, amor y conocimiento de cada niño. Es la autoridad amorosa en el aula.',
     icon: User,
-    image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/equipoescolar.jpg',
+    image: '/imagenes-web/equipoescolar.jpg',
     color: 'bg-[var(--color-waldorf-mustard)]'
   },
   {
@@ -135,7 +135,7 @@ const pillars = [
     tag: 'Gestión horizontal',
     description: 'El corazón administrativo de nuestra comunidad. Un espacio transparente donde apoderados y maestros deciden juntos el futuro del colegio.',
     icon: Users,
-    image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/photo_2026-06-29_12-10-23.jpg',
+    image: '/imagenes-web/photo_2026-06-29_12-10-23.jpg',
     color: 'bg-[#1a2e25]'
   },
   {
@@ -143,7 +143,7 @@ const pillars = [
     tag: 'Ritmo y fraternidad',
     description: 'Encuentros regulares donde compartimos el avance de las clases, las festividades del mes y cultivamos la fraternidad entre las familias.',
     icon: CalendarHeart,
-    image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/photo_2026-06-29_12-10-14.jpg',
+    image: '/imagenes-web/photo_2026-06-29_12-10-14.jpg',
     color: 'bg-[var(--color-waldorf-terracotta)]'
   },
   {
@@ -151,7 +151,7 @@ const pillars = [
     tag: 'Naturaleza y celebración',
     description: 'Fiestas de la Cosecha, Faroles, Espiral de Adviento. Marcamos el ritmo de la naturaleza celebrando juntos los cambios de cada estación.',
     icon: Trees,
-    image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/fiesta-de-la-luz2026.jpg',
+    image: '/imagenes-web/fiesta-de-la-luz2026.jpg',
     color: 'bg-[var(--color-waldorf-sage)]'
   },
   {
@@ -159,7 +159,7 @@ const pillars = [
     tag: 'Manos en la tierra',
     description: 'Mantenimiento del espacio, bazar, huerto escolar. Las manos de nuestra comunidad construyen y cuidan el entorno de nuestros niños.',
     icon: Sparkles,
-    image: 'https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/comisionobraymantencion2.webp',
+    image: '/imagenes-web/comisionobraymantencion2.webp',
     color: 'bg-[var(--color-waldorf-moss)]'
   }
 ]

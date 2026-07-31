@@ -46,7 +46,7 @@ export default function ActividadRow({ post, isCelebracion, tagColor, hoverImg }
           <div className="relative w-full h-full bg-[#0A0A10]">
             {!videoReady && (
               <img
-                src="https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/fiesta%20de%20la%20luz20261.jpg"
+                src="/imagenes-web/fiesta%20de%20la%20luz20261.jpg"
                 alt="Celebración"
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
@@ -54,7 +54,7 @@ export default function ActividadRow({ post, isCelebracion, tagColor, hoverImg }
             )}
             <video
               ref={videoRef}
-              src="https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/Candlelight_glow_in_forest_202607082057.mp4"
+              src="/imagenes-web/Candlelight_glow_in_forest_202607082057.mp4"
               muted
               playsInline
               loop
