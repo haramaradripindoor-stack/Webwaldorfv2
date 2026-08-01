@@ -33,6 +33,24 @@ export default function LoginPage() {
     }
   };
 
+  const handleResetPassword = async () => {
+    if (!email) {
+      setError('Por favor ingresa tu correo electrónico primero');
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/admin`,
+    });
+    if (error) {
+      setError(error.message);
+    } else {
+      setError('¡Revisa tu bandeja de entrada! Te hemos enviado un link para restablecer la contraseña.');
+    }
+    setLoading(false);
+  };
+
   return (
     <div className="min-h-screen bg-[var(--color-waldorf-dark)] text-white flex flex-col justify-center items-center p-4">
       <motion.div
@@ -63,19 +81,27 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2 text-white/90">Contraseña</label>
+            <div className="flex justify-between items-center mb-2">
+              <label className="block text-sm font-medium text-white/90">Contraseña</label>
+              <button
+                type="button"
+                onClick={handleResetPassword}
+                className="text-xs text-[var(--color-waldorf-terracota)] hover:text-white transition-colors underline"
+              >
+                ¿Olvidaste tu contraseña?
+              </button>
+            </div>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-waldorf-terracota)] text-white"
               placeholder="••••••••"
-              required
             />
           </div>
 
           {error && (
-            <div className="p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-red-200 text-sm text-center">
+            <div className={`p-3 border rounded-lg text-sm text-center ${error.includes('Revisa tu bandeja') ? 'bg-green-500/20 border-green-500/50 text-green-200' : 'bg-red-500/20 border-red-500/50 text-red-200'}`}>
               {error}
             </div>
           )}
@@ -85,7 +111,7 @@ export default function LoginPage() {
             disabled={loading}
             className="w-full py-3 bg-[var(--color-waldorf-terracota)] hover:bg-orange-700 text-white rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? 'Iniciando sesión...' : 'Ingresar'}
+            {loading ? 'Procesando...' : 'Ingresar'}
           </button>
         </form>
       </motion.div>
