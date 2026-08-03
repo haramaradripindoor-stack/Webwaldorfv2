@@ -2,7 +2,7 @@
 title: "Dinámica Espiral: La Evolución de la Conciencia en el Organismo Escolar"
 excerpt: "Comprender los distintos niveles de consciencia y sistemas de valores organizacionales a través de la Dinámica Espiral, y su integración con el desarrollo antroposófico."
 published_at: "2026-07-09"
-image_url: "/images/estacionamiento.webp"
+image_url: "/imagenes-web/galeria3.webp"
 ---
 
 Administrar una comunidad Waldorf implica orquestar una multiplicidad de visiones de mundo, expectativas parentales y paradigmas pedagógicos. Para evitar el colapso frente a esta complejidad, los equipos de gestión requieren mapas socio-psicológicos robustos. Uno de los modelos más potentes para decodificar esta realidad es la **Dinámica Espiral**, desarrollada inicialmente por el Dr. Clare W. Graves y expandida por Beck y Cowan.

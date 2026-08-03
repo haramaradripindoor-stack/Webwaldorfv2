@@ -2,7 +2,7 @@
 title: "El Rol Vital de las Familias Fundadoras en la Pedagogía Waldorf"
 excerpt: "Desde el impulso originario hasta la consolidación institucional: un análisis sobre la responsabilidad biográfica y comunitaria de quienes sientan las bases de una escuela."
 published_at: "2026-07-21"
-image_url: "/images/estacionamiento.webp"
+image_url: "/imagenes-web/galeria3.webp"
 ---
 
 A diferencia de la educación pública o privada tradicional, que suele nacer de políticas de Estado o modelos de inversión comercial, las Escuelas Waldorf Trekan nacen de un impulso puramente espiritual y cultural. En el corazón de este impulso no hay, inicialmente, una infraestructura ni un modelo de negocios, sino un grupo de seres humanos impulsados por una convicción profunda: **las Familias Fundadoras**.

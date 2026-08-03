@@ -2,7 +2,7 @@
 title: "El Estudio del Niño: Rigor Antroposófico y Diagnóstico Colegiado"
 excerpt: "Explorando la Kínderbesprechung, el núcleo científico-espiritual de la reunión de maestros, donde se analiza colegiadamente la fenomenología de cada estudiante."
 published_at: "2026-07-15"
-image_url: "/images/estacionamiento.webp"
+image_url: "/imagenes-web/galeria3.webp"
 ---
 
 La reunión semanal del Claustro de Maestros en una Escuela Waldorf Trekan dista profundamente de un mero consejo administrativo. Si bien se destinan fracciones de tiempo a la logística escolar, el núcleo indisoluble de esta congregación es de carácter científico y ontológico: el **Estudio del Niño** o Kínderbesprechung.

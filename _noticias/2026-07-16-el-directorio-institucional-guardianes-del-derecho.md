@@ -2,7 +2,7 @@
 title: "El Directorio Institucional: Guardianes del Marco Legal y Administrativo"
 excerpt: "La trascendencia de la Esfera Administrativa en la protección de la libertad pedagógica, garantizando el cumplimiento jurídico y la solvencia del proyecto educativo."
 published_at: "2026-07-16"
-image_url: "/images/estacionamiento.webp"
+image_url: "/imagenes-web/galeria3.webp"
 ---
 
 Para que la pedagogía Waldorf florezca en las aulas con total libertad y rigor metodológico, requiere de una coraza protectora que opere con precisión técnica frente a las exigencias del mundo civil y estatal. Esta es la labor magna del **Directorio Institucional** o Entidad Sostenedora, el órgano ejecutivo que rige la Esfera del Derecho y la Igualdad en la Trimembración Social escolar.

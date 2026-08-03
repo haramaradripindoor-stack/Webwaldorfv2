@@ -2,7 +2,7 @@
 title: "De la Etapa Pionera a la Madurez: El Cuidado del Maestro Waldorf"
 published_at: "2026-07-19"
 excerpt: "Inspirado en la visión de Valentin Wember, exploramos cómo las Escuelas Waldorf Trekan transitan desde el heroísmo de los fundadores hacia una gobernanza colegiada que protege y acompaña a sus maestros."
-image_url: "/images/estacionamiento.webp"
+image_url: "/imagenes-web/galeria3.webp"
 author: "Colegio Waldorf Trekan"
 ---
 
