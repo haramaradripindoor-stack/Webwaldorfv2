@@ -5,11 +5,17 @@ import { useEffect, useState, useRef } from 'react'
 
 export default function LiquidSplash() {
   const [mounted, setMounted] = useState(false)
-  const [isVisible, setIsVisible] = useState(true)
+  const [isVisible, setIsVisible] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
     setMounted(true)
+    // Lógica UX: Solo mostrar el intro una vez por sesión del navegador
+    const seen = sessionStorage.getItem('splash_seen')
+    if (!seen) {
+      setIsVisible(true)
+      sessionStorage.setItem('splash_seen', '1')
+    }
   }, [])
 
   const dismiss = () => setIsVisible(false)
