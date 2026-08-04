@@ -2,7 +2,7 @@
 title: "De la Ciudad a la Naturaleza: Una Mirada Antroposófica al Migrar al Sur de Chile"
 date: '2026-07-20'
 excerpt: "Para las familias que buscan salir de Santiago, migrar al sur no es solo un cambio de código postal; es una decisión biográfica profunda. Exploramos cómo el entorno natural nutre el cuerpo etérico del niño."
-coverImage: "/assets/blog/migrar-al-sur.jpg"
+image_url: "/imagenes-web/galeria10.webp"
 author: "Colegio Waldorf Trekan"
 ---
 

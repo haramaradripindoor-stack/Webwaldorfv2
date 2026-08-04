@@ -2,7 +2,7 @@
 title: "El Desarrollo del Lenguaje a través de las Rimas con Movimiento"
 date: '2026-07-23'
 excerpt: "Descubre cómo las rimas con movimiento y el enfoque de referentes como Tamara Chubarovsky potencian el neurodesarrollo y el lenguaje en el Colegio Waldorf Trekan."
-coverImage: "/assets/colegio-fondo.webp"
+image_url: "/assets/colegio-fondo.webp"
 author: "Colegio Waldorf Trekan"
 ---
 
