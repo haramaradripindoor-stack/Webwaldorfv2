@@ -65,6 +65,16 @@ const nextConfig = {
         ],
       },
       {
+        // No indexar videos de fondo para resolver reportes de Google Search Console
+        source: '/(.*)\\.mp4$',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex',
+          },
+        ],
+      },
+      {
         // Cache de largo plazo para assets estáticos (_next/static)
         source: '/_next/static/(.*)',
         headers: [
