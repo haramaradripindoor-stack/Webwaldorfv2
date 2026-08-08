@@ -1,12 +1,10 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import Script from 'next/script'
-import MagneticCursor from '@/components/MagneticCursor'
 import AIChatWidget from '@/components/AIChatWidget'
-import SmoothScroll from '@/components/SmoothScroll'
-import LiquidSplash from '@/components/LiquidSplash'
+import AwwwardsEffects from '@/components/AwwwardsEffects'
 import dynamic from 'next/dynamic'
-import { Quicksand } from 'next/font/google'
+import { Quicksand, Merriweather } from 'next/font/google'
 
 const quicksand = Quicksand({ 
   subsets: ['latin'], 
@@ -14,6 +12,12 @@ const quicksand = Quicksand({
   display: 'swap',
 })
 
+const merriweather = Merriweather({
+  subsets: ['latin'],
+  weight: ['300', '400', '700'],
+  variable: '--font-serif',
+  display: 'swap',
+})
 
 
 
@@ -141,7 +145,7 @@ export default function RootLayout({
   const GTM_ID = 'GTM-NWT7GVSD'
 
   return (
-    <html lang="es" className={quicksand.variable}>
+    <html lang="es" className={`${quicksand.variable} ${merriweather.variable}`}>
       <head>
         <link
           rel="preload"
@@ -198,11 +202,6 @@ export default function RootLayout({
           />
         </noscript>
         
-        <LiquidSplash />
-        <MagneticCursor />
-        {/* Awwwards Film Grain */}
-        <div className="awwwards-noise" />
-        
         {/* Google Translate Hidden Element & Scripts */}
         <div id="google_translate_element" style={{ display: 'none' }} />
         <Script 
@@ -220,9 +219,9 @@ export default function RootLayout({
           `}
         </Script>
 
-        <SmoothScroll>
+        <AwwwardsEffects>
           {children}
-        </SmoothScroll>
+        </AwwwardsEffects>
         
 
         
