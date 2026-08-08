@@ -64,7 +64,8 @@ export async function generateMetadata({ params }: { params: { ciudad: string } 
   };
 }
 
-export const revalidate = 0; // Para que actualice siempre que haya cambios en BD
+export const revalidate = 3600; // Cache de 1 hora — contenido estático SEO
+
 
 export default async function RegionalPage({ params }: { params: { ciudad: string } }) {
   const supabase = createClient();

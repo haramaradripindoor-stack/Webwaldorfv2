@@ -75,6 +75,7 @@ export default function Hero({ data }: { data?: any }) {
             loop
             muted={isMuted}
             playsInline
+            {...{ fetchpriority: 'high' } as any}
             className="object-cover object-center w-full h-full opacity-80"
           />
         ) : (
@@ -113,6 +114,7 @@ export default function Hero({ data }: { data?: any }) {
           </AnimatePresence>
           <button
             onClick={toggleAudio}
+            aria-label={isMuted ? 'Activar sonido del video' : 'Silenciar video'}
             className="relative flex items-center justify-center p-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-white/70 hover:text-white hover:bg-white/10 transition-all cursor-pointer group"
           >
             {isMuted && (
@@ -167,7 +169,7 @@ export default function Hero({ data }: { data?: any }) {
             className="text-lg md:text-2xl text-[var(--color-waldorf-cream)]/70 font-medium max-w-2xl mx-auto mb-16 font-sans drop-shadow-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 2, delay: 1.2 }}
+            transition={{ duration: 1, delay: 0.3 }}
           >
             {subtitle}
           </motion.p>

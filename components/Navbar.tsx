@@ -130,13 +130,19 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Toggle */}
-      <button className="lg:hidden text-[var(--color-waldorf-moss)] p-2 focus:outline-none" onClick={() => setIsOpen(!isOpen)}>
+      <button
+        className="lg:hidden text-[var(--color-waldorf-moss)] p-2 focus:outline-none"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
+        aria-expanded={isOpen}
+        aria-controls="mobile-menu"
+      >
         {isOpen ? <X size={28} /> : <Menu size={28} />}
       </button>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 bg-[var(--color-waldorf-paper)]/95 backdrop-blur-md border-b border-[var(--color-waldorf-sage)]/10 py-6 px-8 flex flex-col gap-2 lg:hidden shadow-xl max-h-[80vh] overflow-y-auto">
+        <div id="mobile-menu" className="absolute top-full left-0 right-0 bg-[var(--color-waldorf-paper)]/95 backdrop-blur-md border-b border-[var(--color-waldorf-sage)]/10 py-6 px-8 flex flex-col gap-2 lg:hidden shadow-xl max-h-[80vh] overflow-y-auto">
           
           <Link href="/" onClick={() => setIsOpen(false)} className="text-base font-semibold text-[var(--color-waldorf-moss)] py-3 border-b border-[var(--color-waldorf-sage)]/10">
             Inicio

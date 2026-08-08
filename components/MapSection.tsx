@@ -27,6 +27,7 @@ export default function MapSection() {
       >
         {/* Google Maps Embed sin filtros oscuros para mantener la legibilidad y estética limpia */}
         <iframe 
+          title="Mapa de ubicación del Colegio Waldorf Trekan en Puerto Varas, Parque Ivian"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11961.341148810057!2d-72.973406!3d-41.328328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96183aef542dfdd1%3A0x6a2c206a4b1262d!2sColegio%20Waldorf%20Trekan!5e0!3m2!1ses-419!2scl!4v1718000000000!5m2!1ses-419!2scl" 
           width="100%" 
           height="100%" 

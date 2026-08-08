@@ -147,6 +147,10 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${quicksand.variable} ${merriweather.variable}`}>
       <head>
+        {/* Preconnect a orígenes críticos para reducir LCP */}
+        <link rel="preconnect" href="https://ebpioebxcyjpjgiqpjaw.supabase.co" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://ebpioebxcyjpjgiqpjaw.supabase.co" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="preload"
           href="/fonts/antroposofia.ttf"
@@ -202,13 +206,13 @@ export default function RootLayout({
           />
         </noscript>
         
-        {/* Google Translate Hidden Element & Scripts */}
+        {/* Google Translate Hidden Element & Scripts - lazyOnload para no bloquear main thread */}
         <div id="google_translate_element" style={{ display: 'none' }} />
         <Script 
           src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" 
-          strategy="afterInteractive" 
+          strategy="lazyOnload" 
         />
-        <Script id="google-translate-init" strategy="afterInteractive">
+        <Script id="google-translate-init" strategy="lazyOnload">
           {`
             function googleTranslateElementInit() {
               new window.google.translate.TranslateElement(

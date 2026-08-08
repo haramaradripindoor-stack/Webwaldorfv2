@@ -59,6 +59,7 @@ export default function LiquidSplash() {
           </video>
           <button
             onClick={dismiss}
+            aria-label="Saltar introducción animada"
             className="absolute bottom-10 right-10 text-white/50 hover:text-white uppercase tracking-widest text-sm z-50 transition-colors"
           >
             Saltar Intro
