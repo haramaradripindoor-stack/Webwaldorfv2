@@ -50,6 +50,7 @@ export default function VideoHoverReveal({ videoSrc, fallbackImg, showLogo = fal
         playsInline
         loop
         preload="none"
+        aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover"
         onCanPlay={() => setVideoReady(true)}
       />

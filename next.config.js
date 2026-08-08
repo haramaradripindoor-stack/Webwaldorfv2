@@ -4,6 +4,7 @@ const nextConfig = {
     serverComponentsExternalPackages: ['gray-matter']
   },
   images: {
+    unoptimized: true,
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {

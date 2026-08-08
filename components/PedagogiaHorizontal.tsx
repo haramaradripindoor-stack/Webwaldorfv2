@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import Image from 'next/image'
 
 const septenios = [
   {
@@ -87,10 +88,12 @@ function SeptenioCard({
       className="absolute inset-0 w-full flex flex-col md:flex-row items-center justify-center gap-6 md:gap-16 px-6 md:px-20 pt-24 md:pt-0 pb-16 md:pb-0"
     >
       {/* Imagen */}
-      <div className="w-full md:w-[50%] aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl flex-shrink-0">
-        <div
-          className="w-full h-full bg-cover bg-center"
-          style={{ backgroundImage: `url(${etapa.image})` }}
+      <div className="relative w-full md:w-[50%] aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl flex-shrink-0">
+        <Image
+          src={etapa.image}
+          alt={etapa.titulo}
+          fill
+          className="object-cover"
         />
       </div>
 

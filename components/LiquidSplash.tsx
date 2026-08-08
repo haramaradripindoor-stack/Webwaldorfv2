@@ -52,6 +52,7 @@ export default function LiquidSplash() {
             muted
             playsInline
             preload="auto"
+            aria-hidden="true"
             className="w-full h-full object-contain md:object-cover"
             onEnded={dismiss}
           >

@@ -63,6 +63,7 @@ export default function ImmersiveTestimonials() {
                   <video
                     src={t.media}
                     autoPlay loop muted playsInline
+                    aria-hidden="true"
                     className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-1000"
                   />
                 ) : (

@@ -77,7 +77,7 @@ export default function DeslizadorCompromiso() {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="absolute bottom-4 left-4 right-4 md:bottom-8 md:left-8 md:right-8 bg-white/10 backdrop-blur-md border border-white/20 p-4 md:p-6 rounded-3xl text-white"
             >
-              <h4 className="font-serif font-bold text-2xl mb-2 text-[var(--color-waldorf-mustard)]">¿Cómo funciona?</h4>
+              <h3 className="font-serif font-bold text-2xl mb-2 text-[var(--color-waldorf-mustard)]">¿Cómo funciona?</h3>
               <p className="text-sm text-white/90 leading-relaxed">
                 Al momento de la matrícula, las familias pueden elegir voluntariamente sumar un Aporte Solidario a su mensualidad. Este fondo va directa y exclusivamente a financiar becas internas.
               </p>

@@ -53,10 +53,10 @@ export default function NewsSection({ displayNews }: { displayNews: MarkdownPost
           </div>
           <div className="flex items-center gap-4">
             <div className="flex gap-2 mr-4 hidden md:flex">
-              <button onClick={() => scroll('left')} className="w-10 h-10 rounded-full bg-white border border-[var(--color-waldorf-sage)]/30 flex items-center justify-center text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-sage)]/10 transition-colors">
+              <button onClick={() => scroll('left')} aria-label="Noticias anteriores" className="w-10 h-10 rounded-full bg-white border border-[var(--color-waldorf-sage)]/30 flex items-center justify-center text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-sage)]/10 transition-colors">
                 <ArrowLeft size={18} />
               </button>
-              <button onClick={() => scroll('right')} className="w-10 h-10 rounded-full bg-white border border-[var(--color-waldorf-sage)]/30 flex items-center justify-center text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-sage)]/10 transition-colors">
+              <button onClick={() => scroll('right')} aria-label="Siguientes noticias" className="w-10 h-10 rounded-full bg-white border border-[var(--color-waldorf-sage)]/30 flex items-center justify-center text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-sage)]/10 transition-colors">
                 <ArrowRight size={18} />
               </button>
             </div>

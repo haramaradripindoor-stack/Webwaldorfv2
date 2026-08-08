@@ -75,7 +75,7 @@ export default function Hero({ data }: { data?: any }) {
             loop
             muted={isMuted}
             playsInline
-            {...{ fetchpriority: 'high' } as any}
+            aria-hidden="true"
             className="object-cover object-center w-full h-full opacity-80"
           />
         ) : (
@@ -145,7 +145,7 @@ export default function Hero({ data }: { data?: any }) {
               <motion.span
                 key={idx}
                 className={`relative inline-block ${word.toLowerCase() === 'voluntad' ? 'text-[var(--color-waldorf-mustard)]' : 'text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60'}`}
-                initial={{ opacity: 0, y: 50, rotateX: 45, filter: 'blur(10px)' }}
+                initial={{ opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' }}
                 animate={{ opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' }}
                 transition={{ duration: 1.2, delay: idx * 0.15 + 0.2, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ scale: 1.05, textShadow: "0px 0px 20px rgba(255,255,255,0.4)" }}
@@ -167,7 +167,7 @@ export default function Hero({ data }: { data?: any }) {
 
           <motion.p 
             className="text-lg md:text-2xl text-[var(--color-waldorf-cream)]/70 font-medium max-w-2xl mx-auto mb-16 font-sans drop-shadow-md"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
           >

@@ -45,11 +45,11 @@ export default function ActividadRow({ post, isCelebracion, tagColor, hoverImg }
         {isCelebracion ? (
           <div className="relative w-full h-full bg-[#0A0A10]">
             {!videoReady && (
-              <img
+              <Image
                 src="/imagenes-web/fiesta%20de%20la%20luz20261.jpg"
                 alt="Celebración"
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+                fill
+                className="absolute inset-0 object-cover transition-opacity duration-1000"
               />
             )}
             <video
@@ -59,6 +59,7 @@ export default function ActividadRow({ post, isCelebracion, tagColor, hoverImg }
               playsInline
               loop
               preload="none"
+              aria-hidden="true"
               className="absolute inset-0 w-full h-full object-cover opacity-90"
               onCanPlay={() => setVideoReady(true)}
             />
@@ -68,11 +69,11 @@ export default function ActividadRow({ post, isCelebracion, tagColor, hoverImg }
           </div>
         ) : (
           <div className="relative w-full h-full">
-            <img
+            <Image
               src={hoverImg}
               alt={post.title || "Actividad"}
-              loading="lazy"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
             />
             {/* Gradient to protect text legibility on mobile */}
             <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-waldorf-cream)] via-[var(--color-waldorf-cream)]/70 to-transparent z-10 md:hidden" />
