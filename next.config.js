@@ -4,7 +4,8 @@ const nextConfig = {
     serverComponentsExternalPackages: ['gray-matter']
   },
   images: {
-    unoptimized: true,
+    loader: 'custom',
+    loaderFile: './supabase-image-loader.js',
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
