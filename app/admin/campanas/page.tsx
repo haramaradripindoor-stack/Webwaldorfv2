@@ -2,13 +2,13 @@
 
 import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { Mail, Send, Users, History, CheckCircle2, ChevronRight, FileJson, Download, Upload, Plus, Trash2, Edit2, X } from 'lucide-react';
+import { Mail, Send, Users, History, CheckCircle2, ChevronRight, FileJson, Download, Upload, Plus, Trash2, Edit2, X, Tag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { emailTemplates } from '@/lib/emailTemplates';
 
 const EmailEditor = dynamic(() => import('react-email-editor'), { ssr: false });
 
-type Contact = { email: string; nombre: string; fuente: string; fecha: string; };
+type Contact = { email: string; nombre: string; fuente: string; fecha: string; tags?: string[]; };
 type Campaign = { 
   id: string; 
   subject: string; 
@@ -43,6 +43,18 @@ export default function CampanasPage() {
   const [contactModalMode, setContactModalMode] = useState<'create' | 'edit'>('create');
   const [editingContact, setEditingContact] = useState<{ email: string; nombre: string; oldEmail?: string }>({ email: '', nombre: '' });
   const [crudLoading, setCrudLoading] = useState(false);
+
+  // Tagging State
+  const [isTagModalOpen, setIsTagModalOpen] = useState(false);
+  const [tagInput, setTagInput] = useState('');
+  const [taggingLoading, setTaggingLoading] = useState(false);
+  const [selectedTagFilter, setSelectedTagFilter] = useState(''); 
+  const [selectedCampaignTag, setSelectedCampaignTag] = useState('');
+
+  const allTags = Array.from(new Set(contacts.flatMap(c => c.tags || []))).sort();
+  const filteredContacts = selectedTagFilter 
+    ? contacts.filter(c => c.tags?.includes(selectedTagFilter))
+    : contacts;
 
   // Plantillas eliminadas, ahora usamos el editor visual de Unlayer
 
@@ -104,6 +116,31 @@ export default function CampanasPage() {
       showMessage('error', 'Error de red');
     } finally {
       setCrudLoading(false);
+    }
+  };
+
+  const handleSaveTags = async () => {
+    if (!tagInput.trim()) return showMessage('error', 'Escribe una etiqueta.');
+    setTaggingLoading(true);
+    try {
+      const res = await fetch('/api/campaigns/contacts/tags', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ emails: selectedContacts, tags: [tagInput.trim()] })
+      });
+      const data = await res.json();
+      if (data.success) {
+        showMessage('success', `Etiqueta añadida a ${selectedContacts.length} contactos.`);
+        setIsTagModalOpen(false);
+        setTagInput('');
+        fetchData();
+      } else {
+        showMessage('error', data.error || 'Error al guardar etiquetas');
+      }
+    } catch {
+      showMessage('error', 'Error de red');
+    } finally {
+      setTaggingLoading(false);
     }
   };
 
@@ -408,13 +445,37 @@ export default function CampanasPage() {
                 <div className="grid md:grid-cols-2 gap-5 mb-6">
                   <div>
                     <label className="block text-xs font-bold text-[var(--color-waldorf-text-light)] uppercase tracking-widest mb-2">Destinatarios ({selectedContacts.length})</label>
-                    <div className="bg-[var(--color-waldorf-paper)] border border-[var(--color-waldorf-sage)]/20 rounded-xl p-3 flex justify-between items-center text-sm shadow-inner">
+                    <div className="bg-[var(--color-waldorf-paper)] border border-[var(--color-waldorf-sage)]/20 rounded-xl p-3 flex justify-between items-center text-sm shadow-inner mb-3">
                       <span className="text-[var(--color-waldorf-moss)] font-medium">
                         {selectAll ? 'Todos los contactos seleccionados' : `${selectedContacts.length} contactos seleccionados`}
                       </span>
                       <button onClick={() => setActiveTab('contacts')} className="text-[var(--color-waldorf-terracotta)] hover:opacity-80 font-bold text-xs flex items-center">
                         Editar Lista <ChevronRight className="w-4 h-4" />
                       </button>
+                    </div>
+                    {/* Tag filter for compose */}
+                    <div className="relative">
+                      <select 
+                        value={selectedCampaignTag}
+                        onChange={(e) => {
+                          const tag = e.target.value;
+                          setSelectedCampaignTag(tag);
+                          if (!tag) {
+                            setSelectedContacts(contacts.map(c => c.email));
+                            setSelectAll(true);
+                          } else {
+                            const filtered = contacts.filter(c => c.tags?.includes(tag)).map(c => c.email);
+                            setSelectedContacts(filtered);
+                            setSelectAll(false);
+                          }
+                        }}
+                        className="w-full bg-white border border-[var(--color-waldorf-sage)]/30 text-[var(--color-waldorf-moss)] text-sm font-bold rounded-xl px-4 py-2 focus:outline-none focus:border-[var(--color-waldorf-moss)] cursor-pointer transition-colors shadow-sm"
+                      >
+                        <option value="">Enviar a todos los contactos ({contacts.length})</option>
+                        {allTags.map(t => (
+                          <option key={t} value={t}>Solo a etiqueta: {t}</option>
+                        ))}
+                      </select>
                     </div>
                   </div>
 
@@ -462,6 +523,14 @@ export default function CampanasPage() {
                   <Users className="w-5 h-5" /> Directorio Unificado
                 </h2>
                 <div className="flex items-center gap-2 md:gap-4 flex-wrap">
+                  <select 
+                    value={selectedTagFilter}
+                    onChange={(e) => setSelectedTagFilter(e.target.value)}
+                    className="bg-white border border-[var(--color-waldorf-sage)]/30 text-[var(--color-waldorf-moss)] text-xs font-bold rounded-lg px-3 py-1.5 focus:outline-none"
+                  >
+                    <option value="">Todas las Etiquetas</option>
+                    {allTags.map(t => <option key={t} value={t}>{t}</option>)}
+                  </select>
                   <input 
                     type="file" 
                     accept=".csv" 
@@ -477,9 +546,14 @@ export default function CampanasPage() {
                     <Plus className="w-3.5 h-3.5" /> Nuevo Contacto
                   </button>
                   {selectedContacts.length > 0 && (
-                    <button onClick={() => deleteContacts(selectedContacts)} className="flex items-center gap-2 text-xs font-bold bg-red-50 text-red-600 border border-red-200 hover:bg-red-100 px-3 py-1.5 rounded-lg transition-colors shadow-sm">
-                      <Trash2 className="w-3.5 h-3.5" /> Eliminar ({selectedContacts.length})
-                    </button>
+                    <>
+                      <button onClick={() => setIsTagModalOpen(true)} className="flex items-center gap-2 text-xs font-bold bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 px-3 py-1.5 rounded-lg transition-colors shadow-sm">
+                        <Tag className="w-3.5 h-3.5" /> Etiquetar ({selectedContacts.length})
+                      </button>
+                      <button onClick={() => deleteContacts(selectedContacts)} className="flex items-center gap-2 text-xs font-bold bg-red-50 text-red-600 border border-red-200 hover:bg-red-100 px-3 py-1.5 rounded-lg transition-colors shadow-sm">
+                        <Trash2 className="w-3.5 h-3.5" /> Eliminar ({selectedContacts.length})
+                      </button>
+                    </>
                   )}
                   <button onClick={() => fileInputRef.current?.click()} className="flex items-center gap-2 text-xs font-bold bg-white border border-[var(--color-waldorf-sage)]/30 hover:bg-[var(--color-waldorf-cream)] text-[var(--color-waldorf-moss)] px-3 py-1.5 rounded-lg transition-colors shadow-sm">
                     <Upload className="w-3.5 h-3.5" /> Importar CSV
@@ -502,13 +576,14 @@ export default function CampanasPage() {
                       <th className="px-6 py-4 text-center">Sel.</th>
                       <th className="px-6 py-4">Email</th>
                       <th className="px-6 py-4">Nombre / Origen</th>
+                      <th className="px-6 py-4">Etiquetas</th>
                       <th className="px-6 py-4">Fuente</th>
                       <th className="px-6 py-4">Fecha Captura</th>
                       <th className="px-6 py-4 text-right">Acciones</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[var(--color-waldorf-sage)]/10">
-                    {contacts.map((c, i) => (
+                    {filteredContacts.map((c, i) => (
                       <tr key={i} onClick={() => toggleContact(c.email)} className={`group cursor-pointer transition-colors ${selectedContacts.includes(c.email) ? 'bg-[var(--color-waldorf-cream)]' : 'hover:bg-gray-50'}`}>
                         <td className="px-6 py-4 text-center">
                           <div className={`w-5 h-5 rounded flex items-center justify-center mx-auto transition-colors border ${selectedContacts.includes(c.email) ? 'bg-[var(--color-waldorf-terracotta)] border-[var(--color-waldorf-terracotta)]' : 'border-gray-300 bg-white'}`}>
@@ -517,6 +592,15 @@ export default function CampanasPage() {
                         </td>
                         <td className="px-6 py-4 font-mono text-[var(--color-waldorf-text-light)] text-xs">{c.email}</td>
                         <td className="px-6 py-4 font-bold text-[var(--color-waldorf-moss)]">{c.nombre || 'Desconocido'}</td>
+                        <td className="px-6 py-4">
+                          <div className="flex flex-wrap gap-1">
+                            {c.tags && c.tags.length > 0 ? c.tags.map(t => (
+                              <span key={t} className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-md bg-[var(--color-waldorf-cream)] text-[var(--color-waldorf-moss)] border border-[var(--color-waldorf-sage)]/30">
+                                {t}
+                              </span>
+                            )) : <span className="text-xs text-gray-400">-</span>}
+                          </div>
+                        </td>
                         <td className="px-6 py-4">
                           <span className={`text-[10px] uppercase font-bold px-2 py-1 rounded-full border ${
                             c.fuente === 'chatbot' ? 'bg-emerald-50 text-emerald-600 border-emerald-200' :
@@ -665,6 +749,57 @@ export default function CampanasPage() {
                 </button>
                 <button onClick={handleSaveContact} disabled={crudLoading} className="px-6 py-2 bg-[var(--color-waldorf-moss)] text-white text-sm font-bold rounded-lg hover:bg-[#2b4c3b] transition-colors disabled:opacity-50 flex items-center justify-center min-w-[100px]">
                   {crudLoading ? <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : 'Guardar'}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* MODAL ETIQUETAR */}
+      <AnimatePresence>
+        {isTagModalOpen && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+            <motion.div initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }} className="bg-white rounded-2xl w-full max-w-md overflow-hidden shadow-2xl border border-[var(--color-waldorf-sage)]/30">
+              <div className="bg-[var(--color-waldorf-paper)] p-5 border-b border-[var(--color-waldorf-sage)]/20 flex justify-between items-center">
+                <h3 className="font-bold font-serif text-[var(--color-waldorf-moss)] text-lg flex items-center gap-2">
+                  <Tag className="w-5 h-5" /> Etiquetar Contactos
+                </h3>
+                <button onClick={() => setIsTagModalOpen(false)} className="text-gray-400 hover:text-gray-700 transition-colors">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="p-6 space-y-4">
+                <p className="text-sm text-[var(--color-waldorf-text-light)]">Añadiendo etiqueta a <strong>{selectedContacts.length}</strong> contactos seleccionados.</p>
+                <div>
+                  <label className="block text-xs font-bold text-[var(--color-waldorf-text-light)] uppercase tracking-widest mb-1">Nombre de la Etiqueta</label>
+                  <input
+                    type="text"
+                    value={tagInput}
+                    onChange={e => setTagInput(e.target.value)}
+                    placeholder="Ej: Apoderados 2025"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm focus:border-[var(--color-waldorf-moss)] outline-none transition-colors"
+                  />
+                </div>
+                {allTags.length > 0 && (
+                  <div>
+                    <label className="block text-xs font-bold text-[var(--color-waldorf-text-light)] uppercase tracking-widest mb-2">O selecciona una existente:</label>
+                    <div className="flex flex-wrap gap-2">
+                      {allTags.map(t => (
+                        <button key={t} onClick={() => setTagInput(t)} className={`text-xs font-bold px-3 py-1.5 rounded-lg border transition-colors ${tagInput === t ? 'bg-[var(--color-waldorf-moss)] text-white border-[var(--color-waldorf-moss)]' : 'bg-white text-[var(--color-waldorf-text-light)] border-[var(--color-waldorf-sage)]/30 hover:bg-[var(--color-waldorf-cream)]'}`}>
+                          {t}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="p-5 border-t border-[var(--color-waldorf-sage)]/10 bg-gray-50 flex justify-end gap-3">
+                <button onClick={() => setIsTagModalOpen(false)} className="px-4 py-2 text-sm font-bold text-gray-500 hover:text-gray-800 transition-colors">
+                  Cancelar
+                </button>
+                <button onClick={handleSaveTags} disabled={taggingLoading} className="px-6 py-2 bg-[var(--color-waldorf-moss)] text-white text-sm font-bold rounded-lg hover:bg-[#2b4c3b] transition-colors disabled:opacity-50 flex items-center justify-center min-w-[100px]">
+                  {taggingLoading ? <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : 'Guardar'}
                 </button>
               </div>
             </motion.div>

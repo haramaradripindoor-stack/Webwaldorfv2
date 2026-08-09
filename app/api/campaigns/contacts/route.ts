@@ -49,7 +49,19 @@ export async function GET() {
       });
     }
 
-    // 4. Unificar todos los contactos, eliminando duplicados y filtrando bajas
+    // 4. Obtener etiquetas de contact_tags
+    const { data: tagsData, error: err4 } = await supabase
+      .from('contact_tags')
+      .select('email, tags');
+
+    const tagsMap = new Map<string, string[]>();
+    if (tagsData && !err4) {
+      tagsData.forEach(t => {
+        tagsMap.set(t.email.trim().toLowerCase(), t.tags || []);
+      });
+    }
+
+    // 5. Unificar todos los contactos, eliminando duplicados y filtrando bajas
     const unifiedContacts: any[] = [];
     const seenEmails = new Set();
 
@@ -62,7 +74,8 @@ export async function GET() {
             email: email,
             nombre: lead.nombre_apoderado || 'Desconocido',
             fuente: lead.origen || 'registro web',
-            fecha: lead.created_at
+            fecha: lead.created_at,
+            tags: tagsMap.get(email) || []
           });
         }
       });
@@ -78,7 +91,8 @@ export async function GET() {
             email: email,
             nombre: lead.apoderado_name || 'Desconocido',
             fuente: 'chatbot',
-            fecha: lead.created_at
+            fecha: lead.created_at,
+            tags: tagsMap.get(email) || []
           });
         }
       });
@@ -148,6 +162,11 @@ export async function PUT(req: Request) {
       }).eq('apoderado_email', cleanOld)
     ]);
 
+    // Actualizar también en contact_tags si el email cambió
+    if (cleanOld !== cleanNew) {
+      await supabase.from('contact_tags').update({ email: cleanNew }).eq('email', cleanOld);
+    }
+
     if (resAdmision.error) console.error(resAdmision.error);
     if (resChat.error) console.error(resChat.error);
 
@@ -173,10 +192,11 @@ export async function DELETE(req: Request) {
 
     const cleanEmails = emails.map(e => e.trim().toLowerCase());
 
-    // Eliminar de ambas tablas
+    // Eliminar de ambas tablas y de tags
     const [resAdmision, resChat] = await Promise.all([
       supabase.from('leads_admision').delete().in('email_apoderado', cleanEmails),
-      supabase.from('chat_leads').delete().in('apoderado_email', cleanEmails)
+      supabase.from('chat_leads').delete().in('apoderado_email', cleanEmails),
+      supabase.from('contact_tags').delete().in('email', cleanEmails)
     ]);
 
     if (resAdmision.error) throw resAdmision.error;
