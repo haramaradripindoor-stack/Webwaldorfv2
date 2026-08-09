@@ -132,6 +132,35 @@ export async function POST(req: Request) {
       // No rompemos el flujo si el correo falla, el lead ya está en la DB
     }
 
+    // 3. Enviar Webhook a n8n para alerta por WhatsApp
+    try {
+      const n8nWebhookUrl = process.env.N8N_WEBHOOK_URL;
+      if (n8nWebhookUrl) {
+        await fetch(n8nWebhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            event: 'new_lead',
+            source: datos_extra_postulacion ? 'Formulario Completo' : 'Formulario Web',
+            lead: {
+              nombre_apoderado,
+              telefono_apoderado,
+              email_apoderado,
+              nombre_nino,
+              curso_postula
+            }
+          })
+        });
+      } else {
+        console.warn('N8N_WEBHOOK_URL no está configurada. Saltando envío a n8n.');
+      }
+    } catch (n8nError) {
+      console.error('Error enviando webhook a n8n:', n8nError);
+      // No rompemos el flujo de la UI si n8n falla
+    }
+
     return NextResponse.json({ success: true });
   } catch (error: any) {
     console.error('Error procesando lead:', error);
