@@ -130,10 +130,6 @@ div#goog-gt- {
 }
 
 @media (min-width: 768px) {
-  html, body, a, button, input, select, textarea, [role="button"] {
-    cursor: none;
-  }
-  
   /* Excepción para interacciones 3D */
   canvas {
     cursor: grab !important;

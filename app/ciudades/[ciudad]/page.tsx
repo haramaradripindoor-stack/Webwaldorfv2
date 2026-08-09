@@ -113,8 +113,50 @@ export default async function RegionalPage({ params }: { params: { ciudad: strin
     displayNews = allNews.slice(0, 5);
   }
 
+  // Coordenadas geográficas para anclar el LocalBusiness al mapa zonal
+  const geoMap: Record<string, { lat: number, lon: number }> = {
+    'puerto-varas': { lat: -41.3195, lon: -72.9854 },
+    'puerto-montt': { lat: -41.4693, lon: -72.9424 },
+    'frutillar': { lat: -41.1274, lon: -73.0287 },
+    'osorno': { lat: -40.5739, lon: -73.1336 },
+    'llanquihue': { lat: -41.2581, lon: -73.0084 },
+    'santiago': { lat: -33.4489, lon: -70.6693 },
+    'valdivia': { lat: -39.8142, lon: -73.2459 },
+    'chiloe': { lat: -42.4823, lon: -73.7644 }
+  };
+
+  const cityGeo = geoMap[params.ciudad.toLowerCase()] || geoMap['puerto-varas'];
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": ["EducationalOrganization", "LocalBusiness"],
+    "name": `Colegio Waldorf Trekan - Sede para familias de ${ciudadLimpia}`,
+    "image": "https://www.colegiowaldorftrekan.cl/assets/logo.png",
+    "description": `Comunidad educativa Waldorf recibiendo familias de ${ciudadLimpia} y el sur de Chile.`,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": ciudadLimpia,
+      "addressRegion": "Los Lagos",
+      "addressCountry": "CL"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": cityGeo.lat,
+      "longitude": cityGeo.lon
+    },
+    "url": `https://www.colegiowaldorftrekan.cl/colegio-waldorf-${params.ciudad}`,
+    "telephone": "+56912345678", // Reemplazar por teléfono real si está disponible
+    "sameAs": [
+      "https://www.instagram.com/colegiowaldorftrekan"
+    ]
+  };
+
   return (
     <SmoothScroll>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-x-clip">
         <Navbar />
         {/* Usamos un Hero ligeramente modificado para el SEO Local */}
