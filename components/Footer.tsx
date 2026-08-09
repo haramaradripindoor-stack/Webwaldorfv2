@@ -65,7 +65,27 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto border-t border-[var(--color-waldorf-sage)]/10 mt-16 pt-8 flex flex-col items-center gap-2 text-xs text-[var(--color-waldorf-sage)] font-medium relative z-10 text-center">
         <p>&copy; {new Date().getFullYear()} Colegio Waldorf Trekan - Puerto Varas</p>
         <p>Construyendo comunidad, educación y voluntad. Todos los derechos reservados.</p>
-        <Link href="/recursos" className="mt-2 text-[var(--color-waldorf-sage)]/80 hover:text-[var(--color-waldorf-terracotta)] border-b border-dotted border-[var(--color-waldorf-sage)]/40 hover:border-transparent transition-colors">
+        
+        {/* Enlaces de SEO Local Programático (Sutiles para Google) */}
+        <div className="flex flex-wrap justify-center gap-3 mt-4 max-w-2xl opacity-60 hover:opacity-100 transition-opacity duration-300">
+          <Link href="/ciudades/puerto-varas" className="hover:text-[var(--color-waldorf-terracotta)] transition-colors">Puerto Varas</Link>
+          <span>&middot;</span>
+          <Link href="/ciudades/puerto-montt" className="hover:text-[var(--color-waldorf-terracotta)] transition-colors">Puerto Montt</Link>
+          <span>&middot;</span>
+          <Link href="/ciudades/frutillar" className="hover:text-[var(--color-waldorf-terracotta)] transition-colors">Frutillar</Link>
+          <span>&middot;</span>
+          <Link href="/ciudades/llanquihue" className="hover:text-[var(--color-waldorf-terracotta)] transition-colors">Llanquihue</Link>
+          <span>&middot;</span>
+          <Link href="/ciudades/osorno" className="hover:text-[var(--color-waldorf-terracotta)] transition-colors">Osorno</Link>
+          <span>&middot;</span>
+          <Link href="/ciudades/valdivia" className="hover:text-[var(--color-waldorf-terracotta)] transition-colors">Valdivia</Link>
+          <span>&middot;</span>
+          <Link href="/ciudades/chiloe" className="hover:text-[var(--color-waldorf-terracotta)] transition-colors">Chiloé</Link>
+          <span>&middot;</span>
+          <Link href="/ciudades/santiago" className="hover:text-[var(--color-waldorf-terracotta)] transition-colors">Santiago (Admisión Zona Central)</Link>
+        </div>
+
+        <Link href="/recursos" className="mt-4 text-[var(--color-waldorf-sage)]/80 hover:text-[var(--color-waldorf-terracotta)] border-b border-dotted border-[var(--color-waldorf-sage)]/40 hover:border-transparent transition-colors">
           Directorio de Recursos Waldorf y Antroposóficos en Chile
         </Link>
       </div>
