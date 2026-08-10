@@ -1,12 +1,69 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
+import { createHash } from 'crypto';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY! // Usamos el service role en el backend
 );
+
+// --- Meta Conversions API (CAPI) Server-Side ---
+// Garantiza el registro del Lead en Meta aunque el navegador redirija a WhatsApp
+// antes de que el fbq() cliente-lado termine de enviarse.
+async function fireMetaCAPI(payload: {
+  email?: string;
+  phone?: string;
+  clientIp?: string;
+  userAgent?: string;
+}) {
+  const pixelId = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
+  const accessToken = process.env.META_CAPI_ACCESS_TOKEN;
+
+  if (!pixelId || !accessToken) {
+    console.warn('[CAPI] META_CAPI_ACCESS_TOKEN o PIXEL_ID no configurados. Saltando CAPI.');
+    return;
+  }
+
+  // SHA-256 hash requerido por Meta para PII
+  const hash = (value?: string) =>
+    value ? createHash('sha256').update(value.trim().toLowerCase()).digest('hex') : undefined;
+
+  const userData: Record<string, string | undefined> = {};
+  if (payload.email) userData.em = hash(payload.email);
+  if (payload.phone) userData.ph = hash(payload.phone.replace(/\D/g, ''));
+  if (payload.clientIp) userData.client_ip_address = payload.clientIp;
+  if (payload.userAgent) userData.client_user_agent = payload.userAgent;
+
+  const eventPayload = {
+    data: [
+      {
+        event_name: 'Lead',
+        event_time: Math.floor(Date.now() / 1000),
+        action_source: 'website',
+        event_source_url: 'https://www.colegiowaldorftrekan.cl/admision',
+        user_data: userData,
+      },
+    ],
+    // test_event_code: 'TEST12345', // Descomentar para probar en Events Manager
+  };
+
+  try {
+    const res = await fetch(
+      `https://graph.facebook.com/v20.0/${pixelId}/events?access_token=${accessToken}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(eventPayload),
+      }
+    );
+    const result = await res.json();
+    console.log('[CAPI] Lead enviado a Meta:', JSON.stringify(result));
+  } catch (err) {
+    console.error('[CAPI] Error enviando evento a Meta:', err);
+  }
+}
 
 export async function POST(req: Request) {
   try {
@@ -50,7 +107,17 @@ export async function POST(req: Request) {
 
     if (dbError) throw dbError;
 
-    // 2. Enviar Alerta por Email a Ivonne usando Resend
+    // 2. Meta Conversions API (CAPI) — Server-Side Lead Event
+    // Se dispara DESPUÉS de guardar en Supabase, garantizando tracking
+    // sin depender del fbq() cliente que puede perderse en el redirect a WhatsApp.
+    fireMetaCAPI({
+      email: email_apoderado !== 'Pendiente' ? email_apoderado : undefined,
+      phone: telefono_apoderado !== 'Vía WhatsApp (Pendiente)' ? telefono_apoderado : undefined,
+      clientIp: req.headers.get('x-forwarded-for')?.split(',')[0] || undefined,
+      userAgent: req.headers.get('user-agent') || undefined,
+    }).catch(() => {}); // Fire-and-forget: no bloqueamos la respuesta al cliente
+
+    // 3. Enviar Alerta por Email a Ivonne usando Resend
     let htmlContent = '';
 
     if (datos_extra_postulacion) {
@@ -132,14 +199,15 @@ export async function POST(req: Request) {
       // No rompemos el flujo si el correo falla, el lead ya está en la DB
     }
 
-    // 3. Enviar Webhook a n8n para alerta por WhatsApp
+    // 4. Enviar Webhook a n8n para alerta por WhatsApp
     try {
       const n8nWebhookUrl = process.env.N8N_WEBHOOK_URL;
       if (n8nWebhookUrl) {
         await fetch(n8nWebhookUrl, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Bypass-Tunnel-Reminder': 'true'
           },
           body: JSON.stringify({
             event: 'new_lead',
