@@ -160,11 +160,23 @@ export default function AdmisionClient() {
               <div className="relative z-10">
                 <span className="inline-block bg-[var(--color-waldorf-mustard)] text-[#1a2e25] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">Mensual</span>
                 <h4 className="font-bold text-2xl mb-2">Escolaridad</h4>
-                <p className="text-sm text-white/60 mb-8">Pago hasta el día 5 de cada mes.</p>
+                <p className="text-sm text-white/60 mb-6">Pago hasta el día 5 de cada mes.</p>
               </div>
-              <div className="relative z-10 flex items-baseline gap-2">
-                <div className="text-5xl font-serif font-bold text-[var(--color-waldorf-mustard)]">$330.000</div>
-                <span className="text-white/60">/mes</span>
+              <div className="relative z-10 flex flex-col gap-4">
+                <div>
+                  <span className="text-white/60 text-xs uppercase tracking-wider font-bold block mb-1">Básica</span>
+                  <div className="flex items-baseline gap-2">
+                    <div className="text-4xl font-serif font-bold text-[var(--color-waldorf-mustard)]">$330.000</div>
+                    <span className="text-white/60 text-sm">/mes</span>
+                  </div>
+                </div>
+                <div className="border-t border-white/10 pt-4">
+                  <span className="text-white/60 text-xs uppercase tracking-wider font-bold block mb-1">Kínder</span>
+                  <div className="flex items-baseline gap-2">
+                    <div className="text-3xl font-serif font-bold text-white/90">$270.000</div>
+                    <span className="text-white/60 text-sm">/mes</span>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
@@ -181,6 +193,31 @@ export default function AdmisionClient() {
             </motion.div>
             
           </div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-16 bg-[#FAF8F5] border border-[var(--color-waldorf-moss)]/20 p-8 md:p-10 rounded-3xl relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+              <span className="text-9xl font-serif">"</span>
+            </div>
+            <div className="flex flex-col md:flex-row gap-8 items-start relative z-10">
+              <div className="w-16 h-16 rounded-full bg-[#1a2e25] flex items-center justify-center shrink-0">
+                <span className="text-2xl text-[var(--color-waldorf-mustard)]">🌱</span>
+              </div>
+              <div>
+                <h4 className="font-serif font-bold text-2xl text-[var(--color-waldorf-moss)] mb-4">Economía Fraterna y Aranceles Diferenciados</h4>
+                <p className="text-[var(--color-waldorf-text-light)] text-lg leading-relaxed mb-4">
+                  En coherencia con la visión antroposófica de la <em>Trimembración Social</em> propuesta por Rudolf Steiner, comprendemos que el ámbito económico de nuestra comunidad debe regirse por el <strong>Principio de Fraternidad</strong> (producir y sostener para las necesidades del otro, trascendiendo el mero interés transaccional).
+                </p>
+                <p className="text-[var(--color-waldorf-text-light)] text-lg leading-relaxed">
+                  Bajo este paradigma experto de innovación social, la educación no opera como un bien de consumo mercantil. Por ello, si una familia posee un compromiso genuino y participativo con el desarrollo de su hijo a través de la pedagogía Waldorf, es posible llevar a cabo un proceso de evaluación para establecer <strong>aranceles diferenciados</strong>. Apelamos a la corresponsabilidad y al aporte consciente de cada familia para nutrir el organismo vivo que es nuestra escuela.
+                </p>
+              </div>
+            </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
              <div className="bg-[#FAF8F5] p-8 rounded-3xl">

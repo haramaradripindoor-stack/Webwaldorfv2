@@ -83,7 +83,7 @@ La transparencia económica es parte de nuestra ética. Estos son los valores re
 | Concepto | Valor |
 |---|---|
 | Matrícula | $500.000 (en 2 cuotas: enero y febrero) |
-| Escolaridad mensual | $330.000/mes |
+| Escolaridad mensual (Kínder) | $270.000/mes |
 | Cuota de materiales (anual) | $160.000 (en 2 cuotas) |
 | Cuota de incorporación (1ª vez) | $330.000 (pago único) |
 
