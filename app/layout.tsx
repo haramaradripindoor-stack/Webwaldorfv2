@@ -66,7 +66,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": ["EducationalOrganization", "School", "LocalBusiness"],
+        "@type": "School",
         "@id": "https://www.colegiowaldorftrekan.cl/#organization",
         "name": "Colegio Waldorf Trekan",
         "alternateName": "Trekan Puerto Varas",
@@ -102,6 +102,14 @@ export default function RootLayout({
           },
           "geoRadius": "50000"
         },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "15:00"
+          }
+        ],
         "founder": {
           "@id": "https://www.colegiowaldorftrekan.cl/#ivonneparada"
         },

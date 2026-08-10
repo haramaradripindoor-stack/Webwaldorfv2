@@ -161,9 +161,14 @@ export default function RecursosPage() {
             <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto relative z-10">
               Ayúdanos a expandir esta red colaborativa. Si conoces algún proyecto o profesional afín, no dudes en escribirnos.
             </p>
-            <a href="/#contacto" className="inline-block bg-white text-[var(--color-waldorf-moss)] px-8 py-4 rounded-full font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform duration-300 relative z-20">
-              Sugerir Recurso
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-20">
+              <a href="mailto:admision@colegiowaldorftrekan.cl?subject=Sugerencia%20de%20Recurso%20Waldorf&body=Hola%20Ivonne%2C%0A%0AQuisiera%20sugerir%20el%20siguiente%20recurso%20para%20el%20directorio%3A%0A%0ANombre%3A%0AEnlace%3A%0ADescripci%C3%B3n%3A%0A%0ASaludos%2C" className="inline-block bg-white text-[var(--color-waldorf-moss)] px-8 py-4 rounded-full font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform duration-300 w-full sm:w-auto">
+                Sugerir por Correo
+              </a>
+              <a href="https://wa.me/56967765106?text=Hola%20Ivonne%2C%20quisiera%20sugerir%20un%20recurso%20para%20el%20directorio%20Waldorf%3A" target="_blank" rel="noopener noreferrer" className="inline-block bg-[#25D366] text-white px-8 py-4 rounded-full font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform duration-300 w-full sm:w-auto">
+                Sugerir por WhatsApp
+              </a>
+            </div>
           </div>
         </section>
         

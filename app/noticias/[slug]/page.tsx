@@ -74,6 +74,10 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://www.colegiowaldorftrekan.cl/noticias/${post.slug}`
+    },
     "headline": post.title,
     "image": post.image_url ? [
       post.image_url.startsWith('/') 
@@ -83,7 +87,7 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
     "datePublished": new Date(post.published_at).toISOString(),
     "dateModified": new Date(post.published_at).toISOString(),
     "author": {
-      "@type": "Organization",
+      "@type": post.author ? "Person" : "Organization",
       "name": post.author || "Colegio Waldorf Trekan",
       "url": "https://www.colegiowaldorftrekan.cl"
     },

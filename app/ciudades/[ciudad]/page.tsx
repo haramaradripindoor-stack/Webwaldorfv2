@@ -129,10 +129,14 @@ export default async function RegionalPage({ params }: { params: { ciudad: strin
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": ["EducationalOrganization", "LocalBusiness"],
+    "@type": "School",
     "name": `Colegio Waldorf Trekan - Sede para familias de ${ciudadLimpia}`,
     "image": "https://www.colegiowaldorftrekan.cl/assets/logo.png",
     "description": `Comunidad educativa Waldorf recibiendo familias de ${ciudadLimpia} y el sur de Chile.`,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://www.colegiowaldorftrekan.cl/ciudades/${params.ciudad.toLowerCase()}`
+    },
     "address": {
       "@type": "PostalAddress",
       "addressLocality": ciudadLimpia,
@@ -144,10 +148,19 @@ export default async function RegionalPage({ params }: { params: { ciudad: strin
       "latitude": cityGeo.lat,
       "longitude": cityGeo.lon
     },
-    "url": `https://www.colegiowaldorftrekan.cl/colegio-waldorf-${params.ciudad}`,
+    "url": `https://www.colegiowaldorftrekan.cl/ciudades/${params.ciudad.toLowerCase()}`,
     "telephone": "+56967765106",
     "sameAs": [
-      "https://www.instagram.com/colegiowaldorftrekan"
+      "https://www.instagram.com/waldorftrekanpv/",
+      "https://www.facebook.com/profile.php?id=61573063135723"
+    ],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "15:00"
+      }
     ]
   };
 
