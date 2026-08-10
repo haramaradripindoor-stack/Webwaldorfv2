@@ -8,6 +8,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import SmoothScroll from '@/components/SmoothScroll'
 import AdmisionForm from '@/components/AdmisionForm'
 import FAQSection from '@/components/FAQSection'
+import Link from 'next/link'
 
 export default function AdmisionClient() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -212,9 +213,18 @@ export default function AdmisionClient() {
                 <p className="text-[var(--color-waldorf-text-light)] text-lg leading-relaxed mb-4">
                   En coherencia con la visión antroposófica de la <em>Trimembración Social</em> propuesta por Rudolf Steiner, comprendemos que el ámbito económico de nuestra comunidad debe regirse por el <strong>Principio de Fraternidad</strong> (producir y sostener para las necesidades del otro, trascendiendo el mero interés transaccional).
                 </p>
-                <p className="text-[var(--color-waldorf-text-light)] text-lg leading-relaxed">
+                <p className="text-[var(--color-waldorf-text-light)] text-lg leading-relaxed mb-6">
                   Bajo este paradigma experto de innovación social, la educación no opera como un bien de consumo mercantil. Por ello, si una familia posee un compromiso genuino y participativo con el desarrollo de su hijo a través de la pedagogía Waldorf, es posible llevar a cabo un proceso de evaluación para establecer <strong>aranceles diferenciados</strong>. Apelamos a la corresponsabilidad y al aporte consciente de cada familia para nutrir el organismo vivo que es nuestra escuela.
                 </p>
+                <Link 
+                  href="/noticias/2026-08-10-aranceles-diferenciados-economia-fraterna-waldorf"
+                  className="inline-flex items-center gap-2 font-bold text-[var(--color-waldorf-terracotta)] hover:text-[#d96b52] transition-colors"
+                >
+                  <span>Profundizar en nuestra postura ética y financiera</span>
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
               </div>
             </div>
           </motion.div>
