@@ -35,3 +35,4 @@ scripts/one-off/
 *.csv
 *.log
 screenshot*.png
+.env*

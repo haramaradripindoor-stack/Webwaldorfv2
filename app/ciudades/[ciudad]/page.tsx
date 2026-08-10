@@ -145,7 +145,7 @@ export default async function RegionalPage({ params }: { params: { ciudad: strin
       "longitude": cityGeo.lon
     },
     "url": `https://www.colegiowaldorftrekan.cl/colegio-waldorf-${params.ciudad}`,
-    "telephone": "+56912345678", // Reemplazar por teléfono real si está disponible
+    "telephone": "+56967765106",
     "sameAs": [
       "https://www.instagram.com/colegiowaldorftrekan"
     ]
