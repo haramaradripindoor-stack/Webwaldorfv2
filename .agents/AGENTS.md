@@ -17,3 +17,7 @@
 ## Reglas de Interfaz de Usuario (UI/UX)
 - **Sistemas Kanban y CRM:** NUNCA utilizar botones dentro de las tarjetas para mover elementos entre columnas. TODO sistema tipo Kanban (como Admisiones o Gestión de Tareas) debe implementarse estrictamente utilizando una experiencia de 'Arrastrar y Soltar' (Drag and Drop).
 - **Librería Estándar:** Para implementar Drag and Drop en React/Next.js, utilizar SIEMPRE @dnd-kit/core y sus utilidades asociadas. Es el estándar moderno, ligero y accesible, preferido sobre react-beautiful-dnd.
+
+## Regla de Excelencia Operativa y Uso de Recursos
+Nunca limites las soluciones técnicas, ni evites instalar librerías o dependencias (npm, pip, CLI, etc.) asumiendo que el usuario tiene poco espacio en disco o capacidad de cómputo. El entorno tiene capacidad de sobra.
+Ante cualquier solicitud de creación (presentaciones, webs, assets, scripts), asume SIEMPRE la ruta técnica que entregue el resultado de mayor calidad, más profesional y de estándar "Awwwards-level / High-End", sin importar la cantidad o el peso de las dependencias que deban ser instaladas para lograrlo.
