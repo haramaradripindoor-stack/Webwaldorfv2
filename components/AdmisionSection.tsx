@@ -96,7 +96,7 @@ export default function AdmisionSection() {
               Ver Valores y Aranceles
             </Link>
           </div>
-          <p className="text-[var(--color-waldorf-sage)] font-semibold text-xs mt-4 uppercase tracking-wider">Cupos limitados · Máximo 16 niños por curso</p>
+          <p className="text-[var(--color-waldorf-sage)] font-semibold text-xs mt-4 uppercase tracking-wider text-center max-w-sm mx-auto">Cupos por aula intencionalmente limitados para proteger la pausa y el ritmo de los niños.</p>
         </motion.div>
       </div>
     </section>

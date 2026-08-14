@@ -119,13 +119,23 @@ export default function MasonryGallery({ data }: { data?: any }) {
 
   return (
     <section ref={sectionRef} id="galeria" className="py-32 px-6 md:px-12 max-w-7xl mx-auto relative overflow-hidden">
-      <div className="mb-24 text-center md:text-left relative z-10 max-w-3xl">
-        <span ref={subtitleRef} className="text-[var(--color-waldorf-terracotta)] text-sm font-bold tracking-widest uppercase block mb-6">
-          Nuestro Mundo
-        </span>
-        <h2 ref={titleRef} className="text-5xl md:text-7xl font-bold font-serif text-[var(--color-waldorf-moss)] leading-[1.1] tracking-tighter">
-          La Vida en Trekan
-        </h2>
+      <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-12 relative z-10">
+        <div className="max-w-2xl text-center md:text-left">
+          <span ref={subtitleRef} className="text-[var(--color-waldorf-terracotta)] text-sm font-bold tracking-widest uppercase block mb-6">
+            Nuestro Mundo
+          </span>
+          <h2 ref={titleRef} className="text-5xl md:text-7xl font-bold font-serif text-[var(--color-waldorf-moss)] leading-[1.1] tracking-tighter">
+            La Vida en Trekan
+          </h2>
+        </div>
+        
+        {/* Testimonio - Neuronas Espejo */}
+        <div className="max-w-sm text-center md:text-left md:border-l-2 border-[var(--color-waldorf-sage)]/20 md:pl-8 mx-auto md:mx-0">
+          <p className="text-[var(--color-waldorf-text-light)] italic text-lg leading-relaxed font-serif">
+            "Trekan le devolvió la tranquilidad a mi hijo. Volver a verlo ir feliz al colegio ha sido el mayor regalo para nuestra familia."
+          </p>
+          <p className="text-[var(--color-waldorf-moss)] font-bold text-sm mt-4 uppercase tracking-widest">— Mamá de 4to Básico</p>
+        </div>
       </div>
 
       {/* Masonry Asimétrico */}

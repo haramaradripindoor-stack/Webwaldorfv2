@@ -98,6 +98,9 @@ export default function Navbar() {
             className={`absolute top-full left-0 mt-1 w-56 bg-[var(--color-waldorf-paper)] rounded-xl earth-shadow border border-[var(--color-waldorf-sage)]/10 flex flex-col py-2 transition-all duration-200 origin-top-left ${dropdownOpen === 'admision' ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'}`}
             onMouseLeave={() => setDropdownOpen(null)}
           >
+            <div className="px-5 py-2 border-b border-[var(--color-waldorf-sage)]/10 mb-2">
+              <span className="text-[11px] leading-tight text-[var(--color-waldorf-sage)] font-serif italic block">Un proceso pensado para conocernos con calma.</span>
+            </div>
             <Link href="/admision" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Valores y Aranceles</Link>
             <Link href="/admision#faq" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Preguntas Frecuentes</Link>
           </div>
@@ -163,7 +166,8 @@ export default function Navbar() {
 
           {/* Mobile Admisión */}
           <div className="py-3 border-b border-[var(--color-waldorf-sage)]/10">
-            <div className="text-base font-semibold text-[var(--color-waldorf-moss)] mb-2">Admisión 2026</div>
+            <div className="text-base font-semibold text-[var(--color-waldorf-moss)] mb-1">Admisión 2026</div>
+            <div className="text-xs text-[var(--color-waldorf-sage)] italic font-serif mb-3 leading-tight pr-4">Un proceso pensado para conocernos con calma.</div>
             <div className="flex flex-col pl-4 gap-3">
               <Link href="/admision" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Valores y Aranceles</Link>
               <Link href="/admision#faq" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Preguntas Frecuentes</Link>

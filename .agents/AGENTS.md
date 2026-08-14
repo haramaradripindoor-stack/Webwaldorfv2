@@ -21,3 +21,9 @@
 ## Regla de Excelencia Operativa y Uso de Recursos
 Nunca limites las soluciones técnicas, ni evites instalar librerías o dependencias (npm, pip, CLI, etc.) asumiendo que el usuario tiene poco espacio en disco o capacidad de cómputo. El entorno tiene capacidad de sobra.
 Ante cualquier solicitud de creación (presentaciones, webs, assets, scripts), asume SIEMPRE la ruta técnica que entregue el resultado de mayor calidad, más profesional y de estándar "Awwwards-level / High-End", sin importar la cantidad o el peso de las dependencias que deban ser instaladas para lograrlo.
+
+## Reglas de Neurociencias y Mindfulness (Colegio Waldorf)
+- **Marcadores Somáticos (Damasio):** Todo copy, diseño o estrategia Waldorf debe apuntar a crear un "marcador somático positivo" de calma, seguridad y contención (activación del Sistema Nervioso Parasimpático), en contraste con el estrés del sistema tradicional (Cortisol/Amígdala).
+- **Regulación de la Working Memory (LeDoux):** La comunicación hacia los padres y el diseño UI/UX debe tener una carga cognitiva mínima. Cero sobreestimulación. Uso de espacios en blanco y lectura fluida para no abrumar la memoria de trabajo.
+- **Interocepción y Presencia:** Fomentar narrativas que conecten la educación con el momento presente (mindfulness), enfatizando la importancia de los procesos lentos y el desarrollo de la "mente de principiante" en los niños.
+- **Entorno Biopsicosocial:** Posicionar a la pedagogía Waldorf como un ecosistema que previene enfermedades psicosomáticas y el *Burnout* infantil, ofreciendo un refugio evolutivo alineado con las necesidades biológicas reales del cerebro humano (neuroplasticidad positiva).
