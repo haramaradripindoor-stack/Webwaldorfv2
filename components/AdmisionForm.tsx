@@ -47,7 +47,7 @@ export default function AdmisionForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           nombre_apoderado: formData.parentName,
-          telefono_apoderado: 'Vía WhatsApp (Pendiente)', 
+          telefono_apoderado: (formData as any).phone || 'Vía WhatsApp (Pendiente)', 
           email_apoderado: 'Pendiente',
           nombre_nino: 'No especificado',
           edad_nino: formData.childrenAges,
@@ -94,6 +94,20 @@ export default function AdmisionForm() {
                   onChange={handleChange}
                   className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[var(--color-waldorf-mustard)] transition-colors"
                   placeholder="Ej: María González"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-white/90 mb-1">Tu WhatsApp *</label>
+                <input 
+                  type="tel" 
+                  id="phone"
+                  name="phone"
+                  required 
+                  value={(formData as any).phone || ''}
+                  onChange={handleChange}
+                  className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[var(--color-waldorf-mustard)] transition-colors"
+                  placeholder="Ej: +569 1234 5678"
                 />
               </div>
 
