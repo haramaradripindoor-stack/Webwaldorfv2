@@ -27,3 +27,7 @@ Ante cualquier solicitud de creación (presentaciones, webs, assets, scripts), a
 - **Regulación de la Working Memory (LeDoux):** La comunicación hacia los padres y el diseño UI/UX debe tener una carga cognitiva mínima. Cero sobreestimulación. Uso de espacios en blanco y lectura fluida para no abrumar la memoria de trabajo.
 - **Interocepción y Presencia:** Fomentar narrativas que conecten la educación con el momento presente (mindfulness), enfatizando la importancia de los procesos lentos y el desarrollo de la "mente de principiante" en los niños.
 - **Entorno Biopsicosocial:** Posicionar a la pedagogía Waldorf como un ecosistema que previene enfermedades psicosomáticas y el *Burnout* infantil, ofreciendo un refugio evolutivo alineado con las necesidades biológicas reales del cerebro humano (neuroplasticidad positiva).
+
+## Reglas de Exportación de Datos (Business Standard)
+- **Prohibición Absoluta de CSV:** SIEMPRE que se deba implementar un botón o funcionalidad de exportación de datos en una UI o un script (ej. "Exportar Leads", "Descargar CRM"), el formato OBLIGATORIO es Excel nativo (`.xlsx`). Está estrictamente prohibido usar o generar archivos `.csv`.
+- **Implementación Técnica:** No dudes en instalar dependencias adicionales (como `xlsx` o `exceljs` en Node/Next.js, o `pandas`/`openpyxl` en Python) para construir el archivo Excel con formato correcto. El peso de las dependencias es irrelevante frente a la calidad del entregable para el cliente.

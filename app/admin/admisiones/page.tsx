@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
+import * as XLSX from 'xlsx';
 import { Clock, CheckCircle, MessageSquare, Flame, Trash2, Calendar, User, GripVertical, Download } from 'lucide-react';
 import {
   DndContext,
@@ -177,38 +178,31 @@ export default function AdmisionesPage() {
   const [loading, setLoading] = useState(true);
   const [activeLead, setActiveLead] = useState<LeadAdmision | null>(null);
 
-  const exportToCSV = () => {
+  const exportToExcel = () => {
     if (leads.length === 0) {
       alert('No hay datos para exportar');
       return;
     }
 
-    const headers = ['ID', 'Fecha', 'Apoderado', 'Email', 'Teléfono', 'Postulante', 'Edad', 'Curso', 'Estado', 'Origen'];
-    
-    const csvRows = leads.map(lead => [
-      lead.id,
-      new Date(lead.created_at).toLocaleString('es-CL'),
-      `"${lead.nombre_apoderado || ''}"`,
-      lead.email_apoderado || '',
-      lead.telefono_apoderado || '',
-      `"${lead.nombre_nino || ''}"`,
-      lead.edad_nino || '',
-      `"${lead.curso_postula || ''}"`,
-      lead.estado,
-      lead.origen || ''
-    ].join(','));
+    const dataRows = leads.map(lead => ({
+      ID: lead.id,
+      Fecha: new Date(lead.created_at).toLocaleString('es-CL'),
+      Apoderado: lead.nombre_apoderado || '',
+      Email: lead.email_apoderado || '',
+      Teléfono: lead.telefono_apoderado || '',
+      Postulante: lead.nombre_nino || '',
+      Edad: lead.edad_nino || '',
+      Curso: lead.curso_postula || '',
+      Estado: lead.estado,
+      Origen: lead.origen || ''
+    }));
 
-    const csvString = [headers.join(','), ...csvRows].join('\n');
+    const worksheet = XLSX.utils.json_to_sheet(dataRows);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Admisiones');
     
-    // Add BOM for Excel utf-8 recognition
-    const blob = new Blob(['\uFEFF' + csvString], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `Trekan_Admisiones_${new Date().toISOString().split('T')[0]}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Generar archivo y forzar descarga
+    XLSX.writeFile(workbook, `Trekan_Admisiones_${new Date().toISOString().split('T')[0]}.xlsx`);
   };
 
   const sensors = useSensors(
@@ -310,11 +304,11 @@ export default function AdmisionesPage() {
         </div>
 
         <button 
-          onClick={exportToCSV}
+          onClick={exportToExcel}
           className="flex items-center gap-2 bg-[#6a8d73] hover:bg-[#4a6b52] text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors shadow-sm"
         >
           <Download className="w-4 h-4" />
-          Exportar CSV
+          Exportar a Excel
         </button>
       </div>
 
