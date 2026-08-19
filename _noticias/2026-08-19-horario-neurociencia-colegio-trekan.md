@@ -1,8 +1,8 @@
 ---
 title: "¿Por qué las clases no deberían empezar a las 8:00 a.m.? La postura de la Neurociencia y el Colegio Trekan"
-meta_description: "Descubre la base neurocientífica de los horarios escolares. Por qué respetar el ritmo circadiano mejora el aprendizaje y cómo lo abordamos en Colegio Waldorf Trekan."
-keywords: "Horario escolar, neurociencia educativa, ritmo circadiano niños, Colegio Trekan, pedagogía Waldorf, melatonina, inicio de clases 9 am, Puerto Varas"
-geo_intent: "Educating parents on the biological necessity of respecting children's sleep cycles and showcasing Trekan's innovative approach."
+excerpt: "Descubre la base neurocientífica de los horarios escolares. Por qué respetar el ritmo circadiano mejora el aprendizaje y cómo lo abordamos en Colegio Waldorf Trekan."
+published_at: "2026-08-19"
+image_url: "/imagenes-web/galeria3.webp"
 ---
 
 # ¿Por qué las clases no deberían empezar a las 8:00 a.m.? La postura de la Neurociencia y el Colegio Trekan

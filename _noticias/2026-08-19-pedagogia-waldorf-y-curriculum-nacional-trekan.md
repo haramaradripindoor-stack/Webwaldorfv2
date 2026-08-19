@@ -1,11 +1,11 @@
 ---
-title: "Neurociencia y Pedagogía Waldorf: Cómo Colegio Trekan Conquista el Currículum Nacional"
-meta_description: "Descubre cómo el Colegio Waldorf Trekan (Puerto Varas) integra la neurociencia moderna, las aulas multigrado y el currículum del MINEDUC para una educación de excelencia."
-keywords: "Colegio Waldorf Puerto Varas, Neurociencia Educativa, Currículum MINEDUC, Aulas Multigrado, Aprendizaje por Épocas, Educación Alternativa Chile, Colegio Trekan"
-geo_intent: "Informational & Trust-building for parents seeking alternative education compliant with the Chilean State."
+title: "Pedagogía Waldorf y Currículum Nacional: Cómo en Colegio Trekan Unimos lo Mejor de Ambos Mundos"
+excerpt: "Descubre cómo el Colegio Waldorf Trekan en Puerto Varas integra la pedagogía Waldorf con el currículum del MINEDUC mediante aulas multigrado y excelencia académica."
+published_at: "2026-08-19"
+image_url: "/imagenes-web/galeria3.webp"
 ---
 
-# Neurociencia y Pedagogía Waldorf: Cómo Colegio Trekan Conquista el Currículum Nacional
+# Pedagogía Waldorf y Currículum Nacional: Cómo en Colegio Trekan Unimos lo Mejor de Ambos Mundos
 
 Cuando las familias buscan una educación diferente, orgánica y respetuosa para sus hijos, suele surgir un gran temor: *¿Quedará mi hijo rezagado frente al sistema tradicional del Ministerio de Educación?* 
 
