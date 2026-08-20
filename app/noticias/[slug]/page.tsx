@@ -1,6 +1,7 @@
 import { getMarkdownPosts } from '@/lib/markdown'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import ShareButtons from '@/components/ShareButtons'
 import Image from 'next/image'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
@@ -181,11 +182,7 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Compartir</p>
-                  <div className="flex flex-col gap-4">
-                    <button className="text-left font-serif text-lg text-[#2C3E35] hover:text-[#D35D3E] transition-colors italic">En Facebook</button>
-                    <button className="text-left font-serif text-lg text-[#2C3E35] hover:text-[#D35D3E] transition-colors italic">En WhatsApp</button>
-                    <button className="text-left font-serif text-lg text-[#2C3E35] hover:text-[#D35D3E] transition-colors italic">Copiar Enlace</button>
-                  </div>
+                  <ShareButtons url={`https://www.colegiowaldorftrekan.cl/noticias/${post.slug}`} title={post.title} />
                 </div>
                 <div className="w-full h-[1px] bg-gray-200" />
                 <p className="text-xs font-bold uppercase tracking-widest text-[#D35D3E] leading-relaxed">
