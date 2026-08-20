@@ -4,6 +4,8 @@ date: '2026-07-25'
 excerpt: "Descubre cómo las velas de cera de abeja, los filtros de seda y la técnica de pintura lazure transforman nuestras aulas en espacios de seguridad emocional y creatividad."
 coverImage: "/assets/colegio-fondo.webp"
 author: "Equipo Pedagógico Trekan"
+published_at: "2026-07-25"
+image_url: "/imagenes-web/galeria3.webp"
 ---
 
 En la educación moderna, las escuelas a menudo se construyen bajo una lógica industrial: espacios estandarizados, luces asépticas y colores estridentes diseñados para la "eficiencia". En el **Colegio Waldorf Trekan**, la arquitectura y el diseño interior responden a una lógica completamente distinta: **la del calor de un hogar**.

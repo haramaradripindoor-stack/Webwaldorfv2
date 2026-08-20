@@ -4,6 +4,7 @@ date: '2026-07-20'
 excerpt: "Para las familias que buscan salir de Santiago, migrar al sur no es solo un cambio de código postal; es una decisión biográfica profunda. Exploramos cómo el entorno natural nutre el cuerpo etérico del niño."
 image_url: "/imagenes-web/galeria10.webp"
 author: "Colegio Waldorf Trekan"
+published_at: "2026-07-20"
 ---
 
 Cada año, decenas de familias toman la valiente decisión de dejar atrás el ritmo frenético de Santiago para buscar refugio en el sur de Chile. Pero desde la mirada de la Antroposofía, este movimiento geográfico es mucho más que un simple cambio de residencia: **es un impulso biográfico que busca sanar y proteger el desarrollo de los niños**.

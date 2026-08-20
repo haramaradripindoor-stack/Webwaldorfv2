@@ -6,6 +6,7 @@ published_at: "2026-08-09"
 author: "Equipo Waldorf Trekan"
 image: "/imagenes-web/paseocerro20264.jpg"
 tags: ["cambiar de colegio", "4to básico", "educación alternativa", "traslado escolar", "Puerto Varas"]
+image_url: "/imagenes-web/galeria3.webp"
 ---
 
 Existe un momento en la escolaridad de muchos niños —generalmente entre 4to y 6to básico— en que algo empieza a no funcionar. El niño que antes era curioso empieza a decir que "el colegio es aburrido". El que antes era alegre llega a casa cansado y sin ganas de hablar. El rendimiento cae, o sube de forma artificial a base de presión.

@@ -4,6 +4,7 @@ date: '2026-07-23'
 excerpt: "Descubre por qué el juego libre no estructurado es fundamental en la pedagogía Waldorf para desarrollar la creatividad y resiliencia de los niños en Puerto Varas."
 image_url: "/imagenes-web/paseocerro20261.jpg"
 author: "Colegio Waldorf Trekan"
+published_at: "2026-07-23"
 ---
 
 Para las familias que están buscando colegios alternativos en Puerto Varas, una de las grandes revelaciones de la educación con metodología Waldorf es el profundo respeto por el juego libre durante los primeros septenios. 

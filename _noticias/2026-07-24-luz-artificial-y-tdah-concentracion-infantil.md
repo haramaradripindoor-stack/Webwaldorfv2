@@ -4,6 +4,8 @@ date: '2026-07-24'
 excerpt: "Descubre cómo la iluminación artificial en las aulas tradicionales afecta el sistema nervioso y detona la hiperactividad, y por qué la pedagogía Waldorf opta por un entorno sensorialmente seguro."
 coverImage: "/assets/colegio-fondo.webp"
 author: "Equipo Pedagógico Trekan"
+published_at: "2026-07-24"
+image_url: "/imagenes-web/galeria3.webp"
 ---
 
 Para muchos padres que buscan soluciones a problemas de atención o hiperactividad en sus hijos, la respuesta suele enfocarse en metodologías de estudio o diagnósticos médicos. Sin embargo, rara vez nos detenemos a observar el entorno arquitectónico y sensorial del niño. En el **Colegio Waldorf Trekan**, entendemos que el aula misma es un educador, y uno de sus elementos más silenciosos e impactantes es **la iluminación**.

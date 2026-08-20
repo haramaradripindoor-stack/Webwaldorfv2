@@ -6,6 +6,7 @@ published_at: "2026-08-09"
 author: "Equipo Waldorf Trekan"
 image: "/imagenes-web/paseocerro20264.jpg"
 tags: ["educación alternativa", "Puerto Varas", "pedagogía Waldorf", "colegios sur de Chile"]
+image_url: "/imagenes-web/galeria3.webp"
 ---
 
 Cada vez más familias en Puerto Varas, Llanquihue y Frutillar llegan a la misma pregunta en algún momento del desarrollo de sus hijos: **¿existe algo diferente al colegio tradicional?** Esta búsqueda no nace del rechazo, sino de una intuición legítima: que el niño que tienen en casa no cabe del todo en el molde estándar.

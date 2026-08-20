@@ -4,6 +4,7 @@ date: '2026-07-23'
 excerpt: "Por qué establecer ritmos saludables (en lugar de horarios rígidos) es la clave para la tranquilidad familiar, según la pedagogía Waldorf."
 image_url: "/assets/colegio-fondo-800.webp"
 author: "Colegio Waldorf Trekan"
+published_at: "2026-07-23"
 ---
 
 Para las familias que forman parte de los colegios con metodología Waldorf en Chile y el mundo, la palabra "ritmo" resuena casi a diario. Pero, ¿qué significa realmente tener ritmo en casa y por qué es tan crucial para el bienestar de los niños?

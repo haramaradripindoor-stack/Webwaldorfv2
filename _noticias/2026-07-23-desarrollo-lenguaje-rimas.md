@@ -4,6 +4,7 @@ date: '2026-07-23'
 excerpt: "Descubre cómo las rimas con movimiento y el enfoque de referentes como Tamara Chubarovsky potencian el neurodesarrollo y el lenguaje en el Colegio Waldorf Trekan."
 image_url: "/assets/colegio-fondo.webp"
 author: "Colegio Waldorf Trekan"
+published_at: "2026-07-23"
 ---
 
 A la hora de buscar colegios con metodología Waldorf, muchos padres se sorprenden gratamente al notar la enorme riqueza del lenguaje oral que caracteriza nuestras aulas, especialmente durante el nivel preescolar y los primeros años de educación básica. 

@@ -6,6 +6,7 @@ published_at: "2026-08-09"
 author: "Equipo Waldorf Trekan"
 image: "/imagenes-web/paseocerro20261.jpg"
 tags: ["kinder", "admisión 2026", "jardín infantil", "pedagogía Waldorf", "Puerto Varas"]
+image_url: "/imagenes-web/galeria3.webp"
 ---
 
 La búsqueda de un Kinder o jardín infantil es, para muchos padres, la primera gran decisión educativa. Y es también la más difícil, precisamente porque los niños de 4 a 6 años no pueden decirte con palabras qué necesitan. Tú tienes que leerlos.
