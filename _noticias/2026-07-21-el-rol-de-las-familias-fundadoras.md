@@ -31,4 +31,4 @@ La literatura antroposófica sobre gestión comunitaria advierte sobre un fenóm
 
 Si los pioneros logran dar este paso hacia un costado operativamente, asumen entonces su rol más elevado: el de **guardianes del impulso original**. 
 
-No se trata de imponer sus visiones del pasado, sino de mantener viva la llama de los ideales antroposóficos que dieron origen a la escuela, recordando siempre que una Escuela Waldorf Trekan no es un fin en sí misma, sino un organismo vivo al servicio de la evolución humana.
+No se trata de imponer sus visiones del pasado, sino de mantener viva la llama de los ideales antroposóficos que dieron origen a la escuela, recordando siempre que una Escuela Waldorf no es un fin en sí misma, sino un organismo vivo al servicio de la evolución humana.
