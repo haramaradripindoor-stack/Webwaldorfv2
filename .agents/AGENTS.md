@@ -3,16 +3,14 @@
 ## Reglas de Marketing y Algoritmo Meta (Instagram/Facebook Ads)
 - **Categorización de Cuenta:** La cuenta de Instagram DEBE estar categorizada como 'Colegio' o 'Escuela' (nunca como emprendedor/educación general) para activar el algoritmo geo-localizado de Meta hacia padres de familia.
 - **Link in Bio Estratégico:** El enlace principal debe ser SIEMPRE la ruta de baja fricción '/admision' (primer lugar en LinkTree o enlaces de perfil) para disparar el Meta Pixel con conversiones de bajo costo.
-- **Tipología de Interacción:** Priorizar la creación de contenido 'Guardable' (tips de crianza Waldorf) o 'Compartible' sobre contenido diseñado solo para likes. Responder a los comentarios en la primera hora de publicación.
-- **Fórmula de Hashtags (3-3-3):** Los posts deben usar entre 9 y 12 hashtags máximo.
-  1. Geográficos exactos (ej. '#PuertoVaras', '#ParqueIvian').
-  2. Nicho local (ej. '#MamasPuertoVaras').
-  3. Temáticos educativos (ej. '#PedagogiaWaldorfChile'). Nunca usar hashtags masivos globales como '#Educacion'.
+- **Tipología de Interacción y Métrica Rey (Shares):** La métrica más potente para alcanzar no-seguidores es el "Envío por DM" (pesa 3 a 5 veces más que un like). Priorizar contenido altamente compartible sobre el diseñado solo para likes. Los "Llamados a la Acción" (CTAs) de fase ToFu deben enfocarse en compartir: "Envíale esto a una mamá que busque alternativas".
+- **Límite Estricto de Hashtags (Regla 2026):** Instagram limita el uso a un máximo de 5 hashtags. Su propósito es dar contexto y ayudar a la búsqueda (SEO interno), no aumentar el alcance mágico. Usa entre 3 y 5 hashtags extremadamente precisos y locales (ej. '#PuertoVaras', '#PedagogiaWaldorfChile'). NUNCA excedas el límite ni uses hashtags genéricos.
+- **Expectativas de Conversión Realistas:** NUNCA prometas que una optimización técnica llenará los cupos "en semanas". El proceso de decisión familiar toma tiempo y debe respetar estrictamente el Roadmap Operativo diseñado (ej. 3 meses). La optimización técnica solo abarata el costo de adquisición.
 - **Accesibilidad y Alt Text:** Inyectar siempre 'Alt Text' en las imágenes de Instagram ('Niños felices en el Colegio Waldorf Trekan en Puerto Varas') para maximizar el SEO algorítmico.
 
 ## Reglas de SEO para Blog y Web (Prohibición de Hashtags)
 - **Prohibición de Hashtags en la Web:** NUNCA utilizar hashtags (ej. #Educacion) en los artículos del blog (archivos .md) ni en ningún componente de texto de Next.js. Esto confunde a los crawlers de Google y arruina el SEO Semántico.
-- **GEO (Generative Engine Optimization):** En lugar de hashtags, el SEO de la web se basa estrictamente en la inyección de palabras clave de alto intento (long-tail) dentro de los párrafos, H1 y H2 (ej. 'Buscando colegios alternativos en Puerto Varas').
+- **GEO (Generative Engine Optimization):** En lugar de hashtags, el SEO de la web se basa estrictamente en la inyección de palabras clave de alto intento (long-tail) dentro de los párrafos, H1 y H2 (ej. 'Buscando colegios alternativos en Puerto Varas').
 
 ## Reglas de Interfaz de Usuario (UI/UX)
 - **Sistemas Kanban y CRM:** NUNCA utilizar botones dentro de las tarjetas para mover elementos entre columnas. TODO sistema tipo Kanban (como Admisiones o Gestión de Tareas) debe implementarse estrictamente utilizando una experiencia de 'Arrastrar y Soltar' (Drag and Drop).
