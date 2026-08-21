@@ -2,7 +2,7 @@
 title: "Aranceles Diferenciados y Economía Fraterna: Una Práctica Experta en la Pedagogía Waldorf"
 excerpt: "Descubre cómo el principio de Fraternidad y la Trimembración Social permiten sostener aranceles diferenciados, transformando la educación de un bien de consumo a un organismo vivo de corresponsabilidad comunitaria."
 published_at: "2026-05-29"
-image_url: "/imagenes-web/galeria4.webp"
+image_url: "/imagenes-web/galeria7.webp"
 ---
 
 En el marco de la Pedagogía Waldorf, la estructuración financiera de una escuela trasciende ampliamente el paradigma tradicional del mercado, donde la educación es transada como un bien de consumo o un mero servicio a cambio de una tarifa. Para comprender la viabilidad e implementación de los **aranceles diferenciados**, es imperativo sumergirnos en la visión antroposófica de la *Trimembración Social* (Die Dreigliederung des sozialen Organismus), desarrollada por Rudolf Steiner a principios del siglo XX.

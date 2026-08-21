@@ -2,7 +2,7 @@
 title: "Construyendo el futuro: La voluntad que levanta una escuela"
 excerpt: "Levantar una Escuela Waldorf no es un proyecto arquitectónico, es un acto de voluntad comunitaria y fraternidad pura."
 published_at: "2025-02-20"
-image_url: "/imagenes-web/noticia3.webp"
+image_url: "/imagenes-web/galeria10.webp"
 ---
 
 # El Impulso de la Voluntad en la Comunidad

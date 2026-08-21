@@ -2,7 +2,7 @@
 title: "El Cerebro Social: El inmenso valor del Aula Multigrado"
 excerpt: "Descubre por qué agrupar a los niños por 'fecha de fabricación' aumenta el estrés, y cómo el modelo multigrado acelera el aprendizaje orgánico."
 published_at: "2026-07-26"
-image_url: "/imagenes-web/galeria4.webp"
+image_url: "/imagenes-web/galeria8.webp"
 ---
 
 # El Cerebro Social: El inmenso valor del Aula Multigrado
