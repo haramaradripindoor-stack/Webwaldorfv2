@@ -78,7 +78,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Dropdown: Admisión 2026 */}
+        {/* Dropdown: Admisión 2027 */}
         <div className="relative group">
           <button 
             className="flex items-center gap-1 text-sm font-medium text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] transition-colors py-2"
@@ -91,7 +91,7 @@ export default function Navbar() {
               }
             }}
           >
-            Admisión 2026 <ChevronDown size={14} className={`transition-transform duration-200 ${dropdownOpen === 'admision' ? 'rotate-180' : ''}`} />
+            Admisión 2027 <ChevronDown size={14} className={`transition-transform duration-200 ${dropdownOpen === 'admision' ? 'rotate-180' : ''}`} />
           </button>
           
           <div 
@@ -166,7 +166,7 @@ export default function Navbar() {
 
           {/* Mobile Admisión */}
           <div className="py-3 border-b border-[var(--color-waldorf-sage)]/10">
-            <div className="text-base font-semibold text-[var(--color-waldorf-moss)] mb-1">Admisión 2026</div>
+            <div className="text-base font-semibold text-[var(--color-waldorf-moss)] mb-1">Admisión 2027</div>
             <div className="text-xs text-[var(--color-waldorf-sage)] italic font-serif mb-3 leading-tight pr-4">Un proceso pensado para conocernos con calma.</div>
             <div className="flex flex-col pl-4 gap-3">
               <Link href="/admision" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Valores y Aranceles</Link>

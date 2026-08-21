@@ -56,7 +56,7 @@ export default function Footer() {
           <ul className="space-y-4 text-sm text-[var(--color-waldorf-text-light)] font-medium">
             <li><Link href="/#quienes-somos" className="hover:text-[var(--color-waldorf-terracotta)] transition-colors">Quiénes Somos</Link></li>
             <li><Link href="/#pedagogia" className="hover:text-[var(--color-waldorf-terracotta)] transition-colors">Pedagogía Waldorf</Link></li>
-            <li><Link href="/#admision" className="hover:text-[var(--color-waldorf-terracotta)] transition-colors">Admisión 2026</Link></li>
+            <li><Link href="/#admision" className="hover:text-[var(--color-waldorf-terracotta)] transition-colors">Admisión 2027</Link></li>
             <li><Link href="/arriendo-salon" className="hover:text-[var(--color-waldorf-terracotta)] transition-colors">Arriendo de Salón</Link></li>
           </ul>
         </div>

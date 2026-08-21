@@ -50,7 +50,7 @@ export default function AdmisionClient() {
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
               className="inline-block px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[var(--color-waldorf-cream)] text-sm font-bold tracking-widest uppercase mb-8 shadow-2xl"
             >
-              Admisión 2026 · Abierta todo el año
+              Admisión 2027 · Abierta todo el año
             </motion.span>
             
             <motion.h1 

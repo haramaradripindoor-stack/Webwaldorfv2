@@ -33,7 +33,7 @@ export default function AdmisionSection() {
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="mb-16 text-center">
           <span className="text-[var(--color-waldorf-sage)] text-xs font-bold tracking-widest uppercase block mb-4">
-            Admisión 2026
+            Admisión 2027
           </span>
           <h2 className="text-3xl md:text-5xl font-bold font-serif mb-4 text-[var(--color-waldorf-moss)]">
             Comienza el Camino
