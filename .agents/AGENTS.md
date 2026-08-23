@@ -7,6 +7,9 @@
 - **Límite Estricto de Hashtags (Regla 2026):** Instagram limita el uso a un máximo de 5 hashtags. Su propósito es dar contexto y ayudar a la búsqueda (SEO interno), no aumentar el alcance mágico. Usa entre 3 y 5 hashtags extremadamente precisos y locales (ej. '#PuertoVaras', '#PedagogiaWaldorfChile'). NUNCA excedas el límite ni uses hashtags genéricos.
 - **Expectativas de Conversión Realistas:** NUNCA prometas que una optimización técnica llenará los cupos "en semanas". El proceso de decisión familiar toma tiempo y debe respetar estrictamente el Roadmap Operativo diseñado (ej. 3 meses). La optimización técnica solo abarata el costo de adquisición.
 - **Accesibilidad y Alt Text:** Inyectar siempre 'Alt Text' en las imágenes de Instagram ('Niños felices en el Colegio Waldorf Trekan en Puerto Varas') para maximizar el SEO algorítmico.
+- **Prohibición Estricta de Seguir a la Competencia (Estatus y Algoritmo):** Las cuentas operadas por la agencia (especialmente colegios o marcas de Alta Gama) NO deben seguir a sus competidores, ni siquiera a instituciones de su mismo rubro (ej. no seguir a otros Colegios Waldorf ni tradicionales).
+  1. **Algoritmo:** Seguir colegios confunde a Meta, haciéndole creer que tu cuenta es de interés "B2B" (colegio a colegio), desviando tus anuncios de los padres reales.
+  2. **Estatus:** Mantener un ratio de "Seguidos" ultra-bajo, compuesto exclusivamente por aliados locales (pediatras, centros de yoga, tiendas orgánicas), protege el posicionamiento premium (High-End). El Growth Engine solo hace *follow* a clientes finales o ecosistema de valor.
 
 ## Reglas de SEO para Blog y Web (Prohibición de Hashtags)
 - **Prohibición de Hashtags en la Web:** NUNCA utilizar hashtags (ej. #Educacion) en los artículos del blog (archivos .md) ni en ningún componente de texto de Next.js. Esto confunde a los crawlers de Google y arruina el SEO Semántico.
