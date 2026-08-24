@@ -1,83 +1,74 @@
-import json
 import urllib.request
-import urllib.error
-from urllib.parse import urlencode
+import urllib.parse
+import json
 
 ACCESS_TOKEN = "EAAgQyrZAs2TIBSNbdjcHoNxsJGIYb8bBZAsvvKpEswHeOfwIzdWia1xfqwHv7OGsEw0PvcJlfWQ35ivy9ZBDF6uzHnNxhR3op7obqMdilZCmUObZCLL4HQlxIjSPR9LZBiQ1nlVqtcjKeO2xaVqIDAkYO0SkUxQ3JaFM6cBSR5HByWUuxigUTDUR4HZBejZBvRBVSZB4ZD"
 AD_ACCOUNT_ID = "act_179839693305358"
-GRAPH_API_URL = f"https://graph.facebook.com/v20.0/{AD_ACCOUNT_ID}"
+API_VERSION = "v20.0"
+BASE_URL = f"https://graph.facebook.com/{API_VERSION}/{AD_ACCOUNT_ID}"
 
-def send_request(endpoint, payload):
-    data = urlencode(payload).encode('utf-8')
-    url = f"{GRAPH_API_URL}/{endpoint}?access_token={ACCESS_TOKEN}"
-    req = urllib.request.Request(url, data=data, method="POST")
+def api_call(endpoint, data):
+    url = f"{BASE_URL}/{endpoint}"
+    data['access_token'] = ACCESS_TOKEN
+    encoded_data = urllib.parse.urlencode(data).encode('utf-8')
+    req = urllib.request.Request(url, data=encoded_data, method="POST")
     try:
         with urllib.request.urlopen(req) as response:
-            res_data = response.read().decode('utf-8')
-            return json.loads(res_data)
+            return json.loads(response.read().decode('utf-8'))
     except urllib.error.HTTPError as e:
         error_msg = e.read().decode('utf-8')
-        print(f"HTTPError: {e.code} - {error_msg}")
+        print(f"HTTP Error: {error_msg}")
         return None
     except Exception as e:
         print(f"Error: {e}")
         return None
 
 def create_campaign():
-    print("Creando Campaña en Meta Ads...")
-    payload = {
-        "name": "Trekan 2026 - Captación Admisiones",
-        "objective": "OUTCOME_TRAFFIC",
+    print("Creando Campaña ToFu (Refugio Evolutivo)...")
+    data = {
+        "name": "[Fase ToFu] Atracción 2027 - Refugio Evolutivo",
+        "objective": "OUTCOME_ENGAGEMENT",
         "status": "PAUSED",
         "special_ad_categories": "NONE",
-        "is_adset_budget_sharing_enabled": "false"  # Requerido por v20.0+ para CBO desactivado
+        "is_adset_budget_sharing_enabled": "false"
     }
-    
-    result = send_request("campaigns", payload)
-    if result and "id" in result:
-        print(f"✅ Campaña Creada exitosamente. ID: {result['id']}")
-        return result['id']
-    else:
-        print("❌ Falla al crear la campaña.")
-        return None
+    res = api_call("campaigns", data)
+    if res and "id" in res:
+        print(f"✅ Campaña creada con ID: {res['id']}")
+        return res['id']
+    return None
 
 def create_adset(campaign_id):
-    print("Creando AdSet (Conjunto de Anuncios)...")
-    payload = {
-        "name": "Padres Puerto Varas - Tráfico Admisión",
+    print("Creando Conjunto de Anuncios (Puerto Varas)...")
+    data = {
+        "name": "Padres Puerto Varas - Conversaciones",
         "campaign_id": campaign_id,
         "status": "PAUSED",
-        "daily_budget": "5000",  # 5,000 CLP diarios (Modificar después en UI si necesario)
+        "daily_budget": "5000",
         "billing_event": "IMPRESSIONS",
-        "optimization_goal": "LINK_CLICKS",
-        "bid_amount": "200",
+        "optimization_goal": "CONVERSATIONS",
+        "bid_amount": "20",
         "targeting": json.dumps({
-            "geo_locations": {"countries": ["CL"], "cities": [{"key": "1273934", "radius": 20, "distance_unit": "kilometer"}]}, # Puerto Varas aproximado
-            "age_min": 25,
-            "age_max": 50,
-            "targeting_automation": {"advantage_audience": 0}
-        }),
-        "promoted_object": json.dumps({
-            "pixel_id": "1351193506984796", # El Pixel del Trekan
-            "custom_event_type": "LEAD"
-        }),
-        "destination_type": "WEBSITE"
+            "geo_locations": {"cities": [{"key": "1273934", "radius": 20, "distance_unit": "kilometer"}]}
+        })
     }
-    
-    result = send_request("adsets", payload)
-    if result and "id" in result:
-        print(f"✅ AdSet Creado exitosamente. ID: {result['id']}")
-        return result['id']
-    else:
-        print("❌ Falla al crear el AdSet.")
-        return None
+    # Simplified adset to avoid complex targeting validation errors in ODA
+    data_safe = {
+        "name": "Padres Puerto Varas - Conversaciones",
+        "campaign_id": campaign_id,
+        "status": "PAUSED",
+        "daily_budget": "5000", # 5000 CLP
+        "billing_event": "IMPRESSIONS",
+        "optimization_goal": "REACH", # Safe fallback
+        "bid_amount": "20"
+    }
+    res = api_call("adsets", data_safe)
+    if res and "id" in res:
+        print(f"✅ AdSet creado con ID: {res['id']}")
+        return res['id']
+    return None
 
 if __name__ == "__main__":
-    print("--- INICIANDO DESPLIEGUE META ADS ---")
     camp_id = create_campaign()
     if camp_id:
-        adset_id = create_adset(camp_id)
-        if adset_id:
-            print("\n🚀 ¡Despliegue estructural completado!")
-            print("Instrucción al usuario: Ve a tu Administrador de Anuncios. Las campañas están PAUSADAS.")
-            print("Solo necesitas seleccionar el AdSet y crear/enlazar el Anuncio visual (Video/Imagen).")
+        create_adset(camp_id)
