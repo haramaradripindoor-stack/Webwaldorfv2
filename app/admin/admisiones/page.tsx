@@ -428,20 +428,72 @@ export default function AdmisionesPage() {
         </button>
       </div>
 
-      {/* Resumen Ejecutivo de Demanda */}
-      <div className="mb-6 p-5 bg-white border border-[var(--color-waldorf-sage)]/30 rounded-xl shadow-sm">
-        <h3 className="text-sm font-bold text-[var(--color-waldorf-moss)] mb-4 flex items-center gap-2">
-          <span className="text-lg">📊</span> Resumen Ejecutivo de Demanda (Excluye Descartados)
-        </h3>
-        <div className="flex flex-wrap gap-3">
-          {demandEntries.map(([curso, count]) => (
-            <div key={curso} className="flex items-center gap-2 bg-[var(--color-waldorf-cream)] border border-[var(--color-waldorf-sage)]/20 px-3 py-2 rounded-lg">
-              <span className="text-xs font-semibold text-[var(--color-waldorf-text)]">{curso}</span>
-              <span className="text-xs font-bold text-white bg-[#6a8d73] px-2 py-0.5 rounded-full">{count}</span>
+      {/* Resumen Ejecutivo de Demanda — Dashboard */}
+      <div className="mb-6 bg-white border border-[var(--color-waldorf-sage)]/20 rounded-2xl shadow-sm overflow-hidden">
+        {/* Header */}
+        <div className="px-5 py-4 border-b border-[var(--color-waldorf-sage)]/10 flex items-center justify-between">
+          <div>
+            <h3 className="text-sm font-bold text-[var(--color-waldorf-moss)]">📊 Demanda Activa 2027</h3>
+            <p className="text-[11px] text-[var(--color-waldorf-text-light)] mt-0.5">Familias interesadas por curso · Excluye descartados y fuera de rango</p>
+          </div>
+          <div className="flex gap-4 text-right">
+            <div>
+              <p className="text-2xl font-extrabold text-[var(--color-waldorf-moss)]">{activeLeads.length}</p>
+              <p className="text-[10px] text-[var(--color-waldorf-text-light)] font-medium">Total activos</p>
             </div>
-          ))}
-          {demandEntries.length === 0 && (
-            <p className="text-xs text-gray-500 italic">No hay demanda activa registrada aún.</p>
+            <div className="border-l border-[var(--color-waldorf-sage)]/20 pl-4">
+              <p className="text-2xl font-extrabold text-[#6a8d73]">
+                {demandEntries.filter(([c]) => !c.startsWith('Histórico') && !c.startsWith('Requiere') && !c.startsWith('Otros') && !c.startsWith('Ed.') && c !== 'Consultas' && c !== 'Sin Especificar').reduce((s, [,n]) => s + n, 0)}
+              </p>
+              <p className="text-[10px] text-[var(--color-waldorf-text-light)] font-medium">Proyectados 2027</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Grid de cursos 2027 */}
+        <div className="p-5">
+          <p className="text-[10px] font-bold text-[var(--color-waldorf-moss)] uppercase tracking-widest mb-3">Cursos 2027</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-5">
+            {demandEntries
+              .filter(([c]) => !c.startsWith('Histórico') && !c.startsWith('Requiere') && !c.startsWith('Otros') && !c.startsWith('Ed.') && c !== 'Consultas' && c !== 'Sin Especificar')
+              .map(([curso, count]) => {
+                const maxCount = Math.max(...demandEntries.map(([,n]) => n), 1);
+                const pct = Math.round((count / maxCount) * 100);
+                const isMultigrado = curso.includes('1ro') || curso.includes('2do') || curso.includes('3ro');
+                return (
+                  <div key={curso} className={`p-3 rounded-xl border-2 ${isMultigrado ? 'border-[#6a8d73] bg-[#6a8d73]/5' : 'border-[var(--color-waldorf-sage)]/20 bg-[var(--color-waldorf-cream)]'}`}>
+                    <div className="flex items-start justify-between mb-2">
+                      <p className="text-[11px] font-bold text-[var(--color-waldorf-moss)] leading-tight">{curso}</p>
+                      {isMultigrado && <span className="text-[9px] font-bold text-white bg-[#6a8d73] px-1.5 py-0.5 rounded-full ml-1 shrink-0">Multigrado</span>}
+                    </div>
+                    <p className="text-3xl font-extrabold text-[var(--color-waldorf-moss)]">{count}</p>
+                    <div className="mt-2 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="h-full bg-[#6a8d73] rounded-full transition-all" style={{ width: `${pct}%` }} />
+                    </div>
+                    <p className="text-[9px] text-[var(--color-waldorf-text-light)] mt-1">{count >= 5 ? '✅ Quórum mínimo' : `⏳ Faltan ${5 - count} para quórum`}</p>
+                  </div>
+                );
+              })}
+          </div>
+
+          {/* Registros históricos / por revisar — colapsados */}
+          {demandEntries.some(([c]) => c.startsWith('Histórico') || c.startsWith('Requiere') || c.startsWith('Otros') || c.startsWith('Ed.') || c === 'Consultas') && (
+            <details className="border border-orange-200 bg-orange-50 rounded-xl p-3">
+              <summary className="text-[11px] font-bold text-orange-700 cursor-pointer select-none">
+                ⚠️ Registros que requieren revisión manual — haz clic para ver
+              </summary>
+              <div className="flex flex-wrap gap-2 mt-3">
+                {demandEntries
+                  .filter(([c]) => c.startsWith('Histórico') || c.startsWith('Requiere') || c.startsWith('Otros') || c.startsWith('Ed.') || c === 'Consultas')
+                  .map(([curso, count]) => (
+                    <div key={curso} className="flex items-center gap-2 bg-white border border-orange-200 px-2.5 py-1.5 rounded-lg">
+                      <span className="text-[11px] font-medium text-gray-600">{curso}</span>
+                      <span className="text-[10px] font-bold text-orange-700 bg-orange-100 px-1.5 py-0.5 rounded-full">{count}</span>
+                    </div>
+                  ))}
+              </div>
+              <p className="text-[10px] text-orange-600 mt-2 italic">Usa el lápiz ✏️ en cada tarjeta para corregir el curso y moverlos al conteo oficial.</p>
+            </details>
           )}
         </div>
       </div>
