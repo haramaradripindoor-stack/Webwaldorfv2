@@ -78,7 +78,7 @@ export default function AdmisionForm() {
         >
           <form onSubmit={handleWhatsAppRoute} className="space-y-6">
             <div className="text-center mb-10">
-              <h3 className="text-3xl font-serif font-bold text-white mb-2">Postulación 2026</h3>
+              <h3 className="text-3xl font-serif font-bold text-white mb-2">Postulación 2027</h3>
               <p className="text-white/70 text-sm">Conversemos directamente por WhatsApp para coordinar tu visita.</p>
             </div>
 
