@@ -188,7 +188,7 @@ export default function AIChatWidget() {
               exit={{ opacity: 0, x: -10 }}
               className="absolute right-[110%] mr-4 bg-white px-4 py-2.5 rounded-2xl shadow-xl border border-[var(--color-waldorf-sage)]/20 whitespace-nowrap text-sm font-bold text-[var(--color-waldorf-moss)]"
             >
-              Postulación 2026 🌱
+              Admisión 2027 🌱
               <div className="absolute top-1/2 -right-2 -translate-y-1/2 border-[6px] border-transparent border-l-white" />
             </motion.div>
           )}
