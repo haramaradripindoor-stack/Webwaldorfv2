@@ -146,7 +146,7 @@ function Column({ col, leads, onDelete, onUpdateNote, loading }: { col: any; lea
   const Icon = col.icon;
   
   return (
-    <div className="min-w-[240px] w-[240px] max-w-[240px] bg-[var(--color-waldorf-paper)] rounded-xl border border-[var(--color-waldorf-sage)]/20 p-3 min-h-[500px] snap-start shadow-sm flex flex-col shrink-0">
+    <div ref={setNodeRef} className="min-w-[240px] w-[240px] max-w-[240px] bg-[var(--color-waldorf-paper)] rounded-xl border border-[var(--color-waldorf-sage)]/20 p-3 min-h-[500px] snap-start shadow-sm flex flex-col shrink-0">
       <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--color-waldorf-sage)]/20">
         <div className={`p-1.5 rounded-lg ${col.bg}`}>
           <Icon className={`w-4 h-4 ${col.color}`} />
@@ -156,7 +156,7 @@ function Column({ col, leads, onDelete, onUpdateNote, loading }: { col: any; lea
       </div>
 
       <SortableContext items={leads.map(l => l.id)} strategy={verticalListSortingStrategy}>
-        <div ref={setNodeRef} className="flex-1 overflow-y-auto pr-1 custom-scrollbar min-h-[150px] pb-20">
+        <div className="flex-1 overflow-y-auto pr-1 custom-scrollbar min-h-[150px] pb-20 flex flex-col">
           {leads.map((lead) => (
             <LeadCard key={lead.id} lead={lead} onDelete={onDelete} onUpdateNote={onUpdateNote} />
           ))}
