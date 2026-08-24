@@ -6,8 +6,7 @@ import * as XLSX from 'xlsx';
 import { Clock, CheckCircle, MessageSquare, Flame, Trash2, Calendar, User, GripVertical, Download, XCircle, Archive, Edit3 } from 'lucide-react';
 import {
   DndContext,
-  DragOverlay,
-  closestCorners,
+  rectIntersection,
   KeyboardSensor,
   PointerSensor,
   useSensor,
@@ -244,12 +243,30 @@ export default function AdmisionesPage() {
 
   // Cálculo de Demanda Activa (Omitiendo descartados)
   const activeLeads = leads.filter(l => l.estado !== 'no_corresponde' && l.estado !== 'no_continua');
+  
+  const normalizeCourse = (cursoRaw: string) => {
+    if (!cursoRaw) return 'Sin Especificar';
+    if (cursoRaw.length > 35) return 'Requiere Revisión (Texto Largo)';
+    
+    const c = cursoRaw.toLowerCase();
+    
+    if (c.includes('kinde')) return 'Kinder (2027)';
+    if (c.includes('1ro') || c.includes('1ero') || c.includes('primero') || c.includes('1 b')) return '1ro Básico (2027)';
+    if (c.includes('2do') || c.includes('segundo') || c.includes('2 b') || c.match(/2[^a-z]*b/)) return '2do Básico (2027)';
+    if (c.includes('3ro') || c.includes('tercero') || c.includes('3 b') || c.match(/3[^a-z]*b/)) return '3ro Básico (2027)';
+    if (c.includes('4to') || c.includes('cuarto') || c.includes('4 b') || c.match(/4[^a-z]*b/)) return '4to Básico (2027)';
+    if (c.includes('5to') || c.includes('quinto') || c.includes('5 b') || c.match(/5[^a-z]*b/)) return '5to Básico (2027)';
+    if (c.includes('6to') || c.includes('sexto') || c.includes('6 b') || c.match(/6[^a-z]*b/)) return '6to Básico (2027)';
+    if (c.includes('7mo') || c.includes('septimo') || c.includes('séptimo') || c.match(/7[^a-z]*b/)) return '7mo Básico (2027)';
+    if (c.includes('8vo') || c.includes('octavo') || c.match(/8[^a-z]*b/)) return '8vo Básico (2027)';
+    if (c.includes('medio') || c.includes('14 años') || c.includes('13 años')) return 'Ed. Media / Fuera de Rango';
+    
+    return 'Otros / Requiere Revisión';
+  };
+
   const demandByCourse = activeLeads.reduce((acc, lead) => {
-    let curso = lead.curso_postula || 'Sin Especificar';
-    if (curso.length > 35) {
-      curso = 'Requiere Revisión (Texto Largo)';
-    }
-    acc[curso] = (acc[curso] || 0) + 1;
+    const cursoNorm = normalizeCourse(lead.curso_postula || '');
+    acc[cursoNorm] = (acc[cursoNorm] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
   // Ordenar por cantidad (mayor demanda primero)
