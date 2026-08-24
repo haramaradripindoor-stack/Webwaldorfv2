@@ -1,4 +1,3 @@
-import { getMarkdownPosts, MarkdownPost } from '@/lib/markdown'
 import Link from 'next/link'
 import { Calendar, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
@@ -19,27 +18,16 @@ export default async function NoticiasPage() {
   let allNews: any[] = [];
   
   try {
-    let supabaseNews: any[] = [];
     const { data, error } = await supabase
       .from('noticias')
       .select('*')
       .order('published_at', { ascending: false });
       
     if (data && !error) {
-      supabaseNews = data;
+      allNews = data;
     }
-    
-    const markdownNews = getMarkdownPosts('_noticias');
-    
-    const combinedNews = [...supabaseNews, ...markdownNews].sort((a, b) => {
-      const dateA = new Date(a.published_at || a.created_at).getTime() || 0;
-      const dateB = new Date(b.published_at || b.created_at).getTime() || 0;
-      return dateB - dateA;
-    });
-
-    allNews = combinedNews;
   } catch (e) {
-    allNews = getMarkdownPosts('_noticias');
+    console.error("Error fetching news:", e);
   }
 
   return (
@@ -65,7 +53,7 @@ export default async function NoticiasPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {allNews.map((post: MarkdownPost, index: number) => (
+              {allNews.map((post: any, index: number) => (
                 <Link href={`/noticias/${post.slug}`} key={post.id}>
                   <article 
                     className="group flex flex-col h-full bg-[var(--color-waldorf-cream)] rounded-3xl overflow-hidden border border-[var(--color-waldorf-sage)]/20 hover:border-[var(--color-waldorf-sage)]/40 earth-shadow earth-shadow-hover transition-all duration-500 interactive"
