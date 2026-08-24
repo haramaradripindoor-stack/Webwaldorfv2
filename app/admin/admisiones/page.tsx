@@ -102,12 +102,12 @@ function LeadCard({ lead, onDelete, onUpdateNote, onUpdateCurso, onMove }: { lea
         <div className="text-[10px] text-[var(--color-waldorf-text-light)] mt-0.5 flex flex-wrap items-center gap-1">
           <span>Edad: {lead.edad_nino || 'N/A'} •</span>
           <span 
-            className="font-medium text-[var(--color-waldorf-moss)] bg-white px-1.5 py-0.5 rounded border border-[var(--color-waldorf-sage)]/20 cursor-pointer hover:bg-gray-50 flex items-center gap-1"
+            className="font-medium text-[var(--color-waldorf-moss)] bg-white px-1.5 py-0.5 rounded border border-[var(--color-waldorf-sage)]/20 cursor-pointer hover:bg-gray-50 flex items-center gap-1 max-w-[140px] truncate"
             onPointerDown={(e) => e.stopPropagation()}
             onClick={(e) => { e.stopPropagation(); if(onUpdateCurso) onUpdateCurso(lead); }}
             title="Editar Curso"
           >
-            {lead.curso_postula || 'N/A'} <Edit3 className="w-2.5 h-2.5 opacity-50" />
+            <span className="truncate">{lead.curso_postula || 'N/A'}</span> <Edit3 className="w-2.5 h-2.5 opacity-50 shrink-0" />
           </span>
         </div>
       </div>
@@ -245,7 +245,10 @@ export default function AdmisionesPage() {
   // Cálculo de Demanda Activa (Omitiendo descartados)
   const activeLeads = leads.filter(l => l.estado !== 'no_corresponde' && l.estado !== 'no_continua');
   const demandByCourse = activeLeads.reduce((acc, lead) => {
-    const curso = lead.curso_postula || 'Sin Especificar';
+    let curso = lead.curso_postula || 'Sin Especificar';
+    if (curso.length > 35) {
+      curso = 'Requiere Revisión (Texto Largo)';
+    }
     acc[curso] = (acc[curso] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
