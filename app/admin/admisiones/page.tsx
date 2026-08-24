@@ -75,21 +75,21 @@ function LeadCard({ lead, onDelete, onUpdateNote }: { lead: LeadAdmision; onDele
       style={style}
       {...attributes}
       {...listeners}
-      className="bg-white p-4 rounded-xl border border-[var(--color-waldorf-sage)]/20 mb-3 shadow-sm hover:shadow-md transition-all text-left cursor-grab active:cursor-grabbing touch-none relative group"
+      className="bg-white p-3 rounded-xl border border-[var(--color-waldorf-sage)]/20 mb-3 shadow-sm hover:shadow-md transition-all text-left cursor-grab active:cursor-grabbing touch-none relative group"
     >
-      <div className="absolute top-4 right-2 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="absolute top-3 right-2 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity">
         <GripVertical size={16} />
       </div>
 
       <div className="flex items-start justify-between mb-2">
         <div>
-          <h4 className="text-[var(--color-waldorf-moss)] font-bold text-sm flex items-center gap-1 pr-6">
+          <h4 className="text-[var(--color-waldorf-moss)] font-bold text-xs flex items-center gap-1 pr-5">
             <User className="w-3 h-3 text-[var(--color-waldorf-terracotta)]" />
-            {lead.nombre_apoderado || 'Sin nombre'}
+            <span className="truncate max-w-[130px]">{lead.nombre_apoderado || 'Sin nombre'}</span>
           </h4>
-          <p className="text-xs text-[var(--color-waldorf-text-light)] truncate max-w-[150px] mt-0.5">{lead.email_apoderado}</p>
+          <p className="text-[11px] text-[var(--color-waldorf-text-light)] truncate max-w-[150px] mt-0.5">{lead.email_apoderado}</p>
           {lead.telefono_apoderado && (
-            <p className="text-xs text-[var(--color-waldorf-moss)] font-medium truncate max-w-[150px] flex items-center gap-1 mt-0.5">
+            <p className="text-[11px] text-[var(--color-waldorf-moss)] font-medium truncate max-w-[150px] flex items-center gap-1 mt-0.5">
               <span className="w-3 h-3 flex items-center justify-center">📱</span>
               {lead.telefono_apoderado}
             </p>
@@ -97,25 +97,25 @@ function LeadCard({ lead, onDelete, onUpdateNote }: { lead: LeadAdmision; onDele
         </div>
       </div>
 
-      <div className="mb-3 bg-[var(--color-waldorf-cream)] p-2 rounded-lg border border-[var(--color-waldorf-sage)]/10">
-        <p className="text-xs text-[var(--color-waldorf-text)] font-semibold">Postulante: {lead.nombre_nino || 'No indicado'}</p>
-        <p className="text-[10px] text-[var(--color-waldorf-text-light)] mt-0.5">Edad: {lead.edad_nino || 'N/A'} • Curso: {lead.curso_postula || 'N/A'}</p>
+      <div className="mb-2 bg-[var(--color-waldorf-cream)] p-2 rounded-lg border border-[var(--color-waldorf-sage)]/10">
+        <p className="text-[11px] text-[var(--color-waldorf-text)] font-semibold truncate">Niño/a: {lead.nombre_nino || 'No indicado'}</p>
+        <p className="text-[10px] text-[var(--color-waldorf-text-light)] mt-0.5">Edad: {lead.edad_nino || 'N/A'} • {lead.curso_postula || 'N/A'}</p>
       </div>
 
       {lead.notas && (
-        <div className="mb-3 p-2 rounded-lg bg-yellow-50 border border-yellow-200">
-          <p className="text-xs text-yellow-800 italic">{lead.notas}</p>
+        <div className="mb-2 p-1.5 rounded-lg bg-yellow-50 border border-yellow-200">
+          <p className="text-[10px] text-yellow-800 italic leading-tight line-clamp-2">{lead.notas}</p>
         </div>
       )}
 
-      <div className="flex items-center justify-between mt-3">
+      <div className="flex items-center justify-between mt-2">
         <span className="text-[10px] text-[var(--color-waldorf-terracotta)] font-medium">{timeAgo}</span>
         <div className="flex gap-1 flex-wrap justify-end relative z-10">
           {onUpdateNote && (
             <button 
               onPointerDown={(e) => e.stopPropagation()} 
               onClick={(e) => { e.stopPropagation(); onUpdateNote(lead); }} 
-              className="text-[10px] px-1.5 py-1 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
+              className="text-[10px] p-1 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
               title="Agregar Observación"
             >
               <Edit3 className="w-3 h-3" />
@@ -125,7 +125,7 @@ function LeadCard({ lead, onDelete, onUpdateNote }: { lead: LeadAdmision; onDele
             <button 
               onPointerDown={(e) => e.stopPropagation()} 
               onClick={(e) => { e.stopPropagation(); onDelete(lead.id); }} 
-              className="text-[10px] px-1.5 py-1 rounded-lg bg-red-50 text-red-500 hover:bg-red-100 transition-colors"
+              className="text-[10px] p-1 rounded-lg bg-red-50 text-red-500 hover:bg-red-100 transition-colors"
               title="Eliminar Postulación"
             >
               <Trash2 className="w-3 h-3" />
@@ -146,13 +146,13 @@ function Column({ col, leads, onDelete, onUpdateNote, loading }: { col: any; lea
   const Icon = col.icon;
   
   return (
-    <div className="min-w-[320px] max-w-[320px] bg-[var(--color-waldorf-paper)] rounded-2xl border border-[var(--color-waldorf-sage)]/20 p-4 min-h-[500px] snap-start shadow-sm flex flex-col">
-      <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[var(--color-waldorf-sage)]/20">
+    <div className="min-w-[240px] w-[240px] max-w-[240px] bg-[var(--color-waldorf-paper)] rounded-xl border border-[var(--color-waldorf-sage)]/20 p-3 min-h-[500px] snap-start shadow-sm flex flex-col shrink-0">
+      <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--color-waldorf-sage)]/20">
         <div className={`p-1.5 rounded-lg ${col.bg}`}>
           <Icon className={`w-4 h-4 ${col.color}`} />
         </div>
-        <h2 className="text-sm font-bold text-[var(--color-waldorf-moss)]">{col.title}</h2>
-        <span className="ml-auto text-xs font-bold text-white bg-[var(--color-waldorf-terracotta)] px-2.5 py-0.5 rounded-full shadow-sm">{leads.length}</span>
+        <h2 className="text-xs font-bold text-[var(--color-waldorf-moss)] leading-tight flex-1">{col.title}</h2>
+        <span className="text-[10px] font-bold text-white bg-[var(--color-waldorf-terracotta)] px-2 py-0.5 rounded-full shadow-sm">{leads.length}</span>
       </div>
 
       <SortableContext items={leads.map(l => l.id)} strategy={verticalListSortingStrategy}>
