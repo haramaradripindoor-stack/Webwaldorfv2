@@ -73,23 +73,22 @@ export const emailTemplates = [
   },
   {
     id: 'apertura-admision',
-    name: 'Apertura Admisión',
-    description: 'Anuncio formal de matrículas abiertas.',
+    name: 'Apertura Admisión 2027 (Estratégico)',
+    description: 'Anuncio de matrículas con sondaje Multigrado 1ro-3ro.',
     design: {
       body: {
         rows: [{
           cells: [1],
           columns: [{
             contents: [
-              { type: "image", values: { src: { url: "https://colegiowaldorftrekan.cl/wp-content/uploads/2023/12/logo-trekan.png" }, containerPadding: "30px 20px 10px", width: "120px" } },
-              { type: "divider", values: { containerPadding: "10px", padding: "10px", width: "100%", border: { borderTopWidth: "1px", borderTopStyle: "solid", borderTopColor: "#A3B19B" } } },
-              { type: "heading", values: { headingType: "h2", text: "🌻 Proceso de Admisión Abierto", color: "#C86240", textAlign: "center", fontFamily: { label: "Georgia", value: "Georgia, serif" } } },
-              { type: "text", values: { text: "<p style=\"text-align: center; color: #4A4A4A; font-size: 16px; line-height: 1.6; font-family: 'Helvetica', sans-serif;\">Estimada familia,<br/><br/>Con mucha alegría les comunicamos que hemos abierto nuestro proceso de admisión para el próximo ciclo escolar.<br/><br/>Buscamos acoger a familias que resuenen profundamente con nuestra mirada sobre la infancia: un acompañamiento respetuoso, amoroso y conectado con las fuerzas vivas de la naturaleza.</p>" } },
-              { type: "button", values: { href: { values: { href: "https://colegiowaldorftrekan.cl/postular" } }, text: "Iniciar Postulación", backgroundColor: "#2F483A", color: "#ffffff", borderRadius: "8px", containerPadding: "20px", padding: "14px 28px", fontWeight: "bold" } },
-              { type: "text", values: { text: "<p style=\"text-align: center; color: #A3B19B; font-size: 12px; margin-top: 30px;\">Colegio Waldorf Trekan · Puerto Varas<br/><br/><a href=\"https://www.colegiowaldorftrekan.cl/darse-de-baja\" style=\"color: #A3B19B; text-decoration: underline;\">Darse de baja</a></p>" } }
+              { type: "image", values: { src: { url: "https://colegiowaldorftrekan.cl/afiche_2027.jpg" }, width: "100%", containerPadding: "0px" } },
+              { type: "text", values: { text: "<p style=\"text-align: left; color: #4A4A4A; font-size: 16px; line-height: 1.6; font-family: 'Helvetica', sans-serif; padding: 20px;\">Estimada familia,<br/><br/>A través de este comunicado oficial, les informamos que hemos dado inicio al proceso de <strong>Admisión y Matrículas para el Ciclo Escolar 2027</strong> en el Colegio Waldorf Trekan.<br/><br/>Nos contactamos con ustedes porque en el pasado solicitaron información sobre nuestro proyecto educativo, y queríamos darles prioridad antes de anunciar los cupos al público general.<br/><br/>Para este ciclo 2027, además de nuestras vacantes regulares de <strong>Kínder y 4to a 8vo Básico</strong>, estamos evaluando la apertura excepcional de un <strong>Nuevo Multigrado de Primer Ciclo (1ro, 2do y 3ro Básico)</strong>, debido al alto interés de las familias que buscan una pedagogía respetuosa y libre de sobreestimulación.<br/><br/>Las vacantes son estrictamente limitadas. Toda la información del proceso y el formulario oficial de postulación ya están disponibles en nuestro sitio web.</p>" } },
+              { type: "button", values: { href: { values: { href: "https://colegiowaldorftrekan.cl/admision" } }, text: "Ir al Portal de Admisión 2027", backgroundColor: "#4A5D23", color: "#ffffff", borderRadius: "8px", containerPadding: "10px 20px 20px", padding: "14px 28px", fontWeight: "bold" } },
+              { type: "image", values: { src: { url: "https://colegiowaldorftrekan.cl/logo_color_2027.jpg" }, width: "80px", containerPadding: "20px" } },
+              { type: "text", values: { text: "<p style=\"text-align: center; color: #A3B19B; font-size: 12px; margin-top: 10px;\">Colegio Waldorf Trekan · Puerto Varas<br/><br/><a href=\"https://colegiowaldorftrekan.cl/darse-de-baja\" style=\"color: #A3B19B; text-decoration: underline;\">Darse de baja</a></p>" } }
             ]
           }],
-          values: { backgroundColor: "#F9F8F5" }
+          values: { backgroundColor: "#F9F8F6" }
         }],
         values: { backgroundColor: "#EBE8E0", fontFamily: { label: "Arial", value: "arial,helvetica,sans-serif" } }
       }
