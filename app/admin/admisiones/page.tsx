@@ -119,7 +119,9 @@ function LeadCard({ lead, onDelete, onUpdateNote, onUpdateCurso, onMove }: { lea
 
       <div className="flex flex-col gap-2 mt-auto pt-2 border-t border-[var(--color-waldorf-sage)]/10">
         <div className="flex items-center justify-between w-full">
-          <span className="text-[10px] text-[var(--color-waldorf-terracotta)] font-medium">{timeAgo}</span>
+          <span className="text-[10px] text-[var(--color-waldorf-terracotta)] font-medium" title={lead.created_at}>
+            📅 {mounted ? new Date(lead.created_at).toLocaleDateString('es-CL', { day: '2-digit', month: 'short', year: '2-digit' }) : ''}
+          </span>
           <div className="flex gap-1 flex-wrap justify-end relative z-10">
             {onUpdateNote && (
               <button 
@@ -412,9 +414,9 @@ export default function AdmisionesPage() {
       <div className="mb-6 border-b border-[var(--color-waldorf-sage)]/20 pb-6 flex justify-between items-end">
         <div>
           <h1 className="text-3xl font-extrabold font-serif text-[var(--color-waldorf-moss)]">
-            CRM Admisiones 2026
+            CRM Admisiones 2027
           </h1>
-          <p className="text-[var(--color-waldorf-text-light)] mt-1 font-medium">Gestión de familias interesadas y proceso de postulación.</p>
+          <p className="text-[var(--color-waldorf-text-light)] mt-1 font-medium">Proceso de Admisión Escolar 2027 · Gestión de familias interesadas.</p>
         </div>
 
         <button 
