@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import * as XLSX from 'xlsx';
-import { Clock, CheckCircle, MessageSquare, Flame, Trash2, Calendar, User, GripVertical, Download } from 'lucide-react';
+import { Clock, CheckCircle, MessageSquare, Flame, Trash2, Calendar, User, GripVertical, Download, XCircle, Archive, Edit3 } from 'lucide-react';
 import {
   DndContext,
   DragOverlay,
@@ -32,8 +32,9 @@ type LeadAdmision = {
   nombre_nino: string;
   edad_nino: string;
   curso_postula: string;
-  estado: 'nuevo' | 'entrevista' | 'evaluacion' | 'matriculado' | 'rechazado';
+  estado: 'nuevo' | 'entrevista' | 'evaluacion' | 'matriculado' | 'no_corresponde' | 'no_continua';
   origen: string;
+  notas?: string;
   created_at: string;
 };
 
@@ -42,9 +43,11 @@ const columns = [
   { id: 'entrevista', title: 'Entrevista Agendada', icon: Calendar, color: 'text-blue-600', bg: 'bg-blue-100' },
   { id: 'evaluacion', title: 'En Evaluación', icon: MessageSquare, color: 'text-purple-600', bg: 'bg-purple-100' },
   { id: 'matriculado', title: 'Matriculados', icon: CheckCircle, color: 'text-emerald-600', bg: 'bg-emerald-100' },
+  { id: 'no_corresponde', title: 'Descarta (No Corresponde)', icon: XCircle, color: 'text-red-600', bg: 'bg-red-100' },
+  { id: 'no_continua', title: 'Retargeting (No Continúa)', icon: Archive, color: 'text-slate-600', bg: 'bg-slate-100' },
 ];
 
-function LeadCard({ lead, onDelete }: { lead: LeadAdmision; onDelete?: (id: string) => void }) {
+function LeadCard({ lead, onDelete, onUpdateNote }: { lead: LeadAdmision; onDelete?: (id: string) => void; onUpdateNote?: (lead: LeadAdmision) => void }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
@@ -74,7 +77,6 @@ function LeadCard({ lead, onDelete }: { lead: LeadAdmision; onDelete?: (id: stri
       {...listeners}
       className="bg-white p-4 rounded-xl border border-[var(--color-waldorf-sage)]/20 mb-3 shadow-sm hover:shadow-md transition-all text-left cursor-grab active:cursor-grabbing touch-none relative group"
     >
-      {/* Indicador de Drag */}
       <div className="absolute top-4 right-2 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity">
         <GripVertical size={16} />
       </div>
@@ -100,9 +102,25 @@ function LeadCard({ lead, onDelete }: { lead: LeadAdmision; onDelete?: (id: stri
         <p className="text-[10px] text-[var(--color-waldorf-text-light)] mt-0.5">Edad: {lead.edad_nino || 'N/A'} • Curso: {lead.curso_postula || 'N/A'}</p>
       </div>
 
+      {lead.notas && (
+        <div className="mb-3 p-2 rounded-lg bg-yellow-50 border border-yellow-200">
+          <p className="text-xs text-yellow-800 italic">{lead.notas}</p>
+        </div>
+      )}
+
       <div className="flex items-center justify-between mt-3">
-        <span className="text-[10px] text-[var(--color-waldorf-terracotta)] font-medium">{timeAgo} · {lead.origen || 'Web'}</span>
+        <span className="text-[10px] text-[var(--color-waldorf-terracotta)] font-medium">{timeAgo}</span>
         <div className="flex gap-1 flex-wrap justify-end relative z-10">
+          {onUpdateNote && (
+            <button 
+              onPointerDown={(e) => e.stopPropagation()} 
+              onClick={(e) => { e.stopPropagation(); onUpdateNote(lead); }} 
+              className="text-[10px] px-1.5 py-1 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
+              title="Agregar Observación"
+            >
+              <Edit3 className="w-3 h-3" />
+            </button>
+          )}
           {onDelete && (
             <button 
               onPointerDown={(e) => e.stopPropagation()} 
@@ -119,7 +137,7 @@ function LeadCard({ lead, onDelete }: { lead: LeadAdmision; onDelete?: (id: stri
   );
 }
 
-function Column({ col, leads, onDelete, loading }: { col: any; leads: LeadAdmision[]; onDelete: (id: string) => void; loading: boolean }) {
+function Column({ col, leads, onDelete, onUpdateNote, loading }: { col: any; leads: LeadAdmision[]; onDelete: (id: string) => void; onUpdateNote: (lead: LeadAdmision) => void; loading: boolean }) {
   const { setNodeRef } = useDroppable({
     id: col.id,
     data: { type: 'Column', col }
@@ -140,7 +158,7 @@ function Column({ col, leads, onDelete, loading }: { col: any; leads: LeadAdmisi
       <SortableContext items={leads.map(l => l.id)} strategy={verticalListSortingStrategy}>
         <div ref={setNodeRef} className="flex-1 overflow-y-auto pr-1 custom-scrollbar min-h-[150px] pb-20">
           {leads.map((lead) => (
-            <LeadCard key={lead.id} lead={lead} onDelete={onDelete} />
+            <LeadCard key={lead.id} lead={lead} onDelete={onDelete} onUpdateNote={onUpdateNote} />
           ))}
 
           {leads.length === 0 && !loading && (
@@ -177,14 +195,29 @@ export default function AdmisionesPage() {
   const [leads, setLeads] = useState<LeadAdmision[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeLead, setActiveLead] = useState<LeadAdmision | null>(null);
+  
+  // Filtros
+  const [filtroCurso, setFiltroCurso] = useState<string>('');
+  const [filtroAño, setFiltroAño] = useState<string>('');
+
+  const cursosUnicos = Array.from(new Set(leads.map(l => l.curso_postula).filter(Boolean))).sort();
+  const añosUnicos = Array.from(new Set(leads.map(l => {
+    try { return new Date(l.created_at).getFullYear().toString(); } catch { return ''; }
+  }).filter(Boolean))).sort((a, b) => b.localeCompare(a));
+
+  const filteredLeads = leads.filter(l => {
+    if (filtroCurso && l.curso_postula !== filtroCurso) return false;
+    if (filtroAño && new Date(l.created_at).getFullYear().toString() !== filtroAño) return false;
+    return true;
+  });
 
   const exportToExcel = () => {
-    if (leads.length === 0) {
-      alert('No hay datos para exportar');
+    if (filteredLeads.length === 0) {
+      alert('No hay datos para exportar con estos filtros');
       return;
     }
 
-    const dataRows = leads.map(lead => ({
+    const dataRows = filteredLeads.map(lead => ({
       ID: lead.id,
       Fecha: new Date(lead.created_at).toLocaleString('es-CL'),
       Apoderado: lead.nombre_apoderado || '',
@@ -194,6 +227,7 @@ export default function AdmisionesPage() {
       Edad: lead.edad_nino || '',
       Curso: lead.curso_postula || '',
       Estado: lead.estado,
+      Notas: lead.notas || '',
       Origen: lead.origen || ''
     }));
 
@@ -250,6 +284,20 @@ export default function AdmisionesPage() {
     else fetchLeads();
   };
 
+  const handleUpdateNote = async (lead: LeadAdmision) => {
+    const newNote = prompt('Observación / Motivo (Retargeting o Descarte):', lead.notas || '');
+    if (newNote !== null) {
+      // Optimistic UI
+      setLeads(current => current.map(l => l.id === lead.id ? { ...l, notas: newNote } : l));
+      
+      const { error } = await supabase.from('leads_admision').update({ notas: newNote }).eq('id', lead.id);
+      if (error) {
+        alert('Error al guardar la nota, asegúrate de que exista la columna "notas" en Supabase. Error: ' + error.message);
+        fetchLeads(); // Rollback
+      }
+    }
+  };
+
   const onDragStart = (event: any) => {
     const { active } = event;
     const lead = leads.find(l => l.id === active.id);
@@ -295,7 +343,7 @@ export default function AdmisionesPage() {
 
   return (
     <div className="w-full">
-      <div className="mb-8 border-b border-[var(--color-waldorf-sage)]/20 pb-6 flex justify-between items-end">
+      <div className="mb-6 border-b border-[var(--color-waldorf-sage)]/20 pb-6 flex justify-between items-end">
         <div>
           <h1 className="text-3xl font-extrabold font-serif text-[var(--color-waldorf-moss)]">
             CRM Admisiones 2026
@@ -312,6 +360,37 @@ export default function AdmisionesPage() {
         </button>
       </div>
 
+      {/* Barra de Filtros */}
+      <div className="flex gap-4 mb-6 bg-white p-4 rounded-xl border border-[var(--color-waldorf-sage)]/20 shadow-sm">
+        <div className="flex flex-col gap-1 w-64">
+          <label className="text-xs font-bold text-[var(--color-waldorf-moss)]">Segmentar por Curso:</label>
+          <select 
+            value={filtroCurso}
+            onChange={(e) => setFiltroCurso(e.target.value)}
+            className="p-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 outline-none focus:border-[var(--color-waldorf-sage)] transition-colors"
+          >
+            <option value="">Todos los cursos</option>
+            {cursosUnicos.map(c => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="flex flex-col gap-1 w-64">
+          <label className="text-xs font-bold text-[var(--color-waldorf-moss)]">Segmentar por Año / Etapa:</label>
+          <select 
+            value={filtroAño}
+            onChange={(e) => setFiltroAño(e.target.value)}
+            className="p-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 outline-none focus:border-[var(--color-waldorf-sage)] transition-colors"
+          >
+            <option value="">Todos los años</option>
+            {añosUnicos.map(a => (
+              <option key={a} value={a}>Generación {a}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
       {/* Kanban Board DND Context */}
       <DndContext 
         sensors={sensors} 
@@ -321,8 +400,8 @@ export default function AdmisionesPage() {
       >
         <div className="flex gap-6 overflow-x-auto pb-8 snap-x">
           {columns.map((col) => {
-            const colLeads = leads.filter(l => l.estado === col.id);
-            return <Column key={col.id} col={col} leads={colLeads} onDelete={handleDelete} loading={loading} />;
+            const colLeads = filteredLeads.filter(l => l.estado === col.id);
+            return <Column key={col.id} col={col} leads={colLeads} onDelete={handleDelete} onUpdateNote={handleUpdateNote} loading={loading} />;
           })}
         </div>
 
