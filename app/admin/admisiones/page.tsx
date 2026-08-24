@@ -47,7 +47,7 @@ const columns = [
   { id: 'no_continua', title: 'Retargeting (No Continúa)', icon: Archive, color: 'text-slate-600', bg: 'bg-slate-100' },
 ];
 
-function LeadCard({ lead, onDelete, onUpdateNote }: { lead: LeadAdmision; onDelete?: (id: string) => void; onUpdateNote?: (lead: LeadAdmision) => void }) {
+function LeadCard({ lead, onDelete, onUpdateNote, onUpdateCurso, onMove }: { lead: LeadAdmision; onDelete?: (id: string) => void; onUpdateNote?: (lead: LeadAdmision) => void; onUpdateCurso?: (lead: LeadAdmision) => void; onMove?: (id: string, status: string) => void }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
@@ -75,7 +75,7 @@ function LeadCard({ lead, onDelete, onUpdateNote }: { lead: LeadAdmision; onDele
       style={style}
       {...attributes}
       {...listeners}
-      className="bg-white p-3 rounded-xl border border-[var(--color-waldorf-sage)]/20 mb-3 shadow-sm hover:shadow-md transition-all text-left cursor-grab active:cursor-grabbing touch-none relative group"
+      className="bg-white p-3 rounded-xl border border-[var(--color-waldorf-sage)]/20 mb-3 shadow-sm hover:shadow-md transition-all text-left cursor-grab active:cursor-grabbing touch-none relative group flex flex-col"
     >
       <div className="absolute top-3 right-2 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity">
         <GripVertical size={16} />
@@ -99,7 +99,17 @@ function LeadCard({ lead, onDelete, onUpdateNote }: { lead: LeadAdmision; onDele
 
       <div className="mb-2 bg-[var(--color-waldorf-cream)] p-2 rounded-lg border border-[var(--color-waldorf-sage)]/10">
         <p className="text-[11px] text-[var(--color-waldorf-text)] font-semibold truncate">Niño/a: {lead.nombre_nino || 'No indicado'}</p>
-        <p className="text-[10px] text-[var(--color-waldorf-text-light)] mt-0.5">Edad: {lead.edad_nino || 'N/A'} • {lead.curso_postula || 'N/A'}</p>
+        <div className="text-[10px] text-[var(--color-waldorf-text-light)] mt-0.5 flex flex-wrap items-center gap-1">
+          <span>Edad: {lead.edad_nino || 'N/A'} •</span>
+          <span 
+            className="font-medium text-[var(--color-waldorf-moss)] bg-white px-1.5 py-0.5 rounded border border-[var(--color-waldorf-sage)]/20 cursor-pointer hover:bg-gray-50 flex items-center gap-1"
+            onPointerDown={(e) => e.stopPropagation()}
+            onClick={(e) => { e.stopPropagation(); if(onUpdateCurso) onUpdateCurso(lead); }}
+            title="Editar Curso"
+          >
+            {lead.curso_postula || 'N/A'} <Edit3 className="w-2.5 h-2.5 opacity-50" />
+          </span>
+        </div>
       </div>
 
       {lead.notas && (
@@ -108,36 +118,57 @@ function LeadCard({ lead, onDelete, onUpdateNote }: { lead: LeadAdmision; onDele
         </div>
       )}
 
-      <div className="flex items-center justify-between mt-2">
-        <span className="text-[10px] text-[var(--color-waldorf-terracotta)] font-medium">{timeAgo}</span>
-        <div className="flex gap-1 flex-wrap justify-end relative z-10">
-          {onUpdateNote && (
-            <button 
-              onPointerDown={(e) => e.stopPropagation()} 
-              onClick={(e) => { e.stopPropagation(); onUpdateNote(lead); }} 
-              className="text-[10px] p-1 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
-              title="Agregar Observación"
-            >
-              <Edit3 className="w-3 h-3" />
-            </button>
-          )}
-          {onDelete && (
-            <button 
-              onPointerDown={(e) => e.stopPropagation()} 
-              onClick={(e) => { e.stopPropagation(); onDelete(lead.id); }} 
-              className="text-[10px] p-1 rounded-lg bg-red-50 text-red-500 hover:bg-red-100 transition-colors"
-              title="Eliminar Postulación"
-            >
-              <Trash2 className="w-3 h-3" />
-            </button>
-          )}
+      <div className="flex flex-col gap-2 mt-auto pt-2 border-t border-[var(--color-waldorf-sage)]/10">
+        <div className="flex items-center justify-between w-full">
+          <span className="text-[10px] text-[var(--color-waldorf-terracotta)] font-medium">{timeAgo}</span>
+          <div className="flex gap-1 flex-wrap justify-end relative z-10">
+            {onUpdateNote && (
+              <button 
+                onPointerDown={(e) => e.stopPropagation()} 
+                onClick={(e) => { e.stopPropagation(); onUpdateNote(lead); }} 
+                className="text-[10px] p-1 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
+                title="Agregar Observación"
+              >
+                <Edit3 className="w-3 h-3" />
+              </button>
+            )}
+            {onDelete && (
+              <button 
+                onPointerDown={(e) => e.stopPropagation()} 
+                onClick={(e) => { e.stopPropagation(); onDelete(lead.id); }} 
+                className="text-[10px] p-1 rounded-lg bg-red-50 text-red-500 hover:bg-red-100 transition-colors"
+                title="Eliminar Postulación"
+              >
+                <Trash2 className="w-3 h-3" />
+              </button>
+            )}
+          </div>
         </div>
+
+        {onMove && (
+          <div className="relative z-10 mt-1">
+            <select
+              value=""
+              onPointerDown={(e) => e.stopPropagation()}
+              onChange={(e) => {
+                e.stopPropagation();
+                if (e.target.value) onMove(lead.id, e.target.value);
+              }}
+              className="w-full text-[10px] p-1.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-600 outline-none hover:bg-gray-100 transition-colors cursor-pointer font-medium"
+            >
+              <option value="" disabled>Mover a columna...</option>
+              {columns.filter(c => c.id !== lead.estado).map(c => (
+                <option key={c.id} value={c.id}>{c.title}</option>
+              ))}
+            </select>
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-function Column({ col, leads, onDelete, onUpdateNote, loading }: { col: any; leads: LeadAdmision[]; onDelete: (id: string) => void; onUpdateNote: (lead: LeadAdmision) => void; loading: boolean }) {
+function Column({ col, leads, onDelete, onUpdateNote, onUpdateCurso, onMove, loading }: { col: any; leads: LeadAdmision[]; onDelete: (id: string) => void; onUpdateNote: (lead: LeadAdmision) => void; onUpdateCurso: (lead: LeadAdmision) => void; onMove: (id: string, status: string) => void; loading: boolean }) {
   const { setNodeRef } = useDroppable({
     id: col.id,
     data: { type: 'Column', col }
@@ -158,7 +189,7 @@ function Column({ col, leads, onDelete, onUpdateNote, loading }: { col: any; lea
       <SortableContext items={leads.map(l => l.id)} strategy={verticalListSortingStrategy}>
         <div className="flex-1 overflow-y-auto pr-1 custom-scrollbar min-h-[150px] pb-20 flex flex-col">
           {leads.map((lead) => (
-            <LeadCard key={lead.id} lead={lead} onDelete={onDelete} onUpdateNote={onUpdateNote} />
+            <LeadCard key={lead.id} lead={lead} onDelete={onDelete} onUpdateNote={onUpdateNote} onUpdateCurso={onUpdateCurso} onMove={onMove} />
           ))}
 
           {leads.length === 0 && !loading && (
@@ -211,6 +242,16 @@ export default function AdmisionesPage() {
     return true;
   });
 
+  // Cálculo de Demanda Activa (Omitiendo descartados)
+  const activeLeads = leads.filter(l => l.estado !== 'no_corresponde' && l.estado !== 'no_continua');
+  const demandByCourse = activeLeads.reduce((acc, lead) => {
+    const curso = lead.curso_postula || 'Sin Especificar';
+    acc[curso] = (acc[curso] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+  // Ordenar por cantidad (mayor demanda primero)
+  const demandEntries = Object.entries(demandByCourse).sort((a, b) => b[1] - a[1]);
+
   const exportToExcel = () => {
     if (filteredLeads.length === 0) {
       alert('No hay datos para exportar con estos filtros');
@@ -235,14 +276,13 @@ export default function AdmisionesPage() {
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Admisiones');
     
-    // Generar archivo y forzar descarga
     XLSX.writeFile(workbook, `Trekan_Admisiones_${new Date().toISOString().split('T')[0]}.xlsx`);
   };
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        distance: 5, // Permite hacer clics en botones sin iniciar drag
+        distance: 5,
       },
     }),
     useSensor(KeyboardSensor, {
@@ -264,7 +304,6 @@ export default function AdmisionesPage() {
 
   useEffect(() => {
     fetchLeads();
-
     const channel = supabase
       .channel('admisiones-realtime')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'leads_admision' }, () => {
@@ -287,14 +326,35 @@ export default function AdmisionesPage() {
   const handleUpdateNote = async (lead: LeadAdmision) => {
     const newNote = prompt('Observación / Motivo (Retargeting o Descarte):', lead.notas || '');
     if (newNote !== null) {
-      // Optimistic UI
       setLeads(current => current.map(l => l.id === lead.id ? { ...l, notas: newNote } : l));
-      
       const { error } = await supabase.from('leads_admision').update({ notas: newNote }).eq('id', lead.id);
       if (error) {
-        alert('Error al guardar la nota, asegúrate de que exista la columna "notas" en Supabase. Error: ' + error.message);
-        fetchLeads(); // Rollback
+        alert('Error al guardar la nota. Error: ' + error.message);
+        fetchLeads();
       }
+    }
+  };
+
+  const handleUpdateCurso = async (lead: LeadAdmision) => {
+    const newCurso = prompt('Actualizar Curso de Postulación (Ej: 3ro Básico (2027)):', lead.curso_postula || '');
+    if (newCurso !== null && newCurso.trim() !== '') {
+      setLeads(current => current.map(l => l.id === lead.id ? { ...l, curso_postula: newCurso.trim() } : l));
+      const { error } = await supabase.from('leads_admision').update({ curso_postula: newCurso.trim() }).eq('id', lead.id);
+      if (error) {
+        alert('Error al guardar el curso. Error: ' + error.message);
+        fetchLeads();
+      }
+    }
+  };
+
+  const handleManualMove = async (id: string, targetEstado: string) => {
+    setLeads(currentLeads => 
+      currentLeads.map(l => l.id === id ? { ...l, estado: targetEstado as any } : l)
+    );
+    const { error } = await supabase.from('leads_admision').update({ estado: targetEstado }).eq('id', id);
+    if (error) {
+      alert('Error moviendo prospecto: ' + error.message);
+      fetchLeads();
     }
   };
 
@@ -308,11 +368,9 @@ export default function AdmisionesPage() {
     setActiveLead(null);
     const { active, over } = event;
     if (!over) return;
-
     const activeId = active.id;
     const overId = over.id;
 
-    // Detectar a qué estado se movió
     const isOverColumn = columns.map(c => c.id).includes(overId);
     let targetEstado = '';
 
@@ -324,20 +382,8 @@ export default function AdmisionesPage() {
     }
 
     const activeLead = leads.find(l => l.id === activeId);
-
     if (activeLead && targetEstado && activeLead.estado !== targetEstado) {
-      // 1. Optimistic Update UI
-      setLeads(currentLeads => 
-        currentLeads.map(l => l.id === activeId ? { ...l, estado: targetEstado as any } : l)
-      );
-      
-      // 2. Real DB Update
-      const { error } = await supabase.from('leads_admision').update({ estado: targetEstado }).eq('id', activeId);
-      
-      if (error) {
-        alert('Error moviendo prospecto: ' + error.message);
-        fetchLeads(); // Rollback en caso de error
-      }
+      handleManualMove(activeId, targetEstado);
     }
   };
 
@@ -358,6 +404,24 @@ export default function AdmisionesPage() {
           <Download className="w-4 h-4" />
           Exportar a Excel
         </button>
+      </div>
+
+      {/* Resumen Ejecutivo de Demanda */}
+      <div className="mb-6 p-5 bg-white border border-[var(--color-waldorf-sage)]/30 rounded-xl shadow-sm">
+        <h3 className="text-sm font-bold text-[var(--color-waldorf-moss)] mb-4 flex items-center gap-2">
+          <span className="text-lg">📊</span> Resumen Ejecutivo de Demanda (Excluye Descartados)
+        </h3>
+        <div className="flex flex-wrap gap-3">
+          {demandEntries.map(([curso, count]) => (
+            <div key={curso} className="flex items-center gap-2 bg-[var(--color-waldorf-cream)] border border-[var(--color-waldorf-sage)]/20 px-3 py-2 rounded-lg">
+              <span className="text-xs font-semibold text-[var(--color-waldorf-text)]">{curso}</span>
+              <span className="text-xs font-bold text-white bg-[#6a8d73] px-2 py-0.5 rounded-full">{count}</span>
+            </div>
+          ))}
+          {demandEntries.length === 0 && (
+            <p className="text-xs text-gray-500 italic">No hay demanda activa registrada aún.</p>
+          )}
+        </div>
       </div>
 
       {/* Barra de Filtros */}
@@ -401,7 +465,7 @@ export default function AdmisionesPage() {
         <div className="flex gap-6 overflow-x-auto pb-8 snap-x">
           {columns.map((col) => {
             const colLeads = filteredLeads.filter(l => l.estado === col.id);
-            return <Column key={col.id} col={col} leads={colLeads} onDelete={handleDelete} onUpdateNote={handleUpdateNote} loading={loading} />;
+            return <Column key={col.id} col={col} leads={colLeads} onDelete={handleDelete} onUpdateNote={handleUpdateNote} onUpdateCurso={handleUpdateCurso} onMove={handleManualMove} loading={loading} />;
           })}
         </div>
 
