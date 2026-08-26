@@ -190,7 +190,7 @@ export async function POST(req: Request) {
     try {
       await resend.emails.send({
         from: 'Colegio Waldorf Trekan <onboarding@resend.dev>', // Usamos el fallback seguro de Resend
-        to: 'admision@colegiowaldorftrekan.cl',
+        to: 'trekancomisiondeaministracion@gmail.com', // Cambiado al correo dueño de la cuenta para evadir bloqueo
         subject: `NUEVO LEAD: ${nombre_apoderado} (Admisión 2027)`,
         html: htmlContent
       });
