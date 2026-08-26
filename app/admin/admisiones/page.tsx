@@ -6,6 +6,7 @@ import * as XLSX from 'xlsx';
 import { Clock, CheckCircle, MessageSquare, Flame, Trash2, Calendar, User, GripVertical, Download, XCircle, Archive, Edit3 } from 'lucide-react';
 import {
   DndContext,
+  DragOverlay,
   closestCorners,
   rectIntersection,
   KeyboardSensor,
