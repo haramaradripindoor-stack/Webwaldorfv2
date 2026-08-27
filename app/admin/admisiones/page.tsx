@@ -234,14 +234,16 @@ export default function AdmisionesPage() {
   const [filtroCurso, setFiltroCurso] = useState<string>('');
   const [filtroAño, setFiltroAño] = useState<string>('');
 
-  const cursosUnicos = Array.from(new Set(leads.map(l => l.curso_postula).filter(Boolean))).sort();
+  const cleanCurso = (curso: string) => curso ? curso.split(' | ')[0].trim() : '';
+
+  const cursosUnicos = Array.from(new Set(leads.map(l => cleanCurso(l.curso_postula)).filter(Boolean))).sort();
   const añosUnicos = Array.from(new Set(leads.map(l => {
-    try { return new Date(l.created_at).getFullYear().toString(); } catch { return ''; }
+    try { return (new Date(l.created_at).getFullYear() + 1).toString(); } catch { return ''; }
   }).filter(Boolean))).sort((a, b) => b.localeCompare(a));
 
   const filteredLeads = leads.filter(l => {
-    if (filtroCurso && l.curso_postula !== filtroCurso) return false;
-    if (filtroAño && new Date(l.created_at).getFullYear().toString() !== filtroAño) return false;
+    if (filtroCurso && cleanCurso(l.curso_postula) !== filtroCurso) return false;
+    if (filtroAño && (new Date(l.created_at).getFullYear() + 1).toString() !== filtroAño) return false;
     return true;
   });
 
