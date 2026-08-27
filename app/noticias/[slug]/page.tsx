@@ -104,14 +104,36 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
     },
     "description": post.excerpt || "Noticia del Colegio Waldorf Trekan"
   };
-
   return (
     <SmoothScroll>
+      {/* JSON-LD Schema.org SEO */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": post.title,
+            "description": post.excerpt,
+            "image": post.image_url ? [post.image_url.startsWith('http') ? post.image_url : `https://www.colegiowaldorftrekan.cl${post.image_url.replace('images/', '/imagenes-web/')}`] : [],
+            "datePublished": post.created_at,
+            "author": [{
+                "@type": "Organization",
+                "name": "Colegio Waldorf Trekan",
+                "url": "https://www.colegiowaldorftrekan.cl"
+            }],
+            "publisher": {
+              "@type": "Organization",
+              "name": "Colegio Waldorf Trekan",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.colegiowaldorftrekan.cl/logo.png"
+              }
+            }
+          })
+        }}
       />
-      <main className="min-h-screen bg-[#FAF9F6] selection:bg-[#D35D3E] selection:text-white relative">
+      <main className="w-full bg-[#FAF9F6] min-h-screen font-sans selection:bg-[#D35D3E]/20 selection:text-white relative">
         <Navbar />
         
         {/* Progress Bar Header */}

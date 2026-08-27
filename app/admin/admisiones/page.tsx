@@ -48,7 +48,7 @@ const columns = [
   { id: 'no_continua', title: 'Retargeting (No Continúa)', icon: Archive, color: 'text-slate-600', bg: 'bg-slate-100' },
 ];
 
-function LeadCard({ lead, onDelete, onUpdateNote, onUpdateCurso, onMove }: { lead: LeadAdmision; onDelete?: (id: string) => void; onUpdateNote?: (lead: LeadAdmision) => void; onUpdateCurso?: (lead: LeadAdmision) => void; onMove?: (id: string, status: string) => void }) {
+function LeadCard({ lead, onDelete, onUpdateNote, onUpdateCurso, onMove, isSelected, onToggleSelect }: { lead: LeadAdmision; onDelete?: (id: string) => void; onUpdateNote?: (lead: LeadAdmision) => void; onUpdateCurso?: (lead: LeadAdmision) => void; onMove?: (id: string, status: string) => void; isSelected?: boolean; onToggleSelect?: (id: string, e: any) => void; }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
@@ -76,8 +76,21 @@ function LeadCard({ lead, onDelete, onUpdateNote, onUpdateCurso, onMove }: { lea
       style={style}
       {...attributes}
       {...listeners}
-      className="bg-white p-3 rounded-xl border border-[var(--color-waldorf-sage)]/20 mb-3 shadow-sm hover:shadow-md transition-all text-left cursor-grab active:cursor-grabbing touch-none relative group flex flex-col"
+      className={`p-3 rounded-xl border mb-3 shadow-sm hover:shadow-md transition-all text-left cursor-grab active:cursor-grabbing touch-none relative group flex flex-col ${isSelected ? 'bg-blue-50 border-blue-400' : 'bg-white border-[var(--color-waldorf-sage)]/20'}`}
     >
+      {onToggleSelect && (
+        <div 
+          className="absolute top-2 right-8 z-10 cursor-pointer p-1" 
+          onPointerDown={(e) => { e.stopPropagation(); onToggleSelect(lead.id, e); }}
+        >
+          <input 
+            type="checkbox" 
+            checked={isSelected} 
+            readOnly
+            className="w-4 h-4 cursor-pointer accent-[var(--color-waldorf-moss)] pointer-events-none"
+          />
+        </div>
+      )}
       <div className="absolute top-3 right-2 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity">
         <GripVertical size={16} />
       </div>
@@ -171,7 +184,7 @@ function LeadCard({ lead, onDelete, onUpdateNote, onUpdateCurso, onMove }: { lea
   );
 }
 
-function Column({ col, leads, onDelete, onUpdateNote, onUpdateCurso, onMove, loading }: { col: any; leads: LeadAdmision[]; onDelete: (id: string) => void; onUpdateNote: (lead: LeadAdmision) => void; onUpdateCurso: (lead: LeadAdmision) => void; onMove: (id: string, status: string) => void; loading: boolean }) {
+function Column({ col, leads, onDelete, onUpdateNote, onUpdateCurso, onMove, loading, selectedLeadIds, onToggleSelect }: { col: any; leads: LeadAdmision[]; onDelete: (id: string) => void; onUpdateNote: (lead: LeadAdmision) => void; onUpdateCurso: (lead: LeadAdmision) => void; onMove: (id: string, status: string) => void; loading: boolean; selectedLeadIds?: string[]; onToggleSelect?: (id: string, e: any) => void; }) {
   const { setNodeRef } = useDroppable({
     id: col.id,
     data: { type: 'Column', col }
@@ -192,7 +205,7 @@ function Column({ col, leads, onDelete, onUpdateNote, onUpdateCurso, onMove, loa
       <SortableContext items={leads.map(l => l.id)} strategy={verticalListSortingStrategy}>
         <div className="flex-1 overflow-y-auto pr-1 custom-scrollbar min-h-[150px] pb-20 flex flex-col">
           {leads.map((lead) => (
-            <LeadCard key={lead.id} lead={lead} onDelete={onDelete} onUpdateNote={onUpdateNote} onUpdateCurso={onUpdateCurso} onMove={onMove} />
+            <LeadCard key={lead.id} lead={lead} onDelete={onDelete} onUpdateNote={onUpdateNote} onUpdateCurso={onUpdateCurso} onMove={onMove} isSelected={selectedLeadIds?.includes(lead.id)} onToggleSelect={onToggleSelect} />
           ))}
 
           {leads.length === 0 && !loading && (
@@ -231,20 +244,43 @@ export default function AdmisionesPage() {
   const [activeLead, setActiveLead] = useState<LeadAdmision | null>(null);
   const [selectedLeadIds, setSelectedLeadIds] = useState<string[]>([]);
   
-  // Filtros
   const [filtroCurso, setFiltroCurso] = useState<string>('');
-  const [filtroAño, setFiltroAño] = useState<string>('');
-
-  const cleanCurso = (curso: string) => curso ? curso.split(' | ')[0].trim() : '';
-
-  const cursosUnicos = Array.from(new Set(leads.map(l => cleanCurso(l.curso_postula)).filter(Boolean))).sort();
-  const añosUnicos = Array.from(new Set(leads.map(l => {
-    try { return (new Date(l.created_at).getFullYear() + 1).toString(); } catch { return ''; }
-  }).filter(Boolean))).sort((a, b) => b.localeCompare(a));
+  const cursosUnicos = Array.from(new Set(leads.map(l => {
+    if (!l.curso_postula) return 'Sin Especificar';
+    if (l.curso_postula.length > 35) return 'Requiere Revisión (Texto Largo)';
+    const c = l.curso_postula.toLowerCase();
+    if (c.includes('kinde')) return 'Kinder (2027)';
+    if (c.includes('1ro') || c.includes('1ero') || c.includes('primero') || c.includes('1 b') || c.includes('1 medio')) return '1ro Básico (2027)';
+    if (c.includes('2do') || c.includes('segundo') || c.includes('2 b') || c.match(/2[^a-z]*b/)) return '2do Básico (2027)';
+    if (c.includes('3ro') || c.includes('tercero') || c.includes('3 b') || c.match(/3[^a-z]*b/)) return '3ro Básico (2027)';
+    if (c.includes('4to') || c.includes('cuarto') || c.includes('4 b') || c.match(/4[^a-z]*b/)) return '4to Básico (2027)';
+    if (c.includes('5to') || c.includes('quinto') || c.includes('5 b') || c.match(/5[^a-z]*b/)) return '5to Básico (2027)';
+    if (c.includes('6to') || c.includes('sexto') || c.includes('6 b') || c.match(/6[^a-z]*b/)) return '6to Básico (2027)';
+    if (c.includes('7mo') || c.includes('septimo') || c.includes('séptimo') || c.match(/7[^a-z]*b/)) return '7mo Básico (2027)';
+    if (c.includes('8vo') || c.includes('octavo') || c.match(/8[^a-z]*b/)) return '8vo Básico (2027)';
+    if (c.includes('medio') || c.includes('14 años') || c.includes('13 años')) return 'Ed. Media / Fuera de Rango';
+    return l.curso_postula.split(' | ')[0].trim(); // Fallback to clean raw
+  }).filter(Boolean))).sort();
 
   const filteredLeads = leads.filter(l => {
+    const cleanCurso = (curso: string) => {
+      if (!curso) return 'Sin Especificar';
+      if (curso.length > 35) return 'Requiere Revisión (Texto Largo)';
+      const c = curso.toLowerCase();
+      if (c.includes('kinde')) return 'Kinder (2027)';
+      if (c.includes('1ro') || c.includes('1ero') || c.includes('primero') || c.includes('1 b') || c.includes('1 medio')) return '1ro Básico (2027)';
+      if (c.includes('2do') || c.includes('segundo') || c.includes('2 b') || c.match(/2[^a-z]*b/)) return '2do Básico (2027)';
+      if (c.includes('3ro') || c.includes('tercero') || c.includes('3 b') || c.match(/3[^a-z]*b/)) return '3ro Básico (2027)';
+      if (c.includes('4to') || c.includes('cuarto') || c.includes('4 b') || c.match(/4[^a-z]*b/)) return '4to Básico (2027)';
+      if (c.includes('5to') || c.includes('quinto') || c.includes('5 b') || c.match(/5[^a-z]*b/)) return '5to Básico (2027)';
+      if (c.includes('6to') || c.includes('sexto') || c.includes('6 b') || c.match(/6[^a-z]*b/)) return '6to Básico (2027)';
+      if (c.includes('7mo') || c.includes('septimo') || c.includes('séptimo') || c.match(/7[^a-z]*b/)) return '7mo Básico (2027)';
+      if (c.includes('8vo') || c.includes('octavo') || c.match(/8[^a-z]*b/)) return '8vo Básico (2027)';
+      if (c.includes('medio') || c.includes('14 años') || c.includes('13 años')) return 'Ed. Media / Fuera de Rango';
+      return curso.split(' | ')[0].trim();
+    };
+    
     if (filtroCurso && cleanCurso(l.curso_postula) !== filtroCurso) return false;
-    if (filtroAño && (new Date(l.created_at).getFullYear() + 1).toString() !== filtroAño) return false;
     return true;
   });
 
@@ -385,6 +421,18 @@ export default function AdmisionesPage() {
     }
   };
 
+  const handleBulkMove = async (ids: string[], targetEstado: string) => {
+    setLeads(currentLeads => 
+      currentLeads.map(l => ids.includes(l.id) ? { ...l, estado: targetEstado as any } : l)
+    );
+    const { error } = await supabase.from('leads_admision').update({ estado: targetEstado }).in('id', ids);
+    if (error) {
+      alert('Error moviendo prospectos en masa: ' + error.message);
+      fetchLeads();
+    }
+    setSelectedLeadIds([]);
+  };
+
   const onDragStart = (event: any) => {
     const { active } = event;
     const lead = leads.find(l => l.id === active.id);
@@ -410,7 +458,36 @@ export default function AdmisionesPage() {
 
     const activeLead = leads.find(l => l.id === activeId);
     if (activeLead && targetEstado && activeLead.estado !== targetEstado) {
-      handleManualMove(activeId, targetEstado);
+      // If dragging an item that is part of the multiple selection
+      if (selectedLeadIds.includes(activeId) && selectedLeadIds.length > 1) {
+        handleBulkMove(selectedLeadIds, targetEstado);
+      } else {
+        handleManualMove(activeId, targetEstado);
+        setSelectedLeadIds([]); // Clear selection if dragged a single unrelated item
+      }
+    }
+  };
+
+  const toggleSelection = (id: string, e: any) => {
+    if (e.shiftKey && selectedLeadIds.length > 0) {
+      // Shift-click logic (basic implementation)
+      const lastSelected = selectedLeadIds[selectedLeadIds.length - 1];
+      const startIndex = filteredLeads.findIndex(l => l.id === lastSelected);
+      const endIndex = filteredLeads.findIndex(l => l.id === id);
+      if (startIndex !== -1 && endIndex !== -1) {
+        const min = Math.min(startIndex, endIndex);
+        const max = Math.max(startIndex, endIndex);
+        const rangeIds = filteredLeads.slice(min, max + 1).map(l => l.id);
+        const newSelection = new Set([...selectedLeadIds, ...rangeIds]);
+        setSelectedLeadIds(Array.from(newSelection));
+        return;
+      }
+    }
+    
+    if (selectedLeadIds.includes(id)) {
+      setSelectedLeadIds(prev => prev.filter(i => i !== id));
+    } else {
+      setSelectedLeadIds(prev => [...prev, id]);
     }
   };
 
@@ -518,21 +595,41 @@ export default function AdmisionesPage() {
             ))}
           </select>
         </div>
-
-        <div className="flex flex-col gap-1 w-64">
-          <label className="text-xs font-bold text-[var(--color-waldorf-moss)]">Segmentar por Año / Etapa:</label>
-          <select 
-            value={filtroAño}
-            onChange={(e) => setFiltroAño(e.target.value)}
-            className="p-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 outline-none focus:border-[var(--color-waldorf-sage)] transition-colors"
-          >
-            <option value="">Todos los años</option>
-            {añosUnicos.map(a => (
-              <option key={a} value={a}>Generación {a}</option>
-            ))}
-          </select>
-        </div>
       </div>
+
+      {/* Bulk Action Banner */}
+      {selectedLeadIds.length > 0 && (
+        <div className="mb-6 bg-[var(--color-waldorf-moss)] text-white p-4 rounded-xl flex items-center justify-between shadow-lg sticky top-4 z-50 animate-in slide-in-from-top-2">
+          <div className="flex items-center gap-3">
+            <span className="bg-white/20 px-3 py-1 rounded-full font-bold text-sm">
+              {selectedLeadIds.length} seleccionados
+            </span>
+            <span className="text-sm font-medium">¿Mover familias seleccionadas?</span>
+          </div>
+          <div className="flex gap-2">
+            <select 
+              className="bg-white/10 border border-white/20 text-white rounded-lg px-3 py-1.5 text-sm outline-none"
+              onChange={(e) => {
+                if(e.target.value) {
+                  handleBulkMove(selectedLeadIds, e.target.value);
+                  e.target.value = "";
+                }
+              }}
+            >
+              <option value="" className="text-black">Seleccionar destino...</option>
+              {columns.map(c => (
+                <option key={c.id} value={c.id} className="text-black">{c.title}</option>
+              ))}
+            </select>
+            <button 
+              onClick={() => setSelectedLeadIds([])}
+              className="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-lg text-sm transition-colors"
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Kanban Board DND Context */}
       <DndContext 
@@ -544,7 +641,7 @@ export default function AdmisionesPage() {
         <div className="flex gap-6 overflow-x-auto pb-8 snap-x">
           {columns.map((col) => {
             const colLeads = filteredLeads.filter(l => l.estado === col.id);
-            return <Column key={col.id} col={col} leads={colLeads} onDelete={handleDelete} onUpdateNote={handleUpdateNote} onUpdateCurso={handleUpdateCurso} onMove={handleManualMove} loading={loading} />;
+            return <Column key={col.id} col={col} leads={colLeads} onDelete={handleDelete} onUpdateNote={handleUpdateNote} onUpdateCurso={handleUpdateCurso} onMove={handleManualMove} loading={loading} selectedLeadIds={selectedLeadIds} onToggleSelect={toggleSelection} />;
           })}
         </div>
 
