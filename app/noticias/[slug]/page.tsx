@@ -9,7 +9,9 @@ import SmoothScroll from '@/components/SmoothScroll'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Metadata } from 'next'
-import { createClient } from '@/utils/supabase/server'
+import { createClient } from '@/utils/supabase/server';
+
+export const revalidate = 0;
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const { slug } = params

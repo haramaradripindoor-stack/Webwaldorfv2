@@ -229,6 +229,7 @@ export default function AdmisionesPage() {
   const [leads, setLeads] = useState<LeadAdmision[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeLead, setActiveLead] = useState<LeadAdmision | null>(null);
+  const [selectedLeadIds, setSelectedLeadIds] = useState<string[]>([]);
   
   // Filtros
   const [filtroCurso, setFiltroCurso] = useState<string>('');
