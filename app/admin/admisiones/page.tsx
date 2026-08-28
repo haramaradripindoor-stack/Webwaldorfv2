@@ -270,6 +270,9 @@ export default function AdmisionesPage() {
     return l.curso_postula.split(' | ')[0].trim(); // Fallback to clean raw
   }).filter(Boolean))).sort();
 
+  const [filtroOrigen, setFiltroOrigen] = useState<string>('');
+  const origenesUnicos = Array.from(new Set(leads.map(l => l.origen || 'Sin Origen').filter(Boolean))).sort();
+
   const filteredLeads = leads.filter(l => {
     const cleanCurso = (curso: string) => {
       if (!curso) return 'Sin Especificar';
@@ -289,6 +292,10 @@ export default function AdmisionesPage() {
     };
     
     if (filtroCurso && cleanCurso(l.curso_postula) !== filtroCurso) return false;
+    
+    const leadOrigen = l.origen || 'Sin Origen';
+    if (filtroOrigen && leadOrigen !== filtroOrigen) return false;
+
     return true;
   });
 
@@ -589,7 +596,7 @@ export default function AdmisionesPage() {
       </div>
 
       {/* Barra de Filtros */}
-      <div className="flex gap-4 mb-6 bg-white p-4 rounded-xl border border-[var(--color-waldorf-sage)]/20 shadow-sm">
+      <div className="flex gap-4 mb-6 bg-white p-4 rounded-xl border border-[var(--color-waldorf-sage)]/20 shadow-sm flex-wrap">
         <div className="flex flex-col gap-1 w-64">
           <label className="text-xs font-bold text-[var(--color-waldorf-moss)]">Segmentar por Curso:</label>
           <select 
@@ -600,6 +607,20 @@ export default function AdmisionesPage() {
             <option value="">Todos los cursos</option>
             {cursosUnicos.map(c => (
               <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+        </div>
+        
+        <div className="flex flex-col gap-1 w-64">
+          <label className="text-xs font-bold text-[var(--color-waldorf-moss)]">Segmentar por Origen:</label>
+          <select 
+            value={filtroOrigen}
+            onChange={(e) => setFiltroOrigen(e.target.value)}
+            className="p-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 outline-none focus:border-[var(--color-waldorf-sage)] transition-colors"
+          >
+            <option value="">Todos los orígenes</option>
+            {origenesUnicos.map(o => (
+              <option key={o} value={o}>{o}</option>
             ))}
           </select>
         </div>
