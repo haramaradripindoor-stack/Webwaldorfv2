@@ -302,7 +302,7 @@ export default function CampanasPage() {
       setSelectedContacts([]);
       setSelectAll(false);
     } else {
-      setSelectedContacts(contacts.map(c => c.email));
+      setSelectedContacts(filteredContacts.map(c => c.email));
       setSelectAll(true);
     }
   };
@@ -452,7 +452,7 @@ export default function CampanasPage() {
                     <label className="block text-xs font-bold text-[var(--color-waldorf-text-light)] uppercase tracking-widest mb-2">Destinatarios ({selectedContacts.length})</label>
                     <div className="bg-[var(--color-waldorf-paper)] border border-[var(--color-waldorf-sage)]/20 rounded-xl p-3 flex justify-between items-center text-sm shadow-inner mb-3">
                       <span className="text-[var(--color-waldorf-moss)] font-medium">
-                        {selectAll ? 'Todos los contactos seleccionados' : `${selectedContacts.length} contactos seleccionados`}
+                        {selectedContacts.length === contacts.length ? 'Todos los contactos de la base (60+)' : `${selectedContacts.length} destinatarios filtrados`}
                       </span>
                       <button onClick={() => setActiveTab('contacts')} className="text-[var(--color-waldorf-terracotta)] hover:opacity-80 font-bold text-xs flex items-center">
                         Editar Lista <ChevronRight className="w-4 h-4" />
@@ -463,13 +463,19 @@ export default function CampanasPage() {
                       <select 
                         value={selectedCampaignTag}
                         onChange={(e) => {
-                          const tag = e.target.value;
-                          setSelectedCampaignTag(tag);
-                          if (!tag) {
+                          const val = e.target.value;
+                          setSelectedCampaignTag(val);
+                          if (!val) {
                             setSelectedContacts(contacts.map(c => c.email));
                             setSelectAll(true);
-                          } else {
+                          } else if (val.startsWith('tag:')) {
+                            const tag = val.replace('tag:', '');
                             const filtered = contacts.filter(c => c.tags?.includes(tag)).map(c => c.email);
+                            setSelectedContacts(filtered);
+                            setSelectAll(false);
+                          } else if (val.startsWith('fuente:')) {
+                            const fuente = val.replace('fuente:', '');
+                            const filtered = contacts.filter(c => (c.fuente || 'Desconocida') === fuente).map(c => c.email);
                             setSelectedContacts(filtered);
                             setSelectAll(false);
                           }
@@ -477,9 +483,16 @@ export default function CampanasPage() {
                         className="w-full bg-white border border-[var(--color-waldorf-sage)]/30 text-[var(--color-waldorf-moss)] text-sm font-bold rounded-xl px-4 py-2 focus:outline-none focus:border-[var(--color-waldorf-moss)] cursor-pointer transition-colors shadow-sm"
                       >
                         <option value="">Enviar a todos los contactos ({contacts.length})</option>
-                        {allTags.map(t => (
-                          <option key={t} value={t}>Solo a etiqueta: {t}</option>
-                        ))}
+                        <optgroup label="Por Etiqueta">
+                          {allTags.map(t => (
+                            <option key={`tag:${t}`} value={`tag:${t}`}>Solo a etiqueta: {t}</option>
+                          ))}
+                        </optgroup>
+                        <optgroup label="Por Fuente (Origen)">
+                          {allFuentes.map(f => (
+                            <option key={`fuente:${f}`} value={`fuente:${f}`}>Solo a fuente: {f}</option>
+                          ))}
+                        </optgroup>
                       </select>
                     </div>
                   </div>
