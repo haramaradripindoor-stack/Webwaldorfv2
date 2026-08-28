@@ -132,6 +132,14 @@ function LeadCard({ lead, onDelete, onUpdateNote, onUpdateCurso, onMove, isSelec
         </div>
       )}
 
+      {lead.origen && (
+        <div className="mb-2">
+          <span className="inline-flex items-center text-[9px] font-bold tracking-wider uppercase bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded border border-slate-200 shadow-sm">
+            {lead.origen}
+          </span>
+        </div>
+      )}
+
       <div className="flex flex-col gap-2 mt-auto pt-2 border-t border-[var(--color-waldorf-sage)]/10">
         <div className="flex items-center justify-between w-full">
           <span className="text-[10px] text-[var(--color-waldorf-terracotta)] font-medium" title={lead.created_at}>
