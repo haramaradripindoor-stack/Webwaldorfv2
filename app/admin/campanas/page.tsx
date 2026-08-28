@@ -49,12 +49,17 @@ export default function CampanasPage() {
   const [tagInput, setTagInput] = useState('');
   const [taggingLoading, setTaggingLoading] = useState(false);
   const [selectedTagFilter, setSelectedTagFilter] = useState(''); 
+  const [selectedFuenteFilter, setSelectedFuenteFilter] = useState('');
   const [selectedCampaignTag, setSelectedCampaignTag] = useState('');
 
   const allTags = Array.from(new Set(contacts.flatMap(c => c.tags || []))).sort();
-  const filteredContacts = selectedTagFilter 
-    ? contacts.filter(c => c.tags?.includes(selectedTagFilter))
-    : contacts;
+  const allFuentes = Array.from(new Set(contacts.map(c => c.fuente || 'Desconocida').filter(Boolean))).sort();
+
+  const filteredContacts = contacts.filter(c => {
+    if (selectedTagFilter && !c.tags?.includes(selectedTagFilter)) return false;
+    if (selectedFuenteFilter && (c.fuente || 'Desconocida') !== selectedFuenteFilter) return false;
+    return true;
+  });
 
   // Plantillas eliminadas, ahora usamos el editor visual de Unlayer
 
@@ -530,6 +535,14 @@ export default function CampanasPage() {
                   >
                     <option value="">Todas las Etiquetas</option>
                     {allTags.map(t => <option key={t} value={t}>{t}</option>)}
+                  </select>
+                  <select 
+                    value={selectedFuenteFilter}
+                    onChange={(e) => setSelectedFuenteFilter(e.target.value)}
+                    className="bg-white border border-[var(--color-waldorf-sage)]/30 text-[var(--color-waldorf-moss)] text-xs font-bold rounded-lg px-3 py-1.5 focus:outline-none"
+                  >
+                    <option value="">Todas las Fuentes</option>
+                    {allFuentes.map(f => <option key={f} value={f}>{f}</option>)}
                   </select>
                   <input 
                     type="file" 
