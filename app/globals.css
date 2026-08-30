@@ -18,8 +18,8 @@
   --color-waldorf-text-light: #5A5755;
   
   --font-sans: 'Quicksand', sans-serif;
-  --font-serif: 'Antroposofia', 'Merriweather', serif;
-  --font-antroposofia: 'Antroposofia', sans-serif;
+  --font-serif: 'Merriweather', serif;
+  --font-antroposofia: 'Antroposofia', serif;
 
   /* Fluid Math */
   --text-fluid-hero: clamp(3rem, 1.25rem + 8vw, 9rem);
@@ -34,10 +34,10 @@
   }
   
   h1, h2 {
-    font-family: 'Antroposofia', 'Merriweather', Georgia, serif;
-    font-weight: 400; /* La fuente Antroposofia se ve mejor en peso normal */
+    font-family: var(--font-serif);
+    font-weight: 300; /* Merriweather looks incredibly elegant in Light weight */
     color: var(--color-waldorf-moss);
-    letter-spacing: 0.02em;
+    letter-spacing: -0.01em;
   }
 
   h3, h4, h5, h6 {
@@ -141,7 +141,7 @@ div#goog-gt- {
 
 @layer utilities {
   /* Prevenir "Faux Bold" en la tipografía Antroposofia que es de un solo peso */
-  .font-serif {
+  .font-antroposofia {
     font-weight: normal !important;
   }
 }
