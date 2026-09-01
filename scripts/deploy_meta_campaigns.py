@@ -1,50 +1,54 @@
 import urllib.request
 import urllib.parse
 import json
-import os
 
+ACCESS_TOKEN = 'EAAgQyrZAs2TIBSNbdjcHoNxsJGIYb8bBZAsvvKpEswHeOfwIzdWia1xfqwHv7OGsEw0PvcJlfWQ35ivy9ZBDF6uzHnNxhR3op7obqMdilZCmUObZCLL4HQlxIjSPR9LZBiQ1nlVqtcjKeO2xaVqIDAkYO0SkUxQ3JaFM6cBSR5HByWUuxigUTDUR4HZBejZBvRBVSZB4ZD'
 AD_ACCOUNT_ID = 'act_179839693305358'
-ACCESS_TOKEN = os.environ.get('META_MANAGEMENT_TOKEN')
+API_VERSION = 'v20.0'
+BASE_URL = f'https://graph.facebook.com/{API_VERSION}/{AD_ACCOUNT_ID}'
 
-def create_adset(campaign_id):
-    url = f"https://graph.facebook.com/v20.0/{AD_ACCOUNT_ID}/adsets"
-    
-    # Segmentación estricta Waldorf.
-    # advantage_audience = 0 asegura que Meta NO expanda la edad ni el sexo.
-    targeting = json.dumps({
-        'age_min': 27,
-        'age_max': 48,
-        'genders': [2],
-        'geo_locations': {
-            'countries': ['CL']
-        },
-        'targeting_automation': {
-            'advantage_audience': 0
-        }
-    })
-    
-    data = urllib.parse.urlencode({
-        'name': 'Madres_27-48_Audiencia_Estricta',
-        'campaign_id': campaign_id,
-        'daily_budget': '2000',
-        'billing_event': 'IMPRESSIONS',
-        'optimization_goal': 'LINK_CLICKS',
-        'bid_amount': '100',
-        'status': 'PAUSED',
-        'targeting': targeting,
-        'access_token': ACCESS_TOKEN
-    }).encode('utf-8')
-    
-    req = urllib.request.Request(url, data=data)
+def make_request(endpoint, data):
+    url = f'{BASE_URL}/{endpoint}'
+    data['access_token'] = ACCESS_TOKEN
+    encoded_data = urllib.parse.urlencode(data).encode('utf-8')
+    req = urllib.request.Request(url, data=encoded_data, method='POST')
     try:
         with urllib.request.urlopen(req) as response:
-            result = json.loads(response.read())
-            print(f"✅ AdSet creado con ID: {result['id']}")
-            return result['id']
+            return json.loads(response.read().decode('utf-8'))
     except urllib.error.HTTPError as e:
-        print(f"❌ Error creando AdSet: {e.read().decode('utf-8')}")
+        error_msg = e.read().decode('utf-8')
+        print(f"HTTPError: {e.code} - {error_msg}")
         return None
 
-if __name__ == '__main__':
-    print("🚀 Inyectando el Conjunto de Anuncios con Segmentación Estricta (Bypass Advantage)...")
-    create_adset('120249963286270041')
+def create_adset(campaign_id):
+    targeting = {
+        'geo_locations': {
+            'custom_locations': [{
+                'latitude': -41.319460,
+                'longitude': -72.985380,
+                'radius': 15,
+                'distance_unit': 'kilometer'
+            }]
+        },
+        'genders': [2],
+        'age_min': 28,
+        'age_max': 45,
+        'targeting_automation': {'advantage_audience': 0}
+    }
+    
+    data = {
+        'name': 'AdSet: Madres 28-45 - Puerto Varas',
+        'campaign_id': campaign_id,
+        'daily_budget': 3000,
+        'billing_event': 'IMPRESSIONS',
+        'optimization_goal': 'LINK_CLICKS',
+        'bid_strategy': 'LOWEST_COST_WITHOUT_CAP',
+        'status': 'PAUSED',
+        'targeting': json.dumps(targeting),
+    }
+    
+    return make_request('adsets', data)
+
+adset_response = create_adset('120250107870620041')
+if adset_response and 'id' in adset_response:
+    print(f"AdSet creado con ID: {adset_response['id']}")

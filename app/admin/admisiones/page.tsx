@@ -36,13 +36,15 @@ type LeadAdmision = {
   estado: 'nuevo' | 'entrevista' | 'evaluacion' | 'matriculado' | 'no_corresponde' | 'no_continua';
   origen: string;
   notas?: string;
+  arquetipo?: string;
+  requiere_evaluacion_arancel?: boolean;
   created_at: string;
 };
 
 const columns = [
   { id: 'nuevo', title: 'Nuevos Interesados', icon: Clock, color: 'text-amber-600', bg: 'bg-amber-100' },
-  { id: 'entrevista', title: 'Entrevista Agendada', icon: Calendar, color: 'text-blue-600', bg: 'bg-blue-100' },
-  { id: 'evaluacion', title: 'En Evaluación', icon: MessageSquare, color: 'text-purple-600', bg: 'bg-purple-100' },
+  { id: 'entrevista', title: 'Tardes de Té (Mes 1)', icon: Calendar, color: 'text-blue-600', bg: 'bg-blue-100' },
+  { id: 'evaluacion', title: 'Práctica Viva (Mes 2)', icon: MessageSquare, color: 'text-purple-600', bg: 'bg-purple-100' },
   { id: 'matriculado', title: 'Matriculados', icon: CheckCircle, color: 'text-emerald-600', bg: 'bg-emerald-100' },
   { id: 'no_corresponde', title: 'Descarta (No Corresponde)', icon: XCircle, color: 'text-red-600', bg: 'bg-red-100' },
   { id: 'no_continua', title: 'Retargeting (No Continúa)', icon: Archive, color: 'text-slate-600', bg: 'bg-slate-100' },
@@ -110,6 +112,49 @@ function LeadCard({ lead, onDelete, onUpdateNote, onUpdateCurso, onMove, isSelec
           )}
         </div>
       </div>
+
+      
+      {/* Selector de Arquetipo */}
+      <div className="mb-2">
+        <select
+          value={lead.arquetipo || 'no_evaluado'}
+          onPointerDown={(e) => e.stopPropagation()}
+          onChange={(e) => {
+            e.stopPropagation();
+            if (onUpdateArquetipo) onUpdateArquetipo(lead.id, e.target.value);
+          }}
+          className={`w-full text-[10px] p-1 rounded border outline-none font-bold cursor-pointer appearance-none ${
+            lead.arquetipo === 'refugiado_sistema' ? 'bg-blue-50 text-blue-700 border-blue-200' :
+            lead.arquetipo === 'purista_antroposofico' ? 'bg-green-50 text-green-700 border-green-200' :
+            lead.arquetipo === 'interes_estetico' ? 'bg-orange-50 text-orange-700 border-orange-200' :
+            'bg-gray-100 text-gray-500 border-gray-200'
+          }`}
+        >
+          <option value="no_evaluado">⚪ No Evaluado</option>
+          <option value="refugiado_sistema">🌲 Refugiado del Sistema (Foco: Alivio)</option>
+          <option value="purista_antroposofico">🕯️ Afinidad Antroposófica (Foco: Comunidad)</option>
+          <option value="interes_estetico">🎨 Afinidad Visual / Estética (Foco: Expectativas)</option>
+        </select>
+      </div>
+
+      {/* Checkbox Arancelario Neutral */}
+      <div className="mb-2 flex items-center gap-2">
+        <input
+          type="checkbox"
+          id={`arancel-${lead.id}`}
+          checked={!!lead.requiere_evaluacion_arancel}
+          onPointerDown={(e) => e.stopPropagation()}
+          onChange={async (e) => {
+            e.stopPropagation();
+            if (onUpdateArancel) onUpdateArancel(lead.id, e.target.checked);
+          }}
+          className="w-3 h-3 accent-[var(--color-waldorf-moss)] cursor-pointer"
+        />
+        <label htmlFor={`arancel-${lead.id}`} className="text-[10px] text-gray-500 font-medium cursor-pointer" onPointerDown={(e) => e.stopPropagation()}>
+          Requiere evaluación de arancel
+        </label>
+      </div>
+
 
       <div className="mb-2 bg-[var(--color-waldorf-cream)] p-2 rounded-lg border border-[var(--color-waldorf-sage)]/10">
         <p className="text-[11px] text-[var(--color-waldorf-text)] font-semibold truncate">Niño/a: {lead.nombre_nino || 'No indicado'}</p>
@@ -213,7 +258,7 @@ function Column({ col, leads, onDelete, onUpdateNote, onUpdateCurso, onMove, loa
       <SortableContext items={leads.map(l => l.id)} strategy={verticalListSortingStrategy}>
         <div className="flex-1 overflow-y-auto pr-1 custom-scrollbar min-h-[150px] pb-20 flex flex-col">
           {leads.map((lead) => (
-            <LeadCard key={lead.id} lead={lead} onDelete={onDelete} onUpdateNote={onUpdateNote} onUpdateCurso={onUpdateCurso} onMove={onMove} isSelected={selectedLeadIds?.includes(lead.id)} onToggleSelect={onToggleSelect} />
+            <LeadCard key={lead.id} lead={lead} onDelete={onDelete} onUpdateNote={onUpdateNote} onUpdateCurso={onUpdateCurso} onMove={onMove} isSelected={selectedLeadIds?.includes(lead.id)} onToggleSelect={onToggleSelect} onUpdateArquetipo={onUpdateArquetipo} onUpdateArancel={onUpdateArancel} />
           ))}
 
           {leads.length === 0 && !loading && (
@@ -410,6 +455,33 @@ export default function AdmisionesPage() {
         alert('Error al guardar la nota. Error: ' + error.message);
         fetchLeads();
       }
+    }
+  };
+
+  
+  const handleUpdateArquetipo = async (id: string, nuevoArquetipo: string) => {
+    try {
+      setLeads(prev => prev.map(l => l.id === id ? { ...l, arquetipo: nuevoArquetipo } : l));
+      const { error } = await supabase.from('leads_admision').update({ arquetipo: nuevoArquetipo }).eq('id', id);
+      if (error) {
+        console.error('Error al actualizar arquetipo:', error);
+        alert('Error al actualizar el arquetipo en la base de datos.');
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  
+  const handleUpdateArancel = async (id: string, req: boolean) => {
+    try {
+      setLeads(prev => prev.map(l => l.id === id ? { ...l, requiere_evaluacion_arancel: req } : l));
+      const { error } = await supabase.from('leads_admision').update({ requiere_evaluacion_arancel: req }).eq('id', id);
+      if (error) {
+        console.error('Error al actualizar arancel:', error);
+      }
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -670,7 +742,7 @@ export default function AdmisionesPage() {
         <div className="flex gap-6 overflow-x-auto pb-8 snap-x">
           {columns.map((col) => {
             const colLeads = filteredLeads.filter(l => l.estado === col.id);
-            return <Column key={col.id} col={col} leads={colLeads} onDelete={handleDelete} onUpdateNote={handleUpdateNote} onUpdateCurso={handleUpdateCurso} onMove={handleManualMove} loading={loading} selectedLeadIds={selectedLeadIds} onToggleSelect={toggleSelection} />;
+            return <Column key={col.id} col={col} leads={colLeads} onDelete={handleDelete} onUpdateNote={handleUpdateNote} onUpdateCurso={handleUpdateCurso} onMove={handleManualMove} loading={loading} selectedLeadIds={selectedLeadIds} onToggleSelect={toggleSelection} onUpdateArquetipo={handleUpdateArquetipo} onUpdateArancel={handleUpdateArancel} />;
           })}
         </div>
 
