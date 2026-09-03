@@ -43,7 +43,7 @@ type LeadAdmision = {
 
 const columns = [
   { id: 'nuevo', title: 'Nuevos Interesados', icon: Clock, color: 'text-amber-600', bg: 'bg-amber-100' },
-  { id: 'entrevista', title: 'Tardes de Té (Mes 1)', icon: Calendar, color: 'text-blue-600', bg: 'bg-blue-100' },
+  { id: 'entrevista', title: 'Encuentro de Bienvenida (Mes 1)', icon: Calendar, color: 'text-blue-600', bg: 'bg-blue-100' },
   { id: 'evaluacion', title: 'Práctica Viva (Mes 2)', icon: MessageSquare, color: 'text-purple-600', bg: 'bg-purple-100' },
   { id: 'matriculado', title: 'Matriculados', icon: CheckCircle, color: 'text-emerald-600', bg: 'bg-emerald-100' },
   { id: 'no_corresponde', title: 'Descarta (No Corresponde)', icon: XCircle, color: 'text-red-600', bg: 'bg-red-100' },
