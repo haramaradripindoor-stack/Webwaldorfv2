@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import * as XLSX from 'xlsx';
-import { Clock, CheckCircle, MessageSquare, Flame, Trash2, Calendar, User, GripVertical, Download, XCircle, Archive, Edit3 } from 'lucide-react';
+import { Clock, CheckCircle, MessageSquare, Flame, Trash2, Calendar, User, GripVertical, Download, XCircle, Archive, Edit3 , Search, Table, Columns} from 'lucide-react';
 import {
   DndContext,
   DragOverlay,
@@ -299,6 +299,7 @@ export default function AdmisionesPage() {
   
   const [filtroCurso, setFiltroCurso] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [viewMode, setViewMode] = useState<'kanban'|'table'>('kanban');
   const cursosUnicos = Array.from(new Set(leads.map(l => {
     if (!l.curso_postula) return 'Sin Especificar';
     if (l.curso_postula.length > 35) return 'Requiere Revisión (Texto Largo)';
@@ -761,7 +762,10 @@ export default function AdmisionesPage() {
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
       >
+        
+      {viewMode === 'kanban' ? (
         <div className="flex gap-6 overflow-x-auto pb-8 snap-x">
+
           {columns.map((col) => {
             const colLeads = filteredLeads.filter(l => l.estado === col.id);
             return <Column key={col.id} col={col} leads={colLeads} onDelete={handleDelete} onUpdateNote={handleUpdateNote} onUpdateCurso={handleUpdateCurso} onMove={handleManualMove} loading={loading} selectedLeadIds={selectedLeadIds} onToggleSelect={toggleSelection} onUpdateArquetipo={handleUpdateArquetipo} onUpdateArancel={handleUpdateArancel} />;
