@@ -298,6 +298,7 @@ export default function AdmisionesPage() {
   const [selectedLeadIds, setSelectedLeadIds] = useState<string[]>([]);
   
   const [filtroCurso, setFiltroCurso] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const cursosUnicos = Array.from(new Set(leads.map(l => {
     if (!l.curso_postula) return 'Sin Especificar';
     if (l.curso_postula.length > 35) return 'Requiere Revisión (Texto Largo)';
@@ -339,7 +340,14 @@ export default function AdmisionesPage() {
     if (filtroCurso && cleanCurso(l.curso_postula) !== filtroCurso) return false;
     
     const leadOrigen = l.origen || 'Sin Origen';
-    if (filtroOrigen && leadOrigen !== filtroOrigen) return false;
+        if (filtroOrigen && leadOrigen !== filtroOrigen) return false;
+
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      const nApoderado = (l.apoderado_nombre || '').toLowerCase();
+      const nNino = (l.nino_nombre || '').toLowerCase();
+      if (!nApoderado.includes(q) && !nNino.includes(q)) return false;
+    }
 
     return true;
   });
@@ -669,6 +677,20 @@ export default function AdmisionesPage() {
 
       {/* Barra de Filtros */}
       <div className="flex gap-4 mb-6 bg-white p-4 rounded-xl border border-[var(--color-waldorf-sage)]/20 shadow-sm flex-wrap">
+
+        {/* Buscador Rápido */}
+        <div className="flex flex-col gap-1 w-full md:w-64">
+          <label className="text-xs font-bold text-[var(--color-waldorf-moss)] flex items-center gap-2">
+            <Search className="w-3 h-3" /> Buscar
+          </label>
+          <input 
+            type="text"
+            placeholder="Nombre de alumno o apoderado..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="p-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 outline-none focus:border-[var(--color-waldorf-sage)] transition-colors"
+          />
+        </div>
         <div className="flex flex-col gap-1 w-64">
           <label className="text-xs font-bold text-[var(--color-waldorf-moss)]">Segmentar por Curso:</label>
           <select 
