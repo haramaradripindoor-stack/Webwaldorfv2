@@ -10,6 +10,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 let sock;
+let currentStatus = 'disconnected';
+let currentQr = null;
 
 async function connectToWhatsApp() {
     const { state, saveCreds } = await useMultiFileAuthState('auth_info_baileys');
@@ -26,11 +28,17 @@ async function connectToWhatsApp() {
         const { connection, lastDisconnect, qr } = update;
         
         if(qr) {
-            console.log('\n[TREKAN] Escanea este código QR con el WhatsApp de Coordinación:\n');
+            currentQr = qr;
+            currentStatus = 'qr';
+            console.log('
+[TREKAN] Escanea este código QR con el WhatsApp de Coordinación:
+');
             qrcode.generate(qr, { small: true });
         }
 
         if(connection === 'close') {
+            currentStatus = 'disconnected';
+            currentQr = null;
             const shouldReconnect = lastDisconnect.error?.output?.statusCode !== DisconnectReason.loggedOut;
             console.log('Conexión cerrada. Reconectando...', shouldReconnect);
             if(shouldReconnect) {
@@ -39,6 +47,8 @@ async function connectToWhatsApp() {
                 console.log('Se cerró la sesión de WhatsApp de forma permanente.');
             }
         } else if(connection === 'open') {
+            currentStatus = 'connected';
+            currentQr = null;
             console.log('\n[TREKAN] WhatsApp conectado exitosamente. El servicio está listo.\n');
         }
     });
@@ -60,6 +70,11 @@ async function connectToWhatsApp() {
 }
 
 connectToWhatsApp();
+
+
+app.get('/api/status', (req, res) => {
+    res.json({ status: currentStatus, qr: currentQr });
+});
 
 app.post('/api/send-message', async (req, res) => {
     try {
