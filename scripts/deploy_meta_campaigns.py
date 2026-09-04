@@ -2,53 +2,59 @@ import urllib.request
 import urllib.parse
 import json
 
-ACCESS_TOKEN = 'EAAgQyrZAs2TIBSNbdjcHoNxsJGIYb8bBZAsvvKpEswHeOfwIzdWia1xfqwHv7OGsEw0PvcJlfWQ35ivy9ZBDF6uzHnNxhR3op7obqMdilZCmUObZCLL4HQlxIjSPR9LZBiQ1nlVqtcjKeO2xaVqIDAkYO0SkUxQ3JaFM6cBSR5HByWUuxigUTDUR4HZBejZBvRBVSZB4ZD'
-AD_ACCOUNT_ID = 'act_179839693305358'
-API_VERSION = 'v20.0'
-BASE_URL = f'https://graph.facebook.com/{API_VERSION}/{AD_ACCOUNT_ID}'
+ACCESS_TOKEN = "EAAgQyrZAs2TIBScZAWHZA32nZABzJK5PSushrlfMaehNvv7Y2OAjRZAP4jK6i8KQgHu7kKdYg6KVb9TdaBB1ky3DZAOO6EPpHUR8kprUjFzE4YSUK17y4BeEtAmrQGAl0dYFigZARnmjeZAj3Gbm2At5JPocxp5CmWETg33Ej6HJ7zZCcNBf1ZCk4dcMfbJi7A4Nst5vSrjBBnsFJhAVtjIRBAxZANnbkxmpEzyCgVsbJOLHeVeqqI3ZCjKtYFZALjyczNAXiYTi8SAZBWhrMrTn4RggZDZD"
+AD_ACCOUNT_ID = "act_179839693305358"
+API_VERSION = "v20.0"
 
-def make_request(endpoint, data):
-    url = f'{BASE_URL}/{endpoint}'
+def api_call(endpoint, data):
+    url = f"https://graph.facebook.com/{API_VERSION}/{endpoint}"
     data['access_token'] = ACCESS_TOKEN
     encoded_data = urllib.parse.urlencode(data).encode('utf-8')
-    req = urllib.request.Request(url, data=encoded_data, method='POST')
+    req = urllib.request.Request(url, data=encoded_data)
     try:
         with urllib.request.urlopen(req) as response:
             return json.loads(response.read().decode('utf-8'))
     except urllib.error.HTTPError as e:
-        error_msg = e.read().decode('utf-8')
-        print(f"HTTPError: {e.code} - {error_msg}")
-        return None
+        print(f"HTTPError: {e.code} - {e.read().decode('utf-8')}")
+        exit(1)
 
-def create_adset(campaign_id):
-    targeting = {
-        'geo_locations': {
-            'custom_locations': [{
-                'latitude': -41.319460,
-                'longitude': -72.985380,
-                'radius': 15,
-                'distance_unit': 'kilometer'
-            }]
-        },
-        'genders': [2],
-        'age_min': 28,
-        'age_max': 45,
-        'targeting_automation': {'advantage_audience': 0}
-    }
-    
-    data = {
-        'name': 'AdSet: Madres 28-45 - Puerto Varas',
-        'campaign_id': campaign_id,
-        'daily_budget': 3000,
-        'billing_event': 'IMPRESSIONS',
-        'optimization_goal': 'LINK_CLICKS',
-        'bid_strategy': 'LOWEST_COST_WITHOUT_CAP',
-        'status': 'PAUSED',
-        'targeting': json.dumps(targeting),
-    }
-    
-    return make_request('adsets', data)
+# 1. Create Campaign
+print("Creating Campaign...")
+campaign_data = {
+    'name': '[Fase BoFu] Inception Retargeting - Admisión 2027',
+    'objective': 'OUTCOME_TRAFFIC',
+    'status': 'PAUSED',
+    'special_ad_categories': 'NONE',
+    'is_adset_budget_sharing_enabled': 'false'
+}
+campaign_res = api_call(AD_ACCOUNT_ID + '/campaigns', campaign_data)
+campaign_id = campaign_res['id']
+print(f"Campaign ID: {campaign_id}")
 
-adset_response = create_adset('120250107870620041')
-if adset_response and 'id' in adset_response:
-    print(f"AdSet creado con ID: {adset_response['id']}")
+# 2. Create Ad Set
+print("Creating Ad Set...")
+targeting = {
+    'custom_audiences': [
+        {'id': '120250205117240041'}, # Historical
+        {'id': '120250205562330041'}  # Active 2026
+    ],
+    'geo_locations': {'countries': ['CL']}, 
+    'targeting_automation': {'advantage_audience': 0} 
+}
+
+adset_data = {
+    'name': 'Retargeting Audiencias CRM (316 prospectos)',
+    'campaign_id': campaign_id,
+    'daily_budget': 2000, 
+    'billing_event': 'IMPRESSIONS',
+    'optimization_goal': 'LINK_CLICKS',
+    'bid_amount': 200, # CLP
+    'status': 'PAUSED',
+    'targeting': json.dumps(targeting)
+}
+
+adset_res = api_call(AD_ACCOUNT_ID + '/adsets', adset_data)
+adset_id = adset_res['id']
+print(f"Ad Set ID: {adset_id}")
+
+print(f"\nSUCCESS! Architecture deployed.")
