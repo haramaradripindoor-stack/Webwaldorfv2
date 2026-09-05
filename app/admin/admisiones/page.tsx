@@ -764,20 +764,24 @@ export default function AdmisionesPage() {
       >
         
       {viewMode === 'kanban' ? (
-        <div className="flex gap-6 overflow-x-auto pb-8 snap-x">
+        <>
+          <div className="flex gap-6 overflow-x-auto pb-8 snap-x">
+            {columns.map((col) => {
+              const colLeads = filteredLeads.filter(l => l.estado === col.id);
+              return <Column key={col.id} col={col} leads={colLeads} onDelete={handleDelete} onUpdateNote={handleUpdateNote} onUpdateCurso={handleUpdateCurso} onMove={handleManualMove} loading={loading} selectedLeadIds={selectedLeadIds} onToggleSelect={toggleSelection} onUpdateArquetipo={handleUpdateArquetipo} onUpdateArancel={handleUpdateArancel} />;
+            })}
+          </div>
 
-          {columns.map((col) => {
-            const colLeads = filteredLeads.filter(l => l.estado === col.id);
-            return <Column key={col.id} col={col} leads={colLeads} onDelete={handleDelete} onUpdateNote={handleUpdateNote} onUpdateCurso={handleUpdateCurso} onMove={handleManualMove} loading={loading} selectedLeadIds={selectedLeadIds} onToggleSelect={toggleSelection} onUpdateArquetipo={handleUpdateArquetipo} onUpdateArancel={handleUpdateArancel} />;
-          })}
-        </div>
-
-        {/* Floating Overlay al arrastrar */}
-        <DragOverlay>
-          {activeLead ? (
-            <LeadCard lead={activeLead} />
-          ) : null}
-        </DragOverlay>
+          {/* Floating Overlay al arrastrar */}
+          <DragOverlay>
+            {activeLead ? (
+              <LeadCard lead={activeLead} />
+            ) : null}
+          </DragOverlay>
+        </>
+      ) : (
+        <div className="text-center p-12 text-gray-500 bg-gray-50 rounded-xl border border-gray-100">Vista de tabla (Lista) en construcción...</div>
+      )}
       </DndContext>
     </div>
   );
