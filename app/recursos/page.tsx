@@ -69,6 +69,7 @@ const RECURSOS: RecursoCategory[] = [
     icono: <FileText size={24} />,
     descripcion: 'Médicos y odontólogos especializados en la visión integrativa de la antroposofía.',
     items: [
+      { name: 'Dra. Alicia Paredes', desc: 'Pediatra con visión integrativa y medicina antroposófica.', url: 'https://www.instagram.com/alicia_pediatriayantroposofia/?hl=en' },
       { name: 'Dra. Ana María Toro', desc: 'Especialista en Odontopediatría Antroposófica, certificada por la Sección Médica del Goetheanum.', url: 'https://www.draanamariatoro.com/' },
       { name: 'Dr. Pablo Porcel', desc: 'Médico general de adultos y niños, docente y referente en medicina antroposófica en Chile.', url: 'https://medicina-antroposofica.cl/' },
     ]
