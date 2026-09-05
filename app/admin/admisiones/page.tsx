@@ -50,7 +50,7 @@ const columns = [
   { id: 'no_continua', title: 'Retargeting (No Continúa)', icon: Archive, color: 'text-slate-600', bg: 'bg-slate-100' },
 ];
 
-function LeadCard({ lead, onDelete, onUpdateNote, onUpdateCurso, onMove, isSelected, onToggleSelect }: { lead: LeadAdmision; onDelete?: (id: string) => void; onUpdateNote?: (lead: LeadAdmision) => void; onUpdateCurso?: (lead: LeadAdmision) => void; onMove?: (id: string, status: string) => void; isSelected?: boolean; onToggleSelect?: (id: string, e: any) => void; }) {
+function LeadCard({ lead, onDelete, onUpdateNote, onUpdateCurso, onMove, isSelected, onToggleSelect, onUpdateArquetipo, onUpdateArancel }: { lead: LeadAdmision; onDelete?: (id: string) => void; onUpdateNote?: (lead: LeadAdmision) => void; onUpdateCurso?: (lead: LeadAdmision) => void; onMove?: (id: string, status: string) => void; isSelected?: boolean; onToggleSelect?: (id: string, e: any) => void; onUpdateArquetipo?: (id: string, val: string) => void; onUpdateArancel?: (id: string, val: boolean) => void; }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
@@ -237,7 +237,7 @@ function LeadCard({ lead, onDelete, onUpdateNote, onUpdateCurso, onMove, isSelec
   );
 }
 
-function Column({ col, leads, onDelete, onUpdateNote, onUpdateCurso, onMove, loading, selectedLeadIds, onToggleSelect }: { col: any; leads: LeadAdmision[]; onDelete: (id: string) => void; onUpdateNote: (lead: LeadAdmision) => void; onUpdateCurso: (lead: LeadAdmision) => void; onMove: (id: string, status: string) => void; loading: boolean; selectedLeadIds?: string[]; onToggleSelect?: (id: string, e: any) => void; }) {
+function Column({ col, leads, onDelete, onUpdateNote, onUpdateCurso, onMove, loading, selectedLeadIds, onToggleSelect, onUpdateArquetipo, onUpdateArancel }: { col: any; leads: LeadAdmision[]; onDelete: (id: string) => void; onUpdateNote: (lead: LeadAdmision) => void; onUpdateCurso: (lead: LeadAdmision) => void; onMove: (id: string, status: string) => void; loading: boolean; selectedLeadIds?: string[]; onToggleSelect?: (id: string, e: any) => void; onUpdateArquetipo?: (id: string, val: string) => void; onUpdateArancel?: (id: string, val: boolean) => void; }) {
   const { setNodeRef } = useDroppable({
     id: col.id,
     data: { type: 'Column', col }
@@ -345,8 +345,8 @@ export default function AdmisionesPage() {
 
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
-      const nApoderado = (l.apoderado_nombre || '').toLowerCase();
-      const nNino = (l.nino_nombre || '').toLowerCase();
+      const nApoderado = (l.nombre_apoderado || '').toLowerCase();
+      const nNino = (l.nombre_nino || '').toLowerCase();
       if (!nApoderado.includes(q) && !nNino.includes(q)) return false;
     }
 
