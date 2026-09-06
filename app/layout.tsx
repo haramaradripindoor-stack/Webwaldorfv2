@@ -23,7 +23,7 @@ const merriweather = Merriweather({
 
 
 export const metadata: Metadata = {
-  title: 'Colegio Waldorf Trekan | Un Refugio Evolutivo en Puerto Varas',
+  title: 'Colegio Waldorf Trekan | Un Espacio de Desarrollo Integral en Puerto Varas',
   description: 'Un espacio de contención, belleza y ritmo natural para el desarrollo infantil. Pedagogía Waldorf para niños de 3 a 14 años en Puerto Varas. Admisión 2026 abierta.',
   keywords: [
     'colegio waldorf puerto varas',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.colegiowaldorftrekan.cl',
   },
   openGraph: {
-    title: 'Colegio Waldorf Trekan | El Refugio Evolutivo en Puerto Varas',
+    title: 'Colegio Waldorf Trekan | Un Espacio de Desarrollo Integral en Puerto Varas',
     description: 'Donde la infancia respira. Un ambiente guiado por el ritmo, la belleza y la contención orgánica. Conoce nuestro espacio.',
     url: 'https://www.colegiowaldorftrekan.cl',
     siteName: 'Colegio Waldorf Trekan',

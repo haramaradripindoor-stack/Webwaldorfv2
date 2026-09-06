@@ -18,7 +18,7 @@ export default function TrabajaConNosotrosPage() {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <h1 className="font-serif text-5xl md:text-7xl text-[#2C3329] tracking-tight">
             Únete a nuestro <br className="hidden md:block" />
-            <span className="italic font-light">Refugio Evolutivo</span>
+            <span className="italic font-light">Impulso Pedagógico</span>
           </h1>
           <p className="font-sans text-xl text-[#5C6656] leading-relaxed max-w-2xl mx-auto">
             Buscamos maestros y profesionales apasionados por el desarrollo humano integral, la belleza y la contención orgánica.
