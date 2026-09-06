@@ -75,6 +75,7 @@ export default function Navbar() {
             <Link href="/#comunidad" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Comunidad</Link>
             <Link href="/#actividades" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Actividades</Link>
             <Link href="/noticias" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Noticias</Link>
+            <Link href="/trabaja-con-nosotros" className="px-5 py-2.5 text-sm text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] hover:bg-[var(--color-waldorf-cream)] transition-colors">Trabaja con Nosotros</Link>
           </div>
         </div>
 
@@ -161,6 +162,7 @@ export default function Navbar() {
               <Link href="/#comunidad" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Comunidad</Link>
               <Link href="/#actividades" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Actividades</Link>
               <Link href="/noticias" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Noticias</Link>
+              <Link href="/trabaja-con-nosotros" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Trabaja con Nosotros</Link>
             </div>
           </div>
 
