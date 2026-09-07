@@ -40,3 +40,11 @@ En Trekan sabemos que **la verdadera libertad nace del orden**. Para que un maes
 No somos una escuela sin reglas; somos un **Organismo Vivo** donde cada órgano cumple su función. Los maestros enseñan, la administración gestiona y los padres acompañan, formando una Trimembración Social sana. 
 
 Al proteger a nuestros maestros del desgaste administrativo, ellos pueden dedicar toda su energía vital a lo único que realmente importa: el alma de sus hijos. Ese es nuestro impulso pedagógico, y ese es el refugio evolutivo que construimos día a día en Puerto Varas.
+
+---
+
+### Referencias Bibliográficas
+
+- **Das Goetheanum** (Sede Mundial de la Sociedad Antroposófica, Suiza): *"Anthroposophy and Extremism are Incompatible"*. [Leer declaración oficial](https://dasgoetheanum.com/en/anthroposophy-and-extremism-are-incompatible/)
+- **Harvard Divinity School** (Program for the Evolution of Spirituality): *"Anthroposophical Anarchism and the Decentralization of Spirit"*. [Leer investigación](https://pes.hds.harvard.edu/publication/anthroposophical-anarchism-and-decentralization-spirit)
+- **Sage Journals**: Investigación académica sobre la sociología y filosofía de la Educación Waldorf. [DOI: 10.1177/0486613406293226](https://journals.sagepub.com/doi/10.1177/0486613406293226)
