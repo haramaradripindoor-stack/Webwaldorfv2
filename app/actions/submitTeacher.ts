@@ -1,10 +1,16 @@
 'use server'
 
 import { supabaseAdmin } from '@/lib/supabase-admin'
-import { Resend } from 'resend'
+import * as nodemailer from 'nodemailer'
 import { z } from 'zod'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD,
+  },
+})
 
 const formSchema = z.object({
   fullName: z.string().min(2, 'El nombre debe tener al menos 2 caracteres.'),
@@ -78,11 +84,11 @@ export async function submitTeacher(formData: FormData) {
       return { success: false, error: 'Hubo un problema al guardar tu postulación.' }
     }
 
-    // Enviar correos
-    if (process.env.RESEND_API_KEY) {
+    // Enviar correos con Nodemailer
+    if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
       try {
-        await resend.emails.send({
-          from: 'Colegio Waldorf Trekan <onboarding@resend.dev>',
+        await transporter.sendMail({
+          from: `"Colegio Waldorf Trekan" <${process.env.GMAIL_USER}>`,
           to: 'admision@colegiowaldorftrekan.cl',
           subject: `NUEVO PROFESOR POSTULANTE: ${fullName}`,
           html: `
@@ -95,7 +101,7 @@ export async function submitTeacher(formData: FormData) {
           `
         })
       } catch (emailError) {
-        console.error('Error enviando emails con Resend:', emailError)
+        console.error('Error enviando emails con Nodemailer:', emailError)
       }
     }
 

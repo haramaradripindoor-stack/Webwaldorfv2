@@ -2,10 +2,16 @@
 
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { revalidatePath } from 'next/cache'
-import { Resend } from 'resend'
+import * as nodemailer from 'nodemailer'
 import { z } from 'zod'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD,
+  },
+})
 
 // Zod Schema para validación estricta
 const formSchema = z.object({
@@ -71,12 +77,12 @@ export async function submitLead(formData: FormData) {
       return { success: false, error: 'Hubo un problema al guardar la postulación. Por favor intenta contactarnos por WhatsApp.' }
     }
 
-    // 5. Envío de correos con Resend
-    if (process.env.RESEND_API_KEY) {
+    // 5. Envío de correos con Nodemailer
+    if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
       try {
         // A) Correo interno para Admisión
-        await resend.emails.send({
-          from: 'Colegio Waldorf Trekan <onboarding@resend.dev>',
+        await transporter.sendMail({
+          from: '"Colegio Waldorf Trekan" <admision@colegiowaldorftrekan.cl>',
           to: 'admision@colegiowaldorftrekan.cl',
           subject: `NUEVO LEAD: ${parentName}`,
           html: `
@@ -91,8 +97,8 @@ export async function submitLead(formData: FormData) {
 
         // B) Auto-responder para el Apoderado (si dejó su email)
         if (email) {
-          await resend.emails.send({
-            from: 'Admisión Colegio Waldorf Trekan <onboarding@resend.dev>',
+          await transporter.sendMail({
+            from: `"Admisión Colegio Waldorf Trekan" <${process.env.GMAIL_USER}>`,
             to: email,
             subject: 'Hemos recibido tu postulación - Colegio Waldorf Trekan',
             html: `
@@ -113,7 +119,7 @@ export async function submitLead(formData: FormData) {
           })
         }
       } catch (emailError) {
-        console.error('Error enviando emails con Resend:', emailError)
+        console.error('Error enviando emails con Nodemailer:', emailError)
         // No fallamos la operación si falla el correo, el lead ya está en CRM
       }
     }
