@@ -1,14 +1,32 @@
+'use client'
+
+import { useState } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { Metadata } from 'next'
-import { Leaf, Heart, BookOpen, Send } from 'lucide-react'
-
-export const metadata: Metadata = {
-  title: 'Trabaja con Nosotros | Colegio Waldorf Trekan',
-  description: 'Únete a nuestro equipo de maestros y colaboradores. Buscamos profesionales apasionados por el desarrollo humano integral y la pedagogía Waldorf en Puerto Varas.',
-}
+import { Leaf, Heart, BookOpen, Send, Loader2, CheckCircle2 } from 'lucide-react'
+import { submitTeacher } from '@/app/actions/submitTeacher'
 
 export default function TrabajaConNosotrosPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('')
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setErrorMsg('')
+    
+    const formData = new FormData(e.currentTarget)
+    const result = await submitTeacher(formData)
+    
+    if (result.success) {
+      setSuccess(true)
+    } else {
+      setErrorMsg(result.error || 'Ocurrió un error inesperado.')
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <main className="min-h-screen bg-[#FDFBF7] selection:bg-[#E8E3D9]">
       <Navbar />
@@ -67,52 +85,86 @@ export default function TrabajaConNosotrosPage() {
           <div className="mb-10">
             <h2 className="font-serif text-3xl md:text-4xl text-[#2C3329] mb-4">Envíanos tus antecedentes</h2>
             <p className="font-sans text-[#5C6656]">
-              Completa este formulario o escríbenos directamente a <a href="mailto:admision@colegiowaldorftrekan.cl" className="underline decoration-[#4A5D23] underline-offset-4 text-[#2C3329]">admision@colegiowaldorftrekan.cl</a>. Toda información será tratada con absoluta confidencialidad.
+              Toda información será tratada con absoluta confidencialidad por nuestro equipo directivo.
             </p>
           </div>
 
-          <form className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="font-sans text-sm font-medium text-[#2C3329]">Nombre Completo</label>
-                <input type="text" className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all" placeholder="Ej: María José Silva" />
+          {success ? (
+            <div className="bg-[#F5F2EC] rounded-2xl p-8 text-center space-y-4 border border-[#E8E3D9]">
+              <CheckCircle2 className="w-12 h-12 text-[#4A5D23] mx-auto" />
+              <h3 className="font-serif text-2xl text-[#2C3329]">Antecedentes Recibidos</h3>
+              <p className="font-sans text-[#5C6656]">
+                Agradecemos tu interés en unirte a nuestro impulso pedagógico. Hemos recibido tus datos y los revisaremos con atención.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="font-sans text-sm font-medium text-[#2C3329]">Nombre Completo</label>
+                  <input name="fullName" required type="text" className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all" placeholder="Ej: María José Silva" />
+                </div>
+                <div className="space-y-2">
+                  <label className="font-sans text-sm font-medium text-[#2C3329]">Correo Electrónico</label>
+                  <input name="email" required type="email" className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all" placeholder="tucorreo@ejemplo.com" />
+                </div>
               </div>
+
               <div className="space-y-2">
-                <label className="font-sans text-sm font-medium text-[#2C3329]">Correo Electrónico</label>
-                <input type="email" className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all" placeholder="tucorreo@ejemplo.com" />
+                <label className="font-sans text-sm font-medium text-[#2C3329]">Área de Interés / Cargo</label>
+                <select name="area" required className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all appearance-none">
+                  <option value="">Selecciona un área...</option>
+                  <option value="maestro_clase">Maestro/a de Clase (Básica)</option>
+                  <option value="maestro_jardin">Maestro/a de Jardín de Infancia</option>
+                  <option value="maestro_especialidad">Maestro/a de Especialidad (Música, Idiomas, etc.)</option>
+                  <option value="administracion">Administración y Gestión</option>
+                  <option value="otro">Otro</option>
+                </select>
               </div>
-            </div>
 
-            <div className="space-y-2">
-              <label className="font-sans text-sm font-medium text-[#2C3329]">Área de Interés / Cargo</label>
-              <select className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all appearance-none">
-                <option value="">Selecciona un área...</option>
-                <option value="maestro_clase">Maestro/a de Clase (Básica)</option>
-                <option value="maestro_jardin">Maestro/a de Jardín de Infancia</option>
-                <option value="maestro_especialidad">Maestro/a de Especialidad (Música, Idiomas, etc.)</option>
-                <option value="administracion">Administración y Gestión</option>
-                <option value="otro">Otro</option>
-              </select>
-            </div>
+              <div className="space-y-2">
+                <label className="font-sans text-sm font-medium text-[#2C3329]">Adjunta tu CV (PDF o Word)</label>
+                <div className="relative">
+                  <input 
+                    name="cv"
+                    type="file" 
+                    accept=".pdf,.doc,.docx"
+                    className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#5C6656] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#F5F2EC] file:text-[#4A5D23] hover:file:bg-[#E8E3D9] cursor-pointer" 
+                  />
+                </div>
+              </div>
 
-            <div className="space-y-2">
-              <label className="font-sans text-sm font-medium text-[#2C3329]">Enlace a tu CV o LinkedIn (Opcional)</label>
-              <input type="url" className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all" placeholder="https://linkedin.com/in/..." />
-            </div>
+              <div className="space-y-2">
+                <label className="font-sans text-sm font-medium text-[#2C3329]">Carta de Motivación Breve</label>
+                <textarea name="motivation" rows={4} className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all resize-none" placeholder="Cuéntanos brevemente sobre tu relación con la pedagogía Waldorf y por qué te gustaría unirte a Trekan..."></textarea>
+              </div>
+              
+              {errorMsg && (
+                <p className="text-red-500 font-sans text-sm text-center">{errorMsg}</p>
+              )}
 
-            <div className="space-y-2">
-              <label className="font-sans text-sm font-medium text-[#2C3329]">Carta de Motivación Breve</label>
-              <textarea rows={4} className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all resize-none" placeholder="Cuéntanos brevemente sobre tu relación con la pedagogía Waldorf y por qué te gustaría unirte a Trekan..."></textarea>
-            </div>
+              <button disabled={isSubmitting} type="submit" className="w-full bg-[#4A5D23] hover:bg-[#3A491C] disabled:bg-[#4A5D23]/50 text-white font-sans font-medium py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group">
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <span>Enviando...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Enviar Antecedentes</span>
+                    <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
+              </button>
+            </form>
+          )}
+        </div>
+      </section>
 
-            <button type="button" className="w-full bg-[#4A5D23] hover:bg-[#3A491C] text-white font-sans font-medium py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group">
-              <span>Enviar Antecedentes</span>
-              <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <p className="text-center text-xs text-[#5C6656] mt-4 font-sans">
-              Al enviar, un integrante de nuestro equipo revisará tu perfil de manera confidencial.
-            </p>
-          </form>
+      <Footer />
+    </main>
+  )
+}
         </div>
       </section>
 
