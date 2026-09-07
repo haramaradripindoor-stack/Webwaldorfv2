@@ -110,6 +110,9 @@ export default function Navbar() {
         <Link href="/arriendo-salon" className="text-sm font-medium text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] transition-colors">
           Arriendo de Salón
         </Link>
+        <Link href="/economia-fraterna" className="text-sm font-medium text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] transition-colors">
+          Economía Fraterna
+        </Link>
         <Link href="/#contacto" className="text-sm font-medium text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] transition-colors">
           Contacto
         </Link>
@@ -178,6 +181,9 @@ export default function Navbar() {
 
           <Link href="/arriendo-salon" onClick={() => setIsOpen(false)} className="text-base font-semibold text-[var(--color-waldorf-moss)] py-3 border-b border-[var(--color-waldorf-sage)]/10">
             Arriendo de Salón
+          </Link>
+          <Link href="/economia-fraterna" onClick={() => setIsOpen(false)} className="text-base font-semibold text-[var(--color-waldorf-moss)] py-3 border-b border-[var(--color-waldorf-sage)]/10">
+            Economía Fraterna
           </Link>
           <Link href="/#contacto" onClick={() => setIsOpen(false)} className="text-base font-semibold text-[var(--color-waldorf-moss)] py-3">
             Contacto
