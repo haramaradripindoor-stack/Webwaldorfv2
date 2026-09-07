@@ -165,10 +165,3 @@ export default function TrabajaConNosotrosPage() {
     </main>
   )
 }
-        </div>
-      </section>
-
-      <Footer />
-    </main>
-  )
-}
