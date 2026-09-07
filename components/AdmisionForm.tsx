@@ -42,6 +42,17 @@ export default function AdmisionForm() {
 
     // 1. Guardar silenciosamente el lead en Supabase CRM antes del redirect
     try {
+      let leadOrigen = 'Formulario Web';
+      if (typeof window !== 'undefined' && window.location.search) {
+        const params = new URLSearchParams(window.location.search);
+        const utmSource = params.get('utm_source');
+        const utmContent = params.get('utm_content');
+        const utmCampaign = params.get('utm_campaign');
+        if (utmSource || utmContent || utmCampaign) {
+          leadOrigen = `IG Story: ${utmContent || utmSource} (${utmCampaign || 'admision'})`;
+        }
+      }
+
       await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -51,7 +62,8 @@ export default function AdmisionForm() {
           email_apoderado: 'Pendiente',
           nombre_nino: 'No especificado',
           edad_nino: formData.childrenAges,
-          curso_postula: `Visita preferida: ${selectedDay || 'Cualquier día'}. Notas: ${formData.message || 'Ninguna'}`
+          curso_postula: `Visita preferida: ${selectedDay || 'Cualquier día'}. Notas: ${formData.message || 'Ninguna'}`,
+          origen: leadOrigen
         })
       });
     } catch (error) {

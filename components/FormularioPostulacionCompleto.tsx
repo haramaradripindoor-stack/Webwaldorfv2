@@ -89,6 +89,17 @@ export default function FormularioPostulacionCompleto() {
     } catch (error) { console.error(error) }
 
     try {
+      let leadOrigen = 'Formulario Completo';
+      if (typeof window !== 'undefined' && window.location.search) {
+        const params = new URLSearchParams(window.location.search);
+        const utmSource = params.get('utm_source');
+        const utmContent = params.get('utm_content');
+        const utmCampaign = params.get('utm_campaign');
+        if (utmSource || utmContent || utmCampaign) {
+          leadOrigen = `IG Story [Completo]: ${utmContent || utmSource} (${utmCampaign || 'admision'})`;
+        }
+      }
+
       const response = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -99,6 +110,7 @@ export default function FormularioPostulacionCompleto() {
           nombre_nino: formData.childName,
           edad_nino: formData.childAge,
           curso_postula: formData.appliedCourse.join(', '),
+          origen: leadOrigen,
           // Enviaremos todo el raw data extra en un objeto anidado para que el backend lo parsee al email y DB
           datos_extra_postulacion: formData
         })

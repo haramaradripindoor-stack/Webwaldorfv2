@@ -79,13 +79,14 @@ export async function POST(req: Request) {
         }[tag] || tag)
     ) : '';
     
-    let { nombre_apoderado, telefono_apoderado, email_apoderado, nombre_nino, edad_nino, curso_postula, datos_extra_postulacion } = data;
+    let { nombre_apoderado, telefono_apoderado, email_apoderado, nombre_nino, edad_nino, curso_postula, datos_extra_postulacion, origen } = data;
     nombre_apoderado = escapeHTML(nombre_apoderado);
     telefono_apoderado = escapeHTML(telefono_apoderado);
     email_apoderado = escapeHTML(email_apoderado);
     nombre_nino = escapeHTML(nombre_nino);
     edad_nino = escapeHTML(edad_nino);
     curso_postula = escapeHTML(curso_postula);
+    const leadOrigen = origen ? escapeHTML(origen) : (datos_extra_postulacion ? 'Formulario Completo' : 'Formulario Web');
 
     // Si viene el payload completo (datos_extra_postulacion), empaquetamos la info en curso_postula para no alterar la DB
     if (datos_extra_postulacion) {
@@ -102,7 +103,7 @@ export async function POST(req: Request) {
       edad_nino,
       curso_postula,
       estado: 'nuevo',
-      origen: datos_extra_postulacion ? 'Formulario Completo' : 'Formulario Web'
+      origen: leadOrigen
     }]);
 
     if (dbError) throw dbError;
