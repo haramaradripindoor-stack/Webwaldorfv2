@@ -88,7 +88,7 @@ export async function submitTeacher(formData: FormData) {
     if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
       try {
         await transporter.sendMail({
-          from: `"Colegio Waldorf Trekan" <${process.env.GMAIL_USER}>`,
+          from: '"Colegio Waldorf Trekan" <admision@colegiowaldorftrekan.cl>',
           to: 'admision@colegiowaldorftrekan.cl',
           subject: `NUEVO PROFESOR POSTULANTE: ${fullName}`,
           html: `

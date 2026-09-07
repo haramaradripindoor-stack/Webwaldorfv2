@@ -98,7 +98,7 @@ export async function submitLead(formData: FormData) {
         // B) Auto-responder para el Apoderado (si dejó su email)
         if (email) {
           await transporter.sendMail({
-            from: `"Admisión Colegio Waldorf Trekan" <${process.env.GMAIL_USER}>`,
+            from: '"Admisión Colegio Waldorf Trekan" <admision@colegiowaldorftrekan.cl>',
             to: email,
             subject: 'Hemos recibido tu postulación - Colegio Waldorf Trekan',
             html: `
