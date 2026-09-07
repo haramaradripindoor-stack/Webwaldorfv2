@@ -20,6 +20,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { name: 'Dashboard', href: '/admin', icon: Home },
     { name: 'Portada', href: '/admin/portada', icon: LayoutTemplate },
     { name: 'Admisiones CRM', href: '/admin/admisiones', icon: Brain },
+    { name: 'Profesores (RRHH)', href: '/admin/profesores', icon: Brain },
     { name: 'Noticias / SEO', href: '/admin/noticias', icon: Newspaper },
     { name: 'Actividades', href: '/admin/actividades', icon: CalendarDays },
     { name: 'Prospectos (Growth)', href: '/admin/prospectos', icon: LayoutTemplate },

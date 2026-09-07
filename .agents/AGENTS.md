@@ -32,3 +32,7 @@ Ante cualquier solicitud de creación (presentaciones, webs, assets, scripts), a
 ## Reglas de Exportación de Datos (Business Standard)
 - **Prohibición Absoluta de CSV:** SIEMPRE que se deba implementar un botón o funcionalidad de exportación de datos en una UI o un script (ej. "Exportar Leads", "Descargar CRM"), el formato OBLIGATORIO es Excel nativo (`.xlsx`). Está estrictamente prohibido usar o generar archivos `.csv`.
 - **Implementación Técnica:** No dudes en instalar dependencias adicionales (como `xlsx` o `exceljs` en Node/Next.js, o `pandas`/`openpyxl` en Python) para construir el archivo Excel con formato correcto. El peso de las dependencias es irrelevante frente a la calidad del entregable para el cliente.
+
+## Prevención de Código Redundante (Codebase E2E Audit)
+- **Regla Estricta:** Antes de proponer el desarrollo de cualquier página nueva, componente, CRM o sistema arquitectónico, el agente tiene la OBLIGACIÓN ESTRICTA de realizar un escaneo exploratorio del proyecto (`ls -la app/`, `find_by_name`, o `list_dir`). 
+- **Prohibición de Asumir:** NUNCA asumas que una funcionalidad falta en el proyecto basándote solo en el historial de chat o en herramientas externas usadas por el cliente (ej. Excel). Si el usuario pide una solución, primero verifica exhaustivamente si el ecosistema actual ya la tiene implementada (ej. revisando las rutas de `/admin`).
