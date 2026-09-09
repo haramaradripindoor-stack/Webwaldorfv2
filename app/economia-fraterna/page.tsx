@@ -1,5 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Economía Fraterna | Colegio Waldorf Trekan',
@@ -8,10 +10,11 @@ export const metadata: Metadata = {
 
 export default function EconomiaFraternaPage() {
   return (
-    <div className="min-h-screen bg-[#FDFBF7] text-[#3E3E3E] font-sans selection:bg-[#7D8F69] selection:text-white">
+    <div className="min-h-screen bg-[#FDFBF7] text-[#3E3E3E] font-sans selection:bg-[#7D8F69] selection:text-white flex flex-col">
+      <Navbar />
       
       {/* Hero Section */}
-      <section className="relative w-full pt-32 pb-20 px-6 md:px-12 flex flex-col items-center text-center">
+      <section className="relative w-full pt-40 pb-20 px-6 md:px-12 flex flex-col items-center text-center flex-1">
         <div className="max-w-3xl mx-auto z-10">
           <h1 className="text-4xl md:text-6xl font-serif text-[#2C3E2D] mb-6 tracking-tight">
             Economía Fraterna y Sostenimiento
@@ -98,6 +101,7 @@ export default function EconomiaFraternaPage() {
         </div>
       </section>
 
+      <Footer />
     </div>
   );
 }
