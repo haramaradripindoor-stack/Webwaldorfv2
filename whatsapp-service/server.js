@@ -30,9 +30,7 @@ async function connectToWhatsApp() {
         if(qr) {
             currentQr = qr;
             currentStatus = 'qr';
-            console.log('
-[TREKAN] Escanea este código QR con el WhatsApp de Coordinación:
-');
+            console.log('\n[TREKAN] Escanea este código QR con el WhatsApp de Coordinación:\n');
             qrcode.generate(qr, { small: true });
         }
 
