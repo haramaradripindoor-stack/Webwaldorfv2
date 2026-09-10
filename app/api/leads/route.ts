@@ -230,6 +230,23 @@ export async function POST(req: Request) {
       // No rompemos el flujo de la UI si n8n falla
     }
 
+    // 5. Enviar mensaje de bienvenida por WhatsApp vía Baileys (localhost:3001)
+    // Fire-and-forget: no bloqueamos la respuesta al usuario si Baileys no está activo
+    if (telefono_apoderado && telefono_apoderado !== 'Vía WhatsApp (Pendiente)') {
+      const baileysMessage = `🌿 *Colegio Waldorf Trekan*\n\nHola ${nombre_apoderado}, ¡qué lindo que nos hayas escrito!\n\nRecibimos tus datos correctamente y te hemos enviado un correo de confirmación a *${email_apoderado !== 'Pendiente' ? email_apoderado : 'tu correo'}*.\n\nIvonne, nuestra coordinadora de admisión, se pondrá en contacto contigo personalmente para coordinar una visita al colegio.\n\nMientras tanto, te invitamos a conocernos en:\n🌐 www.colegiowaldorftrekan.cl\n\n_Un proceso pensado para conocernos con calma_ 🍃`;
+
+      fetch('http://localhost:3001/api/send-message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phone: telefono_apoderado,
+          message: baileysMessage
+        })
+      }).catch(err => {
+        console.warn('[Baileys] Servicio no disponible, mensaje WhatsApp no enviado:', err.message);
+      });
+    }
+
     return NextResponse.json({ success: true });
   } catch (error: any) {
     console.error('Error procesando lead:', error);

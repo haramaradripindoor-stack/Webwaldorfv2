@@ -37,8 +37,8 @@ export interface AIResponse {
   requiresHuman: boolean;
   extractedEntities?: {
     nombre: string | null;
-    dolencia: string | null;
     comuna: string | null;
+    curso_interes: string | null;
   };
 }
 

@@ -6,17 +6,16 @@ CREATE TABLE IF NOT EXISTS public.knowledge_chunks (
   id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
   content text NOT NULL,
   metadata jsonb,
-  embedding public.vector(1024) -- 1024 dimensions for Cohere embed-multilingual-v3.0
+  embedding public.vector(768) -- 768 dimensions for Gemini text-embedding-004 / Ollama nomic-embed-text
 );
 
 -- 3. Create HNSW Index for fast similarity search
-CREATE INDEX IF NOT EXISTS knowledge_chunks_embedding_hnsw_idx 
-ON public.knowledge_chunks 
+CREATE INDEX ON public.knowledge_chunks 
 USING hnsw (embedding vector_cosine_ops);
 
--- 4. Create the RPC match function
-CREATE OR REPLACE FUNCTION public.match_knowledge_chunks(
-  query_embedding public.vector(1024),
+-- 4. Create the match_documents RPC function
+CREATE OR REPLACE FUNCTION match_documents (
+  query_embedding public.vector(768),
   match_threshold float DEFAULT 0.3,
   match_count int DEFAULT 5
 )
