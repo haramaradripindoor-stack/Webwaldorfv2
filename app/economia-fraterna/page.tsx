@@ -1,5 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -14,18 +15,29 @@ export default function EconomiaFraternaPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative w-full pt-40 pb-20 px-6 md:px-12 flex flex-col items-center text-center flex-1">
-        <div className="max-w-3xl mx-auto z-10">
-          <h1 className="text-4xl md:text-6xl font-serif text-[#2C3E2D] mb-6 tracking-tight">
-            Economía Fraterna y Sostenimiento
+      <section className="relative w-full pt-32 pb-16 px-6 md:px-12 flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-20 text-left flex-1 max-w-7xl mx-auto z-10">
+        <div className="w-full md:w-1/2 flex flex-col justify-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#2C3E2D] mb-6 tracking-tight">
+            Economía Fraterna<br/>y Sostenimiento
           </h1>
-          <div className="w-24 h-[2px] bg-[#D4C3A3] mx-auto mb-8"></div>
-          <p className="text-lg md:text-xl leading-relaxed text-[#5A5A5A] mb-8 font-light">
-            El Colegio Waldorf Trekan es un organismo vivo que respira y crece gracias al impulso genuino de las familias y amigos que creen en una educación libre. Nuestro colegio se sostiene mediante los principios de la <strong>Economía Fraterna</strong>: donde el capital no es un fin en sí mismo, sino una semilla que permite el florecimiento de la infancia.
+          <div className="w-16 h-[2px] bg-[#D4C3A3] mb-8"></div>
+          <p className="text-lg leading-relaxed text-[#5A5A5A] mb-6 font-light">
+            El Colegio Waldorf Trekan es un organismo vivo que respira y crece gracias al impulso genuino de las familias y amigos que creen en una educación libre. Nuestro colegio se sostiene mediante los principios de la <strong>Economía Fraterna</strong>.
           </p>
-          <p className="text-lg md:text-xl leading-relaxed text-[#5A5A5A] font-light">
+          <p className="text-lg leading-relaxed text-[#5A5A5A] font-light">
             Si resuenas con nuestro proyecto, puedes apadrinar nuestro impulso educativo con un aporte directo. Cada contribución se destina <strong>100% al aula, a los materiales nobles y al sostenimiento de nuestros maestros</strong>.
           </p>
+        </div>
+        
+        <div className="w-full md:w-1/2 relative h-[450px] lg:h-[600px] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
+          <Image 
+            src="/economia-nina.jpeg" 
+            alt="Niña jugando en el interior del Colegio Waldorf Trekan bajo luz natural"
+            fill
+            priority
+            className="object-cover object-[center_top]"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
         </div>
         
         {/* Decorative organic shape */}
