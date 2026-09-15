@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { Plus, Trash2, Edit, Image as ImageIcon, Loader2, FileUp, Sparkles, Mail, Eye } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
-import Papa from 'papaparse';
+import * as XLSX from 'xlsx';
 
 export default function NoticiasAdmin() {
   const [noticias, setNoticias] = useState<any[]>([]);
@@ -182,41 +182,40 @@ export default function NoticiasAdmin() {
     }
   };
 
-  const handleCsvUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleExcelUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) return;
     const file = e.target.files[0];
     
     setLoading(true);
-    Papa.parse(file, {
-      header: true,
-      skipEmptyLines: true,
-      complete: async (results) => {
-        const rows = results.data as any[];
-        
-        const newNoticias = rows.map(row => ({
-          title: row.titulo || row.title,
-          slug: (row.titulo || row.title || '').toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') + '-' + uuidv4().slice(0,6),
-          excerpt: row.resumen || row.excerpt || '',
-          content: row.contenido || row.content || '',
-          image_url: row.imagen || row.image_url || '/imagenes-web/galeria3.webp',
-          published_at: row.fecha || row.published_at || new Date().toISOString()
-        })).filter(n => n.title); 
+    try {
+      const data = await file.arrayBuffer();
+      const workbook = XLSX.read(data, { type: 'array' });
+      const firstSheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[firstSheetName];
+      const rows = XLSX.utils.sheet_to_json(worksheet) as any[];
+      
+      const newNoticias = rows.map(row => ({
+        title: row.titulo || row.title || row.Titulo || row.Title,
+        slug: (row.titulo || row.title || row.Titulo || row.Title || '').toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') + '-' + uuidv4().slice(0,6),
+        excerpt: row.resumen || row.excerpt || row.Resumen || row.Excerpt || '',
+        content: row.contenido || row.content || row.Contenido || row.Content || '',
+        image_url: row.imagen || row.image_url || row.Imagen || row.Image || '/imagenes-web/galeria3.webp',
+        published_at: row.fecha || row.published_at || row.Fecha || row.Date || new Date().toISOString()
+      })).filter(n => n.title); 
 
-        if (newNoticias.length > 0) {
-          const { error } = await supabase.from('noticias').insert(newNoticias);
-          if (error) alert('Error importando CSV: ' + error.message);
-          else alert(`¡Se importaron ${newNoticias.length} noticias exitosamente!`);
-          fetchNoticias();
-        } else {
-          setLoading(false);
-          alert('El archivo CSV está vacío o no tiene la columna "titulo".');
-        }
-      },
-      error: (error) => {
-        alert('Error al leer el CSV: ' + error.message);
+      if (newNoticias.length > 0) {
+        const { error } = await supabase.from('noticias').insert(newNoticias);
+        if (error) alert('Error importando Excel: ' + error.message);
+        else alert(`¡Se importaron ${newNoticias.length} noticias exitosamente!`);
+        fetchNoticias();
+      } else {
         setLoading(false);
+        alert('El archivo Excel está vacío o no tiene la columna "titulo".');
       }
-    });
+    } catch (error: any) {
+      alert('Error al leer el Excel: ' + error.message);
+      setLoading(false);
+    }
   };
 
   if (loading && noticias.length === 0) {
@@ -232,8 +231,8 @@ export default function NoticiasAdmin() {
         </div>
         <div className="flex gap-2">
           <label className="cursor-pointer bg-white text-gray-700 border border-[var(--color-waldorf-sage)]/30 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition">
-            <FileUp className="w-4 h-4" /> Importar CSV
-            <input type="file" accept=".csv" className="hidden" onChange={handleCsvUpload} disabled={loading} />
+            <FileUp className="w-4 h-4" /> Importar Excel
+            <input type="file" accept=".xlsx, .xls" className="hidden" onChange={handleExcelUpload} disabled={loading} />
           </label>
           <button 
             onClick={() => {
