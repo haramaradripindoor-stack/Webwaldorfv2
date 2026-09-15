@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import { Mail, Send, Users, History, CheckCircle2, ChevronRight, FileJson, Download, Upload, Plus, Trash2, Edit2, X, Tag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { emailTemplates } from '@/lib/emailTemplates';
+import * as XLSX from 'xlsx';
 
 const EmailEditor = dynamic(() => import('react-email-editor'), { ssr: false });
 
@@ -320,31 +321,47 @@ export default function CampanasPage() {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleExportCSV = () => {
+  const handleExportExcel = () => {
     if (contacts.length === 0) return showMessage('error', 'No hay contactos para exportar.');
-    const csvContent = "email,nombre,fuente,fecha\n" + contacts.map(c => 
-      `${c.email},"${c.nombre || ''}",${c.fuente},${c.fecha}`
-    ).join("\n");
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `directorio_contactos_${new Date().toISOString().split('T')[0]}.csv`;
-    link.click();
-    URL.revokeObjectURL(link.href);
+    const worksheetData = contacts.map(c => ({
+      Email: c.email,
+      Nombre: c.nombre || '',
+      Fuente: c.fuente || '',
+      Fecha: c.fecha || '',
+      Etiquetas: (c.tags || []).join(', ')
+    }));
+    const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Contactos");
+    XLSX.writeFile(workbook, `directorio_contactos_${new Date().toISOString().split('T')[0]}.xlsx`);
   };
 
-  const handleImportCSV = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImportExcel = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     
     setLoading(true);
     try {
-      const formData = new FormData();
-      formData.append('file', file);
+      const data = await file.arrayBuffer();
+      const workbook = XLSX.read(data, { type: 'array' });
+      const firstSheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[firstSheetName];
+      const json = XLSX.utils.sheet_to_json(worksheet);
       
-      const res = await fetch('/api/campaigns/contacts/import', {
+      const parsedContacts = json.map((row: any) => ({
+        email: row.Email || row.email || row.EMAIL,
+        nombre: row.Nombre || row.nombre || row.NOMBRE || ''
+      })).filter(c => c.email);
+
+      if (parsedContacts.length === 0) {
+        showMessage('error', 'El archivo no contiene correos válidos o falta la columna "Email".');
+        return;
+      }
+
+      const res = await fetch('/api/campaigns/contacts/bulk', {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contacts: parsedContacts }),
       });
       
       const result = await res.json();
@@ -355,7 +372,7 @@ export default function CampanasPage() {
         showMessage('error', result.error || 'Error al importar contactos.');
       }
     } catch (err) {
-      showMessage('error', 'Error de conexión al importar CSV.');
+      showMessage('error', 'Error al procesar el archivo Excel.');
     } finally {
       setLoading(false);
       if (fileInputRef.current) fileInputRef.current.value = '';
@@ -559,10 +576,10 @@ export default function CampanasPage() {
                   </select>
                   <input 
                     type="file" 
-                    accept=".csv" 
+                    accept=".xlsx, .xls" 
                     className="hidden" 
                     ref={fileInputRef} 
-                    onChange={handleImportCSV} 
+                    onChange={handleImportExcel} 
                   />
                   <button onClick={() => {
                     setContactModalMode('create');
@@ -582,10 +599,10 @@ export default function CampanasPage() {
                     </>
                   )}
                   <button onClick={() => fileInputRef.current?.click()} className="flex items-center gap-2 text-xs font-bold bg-white border border-[var(--color-waldorf-sage)]/30 hover:bg-[var(--color-waldorf-cream)] text-[var(--color-waldorf-moss)] px-3 py-1.5 rounded-lg transition-colors shadow-sm">
-                    <Upload className="w-3.5 h-3.5" /> Importar CSV
+                    <Upload className="w-3.5 h-3.5" /> Importar Excel
                   </button>
-                  <button onClick={handleExportCSV} className="flex items-center gap-2 text-xs font-bold bg-white border border-[var(--color-waldorf-sage)]/30 hover:bg-[var(--color-waldorf-cream)] text-[var(--color-waldorf-moss)] px-3 py-1.5 rounded-lg transition-colors shadow-sm">
-                    <Download className="w-3.5 h-3.5" /> Exportar CSV
+                  <button onClick={handleExportExcel} className="flex items-center gap-2 text-xs font-bold bg-white border border-[var(--color-waldorf-sage)]/30 hover:bg-[var(--color-waldorf-cream)] text-[var(--color-waldorf-moss)] px-3 py-1.5 rounded-lg transition-colors shadow-sm">
+                    <Download className="w-3.5 h-3.5" /> Exportar Excel
                   </button>
                   <div className="w-px h-6 bg-[var(--color-waldorf-sage)]/30 mx-1 hidden md:block"></div>
                   <span className="text-sm text-[var(--color-waldorf-text-light)] font-bold hidden md:inline">{selectedContacts.length} sel.</span>
