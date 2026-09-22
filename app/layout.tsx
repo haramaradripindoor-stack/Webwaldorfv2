@@ -4,12 +4,13 @@ import Script from 'next/script'
 import AIChatWidget from '@/components/AIChatWidget'
 import AwwwardsEffects from '@/components/AwwwardsEffects'
 import dynamic from 'next/dynamic'
-import { Quicksand, Merriweather } from 'next/font/google'
+import { Nunito_Sans, Merriweather } from 'next/font/google'
 
-const quicksand = Quicksand({ 
+const nunitoSans = Nunito_Sans({ 
   subsets: ['latin'], 
   variable: '--font-sans',
   display: 'swap',
+  weight: ['300', '400', '600', '700'],
 })
 
 const merriweather = Merriweather({
@@ -162,7 +163,7 @@ export default function RootLayout({
   const GTM_ID = 'GTM-NWT7GVSD'
 
   return (
-    <html lang="es" className={`${quicksand.variable} ${merriweather.variable}`}>
+    <html lang="es" className={`${nunitoSans.variable} ${merriweather.variable}`}>
       <head>
         {/* Preconnect a orígenes críticos para reducir LCP */}
         <link rel="preconnect" href="https://ebpioebxcyjpjgiqpjaw.supabase.co" crossOrigin="anonymous" />

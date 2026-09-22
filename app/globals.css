@@ -8,6 +8,12 @@
   font-display: swap;
 }
 @theme {
+  /* Nuevos Colores Premium (Sept 2026) */
+  --color-waldorf-premium-forest: #263A24;
+  --color-waldorf-premium-ivory: #F4EEDF;
+  --color-waldorf-premium-gold: #D9A940;
+
+  /* Colores Originales */
   --color-waldorf-cream: #FAF9F6;
   --color-waldorf-paper: #FDFBF7;
   --color-waldorf-sage: #6B8E7B;
@@ -16,6 +22,7 @@
   --color-waldorf-mustard: #D4A373;
   --color-waldorf-text: #2C2A29;
   --color-waldorf-text-light: #5A5755;
+
   
   --font-sans: 'Quicksand', sans-serif;
   --font-serif: 'Merriweather', serif;
