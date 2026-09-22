@@ -32,3 +32,24 @@ Un proyecto educativo de esta envergadura no se sostiene como un servicio transa
 ![Comunidad Trekan compartiendo en el asado](/imagenes-web/fiestas-patrias-comunidad.webp)
 
 Agradecemos profundamente a cada familia, maestro y guía que hizo posible este encuentro. Seguimos caminando juntos, al ritmo del sur, construyendo el futuro que nuestros niños merecen.
+
+### Galería Fotográfica de la Jornada
+
+Disfruta de la selección visual de nuestras Fiestas Patrias, donde la cueca, los juegos tradicionales y la vida en comunidad fueron los protagonistas.
+
+```gallery
+/imagenes-web/fiestas-2026/_MG_5514.webp
+/imagenes-web/fiestas-2026/_MG_5515.webp
+/imagenes-web/fiestas-2026/_MG_5516.webp
+/imagenes-web/fiestas-2026/_MG_5520.webp
+/imagenes-web/fiestas-2026/_MG_5497.webp
+/imagenes-web/fiestas-2026/_MG_5486.webp
+/imagenes-web/fiestas-2026/_MG_5437.webp
+/imagenes-web/fiestas-2026/_MG_5403.webp
+/imagenes-web/fiestas-2026/_MG_5422.webp
+/imagenes-web/fiestas-2026/_MG_5450.webp
+/imagenes-web/fiestas-2026/_MG_5465.webp
+/imagenes-web/fiestas-2026/_MG_5475.webp
+/imagenes-web/fiestas-2026/_MG_5482.webp
+/imagenes-web/fiestas-2026/_MG_5500.webp
+```
