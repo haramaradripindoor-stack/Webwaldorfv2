@@ -64,10 +64,15 @@ export default async function Home() {
     // 2. Obtener de Markdown
     const markdownNews = getMarkdownPosts('_noticias');
 
-    // 3. Combinar y ordenar por fecha
-    const allCombinedNews = [...supabaseNews, ...markdownNews].sort((a, b) => {
-      const dateA = new Date(a.published_at || a.created_at).getTime() || 0;
-      const dateB = new Date(b.published_at || b.created_at).getTime() || 0;
+    // 3. Combinar, deduplicar por slug (priorizando Supabase) y ordenar por fecha
+    const uniqueNewsMap = new Map();
+    [...markdownNews, ...supabaseNews].forEach(item => {
+      uniqueNewsMap.set(item.slug, item);
+    });
+    
+    const allCombinedNews = Array.from(uniqueNewsMap.values()).sort((a, b) => {
+      const dateA = new Date(a.published_at || a.created_at || a.date).getTime() || 0;
+      const dateB = new Date(b.published_at || b.created_at || b.date).getTime() || 0;
       return dateB - dateA;
     });
 
