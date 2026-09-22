@@ -88,12 +88,17 @@ export async function POST(req: Request) {
 
     // 3. Actualizar estado de la campaña
     if (campaignId) {
-      await supabase.from('email_campaigns').update({
+      const { error: updateError } = await supabase.from('email_campaigns').update({
         sent_count: sentCount,
         failed_count: failedCount,
         status: 'sent',
-        sent_at: new Date().toISOString()
+        // sent_at: new Date().toISOString() // Lo comento por si es el error de schema
       }).eq('id', campaignId);
+      
+      if (updateError) {
+        console.error('Error al actualizar campaña en DB:', updateError);
+        return NextResponse.json({ success: false, error: 'Emails enviados, pero error al actualizar DB: ' + updateError.message });
+      }
     }
 
     return NextResponse.json({ 
