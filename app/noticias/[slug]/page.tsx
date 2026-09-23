@@ -7,6 +7,8 @@ import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import SmoothScroll from '@/components/SmoothScroll'
 import ReactMarkdown from 'react-markdown'
+import MDXGallery from '@/components/MDXGallery'
+
 import remarkGfm from 'remark-gfm'
 import { Metadata } from 'next'
 import { createClient } from '@/utils/supabase/server';
@@ -244,22 +246,8 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
                     code: ({node, className, children, ...props}) => {
                       const match = /language-(\w+)/.exec(className || '');
                       if (match && match[1] === 'gallery') {
-                        const images = String(children).trim().split('\n').filter(Boolean);
-                        return (
-                          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 my-16 md:my-24 space-y-6">
-                            {images.map((src, i) => (
-                              <div key={i} className="break-inside-avoid relative rounded-2xl overflow-hidden group">
-                                <img 
-                                  src={src.trim()} 
-                                  alt={`Galería imagen ${i+1}`} 
-                                  className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105" 
-                                  loading="lazy" 
-                                />
-                                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                              </div>
-                            ))}
-                          </div>
-                        );
+                        const images = String(children).trim().split('\n').filter(Boolean).map(s => s.trim());
+                        return <MDXGallery images={images} />;
                       }
                       return <code className="bg-gray-100 px-1.5 py-0.5 rounded text-sm text-[#D35D3E]" {...props}>{children}</code>;
                     }

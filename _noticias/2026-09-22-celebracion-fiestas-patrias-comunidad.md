@@ -4,7 +4,7 @@ date: '2026-09-22'
 excerpt: 'Nuestra comunidad se reunió para celebrar las Fiestas Patrias en torno a la música, el juego libre y la convivencia. Una jornada que reafirma el espíritu Waldorf y el valor de hacer escuela juntos bajo el cielo del sur.'
 author: 'Colegio Waldorf Trekan'
 category: 'Comunidad'
-imageUrl: '/imagenes-web/fiestas-2026/_MG_5516.webp'
+imageUrl: '/imagenes-web/fiestas-2026/drone_patrias.webp'
 ---
 
 Las festividades en la Pedagogía Waldorf no son simples pausas en el calendario; son **anclajes rítmicos** que conectan a los niños con los ciclos de la naturaleza y las tradiciones de su entorno. Este septiembre, el Colegio Waldorf Trekan se vistió de colores, sonidos y aromas propios de nuestras Fiestas Patrias, reuniendo a toda la comunidad en una jornada inolvidable.
