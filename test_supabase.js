@@ -1,23 +1,18 @@
-require('dotenv').config({ path: '.env.local' });
 const { createClient } = require('@supabase/supabase-js');
-
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
+  'https://ebpioebxcyjpjgiqpjaw.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVicGlvZWJ4Y3lqcGpnaXFwamF3Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MjY2Njk2OCwiZXhwIjoyMDk4MjQyOTY4fQ.tUy3DdyfaTybkwRUK8E5JfcMiv2NzhbSoO4ACHebBjc'
 );
 
 async function check() {
-  const { data, error } = await supabase.from('email_campaigns').select('*').limit(1);
-  console.log("DATA:", data);
-  console.log("ERROR:", error);
-
-  // Let's test the update explicitly!
-  if (data && data.length > 0) {
-    const { error: updateError } = await supabase.from('email_campaigns').update({
-      status: 'sent',
-      sent_at: new Date().toISOString()
-    }).eq('id', data[0].id);
-    console.log("UPDATE ERROR:", updateError);
+  const { data: tables, error } = await supabase.from('prospectos_growth').select('*').limit(5);
+  if (error) {
+     console.log("Error:", error);
+     // Try a different table name
+     const { data: leads, error2 } = await supabase.from('leads_admision').select('*').limit(2);
+     console.log("Leads Admision:", leads);
+  } else {
+     console.log("Prospectos:", tables);
   }
 }
 check();
