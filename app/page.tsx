@@ -64,13 +64,23 @@ export default async function Home() {
     // 2. Obtener de Markdown
     const markdownNews = getMarkdownPosts('_noticias');
 
-    // 3. Combinar, deduplicar por slug (priorizando Supabase) y ordenar por fecha
+    // 3. Combinar, deduplicar por slug y título (priorizando Supabase) y ordenar por fecha
     const uniqueNewsMap = new Map();
     [...markdownNews, ...supabaseNews].forEach(item => {
+      // Usar el título normalizado como fallback de deduplicación fuerte
+      const normalizedTitle = (item.title || '').toLowerCase().trim().replace(/[\W_]+/g, '-');
+      // Set por slug
       uniqueNewsMap.set(item.slug, item);
+      // Set por título normalizado para asegurar que no se dupliquen por desfase de fechas/slugs
+      if (normalizedTitle) {
+        uniqueNewsMap.set(normalizedTitle, item);
+      }
     });
     
-    const allCombinedNews = Array.from(uniqueNewsMap.values()).sort((a, b) => {
+    // Filtrar a valores únicos reales
+    const uniqueItems = Array.from(new Set(uniqueNewsMap.values()));
+    
+    const allCombinedNews = uniqueItems.sort((a, b) => {
       const dateA = new Date(a.published_at || a.created_at || a.date).getTime() || 0;
       const dateB = new Date(b.published_at || b.created_at || b.date).getTime() || 0;
       return dateB - dateA;
