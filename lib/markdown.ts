@@ -76,7 +76,7 @@ export function getMarkdownPosts(folder: '_noticias' | '_actividades'): Markdown
         excerpt: data.excerpt || data.descripcion || content.substring(0, 150) + '...',
         content,
         image_url: (() => {
-          let img = data.image_url || data.imagen || data.foto || data.coverImage || '/imagenes-web/galeria3.webp';
+          let img = data.image_url || data.imageUrl || data.imagen || data.foto || data.coverImage || '/imagenes-web/galeria3.webp';
           if (img && img.startsWith('/images/')) {
             return img.replace('/images/', '/imagenes-web/');
           }
