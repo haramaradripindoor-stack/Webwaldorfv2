@@ -67,18 +67,20 @@ export default async function Home() {
     // 3. Combinar, deduplicar por slug y título (priorizando Supabase) y ordenar por fecha
     const uniqueNewsMap = new Map();
     [...markdownNews, ...supabaseNews].forEach(item => {
-      // Usar el título normalizado como fallback de deduplicación fuerte
       const normalizedTitle = (item.title || '').toLowerCase().trim().replace(/[\W_]+/g, '-');
-      // Set por slug
-      uniqueNewsMap.set(item.slug, item);
-      // Set por título normalizado para asegurar que no se dupliquen por desfase de fechas/slugs
-      if (normalizedTitle) {
-        uniqueNewsMap.set(normalizedTitle, item);
+      const key = normalizedTitle || item.slug;
+      
+      if (uniqueNewsMap.has(key)) {
+        const existing = uniqueNewsMap.get(key);
+        if (existing.image_url && !item.image_url) {
+          return;
+        }
       }
+      uniqueNewsMap.set(key, item);
     });
     
     // Filtrar a valores únicos reales
-    const uniqueItems = Array.from(new Set(uniqueNewsMap.values()));
+    const uniqueItems = Array.from(uniqueNewsMap.values());
     
     const allCombinedNews = uniqueItems.sort((a, b) => {
       const dateA = new Date(a.published_at || a.created_at || a.date).getTime() || 0;

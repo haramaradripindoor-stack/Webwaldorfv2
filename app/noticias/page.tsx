@@ -34,13 +34,19 @@ export default async function NoticiasPage() {
     const uniqueNewsMap = new Map();
     [...markdownNews, ...supabaseNews].forEach(item => {
       const normalizedTitle = (item.title || '').toLowerCase().trim().replace(/[\W_]+/g, '-');
-      uniqueNewsMap.set(item.slug, item);
-      if (normalizedTitle) {
-        uniqueNewsMap.set(normalizedTitle, item);
+      const key = normalizedTitle || item.slug;
+      
+      // Si el item nuevo no tiene imagen y el existente sí, conservamos el existente.
+      if (uniqueNewsMap.has(key)) {
+        const existing = uniqueNewsMap.get(key);
+        if (existing.image_url && !item.image_url) {
+          return; // No sobreescribir si perderíamos la foto
+        }
       }
+      uniqueNewsMap.set(key, item);
     });
     
-    const uniqueItems = Array.from(new Set(uniqueNewsMap.values()));
+    const uniqueItems = Array.from(uniqueNewsMap.values());
     
     allNews = uniqueItems.sort((a, b) => {
       const dateA = new Date(a.published_at || a.created_at || a.date).getTime() || 0;
