@@ -74,7 +74,6 @@ export default function Hero({ data }: { data?: any }) {
             autoPlay
             loop
             muted={isMuted}
-            defaultMuted={true}
             playsInline
             aria-hidden="true"
             className="object-cover object-center w-full h-full opacity-80"
