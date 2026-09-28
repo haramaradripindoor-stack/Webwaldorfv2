@@ -8,8 +8,17 @@ import Link from 'next/link'
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
+  const [isScrolled, setIsScrolled] = useState(false)
   
   const navRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Cerrar menús al hacer click afuera
   useEffect(() => {
@@ -23,7 +32,7 @@ export default function Navbar() {
   }, [])
 
   return (
-    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 glass-light border-b border-[var(--color-waldorf-sage)]/10 py-3 px-6 md:px-12 flex justify-between items-center transition-all duration-300">
+    <nav ref={navRef} className={`fixed top-0 left-0 right-0 z-50 py-3 px-6 md:px-12 flex justify-between items-center transition-all duration-500 ${isScrolled ? 'glass-light border-b border-[var(--color-waldorf-sage)]/10' : 'bg-transparent border-b border-transparent'}`}>
       
       {/* Logo */}
       <Link href="/" className="flex items-center gap-3 group no-cursor-scale">
@@ -45,14 +54,14 @@ export default function Navbar() {
 
       {/* Desktop Menu */}
       <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-        <Link href="/" className="text-sm font-medium text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] transition-colors">
+        <Link href="/" className={`text-sm font-medium transition-colors ${isScrolled ? 'text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)]' : 'text-white/90 hover:text-white drop-shadow-md'}`}>
           Inicio
         </Link>
         
         {/* Dropdown: Nosotros */}
         <div className="relative group">
           <button 
-            className="flex items-center gap-1 text-sm font-medium text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] transition-colors py-2"
+            className={`flex items-center gap-1 text-sm font-medium transition-colors py-2 ${isScrolled ? 'text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)]' : 'text-white/90 hover:text-white drop-shadow-md'}`}
             onMouseEnter={() => setDropdownOpen('nosotros')}
             onClick={(e) => {
               if (typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches) {
@@ -82,7 +91,7 @@ export default function Navbar() {
         {/* Dropdown: Admisión 2027 */}
         <div className="relative group">
           <button 
-            className="flex items-center gap-1 text-sm font-medium text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] transition-colors py-2"
+            className={`flex items-center gap-1 text-sm font-medium transition-colors py-2 ${isScrolled ? 'text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)]' : 'text-white/90 hover:text-white drop-shadow-md'}`}
             onMouseEnter={() => setDropdownOpen('admision')}
             onClick={(e) => {
               if (typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches) {
@@ -107,32 +116,32 @@ export default function Navbar() {
           </div>
         </div>
 
-        <Link href="/arriendo-salon" className="text-sm font-medium text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] transition-colors">
+        <Link href="/arriendo-salon" className={`text-sm font-medium transition-colors ${isScrolled ? 'text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)]' : 'text-white/90 hover:text-white drop-shadow-md'}`}>
           Arriendo de Salón
         </Link>
-        <Link href="/economia-fraterna" className="text-sm font-medium text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] transition-colors">
+        <Link href="/economia-fraterna" className={`text-sm font-medium transition-colors ${isScrolled ? 'text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)]' : 'text-white/90 hover:text-white drop-shadow-md'}`}>
           Economía Fraterna
         </Link>
-        <Link href="/#contacto" className="text-sm font-medium text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)] transition-colors">
+        <Link href="/#contacto" className={`text-sm font-medium transition-colors ${isScrolled ? 'text-[var(--color-waldorf-text)] hover:text-[var(--color-waldorf-moss)]' : 'text-white/90 hover:text-white drop-shadow-md'}`}>
           Contacto
         </Link>
 
         {/* Language Switcher */}
-        <div className="flex gap-2 text-xs font-semibold text-[var(--color-waldorf-sage)] border-l border-[var(--color-waldorf-sage)]/20 pl-4 ml-2">
+        <div className={`flex gap-2 text-xs font-semibold border-l pl-4 ml-2 ${isScrolled ? 'text-[var(--color-waldorf-sage)] border-[var(--color-waldorf-sage)]/20' : 'text-white/70 border-white/20'}`}>
           <button onClick={() => {
             const select = document.querySelector('.goog-te-combo') as HTMLSelectElement;
             if (select) { select.value = 'es'; select.dispatchEvent(new Event('change')); }
-          }} className="hover:text-[var(--color-waldorf-moss)] transition-colors">ES</button>
+          }} className={isScrolled ? 'hover:text-[var(--color-waldorf-moss)] transition-colors' : 'hover:text-white transition-colors'}>ES</button>
           <span>|</span>
           <button onClick={() => {
             const select = document.querySelector('.goog-te-combo') as HTMLSelectElement;
             if (select) { select.value = 'de'; select.dispatchEvent(new Event('change')); }
-          }} className="hover:text-[var(--color-waldorf-moss)] transition-colors">DE</button>
+          }} className={isScrolled ? 'hover:text-[var(--color-waldorf-moss)] transition-colors' : 'hover:text-white transition-colors'}>DE</button>
           <span>|</span>
           <button onClick={() => {
             const select = document.querySelector('.goog-te-combo') as HTMLSelectElement;
             if (select) { select.value = 'en'; select.dispatchEvent(new Event('change')); }
-          }} className="hover:text-[var(--color-waldorf-moss)] transition-colors">EN</button>
+          }} className={isScrolled ? 'hover:text-[var(--color-waldorf-moss)] transition-colors' : 'hover:text-white transition-colors'}>EN</button>
         </div>
       </div>
 

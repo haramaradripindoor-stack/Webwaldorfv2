@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Calendar, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import { createClient } from '@/utils/supabase/server'
+import { getMarkdownPosts } from '@/lib/markdown'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import SmoothScroll from '@/components/SmoothScroll'
@@ -18,16 +19,38 @@ export default async function NoticiasPage() {
   let allNews: any[] = [];
   
   try {
+    let supabaseNews: any[] = [];
     const { data, error } = await supabase
       .from('noticias')
       .select('*')
       .order('published_at', { ascending: false });
       
     if (data && !error) {
-      allNews = data;
+      supabaseNews = data;
     }
+
+    const markdownNews = getMarkdownPosts('_noticias');
+
+    const uniqueNewsMap = new Map();
+    [...markdownNews, ...supabaseNews].forEach(item => {
+      const normalizedTitle = (item.title || '').toLowerCase().trim().replace(/[\W_]+/g, '-');
+      uniqueNewsMap.set(item.slug, item);
+      if (normalizedTitle) {
+        uniqueNewsMap.set(normalizedTitle, item);
+      }
+    });
+    
+    const uniqueItems = Array.from(new Set(uniqueNewsMap.values()));
+    
+    allNews = uniqueItems.sort((a, b) => {
+      const dateA = new Date(a.published_at || a.created_at || a.date).getTime() || 0;
+      const dateB = new Date(b.published_at || b.created_at || b.date).getTime() || 0;
+      return dateB - dateA;
+    });
+
   } catch (e) {
     console.error("Error fetching news:", e);
+    allNews = getMarkdownPosts('_noticias');
   }
 
   return (
