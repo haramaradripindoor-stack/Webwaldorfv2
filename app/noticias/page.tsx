@@ -12,7 +12,7 @@ export const metadata = {
   description: 'Entérate de las últimas novedades, reflexiones y acontecimientos de nuestra comunidad escolar Waldorf en Puerto Varas.',
 }
 
-export const revalidate = 0; // Para que actualice siempre que haya cambios en BD
+export const revalidate = 60; // ISR para permitir lectura de Markdown en Vercel (1 min)
 
 export default async function NoticiasPage() {
   const supabase = createClient();
