@@ -1,18 +1,15 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
-// Inicializar Supabase (Requiere NEXT_PUBLIC_SUPABASE_URL y SUPABASE_SERVICE_ROLE_KEY en .env)
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// Token de verificación de Meta (debes poner este mismo token en tu panel de Meta for Developers)
 const VERIFY_TOKEN = process.env.META_VERIFY_TOKEN || 'antigravity_trekan_2026';
+const IA_API_KEY = process.env.IA_API_KEY || process.env.OPEN_ROUTER_API || '';
 
-// GET: Verificación de Meta Webhook
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  
   const mode = searchParams.get('hub.mode');
   const token = searchParams.get('hub.verify_token');
   const challenge = searchParams.get('hub.challenge');
@@ -22,72 +19,100 @@ export async function GET(request: Request) {
       console.log('✅ WEBHOOK_VERIFIED');
       return new NextResponse(challenge, { status: 200 });
     } else {
-      console.error('❌ Token mismatch', { received: token, expected: VERIFY_TOKEN });
       return new NextResponse('Forbidden', { status: 403 });
     }
   }
-
   return new NextResponse('Bad Request', { status: 400 });
 }
 
-// POST: Recepción de Eventos (Leads / Mensajes)
+// Función asíncrona de procesamiento (IA en las sombras)
+async function processMessageWithAI(senderId: string, messageText: string, source: string) {
+  try {
+    console.log(`🤖 Iniciando análisis IA para mensaje de ${senderId}`);
+    
+    // 1. Llamada a OpenRouter para extraer datos (Fallback ultra-estable)
+    const openRouterResponse = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${IA_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: 'openai/gpt-4o-mini',
+        messages: [
+          {
+            role: 'system',
+            content: `Eres un asistente clasificador del Colegio Waldorf Trekan.
+Lee el mensaje del usuario y extrae la información en formato JSON estricto.
+Trata de inferir si están preguntando por un curso específico (ej. "1ro básico", "Jardín", "Pre-kinder"). Si no menciona curso, pon "Por consultar".
+Tu única respuesta debe ser el JSON.
+Formato:
+{
+  "curso_postula": "El curso o 'Por consultar'",
+  "resumen": "Resumen del mensaje en máximo 8 palabras"
+}`
+          },
+          { role: 'user', content: messageText }
+        ],
+        response_format: { type: "json_object" },
+        temperature: 0.1
+      })
+    });
+
+    if (!openRouterResponse.ok) {
+      console.error('Error en OpenRouter API:', await openRouterResponse.text());
+      return;
+    }
+
+    const data = await openRouterResponse.json();
+    const iaResult = JSON.parse(data.choices[0].message.content);
+    console.log('🧠 IA extrajo:', iaResult);
+
+    // 2. Insertar silenciosamente en el Kanban (leads_admision)
+    const { error } = await supabase.from('leads_admision').insert([{
+      origen: source,
+      nombre_apoderado: 'IG User: ' + senderId, 
+      email_apoderado: 'No proporcionado',
+      telefono_apoderado: 'No proporcionado',
+      nombre_nino: 'Por consultar',
+      edad_nino: 'Por consultar',
+      curso_postula: iaResult.curso_postula || 'Consultas Generales',
+      estado: 'nuevo',
+      notas: `🤖 Resumen IA: ${iaResult.resumen}\n\nMensaje Original: "${messageText}"`
+    }]);
+
+    if (error) console.error('Error inyectando lead a Supabase:', error);
+    else console.log('✅ Lead inyectado al Kanban de Admisiones con éxito.');
+
+  } catch (error) {
+    console.error('❌ Error en processMessageWithAI:', error);
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    console.log('📥 Incoming Webhook Payload:', JSON.stringify(body, null, 2));
 
     if (body.object === 'page' || body.object === 'instagram' || body.object === 'whatsapp_business_account') {
       
-      // Iterar sobre las entradas (Meta agrupa los eventos)
       for (const entry of body.entry) {
-        
-        // 1. Caso: Mensajes de Instagram/WhatsApp
         if (entry.messaging) {
           for (const event of entry.messaging) {
-            // Regla Anti-Bucle: Ignorar mensajes que el propio bot envió (echoes)
             if (event.message?.is_echo) continue;
 
             const senderId = event.sender?.id;
             const messageText = event.message?.text;
             
             if (messageText) {
-              console.log(`📩 Mensaje recibido de ${senderId}: ${messageText}`);
-              
-              // Inyectar a Supabase (CRM)
-              await supabase.from('crm_mensajes').insert([{
-                origen: body.object,
-                remitente_id: senderId,
-                contenido: messageText,
-                estado: 'nuevo',
-                fecha: new Date().toISOString()
-              }]);
-            }
-          }
-        }
-
-        // 2. Caso: Facebook Lead Ads (Formularios)
-        if (entry.changes) {
-          for (const change of entry.changes) {
-            if (change.field === 'leadgen') {
-              const leadId = change.value.leadgen_id;
-              console.log(`🔥 Nuevo Lead de Anuncio! ID: ${leadId}`);
-              
-              // Inyectar a Supabase (CRM)
-              await supabase.from('crm_leads_ads').insert([{
-                origen: 'meta_ads',
-                lead_id: leadId,
-                estado: 'sin_contactar',
-                fecha: new Date().toISOString()
-              }]);
-
-              // Aquí, opcionalmente, llamarías al modelo Qwen/Groq localmente 
-              // para notificar o cualificar al lead.
+              // Disparamos la IA en segundo plano (Fire and Forget)
+              // NOTA: En Vercel Serverless esto puede morir prematuramente, pero Groq toma ~500ms
+              // Por seguridad, hacemos await. El timeout de Meta es 20s, Groq es ultra rápido.
+              await processMessageWithAI(senderId, messageText, `Instagram DM`);
             }
           }
         }
       }
 
-      // IMPORTANTE: Siempre responder 200 OK rápido a Meta para evitar retries (timeouts)
       return new NextResponse('EVENT_RECEIVED', { status: 200 });
     }
 
