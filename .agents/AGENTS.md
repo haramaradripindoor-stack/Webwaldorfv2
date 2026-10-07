@@ -36,3 +36,10 @@ Ante cualquier solicitud de creación (presentaciones, webs, assets, scripts), a
 ## Prevención de Código Redundante (Codebase E2E Audit)
 - **Regla Estricta:** Antes de proponer el desarrollo de cualquier página nueva, componente, CRM o sistema arquitectónico, el agente tiene la OBLIGACIÓN ESTRICTA de realizar un escaneo exploratorio del proyecto (`ls -la app/`, `find_by_name`, o `list_dir`). 
 - **Prohibición de Asumir:** NUNCA asumas que una funcionalidad falta en el proyecto basándote solo en el historial de chat o en herramientas externas usadas por el cliente (ej. Excel). Si el usuario pide una solución, primero verifica exhaustivamente si el ecosistema actual ya la tiene implementada (ej. revisando las rutas de `/admin`).
+
+
+## Reglas de Generación de Voz (TTS) y Audio IA (Trekan)
+- **Prohibición de Voz Comercial:** Todo audio generado por IA (Coqui XTTS, ElevenLabs, etc.) debe mantener el "Marcador Somático de Calma" y el principio de "Slow Living". Están prohibidas las voces rápidas, enérgicas o estilo locutor de radio/TikTok.
+- **Ingeniería de Puntuación:** Para obligar a la IA a respetar la cadencia Waldorf, el texto NO debe escribirse de forma plana. Se deben usar puntos suspensivos (`...`) de manera abundante para forzar respiraciones profundas y pausas antes de los conceptos clave.
+- **Audio de Referencia (Clonación):** La IA clona la emoción y velocidad de la referencia. El audio de referencia para TTS debe ser obligatoriamente un clip corto (6-8s) de alguien hablando *extremadamente lento y con pausas*.
+- **Edición en Bloques:** El audio generado debe exportarse en fragmentos cortos e inyectar 1.5 a 2 segundos de silencio absoluto entre cada frase en el editor de video (CapCut/Premiere) para emular el "ritmo de la infancia".
