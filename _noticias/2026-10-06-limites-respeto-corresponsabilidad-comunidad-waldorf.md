@@ -21,14 +21,14 @@ Si esto es así, el modo en que nos tratamos entre adultos forma parte de la ped
 
 En cualquier comunidad humana surgirán diferencias, dudas y desencuentros. El conflicto en sí mismo no es el problema, sino cómo elegimos abordarlo.
 
-Wember dedica un capítulo al feedback, y de sus ideas tomamos tres orientaciones que valen para ambos lados, familias y colegio:
+Wember dedica dos capítulos al feedback (entre colegas, y con las familias), y de sus ideas tomamos tres orientaciones que valen para ambos lados, familias y colegio:
 
 1. **Buscar primero entender, y luego ser entendido.** Wember recoge este principio de Stephen Covey y muestra que quien no quiere escuchar deja de percibir lo que ocurre con los niños. Para las familias, esto significa acercarse preguntando por el fundamento de una decisión antes de cuestionarla. Para el colegio, significa escuchar con calma la preocupación que hay detrás de cada inquietud. En ambos casos, el entendimiento mutuo viene antes que la defensa.
-2. **El ámbito adecuado.** Una inquietud compleja se resuelve mejor hablando en primera persona ("yo lo he visto así"), sin prisa y en un espacio apropiado, y no en conversaciones de pasillo o en grupos de mensajería. Para que esto sea posible, el colegio ofrece canales claros: entrevistas individuales y presenciales con el maestro de clase, reuniones de apoderados, y los espacios de diálogo con el equipo de Coordinación. Un canal que no existe no se puede pedir que se use.
+2. **El ámbito adecuado.** Una inquietud compleja se resuelve mejor hablando en primera persona ("yo lo he visto así"), sin prisa y en un espacio apropiado, y no en conversaciones de pasillo o en grupos de mensajería. Para que esto sea posible, el colegio ofrece canales claros: entrevistas individuales y presenciales con el maestro de clase, reuniones de apoderados, y los espacios de diálogo con el equipo de Coordinación.
 3. **El aprecio manifiesto.** Siempre que sea posible, una crítica debería expresarse desde un aprecio real por el trabajo del otro. Quien se siente reconocido suele abrirse a escuchar. Pero esto vale en ambas direcciones: las familias también necesitan sentirse escuchadas y valoradas.
 
 ## Ser comunidad es un acto de voluntad
 
 Rechazar el modelo "cliente-proveedor" significa comprender que el colegio no es un ente externo que "nos debe" algo, sino un fuego que mantenemos encendido entre todos.
 
-La corresponsabilidad no significa que los padres asuman roles pedagógicos ni que los maestros dicten la vida familiar. Significa que ambos, desde sus tareas propias, asumen el compromiso maduro de cuidar la relación que los une. Cuando logramos esto, los maestros pueden hacer su trabajo con alegría, las familias se sienten parte de un hogar extendido, y los niños pueden dedicarse a crecer.
+La corresponsabilidad no significa que los padres asuman roles pedagógicos ni que los maestros dicten la vida familiar. Significa que ambos, desde sus tareas propias, asumen el compromiso maduro de cuidar la relación que los une. El respeto mutuo es la base de todo lo anterior: familias y colegio nos debemos un trato digno, también (y especialmente) cuando estamos en desacuerdo. Cuando logramos esto, los maestros pueden hacer su trabajo con alegría, las familias se sienten parte de un hogar extendido, y los niños pueden dedicarse a crecer.
