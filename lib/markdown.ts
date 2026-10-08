@@ -5,7 +5,7 @@ const rootDirectory = process.cwd()
 const noticiasDirectory = path.join(rootDirectory, '_noticias')
 const actividadesDirectory = path.join(rootDirectory, '_actividades')
 
-function parseFrontMatter(fileContents: string) {
+export function parseFrontMatter(fileContents: string) {
   const match = fileContents.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
   if (!match) return { data: {}, content: fileContents };
   

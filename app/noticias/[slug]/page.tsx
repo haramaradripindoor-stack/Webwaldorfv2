@@ -1,4 +1,4 @@
-import { getMarkdownPosts } from '@/lib/markdown'
+import { getMarkdownPosts, parseFrontMatter } from '@/lib/markdown'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ShareButtons from '@/components/ShareButtons'
@@ -73,8 +73,11 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
     )
   }
 
+  // Parse frontmatter if the content comes raw from Supabase
+  const parsedContent = post.content ? parseFrontMatter(post.content).content : '';
+
   const dateStr = new Date(post.published_at).toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric' })
-  const readTime = Math.ceil((post.content?.split(' ').length || 300) / 200) + ' min de lectura'
+  const readTime = Math.ceil((parsedContent.split(' ').length || 300) / 200) + ' min de lectura'
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -253,7 +256,7 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
                     }
                   }}
                 >
-                  {post.content}
+                  {parsedContent}
                 </ReactMarkdown>
               </div>
             </div>
