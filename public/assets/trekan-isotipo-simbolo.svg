@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <title>Trekan - Isotipo Oficial (El Camino que Abriga)</title>
+  <desc>Identidad Visual Colegio Waldorf Trekan, Puerto Varas. Símbolo de cobijo y camino con infancia al centro.</desc>
+  <defs>
+    <style>
+      .camino-linea {
+        fill: none;
+        stroke: #2D2A4F;
+        stroke-width: 26;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .infancia-centro {
+        fill: #D49A2A;
+      }
+    </style>
+  </defs>
+  
+  <!-- El Niño / Infancia en el Centro -->
+  <circle class="infancia-centro" cx="256" cy="246" r="26" />
+  
+  <!-- El Camino que Abriga (Trazo Bézier continuo y sereno) -->
+  <path class="camino-linea" d="M 145 375 C 190 380, 230 355, 270 320 C 315 280, 365 240, 365 195 C 365 130, 305 105, 240 115 C 170 125, 135 185, 145 255 C 155 320, 205 375, 285 385 C 345 390, 385 365, 405 340" />
+</svg>
