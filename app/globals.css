@@ -8,29 +8,24 @@
   font-display: swap;
 }
 @theme {
-  /* Nueva Identidad Trekan (Manual de Marca) */
-  --maqui: #2D2A4F;
-  --nirre: #A8452F;
-  --miel: #D49A2A;
-  --musgo: #6F7F5B;
-  --lana: #F4EEE3;
+  /* Nuevos Colores Premium (Sept 2026) */
+  --color-waldorf-premium-forest: #263A24;
+  --color-waldorf-premium-ivory: #F4EEDF;
+  --color-waldorf-premium-gold: #D9A940;
 
-  --color-waldorf-premium-forest: var(--maqui);
-  --color-waldorf-premium-ivory: var(--lana);
-  --color-waldorf-premium-gold: var(--miel);
+  /* Colores Originales */
+  --color-waldorf-cream: #FAF9F6;
+  --color-waldorf-paper: #FDFBF7;
+  --color-waldorf-sage: #6B8E7B;
+  --color-waldorf-moss: #4A6B53;
+  --color-waldorf-terracotta: #E07A5F;
+  --color-waldorf-mustard: #D4A373;
+  --color-waldorf-text: #2C2A29;
+  --color-waldorf-text-light: #5A5755;
 
-  /* Mapeo de colores antiguos a la nueva identidad */
-  --color-waldorf-cream: var(--lana);
-  --color-waldorf-paper: #FBF8F1; /* Color card del manual */
-  --color-waldorf-sage: var(--musgo);
-  --color-waldorf-moss: var(--maqui); /* Textos principales pasan a Maqui */
-  --color-waldorf-terracotta: var(--nirre);
-  --color-waldorf-mustard: var(--miel);
-  --color-waldorf-text: #26233F; /* Color ink del manual */
-  --color-waldorf-text-light: #625F78; /* Color soft del manual */
-
-  --font-sans: 'Figtree', sans-serif;
-  --font-serif: 'Fraunces', serif;
+  
+  --font-sans: 'Quicksand', sans-serif;
+  --font-serif: 'Merriweather', serif;
   --font-antroposofia: 'Antroposofia', serif;
 
   /* Fluid Math */
