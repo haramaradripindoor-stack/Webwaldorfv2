@@ -67,6 +67,7 @@ async function processMessageWithAI(senderId: string, messageText: string, sourc
             content: `Eres el Asistente del Colegio Waldorf Trekan.
 Lee el mensaje del usuario y extrae la información en JSON estricto.
 Trata de inferir si están preguntando por un curso específico (ej. "1ro básico"). Si no, pon "Por consultar".
+REGLA ESTRICTA DE PRIVACIDAD: NUNCA incluyas nombres propios de adultos o niños en el resumen. Limítate estrictamente a reportar la intención de la consulta, la edad o el curso de interés.
 Formato:
 {
   "curso_postula": "El curso o 'Por consultar'",
@@ -100,7 +101,7 @@ Formato:
       edad_nino: 'Por consultar',
       curso_postula: iaResult.curso_postula || 'Consultas Generales',
       estado: 'nuevo',
-      notas: `🤖 Resumen IA: ${iaResult.resumen}\n\nMensaje Original: "${messageText}"`
+      notas: `🤖 Resumen IA (Anónimo): ${iaResult.resumen}`
     }]);
 
     if (error) console.error('Error inyectando lead a Supabase:', error);
