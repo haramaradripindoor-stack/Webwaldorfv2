@@ -4,20 +4,20 @@ import Script from 'next/script'
 import AIChatWidget from '@/components/AIChatWidget'
 import AwwwardsEffects from '@/components/AwwwardsEffects'
 import dynamic from 'next/dynamic'
-import { Nunito_Sans, Merriweather } from 'next/font/google'
+import { Figtree, Fraunces } from 'next/font/google'
 
-const nunitoSans = Nunito_Sans({ 
+const figtree = Figtree({ 
   subsets: ['latin'], 
   variable: '--font-sans',
   display: 'swap',
-  weight: ['300', '400', '600', '700'],
+  weight: ['400', '600'],
 })
 
-const merriweather = Merriweather({
+const fraunces = Fraunces({
   subsets: ['latin'],
-  weight: ['300', '400', '700'],
   variable: '--font-serif',
   display: 'swap',
+  axes: ['opsz'],
 })
 
 
@@ -163,7 +163,7 @@ export default function RootLayout({
   const GTM_ID = 'GTM-NWT7GVSD'
 
   return (
-    <html lang="es" className={`${nunitoSans.variable} ${merriweather.variable}`}>
+    <html lang="es" className={`${figtree.variable} ${fraunces.variable}`}>
       <head>
         {/* Preconnect a orígenes críticos para reducir LCP */}
         <link rel="preconnect" href="https://ebpioebxcyjpjgiqpjaw.supabase.co" crossOrigin="anonymous" />
