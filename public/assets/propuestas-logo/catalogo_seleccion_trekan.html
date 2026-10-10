@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trekan · Catálogo de Selección de Identidad Visual</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Figtree:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-maqui: #2D2A4F;
+      --color-nirre: #A8452F;
+      --color-miel: #D49A2A;
+      --color-musgo: #6F7F5B;
+      --color-lana: #F4EEE3;
+      --color-card-bg: #FFFFFF;
+      --color-border: #E5DDD0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--color-lana);
+      color: var(--color-maqui);
+      font-family: 'Figtree', system-ui, sans-serif;
+      line-height: 1.6;
+      padding: 40px 20px 80px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 30px;
+    }
+
+    header .tag {
+      display: inline-block;
+      background: var(--color-miel);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-size: 42px;
+      font-weight: 600;
+      color: var(--color-maqui);
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 18px;
+      color: #655F55;
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: 28px;
+      margin: 50px 0 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 10px;
+    }
+
+    .section-title span {
+      background: var(--color-maqui);
+      color: var(--color-lana);
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    /* Grid de Rutas */
+    .routes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .route-card {
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(45, 42, 79, 0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .route-header {
+      padding: 24px 24px 16px 24px;
+      border-bottom: 1px solid #F0EAE1;
+    }
+
+    .route-badge {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-nirre);
+      margin-bottom: 6px;
+    }
+
+    .route-title {
+      font-family: 'Fraunces', serif;
+      font-size: 24px;
+      color: var(--color-maqui);
+    }
+
+    .route-preview-box {
+      background: #FAF7F2;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 260px;
+      border-bottom: 1px solid #F0EAE1;
+    }
+
+    .route-preview-svg {
+      width: 140px;
+      height: 140px;
+      margin-bottom: 15px;
+    }
+
+    .test-16px-box {
+      margin-top: 15px;
+      padding: 10px 16px;
+      background: #FFFFFF;
+      border: 1px dashed var(--color-border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: #655F55;
+    }
+
+    .route-body {
+      padding: 24px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .concept-text {
+      font-size: 14px;
+      color: #4A463F;
+      margin-bottom: 20px;
+    }
+
+    .pros-cons {
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .pro-item {
+      color: #2F6B4F;
+      margin-bottom: 6px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .con-item {
+      color: #9E3F2E;
+      display: flex;
+      gap: 6px;
+    }
+
+    /* Comparativa de Tipografías */
+    .typo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+    }
+
+    .typo-card {
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .typo-sample-fraunces {
+      font-family: 'Fraunces', serif;
+      font-size: 42px;
+      color: var(--color-maqui);
+      margin: 15px 0 5px 0;
+      line-height: 1.1;
+    }
+
+    .typo-sample-lora {
+      font-family: 'Lora', serif;
+      font-size: 40px;
+      color: var(--color-maqui);
+      margin: 15px 0 5px 0;
+      line-height: 1.1;
+    }
+
+    .typo-sample-figtree {
+      font-family: 'Figtree', sans-serif;
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--color-maqui);
+      margin: 15px 0 5px 0;
+      line-height: 1.1;
+    }
+
+    /* Pruebas de Contraste */
+    .contrast-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    .contrast-box-light {
+      background: var(--color-lana);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .contrast-box-dark {
+      background: var(--color-maqui);
+      color: var(--color-lana);
+      border-radius: 12px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    /* Tabla de Decisión */
+    .decision-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: var(--color-card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+    }
+
+    .decision-table th, .decision-table td {
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid #F0EAE1;
+      font-size: 14px;
+    }
+
+    .decision-table th {
+      background: #F8F4ED;
+      font-family: 'Fraunces', serif;
+      font-size: 16px;
+      color: var(--color-maqui);
+    }
+
+    .score-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .score-high { background: #E3F2E6; color: #2E6B40; }
+    .score-mid { background: #FEF3D6; color: #9E6B00; }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 14px;
+      color: #8C8477;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="tag">Tablero de Evaluación y Decisión</span>
+      <h1>Colegio Waldorf Trekan</h1>
+      <p>Opciones de diseño desprendidas de los cuatro briefs de las familias fundadoras para someter a votación y criterio.</p>
+    </header>
+
+    <!-- 1. RUTAS DE ISOTIPO -->
+    <h2 class="section-title"><span>Fase 1</span> Tres Rutas de Isotipo (Símbolo)</h2>
+    
+    <div class="routes-grid">
+      <!-- RUTA 1 -->
+      <div class="route-card">
+        <div class="route-header">
+          <div class="route-badge">Ruta A · La Más Fuerte</div>
+          <h3 class="route-title">El Cobijo con un Centro</h3>
+        </div>
+        <div class="route-preview-box">
+          <img src="trekan-isotipo-simbolo.svg" class="route-preview-svg" alt="Ruta A: Cobijo">
+          <div class="test-16px-box">
+            <span>Prueba 16 px (Favicon):</span>
+            <img src="trekan-isotipo-simbolo.svg" style="width: 16px; height: 16px;" alt="16px test">
+            <span style="color: #2F6B4F; font-weight: 600;">✓ Legible</span>
+          </div>
+        </div>
+        <div class="route-body">
+          <div class="concept-text">
+            <strong>Fundamento:</strong> Nace directamente de las palabras «cobijo», «refugio» y «abrigo». Un camino curvo continuo que envuelve y protege un punto dorado (el niño/la infancia en el centro).
+          </div>
+          <div class="pros-cons">
+            <div class="pro-item">✓ Alto espacio negativo: no se empasta en bordados.</div>
+            <div class="pro-item">✓ Simboliza la comunidad cuidando sin rigidez.</div>
+            <div class="con-item">⚠ Requiere controlar la curva para no parecer una gota o caracol.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RUTA 2 -->
+      <div class="route-card">
+        <div class="route-header">
+          <div class="route-badge">Ruta B · Táctil & Artesanal</div>
+          <h3 class="route-title">El Hilo Continuo / La Ronda</h3>
+        </div>
+        <div class="route-preview-box">
+          <img src="trekan-hilo-ronda.svg" class="route-preview-svg" alt="Ruta B: Hilo">
+          <div class="test-16px-box">
+            <span>Prueba 16 px (Favicon):</span>
+            <img src="trekan-hilo-ronda.svg" style="width: 16px; height: 16px;" alt="16px test">
+            <span style="color: #9E6B00; font-weight: 600;">~ Ajustada</span>
+          </div>
+        </div>
+        <div class="route-body">
+          <div class="concept-text">
+            <strong>Fundamento:</strong> Inspirado en la personalidad de la marca (la abuela que teje, las texturas nobles de lana). Una hebra continua que forma una ronda orgánica en torno al centro.
+          </div>
+          <div class="pros-cons">
+            <div class="pro-item">✓ Máxima calidez humana y orgánica.</div>
+            <div class="pro-item">✓ Conecta con el trabajo manual y la infancia feliz.</div>
+            <div class="con-item">⚠ A tamaños microscópicos (<16 px) las líneas concéntricas pueden unirse.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RUTA 3 -->
+      <div class="route-card">
+        <div class="route-header">
+          <div class="route-badge">Ruta C · Propia & Institucional</div>
+          <h3 class="route-title">El Monograma T (El Refugio)</h3>
+        </div>
+        <div class="route-preview-box">
+          <img src="trekan-monograma-t.svg" class="route-preview-svg" alt="Ruta C: Monograma T">
+          <div class="test-16px-box">
+            <span>Prueba 16 px (Favicon):</span>
+            <img src="trekan-monograma-t.svg" style="width: 16px; height: 16px;" alt="16px test">
+            <span style="color: #2F6B4F; font-weight: 600;">✓ Insuperable</span>
+          </div>
+        </div>
+        <div class="route-body">
+          <div class="concept-text">
+            <strong>Fundamento:</strong> Nace de la búsqueda de tener «identidad propia dentro del universo Waldorf». La letra T toma una curvatura superior que cobija como un tejado, con el punto miel de infancia.
+          </div>
+          <div class="pros-cons">
+            <div class="pro-item">✓ La más reconocible a cualquier escala y distancia.</div>
+            <div class="pro-item">✓ Fuerza institucional inmediata para papelería y sellos.</div>
+            <div class="con-item">⚠ Menos puramente pictórica que el cobijo.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. COMPARATIVA DE TIPOGRAFÍAS -->
+    <h2 class="section-title"><span>Fase 2</span> Opciones Tipográficas para el Nombre «Trekan»</h2>
+    
+    <div class="typo-grid">
+      <!-- OPCION 1: FRAUNCES -->
+      <div class="typo-card">
+        <div class="route-badge">Opción 1 · Recomendada por Puelche</div>
+        <h4 style="font-family: 'Fraunces', serif; font-size: 20px;">Fraunces (Old-Style Variable)</h4>
+        <div class="typo-sample-fraunces">Trekan</div>
+        <p style="font-size: 13px; color: #655F55; margin-top: 10px;">
+          <strong>Voz:</strong> Cálida, de libro antiguo y textura de madera. Equilibra el rigor académico con curvas profundamente amables.
+        </p>
+      </div>
+
+      <!-- OPCION 2: LORA -->
+      <div class="typo-card">
+        <div class="route-badge">Opción 2 · Clásica & Serena</div>
+        <h4 style="font-family: 'Lora', serif; font-size: 20px;">Lora (Serif Humanista)</h4>
+        <div class="typo-sample-lora">Trekan</div>
+        <p style="font-size: 13px; color: #655F55; margin-top: 10px;">
+          <strong>Voz:</strong> Seria, poética y literaria. Da una imagen de colegio maduro y formal sin llegar a la frialdad bancaria.
+        </p>
+      </div>
+
+      <!-- OPCION 3: FIGTREE -->
+      <div class="typo-card">
+        <div class="route-badge">Opción 3 · Contemporánea & Clara</div>
+        <h4 style="font-family: 'Figtree', sans-serif; font-size: 20px;">Figtree (Geometric Sans)</h4>
+        <div class="typo-sample-figtree">Trekan</div>
+        <p style="font-size: 13px; color: #655F55; margin-top: 10px;">
+          <strong>Voz:</strong> Abierta, moderna y transparente. Comunica frescura e impecabilidad en gestión y organización.
+        </p>
+      </div>
+    </div>
+
+    <!-- 3. ARQUITECTURA DE NOMBRE -->
+    <h2 class="section-title"><span>Fase 3</span> Tres Fórmulas de Arquitectura de Nombre</h2>
+    
+    <div class="decision-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Fórmula</th>
+            <th>Composición Visual</th>
+            <th>Cuándo Usarla</th>
+            <th>Objetivo Estratégico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Híbrida Equilibrada</strong></td>
+            <td><strong>Trekan</strong> <br><small style="letter-spacing: 4px; color: var(--color-musgo);">COLEGIO WALDORF</small></td>
+            <td>Firma principal, web header, fachada escolar.</td>
+            <td>Posiciona a Trekan como marca propia, manteniendo el respaldo Waldorf como categoría.</td>
+          </tr>
+          <tr>
+            <td><strong>2. Formal Institucional</strong></td>
+            <td><strong>Colegio Waldorf Trekan</strong></td>
+            <td>Papelería legal, contratos, trámites ante el Mineduc y Google Search (SEO).</td>
+            <td>Claridad burocrática y de búsqueda directa para padres nuevos.</td>
+          </tr>
+          <tr>
+            <td><strong>3. Identidad de Comunidad</strong></td>
+            <td><strong>Trekan</strong> <br><small style="color: var(--color-nirre); font-style: italic;">Educar es cuidar</small></td>
+            <td>Polerones, bolsas de lino, redes sociales y eventos internos.</td>
+            <td>Fomenta el sentido de pertenencia sin sobreexplicar la metodología.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4. MATRIZ DE CRITERIOS DE VOTACIÓN -->
+    <h2 class="section-title"><span>Fase 4</span> Matriz de Votación (Los 4 Filtros del Brief)</h2>
+    
+    <table class="decision-table">
+      <thead>
+        <tr>
+          <th>Criterio de Evaluación</th>
+          <th>Ruta A (Cobijo)</th>
+          <th>Ruta B (Hilo)</th>
+          <th>Ruta C (Monograma T)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1. ¿Comunica cobijo y calidez sin parecer improvisado?</strong></td>
+          <td><span class="score-badge score-high">Excelente (10/10)</span></td>
+          <td><span class="score-badge score-high">Muy Bueno (9/10)</span></td>
+          <td><span class="score-badge score-mid">Bueno (8/10)</span></td>
+        </tr>
+        <tr>
+          <td><strong>2. ¿Tiene identidad propia dentro del universo Waldorf?</strong></td>
+          <td><span class="score-badge score-high">Muy Bueno (9/10)</span></td>
+          <td><span class="score-badge score-mid">Medio (7/10)</span></td>
+          <td><span class="score-badge score-high">Sobresaliente (10/10)</span></td>
+        </tr>
+        <tr>
+          <td><strong>3. ¿Resiste 16 px, bordado de polerón y timbre de madera?</strong></td>
+          <td><span class="score-badge score-high">Sobresaliente (9.5/10)</span></td>
+          <td><span class="score-badge score-mid">Sensible (6.5/10)</span></td>
+          <td><span class="score-badge score-high">Insuperable (10/10)</span></td>
+        </tr>
+        <tr>
+          <td><strong>4. ¿Evita clichés (árbol, hoja, sol, corazón, arcoíris)?</strong></td>
+          <td><span class="score-badge score-high">100% Libre de Clichés</span></td>
+          <td><span class="score-badge score-high">100% Libre de Clichés</span></td>
+          <td><span class="score-badge score-high">100% Libre de Clichés</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <footer>
+      <p>Documento de Trabajo para Evaluación y Selección de Marca · Antigravity Studio · Octubre 2026</p>
+    </footer>
+  </div>
+
+</body>
+</html>

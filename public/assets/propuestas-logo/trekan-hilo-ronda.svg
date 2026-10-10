@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <title>Trekan - Ruta 2: El Hilo Continuo / La Ronda</title>
+  <desc>Exploración vectorial de trazo continuo de lana y ronda comunitaria.</desc>
+  <defs>
+    <style>
+      .hilo-trazo {
+        fill: none;
+        stroke: #2D2A4F;
+        stroke-width: 24;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .hilo-semilla {
+        fill: #D49A2A;
+      }
+    </style>
+  </defs>
+
+  <!-- Semilla / Punto Miel central -->
+  <circle class="hilo-semilla" cx="256" cy="256" r="24" />
+
+  <!-- Hilo continuo que forma una ronda orgánica de protección -->
+  <path class="hilo-trazo" d="M 256 110 C 340 110, 400 175, 400 256 C 400 340, 335 395, 256 395 C 180 395, 120 335, 120 256 C 120 190, 165 145, 220 145 C 270 145, 305 185, 305 235 C 305 280, 270 310, 230 310 C 200 310, 180 290, 180 265 C 180 245, 195 230, 215 230" />
+</svg>
