@@ -34,8 +34,12 @@ Ante cualquier solicitud de creación (presentaciones, webs, assets, scripts), a
 - **Implementación Técnica:** No dudes en instalar dependencias adicionales (como `xlsx` o `exceljs` en Node/Next.js, o `pandas`/`openpyxl` en Python) para construir el archivo Excel con formato correcto. El peso de las dependencias es irrelevante frente a la calidad del entregable para el cliente.
 
 ## Prevención de Código Redundante (Codebase E2E Audit)
-- **Regla Estricta:** Antes de proponer el desarrollo de cualquier página nueva, componente, CRM o sistema arquitectónico, el agente tiene la OBLIGACIÓN ESTRICTA de realizar un escaneo exploratorio del proyecto (`ls -la app/`, `find_by_name`, o `list_dir`). 
-- **Prohibición de Asumir:** NUNCA asumas que una funcionalidad falta en el proyecto basándote solo en el historial de chat o en herramientas externas usadas por el cliente (ej. Excel). Si el usuario pide una solución, primero verifica exhaustivamente si el ecosistema actual ya la tiene implementada (ej. revisando las rutas de `/admin`).
+- **Prohibición de Proponer sin Auditar:** ANTES de escribir cualquier propuesta estratégica para desarrollar una nueva página, componente o CRM, tienes la OBLIGACIÓN ESTRICTA de escanear el sistema de archivos (ej. `ls -R app/admin`) para verificar si el cliente ya lo construyó. NUNCA asumas vacíos funcionales basándote en que el usuario no lo mencionó en el chat. Si el usuario pide una solución, primero verifica exhaustivamente si el ecosistema actual ya la tiene implementada.
+
+## Auditoría de Veracidad (Despliegues, Legal y Datos Históricos)
+- **Despliegues vs. Entorno Local:** NUNCA afirmes que un problema de producción está "solucionado" solo porque editaste un archivo localmente mediante scripts o CLI. Siempre aclara al usuario que el cambio reside en su máquina local y requiere un commit/deploy explícito para afectar el entorno vivo.
+- **Dictámenes Legales y de Privacidad:** NUNCA afirmes que un cambio de código "cumple con la ley" (ej. Ley de Datos Personales). Limítate estrictamente a describir los hechos técnicos verificables (qué datos se guardan, qué no se guarda, y a qué endpoints de terceros se envía la información).
+- **Remediación de Datos Históricos:** Cuando el usuario pida corregir un bug que afectaba el almacenamiento de datos (ej. guardar mensajes privados por error), NUNCA des por terminado el trabajo solo arreglando la función de inserción futura. Es OBLIGATORIO auditar activamente la base de datos (ej. Supabase/SQL) buscando registros antiguos afectados y proponer su limpieza.
 
 
 ## Reglas de Generación de Voz (TTS) y Audio IA (Trekan)
