@@ -36,3 +36,7 @@ scripts/one-off/
 *.log
 screenshot*.png
 .env*
+
+# Brand proposals in evaluation (not deployed to production)
+public/assets/marca-oficial/
+public/assets/propuestas-logo/
