@@ -2,6 +2,7 @@
 title: "Claridad, confianza y cuidado de la infancia: La escuela como organismo vivo"
 excerpt: "Una escuela Waldorf no es una empresa de servicios ni un archipiélago de voluntades aisladas, sino un organismo vivo. Cuando los adultos cuidamos los roles, los canales de diálogo y el respeto mutuo, creamos el suelo firme que los niños necesitan para crecer seguros."
 published_at: "2026-10-14"
+category: "Vida Comunitaria"
 image_url: "/imagenes-web/equipoescolar.jpg"
 ---
 
@@ -64,3 +65,12 @@ Los niños no escuchan nuestros discursos teóricos sobre la paz o la armonía; 
 Ellos perciben si entre sus padres y sus maestros hay una corriente de confianza sólida o una atmósfera de sospecha y tensión. Cuando los adultos nos respetamos, cuidamos los acuerdos y resolvemos las diferencias a través del diálogo sereno y los conductos que corresponden, estamos levantando el suelo firme sobre el cual los niños pueden caminar seguros.
 
 Ese es, en definitiva, el sentido de nuestra comunidad: educarnos como adultos para ofrecer a la infancia un espacio de verdadera serenidad, sentido y cobijo.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Wember, Valentin.** *La gestión de la escuela: Una guía para las escuelas Waldorf*. Editorial Pau de Damasc / Antroposófica. (Especialmente Capítulo 4: «La escuela como organismo vivo», y Capítulos 8 y 9: «El feedback y la comunicación entre colegas y con las familias»).
+* **Steiner, Rudolf.** *El arte de educar y las condiciones pedagógicas* (GA 293) y *La educación del niño desde el punto de vista de la antroposofía* (GA 34). Editorial Rudolf Steiner.
+* **Das Goetheanum — Sección Pedagógica.** *Directrices internacionales sobre liderazgo colegiado y gobernanza comunitaria en escuelas Waldorf*. Dornach, Suiza.
+* **Covey, Stephen R.** *Los 7 hábitos de la gente altamente efectiva*. (Principio de escucha activa citado por Wember: «Buscar primero entender, y luego ser entendido»).

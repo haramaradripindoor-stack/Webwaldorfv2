@@ -1,11 +1,9 @@
-import Link from 'next/link'
-import { Calendar, ArrowRight } from 'lucide-react'
-import Image from 'next/image'
 import { createClient } from '@/utils/supabase/server'
 import { getMarkdownPosts } from '@/lib/markdown'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import SmoothScroll from '@/components/SmoothScroll'
+import NoticiasFilterGrid from '@/components/NoticiasFilterGrid'
 
 export const metadata = {
   title: 'Noticias y Vida Escolar | Colegio Waldorf Trekan',
@@ -76,57 +74,7 @@ export default async function NoticiasPage() {
             </p>
           </header>
 
-          {allNews.length === 0 ? (
-            <div className="text-center py-20">
-              <p className="text-[var(--color-waldorf-text-light)] text-lg">Aún no hay noticias publicadas.</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {allNews.map((post: any, index: number) => (
-                <Link href={`/noticias/${post.slug}`} key={post.id}>
-                  <article 
-                    className="group flex flex-col h-full bg-[var(--color-waldorf-cream)] rounded-3xl overflow-hidden border border-[var(--color-waldorf-sage)]/20 hover:border-[var(--color-waldorf-sage)]/40 earth-shadow earth-shadow-hover transition-all duration-500 interactive"
-                  >
-                    {post.image_url && (
-                      <div className="relative h-64 w-full overflow-hidden shrink-0 border-b border-[var(--color-waldorf-sage)]/10">
-                        <Image
-                          src={post.image_url.startsWith('/images/') ? post.image_url.replace('/images/', '/imagenes-web/') : post.image_url}
-                          alt={post.title}
-                          fill
-                          priority={index <= 2}
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      </div>
-                    )}
-                    
-                    <div className="p-8 flex flex-col flex-grow">
-                      <time className="text-xs font-semibold text-[var(--color-waldorf-terracotta)] flex items-center gap-2 mb-4">
-                        <Calendar size={14} />
-                        {new Date(post.published_at).toLocaleDateString('es-CL', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric'
-                        })}
-                      </time>
-                      <h3 className="text-2xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-4 leading-snug group-hover:text-[var(--color-waldorf-terracotta)] transition-colors">
-                        {post.title}
-                      </h3>
-                      <p className="text-[var(--color-waldorf-text-light)] leading-relaxed mb-8 flex-grow">
-                        {post.excerpt}
-                      </p>
-                      
-                      <span className="text-[var(--color-waldorf-moss)] font-semibold text-sm flex items-center gap-2 mt-auto">
-                        Leer artículo completo
-                        <ArrowRight size={16} className="transform group-hover:translate-x-2 transition-transform" />
-                      </span>
-                    </div>
-                  </article>
-                </Link>
-              ))}
-            </div>
-          )}
+          <NoticiasFilterGrid initialPosts={allNews} />
         </div>
         <Footer />
       </main>

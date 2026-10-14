@@ -41,6 +41,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: `${post.title} | Colegio Waldorf Trekan`,
     description: post.excerpt || 'Noticias y crónicas de la comunidad Waldorf Trekan.',
     keywords: post.meta_keywords || 'colegio waldorf, pedagogia waldorf, puerto varas, educacion alternativa',
+    authors: [{ name: post.author || 'Colegio Waldorf Trekan' }],
+    creator: 'Colegio Waldorf Trekan',
+    publisher: 'Colegio Waldorf Trekan',
     alternates: { canonical: `https://www.colegiowaldorftrekan.cl/noticias/${post.slug}` }
   }
 }
@@ -155,10 +158,14 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
               Volver a Diario
             </Link>
 
-            <div className={`flex gap-4 items-center mb-8 ${!post.image_url && 'justify-center'}`}>
+            <div className={`flex flex-wrap gap-4 items-center mb-8 ${!post.image_url && 'justify-center'}`}>
               <span className="text-xs font-bold uppercase tracking-widest text-[#D35D3E]">{dateStr}</span>
               <span className="w-1 h-1 rounded-full bg-gray-300"></span>
               <span className="text-xs font-bold uppercase tracking-widest text-gray-500">{readTime}</span>
+              <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+              <span className="text-xs font-medium text-[#2C3E35]/80">
+                Por: <strong className="font-semibold text-[#2C3E35]">{post.author || 'Equipo Pedagógico y Fundador'}</strong>
+              </span>
             </div>
 
             <h1 className={`text-5xl md:text-7xl lg:text-8xl font-serif text-[#2C3E35] leading-[0.95] tracking-tight mb-8 ${!post.image_url && 'text-center mx-auto'}`}>
