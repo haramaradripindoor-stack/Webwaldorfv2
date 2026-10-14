@@ -372,7 +372,7 @@ export async function generateBotResponse(
   const m = config?.max_tokens ?? 1000;
 
   const groqPayload = {
-    model: 'llama-3.3-70b-versatile',
+    model: 'qwen/qwen3.8-27b',
     messages: [
       { role: 'system', content: systemPrompt },
       ...messages.map((m) => ({ role: m.role, content: m.content })),

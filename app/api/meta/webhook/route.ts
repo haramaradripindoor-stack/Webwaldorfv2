@@ -6,7 +6,7 @@ const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PU
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const VERIFY_TOKEN = process.env.META_VERIFY_TOKEN || 'antigravity_trekan_2026';
-const IA_API_KEY = process.env.IA_API_KEY || process.env.OPEN_ROUTER_API || '';
+const IA_API_KEY = process.env.OPENROUTER_API_KEY || process.env.IA_API_KEY || process.env.OPEN_ROUTER_API || '';
 const META_ACCESS_TOKEN = process.env.META_ACCESS_TOKEN || '';
 
 export async function GET(request: Request) {

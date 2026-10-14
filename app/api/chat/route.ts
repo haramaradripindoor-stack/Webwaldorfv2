@@ -191,9 +191,9 @@ export async function POST(req: Request) {
     // Construir el System Prompt final con el contexto inyectado
     const finalSystemPrompt = `${BASE_SYSTEM_PROMPT}\n\nBASE DE CONOCIMIENTOS RECUPERADA (RAG):\n${ragContext ? ragContext : 'No se encontró información específica adicional, básate en la información clave general.'}`;
 
-    // 5. Generar respuesta con Llama 3 (Groq) usando ai-sdk
+    // 5. Generar respuesta con Groq usando ai-sdk
     const result = await streamText({
-      model: groq('llama-3.3-70b-versatile'),
+      model: groq('qwen/qwen3.8-27b'),
       system: finalSystemPrompt,
       messages: messages as any,
       temperature: 0.3,

@@ -21,7 +21,7 @@ export async function POST(req: Request) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
+        model: 'qwen/qwen3.8-27b',
         response_format: { type: 'json_object' },
         temperature: 0.7,
         messages: [
