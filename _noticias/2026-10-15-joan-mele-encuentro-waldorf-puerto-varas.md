@@ -5,6 +5,8 @@ published_at: "2026-10-15"
 category: "Comunidad y Gobernanza"
 author: "Colegio Waldorf Trekan"
 image_url: "/imagenes-web/galeria3.webp"
+meta_keywords: "Joan Melé Puerto Varas, Colegio Waldorf Trekan, Economía Fraterna, Educación Waldorf sur de Chile, Taller Joan Melé noviembre, crisis de sentido juvenil, Rudolf Steiner Trimembración"
+keywords: "Joan Melé Puerto Varas, Colegio Waldorf Trekan, Economía Fraterna, Educación Waldorf sur de Chile, Taller Joan Melé noviembre, crisis de sentido juvenil, Rudolf Steiner Trimembración"
 ---
 
 # Joan Melé en Puerto Varas: educación, economía fraterna y sentido de vida
