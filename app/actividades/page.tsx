@@ -3,11 +3,15 @@ import { Calendar } from 'lucide-react'
 import ActividadesClient from '@/components/ActividadesClient'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import SmoothScroll from '@/components/SmoothScroll'
+import type { Metadata } from 'next'
 
-export const metadata = {
-  title: 'Calendario de Actividades | Colegio Waldorf Trekan',
+export const metadata: Metadata = {
+  metadataBase: new URL('https://www.colegiowaldorftrekan.cl'),
+  title: 'Calendario de Actividades | Colegio Waldorf Trekan Puerto Varas',
   description: 'Revisa el calendario completo de nuestras próximas asambleas, festividades, y encuentros para padres.',
+  alternates: {
+    canonical: 'https://www.colegiowaldorftrekan.cl/actividades',
+  },
 }
 
 export const revalidate = 0; // Disable cache so it updates when admin saves
@@ -22,8 +26,7 @@ export default async function ActividadesPage() {
   const allActividades = actividades || [];
 
   return (
-    <SmoothScroll>
-      <main className="min-h-screen bg-[var(--color-waldorf-cream)] pt-32 pb-24 relative">
+    <main className="min-h-screen bg-[var(--color-waldorf-cream)] pt-32 pb-24 relative">
         <Navbar />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <header className="mb-16 text-center max-w-2xl mx-auto">
@@ -48,6 +51,5 @@ export default async function ActividadesPage() {
         </div>
         <Footer />
       </main>
-    </SmoothScroll>
   )
 }

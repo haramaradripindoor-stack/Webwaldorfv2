@@ -54,6 +54,14 @@ export async function updateSession(request: NextRequest) {
     }
   )
 
+  const pathname = request.nextUrl.pathname
+  const requiresAuth = pathname.startsWith('/admin') || pathname === '/login'
+
+  // Si es una ruta pública, omitir la llamada de red a Supabase Auth
+  if (!requiresAuth) {
+    return supabaseResponse
+  }
+
   const {
     data: { user },
   } = await supabase.auth.getUser()

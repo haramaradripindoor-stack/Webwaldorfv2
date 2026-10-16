@@ -2,7 +2,6 @@ import { createClient } from '@/utils/supabase/server'
 import { getMarkdownPosts } from '@/lib/markdown'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import SmoothScroll from '@/components/SmoothScroll'
 import NoticiasFilterGrid from '@/components/NoticiasFilterGrid'
 
 import type { Metadata } from 'next'
@@ -94,26 +93,24 @@ export default async function NoticiasPage() {
   }
 
   return (
-    <SmoothScroll>
-      <main className="min-h-screen bg-[var(--color-waldorf-paper)] pt-32 pb-24 relative">
-        <Navbar />
-        {/* Fondo orgánico */}
-        <div className="absolute top-0 left-0 w-full h-[50vh] rounded-b-[100%] bg-[var(--color-waldorf-sage)]/10 blur-[60px] pointer-events-none" />
+    <main className="min-h-screen bg-[var(--color-waldorf-paper)] pt-32 pb-24 relative">
+      <Navbar />
+      {/* Fondo orgánico */}
+      <div className="absolute top-0 left-0 w-full h-[50vh] rounded-b-[100%] bg-[var(--color-waldorf-sage)]/10 blur-[60px] pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <header className="mb-16 text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-6">
-              Vida Escolar y Noticias
-            </h1>
-            <p className="text-[var(--color-waldorf-text-light)] text-lg md:text-xl leading-relaxed">
-              Reflexiones pedagógicas, crónicas de nuestras festividades y el día a día de nuestra comunidad educativa en el sur de Chile.
-            </p>
-          </header>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <header className="mb-16 text-center max-w-3xl mx-auto">
+          <h1 className="text-4xl md:text-6xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-6">
+            Vida Escolar y Noticias
+          </h1>
+          <p className="text-[var(--color-waldorf-text-light)] text-lg md:text-xl leading-relaxed">
+            Reflexiones pedagógicas, crónicas de nuestras festividades y el día a día de nuestra comunidad educativa en el sur de Chile.
+          </p>
+        </header>
 
-          <NoticiasFilterGrid initialPosts={allNews} />
-        </div>
-        <Footer />
-      </main>
-    </SmoothScroll>
+        <NoticiasFilterGrid initialPosts={allNews} />
+      </div>
+      <Footer />
+    </main>
   )
 }

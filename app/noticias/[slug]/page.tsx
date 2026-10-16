@@ -5,7 +5,6 @@ import ShareButtons from '@/components/ShareButtons'
 import Image from 'next/image'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
-import SmoothScroll from '@/components/SmoothScroll'
 import ReactMarkdown from 'react-markdown'
 import MDXGallery from '@/components/MDXGallery'
 
@@ -154,7 +153,7 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
     : 'Comunidad y educación en el Colegio Waldorf Trekan, Puerto Varas';
 
   return (
-    <SmoothScroll>
+    <>
       {/* JSON-LD Schema.org SEO */}
       <script
         type="application/ld+json"
@@ -340,6 +339,6 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
           100% { transform: scaleX(1); }
         }
       `}} />
-    </SmoothScroll>
+    </>
   )
 }

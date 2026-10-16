@@ -5,8 +5,12 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Economía Fraterna | Colegio Waldorf Trekan',
+  metadataBase: new URL('https://www.colegiowaldorftrekan.cl'),
+  title: 'Economía Fraterna | Colegio Waldorf Trekan Puerto Varas',
   description: 'Apoya el impulso educativo de nuestro organismo vivo mediante aportes directos al aula y al sostenimiento de nuestros maestros.',
+  alternates: {
+    canonical: 'https://www.colegiowaldorftrekan.cl/economia-fraterna',
+  },
 };
 
 export default function EconomiaFraternaPage() {

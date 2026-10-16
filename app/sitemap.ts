@@ -12,7 +12,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/arriendo-salon',
     '/noticias',
     '/recursos',
-    '/actividades'
+    '/actividades',
+    '/trabaja-con-nosotros',
+    '/economia-fraterna'
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString().split('T')[0],

@@ -227,7 +227,7 @@ export default function RootLayout({
         {/* Google Translate Hidden Element & Scripts - lazyOnload para no bloquear main thread */}
         <div id="google_translate_element" style={{ display: 'none' }} />
         <Script 
-          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" 
+          src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" 
           strategy="lazyOnload" 
         />
         <Script id="google-translate-init" strategy="lazyOnload">

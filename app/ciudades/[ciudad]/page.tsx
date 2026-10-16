@@ -20,7 +20,6 @@ import RadicalTransparency from '@/components/RadicalTransparency';
 import Footer from '@/components/Footer';
 import { getMarkdownPosts } from '@/lib/markdown';
 import { createClient } from '@/utils/supabase/server';
-import SmoothScroll from '@/components/SmoothScroll';
 
 // Generar rutas estáticas para estas ciudades clave
 export function generateStaticParams() {
@@ -41,25 +40,37 @@ export async function generateMetadata({ params }: { params: { ciudad: string } 
   const ciudadLimpia = params.ciudad.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   const title = `Colegio Waldorf ${ciudadLimpia} | Educación hacia la libertad en Trekan`;
   const description = `¿Buscas un Colegio Waldorf cerca de ${ciudadLimpia}? Conoce Trekan, una comunidad educativa en el sur de Chile basada en la Pedagogía Waldorf.`;
+  const canonicalUrl = `https://www.colegiowaldorftrekan.cl/colegio-waldorf-${params.ciudad}`;
   
   return {
+    metadataBase: new URL('https://www.colegiowaldorftrekan.cl'),
     title,
     description,
     keywords: `colegio waldorf ${ciudadLimpia}, educacion waldorf ${ciudadLimpia}, escuela waldorf ${ciudadLimpia}, pedagogia waldorf, sur de chile`,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title,
       description,
-      url: `https://www.colegiowaldorftrekan.cl/colegio-waldorf-${params.ciudad}`,
+      url: canonicalUrl,
       siteName: 'Colegio Waldorf Trekan',
       images: [
         {
-          url: '/assets/logo.png',
-          width: 800,
-          height: 600,
+          url: 'https://www.colegiowaldorftrekan.cl/imagenes-web/paseocerro20261.jpg',
+          width: 1200,
+          height: 630,
+          alt: `Colegio Waldorf Trekan para familias de ${ciudadLimpia}`,
         },
       ],
       locale: 'es_CL',
       type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['https://www.colegiowaldorftrekan.cl/imagenes-web/paseocerro20261.jpg'],
     },
   };
 }
@@ -135,7 +146,7 @@ export default async function RegionalPage({ params }: { params: { ciudad: strin
     "description": `Comunidad educativa Waldorf recibiendo familias de ${ciudadLimpia} y el sur de Chile.`,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://www.colegiowaldorftrekan.cl/ciudades/${params.ciudad.toLowerCase()}`
+      "@id": `https://www.colegiowaldorftrekan.cl/colegio-waldorf-${params.ciudad.toLowerCase()}`
     },
     "address": {
       "@type": "PostalAddress",
@@ -148,7 +159,7 @@ export default async function RegionalPage({ params }: { params: { ciudad: strin
       "latitude": cityGeo.lat,
       "longitude": cityGeo.lon
     },
-    "url": `https://www.colegiowaldorftrekan.cl/ciudades/${params.ciudad.toLowerCase()}`,
+    "url": `https://www.colegiowaldorftrekan.cl/colegio-waldorf-${params.ciudad.toLowerCase()}`,
     "telephone": "+56967765106",
     "sameAs": [
       "https://www.instagram.com/waldorftrekanpv/",
@@ -165,7 +176,7 @@ export default async function RegionalPage({ params }: { params: { ciudad: strin
   };
 
   return (
-    <SmoothScroll>
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -200,6 +211,6 @@ export default async function RegionalPage({ params }: { params: { ciudad: strin
         <RadicalTransparency />
         <Footer />
       </main>
-    </SmoothScroll>
+    </>
   )
 }

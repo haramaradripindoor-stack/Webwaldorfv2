@@ -140,7 +140,11 @@ export default function Hero({ data }: { data?: any }) {
             Puerto Varas, Chile
           </motion.div>
 
-          <h1 className="font-bold tracking-tighter mb-8 leading-[1.1] font-serif text-white drop-shadow-2xl flex flex-wrap justify-center gap-x-4 md:gap-x-8 max-w-5xl" style={{ fontSize: 'var(--text-fluid-hero)' }}>
+          <h1 
+            aria-label={title}
+            className="font-bold tracking-tighter mb-8 leading-[1.1] font-serif text-white drop-shadow-2xl flex flex-wrap justify-center gap-x-4 md:gap-x-8 max-w-5xl" 
+            style={{ fontSize: 'var(--text-fluid-hero)' }}
+          >
             {titleWords.map((word, idx) => (
               <motion.span
                 key={idx}

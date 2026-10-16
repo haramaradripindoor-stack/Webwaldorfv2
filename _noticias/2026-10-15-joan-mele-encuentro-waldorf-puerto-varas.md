@@ -4,7 +4,7 @@ excerpt: "Del 27 al 29 de noviembre, Joan Antoni Melé, referente de la banca é
 published_at: "2026-10-15"
 category: "Comunidad y Gobernanza"
 author: "Colegio Waldorf Trekan"
-image_url: "/imagenes-web/galeria3.webp"
+image_url: "/imagenes-web/joan-mele-puerto-varas.jpg"
 meta_keywords: "Joan Melé Puerto Varas, Colegio Waldorf Trekan, Economía Fraterna, Educación Waldorf sur de Chile, Taller Joan Melé noviembre, crisis de sentido juvenil, Rudolf Steiner Trimembración"
 keywords: "Joan Melé Puerto Varas, Colegio Waldorf Trekan, Economía Fraterna, Educación Waldorf sur de Chile, Taller Joan Melé noviembre, crisis de sentido juvenil, Rudolf Steiner Trimembración"
 ---

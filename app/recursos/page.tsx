@@ -3,7 +3,6 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { ExternalLink, BookOpen, HeartPulse, Users, Bookmark, FileText } from 'lucide-react';
 import Image from 'next/image';
-import SmoothScroll from '@/components/SmoothScroll';
 
 export const metadata = {
   title: 'Recursos Waldorf en Chile | Directorio y Comunidad',
@@ -87,8 +86,7 @@ const RECURSOS: RecursoCategory[] = [
 
 export default function RecursosPage() {
   return (
-    <SmoothScroll>
-      <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-hidden selection:bg-[var(--color-waldorf-sage)] selection:text-white">
+    <main className="min-h-screen bg-[var(--color-waldorf-cream)] overflow-hidden selection:bg-[var(--color-waldorf-sage)] selection:text-white">
         <Navbar />
         
         {/* Hero */}
@@ -175,6 +173,5 @@ export default function RecursosPage() {
         
         <Footer />
       </main>
-    </SmoothScroll>
   );
 }
