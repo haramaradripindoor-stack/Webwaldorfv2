@@ -137,6 +137,23 @@ export default function TeacherForm() {
               <div className="space-y-2">
                 <label className="font-sans text-sm font-medium text-[#2C3329]">Carta de Motivación Breve</label>
                 <textarea name="motivation" rows={4} className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all resize-none" placeholder="Cuéntanos brevemente sobre tu relación con la pedagogía Waldorf y por qué te gustaría unirte a Trekan..."></textarea>
+              {/* Campo trampa antispam (Honeypot) - invisible para humanos */}
+              <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>
+                <label htmlFor="hp_website">No completar este campo</label>
+                <input id="hp_website" name="hp_website" type="text" tabIndex={-1} autoComplete="off" />
+              </div>
+
+              <div className="flex items-start gap-3 pt-1">
+                <input 
+                  id="consent" 
+                  name="consent" 
+                  required 
+                  type="checkbox" 
+                  className="mt-1 w-4 h-4 rounded text-[#4A5D23] border-[#E8E3D9] focus:ring-[#4A5D23] cursor-pointer" 
+                />
+                <label htmlFor="consent" className="font-sans text-xs text-[#5C6656] leading-relaxed cursor-pointer">
+                  Autorizo el tratamiento de mis antecedentes y datos de contacto conforme a la Ley N° 19.628 para fines exclusivos de selección del Colegio Waldorf Trekan.
+                </label>
               </div>
               
               {errorMsg && (

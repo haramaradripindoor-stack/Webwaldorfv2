@@ -21,6 +21,13 @@ const formSchema = z.object({
 
 export async function submitTeacher(formData: FormData) {
   try {
+    // 0. Filtro Anti-spam Honeypot
+    const hp = formData.get('hp_website') as string
+    if (hp && hp.trim().length > 0) {
+      console.warn('Bot de spam interceptado por honeypot en submitTeacher')
+      return { success: true } // Respuesta exitosa falsa para engañar al bot
+    }
+
     const rawData = {
       fullName: formData.get('fullName') as string,
       email: formData.get('email') as string,
