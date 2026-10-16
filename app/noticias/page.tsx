@@ -5,9 +5,45 @@ import Footer from '@/components/Footer'
 import SmoothScroll from '@/components/SmoothScroll'
 import NoticiasFilterGrid from '@/components/NoticiasFilterGrid'
 
-export const metadata = {
-  title: 'Noticias y Vida Escolar | Colegio Waldorf Trekan',
-  description: 'Entérate de las últimas novedades, reflexiones y acontecimientos de nuestra comunidad escolar Waldorf en Puerto Varas.',
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://www.colegiowaldorftrekan.cl'),
+  title: 'Noticias y Vida Escolar | Colegio Waldorf Trekan Puerto Varas',
+  description: 'Entérate de las últimas novedades, reflexiones pedagógicas y acontecimientos de nuestra comunidad escolar Waldorf en Puerto Varas.',
+  keywords: [
+    'Colegio Waldorf Trekan',
+    'Noticias Waldorf Puerto Varas',
+    'Pedagogía Waldorf sur de Chile',
+    'Educación alternativa Puerto Varas',
+    'Vida comunitaria Waldorf',
+    'Crianza consciente Puerto Varas'
+  ],
+  alternates: {
+    canonical: 'https://www.colegiowaldorftrekan.cl/noticias',
+  },
+  openGraph: {
+    title: 'Noticias y Vida Escolar | Colegio Waldorf Trekan Puerto Varas',
+    description: 'Entérate de las últimas novedades, reflexiones pedagógicas y acontecimientos de nuestra comunidad escolar Waldorf en Puerto Varas.',
+    url: 'https://www.colegiowaldorftrekan.cl/noticias',
+    siteName: 'Colegio Waldorf Trekan',
+    locale: 'es_CL',
+    type: 'website',
+    images: [
+      {
+        url: 'https://www.colegiowaldorftrekan.cl/imagenes-web/galeria10.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Comunidad escolar y vida pedagógica en el Colegio Waldorf Trekan, Puerto Varas',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Noticias y Vida Escolar | Colegio Waldorf Trekan Puerto Varas',
+    description: 'Entérate de las últimas novedades, reflexiones pedagógicas y acontecimientos de nuestra comunidad escolar Waldorf en Puerto Varas.',
+    images: ['https://www.colegiowaldorftrekan.cl/imagenes-web/galeria10.webp'],
+  },
 }
 
 export const revalidate = 60; // ISR para permitir lectura de Markdown en Vercel (1 min)

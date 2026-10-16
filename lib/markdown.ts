@@ -1,29 +1,39 @@
 import fs from 'fs'
 import path from 'path'
 
+import matter from 'gray-matter'
+
 const rootDirectory = process.cwd()
 const noticiasDirectory = path.join(rootDirectory, '_noticias')
 const actividadesDirectory = path.join(rootDirectory, '_actividades')
 
 export function parseFrontMatter(fileContents: string) {
-  const match = fileContents.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
-  if (!match) return { data: {}, content: fileContents };
-  
-  const yamlString = match[1];
-  const content = match[2];
-  const data: Record<string, any> = {};
-  
-  yamlString.split(/\r?\n/).forEach(line => {
-    const colonIndex = line.indexOf(':');
-    if (colonIndex > -1) {
-      const key = line.substring(0, colonIndex).trim();
-      let value = line.substring(colonIndex + 1).trim();
-      if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
-      else if (value.startsWith("'") && value.endsWith("'")) value = value.slice(1, -1);
-      data[key] = value;
-    }
-  });
-  return { data, content };
+  try {
+    const parsed = matter(fileContents);
+    return { 
+      data: (parsed.data || {}) as Record<string, any>, 
+      content: parsed.content || '' 
+    };
+  } catch {
+    const match = fileContents.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+    if (!match) return { data: {}, content: fileContents };
+    
+    const yamlString = match[1];
+    const content = match[2];
+    const data: Record<string, any> = {};
+    
+    yamlString.split(/\r?\n/).forEach(line => {
+      const colonIndex = line.indexOf(':');
+      if (colonIndex > -1) {
+        const key = line.substring(0, colonIndex).trim();
+        let value = line.substring(colonIndex + 1).trim();
+        if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
+        else if (value.startsWith("'") && value.endsWith("'")) value = value.slice(1, -1);
+        data[key] = value;
+      }
+    });
+    return { data, content };
+  }
 }
 
 export interface MarkdownPost {
@@ -73,8 +83,10 @@ export function getMarkdownPosts(folder: '_noticias' | '_actividades'): Markdown
         id: slug,
         slug,
         title: data.title || data.nombre || data.titulo || 'Sin título',
-        excerpt: data.excerpt || data.descripcion || content.substring(0, 150) + '...',
+        excerpt: data.excerpt || data.descripcion || data.description || (content ? content.replace(/[#*`_\[\]]/g, '').trim().substring(0, 160) + '...' : 'Noticias y crónicas de la comunidad Colegio Waldorf Trekan.'),
         content,
+        author: data.author || data.autor || 'Colegio Waldorf Trekan',
+        meta_keywords: data.meta_keywords || data.keywords || (Array.isArray(data.tags) ? data.tags.join(', ') : data.tags) || `${data.title || 'vida escolar'}, colegio waldorf puerto varas, pedagogia waldorf, educacion alternativa`,
         image_url: (() => {
           let img = data.image_url || data.imageUrl || data.imagen || data.foto || data.coverImage || '/imagenes-web/galeria3.webp';
           if (img && img.startsWith('/images/')) {

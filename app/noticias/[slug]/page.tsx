@@ -37,14 +37,49 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   if (!post) return { title: 'Noticia no encontrada | Colegio Waldorf Trekan' }
 
+  const title = `${post.title} | Colegio Waldorf Trekan`;
+  const description = post.excerpt || post.description || 'Noticias, pedagogía y reflexiones de la comunidad del Colegio Waldorf Trekan en Puerto Varas.';
+  const canonicalUrl = `https://www.colegiowaldorftrekan.cl/noticias/${post.slug}`;
+  
+  let rawImg = post.image_url || post.imageUrl || post.coverImage || '/imagenes-web/galeria3.webp';
+  if (rawImg.startsWith('/images/')) rawImg = rawImg.replace('/images/', '/imagenes-web/');
+  if (rawImg.startsWith('images/')) rawImg = rawImg.replace('images/', '/imagenes-web/');
+  const ogImageUrl = rawImg.startsWith('http') ? rawImg : `https://www.colegiowaldorftrekan.cl${rawImg.startsWith('/') ? rawImg : '/' + rawImg}`;
+  const keywords = post.meta_keywords || post.keywords || `${post.title}, colegio waldorf puerto varas, pedagogia waldorf, educacion alternativa sur de chile`;
+
   return {
-    title: `${post.title} | Colegio Waldorf Trekan`,
-    description: post.excerpt || 'Noticias y crónicas de la comunidad Waldorf Trekan.',
-    keywords: post.meta_keywords || 'colegio waldorf, pedagogia waldorf, puerto varas, educacion alternativa',
-    authors: [{ name: post.author || 'Colegio Waldorf Trekan' }],
+    metadataBase: new URL('https://www.colegiowaldorftrekan.cl'),
+    title,
+    description,
+    keywords,
+    authors: [{ name: post.author || 'Colegio Waldorf Trekan', url: 'https://www.colegiowaldorftrekan.cl' }],
     creator: 'Colegio Waldorf Trekan',
     publisher: 'Colegio Waldorf Trekan',
-    alternates: { canonical: `https://www.colegiowaldorftrekan.cl/noticias/${post.slug}` }
+    alternates: { canonical: canonicalUrl },
+    openGraph: {
+      title,
+      description,
+      url: canonicalUrl,
+      siteName: 'Colegio Waldorf Trekan',
+      locale: 'es_CL',
+      type: 'article',
+      publishedTime: post.published_at || post.created_at,
+      authors: [post.author || 'Colegio Waldorf Trekan'],
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${post.title} | Colegio Waldorf Trekan Puerto Varas`
+        }
+      ]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImageUrl]
+    }
   }
 }
 
@@ -79,8 +114,13 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
   // Parse frontmatter if the content comes raw from Supabase
   const parsedContent = post.content ? parseFrontMatter(post.content).content : '';
 
-  const dateStr = new Date(post.published_at).toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric' })
+  const dateStr = new Date(post.published_at || post.created_at || Date.now()).toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric' })
   const readTime = Math.ceil((parsedContent.split(' ').length || 300) / 200) + ' min de lectura'
+
+  let rawImg = post.image_url || post.imageUrl || post.coverImage || '/imagenes-web/galeria3.webp';
+  if (rawImg.startsWith('/images/')) rawImg = rawImg.replace('/images/', '/imagenes-web/');
+  if (rawImg.startsWith('images/')) rawImg = rawImg.replace('images/', '/imagenes-web/');
+  const fullImageUrl = rawImg.startsWith('http') ? rawImg : `https://www.colegiowaldorftrekan.cl${rawImg.startsWith('/') ? rawImg : '/' + rawImg}`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -90,15 +130,12 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
       "@id": `https://www.colegiowaldorftrekan.cl/noticias/${post.slug}`
     },
     "headline": post.title,
-    "image": post.image_url ? [
-      post.image_url.startsWith('/') 
-        ? `https://www.colegiowaldorftrekan.cl${post.image_url}` 
-        : post.image_url.replace('/images/', '/imagenes-web/')
-    ] : ["https://www.colegiowaldorftrekan.cl/assets/logo.png"],
-    "datePublished": new Date(post.published_at).toISOString(),
-    "dateModified": new Date(post.published_at).toISOString(),
+    "description": post.excerpt || post.description || "Noticia y reflexión pedagógica del Colegio Waldorf Trekan en Puerto Varas.",
+    "image": [fullImageUrl],
+    "datePublished": new Date(post.published_at || post.created_at || Date.now()).toISOString(),
+    "dateModified": new Date(post.published_at || post.created_at || Date.now()).toISOString(),
     "author": {
-      "@type": post.author ? "Person" : "Organization",
+      "@type": "Organization",
       "name": post.author || "Colegio Waldorf Trekan",
       "url": "https://www.colegiowaldorftrekan.cl"
     },
@@ -109,36 +146,20 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
         "@type": "ImageObject",
         "url": "https://www.colegiowaldorftrekan.cl/assets/logo.png"
       }
-    },
-    "description": post.excerpt || "Noticia del Colegio Waldorf Trekan"
+    }
   };
+
+  const heroAlt = post.title 
+    ? `${post.title} | Colegio Waldorf Trekan Puerto Varas` 
+    : 'Comunidad y educación en el Colegio Waldorf Trekan, Puerto Varas';
+
   return (
     <SmoothScroll>
       {/* JSON-LD Schema.org SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": post.title,
-            "description": post.excerpt,
-            "image": post.image_url ? [post.image_url.startsWith('http') ? post.image_url : `https://www.colegiowaldorftrekan.cl${post.image_url.replace('images/', '/imagenes-web/')}`] : [],
-            "datePublished": post.created_at,
-            "author": [{
-                "@type": "Organization",
-                "name": "Colegio Waldorf Trekan",
-                "url": "https://www.colegiowaldorftrekan.cl"
-            }],
-            "publisher": {
-              "@type": "Organization",
-              "name": "Colegio Waldorf Trekan",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://www.colegiowaldorftrekan.cl/logo.png"
-              }
-            }
-          })
+          __html: JSON.stringify(jsonLd)
         }}
       />
       <main className="w-full bg-[#FAF9F6] min-h-screen font-sans selection:bg-[#D35D3E]/20 selection:text-white relative">
@@ -194,7 +215,7 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
               ) : (
                 <Image
                   src={post.image_url.startsWith('/images/') ? post.image_url.replace('/images/', '/imagenes-web/') : post.image_url.startsWith('images/') ? post.image_url.replace('images/', '/imagenes-web/') : post.image_url}
-                  alt={post.title}
+                  alt={heroAlt}
                   fill
                   className="object-cover"
                   priority
@@ -253,6 +274,33 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
                     ),
                     a: ({node, ...props}) => <a className="text-[#D35D3E] hover:text-[#903a22] hover:bg-[#D35D3E]/10 underline underline-offset-8 decoration-1 font-medium transition-all px-1 -mx-1" {...props} />,
                     strong: ({node, ...props}) => <strong className="font-semibold text-gray-900 bg-[#FAF9F6] px-1" {...props} />,
+                    img: ({node, src, alt, ...props}) => {
+                      const rawSrc = typeof src === 'string' ? src : '';
+                      const safeSrc = rawSrc.startsWith('/images/') 
+                        ? rawSrc.replace('/images/', '/imagenes-web/') 
+                        : rawSrc.startsWith('images/') 
+                        ? rawSrc.replace('images/', '/imagenes-web/') 
+                        : rawSrc;
+                      const safeAlt = alt && alt.trim().length > 0 
+                        ? `${alt} | Colegio Waldorf Trekan Puerto Varas` 
+                        : `${post.title} | Colegio Waldorf Trekan Puerto Varas`;
+                      return (
+                        <figure className="my-12">
+                          <img
+                            src={safeSrc}
+                            alt={safeAlt}
+                            loading="lazy"
+                            className="w-full h-auto rounded-2xl shadow-sm border border-[#2C3E35]/10 object-cover"
+                            {...props}
+                          />
+                          {alt && alt.trim().length > 0 && (
+                            <figcaption className="text-center text-xs text-gray-500 mt-3 font-light italic">
+                              {alt}
+                            </figcaption>
+                          )}
+                        </figure>
+                      );
+                    },
                     code: ({node, className, children, ...props}) => {
                       const match = /language-(\w+)/.exec(className || '');
                       if (match && match[1] === 'gallery') {

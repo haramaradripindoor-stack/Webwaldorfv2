@@ -201,7 +201,7 @@ export default function NoticiasFilterGrid({ initialPosts }: { initialPosts: New
                     <div className="relative h-64 w-full overflow-hidden shrink-0 border-b border-[var(--color-waldorf-sage)]/10">
                       <Image
                         src={imgSrc}
-                        alt={post.title}
+                        alt={post.title ? `${post.title} | Colegio Waldorf Trekan Puerto Varas` : 'Comunidad y educación en el Colegio Waldorf Trekan, Puerto Varas'}
                         fill
                         priority={index <= 2}
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
