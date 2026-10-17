@@ -1,39 +1,32 @@
 import fs from 'fs'
 import path from 'path'
 
-import matter from 'gray-matter'
-
 const rootDirectory = process.cwd()
 const noticiasDirectory = path.join(rootDirectory, '_noticias')
 const actividadesDirectory = path.join(rootDirectory, '_actividades')
 
 export function parseFrontMatter(fileContents: string) {
-  try {
-    const parsed = matter(fileContents);
-    return { 
-      data: (parsed.data || {}) as Record<string, any>, 
-      content: parsed.content || '' 
-    };
-  } catch {
-    const match = fileContents.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
-    if (!match) return { data: {}, content: fileContents };
-    
-    const yamlString = match[1];
-    const content = match[2];
-    const data: Record<string, any> = {};
-    
-    yamlString.split(/\r?\n/).forEach(line => {
-      const colonIndex = line.indexOf(':');
-      if (colonIndex > -1) {
-        const key = line.substring(0, colonIndex).trim();
-        let value = line.substring(colonIndex + 1).trim();
-        if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
-        else if (value.startsWith("'") && value.endsWith("'")) value = value.slice(1, -1);
-        data[key] = value;
+  const match = fileContents.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+  if (!match) return { data: {} as Record<string, any>, content: fileContents };
+
+  const yamlString = match[1];
+  const content = match[2];
+  const data: Record<string, any> = {};
+
+  yamlString.split(/\r?\n/).forEach(line => {
+    const colonIndex = line.indexOf(':');
+    if (colonIndex > -1) {
+      const key = line.substring(0, colonIndex).trim();
+      let value: any = line.substring(colonIndex + 1).trim();
+      if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+        value = value.slice(1, -1);
+      } else if (value.startsWith('[') && value.endsWith(']')) {
+        value = value.slice(1, -1).split(',').map((s: string) => s.trim().replace(/^["']|["']$/g, ''));
       }
-    });
-    return { data, content };
-  }
+      data[key] = value;
+    }
+  });
+  return { data, content };
 }
 
 export interface MarkdownPost {

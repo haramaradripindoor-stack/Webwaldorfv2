@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverComponentsExternalPackages: ['gray-matter']
-  },
+
   images: {
     loader: 'custom',
     loaderFile: './supabase-image-loader.js',
