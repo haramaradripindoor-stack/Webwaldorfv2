@@ -88,11 +88,23 @@ export default function AIChatWidget() {
               >
                 <X size={20} />
               </button>
-              <div className="pr-6">
-                <h4 className="text-[var(--color-waldorf-cream)] font-bold text-lg font-serif mb-1">Hablemos</h4>
-                <p className="text-[var(--color-waldorf-cream)]/80 text-xs font-medium leading-relaxed">
-                  Déjanos tus datos y la coordinadora de admisión te contactará para agendar una visita o resolver tus dudas.
-                </p>
+              <div className="flex items-center gap-3.5 pr-6">
+                <img 
+                  src="/assets/Coordinadora.png" 
+                  alt="Ivonne Parada Aravena" 
+                  className="w-12 h-12 rounded-full object-cover border-2 border-[var(--color-waldorf-mustard)]/50 shadow-md shrink-0 bg-white/10"
+                />
+                <div>
+                  <h4 className="text-[var(--color-waldorf-cream)] font-bold text-base font-serif leading-tight">
+                    Ivonne Parada Aravena
+                  </h4>
+                  <p className="text-[var(--color-waldorf-mustard)] text-xs font-semibold tracking-wide">
+                    Coordinadora General · Trekan
+                  </p>
+                  <p className="text-[var(--color-waldorf-cream)]/80 text-[11px] leading-tight mt-1">
+                    Déjanos tus datos y te contactaremos para agendar tu visita o resolver dudas.
+                  </p>
+                </div>
               </div>
             </div>
 

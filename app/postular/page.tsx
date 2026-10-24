@@ -1,10 +1,11 @@
+import { Suspense } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import FormularioPostulacionCompleto from '@/components/FormularioPostulacionCompleto'
 
 export const metadata = {
-  title: 'Postulación Online | Colegio Waldorf Trekan',
-  description: 'Formulario oficial de postulación y admisión para el Colegio Waldorf Trekan en Puerto Varas.',
+  title: 'Ficha de Encuentro Familiar (Paso 2) | Colegio Waldorf Trekan',
+  description: 'Ficha pedagógica confidencial previa a la visita con la Coordinadora General y maestros de Trekan.',
 }
 
 export default function PostularPage() {
@@ -19,18 +20,20 @@ export default function PostularPage() {
         
         <div className="relative z-10 max-w-4xl mx-auto text-center mb-12">
           <span className="text-[var(--color-waldorf-mustard)] font-bold tracking-widest uppercase text-sm mb-4 block">
-            Admisión 2026
+            Paso 2 · Encuentro Pedagógico
           </span>
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
-            Conozcámonos a fondo
+            Ficha de Encuentro Familiar
           </h1>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">
-            Este formulario reemplaza nuestra antigua encuesta de Google. La información que nos confías aquí nos permite entender las necesidades de tu familia y preparar nuestro primer encuentro.
+          <p className="text-white/85 text-lg max-w-2xl mx-auto leading-relaxed">
+            Como ya coordinaste tu visita con <strong>Ivonne Parada Aravena</strong>, esta breve ficha confidencial permite a nuestro equipo de maestros conocer la historia, ritmo y necesidades de tu hijo/a antes de recibirlos en la escuela.
           </p>
         </div>
 
         <div className="relative z-10">
-          <FormularioPostulacionCompleto />
+          <Suspense fallback={<div className="text-center py-12 text-gray-500">Cargando formulario...</div>}>
+            <FormularioPostulacionCompleto />
+          </Suspense>
         </div>
 
       </div>

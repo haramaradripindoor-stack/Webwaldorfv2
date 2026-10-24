@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, ArrowLeft, CheckCircle2, User, Baby, Users, HeartPulse, MapPin, Send } from 'lucide-react'
+import { ArrowRight, ArrowLeft, CheckCircle2, User, Baby, Users, HeartPulse, MapPin, Send, Sparkles } from 'lucide-react'
 
 // Definimos la estructura de datos que enviaremos al API
 interface PostulacionData {
@@ -31,6 +32,7 @@ interface PostulacionData {
 }
 
 export default function FormularioPostulacionCompleto() {
+  const searchParams = useSearchParams();
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -43,6 +45,30 @@ export default function FormularioPostulacionCompleto() {
     hasNee: '', neeType: '',
     city: '', movingCity: '', interestLevel: '', whatToKnow: [], extraQuestions: ''
   });
+
+  useEffect(() => {
+    if (!searchParams) return;
+    const pName = searchParams.get('parentName') || searchParams.get('nombre') || '';
+    const pPhone = searchParams.get('parentPhone') || searchParams.get('telefono') || searchParams.get('phone') || '';
+    const pEmail = searchParams.get('parentEmail') || searchParams.get('email') || '';
+    const cName = searchParams.get('childName') || searchParams.get('nino') || '';
+    const cAge = searchParams.get('childAge') || searchParams.get('edad') || '';
+    const cCourse = searchParams.get('curso') || '';
+
+    if (pName || pPhone || pEmail || cName || cAge || cCourse) {
+      setFormData(prev => ({
+        ...prev,
+        parentName: pName || prev.parentName,
+        parentPhone: pPhone || prev.parentPhone,
+        parentEmail: pEmail || prev.parentEmail,
+        childName: cName || prev.childName,
+        childAge: cAge || prev.childAge,
+        appliedCourse: cCourse ? (prev.appliedCourse.includes(cCourse) ? prev.appliedCourse : [...prev.appliedCourse, cCourse]) : prev.appliedCourse,
+      }));
+    }
+  }, [searchParams]);
+
+  const hasPreFilledContact = Boolean(formData.parentName || formData.parentPhone || formData.parentEmail);
 
   const updateForm = (field: keyof PostulacionData, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -140,9 +166,9 @@ export default function FormularioPostulacionCompleto() {
         <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="w-24 h-24 bg-[var(--color-waldorf-mustard)] rounded-full flex items-center justify-center mb-8">
           <CheckCircle2 size={48} className="text-[#1a2e25]" />
         </motion.div>
-        <h2 className="text-4xl font-serif font-bold text-[var(--color-waldorf-moss)] mb-4">¡Postulación Recibida!</h2>
-        <p className="text-xl text-[var(--color-waldorf-text-light)] max-w-xl mx-auto">
-          Gracias por confiar en el proyecto educativo Trekan. Nuestro equipo revisará los antecedentes y te contactaremos muy pronto al correo y teléfono que nos indicaste.
+        <h2 className="text-4xl font-serif font-bold text-[var(--color-waldorf-moss)] mb-4">¡Ficha Recibida con Amor!</h2>
+        <p className="text-xl text-[var(--color-waldorf-text-light)] max-w-xl mx-auto leading-relaxed">
+          Muchas gracias por compartirnos la historia de tu familia. Ivonne Parada Aravena y nuestro equipo pedagógico revisarán estos antecedentes para esperarlos con todo preparado el día de su visita.
         </p>
         <a href="/" className="mt-8 text-[var(--color-waldorf-moss)] font-bold underline underline-offset-4">Volver al inicio</a>
       </div>
@@ -168,18 +194,29 @@ export default function FormularioPostulacionCompleto() {
           {/* SECCIÓN 1: INTRO */}
           {step === 1 && (
             <motion.div key="step1" variants={stepVariants} initial="hidden" animate="visible" exit="exit" className="flex flex-col h-full justify-center">
-              <span className="text-[var(--color-waldorf-terracotta)] font-bold uppercase tracking-widest text-sm mb-4 block">Bienvenido/a</span>
-              <h2 className="text-4xl font-serif font-bold text-[var(--color-waldorf-moss)] mb-6">Proceso de Admisión Trekan</h2>
+              <span className="text-[var(--color-waldorf-terracotta)] font-bold uppercase tracking-widest text-sm mb-4 block">Paso 2 · Encuentro Pedagógico</span>
+              <h2 className="text-4xl font-serif font-bold text-[var(--color-waldorf-moss)] mb-6">Ficha de Encuentro Familiar</h2>
+              
+              {hasPreFilledContact && (
+                <div className="bg-[var(--color-waldorf-moss)]/10 border border-[var(--color-waldorf-moss)]/20 rounded-2xl p-4 mb-6 flex items-center gap-3 text-sm text-[var(--color-waldorf-moss)]">
+                  <Sparkles size={20} className="shrink-0 text-[var(--color-waldorf-mustard)]" />
+                  <div>
+                    <p className="font-bold">¡Hola {formData.parentName || 'familia'}!</p>
+                    <p className="text-xs text-gray-600">Vinculamos tus datos básicos desde tu contacto con Ivonne para que no tengas que escribirlos de nuevo.</p>
+                  </div>
+                </div>
+              )}
+
               <div className="space-y-4 text-gray-600 text-lg leading-relaxed mb-10">
                 <p>
-                  Escuela Waldorf TREKAN, es una iniciativa que nace para acompañar a niñas, niños y sus familias desde los 3 a 14 años, durante toda su Enseñanza Básica, al alero de la Antroposofía, que considera a la Pedagogía Waldorf como guía para el camino de aprendizaje.
+                  Escuela Waldorf TREKAN es una iniciativa que acompaña a niñas, niños y sus familias desde los 3 a 14 años al alero de la Antroposofía, donde la Pedagogía Waldorf guía el camino de aprendizaje y desarrollo.
                 </p>
                 <p>
-                  Para que podamos tener una conversación preliminar donde te podamos contar del proyecto de manera general y resolver tus dudas iniciales, te pedimos completar este formulario. Nos pondremos en contacto a la brevedad contigo.
+                  Como ya coordinaste tu visita con <strong>Ivonne Parada Aravena</strong> (Coordinadora General), esta ficha confidencial permite a nuestros maestros conocer la historia, ritmo y contexto de tu hijo/a antes de recibirlos en la escuela con un té caliente.
                 </p>
               </div>
-              <button onClick={nextStep} className="bg-[var(--color-waldorf-moss)] text-white px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-[#112019] transition-colors self-start">
-                Comenzar Postulación <ArrowRight size={20} />
+              <button onClick={nextStep} className="bg-[var(--color-waldorf-moss)] text-white px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-[#112019] transition-colors self-start shadow-lg">
+                Comenzar Ficha Pedagógica <ArrowRight size={20} />
               </button>
             </motion.div>
           )}
@@ -196,6 +233,13 @@ export default function FormularioPostulacionCompleto() {
                   <h3 className="text-2xl font-serif font-bold text-[var(--color-waldorf-moss)]">Datos del Apoderado</h3>
                 </div>
               </div>
+
+              {hasPreFilledContact && (
+                <div className="bg-[var(--color-waldorf-moss)]/10 border border-[var(--color-waldorf-moss)]/20 rounded-xl p-3.5 mb-6 text-xs text-[var(--color-waldorf-moss)] flex items-center gap-2.5">
+                  <CheckCircle2 size={18} className="shrink-0 text-[var(--color-waldorf-moss)]" />
+                  <span>Datos vinculados desde tu conversación con Ivonne. Puedes modificarlos si lo necesitas.</span>
+                </div>
+              )}
 
               <div className="space-y-6">
                 <div>
@@ -437,7 +481,7 @@ export default function FormularioPostulacionCompleto() {
           ) : (
             <button onClick={handleSubmit} disabled={isSubmitting} type="submit" className={`bg-[var(--color-waldorf-mustard)] text-[#1a2e25] px-8 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-[#e6a55e] transition-colors shadow-xl ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}>
               <Send size={18} className={isSubmitting ? "animate-pulse" : ""} /> 
-              {isSubmitting ? 'Enviando postulación...' : 'Enviar Postulación'}
+              {isSubmitting ? 'Enviando ficha pedagógica...' : 'Enviar Ficha de Encuentro 🌿'}
             </button>
           )}
         </div>

@@ -10,6 +10,8 @@ export default function AdmisionForm() {
   // Handlers para el form
   const [formData, setFormData] = useState({
     parentName: '',
+    phone: '',
+    email: '',
     childrenAges: '',
     message: ''
   })
@@ -58,8 +60,8 @@ export default function AdmisionForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           nombre_apoderado: formData.parentName,
-          telefono_apoderado: (formData as any).phone || 'Vía WhatsApp (Pendiente)', 
-          email_apoderado: 'Pendiente',
+          telefono_apoderado: formData.phone || 'Vía WhatsApp (Pendiente)', 
+          email_apoderado: formData.email || 'Pendiente',
           nombre_nino: 'No especificado',
           edad_nino: formData.childrenAges,
           curso_postula: `Visita preferida: ${selectedDay || 'Cualquier día'}. Notas: ${formData.message || 'Ninguna'}`,
@@ -72,7 +74,7 @@ export default function AdmisionForm() {
     }
 
     // 2. Redirigir a WhatsApp
-    const text = `Hola Ivonne, soy ${formData.parentName}, me interesa postular para edades: ${formData.childrenAges}. ${formData.message ? `Adicionalmente: ${formData.message}` : ''} Me gustaría agendar una visita el día ${selectedDay || 'que tengan disponibilidad'}.`;
+    const text = `Hola Ivonne, soy ${formData.parentName}, me gustaría coordinar una visita al Colegio Waldorf Trekan para conocer el proyecto para edades: ${formData.childrenAges}.${formData.message ? ` Mensaje: ${formData.message}.` : ''} Día preferido: ${selectedDay || 'por definir'}.`;
     const whatsappUrl = `https://wa.me/56967765106?text=${encodeURIComponent(text)}`;
     
     // Usamos location.href en lugar de window.open porque los navegadores bloquean 
@@ -89,9 +91,26 @@ export default function AdmisionForm() {
           animate={{ opacity: 1 }}
         >
           <form onSubmit={handleWhatsAppRoute} className="space-y-6">
-            <div className="text-center mb-10">
-              <h3 className="text-3xl font-serif font-bold text-white mb-2">Postulación 2027</h3>
-              <p className="text-white/70 text-sm">Conversemos directamente por WhatsApp para coordinar tu visita.</p>
+            <div className="text-center mb-8">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--color-waldorf-mustard)]/20 text-[var(--color-waldorf-mustard)] text-xs font-semibold uppercase tracking-wider mb-3">
+                🌿 Paso 1 · Primer Contacto
+              </span>
+              <h3 className="text-3xl font-serif font-bold text-white mb-4">Agenda tu Visita a la Escuela</h3>
+              
+              <div className="flex items-center gap-4 bg-white/10 rounded-2xl p-4 border border-white/10 text-left max-w-lg mx-auto">
+                <img 
+                  src="/assets/Coordinadora.png" 
+                  alt="Ivonne Parada Aravena" 
+                  className="w-14 h-14 rounded-full object-cover border-2 border-[var(--color-waldorf-mustard)] shadow-md shrink-0 bg-white/10"
+                />
+                <div>
+                  <div className="text-white font-bold text-base font-serif">Ivonne Parada Aravena</div>
+                  <div className="text-[var(--color-waldorf-mustard)] text-xs font-semibold">Coordinadora General · Trekan</div>
+                  <p className="text-white/80 text-xs mt-1 leading-snug">
+                    Te recibiré con cariño para conversar sobre tu familia y coordinar el día de tu visita a la escuela.
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div className="space-y-4">
@@ -116,10 +135,23 @@ export default function AdmisionForm() {
                   id="phone"
                   name="phone"
                   required 
-                  value={(formData as any).phone || ''}
+                  value={formData.phone}
                   onChange={handleChange}
                   className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[var(--color-waldorf-mustard)] transition-colors"
                   placeholder="Ej: +569 1234 5678"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-white/90 mb-1">Tu Correo Electrónico (Opcional)</label>
+                <input 
+                  type="email" 
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[var(--color-waldorf-mustard)] transition-colors"
+                  placeholder="Ej: maria@ejemplo.cl"
                 />
               </div>
 
@@ -180,7 +212,7 @@ export default function AdmisionForm() {
               }`}
             >
               <Send size={20} className={isSubmitting ? "animate-pulse" : ""} />
-              {isSubmitting ? 'Conectando...' : 'Conversar con Ivonne'}
+              {isSubmitting ? 'Conectando...' : 'Coordinar Visita por WhatsApp con Ivonne 🌿'}
             </button>
           </form>
         </motion.div>
