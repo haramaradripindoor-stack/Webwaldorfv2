@@ -32,7 +32,7 @@ No busca alarmar ni desacreditar el proyecto: busca darnos la misma claridad que
 * **Pedagógica (MEDIO):** Cursos combinados sin apoyo en sala. El riesgo principal es de transparencia con las familias.
 * **Legal-regulatoria (MEDIO):** La vía legal es la correcta (Exámenes Libres). El riesgo está en la carga sobre cada familia y en el egreso.
 * **Financiera (ALTO 27–28 · BAJO 29+):** La proyección 2027 ya cierra en negativo; el margen sano llega recién en 2029, si el plan se cumple.
-* **Demográfica y Mercado (MEDIO local · ALTO cohorte 2029–31):** Puerto Varas crece por migración (+18,8%), pero la cohorte del salto financiero (2029) coincide con el desplome de nacimientos 2023–25 y nuevo colegio en Nueva Braunau.
+* **Demográfica y Mercado (MEDIO local · ALTO cohorte 2029–31 y pinza 2027):** Puerto Varas crece por migración (+18,8%), pero la cohorte del salto financiero (2029) coincide con el desplome de nacimientos 2023–25 y la apertura en 2027 de DOS colegios de élite: Río Maullín (Nva. Braunau) y Heritage School (Llanquihue).
 * **Vacunación (A EVALUAR):** Es obligatoria, pero la campaña escolar no llega por defecto a un colegio sin reconocimiento.
 
 *Trekan · Diagnóstico de Sostenibilidad · 3*
@@ -202,7 +202,10 @@ La estimación es un ejercicio del exministro Harald Beyer (CEP) a 2035 por sobr
 **Las 4 realidades para Trekan:**
 1. **Mercado holgado:** Nacen ~650 niños/año en la comuna; Trekan solo necesita 6–7 niños (1% de la cohorte).
 2. **El "Valle de Sombra" 2029–2031:** Los nacidos en el desplome nacional 2023–25 entran a Kínder justo cuando el modelo proyecta su salto de margen ($17M a $38M).
-3. **Nueva competencia 2027:** Colegio Río Maullín (San Esteban) abre en Nueva Braunau compitiendo por familias pagadas.
+3. **La «Pinza Competitiva» 2027 (Dos proyectos de élite):**
+   • **Colegio Río Maullín (Nueva Braunau):** Campus propio de la Soc. Educacional San Esteban.
+   • **Heritage School (Punta Totoral, Llanquihue):** 6,2 ha con 300 m de orilla de lago; modelo británico tipo *The Grange* liderado por Tomás Recart (bilingüe, deportes y naturaleza).
+   *Ambos abren en marzo 2027 disputando a las familias ABC1 en los 2 años más frágiles de Trekan.*
 4. **Dependencia migratoria:** Puerto Varas depende del flujo de familias jóvenes de 30–44 años (+28,5%). Si el costo de vivienda frena la migración, la comuna envejecerá al ritmo regional.
 
 *Trekan · Diagnóstico de Sostenibilidad · 13 · Fuentes: BCN, INE, Mineduc, DEIS*
@@ -296,6 +299,6 @@ La obligación sigue al niño, no al colegio (Código Sanitario, art. 32). Pero 
 4. **Encargar el mapeo curricular Waldorf–Mineduc** y definir la estrategia de exámenes y PAES.
 5. **Verificar Ley Karin, registro de inhabilidades y coordinación de vacunación.**
 6. **Acordar qué se comunica por escrito a las familias nuevas:** cursos combinados, estatus legal y vacunación.
-7. **Monitorear la cohorte Kínder 2029** y la competencia del nuevo Colegio Río Maullín en Nueva Braunau.
+7. **Monitorear la cohorte Kínder 2029 y la pinza competitiva 2027** (Colegio Río Maullín en Nueva Braunau y Heritage School en Llanquihue).
 
 *Trekan · Diagnóstico de Sostenibilidad · 19*

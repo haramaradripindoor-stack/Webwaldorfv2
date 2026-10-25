@@ -249,18 +249,22 @@ La explicación no es una natalidad biológica espontánea, sino la **fuerte mig
    Un niño ingresa a Kínder aproximadamente a los 5 años cumplidos. Los niños nacidos en el período de mayor desplome nacional (**2023–2025**) cumplirán 5 años e ingresarán a Kínder exactamente entre **2029 y 2031**.  
    *Justo en ese trienio (2029–2031) el modelo financiero de Trekan proyecta su salto de rentabilidad ($17,8M en 2029 y $36,9M–$38,9M en 2030)*, asumiendo que ingresan 6–7 niños por año. Si la natalidad local en esos años también experimentó una desaceleración no compensada por la migración, la cohorte que sostiene el salto financiero de la escuela será la más disputada del decenio.
 
-3. **Aparición de nueva competencia directa (Colegio Río Maullín, 2027):**  
-   En la localidad de Nueva Braunau (dentro de la misma comuna de Puerto Varas), la Sociedad Educacional San Esteban está construyendo el **Colegio Río Maullín**, cuya apertura está proyectada para **2027**. Se trata de un proyecto con campus propio e infraestructura formal que saldrá a captar activamente a las familias de perfil medio-alto que buscan educación alternativa o en entornos naturales, compitiendo directamente con Trekan en sus dos años más frágiles (2027 y 2028).
+3. **La «pinza competitiva» de 2027: dos nuevos colegios privados de élite en la cuenca del lago:**  
+   La competencia por las familias que pagan aranceles altos en la zona se multiplicará drásticamente en **marzo de 2027**, con la apertura simultánea de dos mega-proyectos educativos privados de alto perfil orientados a las familias migrantes de la cuenca (Puerto Varas, Llanquihue y Frutillar):
+   * **Colegio Río Maullín (Nueva Braunau, Puerto Varas · 2027):** Impulsado por la Sociedad Educacional San Esteban (sostenedores con décadas de trayectoria institucional), cuenta con campus propio e infraestructura formal en Nueva Braunau.
+   * **Heritage School (Punta Totoral, Llanquihue · 2027):** Emplazado en un terreno de **6,2 hectáreas con 300 metros de orilla de lago** en Punta Totoral (Llanquihue, con acceso directo y contraflujo hacia Puerto Varas). Liderado por **Tomás Recart** (fundador de Enseña Chile y exalumno de *The Grange School*), es un colegio particular pagado que replica el modelo de colegios británicos tradicionales de élite: bilingüismo con inmersión temprana en inglés, deportes, artes, naturaleza y formación de carácter (*All Rounder*).
+   
+   *Impacto directo:* Ambos proyectos abren en **marzo de 2027**, coincidiendo de forma exacta con los dos años de mayor asfixia presupuestaria de Trekan (2027 y 2028, donde el colegio proyecta un déficit mensual de −$264.000 o margen prácticamente nulo). Mientras Trekan operará en esos años con cursos combinados (trigrado y bigrado) en un recinto arrendado, estas dos alternativas ofrecerán campus de varias hectáreas y respaldo corporativo de élite. La captura de las 6–7 familias por cohorte será ferozmente disputada.
 
 4. **Vulnerabilidad al encarecimiento del suelo y retorno urbano:**  
    El crecimiento de Puerto Varas depende de un flujo migratorio que puede alterarse. Si el alza explosiva en el costo de la vivienda, la congestión vial o el fin definitivo del teletrabajo frena la llegada de familias jóvenes, la comuna comenzará a converger hacia las tasas de envejecimiento regional (la población de 60 años o más en Puerto Varas ya creció un **45,9%** entre 2017 y 2024, el mayor aumento porcentual de la región).
 
 #### Semáforo de riesgo y preguntas para la asamblea
-> **Riesgo Demográfico y de Mercado: MEDIO a nivel comunal / ALTO en el acoplamiento temporal 2029–2031.**  
-> Puerto Varas no sufre la contracción demográfica inmediata del país gracias a la migración de familias jóvenes. Sin embargo, el salto financiero de Trekan descansa en un supuesto rígido (6–7 niños por año) justo cuando golpeará el vacío de la cohorte 2023–2025 y abrirá nueva oferta educativa en la comuna.
+> **Riesgo Demográfico y de Mercado: MEDIO a nivel comunal / ALTO en el acoplamiento temporal 2029–2031 y la pinza competitiva 2027.**  
+> Puerto Varas no sufre la contracción demográfica inmediata del país gracias a la migración de familias jóvenes. Sin embargo, el salto financiero de Trekan descansa en un supuesto rígido (6–7 niños por año) justo cuando golpeará el vacío de la cohorte 2023–2025 y abrirán dos competidores de élite en Nueva Braunau y Llanquihue (Colegio Río Maullín y Heritage School).
 
-* ¿Qué plan de contingencia tiene Trekan si la cohorte de Kínder 2029 capta 3 o 4 niños en lugar de los 6–7 proyectados? ¿En cuántos años se posterga el punto de equilibrio?
-* Frente a la apertura del Colegio Río Maullín en Nueva Braunau (2027), ¿cuál es la propuesta de valor y el sello distintivo que hace a Trekan irreemplazable para una familia Waldorf?
+* ¿Qué plan de contingencia tiene Trekan si la cohorte de Kínder 2027 o 2028 capta menos de 5 niños ante la arremetida de Heritage School (Llanquihue) y Colegio Río Maullín (Nueva Braunau)?
+* Frente a proyectos con campus de 6 hectáreas a la orilla del lago y modelos británicos tradicionales bilingües, ¿cuál es la propuesta de valor y el sello pedagógico irremplazable de Trekan que convence a una familia de elegir un colegio Waldorf en formato multigrado?
 * ¿Tiene el colegio un mecanismo de seguimiento activo con los jardines infantiles de la cuenca del lago para monitorear el volumen real de niños de 2 a 4 años hoy matriculados?
 * Si el costo de vida en Puerto Varas frena la migración de nuevas familias, ¿puede Trekan nutrirse de la comunidad ya asentada, o el arancel actual excluye a ese segmento?
 
