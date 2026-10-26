@@ -390,21 +390,121 @@ export default function AdmisionesPage() {
       return;
     }
 
-    const dataRows = filteredLeads.map(lead => ({
-      ID: lead.id,
-      Fecha: new Date(lead.created_at).toLocaleString('es-CL'),
-      Apoderado: lead.nombre_apoderado || '',
-      Email: lead.email_apoderado || '',
-      Teléfono: lead.telefono_apoderado || '',
-      Postulante: lead.nombre_nino || '',
-      Edad: lead.edad_nino || '',
-      Curso: lead.curso_postula || '',
-      Estado: lead.estado,
-      Notas: lead.notas || '',
-      Origen: lead.origen || ''
-    }));
+    const dataRows = filteredLeads.map(lead => {
+      // 1. Fecha formulario
+      const d = new Date(lead.created_at);
+      const fechaFormulario = !isNaN(d.getTime())
+        ? d.toLocaleDateString('es-CL', { day: '2-digit', month: '2-digit', year: 'numeric' })
+        : '';
+
+      // 2. Apoderado
+      const apoderado = lead.nombre_apoderado ? lead.nombre_apoderado.trim() : '';
+
+      // 3. Nombre niño/a
+      const nombreNino = lead.nombre_nino && lead.nombre_nino !== 'No especificado'
+        ? lead.nombre_nino.trim()
+        : (lead.nombre_nino || '');
+
+      // 4. Edad
+      const edad = lead.edad_nino ? lead.edad_nino.trim() : '';
+
+      // 5. Curso postulado limpio y legible
+      let cursoPostulado = lead.curso_postula ? lead.curso_postula.trim() : '';
+      if (cursoPostulado.includes(' | ')) {
+        cursoPostulado = cursoPostulado.split(' | ')[0].trim();
+      } else if (cursoPostulado.startsWith('Visita preferida:')) {
+        const lower = cursoPostulado.toLowerCase();
+        const coursesFound: string[] = [];
+        if (lower.includes('kinder') || lower.includes('kínder')) coursesFound.push('Kínder');
+        if (lower.includes('1') && (lower.includes('básico') || lower.includes('basico'))) coursesFound.push('1° Básico');
+        if (lower.includes('2') && (lower.includes('básico') || lower.includes('basico'))) coursesFound.push('2° Básico');
+        if (lower.includes('3') && (lower.includes('básico') || lower.includes('basico'))) coursesFound.push('3° Básico');
+        if (lower.includes('4') && (lower.includes('básico') || lower.includes('basico'))) coursesFound.push('4° Básico');
+        if (lower.includes('5') && (lower.includes('básico') || lower.includes('basico'))) coursesFound.push('5° Básico');
+        if (lower.includes('6') && (lower.includes('básico') || lower.includes('basico'))) coursesFound.push('6° Básico');
+        if (lower.includes('7') && (lower.includes('básico') || lower.includes('basico'))) coursesFound.push('7° Básico');
+        if (lower.includes('8') && (lower.includes('básico') || lower.includes('basico'))) coursesFound.push('8° Básico');
+        if (lower.includes('medio')) coursesFound.push('1° Medio');
+        
+        if (coursesFound.length > 0) {
+          cursoPostulado = coursesFound.join(', ');
+        } else if (edad) {
+          const e = parseInt(edad);
+          if (e === 3 || e === 4) cursoPostulado = 'Jardín / Kínder';
+          else if (e === 5) cursoPostulado = 'Kínder';
+          else if (e === 6) cursoPostulado = '1° Básico';
+          else if (e === 7) cursoPostulado = '2° Básico';
+          else if (e === 8) cursoPostulado = '3° Básico';
+          else if (e === 9) cursoPostulado = '4° Básico';
+          else if (e === 10) cursoPostulado = '5° Básico';
+          else if (e === 11) cursoPostulado = '6° Básico';
+          else if (e === 12) cursoPostulado = '7° Básico';
+          else if (e === 13) cursoPostulado = '8° Básico';
+          else if (e >= 14) cursoPostulado = '1° Medio';
+          else cursoPostulado = 'Por coordinar';
+        } else {
+          cursoPostulado = 'Por coordinar';
+        }
+      }
+
+      // 6. Teléfono
+      const telefono = (lead.telefono_apoderado && lead.telefono_apoderado !== 'Vía WhatsApp (Pendiente)')
+        ? lead.telefono_apoderado.trim()
+        : '';
+
+      // 7. Correo con resolución y fallback inteligente
+      let correo = '';
+      if (lead.email_apoderado && lead.email_apoderado !== 'Pendiente' && lead.email_apoderado.includes('@')) {
+        correo = lead.email_apoderado.trim();
+      } else {
+        const phone = (lead.telefono_apoderado || '').replace(/\D/g, '').slice(-8);
+        const name = (lead.nombre_apoderado || '').toLowerCase().trim();
+        if (phone) {
+          const matchPhone = leads.find(other => 
+            other.id !== lead.id && 
+            other.email_apoderado && 
+            other.email_apoderado !== 'Pendiente' &&
+            other.email_apoderado.includes('@') &&
+            (other.telefono_apoderado || '').replace(/\D/g, '').slice(-8) === phone
+          );
+          if (matchPhone) correo = matchPhone.email_apoderado.trim();
+        }
+        if (!correo && name && name.length > 3) {
+          const matchName = leads.find(other => 
+            other.id !== lead.id && 
+            other.email_apoderado && 
+            other.email_apoderado !== 'Pendiente' &&
+            other.email_apoderado.includes('@') &&
+            (other.nombre_apoderado || '').toLowerCase().trim() === name
+          );
+          if (matchName) correo = matchName.email_apoderado.trim();
+        }
+      }
+
+      return {
+        'Fecha formulario': fechaFormulario,
+        'Apoderado': apoderado,
+        'Nombre niño/a': nombreNino,
+        'Edad': edad,
+        'Curso postulado': cursoPostulado,
+        'Teléfono': telefono,
+        'Correo': correo
+      };
+    });
 
     const worksheet = XLSX.utils.json_to_sheet(dataRows);
+    
+    // Auto-ajuste de anchos de columna para visualización y copia perfecta
+    worksheet['!cols'] = [
+      { wch: 18 }, // Fecha formulario
+      { wch: 32 }, // Apoderado
+      { wch: 28 }, // Nombre niño/a
+      { wch: 12 }, // Edad
+      { wch: 28 }, // Curso postulado
+      { wch: 18 }, // Teléfono
+      { wch: 35 }, // Correo
+    ];
+
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Admisiones');
     
