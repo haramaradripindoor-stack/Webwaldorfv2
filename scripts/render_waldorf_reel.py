@@ -33,12 +33,12 @@ TARGET_H = 1920
 TARGET_FPS = 30
 
 # Paleta de color institucional Waldorf Trekan
-COLOR_BG_BOX = (26, 46, 37, 215)      # Verde Musgo Oscuro #1A2E25 con 85% opacidad
-COLOR_BORDER = (212, 155, 75, 200)     # Mostaza Cálido #D49B4B
+COLOR_BG_BOX = (26, 46, 37, 225)      # Verde Musgo Oscuro #1A2E25 con 88% opacidad
+COLOR_BORDER = (212, 155, 75, 230)     # Mostaza Cálido #D49B4B
 COLOR_TEXT = (250, 248, 245, 255)      # Crema Suave #FAF8F5
 COLOR_SHADOW = (10, 16, 13, 140)       # Sombra suave
 
-def create_subtitle_card(text: str, output_png_path: str, font_path: str, font_size: int = 42, y_pos: int = 1350) -> str:
+def create_subtitle_card(text: str, output_png_path: str, font_path: str, font_size: int = 38, y_pos: int = 1320) -> str:
     """
     Genera una capa PNG transparente (1080x1920) con el texto formateado
     dentro de una caja traslúcida elegante en la zona segura inferior.
@@ -60,9 +60,9 @@ def create_subtitle_card(text: str, output_png_path: str, font_path: str, font_s
     x = (TARGET_W - tw) // 2
     y = y_pos
 
-    pad_x = 42
-    pad_y = 24
-    radius = 26
+    pad_x = 44
+    pad_y = 26
+    radius = 28
 
     box = [x - pad_x, y - pad_y, x + tw + pad_x, y + th + pad_y]
     shadow_box = [box[0] + 4, box[1] + 6, box[2] + 4, box[3] + 6]
@@ -71,7 +71,7 @@ def create_subtitle_card(text: str, output_png_path: str, font_path: str, font_s
     draw.rounded_rectangle(shadow_box, radius=radius, fill=COLOR_SHADOW)
     # Caja traslúcida con borde dorado mostaza
     draw.rounded_rectangle(box, radius=radius, fill=COLOR_BG_BOX, outline=COLOR_BORDER, width=2)
-    # Texto crema centrado
+    # Texto crema centrado con soporte Unicode completo (ñ, tildes, comillas angulares)
     draw.multiline_text((x, y), text, font=font, fill=COLOR_TEXT, align='center', spacing=14)
 
     os.makedirs(os.path.dirname(output_png_path), exist_ok=True)
@@ -137,7 +137,7 @@ def build_pentatlon_reel(
             "start": 3.0,
             "end": 7.5,
             "duration": 4.5,
-            "text": "En la Pentatlón Waldorf no compite un colegio contra otro...\ncompartimos las poleis griegas."
+            "text": "En la Pentatlón Waldorf\nno compite un colegio contra otro...\ncompartimos las poleis griegas."
         },
         {
             "file": "WhatsApp Video 2026-10-23 at 23.05.48.mp4",
@@ -169,15 +169,30 @@ def build_pentatlon_reel(
     processed_scenes = []
     ambient_audio_clips = []
 
+    # Verificar si se incluye música o si el usuario montará la pista en Instagram/CapCut
+    has_music = (
+        music_path
+        and music_path.lower() != 'none'
+        and os.path.exists(music_path)
+        and music_volume > 0.0
+    )
+
+    # Si no hay música externa, amplificar el audio ambiente al 100% natural
+    effective_ambient_vol = ambient_volume if has_music else 1.0
+    print(f"🔊 Volumen ambiente configurado: {effective_ambient_vol * 100:.0f}%")
+
+    processed_scenes = []
+    ambient_audio_clips = []
+
     for i, s in enumerate(scenes_config, 1):
         print(f"\n🎬 Procesando Escena {i}/{len(scenes_config)}: {s['file']}")
         source_path = os.path.join(input_dir, s["file"])
         if not os.path.exists(source_path):
             raise FileNotFoundError(f"No se encontró el archivo fuente: {source_path}")
 
-        # Renderizar tarjeta de subtítulo con Pillow
+        # Renderizar tarjeta de subtítulo con Pillow (Tipografía editorial de comunicaciones)
         sub_png = temp_dir / f"sub_scene_{i}.png"
-        create_subtitle_card(s["text"], str(sub_png), font_path, font_size=42, y_pos=1330)
+        create_subtitle_card(s["text"], str(sub_png), font_path, font_size=38, y_pos=1320)
 
         # Cargar capa visual de subtítulo
         sub_clip = ImageClip(str(sub_png)).with_duration(s["duration"]).with_effects([
@@ -189,9 +204,9 @@ def build_pentatlon_reel(
             raw_clip = VideoFileClip(source_path).subclipped(s["start"], s["end"])
             fitted_clip = fit_to_9_16(raw_clip)
 
-            # Extraer y atenuar audio ambiente original
+            # Extraer audio ambiente original
             if raw_clip.audio is not None:
-                amb_audio = raw_clip.audio.with_volume_scaled(ambient_volume)
+                amb_audio = raw_clip.audio.with_volume_scaled(effective_ambient_vol)
                 ambient_audio_clips.append(amb_audio)
             
             # Combinar video con subtítulo
@@ -207,23 +222,29 @@ def build_pentatlon_reel(
     print("\n🎞️ Concatenando escenas...")
     final_video = concatenate_videoclips(processed_scenes, method='compose')
 
-    # 2. Orquestación y Mezcla de Pistas de Audio (Ambiente + Música Acústica)
-    print("\n🎵 Mezclando banda sonora acústica...")
-    music_clip = AudioFileClip(music_path).subclipped(0, total_duration).with_volume_scaled(music_volume)
-    # Fundido suave al entrar (0.8s) y al salir (1.8s)
-    music_clip = music_clip.with_effects([
-        afx.AudioFadeIn(0.8),
-        afx.AudioFadeOut(1.8)
-    ])
+    # 2. Orquestación y Mezcla de Pistas de Audio
+    if has_music:
+        print(f"\n🎵 Mezclando banda sonora ({music_path})...")
+        music_clip = AudioFileClip(music_path).subclipped(0, total_duration).with_volume_scaled(music_volume)
+        music_clip = music_clip.with_effects([
+            afx.AudioFadeIn(0.8),
+            afx.AudioFadeOut(1.8)
+        ])
 
-    if ambient_audio_clips:
-        concat_ambient = concatenate_audioclips(ambient_audio_clips)
-        # Combinar audio ambiente con música
-        final_audio = CompositeAudioClip([concat_ambient, music_clip])
+        if ambient_audio_clips:
+            concat_ambient = concatenate_audioclips(ambient_audio_clips)
+            final_audio = CompositeAudioClip([concat_ambient, music_clip])
+        else:
+            final_audio = music_clip
     else:
-        final_audio = music_clip
+        print("\n🌿 Modo Audio Ambiente Puro (100% natural sin música de fondo para montaje libre en Instagram)...")
+        if ambient_audio_clips:
+            final_audio = concatenate_audioclips(ambient_audio_clips)
+        else:
+            final_audio = None
 
-    final_video = final_video.with_audio(final_audio)
+    if final_audio is not None:
+        final_video = final_video.with_audio(final_audio)
 
     # 3. Exportación Acelerada por Hardware (Apple Silicon VideoToolbox M1 Max)
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
@@ -275,10 +296,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Renderizador Automatizado de Reels Waldorf Trekan")
     parser.add_argument('--input-dir', default='/Users/felipeandresvivancocornejo/Downloads/WhatsApp Unknown 2026-10-25 at 11.27.18', help='Directorio con videos fuente')
     parser.add_argument('--output', default='public/videos/reel_pentatlon_san_felipe_2026.mp4', help='Ruta destino del video')
-    parser.add_argument('--music', default='public/audio/guitarra_romance_waldorf.m4a', help='Ruta del audio de fondo')
-    parser.add_argument('--font', default='public/fonts/antroposofia.ttf', help='Ruta de la fuente tipográfica')
+    parser.add_argument('--music', default='none', help='Ruta del audio de fondo o "none" para audio ambiente puro listo para Instagram')
+    parser.add_argument('--font', default='public/fonts/Merriweather-Bold.ttf', help='Ruta de la fuente tipográfica (Merriweather editorial)')
     parser.add_argument('--downloads', default='/Users/felipeandresvivancocornejo/Downloads/reel_pentatlon_san_felipe_2026.mp4', help='Copia a descargas')
-    parser.add_argument('--ambient-vol', type=float, default=0.35, help='Volumen audio ambiente (0.0 a 1.0)')
+    parser.add_argument('--ambient-vol', type=float, default=1.0, help='Volumen audio ambiente (0.0 a 1.0)')
     parser.add_argument('--music-vol', type=float, default=0.65, help='Volumen música acústica (0.0 a 1.0)')
 
     args = parser.parse_args()
