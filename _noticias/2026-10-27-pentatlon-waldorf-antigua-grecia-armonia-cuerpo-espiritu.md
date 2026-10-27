@@ -2,8 +2,8 @@
 title: "La Pentatlón Waldorf: El encuentro de la belleza, la fuerza y la fraternidad a los 11 años"
 excerpt: "A los once años, el niño alcanza un punto de gracia y equilibrio físico irrepetible. En 5° básico, la época de la Antigua Grecia y la tradicional Pentatlón Waldorf no buscan medir récords ni competir contra el otro, sino cultivar la 'Kalokagathia': la unión viva de la belleza del movimiento, la nobleza del espíritu y el calor de la comunidad."
 published_at: "2026-10-27"
-category: "Pedagogía Waldorf"
-image_url: "/imagenes-web/pentatlon-waldorf-trekan-ronda-2026.jpg"
+category: "Festividades e Hitos"
+image_url: "https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-trekan-ronda-2026.jpg"
 author: "Por: Equipo Pedagógico Colegio Waldorf Trekan"
 ---
 
@@ -14,6 +14,8 @@ Hay momentos en la vida escolar que quedan grabados en la memoria no por la nota
 En el **Colegio Waldorf Trekan**, la reciente vivencia de la **Pentatlón 2026** fue precisamente uno de esos hitos: un día donde el cielo despejado sobre la pradera, la ronda de manos entrelazadas, el vuelo sereno de la jabalina y el banquete compartido nos recordaron el sentido más hondo de nuestra tarea pedagógica.
 
 Lejos de los torneos deportivos convencionales —donde el valor suele reducirse a vencer al compañero o mirar un cronómetro—, la Pentatlón Waldorf responde a un principio evolutivo preciso y conmovedor: **acompañar al niño en la edad de oro de su desarrollo físico y anímico**.
+
+![Comunidad escolar del Colegio Waldorf Trekan en la gran ronda de apertura de la Pentatlón 2026](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-trekan-ronda-2026.jpg)
 
 ---
 
@@ -26,6 +28,8 @@ Alrededor de los nueve y diez años, el niño atraviesa el llamado **«Rubicón�
 Sin embargo, al llegar a los **once años (5° básico)**, la tormenta amaina y surge un período de gracia extraordinaria. Rudolf Steiner señalaba que a esta edad se produce un milagro de proporción fisiológica: la relación entre la frecuencia respiratoria y el pulso cardíaco se estabiliza armónicamente en una proporción de 1:4. El sistema rítmico (corazón y pulmones) alcanza su máximo esplendor, y los miembros del cuerpo guardan una simetría perfecta antes del crecimiento desproporcionado de la pubertad.
 
 El niño de once años es, en su constitución corporal y anímica, **un griego clásico**. Posee agilidad sin torpeza, fuerza sin pesadez, y un anhelo innato de justicia, belleza y nobleza interior.
+
+![Estudiantes de Trekan reunidos en círculo en la pradera verde del colegio](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-circulo-manos.jpg)
 
 ---
 
@@ -43,6 +47,8 @@ El punto culminante de esta época es la **Pentatlón**, donde los niños se pre
 4. **El Lanzamiento de Disco:** La danza circular de la espiral y la liberación de la fuerza centrífuga con armonía geométrica.
 5. **La Lucha (Pancracio noble):** El encuentro cuerpo a cuerpo donde no se busca herir ni humillar, sino medir la propia fuerza frente a la del semejante, aprendiendo a sostener, ceder y respetar la integridad del otro con honor.
 
+![Pruebas de atletismo y juegos tradicionales en el pasto durante las Olimpiadas Waldorf](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-carrera-atletismo.jpg)
+
 ---
 
 ## 3. «Kalokagathia»: La belleza del gesto antes que el récord
@@ -58,6 +64,8 @@ En nuestra Pentatlón en Trekan, los maestros no premian exclusivamente a quien 
 
 Al finalizar las pruebas, no hay podios excluyentes con primeros y últimos lugares. Cada participante recibe su corona de laurel y una dedicación escrita que destaca las virtudes y talentos singulares que demostró: la tenacidad, la templanza, la alegría en el juego o la serenidad en la prueba.
 
+![Escenario exterior con el lienzo oficial de las Olimpiadas Waldorf 2026 y la comunidad reunida](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-escenario-olimpiadas.jpg)
+
 ---
 
 ## 4. El banquete y la comunidad viva
@@ -67,6 +75,28 @@ Un rito Waldorf nunca concluye en el esfuerzo individual; siempre se sella en el
 Tras las pruebas bajo el sol, la jornada culminó con el tradicional **Banquete Griego**: mesas largas de madera dispuestas en comunión, flores del jardín, guirnaldas y alimentos compartidos con gratitud bajo el lema del encuentro. 
 
 En un mundo donde la infancia pasa horas crecientes frente a pantallas individuales y donde el deporte juvenil suele ser colonizado por la ansiedad de los adultos y la presión de rendimiento, ver a niños de distintas edades compartir el pan, mirarse a los ojos y cantar juntos es el testimonio más vivo de lo que significa educar para la salud del alma.
+
+![Banquete griego comunitario: niños y maestros compartiendo en mesas largas de madera](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-banquete-comunitario.jpg)
+
+![Detalle conmemorativo con ramas de laurel y grecas griegas del Colegio Waldorf Trekan](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-buen-provecho-laurel.jpg)
+
+---
+
+## 📸 Galería Fotográfica: Los Momentos de la Pentatlón 2026
+
+```gallery
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-trekan-ronda-2026.jpg
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-escenario-olimpiadas.jpg
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-carrera-atletismo.jpg
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-estudiantes-trekan.jpg
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-circulo-manos.jpg
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-descanso-bancas.jpg
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-patio-comunidad.jpg
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-banquete-comunitario.jpg
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-buen-provecho-laurel.jpg
+```
+
+---
 
 Agradecemos profundamente al Claustro de Maestros, a las familias que prepararon cada detalle con devoción y, sobre todo, a nuestros estudiantes de Trekan, que con su luz, su valentía y su risa nos mostraron que la belleza clásica sigue viva en el sur de Chile.
 
