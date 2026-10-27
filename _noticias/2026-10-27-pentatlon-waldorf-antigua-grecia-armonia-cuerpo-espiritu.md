@@ -3,7 +3,7 @@ title: "La Pentatlón Waldorf: El encuentro de la belleza, la fuerza y la frater
 excerpt: "A los once años, el niño alcanza un punto de gracia y equilibrio físico irrepetible. En 5° básico, la época de la Antigua Grecia y la tradicional Pentatlón Waldorf no buscan medir récords ni competir contra el otro, sino cultivar la 'Kalokagathia': la unión viva de la belleza del movimiento, la nobleza del espíritu y el calor de la comunidad."
 published_at: "2026-10-27"
 category: "Festividades e Hitos"
-image_url: "https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-trekan-ronda-2026.jpg"
+image_url: "https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-trekan-ronda-2026.webp"
 author: "Por: Equipo Pedagógico Colegio Waldorf Trekan"
 ---
 
@@ -15,7 +15,7 @@ En el **Colegio Waldorf Trekan**, la reciente vivencia de la **Pentatlón 2026**
 
 Lejos de los torneos deportivos convencionales —donde el valor suele reducirse a vencer al compañero o mirar un cronómetro—, la Pentatlón Waldorf responde a un principio evolutivo preciso y conmovedor: **acompañar al niño en la edad de oro de su desarrollo físico y anímico**.
 
-![Comunidad escolar del Colegio Waldorf Trekan en la gran ronda de apertura de la Pentatlón 2026](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-trekan-ronda-2026.jpg)
+![Comunidad escolar del Colegio Waldorf Trekan en la gran ronda de apertura de la Pentatlón 2026](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-trekan-ronda-2026.webp)
 
 ---
 
@@ -29,7 +29,7 @@ Sin embargo, al llegar a los **once años (5° básico)**, la tormenta amaina y 
 
 El niño de once años es, en su constitución corporal y anímica, **un griego clásico**. Posee agilidad sin torpeza, fuerza sin pesadez, y un anhelo innato de justicia, belleza y nobleza interior.
 
-![Estudiantes de Trekan reunidos en círculo en la pradera verde del colegio](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-circulo-manos.jpg)
+![Estudiantes de Trekan reunidos en círculo en la pradera verde del colegio](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-circulo-manos.webp)
 
 ---
 
@@ -47,7 +47,7 @@ El punto culminante de esta época es la **Pentatlón**, donde los niños se pre
 4. **El Lanzamiento de Disco:** La danza circular de la espiral y la liberación de la fuerza centrífuga con armonía geométrica.
 5. **La Lucha (Pancracio noble):** El encuentro cuerpo a cuerpo donde no se busca herir ni humillar, sino medir la propia fuerza frente a la del semejante, aprendiendo a sostener, ceder y respetar la integridad del otro con honor.
 
-![Pruebas de atletismo y juegos tradicionales en el pasto durante las Olimpiadas Waldorf](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-carrera-atletismo.jpg)
+![Pruebas de atletismo y juegos tradicionales en el pasto durante las Olimpiadas Waldorf](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-carrera-atletismo.webp)
 
 ---
 
@@ -64,7 +64,7 @@ En nuestra Pentatlón en Trekan, los maestros no premian exclusivamente a quien 
 
 Al finalizar las pruebas, no hay podios excluyentes con primeros y últimos lugares. Cada participante recibe su corona de laurel y una dedicación escrita que destaca las virtudes y talentos singulares que demostró: la tenacidad, la templanza, la alegría en el juego o la serenidad en la prueba.
 
-![Escenario exterior con el lienzo oficial de las Olimpiadas Waldorf 2026 y la comunidad reunida](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-escenario-olimpiadas.jpg)
+![Escenario exterior con el lienzo oficial de las Olimpiadas Waldorf 2026 y la comunidad reunida](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-escenario-olimpiadas.webp)
 
 ---
 
@@ -76,24 +76,24 @@ Tras las pruebas bajo el sol, la jornada culminó con el tradicional **Banquete 
 
 En un mundo donde la infancia pasa horas crecientes frente a pantallas individuales y donde el deporte juvenil suele ser colonizado por la ansiedad de los adultos y la presión de rendimiento, ver a niños de distintas edades compartir el pan, mirarse a los ojos y cantar juntos es el testimonio más vivo de lo que significa educar para la salud del alma.
 
-![Banquete griego comunitario: niños y maestros compartiendo en mesas largas de madera](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-banquete-comunitario.jpg)
+![Banquete griego comunitario: niños y maestros compartiendo en mesas largas de madera](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-banquete-comunitario.webp)
 
-![Detalle conmemorativo con ramas de laurel y grecas griegas del Colegio Waldorf Trekan](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-buen-provecho-laurel.jpg)
+![Detalle conmemorativo con ramas de laurel y grecas griegas del Colegio Waldorf Trekan](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-buen-provecho-laurel.webp)
 
 ---
 
 ## 📸 Galería Fotográfica: Los Momentos de la Pentatlón 2026
 
 ```gallery
-https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-trekan-ronda-2026.jpg
-https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-escenario-olimpiadas.jpg
-https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-carrera-atletismo.jpg
-https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-estudiantes-trekan.jpg
-https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-circulo-manos.jpg
-https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-descanso-bancas.jpg
-https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-patio-comunidad.jpg
-https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-banquete-comunitario.jpg
-https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-buen-provecho-laurel.jpg
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-trekan-ronda-2026.webp
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-escenario-olimpiadas.webp
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-carrera-atletismo.webp
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-estudiantes-trekan.webp
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-circulo-manos.webp
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-descanso-bancas.webp
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-patio-comunidad.webp
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-banquete-comunitario.webp
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-buen-provecho-laurel.webp
 ```
 
 ---
