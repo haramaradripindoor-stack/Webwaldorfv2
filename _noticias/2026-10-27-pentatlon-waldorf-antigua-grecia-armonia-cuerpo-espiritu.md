@@ -1,21 +1,23 @@
 ---
-title: "La Pentatlón Waldorf: El encuentro de la belleza, la fuerza y la fraternidad a los 11 años"
-excerpt: "A los once años, el niño alcanza un punto de gracia y equilibrio físico irrepetible. En 5° básico, la época de la Antigua Grecia y la tradicional Pentatlón Waldorf no buscan medir récords ni competir contra el otro, sino cultivar la 'Kalokagathia': la unión viva de la belleza del movimiento, la nobleza del espíritu y el calor de la comunidad."
+title: "La Pentatlón Waldorf en San Felipe: Belleza, fuerza y hermandad entre escuelas a los 11 años"
+excerpt: "A los once años, el niño alcanza un punto de gracia y equilibrio físico irrepetible. En 5° básico, la época de la Antigua Grecia culmina con la tradicional Pentatlón Waldorf: un histórico encuentro interescolar vivido en San Felipe, donde escuelas Waldorf de Chile —incluida la comitiva de Trekan desde Puerto Varas— se unieron para cultivar la 'Kalokagathia': la nobleza del espíritu, la belleza del movimiento y la fraternidad entre pares."
 published_at: "2026-10-27"
 category: "Festividades e Hitos"
 image_url: "https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-trekan-ronda-2026.webp"
 author: "Por: Equipo Pedagógico Colegio Waldorf Trekan"
 ---
 
-# La Pentatlón Waldorf: El encuentro de la belleza, la fuerza y la fraternidad a los 11 años
+# La Pentatlón Waldorf en San Felipe: Belleza, fuerza y hermandad entre escuelas a los 11 años
 
 Hay momentos en la vida escolar que quedan grabados en la memoria no por la nota que se obtuvo en una libreta, sino por la cualidad del aire que se respiró ese día.
 
-En el **Colegio Waldorf Trekan**, la reciente vivencia de la **Pentatlón 2026** fue precisamente uno de esos hitos: un día donde el cielo despejado sobre la pradera, la ronda de manos entrelazadas, el vuelo sereno de la jabalina y el banquete compartido nos recordaron el sentido más hondo de nuestra tarea pedagógica.
+Este año, la delegación de 5° básico del **Colegio Waldorf Trekan** emprendió un viaje formativo inolvidable desde el sur de Chile hacia el soleado valle de **San Felipe** para participar en el **Encuentro Nacional de Pentatlón Waldorf 2026**, una cita histórica que congregó a diversas escuelas Waldorf hermanas del país en torno a la belleza, el movimiento consciente y el encuentro humano.
 
-Lejos de los torneos deportivos convencionales —donde el valor suele reducirse a vencer al compañero o mirar un cronómetro—, la Pentatlón Waldorf responde a un principio evolutivo preciso y conmovedor: **acompañar al niño en la edad de oro de su desarrollo físico y anímico**.
+Bajo el cielo abierto de San Felipe, la gran ronda de manos entrelazadas entre colegios, el vuelo sereno de la jabalina, las pruebas de lucha noble y el banquete compartido nos recordaron el sentido más hondo de nuestra tarea pedagógica.
 
-![Comunidad escolar del Colegio Waldorf Trekan en la gran ronda de apertura de la Pentatlón 2026](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-trekan-ronda-2026.webp)
+Lejos de los torneos deportivos convencionales —donde el valor suele reducirse a vencer al adversario o mirar un cronómetro—, la Pentatlón Waldorf responde a un principio evolutivo preciso y conmovedor: **acompañar al niño en la edad de oro de su desarrollo físico y anímico, viviendo la fraternidad sin rivalidades institucionales**.
+
+![Gran ronda de apertura en San Felipe: estudiantes y maestros de las escuelas Waldorf de Chile entrelazando manos bajo el sol del valle](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-trekan-ronda-2026.webp)
 
 ---
 
@@ -29,7 +31,7 @@ Sin embargo, al llegar a los **once años (5° básico)**, la tormenta amaina y 
 
 El niño de once años es, en su constitución corporal y anímica, **un griego clásico**. Posee agilidad sin torpeza, fuerza sin pesadez, y un anhelo innato de justicia, belleza y nobleza interior.
 
-![Estudiantes de Trekan reunidos en círculo en la pradera verde del colegio](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-circulo-manos.webp)
+![Estudiantes de Trekan y de escuelas hermanas reunidos en círculo en la pradera de San Felipe](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-circulo-manos.webp)
 
 ---
 
@@ -47,42 +49,46 @@ El punto culminante de esta época es la **Pentatlón**, donde los niños se pre
 4. **El Lanzamiento de Disco:** La danza circular de la espiral y la liberación de la fuerza centrífuga con armonía geométrica.
 5. **La Lucha (Pancracio noble):** El encuentro cuerpo a cuerpo donde no se busca herir ni humillar, sino medir la propia fuerza frente a la del semejante, aprendiendo a sostener, ceder y respetar la integridad del otro con honor.
 
-![Pruebas de atletismo y juegos tradicionales en el pasto durante las Olimpiadas Waldorf](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-carrera-atletismo.webp)
+![Pruebas de atletismo y juegos tradicionales en el pasto durante las Olimpiadas Waldorf en San Felipe](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-carrera-atletismo.webp)
 
 ---
 
-## 3. «Kalokagathia»: La belleza del gesto antes que el récord
+## 3. El Principio Panhelénico: Convivencia sin rivalidad escolar
 
-En la antigua Hélade existía un concepto central que inspiró a los primeros atletas olímpicos: ***Kalokagathia*** (*kalós*, bello; *agathós*, bueno). Para los griegos, un movimiento no era verdadero si no era bello, y no podía ser bello si en su raíz albergaba soberbia, violencia o deslealtad.
+Uno de los aspectos más hermosos de la Pentatlón en San Felipe es su diseño social: **en este encuentro no compite una escuela contra otra**.
 
-En nuestra Pentatlón en Trekan, los maestros no premian exclusivamente a quien lanza más lejos o corre más rápido. La mirada pedagógica atiende a **la nobleza del gesto**:
+Siguiendo la tradición de las olimpíadas panhelénicas y la tregua sagrada (*Ekecheiria*), los estudiantes de las distintas escuelas Waldorf participantes fueron acogidos e integrados armónicamente en **ciudades-estado griegas mixtas** (poleis como Atenas, Esparta, Corinto, Delfos o Micenas). 
+
+De este modo, los niños de Trekan corrieron, saltaron y compartieron campamento codo a codo con compañeros de otras regiones. No hubo barras rivales ni antagonismos entre colegios; hubo una sola gran comunidad infantil que se reconoció hermana en el esfuerzo y la superación compartida.
+
+En este marco, la mirada de los maestros atiende a la ***Kalokagathia*** (*kalós*, bello; *agathós*, bueno): la convicción de que un movimiento no es verdadero si no es bello, y no puede ser bello si en su raíz alberga soberbia, deslealtad o violencia:
 
 * ¿Hubo serenidad y presencia en el atleta al prepararse?
 * ¿Hubo belleza en el arco del cuerpo al lanzar?
 * ¿Hubo generosidad para alentar al compañero que tropezó?
-* ¿Supo el niño aceptar el límite de sus fuerzas sin rabia y celebrar el esfuerzo del otro?
+* ¿Supo el niño aceptar el límite de sus fuerzas sin rabia y celebrar el esfuerzo del semejante?
 
-Al finalizar las pruebas, no hay podios excluyentes con primeros y últimos lugares. Cada participante recibe su corona de laurel y una dedicación escrita que destaca las virtudes y talentos singulares que demostró: la tenacidad, la templanza, la alegría en el juego o la serenidad en la prueba.
+Al finalizar las pruebas, no hay podios excluyentes. Cada participante recibe su corona de laurel y una dedicación escrita que destaca sus virtudes singulares demostradas en la arena: la perseverancia, la templanza, la alegría fraterna o la elegancia en el gesto.
 
-![Escenario exterior con el lienzo oficial de las Olimpiadas Waldorf 2026 y la comunidad reunida](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-escenario-olimpiadas.webp)
+![Escenario exterior con el lienzo oficial de las Olimpiadas Waldorf 2026 en San Felipe y la comunidad nacional reunida](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-escenario-olimpiadas.webp)
 
 ---
 
-## 4. El banquete y la comunidad viva
+## 4. El banquete y el calor de la comunidad nacional
 
 Un rito Waldorf nunca concluye en el esfuerzo individual; siempre se sella en el encuentro comunitario.
 
-Tras las pruebas bajo el sol, la jornada culminó con el tradicional **Banquete Griego**: mesas largas de madera dispuestas en comunión, flores del jardín, guirnaldas y alimentos compartidos con gratitud bajo el lema del encuentro. 
+Tras las pruebas bajo el sol del valle, la jornada culminó con el tradicional **Banquete Griego**: mesas largas de madera dispuestas en comunión, flores, guirnaldas y alimentos compartidos con gratitud entre niños, maestros y familias anfitrionas.
 
-En un mundo donde la infancia pasa horas crecientes frente a pantallas individuales y donde el deporte juvenil suele ser colonizado por la ansiedad de los adultos y la presión de rendimiento, ver a niños de distintas edades compartir el pan, mirarse a los ojos y cantar juntos es el testimonio más vivo de lo que significa educar para la salud del alma.
+En un mundo donde la infancia pasa horas crecientes frente a pantallas individuales y donde el deporte juvenil suele ser colonizado por la ansiedad de los adultos, ver a niños de colegios distantes mirarse a los ojos, cantar juntos y compartir el pan es el testimonio más vivo de lo que significa educar para la salud del alma y el tejido social.
 
-![Banquete griego comunitario: niños y maestros compartiendo en mesas largas de madera](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-banquete-comunitario.webp)
+![Banquete griego comunitario: niños de distintas escuelas y maestros compartiendo en mesas largas de madera en San Felipe](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-banquete-comunitario.webp)
 
-![Detalle conmemorativo con ramas de laurel y grecas griegas del Colegio Waldorf Trekan](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-buen-provecho-laurel.webp)
+![Detalle conmemorativo del Colegio Waldorf Trekan presente en el encuentro: «¡Buen Provecho!» adornado con ramas de laurel y grecas clásicas](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-buen-provecho-laurel.webp)
 
 ---
 
-## 📸 Galería Fotográfica: Los Momentos de la Pentatlón 2026
+## 📸 Galería Fotográfica: Los Momentos de la Pentatlón en San Felipe 2026
 
 ```gallery
 https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-trekan-ronda-2026.webp
@@ -98,7 +104,7 @@ https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/p
 
 ---
 
-Agradecemos profundamente al Claustro de Maestros, a las familias que prepararon cada detalle con devoción y, sobre todo, a nuestros estudiantes de Trekan, que con su luz, su valentía y su risa nos mostraron que la belleza clásica sigue viva en el sur de Chile.
+Agradecemos con profunda emoción a la comunidad anfitriona en San Felipe por recibir a nuestra delegación con tanto calor, a los maestros y maestras que acompañaron cada paso de este viaje desde Puerto Varas, a las familias que sostuvieron la preparación y, de manera muy especial, a los niños y niñas de Trekan y de todas las escuelas Waldorf hermanas. Con su valentía, su luz y su alegría compartida, nos demostraron que la armonía clásica y la fraternidad humana están más vivas que nunca.
 
 ---
 
@@ -106,5 +112,6 @@ Agradecemos profundamente al Claustro de Maestros, a las familias que prepararon
 
 * **Steiner, Rudolf.** *El estudio del hombre como base de la pedagogía* (GA 293). Editorial Rudolf Steiner, Madrid. (Conferencias sobre el sistema rítmico, la proporción corazón-respiración y el desarrollo de los doce sentidos).
 * **von Heydebrand, Caroline.** *La naturaleza anímica del niño y el currículo de la escuela Waldorf*. Editorial Antroposófica, Buenos Aires. (Capítulo dedicado al 5° año escolar, el salto evolutivo de los once años y la época de la Grecia Antigua).
-* **Richter, Tobias.** *El currículo de la escuela de Rudolf Steiner*. Editorial Pau de Damasc. (Guía curricular oficial sobre las disciplinas de la Pentatlón y los Juegos Olímpicos escolares).
-* **Wember, Valentin.** *La gestión de la escuela: Una guía para las escuelas Waldorf*. Editorial Pau de Damasc. (Sobre el papel de las fiestas estacionales y los ritos de paso en la cohesión anímica de la comunidad escolar).
+* **Richter, Tobias.** *El currículo de la escuela de Rudolf Steiner*. Editorial Pau de Damasc. (Guía curricular oficial sobre las disciplinas de la Pentatlón y los Juegos Olímpicos escolares interescolares).
+* **Wember, Valentin.** *La gestión de la escuela: Una guía para las escuelas Waldorf*. Editorial Pau de Damasc. (Sobre el papel de las fiestas estacionales y los ritos de paso en la cohesión anímica de la comunidad escolar y entre escuelas asociadas).
+
