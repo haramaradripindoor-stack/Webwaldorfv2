@@ -125,10 +125,12 @@ export default function MatrizExcelAdmisiones({
       // Filtro por Estado
       if (selectedStatus !== 'all' && lead.estado !== selectedStatus) return false;
 
-      // Filtro por Curso
+      // Filtro por Curso (soporta cursos múltiples / hermanos)
       if (selectedCourse !== 'all') {
         const norm = normalizeCourse(lead.curso_postula);
-        if (norm !== selectedCourse) return false;
+        const courseKeyword = selectedCourse.replace(' (2027)', '').toLowerCase();
+        const matchesMulti = lead.curso_postula && lead.curso_postula.toLowerCase().includes(courseKeyword);
+        if (norm !== selectedCourse && !matchesMulti) return false;
       }
 
       // Filtro por Búsqueda libre
@@ -152,12 +154,20 @@ export default function MatrizExcelAdmisiones({
     return leads.filter(l => l.estado !== 'no_corresponde' && l.estado !== 'no_continua');
   }, [leads]);
 
-  // Demanda por curso
+  // Demanda por curso (contabiliza hermanos postulados a múltiples cursos)
   const courseCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     activeLeads.forEach(lead => {
-      const c = normalizeCourse(lead.curso_postula);
-      counts[c] = (counts[c] || 0) + 1;
+      if (lead.curso_postula && lead.curso_postula.includes(',')) {
+        // Apoderado con múltiples cursos (Hermanos)
+        lead.curso_postula.split(',').forEach(part => {
+          const c = normalizeCourse(part.trim());
+          counts[c] = (counts[c] || 0) + 1;
+        });
+      } else {
+        const c = normalizeCourse(lead.curso_postula);
+        counts[c] = (counts[c] || 0) + 1;
+      }
     });
     return counts;
   }, [activeLeads]);
@@ -1086,13 +1096,18 @@ export default function MatrizExcelAdmisiones({
                         )}
                       </td>
 
-                      {/* [G] CURSO POSTULADO (Dropdown con cursos oficiales) */}
+                      {/* [G] CURSO POSTULADO (Dropdown con cursos oficiales y soporte hermanos) */}
                       <td className="p-2.5 border-r border-gray-100">
                         <select
-                          value={officialCourses2027.includes(lead.curso_postula) ? lead.curso_postula : normalizeCourse(lead.curso_postula)}
+                          value={officialCourses2027.includes(lead.curso_postula) ? lead.curso_postula : (lead.curso_postula && lead.curso_postula.includes(',') ? lead.curso_postula : normalizeCourse(lead.curso_postula))}
                           onChange={(e) => saveCellEdit(lead.id, 'curso_postula', e.target.value)}
                           className="w-full bg-transparent border-0 font-medium text-gray-800 text-xs py-1 px-1.5 rounded hover:bg-gray-100/80 outline-none cursor-pointer focus:bg-white focus:ring-1 focus:ring-[var(--color-waldorf-mustard)]"
                         >
+                          {!officialCourses2027.includes(lead.curso_postula) && lead.curso_postula && (
+                            <option value={lead.curso_postula}>
+                              {lead.curso_postula.includes(',') ? `👫 ${lead.curso_postula}` : lead.curso_postula}
+                            </option>
+                          )}
                           {officialCourses2027.map(curso => (
                             <option key={curso} value={curso}>{curso}</option>
                           ))}
