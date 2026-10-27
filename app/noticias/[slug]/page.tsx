@@ -46,12 +46,15 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const ogImageUrl = rawImg.startsWith('http') ? rawImg : `https://www.colegiowaldorftrekan.cl${rawImg.startsWith('/') ? rawImg : '/' + rawImg}`;
   const keywords = post.meta_keywords || post.keywords || `${post.title}, colegio waldorf puerto varas, pedagogia waldorf, educacion alternativa sur de chile`;
 
+  const { data: metaFrontData } = post.content ? parseFrontMatter(post.content) : { data: {} as Record<string, any> };
+  const authorName = post.author || metaFrontData.author || 'Colegio Waldorf Trekan';
+
   return {
     metadataBase: new URL('https://www.colegiowaldorftrekan.cl'),
     title,
     description,
     keywords,
-    authors: [{ name: post.author || 'Colegio Waldorf Trekan', url: 'https://www.colegiowaldorftrekan.cl' }],
+    authors: [{ name: authorName, url: 'https://www.colegiowaldorftrekan.cl' }],
     creator: 'Colegio Waldorf Trekan',
     publisher: 'Colegio Waldorf Trekan',
     alternates: { canonical: canonicalUrl },
@@ -63,7 +66,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       locale: 'es_CL',
       type: 'article',
       publishedTime: post.published_at || post.created_at,
-      authors: [post.author || 'Colegio Waldorf Trekan'],
+      authors: [authorName],
       images: [
         {
           url: ogImageUrl,
@@ -111,7 +114,8 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
   }
 
   // Parse frontmatter if the content comes raw from Supabase
-  const parsedContent = post.content ? parseFrontMatter(post.content).content : '';
+  const { data: frontData, content: parsedContent } = post.content ? parseFrontMatter(post.content) : { data: {} as Record<string, any>, content: '' };
+  const postAuthor = post.author || frontData.author || 'Equipo Pedagógico Trekan';
 
   const dateStr = new Date(post.published_at || post.created_at || Date.now()).toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric' })
   const readTime = Math.ceil((parsedContent.split(' ').length || 300) / 200) + ' min de lectura'
@@ -135,7 +139,7 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
     "dateModified": new Date(post.published_at || post.created_at || Date.now()).toISOString(),
     "author": {
       "@type": "Organization",
-      "name": post.author || "Colegio Waldorf Trekan",
+      "name": postAuthor,
       "url": "https://www.colegiowaldorftrekan.cl"
     },
     "publisher": {
@@ -184,7 +188,7 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
               <span className="text-xs font-bold uppercase tracking-widest text-gray-500">{readTime}</span>
               <span className="w-1 h-1 rounded-full bg-gray-300"></span>
               <span className="text-xs font-medium text-[#2C3E35]/80">
-                Por: <strong className="font-semibold text-[#2C3E35]">{post.author || 'Equipo Pedagógico y Fundador'}</strong>
+                Por: <strong className="font-semibold text-[#2C3E35]">{postAuthor}</strong>
               </span>
             </div>
 
@@ -234,7 +238,7 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
               <div className="sticky top-40 space-y-12">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Escrito por</p>
-                  <p className="font-serif text-xl text-[#2C3E35]">Comunidad Trekan</p>
+                  <p className="font-serif text-xl text-[#2C3E35]">{postAuthor}</p>
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Compartir</p>

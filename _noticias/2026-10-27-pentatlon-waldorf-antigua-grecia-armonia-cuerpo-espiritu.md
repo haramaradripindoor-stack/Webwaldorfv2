@@ -4,10 +4,8 @@ excerpt: "A los once años, el niño alcanza un punto de gracia y equilibrio fí
 published_at: "2026-10-27"
 category: "Festividades e Hitos"
 image_url: "https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-trekan-ronda-2026.webp"
-author: "Por: Equipo Pedagógico Colegio Waldorf Trekan"
+author: "Equipo Pedagógico Colegio Waldorf Trekan"
 ---
-
-# La Pentatlón Waldorf en San Felipe: Belleza, fuerza y hermandad entre escuelas a los 11 años
 
 Hay momentos en la vida escolar que quedan grabados en la memoria no por la nota que se obtuvo en una libreta, sino por la cualidad del aire que se respiró ese día.
 

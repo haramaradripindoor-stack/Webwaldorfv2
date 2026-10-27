@@ -6,7 +6,8 @@ export default function ShareButtons({ url, title }: { url: string, title: strin
   const [copied, setCopied] = useState(false)
 
   const shareWhatsApp = () => {
-    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(title + " | " + url)}`, '_blank')
+    // Al compartir la URL limpia, WhatsApp activa su crawler Open Graph y genera la tarjeta enriquecida grande con foto panorámica (1200x630)
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`, '_blank')
   }
 
   const shareFacebook = () => {
