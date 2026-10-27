@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import * as XLSX from 'xlsx';
 import { Clock, CheckCircle, MessageSquare, Flame, Trash2, Calendar, User, GripVertical, Download, XCircle, Archive, Edit3 , Search, Table, Columns} from 'lucide-react';
+import MatrizExcelAdmisiones from '@/components/admin/MatrizExcelAdmisiones';
 import {
   DndContext,
   DragOverlay,
@@ -689,7 +690,7 @@ export default function AdmisionesPage() {
 
   return (
     <div className="w-full">
-      <div className="mb-6 border-b border-[var(--color-waldorf-sage)]/20 pb-6 flex justify-between items-end">
+      <div className="mb-6 border-b border-[var(--color-waldorf-sage)]/20 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h1 className="text-3xl font-extrabold font-serif text-[var(--color-waldorf-moss)]">
             CRM Admisiones 2027
@@ -697,16 +698,46 @@ export default function AdmisionesPage() {
           <p className="text-[var(--color-waldorf-text-light)] mt-1 font-medium">Proceso de Admisión Escolar 2027 · Gestión de familias interesadas.</p>
         </div>
 
-        <button 
-          onClick={exportToExcel}
-          className="flex items-center gap-2 bg-[#6a8d73] hover:bg-[#4a6b52] text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors shadow-sm"
-        >
-          <Download className="w-4 h-4" />
-          Exportar a Excel
-        </button>
+        <div className="flex flex-wrap items-center gap-3">
+          {/* Switcher Tablero Kanban ↔ Matriz Excel CRM */}
+          <div className="flex items-center bg-[#FAF8F5] p-1 rounded-xl border border-[var(--color-waldorf-sage)]/20 shadow-xs">
+            <button
+              onClick={() => setViewMode('kanban')}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold transition-all ${
+                viewMode === 'kanban' 
+                  ? 'bg-[var(--color-waldorf-moss)] text-white shadow-xs' 
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              <Columns className="w-3.5 h-3.5" /> Tablero Kanban
+            </button>
+            <button
+              onClick={() => setViewMode('table')}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold transition-all ${
+                viewMode === 'table' 
+                  ? 'bg-[var(--color-waldorf-moss)] text-white shadow-xs' 
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              <Table className="w-3.5 h-3.5" /> Matriz Excel CRM
+            </button>
+          </div>
+
+          {viewMode === 'kanban' && (
+            <button 
+              onClick={exportToExcel}
+              className="flex items-center gap-2 bg-[#6a8d73] hover:bg-[#4a6b52] text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors shadow-sm"
+            >
+              <Download className="w-4 h-4" />
+              Exportar a Excel
+            </button>
+          )}
+        </div>
       </div>
 
-      {/* Resumen Ejecutivo de Demanda — Dashboard */}
+      {viewMode === 'kanban' ? (
+        <>
+          {/* Resumen Ejecutivo de Demanda — Dashboard */}
       <div className="mb-6 bg-white border border-[var(--color-waldorf-sage)]/20 rounded-2xl shadow-sm overflow-hidden">
         {/* Header */}
         <div className="px-5 py-4 border-b border-[var(--color-waldorf-sage)]/10 flex items-center justify-between">
@@ -855,34 +886,35 @@ export default function AdmisionesPage() {
         </div>
       )}
 
-      {/* Kanban Board DND Context */}
-      <DndContext 
-        sensors={sensors} 
-        collisionDetection={closestCorners}
-        onDragStart={onDragStart}
-        onDragEnd={onDragEnd}
-      >
-        
-      {viewMode === 'kanban' ? (
-        <>
-          <div className="flex gap-6 overflow-x-auto pb-8 snap-x">
-            {columns.map((col) => {
-              const colLeads = filteredLeads.filter(l => l.estado === col.id);
-              return <Column key={col.id} col={col} leads={colLeads} onDelete={handleDelete} onUpdateNote={handleUpdateNote} onUpdateCurso={handleUpdateCurso} onMove={handleManualMove} loading={loading} selectedLeadIds={selectedLeadIds} onToggleSelect={toggleSelection} onUpdateArquetipo={handleUpdateArquetipo} onUpdateArancel={handleUpdateArancel} />;
-            })}
-          </div>
+          {/* Kanban Board DND Context */}
+          <DndContext 
+            sensors={sensors} 
+            collisionDetection={closestCorners}
+            onDragStart={onDragStart}
+            onDragEnd={onDragEnd}
+          >
+            <div className="flex gap-6 overflow-x-auto pb-8 snap-x">
+              {columns.map((col) => {
+                const colLeads = filteredLeads.filter(l => l.estado === col.id);
+                return <Column key={col.id} col={col} leads={colLeads} onDelete={handleDelete} onUpdateNote={handleUpdateNote} onUpdateCurso={handleUpdateCurso} onMove={handleManualMove} loading={loading} selectedLeadIds={selectedLeadIds} onToggleSelect={toggleSelection} onUpdateArquetipo={handleUpdateArquetipo} onUpdateArancel={handleUpdateArancel} />;
+              })}
+            </div>
 
-          {/* Floating Overlay al arrastrar */}
-          <DragOverlay>
-            {activeLead ? (
-              <LeadCard lead={activeLead} />
-            ) : null}
-          </DragOverlay>
+            {/* Floating Overlay al arrastrar */}
+            <DragOverlay>
+              {activeLead ? (
+                <LeadCard lead={activeLead} />
+              ) : null}
+            </DragOverlay>
+          </DndContext>
         </>
       ) : (
-        <div className="text-center p-12 text-gray-500 bg-gray-50 rounded-xl border border-gray-100">Vista de tabla (Lista) en construcción...</div>
+        <MatrizExcelAdmisiones 
+          leads={leads} 
+          onLeadsChange={fetchLeads} 
+          columnsConfig={columns} 
+        />
       )}
-      </DndContext>
     </div>
   );
 }
