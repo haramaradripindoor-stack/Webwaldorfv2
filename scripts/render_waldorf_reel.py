@@ -3,8 +3,8 @@
 🎬 Motor Automatizado de Reels Waldorf para Colegio Waldorf Trekan
 ==================================================================
 Compila y renderiza videos verticales en 9:16 (1080x1920) optimizados para
-Instagram Reels y TikTok utilizando herramientas Open Source locales (MoviePy 2.x,
-Pillow, FFmpeg nativo con aceleración por hardware VideoToolbox en Apple Silicon).
+Instagram Reels y TikTok utilizando metraje RAW de alta resolución (Full HD nativo),
+MoviePy 2.x, Pillow, y aceleración por hardware VideoToolbox en Apple Silicon.
 
 Hito: Encuentro Nacional de Pentatlón Waldorf 2026 en San Felipe
 """
@@ -84,6 +84,9 @@ def fit_to_9_16(clip, target_w=TARGET_W, target_h=TARGET_H):
     sin deformar ni añadir barras negras laterales.
     """
     w, h = clip.size
+    if w == target_w and h == target_h:
+        return clip
+
     scale = max(target_w / w, target_h / h)
     new_w = int(round(w * scale))
     new_h = int(round(h * scale))
@@ -93,19 +96,27 @@ def fit_to_9_16(clip, target_w=TARGET_W, target_h=TARGET_H):
     y1 = (new_h - target_h) // 2
     return resized.cropped(x1=x1, y1=y1, width=target_w, height=target_h)
 
+def resolve_file(filename: str, search_dirs: list) -> str:
+    """Busca un archivo en una lista de directorios en orden de prioridad."""
+    for d in search_dirs:
+        p = Path(d) / filename
+        if p.exists():
+            return str(p)
+    raise FileNotFoundError(f"No se encontró '{filename}' en: {search_dirs}")
+
 def build_pentatlon_reel(
-    input_dir: str,
+    search_dirs: list,
     output_path: str,
     music_path: str,
     font_path: str,
     downloads_copy: str = None,
     ambient_volume: float = 0.35,
-    music_volume: float = 0.65
+    music_volume: float = 0.55
 ):
     print("=" * 60)
-    print("🌿 INICIANDO MOTOR DE RENDERIZADO REEL WALDORF TREKAN")
+    print("🌿 INICIANDO MOTOR DE RENDERIZADO REEL WALDORF TREKAN (RAW FULL HD)")
     print("=" * 60)
-    print(f"📁 Directorio de origen: {input_dir}")
+    print(f"📁 Directorios de búsqueda: {search_dirs}")
     print(f"🎯 Archivo destino: {output_path}")
     print(f"🎵 Pista musical: {music_path}")
     print(f"🖋️ Fuente tipográfica: {font_path}")
@@ -113,63 +124,67 @@ def build_pentatlon_reel(
     temp_dir = Path("public/videos/.temp_subtitles")
     temp_dir.mkdir(parents=True, exist_ok=True)
 
-    # 1. Definición de la Escaleta de Tomas y Textos Pedagógicos
+    # Escaleta Canónica de Tomas y Textos Pedagógicos con metraje RAW de alta definición (26.5s)
     scenes_config = [
         {
-            "file": "WhatsApp Video 2026-10-23 at 23.05.46.mp4",
+            "file": "VID_20261024_073312.mp4",
             "type": "video",
             "start": 2.0,
-            "end": 6.5,
-            "duration": 4.5,
+            "end": 5.8,
+            "duration": 3.8,
             "text": "A los 11 años ocurre algo irrepetible\nen el cuerpo de un niño."
         },
         {
-            "file": "WhatsApp Video 2026-10-23 at 23.05.46 (1).mp4",
+            "file": "VID_20261024_085842.mp4",
             "type": "video",
-            "start": 1.0,
-            "end": 5.5,
-            "duration": 4.5,
-            "text": "Nuestra comitiva viajó desde Puerto Varas\nal Encuentro Nacional en San Felipe."
+            "start": 4.0,
+            "end": 7.8,
+            "duration": 3.8,
+            "text": "Nuestra delegación viajó desde Puerto Varas\nal Encuentro Nacional en San Felipe."
         },
         {
-            "file": "WhatsApp Video 2026-10-23 at 23.05.47.mp4",
+            "file": "VID_20261024_091556.mp4",
             "type": "video",
-            "start": 3.0,
-            "end": 7.5,
-            "duration": 4.5,
+            "start": 10.0,
+            "end": 13.8,
+            "duration": 3.8,
             "text": "En la Pentatlón Waldorf\nno compite un colegio contra otro...\ncompartimos las poleis griegas."
         },
         {
-            "file": "WhatsApp Video 2026-10-23 at 23.05.48.mp4",
+            "file": "VID_20261024_114745.mp4",
             "type": "video",
-            "start": 45.0,
-            "end": 49.5,
-            "duration": 4.5,
+            "start": 15.0,
+            "end": 18.8,
+            "duration": 3.8,
             "text": "Cultivamos la «Kalokagathia»:\nla nobleza y la belleza en cada gesto."
         },
         {
-            "file": "WhatsApp Video 2026-10-23 at 23.06.59.mp4",
+            "file": "VID_20261024_124402.mp4",
             "type": "video",
-            "start": 5.0,
-            "end": 9.5,
-            "duration": 4.5,
+            "start": 17.0,
+            "end": 20.8,
+            "duration": 3.8,
+            "text": "Cada esfuerzo es reconocido\npor su entrega, nobleza y compañerismo."
+        },
+        {
+            "file": "VID_20261024_132115.mp4",
+            "type": "video",
+            "start": 7.0,
+            "end": 10.8,
+            "duration": 3.8,
             "text": "Porque el verdadero encuentro humano\nculmina siempre en fraternidad."
         },
         {
-            "file": "WhatsApp Image 2026-10-23 at 23.06.59 (1).jpeg",
+            "file": "IMG_20261024_132919.jpg",
             "type": "image",
-            "duration": 4.0,
-            "text": "Colegio Waldorf Trekan · Puerto Varas\nAdmisión 2027 · Link en biografía"
+            "duration": 3.7,
+            "text": "Colegio Waldorf Trekan · Puerto Varas\nAdmisión Abierta · Link en biografía"
         }
     ]
 
     total_duration = sum(s["duration"] for s in scenes_config)
     print(f"⏱️ Duración total proyectada: {total_duration:.1f} segundos")
 
-    processed_scenes = []
-    ambient_audio_clips = []
-
-    # Verificar si se incluye música o si el usuario montará la pista en Instagram/CapCut
     has_music = (
         music_path
         and music_path.lower() != 'none'
@@ -177,24 +192,21 @@ def build_pentatlon_reel(
         and music_volume > 0.0
     )
 
-    # Si no hay música externa, amplificar el audio ambiente al 100% natural
     effective_ambient_vol = ambient_volume if has_music else 1.0
-    print(f"🔊 Volumen ambiente configurado: {effective_ambient_vol * 100:.0f}%")
+    print(f"🔊 Volumen ambiente: {effective_ambient_vol * 100:.0f}% | Música: {music_volume * 100:.0f}%" if has_music else "🔊 Volumen ambiente: 100% puro")
 
     processed_scenes = []
     ambient_audio_clips = []
 
     for i, s in enumerate(scenes_config, 1):
-        print(f"\n🎬 Procesando Escena {i}/{len(scenes_config)}: {s['file']}")
-        source_path = os.path.join(input_dir, s["file"])
-        if not os.path.exists(source_path):
-            raise FileNotFoundError(f"No se encontró el archivo fuente: {source_path}")
+        source_path = resolve_file(s["file"], search_dirs)
+        print(f"\n🎬 Procesando Escena {i}/{len(scenes_config)}: {s['file']} ({s['duration']}s)")
 
-        # Renderizar tarjeta de subtítulo con Pillow (Tipografía editorial de comunicaciones)
+        # Renderizar tarjeta de subtítulo con Pillow (Merriweather Bold)
         sub_png = temp_dir / f"sub_scene_{i}.png"
         create_subtitle_card(s["text"], str(sub_png), font_path, font_size=38, y_pos=1320)
 
-        # Cargar capa visual de subtítulo
+        # Cargar capa visual de subtítulo con disolvencia suave
         sub_clip = ImageClip(str(sub_png)).with_duration(s["duration"]).with_effects([
             vfx.CrossFadeIn(0.35),
             vfx.CrossFadeOut(0.35)
@@ -204,12 +216,10 @@ def build_pentatlon_reel(
             raw_clip = VideoFileClip(source_path).subclipped(s["start"], s["end"])
             fitted_clip = fit_to_9_16(raw_clip)
 
-            # Extraer audio ambiente original
             if raw_clip.audio is not None:
                 amb_audio = raw_clip.audio.with_volume_scaled(effective_ambient_vol)
                 ambient_audio_clips.append(amb_audio)
             
-            # Combinar video con subtítulo
             scene_comp = CompositeVideoClip([fitted_clip, sub_clip], size=(TARGET_W, TARGET_H))
             processed_scenes.append(scene_comp)
 
@@ -225,10 +235,12 @@ def build_pentatlon_reel(
     # 2. Orquestación y Mezcla de Pistas de Audio
     if has_music:
         print(f"\n🎵 Mezclando banda sonora ({music_path})...")
-        music_clip = AudioFileClip(music_path).subclipped(0, total_duration).with_volume_scaled(music_volume)
+        raw_music = AudioFileClip(music_path)
+        music_dur = min(total_duration, raw_music.duration)
+        music_clip = raw_music.subclipped(0, music_dur).with_volume_scaled(music_volume)
         music_clip = music_clip.with_effects([
             afx.AudioFadeIn(0.8),
-            afx.AudioFadeOut(1.8)
+            afx.AudioFadeOut(1.5)
         ])
 
         if ambient_audio_clips:
@@ -237,11 +249,8 @@ def build_pentatlon_reel(
         else:
             final_audio = music_clip
     else:
-        print("\n🌿 Modo Audio Ambiente Puro (100% natural sin música de fondo para montaje libre en Instagram)...")
-        if ambient_audio_clips:
-            final_audio = concatenate_audioclips(ambient_audio_clips)
-        else:
-            final_audio = None
+        print("\n🌿 Modo Audio Ambiente Puro...")
+        final_audio = concatenate_audioclips(ambient_audio_clips) if ambient_audio_clips else None
 
     if final_audio is not None:
         final_video = final_video.with_audio(final_audio)
@@ -256,7 +265,7 @@ def build_pentatlon_reel(
             fps=TARGET_FPS,
             codec='h264_videotoolbox',
             audio_codec='aac',
-            bitrate='9000k',
+            bitrate='12000k',
             audio_bitrate='192k',
             logger='bar'
         )
@@ -269,12 +278,12 @@ def build_pentatlon_reel(
             codec='libx264',
             preset='fast',
             audio_codec='aac',
-            bitrate='9000k',
+            bitrate='12000k',
             audio_bitrate='192k',
             logger='bar'
         )
 
-    # 4. Copiar a la carpeta Descargas si se solicitó
+    # 4. Copiar a la carpeta Descargas
     if downloads_copy:
         os.makedirs(os.path.dirname(downloads_copy), exist_ok=True)
         shutil.copy2(output_path, downloads_copy)
@@ -294,18 +303,24 @@ def build_pentatlon_reel(
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Renderizador Automatizado de Reels Waldorf Trekan")
-    parser.add_argument('--input-dir', default='/Users/felipeandresvivancocornejo/Downloads/WhatsApp Unknown 2026-10-25 at 11.27.18', help='Directorio con videos fuente')
     parser.add_argument('--output', default='public/videos/reel_pentatlon_san_felipe_2026.mp4', help='Ruta destino del video')
-    parser.add_argument('--music', default='none', help='Ruta del audio de fondo o "none" para audio ambiente puro listo para Instagram')
-    parser.add_argument('--font', default='public/fonts/Merriweather-Bold.ttf', help='Ruta de la fuente tipográfica (Merriweather editorial)')
+    parser.add_argument('--music', default='public/audio/calm_nature_glow.mp3', help='Ruta del audio de fondo')
+    parser.add_argument('--font', default='public/fonts/Merriweather-Bold.ttf', help='Ruta de la fuente tipográfica')
     parser.add_argument('--downloads', default='/Users/felipeandresvivancocornejo/Downloads/reel_pentatlon_san_felipe_2026.mp4', help='Copia a descargas')
-    parser.add_argument('--ambient-vol', type=float, default=1.0, help='Volumen audio ambiente (0.0 a 1.0)')
-    parser.add_argument('--music-vol', type=float, default=0.65, help='Volumen música acústica (0.0 a 1.0)')
+    parser.add_argument('--ambient-vol', type=float, default=0.35, help='Volumen audio ambiente (0.0 a 1.0)')
+    parser.add_argument('--music-vol', type=float, default=0.55, help='Volumen música acústica (0.0 a 1.0)')
 
     args = parser.parse_args()
 
+    search_directories = [
+        '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026',
+        '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 2',
+        '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 3',
+        '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 4'
+    ]
+
     build_pentatlon_reel(
-        input_dir=args.input_dir,
+        search_dirs=search_directories,
         output_path=args.output,
         music_path=args.music,
         font_path=args.font,
