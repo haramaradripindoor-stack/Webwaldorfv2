@@ -105,4 +105,15 @@ Ante cualquier solicitud de creación (presentaciones, webs, assets, scripts), a
 - **Fricción Cero en Móvil:** Reemplazar campos de texto libre para cursos por botoneras táctiles de chips/pills correspondientes a la oferta oficial de cursos.
 - **Detección Dinámica de Hermanos:** Al seleccionar 2 o más cursos, el formulario debe activar el "Modo Hermanos", adaptando etiquetas y placeholders (ej. "Nombres y edades de tus hijos/as") y serializando de forma limpia (`Curso A, Curso B`) para alimentar tanto el mensaje de WhatsApp como la Matriz CRM de Quórum sin corromper el cálculo de vacantes.
 
+## Protocolo Operativo Canónico de Entrega de Contenido (Paquete de 7 Elementos)
+Toda solicitud de creación o preparación de contenido para Instagram (Reels, Posts o Carruseles) de Trekan DEBE entregarse invariablemente consolidada en el **Paquete Canónico de 7 Elementos** en un único bloque listo para copiar y pegar:
+1. **Archivo y Formato:** Ruta local del video/foto, resolución 9:16 (1080×1920) a 24-30 fps, audio ambiente (100%) + música suave (-20 dB), tipografía editorial `Merriweather Bold`.
+2. **Copy Principal (Caption):** Redactado bajo la fórmula de reducción de cortisol Waldorf (Hook humano -> Hecho real sin ficción -> Cierre fraterno -> CTA suave a bio/WhatsApp -> Estímulo a compartir por DM -> 3 a 5 hashtags específicos locales).
+3. **Ubicación Geográfica Obligatoria:** `Puerto Varas, Chile`.
+4. **Texto Alternativo (Alt Text):** Descripción literal y accesible para indexación visual de Meta.
+5. **Portada Editorial:** Segundo exacto o fotograma libre de caras forzadas (estética Kinfolk/Patagonia).
+6. **Primer Comentario Fijado 📌:** URL web directa para mantener el caption limpio de links rotos.
+7. **Texto para Historias ✈️:** Frase breve y sticker para repostear con el avioncito a la comunidad existente.
+*(Referencia completa en `docs/GUIA_OPERATIVA_PUBLICACION_CONTENIDO_INSTAGRAM.md`).*
+
 
