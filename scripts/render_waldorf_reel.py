@@ -309,8 +309,11 @@ def build_pentatlon_master_documentary(
     if has_music:
         print(f"\n🎵 Mezclando banda sonora ({music_path})...")
         raw_music = AudioFileClip(music_path)
-        loop_times = int(total_duration // raw_music.duration) + 2
-        looped_music = concatenate_audioclips([raw_music] * loop_times)
+        if raw_music.duration < total_duration:
+            loop_times = int(total_duration // raw_music.duration) + 2
+            looped_music = concatenate_audioclips([raw_music] * loop_times)
+        else:
+            looped_music = raw_music
         
         music_clip = (
             looped_music.subclipped(0, total_duration)
