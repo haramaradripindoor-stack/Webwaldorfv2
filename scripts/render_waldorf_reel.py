@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
-🎬 Motor Automatizado de Reels Waldorf para Colegio Waldorf Trekan (Edición 60s)
-================================================================================
-Compila y renderiza una pieza documental de 1 minuto (60.0 segundos) en 9:16 (1080x1920)
-con cadencia orgánica "Slow Living", respiración rítmica de subtítulos, sonido ambiente
-real ASMR de San Felipe, banda sonora acústica Calm Nature Glow y aceleración por hardware
-Apple Silicon VideoToolbox en M1 Max.
+🎬 Motor Automatizado de Reels Waldorf para Colegio Waldorf Trekan
+==================================================================
+Edición Extendida Documental de 12 Etapas (~73 segundos / 1:13 min)
+Compila metraje nativo RAW Full HD (sin compresión), respiración rítmica,
+sonido ambiente real ASMR de San Felipe, banda sonora Calm Nature Glow
+y cierre institucional noble con ramas de laurel (sin fotos de adultos/madres).
+
+Aceleración por hardware Apple Silicon VideoToolbox (M1 Max).
 """
 
 import os
@@ -97,13 +99,17 @@ def fit_to_9_16(clip, target_w=TARGET_W, target_h=TARGET_H):
 
 def resolve_file(filename: str, search_dirs: list) -> str:
     """Busca un archivo en una lista de directorios en orden de prioridad."""
+    # Si es ruta absoluta o directa relativa existente
+    if os.path.exists(filename):
+        return filename
+
     for d in search_dirs:
         p = Path(d) / filename
         if p.exists():
             return str(p)
     raise FileNotFoundError(f"No se encontró '{filename}' en: {search_dirs}")
 
-def build_pentatlon_reel_60s(
+def build_pentatlon_master_documentary(
     search_dirs: list,
     output_path: str,
     music_path: str,
@@ -113,7 +119,7 @@ def build_pentatlon_reel_60s(
     music_volume: float = 0.50
 ):
     print("=" * 60)
-    print("🌿 INICIANDO MOTOR DE RENDERIZADO REEL WALDORF TREKAN (MASTER 60s)")
+    print("🌿 INICIANDO MOTOR DE RENDERIZADO REEL WALDORF TREKAN (MASTER 12 ETAPAS)")
     print("=" * 60)
     print(f"📁 Directorios de búsqueda: {search_dirs}")
     print(f"🎯 Archivo destino: {output_path}")
@@ -123,100 +129,132 @@ def build_pentatlon_reel_60s(
     temp_dir = Path("public/videos/.temp_subtitles")
     temp_dir.mkdir(parents=True, exist_ok=True)
 
-    # Escaleta Canónica de 1 Minuto (60s) con Metraje RAW de Cámara y Respiración Rítmica
+    # Escaleta Canónica de 12 Etapas del Encuentro Nacional en San Felipe
+    # Cubre: Campamento, Amanecer, Ronda, Túnicas, Juramento, Carreras, Salto/Jabalina,
+    # Lucha Noble (Kalokagathia), Laureles, Banquete, Canto y Cierre Noble sin fotos de adultos.
     scenes_config = [
+        {
+            "file": "VID_20261023_174246.mp4",
+            "type": "video",
+            "start": 3.0,
+            "end": 9.0,
+            "duration": 6.0,
+            "sub_start": 0.6,
+            "sub_duration": 4.0,
+            "text": "A los 11 años ocurre algo irrepetible\nen el cuerpo y el alma de un niño."
+        },
+        {
+            "file": "VID_20261024_073057.mp4",
+            "type": "video",
+            "start": 6.0,
+            "end": 12.0,
+            "duration": 6.0,
+            "sub_start": 0.6,
+            "sub_duration": 4.0,
+            "text": "Nuestra delegación viajó desde Puerto Varas\nal Encuentro Nacional en San Felipe."
+        },
         {
             "file": "VID_20261024_073312.mp4",
             "type": "video",
             "start": 2.0,
-            "end": 8.5,
-            "duration": 6.5,
+            "end": 8.0,
+            "duration": 6.0,
             "sub_start": 0.6,
-            "sub_duration": 4.2,
-            "text": "A los 11 años ocurre algo irrepetible\nen el cuerpo de un niño."
+            "sub_duration": 4.0,
+            "text": "Bajo la luz del valle, escuelas Waldorf de Chile\nse unen en una sola gran ronda."
         },
         {
-            "file": "VID_20261024_075755.mp4",
+            "file": "VID_20261024_085817.mp4",
             "type": "video",
-            "start": 3.0,
-            "end": 9.5,
-            "duration": 6.5,
+            "start": 2.0,
+            "end": 8.0,
+            "duration": 6.0,
             "sub_start": 0.6,
-            "sub_duration": 4.2,
-            "text": "Nuestra delegación viajó desde Puerto Varas\nal Encuentro Nacional en San Felipe."
+            "sub_duration": 4.0,
+            "text": "Vivenciando su época de historia clásica,\nvistieron los chitones y túnicas griegas."
         },
         {
             "file": "VID_20261024_085842.mp4",
             "type": "video",
             "start": 4.0,
-            "end": 10.5,
-            "duration": 6.5,
+            "end": 10.0,
+            "duration": 6.0,
             "sub_start": 0.6,
-            "sub_duration": 4.2,
-            "text": "En la época de la Grecia Clásica,\nvistieron los chitones bajo el sol del valle."
+            "sub_duration": 4.0,
+            "text": "En la Pentatlón Waldorf\nno compite un colegio contra otro...\ncompartimos las poleis griegas."
         },
         {
             "file": "VID_20261024_091556.mp4",
             "type": "video",
             "start": 10.0,
-            "end": 16.5,
-            "duration": 6.5,
+            "end": 16.0,
+            "duration": 6.0,
             "sub_start": 0.6,
-            "sub_duration": 4.2,
-            "text": "En la Pentatlón Waldorf\nno compite un colegio contra otro...\ncompartimos las poleis griegas."
+            "sub_duration": 4.0,
+            "text": "Carreras en el pasto libre de pantallas,\ndonde correr es celebrar la vitalidad."
         },
         {
             "file": "VID_20261024_092204.mp4",
             "type": "video",
             "start": 15.0,
-            "end": 21.5,
-            "duration": 6.5,
+            "end": 21.0,
+            "duration": 6.0,
             "sub_start": 0.6,
-            "sub_duration": 4.2,
-            "text": "Carrera, salto, jabalina y disco:\nel cuerpo encuentra su armonía y vigor."
+            "sub_duration": 4.0,
+            "text": "Salto, disco y jabalina:\nel cuerpo encuentra su equilibrio y proporción."
         },
         {
             "file": "VID_20261024_114745.mp4",
             "type": "video",
             "start": 14.0,
-            "end": 20.5,
-            "duration": 6.5,
+            "end": 20.0,
+            "duration": 6.0,
             "sub_start": 0.6,
-            "sub_duration": 4.2,
+            "sub_duration": 4.0,
             "text": "Cultivamos la «Kalokagathia»:\nla nobleza y la belleza en cada gesto."
         },
         {
             "file": "VID_20261024_124402.mp4",
             "type": "video",
             "start": 16.0,
-            "end": 22.5,
-            "duration": 6.5,
+            "end": 22.0,
+            "duration": 6.0,
             "sub_start": 0.6,
-            "sub_duration": 4.2,
-            "text": "Cada esfuerzo es coronado de laurel,\nhonrando la entrega y el valor de cada niño."
+            "sub_duration": 4.0,
+            "text": "Cada esfuerzo es coronado de laurel,\nhonrando la entrega singular de cada niño."
         },
         {
             "file": "VID_20261024_132115.mp4",
             "type": "video",
             "start": 7.0,
-            "end": 14.0,
-            "duration": 7.0,
+            "end": 13.5,
+            "duration": 6.5,
             "sub_start": 0.6,
-            "sub_duration": 4.4,
+            "sub_duration": 4.5,
+            "text": "Mesas largas de madera bajo los árboles,\ncompartiendo el pan y la alegría de estar juntos."
+        },
+        {
+            "file": "VID_20261024_132705.mp4",
+            "type": "video",
+            "start": 10.0,
+            "end": 16.5,
+            "duration": 6.5,
+            "sub_start": 0.6,
+            "sub_duration": 4.5,
             "text": "Porque el verdadero encuentro humano\nculmina siempre en fraternidad."
         },
         {
-            "file": "IMG_20261024_132919.jpg",
+            "file": "public/videos/cierre_cartel_laurel.jpg",
             "type": "image",
-            "duration": 7.5,
+            "duration": 6.0,
             "sub_start": 0.6,
-            "sub_duration": 5.5,
+            "sub_duration": 4.8,
             "text": "Colegio Waldorf Trekan · Puerto Varas\nAdmisión Abierta · Link en biografía"
         }
     ]
 
     total_duration = sum(s["duration"] for s in scenes_config)
-    print(f"⏱️ Duración total proyectada: {total_duration:.1f} segundos (1 minuto)")
+    print(f"⏱️ Duración total proyectada: {total_duration:.1f} segundos (~1:13 min)")
 
     has_music = (
         music_path
@@ -233,13 +271,13 @@ def build_pentatlon_reel_60s(
 
     for i, s in enumerate(scenes_config, 1):
         source_path = resolve_file(s["file"], search_dirs)
-        print(f"\n🎬 Procesando Escena {i}/{len(scenes_config)}: {s['file']} (duración: {s['duration']}s)")
+        print(f"\n🎬 Procesando Escena {i}/{len(scenes_config)}: {Path(s['file']).name} (duración: {s['duration']}s)")
 
         # Renderizar tarjeta de subtítulo con Pillow (Merriweather Bold)
         sub_png = temp_dir / f"sub_scene_{i}.png"
         create_subtitle_card(s["text"], str(sub_png), font_path, font_size=38, y_pos=1320)
 
-        # Cargar capa visual de subtítulo con respiración rítmica (aparece con fade in y sale con fade out antes de que termine la toma)
+        # Cargar capa visual de subtítulo con respiración rítmica
         sub_clip = (
             ImageClip(str(sub_png))
             .with_start(s["sub_start"])
@@ -264,21 +302,20 @@ def build_pentatlon_reel_60s(
             scene_comp = CompositeVideoClip([fitted_img, sub_clip], size=(TARGET_W, TARGET_H))
             processed_scenes.append(scene_comp)
 
-    print("\n🎞️ Concatenando 9 escenas...")
+    print("\n🎞️ Concatenando 12 escenas documentales...")
     final_video = concatenate_videoclips(processed_scenes, method='compose')
 
-    # 2. Orquestación y Mezcla de Pistas de Audio (Looping fluido de Calm Nature Glow a 60s)
+    # 2. Orquestación y Mezcla de Pistas de Audio (Looping fluido de Calm Nature Glow)
     if has_music:
         print(f"\n🎵 Mezclando banda sonora ({music_path})...")
         raw_music = AudioFileClip(music_path)
-        # Loopear la pista musical para cubrir holgadamente los 60s
         loop_times = int(total_duration // raw_music.duration) + 2
         looped_music = concatenate_audioclips([raw_music] * loop_times)
         
         music_clip = (
             looped_music.subclipped(0, total_duration)
             .with_volume_scaled(music_volume)
-            .with_effects([afx.AudioFadeIn(0.8), afx.AudioFadeOut(2.0)])
+            .with_effects([afx.AudioFadeIn(0.8), afx.AudioFadeOut(2.2)])
         )
 
         if ambient_audio_clips:
@@ -295,7 +332,7 @@ def build_pentatlon_reel_60s(
 
     # 3. Exportación Acelerada por Hardware (Apple Silicon VideoToolbox M1 Max)
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    print(f"\n⚡ Exportando video a {output_path}...")
+    print(f"\n⚡ Exportando video documental a {output_path}...")
     
     try:
         final_video.write_videofile(
@@ -303,7 +340,7 @@ def build_pentatlon_reel_60s(
             fps=TARGET_FPS,
             codec='h264_videotoolbox',
             audio_codec='aac',
-            bitrate='12000k',
+            bitrate='9500k',
             audio_bitrate='192k',
             logger='bar'
         )
@@ -316,7 +353,7 @@ def build_pentatlon_reel_60s(
             codec='libx264',
             preset='fast',
             audio_codec='aac',
-            bitrate='12000k',
+            bitrate='9500k',
             audio_bitrate='192k',
             logger='bar'
         )
@@ -331,16 +368,16 @@ def build_pentatlon_reel_60s(
     shutil.rmtree(temp_dir, ignore_errors=True)
 
     print("\n" + "=" * 60)
-    print("✨ REEL MASTER 60s LISTO PARA PUBLICAR EN INSTAGRAM Y WEB")
+    print("✨ REEL MASTER DOCUMENTAL 12 ETAPAS LISTO PARA PUBLICAR")
     print("=" * 60)
     print(f"📹 Ruta Web: {output_path}")
     if downloads_copy:
         print(f"📥 Ruta Mac: {downloads_copy}")
     print(f"📐 Resolución: {TARGET_W}x{TARGET_H} (9:16 Full HD)")
-    print(f"⏱️ Duración: {total_duration:.1f} segundos (1 minuto)")
+    print(f"⏱️ Duración: {total_duration:.1f} segundos (~1:13 min)")
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Renderizador Automatizado de Reels Waldorf Trekan (60s)")
+    parser = argparse.ArgumentParser(description="Renderizador Automatizado de Reels Waldorf Trekan (12 Etapas)")
     parser.add_argument('--output', default='public/videos/reel_pentatlon_san_felipe_2026.mp4', help='Ruta destino del video')
     parser.add_argument('--music', default='public/audio/calm_nature_glow.mp3', help='Ruta del audio de fondo')
     parser.add_argument('--font', default='public/fonts/Merriweather-Bold.ttf', help='Ruta de la fuente tipográfica')
@@ -351,13 +388,14 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     search_directories = [
+        'public/videos',
         '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026',
         '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 2',
         '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 3',
         '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 4'
     ]
 
-    build_pentatlon_reel_60s(
+    build_pentatlon_master_documentary(
         search_dirs=search_directories,
         output_path=args.output,
         music_path=args.music,
