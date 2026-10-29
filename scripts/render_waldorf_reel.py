@@ -382,8 +382,8 @@ if __name__ == '__main__':
     parser.add_argument('--music', default='public/audio/calm_nature_glow.mp3', help='Ruta del audio de fondo')
     parser.add_argument('--font', default='public/fonts/Merriweather-Bold.ttf', help='Ruta de la fuente tipográfica')
     parser.add_argument('--downloads', default='/Users/felipeandresvivancocornejo/Downloads/reel_pentatlon_san_felipe_2026.mp4', help='Copia a descargas')
-    parser.add_argument('--ambient-vol', type=float, default=0.35, help='Volumen audio ambiente (0.0 a 1.0)')
-    parser.add_argument('--music-vol', type=float, default=0.50, help='Volumen música acústica (0.0 a 1.0)')
+    parser.add_argument('--ambient-vol', type=float, default=0.0, help='Volumen audio ambiente (0.0 a 1.0, 0.0 para eliminar voces y ruidos de micro)')
+    parser.add_argument('--music-vol', type=float, default=0.85, help='Volumen música acústica (0.0 a 1.0)')
 
     args = parser.parse_args()
 
