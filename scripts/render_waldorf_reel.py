@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """
-🎬 Motor Automatizado de Reels Waldorf para Colegio Waldorf Trekan
-==================================================================
-Compila y renderiza videos verticales en 9:16 (1080x1920) optimizados para
-Instagram Reels y TikTok utilizando metraje RAW de alta resolución (Full HD nativo),
-MoviePy 2.x, Pillow, y aceleración por hardware VideoToolbox en Apple Silicon.
-
-Hito: Encuentro Nacional de Pentatlón Waldorf 2026 en San Felipe
+🎬 Motor Automatizado de Reels Waldorf para Colegio Waldorf Trekan (Edición 60s)
+================================================================================
+Compila y renderiza una pieza documental de 1 minuto (60.0 segundos) en 9:16 (1080x1920)
+con cadencia orgánica "Slow Living", respiración rítmica de subtítulos, sonido ambiente
+real ASMR de San Felipe, banda sonora acústica Calm Nature Glow y aceleración por hardware
+Apple Silicon VideoToolbox en M1 Max.
 """
 
 import os
@@ -104,17 +103,17 @@ def resolve_file(filename: str, search_dirs: list) -> str:
             return str(p)
     raise FileNotFoundError(f"No se encontró '{filename}' en: {search_dirs}")
 
-def build_pentatlon_reel(
+def build_pentatlon_reel_60s(
     search_dirs: list,
     output_path: str,
     music_path: str,
     font_path: str,
     downloads_copy: str = None,
     ambient_volume: float = 0.35,
-    music_volume: float = 0.55
+    music_volume: float = 0.50
 ):
     print("=" * 60)
-    print("🌿 INICIANDO MOTOR DE RENDERIZADO REEL WALDORF TREKAN (RAW FULL HD)")
+    print("🌿 INICIANDO MOTOR DE RENDERIZADO REEL WALDORF TREKAN (MASTER 60s)")
     print("=" * 60)
     print(f"📁 Directorios de búsqueda: {search_dirs}")
     print(f"🎯 Archivo destino: {output_path}")
@@ -124,66 +123,100 @@ def build_pentatlon_reel(
     temp_dir = Path("public/videos/.temp_subtitles")
     temp_dir.mkdir(parents=True, exist_ok=True)
 
-    # Escaleta Canónica de Tomas y Textos Pedagógicos con metraje RAW de alta definición (26.5s)
+    # Escaleta Canónica de 1 Minuto (60s) con Metraje RAW de Cámara y Respiración Rítmica
     scenes_config = [
         {
             "file": "VID_20261024_073312.mp4",
             "type": "video",
             "start": 2.0,
-            "end": 5.8,
-            "duration": 3.8,
+            "end": 8.5,
+            "duration": 6.5,
+            "sub_start": 0.6,
+            "sub_duration": 4.2,
             "text": "A los 11 años ocurre algo irrepetible\nen el cuerpo de un niño."
+        },
+        {
+            "file": "VID_20261024_075755.mp4",
+            "type": "video",
+            "start": 3.0,
+            "end": 9.5,
+            "duration": 6.5,
+            "sub_start": 0.6,
+            "sub_duration": 4.2,
+            "text": "Nuestra delegación viajó desde Puerto Varas\nal Encuentro Nacional en San Felipe."
         },
         {
             "file": "VID_20261024_085842.mp4",
             "type": "video",
             "start": 4.0,
-            "end": 7.8,
-            "duration": 3.8,
-            "text": "Nuestra delegación viajó desde Puerto Varas\nal Encuentro Nacional en San Felipe."
+            "end": 10.5,
+            "duration": 6.5,
+            "sub_start": 0.6,
+            "sub_duration": 4.2,
+            "text": "En la época de la Grecia Clásica,\nvistieron los chitones bajo el sol del valle."
         },
         {
             "file": "VID_20261024_091556.mp4",
             "type": "video",
             "start": 10.0,
-            "end": 13.8,
-            "duration": 3.8,
+            "end": 16.5,
+            "duration": 6.5,
+            "sub_start": 0.6,
+            "sub_duration": 4.2,
             "text": "En la Pentatlón Waldorf\nno compite un colegio contra otro...\ncompartimos las poleis griegas."
+        },
+        {
+            "file": "VID_20261024_092204.mp4",
+            "type": "video",
+            "start": 15.0,
+            "end": 21.5,
+            "duration": 6.5,
+            "sub_start": 0.6,
+            "sub_duration": 4.2,
+            "text": "Carrera, salto, jabalina y disco:\nel cuerpo encuentra su armonía y vigor."
         },
         {
             "file": "VID_20261024_114745.mp4",
             "type": "video",
-            "start": 15.0,
-            "end": 18.8,
-            "duration": 3.8,
+            "start": 14.0,
+            "end": 20.5,
+            "duration": 6.5,
+            "sub_start": 0.6,
+            "sub_duration": 4.2,
             "text": "Cultivamos la «Kalokagathia»:\nla nobleza y la belleza en cada gesto."
         },
         {
             "file": "VID_20261024_124402.mp4",
             "type": "video",
-            "start": 17.0,
-            "end": 20.8,
-            "duration": 3.8,
-            "text": "Cada esfuerzo es reconocido\npor su entrega, nobleza y compañerismo."
+            "start": 16.0,
+            "end": 22.5,
+            "duration": 6.5,
+            "sub_start": 0.6,
+            "sub_duration": 4.2,
+            "text": "Cada esfuerzo es coronado de laurel,\nhonrando la entrega y el valor de cada niño."
         },
         {
             "file": "VID_20261024_132115.mp4",
             "type": "video",
             "start": 7.0,
-            "end": 10.8,
-            "duration": 3.8,
+            "end": 14.0,
+            "duration": 7.0,
+            "sub_start": 0.6,
+            "sub_duration": 4.4,
             "text": "Porque el verdadero encuentro humano\nculmina siempre en fraternidad."
         },
         {
             "file": "IMG_20261024_132919.jpg",
             "type": "image",
-            "duration": 3.7,
+            "duration": 7.5,
+            "sub_start": 0.6,
+            "sub_duration": 5.5,
             "text": "Colegio Waldorf Trekan · Puerto Varas\nAdmisión Abierta · Link en biografía"
         }
     ]
 
     total_duration = sum(s["duration"] for s in scenes_config)
-    print(f"⏱️ Duración total proyectada: {total_duration:.1f} segundos")
+    print(f"⏱️ Duración total proyectada: {total_duration:.1f} segundos (1 minuto)")
 
     has_music = (
         music_path
@@ -200,17 +233,19 @@ def build_pentatlon_reel(
 
     for i, s in enumerate(scenes_config, 1):
         source_path = resolve_file(s["file"], search_dirs)
-        print(f"\n🎬 Procesando Escena {i}/{len(scenes_config)}: {s['file']} ({s['duration']}s)")
+        print(f"\n🎬 Procesando Escena {i}/{len(scenes_config)}: {s['file']} (duración: {s['duration']}s)")
 
         # Renderizar tarjeta de subtítulo con Pillow (Merriweather Bold)
         sub_png = temp_dir / f"sub_scene_{i}.png"
         create_subtitle_card(s["text"], str(sub_png), font_path, font_size=38, y_pos=1320)
 
-        # Cargar capa visual de subtítulo con disolvencia suave
-        sub_clip = ImageClip(str(sub_png)).with_duration(s["duration"]).with_effects([
-            vfx.CrossFadeIn(0.35),
-            vfx.CrossFadeOut(0.35)
-        ])
+        # Cargar capa visual de subtítulo con respiración rítmica (aparece con fade in y sale con fade out antes de que termine la toma)
+        sub_clip = (
+            ImageClip(str(sub_png))
+            .with_start(s["sub_start"])
+            .with_duration(s["sub_duration"])
+            .with_effects([vfx.CrossFadeIn(0.4), vfx.CrossFadeOut(0.4)])
+        )
 
         if s["type"] == "video":
             raw_clip = VideoFileClip(source_path).subclipped(s["start"], s["end"])
@@ -229,19 +264,22 @@ def build_pentatlon_reel(
             scene_comp = CompositeVideoClip([fitted_img, sub_clip], size=(TARGET_W, TARGET_H))
             processed_scenes.append(scene_comp)
 
-    print("\n🎞️ Concatenando escenas...")
+    print("\n🎞️ Concatenando 9 escenas...")
     final_video = concatenate_videoclips(processed_scenes, method='compose')
 
-    # 2. Orquestación y Mezcla de Pistas de Audio
+    # 2. Orquestación y Mezcla de Pistas de Audio (Looping fluido de Calm Nature Glow a 60s)
     if has_music:
         print(f"\n🎵 Mezclando banda sonora ({music_path})...")
         raw_music = AudioFileClip(music_path)
-        music_dur = min(total_duration, raw_music.duration)
-        music_clip = raw_music.subclipped(0, music_dur).with_volume_scaled(music_volume)
-        music_clip = music_clip.with_effects([
-            afx.AudioFadeIn(0.8),
-            afx.AudioFadeOut(1.5)
-        ])
+        # Loopear la pista musical para cubrir holgadamente los 60s
+        loop_times = int(total_duration // raw_music.duration) + 2
+        looped_music = concatenate_audioclips([raw_music] * loop_times)
+        
+        music_clip = (
+            looped_music.subclipped(0, total_duration)
+            .with_volume_scaled(music_volume)
+            .with_effects([afx.AudioFadeIn(0.8), afx.AudioFadeOut(2.0)])
+        )
 
         if ambient_audio_clips:
             concat_ambient = concatenate_audioclips(ambient_audio_clips)
@@ -293,22 +331,22 @@ def build_pentatlon_reel(
     shutil.rmtree(temp_dir, ignore_errors=True)
 
     print("\n" + "=" * 60)
-    print("✨ REEL MASTER LISTO PARA PUBLICAR EN INSTAGRAM Y WEB")
+    print("✨ REEL MASTER 60s LISTO PARA PUBLICAR EN INSTAGRAM Y WEB")
     print("=" * 60)
     print(f"📹 Ruta Web: {output_path}")
     if downloads_copy:
         print(f"📥 Ruta Mac: {downloads_copy}")
     print(f"📐 Resolución: {TARGET_W}x{TARGET_H} (9:16 Full HD)")
-    print(f"⏱️ Duración: {total_duration:.1f} segundos")
+    print(f"⏱️ Duración: {total_duration:.1f} segundos (1 minuto)")
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Renderizador Automatizado de Reels Waldorf Trekan")
+    parser = argparse.ArgumentParser(description="Renderizador Automatizado de Reels Waldorf Trekan (60s)")
     parser.add_argument('--output', default='public/videos/reel_pentatlon_san_felipe_2026.mp4', help='Ruta destino del video')
     parser.add_argument('--music', default='public/audio/calm_nature_glow.mp3', help='Ruta del audio de fondo')
     parser.add_argument('--font', default='public/fonts/Merriweather-Bold.ttf', help='Ruta de la fuente tipográfica')
     parser.add_argument('--downloads', default='/Users/felipeandresvivancocornejo/Downloads/reel_pentatlon_san_felipe_2026.mp4', help='Copia a descargas')
     parser.add_argument('--ambient-vol', type=float, default=0.35, help='Volumen audio ambiente (0.0 a 1.0)')
-    parser.add_argument('--music-vol', type=float, default=0.55, help='Volumen música acústica (0.0 a 1.0)')
+    parser.add_argument('--music-vol', type=float, default=0.50, help='Volumen música acústica (0.0 a 1.0)')
 
     args = parser.parse_args()
 
@@ -319,7 +357,7 @@ if __name__ == '__main__':
         '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 4'
     ]
 
-    build_pentatlon_reel(
+    build_pentatlon_reel_60s(
         search_dirs=search_directories,
         output_path=args.output,
         music_path=args.music,
