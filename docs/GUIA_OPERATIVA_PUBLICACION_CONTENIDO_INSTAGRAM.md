@@ -100,3 +100,22 @@ El texto de la publicación sigue la **Fórmula Waldorf de Reducción de Cortiso
 | **7** | Abrir comentarios del Reel → Pegar **Primer Comentario** → **Fijar 📌** (Elemento 6). | 20 seg |
 | **8** | Tocar avioncito ✈️ → **Agregar a tu historia** → Pegar texto de historia (Elemento 7). | 30 seg |
 | **Total** | **Proceso completo, profesional y blindado.** | **~2.5 min** |
+
+---
+
+## 📅 Protocolo Estratégico de Secuencia, Amplificación y Cadencia Editorial
+
+### 1. Secuencia Obligatoria de Formatos (Anti-Canibalización)
+* **El Carrusel va PRIMERO:** Establece la memoria fotográfica oficial, el detalle narrativo y activa la doble oportunidad de impresión en el feed de Meta.
+* **El Reel va 24 a 48 horas DESPUÉS:** Actúa como la segunda ola de alcance orgánico hacia no-seguidores en la pestaña Reels/Explorar, evitando competir y canibalizar la atención en el mismo día.
+
+### 2. Ritual Operativo de Amplificación (Los Primeros 15 Minutos)
+1. **Minuto 1:** Fijar el **Primer Comentario 📌** con la URL directa a la web/noticia.
+2. **Minuto 3:** Repostear a **Historias con el avioncito ✈️** usando sticker de ubicación (`Puerto Varas, Chile`) y CTA al carrusel.
+3. **Minuto 10:** Inyectar el enlace en los **grupos de WhatsApp de apoderados / comunidad** para generar tracción social inmediata y comentarios tempranos.
+4. **Primera hora:** Responder con calidez a cada comentario para indicarle al algoritmo de Meta que la conversación está viva.
+
+### 3. Cadencia Editorial Sostenible (Ritmo Sano High-End)
+* **2 publicaciones fuertes en el feed por semana** (1 Carrusel pedagógico/documental + 1 Reel de experiencia viva en movimiento).
+* **2 a 3 historias espontáneas semanales** (detalles cotidianos: luz en la sala, panes, huerta, naturaleza).
+

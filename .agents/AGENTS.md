@@ -116,4 +116,19 @@ Toda solicitud de creación o preparación de contenido para Instagram (Reels, P
 7. **Texto para Historias ✈️:** Frase breve y sticker para repostear con el avioncito a la comunidad existente.
 *(Referencia completa en `docs/GUIA_OPERATIVA_PUBLICACION_CONTENIDO_INSTAGRAM.md`).*
 
+## Protocolo Estratégico de Secuencia, Amplificación y Cadencia de Publicación (Regla Permanente de Entrega)
+Toda entrega de paquete de contenidos o estrategia de redes sociales para Trekan y proyectos de la agencia DEBE incluir e informar obligatoriamente las siguientes directrices estratégicas de despliegue:
+1. **Secuencia Obligatoria de Formatos (Anti-Canibalización):**
+   - **Carrusel va PRIMERO:** Establece la memoria fotográfica oficial, el detalle narrativo y activa la doble oportunidad de impresión en el feed de Meta.
+   - **Reel va 24 a 48 horas DESPUÉS:** Actúa como la segunda ola de alcance orgánico hacia no-seguidores en la pestaña Reels/Explorar, evitando competir y canibalizar la atención en el mismo día.
+2. **Ritual Operativo de Amplificación (Los Primeros 15 Minutos):**
+   - *Minuto 1:* Fijar el **Primer Comentario 📌** con la URL directa a la web/noticia.
+   - *Minuto 3:* Repostear a **Historias con el avioncito ✈️** usando sticker de ubicación (`Puerto Varas, Chile`) y CTA al carrusel.
+   - *Minuto 10:* Inyectar el enlace en los **grupos de WhatsApp de apoderados / comunidad** para generar tracción social inmediata y comentarios tempranos.
+   - *Primera hora:* Responder con calidez a cada comentario para indicarle al algoritmo de Meta que la conversación está viva.
+3. **Cadencia Editorial Sostenible (Ritmo Sano High-End):**
+   - Publicar a diario genera fatiga/cortisol y 2 veces al mes apaga la cuenta en el algoritmo.
+   - La frecuencia estándar mandatoria son **2 piezas fuertes en el feed por semana** (1 Carrusel pedagógico/documental + 1 Reel de experiencia viva en movimiento) acompañadas de **2 a 3 historias espontáneas semanales** (luz de sala, naturaleza, huerta).
+
+
 
