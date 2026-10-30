@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 Script de exportación canónica del Carrusel de Instagram para la Pentatlón Waldorf 2026.
-Formato: 10 láminas en relación 4:5 vertical (1080x1350 px) a partir de archivos RAW de cámara (4000x1800 px).
-Acabado editorial Waldorf (Kinfolk): sutil realce cálido, contraste natural y Unsharp Mask óptico.
+Formato: 10 láminas en relación 4:5 vertical (1080x1350 px) con Máxima Variedad Visual (Escala de planos).
+Alterna: Plano General -> Plano Detalle -> Escenario -> Desfile -> Acción -> Disciplina -> Retrato Humano -> Ceremonia -> Banquete -> Cierre Triunfal.
 """
 
 import os
@@ -15,52 +15,62 @@ SLIDES = [
     {
         'name': '01_apertura_comitiva.jpg',
         'src': '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 4/IMG_20261024_080936.jpg',
-        'crop_anchor': 0.5
+        'crop_anchor': 0.5,
+        'label': 'Plano General: Amanecer con túnicas en el valle'
     },
     {
-        'name': '02_gran_ronda_fraternidad.jpg',
-        'src': '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 4/IMG_20261024_080950.jpg',
-        'crop_anchor': 0.5
+        'name': '02_detalle_pizarra_arte.jpg',
+        'src': '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 2/IMG_20261024_072707.jpg',
+        'crop_anchor': 0.5,
+        'label': 'Plano Detalle: Pizarra Waldorf en tiza (Olimpiadas, Partenón y antorcha)'
     },
     {
         'name': '03_presente_madera_sur.jpg',
         'src': '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 4/IMG_20261023_194324.jpg',
-        'crop_anchor': 0.5
+        'crop_anchor': 0.5,
+        'label': 'Momento Oficial: Entrega del regalo de madera en el escenario'
     },
     {
         'name': '04_desfile_poleis.jpg',
         'src': '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 3/IMG_20261024_090831.jpg',
-        'crop_anchor': 0.45
+        'crop_anchor': 0.45,
+        'label': 'Desfile: Marcha de las poleis griegas mixtas'
     },
     {
         'name': '05_carreras_pradera.jpg',
         'src': '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 3/IMG_20261024_095511.jpg',
-        'crop_anchor': 0.5
+        'crop_anchor': 0.5,
+        'label': 'Acción Dinámica: Carreras de velocidad sobre el pasto'
     },
     {
         'name': '06_atletismo_jabalina.jpg',
         'src': '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 4/IMG_20261024_095521.jpg',
-        'crop_anchor': 0.5
+        'crop_anchor': 0.5,
+        'label': 'Disciplina de Campo: Postura y foco en jabalina'
     },
     {
-        'name': '07_disciplina_esfuerzo_noble.jpg',
-        'src': '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 4/IMG_20261024_095847.jpg',
-        'crop_anchor': 0.5
+        'name': '07_retrato_alumnas_lienzo.jpg',
+        'src': '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 2/IMG-20261024-WA0011.jpg',
+        'crop_anchor': 0.5,
+        'label': 'Plano Medio Humano: Dos estudiantes sonriendo frente al lienzo oficial'
     },
     {
         'name': '08_coronacion_laurel.jpg',
         'src': '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 4/IMG_20261024_130309.jpg',
-        'crop_anchor': 0.45
+        'crop_anchor': 0.45,
+        'label': 'Momento Sagrado: Reverencia al recibir la corona de laurel'
     },
     {
-        'name': '09_comunidad_jardin.jpg',
-        'src': '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 3/IMG_20261024_132613.jpg',
-        'crop_anchor': 0.5
+        'name': '09_banquete_comunitario_noche.jpg',
+        'src': '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 2/IMG_20261023_205117.jpg',
+        'crop_anchor': 0.5,
+        'label': 'Convivencia: Banquete fraterno en mesas largas'
     },
     {
         'name': '10_celebracion_laurel_diplomas.jpg',
         'src': '/Users/felipeandresvivancocornejo/Downloads/PENTATLON 2026 3/IMG_20261024_131621.jpg',
-        'crop_anchor': 0.5
+        'crop_anchor': 0.5,
+        'label': 'Cierre Triunfal: Rostros felices con diplomas y laureles'
     }
 ]
 
@@ -68,7 +78,7 @@ TARGET_W, TARGET_H = 1080, 1350
 TARGET_RATIO = TARGET_W / TARGET_H
 
 def export_slides():
-    print(f'Exportando carrusel canónico en alta definición a: {OUT_DIR}')
+    print(f'Exportando carrusel con variedad visual a: {OUT_DIR}')
     for s in SLIDES:
         src = s['src']
         if not os.path.exists(src):
@@ -99,7 +109,7 @@ def export_slides():
         
         out_path = os.path.join(OUT_DIR, s['name'])
         final_img.save(out_path, 'JPEG', quality=96, optimize=True)
-        print(f'✅ {s[\"name\"]:35} -> Guardada ({TARGET_W}x{TARGET_H}) -> {os.path.getsize(out_path)//1024} KB')
+        print(f'✅ {s[\"name\"]:35} -> {s[\"label\"]}')
 
 if __name__ == '__main__':
     export_slides()
