@@ -47,7 +47,7 @@ El punto culminante de esta época es la **Pentatlón**, donde los niños se pre
 4. **El Lanzamiento de Disco:** La danza circular de la espiral y la liberación de la fuerza centrífuga con armonía geométrica.
 5. **La Lucha (Pancracio noble):** El encuentro cuerpo a cuerpo donde no se busca herir ni humillar, sino medir la propia fuerza frente a la del semejante, aprendiendo a sostener, ceder y respetar la integridad del otro con honor.
 
-![Pruebas de atletismo y juegos tradicionales en el pasto durante las Olimpiadas Waldorf en San Felipe](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-carrera-atletismo.webp)
+![Estudiantes de 5° básico en pleno esfuerzo noble durante las pruebas de atletismo en la pradera de San Felipe](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-disciplinas-noble-esfuerzo.webp)
 
 ---
 
@@ -68,11 +68,33 @@ En este marco, la mirada de los maestros atiende a la ***Kalokagathia*** (*kaló
 
 Al finalizar las pruebas, no hay podios excluyentes. Cada participante recibe su corona de laurel y una dedicación escrita que destaca sus virtudes singulares demostradas en la arena: la perseverancia, la templanza, la alegría fraterna o la elegancia en el gesto.
 
-![Escenario exterior con el lienzo oficial de las Olimpiadas Waldorf 2026 en San Felipe y la comunidad nacional reunida](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-escenario-olimpiadas.webp)
+![Momento solemne de la coronación con laurel: reverencia y reconocimiento a la virtud y temple de cada estudiante](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-coronacion-laurel.webp)
 
 ---
 
-## 4. El banquete y el calor de la comunidad nacional
+## 4. El regalo del sur: La bandurria, el pudú y el zorro de nuestros bosques
+
+Uno de los momentos más conmovedores del encuentro ocurrió durante la ceremonia de apertura. Nuestra comitiva de Puerto Varas subió al escenario para entregar un presente fraterno a la Escuela Monte Aconcagua en nombre de toda la comunidad del Colegio Waldorf Trekan: piezas artesanales talladas en maderas nativas que representan a tres guardianes emblemáticos de la flora y fauna de nuestra región de Los Lagos.
+
+Junto a las figuras, se compartió un mensaje que selló el sentido de hermandad y cosmovisión viva que une a nuestras escuelas:
+
+> *«Con mucho cariño desde el sur de Chile, desde el Colegio Waldorf Trekan de Puerto Varas, les hacemos llegar este pequeño presente como símbolo de encuentro, amistad y buenos deseos para la Escuela Monte Aconcagua.*
+> 
+> *La bandurria, ave de nuestra zona, ha sido asociada con la fortuna y, desde la cosmovisión huilliche, con la sabiduría: que su figura acompañe su camino y les recuerde la riqueza de aprender de la naturaleza y de los saberes de nuestros pueblos.*
+> 
+> *Junto a ella viajan dos pequeños guardianes de madera: el pudú, con su delicadeza y silenciosa presencia entre los bosques templados, y el zorro, con su ingenio y su capacidad de descubrir nuevos caminos.*
+> 
+> *Que estas piezas artesanales lleven consigo un poquito del espíritu del sur y que este encuentro entre nuestras escuelas siga sembrando experiencias, aprendizajes y hermosos vínculos en el futuro.*
+> 
+> *Con afecto y gratitud, Colegio Waldorf Trekan.»*
+
+Ver a nuestros niños presentar su ofrenda y recitar con voz firme su *Canto a Grecia* ante cientos de familias y maestros de todo Chile fue el testimonio vivo de una educación que enraíza la identidad local para abrirse fraternalmente al mundo.
+
+![La delegación de Trekan en el escenario de las Olimpiadas Waldorf en San Felipe entregando el presente artesanal del sur a la Escuela Monte Aconcagua](https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-presente-madera-sur.webp)
+
+---
+
+## 5. El banquete y el calor de la comunidad nacional
 
 Un rito Waldorf nunca concluye en el esfuerzo individual; siempre se sella en el encuentro comunitario.
 
@@ -90,12 +112,12 @@ En un mundo donde la infancia pasa horas crecientes frente a pantallas individua
 
 ```gallery
 https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-trekan-ronda-2026.webp
-https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-escenario-olimpiadas.webp
-https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-carrera-atletismo.webp
-https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-estudiantes-trekan.webp
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-presente-madera-sur.webp
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-disciplinas-noble-esfuerzo.webp
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-coronacion-laurel.webp
 https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-circulo-manos.webp
-https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-descanso-bancas.webp
-https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-patio-comunidad.webp
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-estudiantes-trekan.webp
+https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-escenario-olimpiadas.webp
 https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-banquete-comunitario.webp
 https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/public/imagenes-web/pentatlon-waldorf-buen-provecho-laurel.webp
 ```
@@ -112,4 +134,3 @@ Agradecemos con profunda emoción a la comunidad anfitriona en San Felipe por re
 * **von Heydebrand, Caroline.** *La naturaleza anímica del niño y el currículo de la escuela Waldorf*. Editorial Antroposófica, Buenos Aires. (Capítulo dedicado al 5° año escolar, el salto evolutivo de los once años y la época de la Grecia Antigua).
 * **Richter, Tobias.** *El currículo de la escuela de Rudolf Steiner*. Editorial Pau de Damasc. (Guía curricular oficial sobre las disciplinas de la Pentatlón y los Juegos Olímpicos escolares interescolares).
 * **Wember, Valentin.** *La gestión de la escuela: Una guía para las escuelas Waldorf*. Editorial Pau de Damasc. (Sobre el papel de las fiestas estacionales y los ritos de paso en la cohesión anímica de la comunidad escolar y entre escuelas asociadas).
-
