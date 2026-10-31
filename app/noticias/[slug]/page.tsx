@@ -220,7 +220,7 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
                   src={post.image_url.startsWith('/images/') ? post.image_url.replace('/images/', '/imagenes-web/') : post.image_url.startsWith('images/') ? post.image_url.replace('images/', '/imagenes-web/') : post.image_url}
                   alt={heroAlt}
                   fill
-                  className="object-cover"
+                  className="object-cover object-center"
                   priority
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
