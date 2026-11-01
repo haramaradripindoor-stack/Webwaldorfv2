@@ -103,7 +103,17 @@ export default async function ActividadesSection() {
                 </div>
                 
                 <div className="flex flex-col w-full relative">
-                  {(actividades as MarkdownPost[]).map((post: MarkdownPost, i: number) => {
+                  {[...(actividades as MarkdownPost[])].sort((a, b) => {
+                    const parseDay = (d?: string) => {
+                      if (!d) return 999;
+                      const match = d.match(/\d+/);
+                      return match ? parseInt(match[0], 10) : 999;
+                    };
+                    const dayA = parseDay(a.dia);
+                    const dayB = parseDay(b.dia);
+                    if (dayA !== dayB) return dayA - dayB;
+                    return new Date(a.published_at || 0).getTime() - new Date(b.published_at || 0).getTime();
+                  }).map((post: MarkdownPost, i: number) => {
                     const isCelebracion = post.tipo?.toLowerCase() === 'celebracion' || post.tipo?.toLowerCase() === 'celebración';
                     const tagColor = isCelebracion ? 'text-[var(--color-waldorf-moss)]' : 'text-[var(--color-waldorf-terracotta)]';
                     // We'll use a placeholder beautiful image based on index for the hover reveal

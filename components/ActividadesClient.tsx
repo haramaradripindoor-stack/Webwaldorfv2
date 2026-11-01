@@ -79,8 +79,20 @@ export default function ActividadesClient({ actividades }: { actividades: Markdo
           {availableGroups.map(group => {
             if (activeTab !== 'Todos' && activeTab !== group) return null;
             
-            const posts = groupedActividades[group] || [];
-            if (posts.length === 0) return null;
+            const rawPosts = groupedActividades[group] || [];
+            if (rawPosts.length === 0) return null;
+
+            const posts = [...rawPosts].sort((a, b) => {
+              const parseDay = (d?: string) => {
+                if (!d) return 999;
+                const match = d.match(/\d+/);
+                return match ? parseInt(match[0], 10) : 999;
+              };
+              const dayA = parseDay(a.dia);
+              const dayB = parseDay(b.dia);
+              if (dayA !== dayB) return dayA - dayB;
+              return new Date(a.published_at || 0).getTime() - new Date(b.published_at || 0).getTime();
+            });
 
             return (
               <motion.section 
