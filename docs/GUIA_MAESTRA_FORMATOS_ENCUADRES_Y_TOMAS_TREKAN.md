@@ -168,20 +168,65 @@ Cada vez que un maestro, apoderado o fotógrafo tome una cámara en Trekan, debe
 
 ---
 
-## 📱 4. Checklist Técnico de Bolsillo para Grabar con Teléfono Celular
+## 📱 4. Configuración de Equipos del Comité y Checklist Técnico de Terreno
 
-Antes de iniciar cualquier registro en el patio o la sala, el operador del teléfono debe revisar estos 6 puntos rápidos:
+Para asegurar que todo el material capturado por el Comité de Comunicaciones (Javiera, Eduardo y Felipe) mantenga una coherencia visual perfecta y de estándar editorial, a continuación se detalla la guía de configuración paso a paso para los dispositivos específicos del equipo:
 
-1. **Limpiar el Lente:** Pasar siempre un paño suave sobre el lente de la cámara (la grasa de los dedos crea imágenes lechosas y sin contraste). Si se busca un look difuso suave, usar un filtro removible clip-on en vez de tocar el cristal con la piel (Sección 4.4.4).
-2. **Activar la Cuadrícula (Grid de 9 Tercios):** En los ajustes de la cámara del celular, activar la opción *«Cuadrícula»* para guiarse visualmente y respetar los tercios y las zonas seguras.
-3. **Bloquear Enfoque y Exposición:** Tocar la pantalla sobre el sujeto principal y mantener presionado el dedo 2 segundos (aparece *Bloqueo AE/AF*). Luego deslizar el dedo levemente hacia abajo para oscurecer la toma un 10% (evita que el cielo o las túnicas salgan blancas quemadas).
-4. **Configuración de Video:**
-   * **Resolución:** `1080p a 30 fps` o `4K a 30 fps` (no usar 60 fps salvo que se busque ralentizar la toma en edición para slow-motion).
-   * **Estabilización:** Asegurar que la estabilización de video esté encendida en los ajustes del teléfono (ej. *ShootSteady* o EIS nativo).
-5. **Postura del Operador:** Caminar con las rodillas semi-flexionadas (caminar suavemente como sosteniendo una taza de té llena) para evitar que los pasos se transmitan a la cámara como temblores.
-6. **Operación de Dron:** Vuelos suaves a baja velocidad ("modo tortuga"), cenitales a 90° o planos de revelación ascendentes. Siempre operado bajo normativa DGAC y sin vuelos rasantes sobre grupos de niños.
+### 4.1 Calibración para Teléfonos Xiaomi / Redmi (MIUI & HyperOS)
+*Equipos asignados: Javiera (Redmi Note 13 Pro 5G) · Eduardo (Redmi Note 15 Pro+ 5G) · Felipe (Redmi Note 17 Pro)*
+
+1. **Desactivar Marca de Agua (¡Obligatorio y Crítico!):**
+   * *Ruta:* Abrir Cámara → Tocar el menú de tres líneas (esquina superior derecha) → **Ajustes** (ícono de engranaje) → **Marca de agua (Watermark)**.
+   * *Acción:* Desactivar completamente «Marca de agua del dispositivo» y «Fecha y hora». Ninguna fotografía oficial debe salir con el texto *«Shot on Redmi Note...»*.
+2. **Desactivar Modo IA y Filtros de Belleza:**
+   * *Cámara IA:* En la pantalla principal de la cámara, tocar el ícono **AI** superior para apagarlo. La IA de Xiaomi sobresatura el pasto y las caras dándoles un aspecto plástico que destruye la paleta orgánica Waldorf.
+   * *Modo Belleza:* En fotos y videos, tocar el ícono de varita mágica y colocar «Belleza» en **0 (Desactivado)** y filtros en «Normal/Original» para conservar la textura real de la piel, la lana y la madera.
+3. **Activar Cuadrícula (Líneas Guía de Tercios):**
+   * *Ruta:* Menú superior de tres líneas → Activar **Cuadrícula (Grid)**. Muestra las 4 líneas divisorias para ubicar las manos o el sujeto en los tercios y no cortar cabezas.
+4. **Relación de Aspecto en Fotografía:**
+   * Usar siempre **4:3 (Máxima Resolución Nativa del Sensor)**.
+   * *Advertencia:* Nunca sacar fotos en formato 16:9 desde la app de cámara; el 16:9 de Xiaomi es un recorte digital que descarta el 30% del sensor. En 4:3 se captura la máxima información para luego encuadrar en 4:5 o 1:1 en Instagram.
+5. **Calibración de Video para Reels e Historias (9:16):**
+   * *Resolución y Cuadros:* Seleccionar **1080p a 30 fps** (o 4K a 30 fps si el almacenamiento lo permite). **Prohibido grabar a 60 fps:** el video a 60 fps da un look digital hiperrealista tipo videojuego; 30 fps otorga la cadencia suave y cinematográfica que exige el ritmo Waldorf.
+   * *Estabilización:* En los ajustes de video, verificar que **Estabilización de imagen (EIS / ShootSteady)** esté en «Activada».
+6. **Técnica de Medición de Luz (Evitar Cielos Quemados):**
+   * Tocar la pantalla sobre el niño o la mesa de trabajo. Aparecerá un círculo de enfoque con un ícono de **Sol**.
+   * Deslizar el sol suavemente hacia abajo (un 10% a 15% menos de brillo / -0.3 EV a -0.7 EV). Esto preserva el detalle de los cielos del sur y evita que la ropa blanca o la madera clara salgan quemadas en blanco puro.
+7. **«Zoom con los Pies» (Prohibición de Pellizcar la Pantalla):**
+   * Mantener la cámara siempre en lente principal **1x**. No pellizcar la pantalla hacia 2x, 3x o 5x digital: en Xiaomi esto es un recorte por software que empasta la imagen. Si necesitas un plano más cerrado, da dos pasos físicos hacia adelante.
 
 ---
+
+### 4.2 Calibración para Cámara Réflex Canon EOS Rebel T5 (Eduardo)
+*Equipo asignado: Eduardo Nauto (Papá de Athie) · Lente Kit 18-55mm / 50mm*
+
+1. **Modo de Disparo Recomendado:**
+   * Girar el dial superior a **Av (Prioridad de Apertura)** o **P (Program)**.
+   * **Prohibición Absoluta:** Nunca disparar en el cuadrito verde (Automático total). En modo automático, la cámara levanta obligatoriamente el flash emergente frontal cuando detecta sombra, disparando una luz blanca dura que aplana las caras y destruye la luz natural de la sala.
+2. **Apertura de Diafragma (Control de Profundidad de Campo):**
+   * Configurar el número f en el valor más bajo disponible (ej. **f/3.5 o f/4** en 18-55mm, o **f/1.8 / f/2.8** si se usa lente fijo de 50mm). Esto crea el desenfoque suave del fondo (*bokeh*), aislando al niño del desorden visual del fondo.
+3. **Control de Sensibilidad ISO:**
+   * *Patio y Exteriores:* Fijar en **ISO 100 o ISO 200**.
+   * *Salas Interiores con Luz de Ventana:* Fijar entre **ISO 400 e ISO 800** (máximo ISO 1600 para no generar grano digital en el sensor de la T5).
+4. **Estilo de Imagen (Picture Style):**
+   * Entrar al Menú → *Estilo de Imagen* → Seleccionar **Neutro (Neutral)** o **Fiel (Faithful)**. Evitar "Paisaje" (satura excesivamente los verdes) o "Estándar".
+5. **Balance de Blancos (Temperatura de Color Patagónica):**
+   * En días nublados de Puerto Varas o bajo sombra de árboles: seleccionar **Nublado (Cloudy)** o **Sombra (Shade)**. Esto compensa la frialdad azulada de la lluvia y le devuelve el tono dorado y acogedor a la madera de alerce y mañío.
+6. **Modo de Enfoque Automático (AF):**
+   * **One-Shot AF:** Para momentos de concentración, pintura, tejido, pan o detalles estáticos.
+   * **AI Servo AF:** Si los niños están en movimiento continuo (rondas, juegos al aire libre, carreras). Usar el punto de enfoque central para máxima precisión.
+7. **Calidad de Archivo:**
+   * Seleccionar **RAW + L (Grande/Fina)** si se procesará en computadora, o **L (Máxima calidad JPEG)** para entrega directa al Comité.
+
+---
+
+### 4.3 Checklist Rápido de Terreno (6 Reglas de Oro)
+1. **Limpiar el Lente:** Pasar siempre un paño suave sobre el lente (la grasitud de las manos crea fotos lechosas).
+2. **Activar Cuadrícula:** Respetar los tercios y nunca cortar frentes ni mentones.
+3. **Bloqueo AE/AF y Bajar Exposición:** Mantener presionado 2 segundos sobre el sujeto y bajar el sol un 10%.
+4. **Video a 30 fps con Estabilización:** 1080p o 4K a 30 fps (cero 60 fps).
+5. **Paso de Ninja:** Caminar con rodillas semiflexionadas, como quien lleva una taza de té llena sin derramar.
+6. **Cero Zoom Digital:** Acercarse físicamente en lente 1x.
 
 ## 🗂️ 5. Estructura y Gobernanza de la Carpeta `/Comunicaciones/`
 
