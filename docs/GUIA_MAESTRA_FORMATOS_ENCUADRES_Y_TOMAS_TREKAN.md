@@ -170,10 +170,31 @@ Cada vez que un maestro, apoderado o fotógrafo tome una cámara en Trekan, debe
 
 ## 📱 4. Configuración de Equipos del Comité y Checklist Técnico de Terreno
 
-Para asegurar que todo el material capturado por el Comité de Comunicaciones (Javiera, Eduardo y Felipe) mantenga una coherencia visual perfecta y de estándar editorial, a continuación se detalla la guía de configuración paso a paso para los dispositivos específicos del equipo:
+Para asegurar que todo el material capturado por el Comité de Comunicaciones (**Sleater, Felipe, Javiera, Eduardo y Yabel**) mantenga una coherencia visual perfecta y de estándar editorial, a continuación se detalla la guía de configuración paso a paso para los dispositivos específicos del equipo:
 
-### 4.1 Calibración para Teléfonos Xiaomi / Redmi (MIUI & HyperOS)
-*Equipos asignados: Javiera (Redmi Note 13 Pro 5G) · Eduardo (Redmi Note 15 Pro+ 5G) · Felipe (Redmi Note 17 Pro)*
+### 4.1 Calibración para Samsung Galaxy S21 Ultra 5G (Sleater · Dirección/Fundador)
+*Equipo asignado: Sleater (Samsung One UI) · Sensor 108 MP con doble teleobjetivo óptico real (3x y 10x)*
+
+1. **Fotos Siempre en Relación de Aspecto `3:4` (¡Nunca en `Full`!):**
+   * *Ruta:* Tocar el ícono de proporción en la barra superior de la cámara (donde dice `3:4`, `9:16`, `1:1` o `Full`).
+   * *Acción:* Dejar siempre en **`3:4`**. La opción `Full` estira la imagen a 20:9 cortando y botando el 40% del sensor. `3:4` aprovecha los 108 MP reales y es la base perfecta para encuadrar en Instagram en **4:5 vertical** o en 1:1. (En días soleados de exterior puedes usar `3:4 108MP`; en salas o sombra, usa `3:4` estándar que capta más luz).
+2. **El Superpoder de Sleater: El Lente Óptico `3x` (El Retrato Waldorf Perfecto):**
+   * El S21 Ultra tiene 4 botones de lente: `0.6x` (Gran Angular), `1x` (Principal), `3x` (Teleobjetivo Óptico Real) y `10x` (Periscopio).
+   * *Uso clave:* El botón **`3x`** es un teleobjetivo físico de cristal. Te permite pararte a 4 o 5 metros del niño trabajando y lograr un primer plano con fondo desenfocado natural (*bokeh*), **sin invadir su espacio ni distraer su concentración**. (Prohibido pasar de 10x hacia 30x o 100x digital).
+3. **Seguimiento de Enfoque (`Tracking AF` / Objeto en Movimiento):**
+   * *Ruta:* Ajustes de Cámara (engranaje) → Activar **«Seguimiento de enfoque automático»**.
+   * *Cuándo usar:* Actívalo en el patio (rondas, carreras o niños corriendo sobre el pasto; tocas al niño y el recuadro amarillo lo sigue). Apágalo en sala para que no salte erráticamente entre las manos de los niños.
+4. **Activar Líneas Guía (Cuadrícula 3x3):**
+   * *Ruta:* Ajustes de Cámara → Activar **«Líneas guía»**. Ubica siempre los ojos del niño en la línea superior (Regla de los Tercios).
+5. **Video para Reels: `FHD 30 fps` (1080p a 30 FPS):**
+   * En modo Video → toca arriba donde dice resolución y selecciona **`FHD 30`** (o `UHD 30` para hitos solemnes como la Pentatlón). Cero 60 fps (da look de videojuego acelerado). Verifica que **«Estabilización de video»** esté activada.
+6. **Desactivar Optimizador de Escenas:**
+   * Ajustes de Cámara → Desactivar **«Optimizador de escenas»** para evitar que Samsung sature el pasto con verde flúor radioactivo.
+
+---
+
+### 4.2 Calibración para Teléfonos Xiaomi / Redmi (MIUI & HyperOS)
+*Equipos asignados: Felipe (Redmi Note 10 Pro+) · Javiera (Redmi Note 13 Pro 5G) · Eduardo (Redmi Note 15 Pro+ 5G) · Yabel (Redmi Note 17 Pro)*
 
 1. **Desactivar Marca de Agua (¡Obligatorio y Crítico!):**
    * *Ruta:* Abrir Cámara → Tocar el menú de tres líneas (esquina superior derecha) → **Ajustes** (ícono de engranaje) → **Marca de agua (Watermark)**.
@@ -181,11 +202,11 @@ Para asegurar que todo el material capturado por el Comité de Comunicaciones (J
 2. **Desactivar Modo IA y Filtros de Belleza:**
    * *Cámara IA:* En la pantalla principal de la cámara, tocar el ícono **AI** superior para apagarlo. La IA de Xiaomi sobresatura el pasto y las caras dándoles un aspecto plástico que destruye la paleta orgánica Waldorf.
    * *Modo Belleza:* En fotos y videos, tocar el ícono de varita mágica y colocar «Belleza» en **0 (Desactivado)** y filtros en «Normal/Original» para conservar la textura real de la piel, la lana y la madera.
-3. **Activar Cuadrícula (Líneas Guía de Tercios):**
-   * *Ruta:* Menú superior de tres líneas → Activar **Cuadrícula (Grid)**. Muestra las 4 líneas divisorias para ubicar las manos o el sujeto en los tercios y no cortar cabezas.
+3. **Activar Cuadrícula y Marco Central (Líneas Guía de Tercios):**
+   * *Ruta:* Menú superior de tres líneas → Activar **Cuadrícula (Grid)**. Muestra las 4 líneas divisorias para ubicar las manos o el sujeto en los tercios y el marco central para no cortar cabezas en la grilla del perfil de Instagram.
 4. **Relación de Aspecto en Fotografía:**
-   * Usar siempre **4:3 (Máxima Resolución Nativa del Sensor)**.
-   * *Advertencia:* Nunca sacar fotos en formato 16:9 desde la app de cámara; el 16:9 de Xiaomi es un recorte digital que descarta el 30% del sensor. En 4:3 se captura la máxima información para luego encuadrar en 4:5 o 1:1 en Instagram.
+   * Usar siempre **3:4 (o 4:3) Máxima Resolución Nativa del Sensor**.
+   * *Advertencia:* Nunca sacar fotos en formato `Full` ni `16:9` desde la app de cámara; son recortes digitales que descartan el 35% al 40% del sensor. En 3:4 se captura la máxima información para luego encuadrar en 4:5 o 1:1 en Instagram.
 5. **Calibración de Video para Reels e Historias (9:16):**
    * *Resolución y Cuadros:* Seleccionar **1080p a 30 fps** (o 4K a 30 fps si el almacenamiento lo permite). **Prohibido grabar a 60 fps:** el video a 60 fps da un look digital hiperrealista tipo videojuego; 30 fps otorga la cadencia suave y cinematográfica que exige el ritmo Waldorf.
    * *Estabilización:* En los ajustes de video, verificar que **Estabilización de imagen (EIS / ShootSteady)** esté en «Activada».
@@ -197,7 +218,7 @@ Para asegurar que todo el material capturado por el Comité de Comunicaciones (J
 
 ---
 
-### 4.2 Calibración para Cámara Réflex Canon EOS Rebel T5 (Eduardo)
+### 4.3 Calibración para Cámara Réflex Canon EOS Rebel T5 (Eduardo)
 *Equipo asignado: Eduardo Nauto (Papá de Athie) · Lente Kit 18-55mm / 50mm*
 
 1. **Modo de Disparo Recomendado:**
@@ -220,13 +241,13 @@ Para asegurar que todo el material capturado por el Comité de Comunicaciones (J
 
 ---
 
-### 4.3 Checklist Rápido de Terreno (6 Reglas de Oro)
+### 4.4 Checklist Rápido de Terreno (6 Reglas de Oro)
 1. **Limpiar el Lente:** Pasar siempre un paño suave sobre el lente (la grasitud de las manos crea fotos lechosas).
 2. **Activar Cuadrícula:** Respetar los tercios y nunca cortar frentes ni mentones.
 3. **Bloqueo AE/AF y Bajar Exposición:** Mantener presionado 2 segundos sobre el sujeto y bajar el sol un 10%.
 4. **Video a 30 fps con Estabilización:** 1080p o 4K a 30 fps (cero 60 fps).
 5. **Paso de Ninja:** Caminar con rodillas semiflexionadas, como quien lleva una taza de té llena sin derramar.
-6. **Cero Zoom Digital:** Acercarse físicamente en lente 1x.
+6. **Cero Zoom Digital:** Acercarse físicamente en lente 1x (salvo en el S21 Ultra que tiene lente óptico 3x real).
 
 ## 🗂️ 5. Estructura y Gobernanza de la Carpeta `/Comunicaciones/`
 
