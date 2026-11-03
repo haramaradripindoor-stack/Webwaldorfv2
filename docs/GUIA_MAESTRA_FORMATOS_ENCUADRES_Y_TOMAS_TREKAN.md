@@ -209,7 +209,7 @@ Para asegurar que todo el material capturado por el Comité de Comunicaciones (J
    * *Patio y Exteriores:* Fijar en **ISO 100 o ISO 200**.
    * *Salas Interiores con Luz de Ventana:* Fijar entre **ISO 400 e ISO 800** (máximo ISO 1600 para no generar grano digital en el sensor de la T5).
 4. **Estilo de Imagen (Picture Style):**
-   * Entrar al Menú → *Estilo de Imagen* → Seleccionar **Neutro (Neutral)** o **Fiel (Faithful)**. Evitar "Paisaje" (satura excesivamente los verdes) o "Estándar".
+   * Entrar al Menú → *Estilo de Imagen* → Seleccionar **Neutro (Neutral)** o **Fiel (Faithful)**. Evitar \"Paisaje\" (satura excesivamente los verdes) o \"Estándar\".
 5. **Balance de Blancos (Temperatura de Color Patagónica):**
    * En días nublados de Puerto Varas o bajo sombra de árboles: seleccionar **Nublado (Cloudy)** o **Sombra (Shade)**. Esto compensa la frialdad azulada de la lluvia y le devuelve el tono dorado y acogedor a la madera de alerce y mañío.
 6. **Modo de Enfoque Automático (AF):**
