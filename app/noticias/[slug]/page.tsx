@@ -25,13 +25,21 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (data) {
     post = data
   } else {
-    const posts = getMarkdownPosts('_noticias')
-    post = posts.find((p) => 
-      p.slug === slug || 
-      p.slug === decodedSlug ||
-      decodeURIComponent(p.slug) === decodedSlug ||
-      p.slug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") === decodedSlug.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-    )
+    // Buscar en Supabase ignorando prefijo de fecha YYYY-MM-DD-
+    const cleanSlug = decodedSlug.replace(/^\d{4}-\d{2}-\d{2}-/, '')
+    const { data: altList } = await supabase.from('noticias').select('*').ilike('slug', `%${cleanSlug}`)
+    if (altList && altList.length > 0) {
+      post = altList[0]
+    } else {
+      const posts = getMarkdownPosts('_noticias')
+      post = posts.find((p) => 
+        p.slug === slug || 
+        p.slug === decodedSlug ||
+        decodeURIComponent(p.slug) === decodedSlug ||
+        p.slug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") === decodedSlug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") ||
+        p.slug.replace(/^\d{4}-\d{2}-\d{2}-/, '') === cleanSlug
+      )
+    }
   }
 
   if (!post) return { title: 'Noticia no encontrada | Colegio Waldorf Trekan' }
@@ -96,10 +104,21 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
   if (data) {
     post = data
   } else {
-    const posts = getMarkdownPosts('_noticias')
-    post = posts.find((p) => 
-      p.slug === slug || p.slug === decodedSlug || decodeURIComponent(p.slug) === decodedSlug || p.slug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") === decodedSlug.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-    )
+    // Buscar en Supabase ignorando prefijo de fecha YYYY-MM-DD-
+    const cleanSlug = decodedSlug.replace(/^\d{4}-\d{2}-\d{2}-/, '')
+    const { data: altList } = await supabase.from('noticias').select('*').ilike('slug', `%${cleanSlug}`)
+    if (altList && altList.length > 0) {
+      post = altList[0]
+    } else {
+      const posts = getMarkdownPosts('_noticias')
+      post = posts.find((p) => 
+        p.slug === slug || 
+        p.slug === decodedSlug || 
+        decodeURIComponent(p.slug) === decodedSlug || 
+        p.slug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") === decodedSlug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") ||
+        p.slug.replace(/^\d{4}-\d{2}-\d{2}-/, '') === cleanSlug
+      )
+    }
   }
 
   if (!post) {
