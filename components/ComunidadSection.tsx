@@ -131,11 +131,11 @@ const pillars = [
     color: 'bg-[var(--color-waldorf-mustard)]'
   },
   {
-    title: 'Consejo Escolar',
-    tag: 'Gestión horizontal',
-    description: 'El corazón administrativo de nuestra comunidad. Un espacio transparente donde apoderados y maestros deciden juntos el futuro del colegio.',
-    icon: Users,
-    image: '/imagenes-web/photo_2026-06-29_12-10-23.jpg',
+    title: 'Escuela para Padres',
+    tag: 'Formación y crianza',
+    description: 'Talleres y encuentros reflexivos donde familias y maestros profundizamos en las etapas del desarrollo infantil, la antroposofía y el cuidado consciente del hogar.',
+    icon: BookOpen,
+    image: '/imagenes-web/pentatlon-waldorf-patio-comunidad.jpg',
     color: 'bg-[#1a2e25]'
   },
   {

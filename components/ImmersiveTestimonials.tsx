@@ -17,16 +17,16 @@ export default function ImmersiveTestimonials() {
   const xRight = useTransform(scrollYProgress, [0, 1], ["-50%", "0%"])
 
   const testimonialsRow1 = [
-    { text: "Nuestra hija recuperó el asombro por aprender.", author: "Familia González", media: "/assets/testimonial.mp4", type: "video" },
-    { text: "La conexión con la naturaleza es invaluable.", author: "Familia Silva", media: `${BASE}/paseocerro20264.jpg`, type: "image" },
-    { text: "Una comunidad que abraza y sostiene.", author: "Apoderada de Básica", media: `${BASE}/actividapedagogicahumedales5.jpg`, type: "image" },
-    { text: "El arte es el corazón del currículo.", author: "Apoderado de Media", media: `${BASE}/fiesta%20de%20la%20luz202610.jpg`, type: "image" }
+    { text: "Nuestra hija recuperó el asombro por aprender.", author: "Familia de 2° Básico", media: "/assets/testimonial.mp4", type: "video" },
+    { text: "La conexión con la naturaleza es invaluable.", author: "Familia de 4° Básico", media: `${BASE}/paseocerro20264.jpg`, type: "image" },
+    { text: "Una comunidad que abraza y sostiene.", author: "Apoderada de 1° Básico", media: `${BASE}/actividapedagogicahumedales5.jpg`, type: "image" },
+    { text: "El arte es el corazón del currículo.", author: "Familia de 6° Básico", media: `${BASE}/fiesta%20de%20la%20luz202610.jpg`, type: "image" }
   ]
 
   const testimonialsRow2 = [
-    { text: "Verlos amasar el pan cada semana es mágico.", author: "Mamá de Jardín", media: `${BASE}/actividapedagogicahumedales6.jpg`, type: "image" },
-    { text: "Aprenden matemáticas tejiendo y cantando.", author: "Familia Rojas", media: `${BASE}/paseocerro20268.jpg`, type: "image" },
-    { text: "No hay notas, hay un profundo respeto por sus ritmos.", author: "Apoderado Nuevo", media: `${BASE}/paseocerro20269.jpg`, type: "image" },
+    { text: "Verlos amasar el pan cada semana es mágico.", author: "Familia de Jardín Infantil", media: `${BASE}/actividapedagogicahumedales6.jpg`, type: "image" },
+    { text: "Aprenden matemáticas tejiendo y cantando.", author: "Apoderado de 3° Básico", media: `${BASE}/paseocerro20268.jpg`, type: "image" },
+    { text: "No hay notas, hay un profundo respeto por sus ritmos.", author: "Familia de Kinder", media: `${BASE}/paseocerro20269.jpg`, type: "image" },
     { text: "El vínculo con su Maestro Guía es para toda la vida.", author: "Familia de 5° Básico", media: `${BASE}/fiesta%20de%20la%20luz20268.jpg`, type: "image" }
   ]
 
