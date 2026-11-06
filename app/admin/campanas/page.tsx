@@ -9,7 +9,17 @@ import * as XLSX from 'xlsx';
 
 const EmailEditor = dynamic(() => import('react-email-editor'), { ssr: false });
 
-type Contact = { email: string; nombre: string; fuente: string; fecha: string; tags?: string[]; };
+type Contact = { 
+  email: string; 
+  nombre: string; 
+  fuente: string; 
+  fecha: string; 
+  tags?: string[];
+  curso?: string;
+  edadNino?: string;
+  nombreNino?: string;
+  estado?: string;
+};
 type Campaign = { 
   id: string; 
   subject: string; 
@@ -51,16 +61,48 @@ export default function CampanasPage() {
   const [taggingLoading, setTaggingLoading] = useState(false);
   const [selectedTagFilter, setSelectedTagFilter] = useState(''); 
   const [selectedFuenteFilter, setSelectedFuenteFilter] = useState('');
+  const [selectedCursoFilter, setSelectedCursoFilter] = useState('');
   const [selectedCampaignTag, setSelectedCampaignTag] = useState('');
 
   const allTags = Array.from(new Set(contacts.flatMap(c => c.tags || []))).sort();
   const allFuentes = Array.from(new Set(contacts.map(c => c.fuente || 'Desconocida').filter(Boolean))).sort();
+  const allCursos = Array.from(new Set(contacts.map(c => c.curso || 'Sin Especificar').filter(c => c && c !== 'Consultas Generales'))).sort();
+  const bigradoCount = contacts.filter(c => c.curso?.includes('2do Básico') || c.curso?.includes('3ro Básico')).length;
 
   const filteredContacts = contacts.filter(c => {
     if (selectedTagFilter && !c.tags?.includes(selectedTagFilter)) return false;
     if (selectedFuenteFilter && (c.fuente || 'Desconocida') !== selectedFuenteFilter) return false;
+    if (selectedCursoFilter) {
+      if (selectedCursoFilter === 'BIGRADO_2_3') {
+        const is2 = c.curso?.includes('2do Básico');
+        const is3 = c.curso?.includes('3ro Básico');
+        if (!is2 && !is3) return false;
+      } else if (c.curso !== selectedCursoFilter) {
+        return false;
+      }
+    }
     return true;
   });
+
+  const launchBigradoCampaign = () => {
+    const bigradoEmails = contacts
+      .filter(c => c.curso?.includes('2do Básico') || c.curso?.includes('3ro Básico'))
+      .map(c => c.email);
+    
+    setSelectedContacts(bigradoEmails);
+    setSubject('🌿 Un espacio que se abre: Apertura del Bigrado 2° y 3° Básico 2027 en Trekan');
+    
+    const bigradoTemplate = emailTemplates.find(t => t.id === 'apertura-bigrado-2-3');
+    if (bigradoTemplate) {
+      if (editorInstance) {
+        editorInstance.loadDesign(bigradoTemplate.design);
+      } else if (emailEditorRef.current?.editor) {
+        emailEditorRef.current.editor.loadDesign(bigradoTemplate.design);
+      }
+    }
+    setActiveTab('compose');
+    showMessage('success', `Audiencia de Bigrado cargada (${bigradoEmails.length} familias seleccionadas)`);
+  };
 
   // Plantillas eliminadas, ahora usamos el editor visual de Unlayer
 
@@ -299,11 +341,16 @@ export default function CampanasPage() {
   };
 
   const toggleSelectAll = () => {
-    if (selectAll) {
-      setSelectedContacts([]);
+    const targetEmails = filteredContacts.map(c => c.email);
+    const allFilteredSelected = targetEmails.every(e => selectedContacts.includes(e));
+
+    if (allFilteredSelected) {
+      // Deseleccionar los filtrados
+      setSelectedContacts(prev => prev.filter(e => !targetEmails.includes(e)));
       setSelectAll(false);
     } else {
-      setSelectedContacts(filteredContacts.map(c => c.email));
+      // Seleccionar todos los filtrados
+      setSelectedContacts(prev => Array.from(new Set([...prev, ...targetEmails])));
       setSelectAll(true);
     }
   };
@@ -323,9 +370,13 @@ export default function CampanasPage() {
 
   const handleExportExcel = () => {
     if (contacts.length === 0) return showMessage('error', 'No hay contactos para exportar.');
-    const worksheetData = contacts.map(c => ({
+    const worksheetData = filteredContacts.map(c => ({
       Email: c.email,
       Nombre: c.nombre || '',
+      'Curso (2027)': c.curso || 'Sin Especificar',
+      'Hijo/a Postulante': c.nombreNino || '',
+      'Edad Niño': c.edadNino || '',
+      Estado: c.estado || 'nuevo',
       Fuente: c.fuente || '',
       Fecha: c.fecha || '',
       Etiquetas: (c.tags || []).join(', ')
@@ -559,6 +610,22 @@ export default function CampanasPage() {
                 </h2>
                 <div className="flex items-center gap-2 md:gap-4 flex-wrap">
                   <select 
+                    value={selectedCursoFilter}
+                    onChange={(e) => setSelectedCursoFilter(e.target.value)}
+                    className="bg-white border border-[var(--color-waldorf-sage)]/30 text-[var(--color-waldorf-moss)] text-xs font-bold rounded-lg px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-[var(--color-waldorf-moss)] shadow-sm"
+                  >
+                    <option value="">Todos los Cursos</option>
+                    <option value="BIGRADO_2_3">🌟 Bigrado 2° y 3° Básico (2027) ({bigradoCount} fam.)</option>
+                    {allCursos.map(c => <option key={c} value={c}>{c}</option>)}
+                  </select>
+                  <button 
+                    onClick={launchBigradoCampaign}
+                    className="flex items-center gap-1.5 text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300 hover:bg-amber-200 px-3 py-1.5 rounded-lg transition-colors shadow-sm"
+                    title="Carga la plantilla y selecciona las 26 familias de 2° y 3° Básico para enviar campaña"
+                  >
+                    ✨ Campaña Bigrado 2°-3° ({bigradoCount})
+                  </button>
+                  <select 
                     value={selectedTagFilter}
                     onChange={(e) => setSelectedTagFilter(e.target.value)}
                     className="bg-white border border-[var(--color-waldorf-sage)]/30 text-[var(--color-waldorf-moss)] text-xs font-bold rounded-lg px-3 py-1.5 focus:outline-none"
@@ -619,6 +686,7 @@ export default function CampanasPage() {
                       <th className="px-6 py-4 text-center">Sel.</th>
                       <th className="px-6 py-4">Email</th>
                       <th className="px-6 py-4">Nombre / Origen</th>
+                      <th className="px-6 py-4">Curso (2027)</th>
                       <th className="px-6 py-4">Etiquetas</th>
                       <th className="px-6 py-4">Fuente</th>
                       <th className="px-6 py-4">Fecha Captura</th>
@@ -635,6 +703,22 @@ export default function CampanasPage() {
                         </td>
                         <td className="px-6 py-4 font-mono text-[var(--color-waldorf-text-light)] text-xs">{c.email}</td>
                         <td className="px-6 py-4 font-bold text-[var(--color-waldorf-moss)]">{c.nombre || 'Desconocido'}</td>
+                        <td className="px-6 py-4">
+                          <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full border ${
+                            c.curso?.includes('2do Básico') || c.curso?.includes('3ro Básico')
+                              ? 'bg-amber-100 text-amber-900 border-amber-300 shadow-sm'
+                              : c.curso?.includes('1ro') || c.curso?.includes('Kinder')
+                              ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                              : 'bg-gray-50 text-gray-700 border-gray-200'
+                          }`}>
+                            {c.curso || 'Consultas Generales'}
+                          </span>
+                          {c.nombreNino && (
+                            <div className="text-[10px] text-gray-500 font-normal mt-1 flex items-center gap-1">
+                              👶 <span className="font-medium text-gray-700">{c.nombreNino}</span> {c.edadNino ? `(${c.edadNino} años)` : ''}
+                            </div>
+                          )}
+                        </td>
                         <td className="px-6 py-4">
                           <div className="flex flex-wrap gap-1">
                             {c.tags && c.tags.length > 0 ? c.tags.map(t => (
@@ -675,7 +759,7 @@ export default function CampanasPage() {
                       </tr>
                     ))}
                     {contacts.length === 0 && (
-                      <tr><td colSpan={6} className="px-6 py-12 text-center text-[var(--color-waldorf-text-light)] font-medium">No hay contactos registrados aún en la base de datos.</td></tr>
+                      <tr><td colSpan={8} className="px-6 py-12 text-center text-[var(--color-waldorf-text-light)] font-medium">No hay contactos registrados aún en la base de datos.</td></tr>
                     )}
                   </tbody>
                 </table>

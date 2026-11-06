@@ -1,5 +1,30 @@
 export const emailTemplates = [
   {
+    id: 'apertura-bigrado-2-3',
+    name: '🌟 Convocatoria Bigrado 2° y 3° Básico (2027)',
+    description: 'Propuesta pedagógica e invitación a visita para el Bigrado 2°-3°.',
+    design: {
+      body: {
+        rows: [{
+          cells: [1],
+          columns: [{
+            contents: [
+              { type: "image", values: { src: { url: "https://colegiowaldorftrekan.cl/wp-content/uploads/2023/12/logo-trekan.png" }, containerPadding: "30px 20px 10px", width: "120px" } },
+              { type: "divider", values: { containerPadding: "10px", padding: "10px", width: "100%", border: { borderTopWidth: "1px", borderTopStyle: "solid", borderTopColor: "#A3B19B" } } },
+              { type: "heading", values: { headingType: "h2", text: "🌿 El cuidado que libera: Convocatoria Bigrado 2° y 3° Básico (Ciclo 2027)", color: "#2F483A", textAlign: "center", fontFamily: { label: "Georgia", value: "Georgia, serif" } } },
+              { type: "text", values: { text: "<p style=\"text-align: left; color: #3A3A3A; font-size: 15px; line-height: 1.7; font-family: 'Georgia', serif; padding: 10px 20px;\">Estimada familia,<br/><br/>Nos dirigimos a ustedes con especial alegría y gratitud. Hace algún tiempo nos compartieron su interés en formar parte de nuestro colegio para el proceso escolar de su hijo/a, y hoy queremos compartirles una noticia que nace del crecimiento y la madurez de nuestra comunidad.<br/><br/>Dado el hermoso interés manifestado por familias para los niveles de <strong>2° y 3° Básico para el ciclo 2027</strong>, hemos abierto formalmente la conformación de un <strong>Bigrado Compuesto (2° y 3° Básico)</strong>.<br/><br/><strong>¿Por qué un Bigrado en la pedagogía Waldorf?</strong><br/>Lejos de ser una medida improvisada, el aula multigrado en la tradición Waldorf es un organismo social virtuoso y profundamente humano:<br/>• <strong>En 2° Básico (7-8 años):</strong> El niño transita la época de las fábulas y leyendas. Aprende mediante la imitación viva y encuentra en los compañeros mayores un referente cercano, sereno y fraterno.<br/>• <strong>En 3° Básico (8-9 años):</strong> El niño cruza el silencioso hito del «Rubicón» hacia la época de los oficios y el arraigo en la tierra. Asume un rol natural de cuidado, guía y responsabilidad hacia los más pequeños, fortaleciendo su seguridad interior y empatía.<br/><br/>Esta convivencia entre dos etapas evolutivas continuas erradica la comparación estandarizada, disminuye la ansiedad y recrea la armonía de una pequeña familia viva bajo el ritmo de maestros dedicados, con un <strong>límite estricto de máximo 16 niños</strong> para preservar la calidez de la sala.<br/><br/><strong>Los invitamos a conocernos de cerca:</strong><br/>Queremos abrirles las puertas de nuestro refugio en Puerto Varas para recibirlos en una <strong>visita pedagógica personalizada</strong>: recorrer la sala, respirar el entorno natural y conversar en calma con nuestro equipo sobre el proyecto y asegurar el quórum de apertura.<br/><br/>Para coordinar día y horario, pueden escribirnos directamente al WhatsApp de Admisión coordinado por Ivonne haciendo clic en el botón a continuación.<br/><br/>Con afecto y esperanza en la infancia,<br/><strong>Ivonne y el Equipo Pedagógico</strong><br/><em>Colegio Waldorf Trekan · Puerto Varas</em></p>" } },
+              { type: "button", values: { href: { values: { href: "https://wa.me/56967765106?text=Hola%20Ivonne%2C%20recib%C3%AD%20el%20correo%20sobre%20el%20Bigrado%202%C2%B0%20y%203%C2%B0%20B%C3%A1sico%202027%20y%20nos%20gustar%C3%ADa%20coordinar%20una%20visita%20pedag%C3%B3gica." } }, text: "Coordinar Visita por WhatsApp", backgroundColor: "#25D366", color: "#ffffff", borderRadius: "8px", containerPadding: "15px 20px 5px", padding: "14px 28px", fontWeight: "bold" } },
+              { type: "button", values: { href: { values: { href: "https://colegiowaldorftrekan.cl/admision" } }, text: "Conocer más sobre Admisión 2027", backgroundColor: "#C86240", color: "#ffffff", borderRadius: "8px", containerPadding: "5px 20px 20px", padding: "14px 28px", fontWeight: "bold" } },
+              { type: "text", values: { text: "<p style=\"text-align: center; color: #A3B19B; font-size: 12px; margin-top: 30px;\">Colegio Waldorf Trekan · Puerto Varas<br/><br/><a href=\"https://www.colegiowaldorftrekan.cl/darse-de-baja\" style=\"color: #A3B19B; text-decoration: underline;\">Darse de baja de nuestra lista</a></p>" } }
+            ]
+          }],
+          values: { backgroundColor: "#F9F8F5" }
+        }],
+        values: { backgroundColor: "#EBE8E0", fontFamily: { label: "Arial", value: "arial,helvetica,sans-serif" } }
+      }
+    }
+  },
+  {
     id: 'charla-informativa',
     name: 'Invitación a Charla',
     description: 'Invita a familias nuevas a conocer la pedagogía.',
