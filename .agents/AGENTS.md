@@ -130,5 +130,25 @@ Toda entrega de paquete de contenidos o estrategia de redes sociales para Trekan
    - Publicar a diario genera fatiga/cortisol y 2 veces al mes apaga la cuenta en el algoritmo.
    - La frecuencia estándar mandatoria son **2 piezas fuertes en el feed por semana** (1 Carrusel pedagógico/documental + 1 Reel de experiencia viva en movimiento) acompañadas de **2 a 3 historias espontáneas semanales** (luz de sala, naturaleza, huerta).
 
+## 🛡️ Protocolo Forense de Calidad Audiovisual (Sello Anti-Contaminación Visual)
+Antes de proponer o publicar cualquier imagen o fotograma para Trekan o la agencia, el agente DEBE realizar una auditoría forense a nivel de píxel verificando los siguientes 5 filtros innegociables:
+1. **Suelo y Entorno Limpio (Cero Desorden):** Queda estrictamente prohibido usar fotos con ropa arrugada en el piso, chales caídos, cables eléctricos atravesados, mochilas plásticas o botellas desechables.
+2. **Texturas y Vestuario Orgánico (Anti-Sintético):** Descartar de inmediato imágenes donde el protagonismo visual recaiga en estampados sintéticos disonantes (ej. animal print / leopardo), fundas de notebook de neopreno o ropa corporativa ajena a la paleta Waldorf.
+3. **Verificación Estricta de Sujetos y Niveles:** Verificar que los sujetos sean efectivamente estudiantes de Trekan (Jardín a 6° Básico) y no actores externos o elencos de otras instituciones con estéticas incongruentes.
+4. **Filtro Técnico de Nitidez y Trepidación:** Fotos tomadas en penumbra con velocidad lenta (< 1/30s) que presenten manos o rostros borrosos (varianza de Laplaciano < 25) deben descartarse.
+5. **Estrategia de Extracción de Fotogramas de Video:** Cuando el lote de fotos fijas presente defectos de contaminación o desenfoque, el agente debe inspeccionar los videos Full HD/4K y extraer los fotogramas exactos donde los niños vistan de forma noble y se encuentren en estado de reverencia (*flow*).
+
+## 🎨 Ecosistema Creativo Zero-Cost de la Agencia ("Las Tres")
+Toda producción audiovisual se articula bajo la sinergia de tres componentes independientes de suscripciones de Adobe:
+1. **Antigravity (Cerebro y Automatizador):** Ingesta, filtrado por metadatos, extracción de cuadros con FFmpeg, recorte de proporciones (4:5 Feed, 9:16 Reels), y redacción del Paquete Canónico de 7 Elementos.
+2. **IOPaint (Limpieza Quirúrgica con Modelo LaMa en Pinokio):** Herramienta local para eliminación instantánea de parásitos visuales en suelos y fondos mediante inpainting neuronal.
+3. **ArtCraft (Taller de Montaje Nativo en Rust):** Suite de escritorio (`/Applications/ArtCraft.app`) que reemplaza Photoshop (PhotoCraft) y Premiere (FilmCraft) para retoques finos multicapa a costo $0.
+
+## 🚀 Arquitectura SEO de Marca Única (Entity Dominance en Google)
+Para asegurar que una marca domine la posición #1 al buscar su nombre suelto (ej. 'Trekan'):
+1. **WebSite Schema de Entidad:** Declarar siempre en `app/layout.tsx` el schema `@type: "WebSite"` con `name: "[Nombre Único]"` y las variantes en `alternateName: ["Colegio...", "Escuela..."]`.
+2. **Global Title Template:** Configurar en los metadatos de Next.js `title: { default: '...', template: '%s | [Marca]' }` para que todas las páginas indexadas alimenten la relevancia semántica de la palabra clave principal.
+3. **Anclaje Local (Google Business Profile):** Priorizar la alineación exacta de Nombre, Dirección y Teléfono (NAP) para capturar la Posición Cero en el Local Pack de Google Maps.
+
 
 
