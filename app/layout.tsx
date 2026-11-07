@@ -24,14 +24,24 @@ const merriweather = Merriweather({
 
 
 export const metadata: Metadata = {
-  title: 'Colegio Waldorf Trekan | Un Espacio de Desarrollo Integral en Puerto Varas',
-  description: 'Un espacio de contención, belleza y ritmo natural para el desarrollo infantil. Pedagogía Waldorf para niños de 3 a 14 años en Puerto Varas. Admisión 2026 abierta.',
+  metadataBase: new URL('https://www.colegiowaldorftrekan.cl'),
+  title: {
+    default: 'Colegio Waldorf Trekan | Puerto Varas, Los Lagos',
+    template: '%s | Trekan'
+  },
+  description: 'Colegio Waldorf Trekan en Puerto Varas. Un espacio de contención, belleza y ritmo natural para el desarrollo infantil de 3 a 14 años en la Región de Los Lagos.',
   keywords: [
+    'Trekan',
+    'Trekán',
+    'Colegio Trekan',
+    'Escuela Trekan',
+    'Colegio Waldorf Trekan',
+    'Trekan Puerto Varas',
+    'Trekan Chile',
     'colegio waldorf puerto varas',
     'proyecto waldorf puerto varas',
     'pedagogia waldorf los lagos',
     'educación alternativa puerto varas',
-    'colegio waldorf trekan',
     'educacion sin pantallas puerto varas',
     'crianza con ritmo y contención',
     'colegios con metodología waldorf'
@@ -41,9 +51,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Colegio Waldorf Trekan | Un Espacio de Desarrollo Integral en Puerto Varas',
-    description: 'Donde la infancia respira. Un ambiente guiado por el ritmo, la belleza y la contención orgánica. Conoce nuestro espacio.',
+    description: 'Donde la infancia respira. Un ambiente guiado por el ritmo, la belleza y la contención orgánica en Puerto Varas.',
     url: 'https://www.colegiowaldorftrekan.cl',
-    siteName: 'Colegio Waldorf Trekan',
+    siteName: 'Trekan',
     locale: 'es_CL',
     images: [
       {
@@ -76,10 +86,35 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "WebSite",
+        "@id": "https://www.colegiowaldorftrekan.cl/#website",
+        "url": "https://www.colegiowaldorftrekan.cl",
+        "name": "Trekan",
+        "alternateName": [
+          "Colegio Trekan",
+          "Colegio Waldorf Trekan",
+          "Trekán",
+          "Trekan Puerto Varas",
+          "Escuela Trekan"
+        ],
+        "description": "Sitio web oficial del Colegio Waldorf Trekan en Puerto Varas, Región de Los Lagos, Chile.",
+        "inLanguage": "es-CL",
+        "publisher": {
+          "@id": "https://www.colegiowaldorftrekan.cl/#organization"
+        }
+      },
+      {
         "@type": "School",
         "@id": "https://www.colegiowaldorftrekan.cl/#organization",
         "name": "Colegio Waldorf Trekan",
-        "alternateName": "Trekan Puerto Varas",
+        "alternateName": [
+          "Trekan",
+          "Colegio Trekan",
+          "Trekán",
+          "Trekan Puerto Varas",
+          "Escuela Waldorf Trekan",
+          "Colegio Waldorf Trekan PV"
+        ],
         "url": "https://www.colegiowaldorftrekan.cl",
         "logo": "https://www.colegiowaldorftrekan.cl/assets/logo.png",
         "image": "https://www.colegiowaldorftrekan.cl/imagenes-web/paseocerro20261.jpg",
@@ -88,7 +123,8 @@ export default function RootLayout({
         "email": "admision@colegiowaldorftrekan.cl",
         "sameAs": [
           "https://www.instagram.com/waldorftrekanpv/",
-          "https://www.facebook.com/profile.php?id=61573063135723"
+          "https://www.facebook.com/profile.php?id=61573063135723",
+          "https://www.grandescolegios.cl/colegio/colegio-waldorf-trekan"
         ],
         "address": {
           "@type": "PostalAddress",
