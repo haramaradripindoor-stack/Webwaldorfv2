@@ -59,7 +59,7 @@ export default function BioLinksPage() {
           <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 bg-gradient-to-tr from-[var(--color-waldorf-mustard)] via-[var(--color-waldorf-sage)] to-[var(--color-waldorf-moss)] shadow-lg shadow-[var(--color-waldorf-moss)]/10 transition-transform duration-300 group-hover:scale-105">
             <div className="w-full h-full rounded-full bg-white overflow-hidden flex items-center justify-center p-1.5 border border-white">
               <Image
-                src="/assets/marca-oficial/logo-trekan-circular-oficial-1024.png"
+                src="/assets/logo.png"
                 alt="Logo Colegio Waldorf Trekan"
                 width={120}
                 height={120}
