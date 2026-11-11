@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import * as XLSX from 'xlsx';
 import { Clock, CheckCircle, MessageSquare, Flame, Trash2, Calendar, User, GripVertical, Download, XCircle, Archive, Edit3 , Search, Table, Columns} from 'lucide-react';
-import MatrizExcelAdmisiones from '@/components/admin/MatrizExcelAdmisiones';
+import MatrizExcelAdmisiones, { extractHorarioPreferido, extractDudasComentarios } from '@/components/admin/MatrizExcelAdmisiones';
 import {
   DndContext,
   DragOverlay,
@@ -40,6 +40,8 @@ type LeadAdmision = {
   arquetipo?: string;
   requiere_evaluacion_arancel?: boolean;
   created_at: string;
+  horario_preferido?: string;
+  dudas_comentarios?: string;
 };
 
 const columns = [
@@ -482,6 +484,10 @@ export default function AdmisionesPage() {
         }
       }
 
+      const horario = extractHorarioPreferido(lead);
+      const dudas = extractDudasComentarios(lead);
+      const statusTitle = columns.find(c => c.id === lead.estado)?.title || lead.estado;
+
       return {
         'Fecha formulario': fechaFormulario,
         'Apoderado': apoderado,
@@ -489,7 +495,11 @@ export default function AdmisionesPage() {
         'Edad': edad,
         'Curso postulado': cursoPostulado,
         'Teléfono': telefono,
-        'Correo': correo
+        'Correo': correo,
+        'Horario preferido': horario,
+        'Dudas / comentarios': dudas,
+        'Etapa CRM': statusTitle,
+        'Arancel Fraterno': lead.requiere_evaluacion_arancel ? 'Sí' : 'No'
       };
     });
 
@@ -501,9 +511,13 @@ export default function AdmisionesPage() {
       { wch: 32 }, // Apoderado
       { wch: 28 }, // Nombre niño/a
       { wch: 12 }, // Edad
-      { wch: 28 }, // Curso postulado
+      { wch: 26 }, // Curso postulado
       { wch: 18 }, // Teléfono
-      { wch: 35 }, // Correo
+      { wch: 32 }, // Correo
+      { wch: 24 }, // Horario preferido
+      { wch: 40 }, // Dudas / comentarios
+      { wch: 22 }, // Etapa CRM
+      { wch: 16 }, // Arancel Fraterno
     ];
 
     const workbook = XLSX.utils.book_new();

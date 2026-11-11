@@ -36,7 +36,60 @@ export type LeadAdmision = {
   arquetipo?: string;
   requiere_evaluacion_arancel?: boolean;
   created_at: string;
+  horario_preferido?: string;
+  dudas_comentarios?: string;
 };
+
+// Utilidades para extraer y actualizar campos serializados en curso_postula y notas
+export function extractHorarioPreferido(lead: LeadAdmision): string {
+  if (lead.horario_preferido) return lead.horario_preferido;
+  if (lead.curso_postula && lead.curso_postula.includes('|')) {
+    const parts = lead.curso_postula.split('|');
+    for (const p of parts) {
+      const trimmed = p.trim();
+      if (trimmed.toLowerCase().startsWith('horario:')) {
+        return trimmed.replace(/^horario:\s*/i, '').trim();
+      }
+    }
+  }
+  return '';
+}
+
+export function extractDudasComentarios(lead: LeadAdmision): string {
+  if (lead.dudas_comentarios) return lead.dudas_comentarios;
+  if (lead.curso_postula && lead.curso_postula.includes('|')) {
+    const parts = lead.curso_postula.split('|');
+    for (const p of parts) {
+      const trimmed = p.trim();
+      if (trimmed.toLowerCase().startsWith('dudas:')) {
+        const val = trimmed.replace(/^dudas:\s*/i, '').trim();
+        if (val) return val;
+      }
+    }
+  }
+  return lead.notas || '';
+}
+
+export function updateSerializedCursoField(currentCursoPostula: string | undefined, key: string, newValue: string): string {
+  const raw = currentCursoPostula || '';
+  if (!raw.includes('|')) {
+    const course = raw.trim() || 'Kinder (2027)';
+    return `${course} | ${key}: ${newValue.trim()}`;
+  }
+  const parts = raw.split('|').map(p => p.trim());
+  let replaced = false;
+  const updatedParts = parts.map(part => {
+    if (part.toLowerCase().startsWith(key.toLowerCase() + ':')) {
+      replaced = true;
+      return `${key}: ${newValue.trim()}`;
+    }
+    return part;
+  });
+  if (!replaced) {
+    updatedParts.push(`${key}: ${newValue.trim()}`);
+  }
+  return updatedParts.join(' | ');
+}
 
 interface MatrizExcelAdmisionesProps {
   leads: LeadAdmision[];
@@ -95,7 +148,7 @@ export default function MatrizExcelAdmisiones({
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
   const [selectedCourse, setSelectedCourse] = useState<string>('all');
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
-  const [editingCell, setEditingCell] = useState<{ id: string; field: keyof LeadAdmision } | null>(null);
+  const [editingCell, setEditingCell] = useState<{ id: string; field: keyof LeadAdmision | 'horario_preferido' | 'dudas_comentarios' } | null>(null);
   const [editValue, setEditValue] = useState<string>('');
   const [isSaving, setIsSaving] = useState(false);
   const [saveFeedback, setSaveFeedback] = useState<string | null>(null);
@@ -142,7 +195,9 @@ export default function MatrizExcelAdmisiones({
         const phone = (lead.telefono_apoderado || '').toLowerCase();
         const curso = (lead.curso_postula || '').toLowerCase();
         const notas = (lead.notas || '').toLowerCase();
-        return apoderado.includes(q) || nino.includes(q) || email.includes(q) || phone.includes(q) || curso.includes(q) || notas.includes(q);
+        const horario = extractHorarioPreferido(lead).toLowerCase();
+        const dudas = extractDudasComentarios(lead).toLowerCase();
+        return apoderado.includes(q) || nino.includes(q) || email.includes(q) || phone.includes(q) || curso.includes(q) || notas.includes(q) || horario.includes(q) || dudas.includes(q);
       }
 
       return true;
@@ -187,12 +242,32 @@ export default function MatrizExcelAdmisiones({
   }, [matriculadosCount, enEvaluacionCount, enEntrevistaCount]);
 
   // Guardar celda editada en Supabase
-  const saveCellEdit = async (leadId: string, field: keyof LeadAdmision, value: any) => {
+  const saveCellEdit = async (leadId: string, field: keyof LeadAdmision | 'horario_preferido' | 'dudas_comentarios', value: any) => {
     setIsSaving(true);
     try {
+      let updatePayload: Record<string, any> = {};
+
+      if (field === 'horario_preferido') {
+        const currentLead = leads.find(l => l.id === leadId);
+        const newCursoPostula = updateSerializedCursoField(currentLead?.curso_postula, 'Horario', value || '');
+        updatePayload = { curso_postula: newCursoPostula };
+      } else if (field === 'dudas_comentarios') {
+        const currentLead = leads.find(l => l.id === leadId);
+        const hasSerializedDudas = currentLead?.curso_postula && currentLead.curso_postula.includes('| Dudas:');
+        const newCursoPostula = hasSerializedDudas
+          ? updateSerializedCursoField(currentLead?.curso_postula, 'Dudas', value || '')
+          : currentLead?.curso_postula;
+        updatePayload = {
+          notas: value || '',
+          ...(newCursoPostula && newCursoPostula !== currentLead?.curso_postula ? { curso_postula: newCursoPostula } : {})
+        };
+      } else {
+        updatePayload = { [field]: value };
+      }
+
       const { error } = await supabase
         .from('leads_admision')
-        .update({ [field]: value })
+        .update(updatePayload)
         .eq('id', leadId);
 
       if (error) throw error;
@@ -315,22 +390,26 @@ export default function MatrizExcelAdmisiones({
         const cols = row.split('\t').map(c => c.trim());
         if (cols.length < 2) continue;
 
-        // Intentar mapear columnas según formato estándar
-        // [0: Fecha], [1: Apoderado], [2: Niño], [3: Edad], [4: Curso], [5: Teléfono], [6: Correo]
+        // Intentar mapear columnas según formato estándar solicitado:
+        // [0: Fecha], [1: Apoderado], [2: Nombre niño/a], [3: Edad], [4: Curso postulado], [5: Teléfono], [6: Correo], [7: Horario preferido], [8: Dudas / comentarios]
         let apoderado = '';
         let nino = '';
         let edad = '';
         let curso = 'Kinder (2027)';
         let telefono = '';
         let correo = '';
+        let horario = '';
+        let dudas = '';
 
         if (cols.length >= 7) {
-          apoderado = cols[1];
-          nino = cols[2];
-          edad = cols[3];
+          apoderado = cols[1] || '';
+          nino = cols[2] || '';
+          edad = cols[3] || '';
           curso = cols[4] || 'Kinder (2027)';
-          telefono = cols[5];
-          correo = cols[6];
+          telefono = cols[5] || '';
+          correo = cols[6] || '';
+          horario = cols[7] || '';
+          dudas = cols[8] || '';
         } else {
           // Heurística si pegan menos columnas
           cols.forEach(c => {
@@ -343,6 +422,15 @@ export default function MatrizExcelAdmisiones({
         }
 
         if (!apoderado && !correo && !telefono) continue;
+
+        // Serializar curso con horario y dudas si vienen presentes
+        let cursoFinal = curso;
+        if (horario) {
+          cursoFinal = `${cursoFinal} | Horario: ${horario}`;
+        }
+        if (dudas) {
+          cursoFinal = `${cursoFinal} | Dudas: ${dudas}`;
+        }
 
         // Revisar si ya existe por teléfono o correo para no duplicar
         const cleanPhone = telefono.replace(/\D/g, '').slice(-8);
@@ -361,9 +449,10 @@ export default function MatrizExcelAdmisiones({
               nombre_apoderado: apoderado || existing.nombre_apoderado,
               nombre_nino: nino || existing.nombre_nino,
               edad_nino: edad || existing.edad_nino,
-              curso_postula: curso || existing.curso_postula,
+              curso_postula: cursoFinal || existing.curso_postula,
               telefono_apoderado: telefono || existing.telefono_apoderado,
               email_apoderado: correo || existing.email_apoderado,
+              ...(dudas ? { notas: dudas } : {})
             })
             .eq('id', existing.id);
           updatedCount++;
@@ -374,13 +463,14 @@ export default function MatrizExcelAdmisiones({
               nombre_apoderado: apoderado || 'Sin nombre',
               nombre_nino: nino || 'No especificado',
               edad_nino: edad || 'Pendiente',
-              curso_postula: curso || 'Kinder (2027)',
+              curso_postula: cursoFinal || 'Kinder (2027)',
               telefono_apoderado: telefono || '+569',
               email_apoderado: correo || 'Pendiente',
               estado: 'nuevo',
               origen: 'Pegado Masivo Ctrl+V',
               requiere_evaluacion_arancel: false,
-              arquetipo: 'no_evaluado'
+              arquetipo: 'no_evaluado',
+              notas: dudas || null
             }]);
           insertedCount++;
         }
@@ -432,6 +522,8 @@ export default function MatrizExcelAdmisiones({
         let curso = 'Kinder (2027)';
         let telefono = '';
         let correo = '';
+        let horario = '';
+        let dudas = '';
 
         headers.forEach((h, idx) => {
           const val = row[idx] ? row[idx].toString().trim() : '';
@@ -441,17 +533,31 @@ export default function MatrizExcelAdmisiones({
           else if (h.includes('curso')) curso = val;
           else if (h.includes('teléfono') || h.includes('telefono') || h.includes('celular') || h.includes('whatsapp')) telefono = val;
           else if (h.includes('correo') || h.includes('email') || h.includes('mail')) correo = val;
+          else if (h.includes('horario')) horario = val;
+          else if (h.includes('duda') || h.includes('comentario') || h.includes('consulta') || h.includes('observaci')) dudas = val;
         });
 
-        // Fallback posicional si no coincidieron los headers
-        if (!apoderado && row[1]) apoderado = row[1];
-        if (!nino && row[2]) nino = row[2];
-        if (!edad && row[3]) edad = row[3];
-        if (!curso && row[4]) curso = row[4];
-        if (!telefono && row[5]) telefono = row[5];
-        if (!correo && row[6]) correo = row[6];
+        // Fallback posicional estricto al nuevo orden:
+        // [0: Fecha], [1: Apoderado], [2: Nombre niño/a], [3: Edad], [4: Curso postulado], [5: Teléfono], [6: Correo], [7: Horario], [8: Dudas]
+        if (!apoderado && row[1]) apoderado = row[1]?.toString().trim();
+        if (!nino && row[2]) nino = row[2]?.toString().trim();
+        if (!edad && row[3]) edad = row[3]?.toString().trim();
+        if (!curso && row[4]) curso = row[4]?.toString().trim();
+        if (!telefono && row[5]) telefono = row[5]?.toString().trim();
+        if (!correo && row[6]) correo = row[6]?.toString().trim();
+        if (!horario && row[7]) horario = row[7]?.toString().trim();
+        if (!dudas && row[8]) dudas = row[8]?.toString().trim();
 
         if (!apoderado && !correo && !telefono) continue;
+
+        // Serializar curso con horario y dudas si vienen presentes
+        let cursoFinal = curso || 'Kinder (2027)';
+        if (horario) {
+          cursoFinal = `${cursoFinal} | Horario: ${horario}`;
+        }
+        if (dudas) {
+          cursoFinal = `${cursoFinal} | Dudas: ${dudas}`;
+        }
 
         const cleanPhone = telefono ? telefono.replace(/\D/g, '').slice(-8) : '';
         const cleanEmail = correo ? correo.toLowerCase() : '';
@@ -469,9 +575,10 @@ export default function MatrizExcelAdmisiones({
               nombre_apoderado: apoderado || existing.nombre_apoderado,
               nombre_nino: nino || existing.nombre_nino,
               edad_nino: edad || existing.edad_nino,
-              curso_postula: curso || existing.curso_postula,
+              curso_postula: cursoFinal || existing.curso_postula,
               telefono_apoderado: telefono || existing.telefono_apoderado,
               email_apoderado: correo || existing.email_apoderado,
+              ...(dudas ? { notas: dudas } : {})
             })
             .eq('id', existing.id);
           updated++;
@@ -482,13 +589,14 @@ export default function MatrizExcelAdmisiones({
               nombre_apoderado: apoderado || 'Sin nombre',
               nombre_nino: nino || 'No especificado',
               edad_nino: edad || 'Pendiente',
-              curso_postula: curso || 'Kinder (2027)',
+              curso_postula: cursoFinal || 'Kinder (2027)',
               telefono_apoderado: telefono || '+569',
               email_apoderado: correo || 'Pendiente',
               estado: 'nuevo',
               origen: `Importado .xlsx (${file.name})`,
               requiere_evaluacion_arancel: false,
-              arquetipo: 'no_evaluado'
+              arquetipo: 'no_evaluado',
+              notas: dudas || null
             }]);
           inserted++;
         }
@@ -506,7 +614,8 @@ export default function MatrizExcelAdmisiones({
     }
   };
 
-  // Descargar .xlsx en formato oficial (7 columnas ordenadas)
+  // Descargar .xlsx en formato oficial ordenado según requerimiento:
+  // Fecha formulario | Apoderado | Nombre niño/a | Edad | Curso postulado | Teléfono | Correo | Horario preferido | Dudas / comentarios
   const handleDownloadOfficialExcel = () => {
     if (filteredLeads.length === 0) {
       alert('No hay filas para descargar.');
@@ -525,6 +634,9 @@ export default function MatrizExcelAdmisiones({
       const curso = normalizeCourse(lead.curso_postula);
       const telefono = (lead.telefono_apoderado && lead.telefono_apoderado !== 'Vía WhatsApp (Pendiente)') ? lead.telefono_apoderado.trim() : '';
       const correo = (lead.email_apoderado && lead.email_apoderado !== 'Pendiente') ? lead.email_apoderado.trim() : '';
+      const horario = extractHorarioPreferido(lead);
+      const dudas = extractDudasComentarios(lead);
+      const statusTitle = columnsConfig.find(c => c.id === lead.estado)?.title || lead.estado;
 
       return {
         'Fecha formulario': fecha,
@@ -533,7 +645,11 @@ export default function MatrizExcelAdmisiones({
         'Edad': edad,
         'Curso postulado': curso,
         'Teléfono': telefono,
-        'Correo': correo
+        'Correo': correo,
+        'Horario preferido': horario,
+        'Dudas / comentarios': dudas,
+        'Etapa CRM': statusTitle,
+        'Arancel Fraterno': lead.requiere_evaluacion_arancel ? 'Sí' : 'No'
       };
     });
 
@@ -543,9 +659,13 @@ export default function MatrizExcelAdmisiones({
       { wch: 32 }, // Apoderado
       { wch: 28 }, // Nombre niño/a
       { wch: 12 }, // Edad
-      { wch: 28 }, // Curso postulado
+      { wch: 26 }, // Curso postulado
       { wch: 18 }, // Teléfono
-      { wch: 35 }, // Correo
+      { wch: 32 }, // Correo
+      { wch: 24 }, // Horario preferido
+      { wch: 40 }, // Dudas / comentarios
+      { wch: 22 }, // Etapa CRM
+      { wch: 16 }, // Arancel Fraterno
     ];
 
     const workbook = XLSX.utils.book_new();
@@ -553,7 +673,7 @@ export default function MatrizExcelAdmisiones({
     XLSX.writeFile(workbook, `Trekan_Matriz_Admisiones_${new Date().toISOString().split('T')[0]}.xlsx`);
   };
 
-  // Descargar plantilla .xlsx de ejemplo
+  // Descargar plantilla .xlsx de ejemplo con el nuevo orden oficial
   const handleDownloadTemplate = () => {
     const templateRows = [
       {
@@ -563,7 +683,9 @@ export default function MatrizExcelAdmisiones({
         'Edad': '5',
         'Curso postulado': 'Kinder (2027)',
         'Teléfono': '+56912345678',
-        'Correo': 'maria.silva@ejemplo.cl'
+        'Correo': 'maria.silva@ejemplo.cl',
+        'Horario preferido': 'Mañana (08:30 – 13:00)',
+        'Dudas / comentarios': 'Consulta sobre talleres y metodología.'
       },
       {
         'Fecha formulario': '26-10-2026',
@@ -572,13 +694,15 @@ export default function MatrizExcelAdmisiones({
         'Edad': '7',
         'Curso postulado': '2do Básico (2027)',
         'Teléfono': '+56987654321',
-        'Correo': 'felipe.gonzalez@ejemplo.cl'
+        'Correo': 'felipe.gonzalez@ejemplo.cl',
+        'Horario preferido': 'Tarde',
+        'Dudas / comentarios': 'Traslado desde otra región.'
       }
     ];
 
     const worksheet = XLSX.utils.json_to_sheet(templateRows);
     worksheet['!cols'] = [
-      { wch: 18 }, { wch: 32 }, { wch: 28 }, { wch: 12 }, { wch: 28 }, { wch: 18 }, { wch: 35 }
+      { wch: 18 }, { wch: 32 }, { wch: 28 }, { wch: 12 }, { wch: 26 }, { wch: 18 }, { wch: 32 }, { wch: 24 }, { wch: 40 }
     ];
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Plantilla');
@@ -862,7 +986,7 @@ export default function MatrizExcelAdmisiones({
         <div className="overflow-x-auto max-h-[70vh] custom-scrollbar">
           <table className="w-full border-collapse text-left text-xs">
             
-            {/* Header Tipo Excel con nomenclatura de columnas [A], [B], [C] */}
+            {/* Header Tipo Excel con nomenclatura de columnas [A], [B], [C] en orden oficial */}
             <thead className="sticky top-0 z-20 bg-[var(--color-waldorf-moss)] text-white font-serif select-none shadow-sm">
               <tr>
                 <th className="w-10 p-3 text-center border-r border-white/10">
@@ -876,38 +1000,41 @@ export default function MatrizExcelAdmisiones({
                     className="w-3.5 h-3.5 accent-[var(--color-waldorf-mustard)] cursor-pointer rounded"
                   />
                 </th>
-                <th className="p-3 font-mono font-medium text-[11px] text-[var(--color-waldorf-mustard)] border-r border-white/10 min-w-[110px]">
-                  [A] FECHA
-                </th>
-                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[180px]">
-                  [B] APODERADO *
-                </th>
-                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[200px]">
-                  [C] CORREO *
-                </th>
-                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[130px]">
-                  [D] TELÉFONO *
-                </th>
-                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[170px]">
-                  [E] NIÑO / NIÑA
-                </th>
-                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[70px] text-center">
-                  [F] EDAD
-                </th>
-                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[180px]">
-                  [G] CURSO POSTULADO
+                <th className="p-3 font-mono font-medium text-[11px] text-[var(--color-waldorf-mustard)] border-r border-white/10 min-w-[120px]">
+                  [A] FECHA FORMULARIO
                 </th>
                 <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[190px]">
-                  [H] ETAPA CRM
+                  [B] APODERADO *
                 </th>
-                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[120px] text-center">
-                  [I] ARANCEL
+                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[170px]">
+                  [C] NOMBRE NIÑO/A
                 </th>
-                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[210px]">
-                  [J] ARQUETIPO FAMILIA
+                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[70px] text-center">
+                  [D] EDAD
                 </th>
-                <th className="p-3 font-serif font-bold text-xs tracking-wide min-w-[240px]">
-                  [K] NOTAS / HISTORIAL
+                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[180px]">
+                  [E] CURSO POSTULADO
+                </th>
+                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[130px]">
+                  [F] TELÉFONO *
+                </th>
+                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[190px]">
+                  [G] CORREO *
+                </th>
+                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[160px]">
+                  [H] HORARIO PREFERIDO
+                </th>
+                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[220px]">
+                  [I] DUDAS / COMENTARIOS
+                </th>
+                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[180px]">
+                  [J] ETAPA CRM
+                </th>
+                <th className="p-3 font-serif font-bold text-xs tracking-wide border-r border-white/10 min-w-[90px] text-center">
+                  [K] ARANCEL
+                </th>
+                <th className="p-3 font-serif font-bold text-xs tracking-wide min-w-[190px]">
+                  [L] ARQUETIPO FAMILIA
                 </th>
               </tr>
             </thead>
@@ -916,7 +1043,7 @@ export default function MatrizExcelAdmisiones({
             <tbody className="divide-y divide-[var(--color-waldorf-sage)]/10 font-sans">
               {filteredLeads.length === 0 ? (
                 <tr>
-                  <td colSpan={12} className="py-16 text-center text-gray-400 bg-[#FAF8F5]">
+                  <td colSpan={13} className="py-16 text-center text-gray-400 bg-[#FAF8F5]">
                     <FileSpreadsheet className="w-12 h-12 mx-auto text-gray-300 mb-3" />
                     <p className="font-serif text-sm font-bold text-gray-600">No hay filas que coincidan con los filtros</p>
                     <p className="text-xs text-gray-400 mt-1">Puedes pegar celdas copiadas con Ctrl+V o presionar "+ Nueva Fila".</p>
@@ -929,6 +1056,8 @@ export default function MatrizExcelAdmisiones({
                   const fechaStr = !isNaN(d.getTime()) ? d.toLocaleDateString('es-CL') : '';
                   const statusConfig = columnsConfig.find(c => c.id === lead.estado);
                   const currentArchetype = archetypes.find(a => a.id === lead.arquetipo) || archetypes[0];
+                  const horarioStr = extractHorarioPreferido(lead);
+                  const dudasStr = extractDudasComentarios(lead);
 
                   return (
                     <tr 
@@ -948,19 +1077,19 @@ export default function MatrizExcelAdmisiones({
                         />
                       </td>
 
-                      {/* [A] FECHA */}
+                      {/* [A] FECHA FORMULARIO */}
                       <td className="p-2.5 font-mono text-gray-500 text-[11px] border-r border-gray-100 whitespace-nowrap">
                         {fechaStr}
                       </td>
 
-                      {/* [B] APODERADO (Editable Inline) */}
+                      {/* [B] APODERADO * (Editable Inline) */}
                       <td 
                         onDoubleClick={() => {
                           setEditingCell({ id: lead.id, field: 'nombre_apoderado' });
                           setEditValue(lead.nombre_apoderado || '');
                         }}
                         className="p-2.5 font-medium text-gray-900 border-r border-gray-100 cursor-text"
-                        title="Doble clic para editar"
+                        title="Doble clic para editar apoderado"
                       >
                         {editingCell?.id === lead.id && editingCell?.field === 'nombre_apoderado' ? (
                           <input 
@@ -982,72 +1111,14 @@ export default function MatrizExcelAdmisiones({
                         )}
                       </td>
 
-                      {/* [C] CORREO (Editable Inline) */}
-                      <td 
-                        onDoubleClick={() => {
-                          setEditingCell({ id: lead.id, field: 'email_apoderado' });
-                          setEditValue(lead.email_apoderado === 'Pendiente' ? '' : (lead.email_apoderado || ''));
-                        }}
-                        className="p-2.5 text-gray-700 border-r border-gray-100 cursor-text font-mono text-[11px]"
-                        title="Doble clic para editar"
-                      >
-                        {editingCell?.id === lead.id && editingCell?.field === 'email_apoderado' ? (
-                          <input 
-                            type="email"
-                            autoFocus
-                            value={editValue}
-                            onChange={(e) => setEditValue(e.target.value)}
-                            onBlur={() => saveCellEdit(lead.id, 'email_apoderado', editValue || 'Pendiente')}
-                            onKeyDown={(e) => {
-                              if (e.key === 'Enter') saveCellEdit(lead.id, 'email_apoderado', editValue || 'Pendiente');
-                              if (e.key === 'Escape') setEditingCell(null);
-                            }}
-                            className="w-full bg-white border border-[var(--color-waldorf-mustard)] rounded px-2 py-1 text-xs outline-none shadow-xs"
-                          />
-                        ) : (
-                          <span className={`truncate block ${lead.email_apoderado === 'Pendiente' ? 'text-orange-500 italic' : 'text-gray-700'}`}>
-                            {lead.email_apoderado || <em className="text-gray-400">Pendiente</em>}
-                          </span>
-                        )}
-                      </td>
-
-                      {/* [D] TELÉFONO (Editable Inline) */}
-                      <td 
-                        onDoubleClick={() => {
-                          setEditingCell({ id: lead.id, field: 'telefono_apoderado' });
-                          setEditValue(lead.telefono_apoderado || '');
-                        }}
-                        className="p-2.5 font-mono text-gray-700 border-r border-gray-100 cursor-text whitespace-nowrap"
-                        title="Doble clic para editar"
-                      >
-                        {editingCell?.id === lead.id && editingCell?.field === 'telefono_apoderado' ? (
-                          <input 
-                            type="text"
-                            autoFocus
-                            value={editValue}
-                            onChange={(e) => setEditValue(e.target.value)}
-                            onBlur={() => saveCellEdit(lead.id, 'telefono_apoderado', editValue)}
-                            onKeyDown={(e) => {
-                              if (e.key === 'Enter') saveCellEdit(lead.id, 'telefono_apoderado', editValue);
-                              if (e.key === 'Escape') setEditingCell(null);
-                            }}
-                            className="w-full bg-white border border-[var(--color-waldorf-mustard)] rounded px-2 py-1 text-xs outline-none shadow-xs font-mono"
-                          />
-                        ) : (
-                          <span className="truncate block">
-                            {lead.telefono_apoderado || <em className="text-gray-400">Sin teléfono</em>}
-                          </span>
-                        )}
-                      </td>
-
-                      {/* [E] NIÑO / NIÑA (Editable Inline) */}
+                      {/* [C] NOMBRE NIÑO/A (Editable Inline) */}
                       <td 
                         onDoubleClick={() => {
                           setEditingCell({ id: lead.id, field: 'nombre_nino' });
                           setEditValue(lead.nombre_nino || '');
                         }}
                         className="p-2.5 text-gray-800 border-r border-gray-100 cursor-text"
-                        title="Doble clic para editar"
+                        title="Doble clic para editar nombre del niño/a"
                       >
                         {editingCell?.id === lead.id && editingCell?.field === 'nombre_nino' ? (
                           <input 
@@ -1069,14 +1140,14 @@ export default function MatrizExcelAdmisiones({
                         )}
                       </td>
 
-                      {/* [F] EDAD (Editable Inline) */}
+                      {/* [D] EDAD (Editable Inline) */}
                       <td 
                         onDoubleClick={() => {
                           setEditingCell({ id: lead.id, field: 'edad_nino' });
                           setEditValue(lead.edad_nino || '');
                         }}
                         className="p-2.5 text-center font-bold text-gray-700 border-r border-gray-100 cursor-text"
-                        title="Doble clic para editar"
+                        title="Doble clic para editar edad"
                       >
                         {editingCell?.id === lead.id && editingCell?.field === 'edad_nino' ? (
                           <input 
@@ -1096,11 +1167,20 @@ export default function MatrizExcelAdmisiones({
                         )}
                       </td>
 
-                      {/* [G] CURSO POSTULADO (Dropdown con cursos oficiales y soporte hermanos) */}
+                      {/* [E] CURSO POSTULADO (Dropdown con cursos oficiales y soporte hermanos) */}
                       <td className="p-2.5 border-r border-gray-100">
                         <select
                           value={officialCourses2027.includes(lead.curso_postula) ? lead.curso_postula : (lead.curso_postula && lead.curso_postula.includes(',') ? lead.curso_postula : normalizeCourse(lead.curso_postula))}
-                          onChange={(e) => saveCellEdit(lead.id, 'curso_postula', e.target.value)}
+                          onChange={(e) => {
+                            const newCourse = e.target.value;
+                            let fullValue = newCourse;
+                            if (lead.curso_postula && lead.curso_postula.includes('|')) {
+                              const parts = lead.curso_postula.split('|');
+                              parts[0] = newCourse;
+                              fullValue = parts.join(' | ');
+                            }
+                            saveCellEdit(lead.id, 'curso_postula', fullValue);
+                          }}
                           className="w-full bg-transparent border-0 font-medium text-gray-800 text-xs py-1 px-1.5 rounded hover:bg-gray-100/80 outline-none cursor-pointer focus:bg-white focus:ring-1 focus:ring-[var(--color-waldorf-mustard)]"
                         >
                           {!officialCourses2027.includes(lead.curso_postula) && lead.curso_postula && (
@@ -1114,7 +1194,125 @@ export default function MatrizExcelAdmisiones({
                         </select>
                       </td>
 
-                      {/* [H] ETAPA CRM (Selector con badges) */}
+                      {/* [F] TELÉFONO * (Editable Inline) */}
+                      <td 
+                        onDoubleClick={() => {
+                          setEditingCell({ id: lead.id, field: 'telefono_apoderado' });
+                          setEditValue(lead.telefono_apoderado || '');
+                        }}
+                        className="p-2.5 font-mono text-gray-700 border-r border-gray-100 cursor-text whitespace-nowrap"
+                        title="Doble clic para editar teléfono"
+                      >
+                        {editingCell?.id === lead.id && editingCell?.field === 'telefono_apoderado' ? (
+                          <input 
+                            type="text"
+                            autoFocus
+                            value={editValue}
+                            onChange={(e) => setEditValue(e.target.value)}
+                            onBlur={() => saveCellEdit(lead.id, 'telefono_apoderado', editValue)}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') saveCellEdit(lead.id, 'telefono_apoderado', editValue);
+                              if (e.key === 'Escape') setEditingCell(null);
+                            }}
+                            className="w-full bg-white border border-[var(--color-waldorf-mustard)] rounded px-2 py-1 text-xs outline-none shadow-xs font-mono"
+                          />
+                        ) : (
+                          <span className="truncate block">
+                            {lead.telefono_apoderado || <em className="text-gray-400">Sin teléfono</em>}
+                          </span>
+                        )}
+                      </td>
+
+                      {/* [G] CORREO * (Editable Inline) */}
+                      <td 
+                        onDoubleClick={() => {
+                          setEditingCell({ id: lead.id, field: 'email_apoderado' });
+                          setEditValue(lead.email_apoderado === 'Pendiente' ? '' : (lead.email_apoderado || ''));
+                        }}
+                        className="p-2.5 text-gray-700 border-r border-gray-100 cursor-text font-mono text-[11px]"
+                        title="Doble clic para editar correo"
+                      >
+                        {editingCell?.id === lead.id && editingCell?.field === 'email_apoderado' ? (
+                          <input 
+                            type="email"
+                            autoFocus
+                            value={editValue}
+                            onChange={(e) => setEditValue(e.target.value)}
+                            onBlur={() => saveCellEdit(lead.id, 'email_apoderado', editValue || 'Pendiente')}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') saveCellEdit(lead.id, 'email_apoderado', editValue || 'Pendiente');
+                              if (e.key === 'Escape') setEditingCell(null);
+                            }}
+                            className="w-full bg-white border border-[var(--color-waldorf-mustard)] rounded px-2 py-1 text-xs outline-none shadow-xs"
+                          />
+                        ) : (
+                          <span className={`truncate block ${lead.email_apoderado === 'Pendiente' ? 'text-orange-500 italic' : 'text-gray-700'}`}>
+                            {lead.email_apoderado || <em className="text-gray-400">Pendiente</em>}
+                          </span>
+                        )}
+                      </td>
+
+                      {/* [H] HORARIO PREFERIDO (Editable Inline) */}
+                      <td 
+                        onDoubleClick={() => {
+                          setEditingCell({ id: lead.id, field: 'horario_preferido' });
+                          setEditValue(horarioStr);
+                        }}
+                        className="p-2.5 text-gray-700 border-r border-gray-100 cursor-text text-xs"
+                        title="Doble clic para editar horario preferido"
+                      >
+                        {editingCell?.id === lead.id && editingCell?.field === 'horario_preferido' ? (
+                          <input 
+                            type="text"
+                            autoFocus
+                            value={editValue}
+                            onChange={(e) => setEditValue(e.target.value)}
+                            onBlur={() => saveCellEdit(lead.id, 'horario_preferido', editValue)}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') saveCellEdit(lead.id, 'horario_preferido', editValue);
+                              if (e.key === 'Escape') setEditingCell(null);
+                            }}
+                            placeholder="Ej: Mañana (08:30 – 13:00)"
+                            className="w-full bg-white border border-[var(--color-waldorf-mustard)] rounded px-2 py-1 text-xs outline-none shadow-xs"
+                          />
+                        ) : (
+                          <span className="truncate block max-w-[160px]">
+                            {horarioStr || <em className="text-gray-300">Por coordinar</em>}
+                          </span>
+                        )}
+                      </td>
+
+                      {/* [I] DUDAS / COMENTARIOS (Editable Inline) */}
+                      <td 
+                        onDoubleClick={() => {
+                          setEditingCell({ id: lead.id, field: 'dudas_comentarios' });
+                          setEditValue(dudasStr);
+                        }}
+                        className="p-2.5 text-gray-700 border-r border-gray-100 cursor-text text-xs"
+                        title="Doble clic para editar dudas/comentarios"
+                      >
+                        {editingCell?.id === lead.id && editingCell?.field === 'dudas_comentarios' ? (
+                          <input 
+                            type="text"
+                            autoFocus
+                            value={editValue}
+                            onChange={(e) => setEditValue(e.target.value)}
+                            onBlur={() => saveCellEdit(lead.id, 'dudas_comentarios', editValue)}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') saveCellEdit(lead.id, 'dudas_comentarios', editValue);
+                              if (e.key === 'Escape') setEditingCell(null);
+                            }}
+                            placeholder="Dudas, consultas o comentarios"
+                            className="w-full bg-white border border-[var(--color-waldorf-mustard)] rounded px-2 py-1 text-xs outline-none shadow-xs"
+                          />
+                        ) : (
+                          <span className="truncate block max-w-[220px]" title={dudasStr}>
+                            {dudasStr || <em className="text-gray-300">Sin dudas registradas</em>}
+                          </span>
+                        )}
+                      </td>
+
+                      {/* [J] ETAPA CRM (Selector con badges) */}
                       <td className="p-2.5 border-r border-gray-100">
                         <select
                           value={lead.estado}
@@ -1134,7 +1332,7 @@ export default function MatrizExcelAdmisiones({
                         </select>
                       </td>
 
-                      {/* [I] ARANCEL FRATERNO (Checkbox) */}
+                      {/* [K] ARANCEL FRATERNO (Checkbox) */}
                       <td className="p-2.5 text-center border-r border-gray-100">
                         <input 
                           type="checkbox"
@@ -1145,8 +1343,8 @@ export default function MatrizExcelAdmisiones({
                         />
                       </td>
 
-                      {/* [J] ARQUETIPO (Dropdown) */}
-                      <td className="p-2.5 border-r border-gray-100">
+                      {/* [L] ARQUETIPO (Dropdown) */}
+                      <td className="p-2.5">
                         <select
                           value={lead.arquetipo || 'no_evaluado'}
                           onChange={(e) => saveCellEdit(lead.id, 'arquetipo', e.target.value)}
@@ -1156,35 +1354,6 @@ export default function MatrizExcelAdmisiones({
                             <option key={arc.id} value={arc.id}>{arc.label}</option>
                           ))}
                         </select>
-                      </td>
-
-                      {/* [K] NOTAS / HISTORIAL (Editable Inline) */}
-                      <td 
-                        onDoubleClick={() => {
-                          setEditingCell({ id: lead.id, field: 'notas' });
-                          setEditValue(lead.notas || '');
-                        }}
-                        className="p-2.5 text-gray-600 text-xs cursor-text"
-                        title="Doble clic para editar notas"
-                      >
-                        {editingCell?.id === lead.id && editingCell?.field === 'notas' ? (
-                          <input 
-                            type="text"
-                            autoFocus
-                            value={editValue}
-                            onChange={(e) => setEditValue(e.target.value)}
-                            onBlur={() => saveCellEdit(lead.id, 'notas', editValue)}
-                            onKeyDown={(e) => {
-                              if (e.key === 'Enter') saveCellEdit(lead.id, 'notas', editValue);
-                              if (e.key === 'Escape') setEditingCell(null);
-                            }}
-                            className="w-full bg-white border border-[var(--color-waldorf-mustard)] rounded px-2 py-1 text-xs outline-none shadow-xs"
-                          />
-                        ) : (
-                          <span className="truncate block max-w-[260px] text-gray-500">
-                            {lead.notas || <em className="text-gray-300">Sin notas</em>}
-                          </span>
-                        )}
                       </td>
 
                     </tr>
