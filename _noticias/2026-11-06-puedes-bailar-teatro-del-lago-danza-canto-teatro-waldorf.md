@@ -1,82 +1,79 @@
 ---
-title: "Salida pedagógica a «Puedes Bailar» en Teatro del Lago: El arte como órgano de vida y expresión viva"
-excerpt: "Nuestros estudiantes vivieron una jornada inolvidable en Frutillar junto al programa «Puedes Bailar» de Fundación Teatro del Lago. Una experiencia donde el movimiento consciente, el canto coral y la dramatización demostraron cómo la pedagogía Waldorf cultiva la confianza escénica y el desarrollo armónico del cuerpo, la voz y el alma."
+title: "«Alquimia» en Teatro del Lago: Nuestra comunidad escolar viva en el escenario de Frutillar"
+excerpt: "En el marco del programa «Puedes Bailar 2026» de Fundación Teatro del Lago, el Colegio Waldorf Trekan vivió una jornada comunitaria histórica en la obra «Alquimia»: niños bailando y actuando en escena, la coordinadora pedagógica y mamás apoderadas cantando en el coro municipal, y una platea colmada de familias y maestros acompañando el vuelo artístico de la escuela."
 published_at: "2026-11-06"
 category: "Vida Escolar y Comunidad"
-image_url: "/imagenes-web/puedes-bailar-teatro-del-lago-escenario-principal.webp"
+image_url: "/imagenes-web/alquimia-teatro-del-lago-escenario-hero.webp"
 author: "Equipo Pedagógico Colegio Waldorf Trekan"
 ---
 
 *Por: Equipo Pedagógico Colegio Waldorf Trekan · 6 de noviembre de 2026*
 
-Hay aprendizajes que no caben entre las cuatro paredes de un aula tradicional. Para madurar con nobleza, la infancia necesita abrirse al mundo, palpar la belleza en gran escala y sentir que su propia voz y su cuerpo son capaces de dialogar con el arte vivo.
+Hay momentos en que una comunidad escolar deja de ser un espacio físico delimitado por aulas y se convierte en un organismo vivo, donde la frontera entre quienes enseñan, quienes aprenden y quienes crían se disuelve en una sola respiración compartida.
 
-El pasado 5 de noviembre, la comunidad de estudiantes y maestros del **Colegio Waldorf Trekan** protagonizó una significativa salida pedagógica desde Puerto Varas hacia la vecina ribera de **Frutillar**, con destino al emblemático **Teatro del Lago**. Allí formamos parte activa del programa educativo y artístico **«Puedes Bailar»**, una de las iniciativas culturales más profundas e inspiradoras de la cuenca del Lago Llanquihue.
+Ese milagro tuvo lugar este 5 de noviembre en el majestuoso **Espacio Tronador de Teatro del Lago**, en Frutillar, con el estreno de **«Alquimia»**, el montaje 2026 del emblemático programa formativo **«Puedes Bailar»** impulsado por la **Fundación Teatro del Lago**.
 
-Lejos de una visita turística o un rol de meros espectadores pasivos en una butaca, la jornada se transformó en una experiencia formativa integral: nuestros niños y niñas **bailaron, cantaron y actuaron**, integrándose con naturalidad, asombro y entrega al espacio escénico.
+Lejos de una visita escolar tradicional donde los estudiantes asisten como espectadores foráneos, el **Colegio Waldorf Trekan** habitó la obra desde las entrañas de su creación artística y comunitaria: **nuestros niños y niñas bailaron, cantaron y actuaron sobre las tablas**, mientras la **coordinadora pedagógica del colegio y dos mamás apoderadas integraron las voces del coro municipal**. En las butacas, una nutrida comitiva de padres, madres, maestros y compañeros de curso viajó desde Puerto Varas para arropar y presenciar la entrega de los suyos en una noche inolvidable.
 
-![Estudiantes y elenco en el escenario principal de Teatro del Lago bajo iluminación escénica durante el programa Puedes Bailar](/imagenes-web/puedes-bailar-teatro-del-lago-escenario-principal.webp)
-
----
-
-## 1. El escenario de Frutillar: Espacio de asombro y encuentro
-
-Llegar a Teatro del Lago a orillas del Llanquihue, con la silueta de los volcanes en el horizonte y la noble madera de alerce que recubre cada rincón arquitectónico, prepara el ánimo infantil desde el primer instante. 
-
-En la pedagogía Waldorf, el entorno físico actúa siempre como un maestro silencioso. La acústica de la sala, la penumbra respetuosa previa a que se enciendan los focos y la amplitud del **Espacio Tronador** despertaron de inmediato en nuestros estudiantes una cualidad anímica indispensable: **la reverencia y la atención despierta**.
-
-El programa **«Puedes Bailar»** —impulsado con dedicación por Fundación Teatro del Lago— ha construido a lo largo de los años un puente invaluable para que los jóvenes y niños de la Región de Los Lagos experimenten la danza contemporánea no como una técnica rígida o competitiva, sino como un **lenguaje de comunicación humana, inclusión, sensibilidad y desarrollo socioemocional**.
-
-![Movimiento consciente y expresión corporal colectiva en el escenario](/imagenes-web/puedes-bailar-teatro-del-lago-expresion-movimiento.webp)
+![La compañía y el ensamble coral de Alquimia en el Espacio Tronador de Teatro del Lago en Frutillar](/imagenes-web/alquimia-teatro-del-lago-escenario-hero.webp)
 
 ---
 
-## 2. El arte en la pedagogía Waldorf: No es un adorno, es necesidad vital
+## 1. «Alquimia»: La transmutación del alma a través del movimiento
 
-Para comprender la soltura y alegría con la que nuestros alumnos se desenvolvieron en el teatro, es necesario recordar el lugar que ocupa el arte en el currículo de Trekan.
+Inspirada en el antiguo arte de transformar la materia densa en luz y espíritu, la obra **«Alquimia»** planteó un viaje poético a través de los cuatro elementos —tierra, agua, aire y fuego— y su resonancia en el mundo interior humano.
 
-En el sistema tradicional, las artes suelen ser tratadas como materias secundarias: una hora aislada a la semana para rellenar dibujos o una actividad extracurricular optativa. En contraste, Rudolf Steiner concibió la escuela como un organismo donde el arte es el **oxígeno pedagógico cotidiano**:
+Para los niños y jóvenes que integraron el elenco, la danza contemporánea no fue una coreografía mecánica impuesta desde afuera. Guiados por el equipo artístico y coreográfico de Teatro del Lago, el movimiento se construyó desde la escucha corporal, la sincronía colectiva y el peso de la propia presencia.
 
-* **El pensar:** Se vuelve vivo, flexible e imaginativo cuando se nutre de la poesía y la composición armónica.
-* **El sentir:** Se afina a través de la música, el canto coral polifónico y la pintura con acuarela sobre papel húmedo.
-* **El hacer:** Se fortalece y doma mediante el movimiento espacial, el tejido, el modelado y la euritmia.
+Vestidos con túnicas y trajes en gamas de terracota y rojo arcilla, los estudiantes de Trekan desplegaron en escena una cualidad corporal que conmovió a los asistentes: **arraigo en la tierra, liviandad en el salto y una atención despierta que nunca perdió de vista al compañero de escena**.
 
-Cuando un niño se habitúa a cantar en coro cada mañana antes de comenzar la clase principal, y a recitar textos con ritmo respiratorio regular, pararse frente a un escenario de nivel internacional no le genera pánico escénico ni tensión artificial. Le resulta familiar, porque **su propia infancia está tejida de expresión viva**.
-
-![Voz viva y presencia colectiva en el coro durante la jornada formativa](/imagenes-web/puedes-bailar-teatro-del-lago-canto-coro.webp)
+![Estudiantes en escena durante uno de los cuadros coreográficos de danza contemporánea en Alquimia](/imagenes-web/alquimia-teatro-del-lago-danza-ninos.webp)
 
 ---
 
-## 3. Bailar, cantar, actuar: Nuestros niños habitando el escenario
+## 2. El coro municipal: Voces de la coordinación y las familias al unísono
 
-Durante la jornada en Teatro del Lago, el programa invitó a los participantes a explorar diversas dimensiones del quehacer escénico:
+Uno de los hitos más hondos y representativos de la jornada fue la presencia del canto coral como columna vertebral de la dramaturgia sonora de la obra.
 
-### El baile y la danza como conciencia del cuerpo
-Guiados por los maestros del programa, los estudiantes exploraron el peso, la levedad, el ritmo y el espacio colectivo. En la danza formativa, el cuerpo deja de ser un instrumento sedentario frente a una pantalla y recupera su cualidad sagrada: una antena sensible capaz de sincronizarse con el grupo, respetar la distancia del compañero y moverse en armonía con el silencio y la música.
+Allí, entre las filas del **coro municipal de Teatro del Lago**, se encontraron la **coordinadora pedagógica de Trekan junto a dos mamás apoderadas de nuestra comunidad**. Este gesto encarna con nitidez el principio fundacional de la pedagogía Waldorf: **los adultos educan a través de lo que son y de lo que hacen, no solo de lo que dicen**.
 
-### El canto coral: La vibración compartida
-La voz humana es el instrumento más noble que posee el ser humano. Al cantar en conjunto dentro de una sala con la resonancia de Teatro del Lago, los niños experimentaron físicamente lo que significa escuchar al otro para poder modular el propio tono. Cantar juntos educa la empatía biológica: los corazones de quienes cantan al unísono tienden acompasar sus ritmos respiratorios y cardíacos, tejiendo un vínculo invisible de pertenencia y calidez.
+Ver a una maestra y a madres de familia ensayando rigurosamente, modulando la respiración y entregando su voz para acompañar el baile de los niños sobre el escenario enseña a las nuevas generaciones que el arte no es una etapa que se abandona al crecer, sino un órgano de expresión vital que nutre al ser humano durante toda su biografía.
 
-### El juego teatral y la dramatización
-En la actuación infantil, el niño tiene la oportunidad de salir de su propio «yo» cotidiano para habitar un arquetipo, un personaje o una emoción noble. Esta vivencia fortalece la autoconfianza, erradica la timidez paralizante y enseña que la presencia, la mirada franca y el gesto generoso son dones para compartir con la comunidad.
-
-![La acústica y calidez de la madera en la sala de Teatro del Lago](/imagenes-web/puedes-bailar-teatro-del-lago-sala-tronador.webp)
+![El ensamble coral integrado por la coordinación escolar y apoderadas sosteniendo la atmósfera sonora de la obra](/imagenes-web/alquimia-teatro-del-lago-coro-comunidad.webp)
 
 ---
 
-## 4. Educación para la vida: Aprendizaje situado en el territorio
+## 3. Bailar, cantar, actuar: El arte como órgano vivo en la pedagogía Waldorf
 
-Esta salida pedagógica refuerza la convicción de nuestro proyecto educativo en Puerto Varas: educar para la vida significa arraigar a los niños en su territorio, vinculándolos activamente con los polos culturales, naturales y comunitarios de la cuenca del Llanquihue.
+¿Por qué los niños formados en un entorno Waldorf se desenvuelven sobre un escenario internacional con tanta soltura, ausencia de pánico escénico y autenticidad?
 
-El regreso a la casona de **Parque Ivian** estuvo marcado por conversaciones entusiastas, melodías tarareadas en el camino y una visible elevación en el estado de ánimo de los grupos. Las impresiones recibidas en Frutillar no se extinguen al salir del teatro; ahora nutren las salas de clases, se plasman en los cuadernos de época y enriquecen la convivencia diaria de toda nuestra escuela.
+La respuesta reside en la cotidianidad de nuestras aulas en Puerto Varas:
 
-Agradecemos profundamente al equipo de **Fundación Teatro del Lago** y al programa **«Puedes Bailar»** por abrir sus puertas con tanta generosidad y profesionalismo a las nuevas generaciones del sur de Chile.
+* **El canto matutino:** Todas las mañanas, antes de abrir un cuaderno o trazar una letra, la jornada se inicia afinando la voz en conjunto. Cantar a coro enseña a escuchar antes de emitir un sonido.
+* **La Euritmia y el ritmo:** El cuerpo se educa para habitar el espacio geométrico y el silencio. El movimiento consciente previene la torpeza corporal y forja un dominio sereno de la motricidad.
+* **El teatro anual de curso:** Desde los primeros grados de básica, cada grupo monta una obra completa acorde a su septenio evolutivo (fábulas, leyendas nórdicas, escenas del Antiguo Testamento o mitología clásica). Actuar es, para ellos, una segunda naturaleza.
+
+En «Alquimia», los estudiantes no solo danzaron; asumieron pasajes teatrales y alegóricos de gran carga simbólica, sosteniendo elementos escénicos y miradas directas al público con la serenidad de quien confía plenamente en su propio ser.
+
+![Pasantía dramática y personajes alegóricos en el universo visual de Alquimia](/imagenes-web/alquimia-teatro-del-lago-actuacion-escena.webp)
+
+---
+
+## 4. El sostén de la comunidad: Una platea que abraza y contiene
+
+Ninguna obra está completa sin el ojo amoroso que la contempla. Al caer la tarde en Frutillar, decenas de familias del Colegio Waldorf Trekan —padres, madres, hermanos menores, profesores y compañeros de curso— llenaron las butacas de Teatro del Lago.
+
+La presencia de la comunidad entera en la platea fue el auténtico cobijo que sostuvo el estreno. Cada aplauso, cada mirada de emoción al ver a los niños y apoderadas en el escenario cerró un círculo fraterno que trasciende con creces lo escolar. Es la certeza de saber que nuestros hijos crecen contenidos por una red humana que cree en la belleza, en la cultura del sur y en el valor insustituible del arte vivo.
+
+Agradecemos con admiración y gratitud al equipo humano y artístico de **Fundación Teatro del Lago** y al programa **«Puedes Bailar»** por sembrar con tanta nobleza en las juventudes de nuestra cuenca.
+
+![Comunidad de familias, estudiantes y educadores de Trekan reunidos en Teatro del Lago](/imagenes-web/alquimia-teatro-del-lago-comunidad-trekan.webp)
 
 ---
 
 ### Fuentes y Lecturas Recomendadas
 
-* **Fundación Teatro del Lago.** *Programa «Puedes Bailar»: Educación artística, danza e integración social en la cuenca del Lago Llanquihue* (Teatro del Lago / Fundación Ibáñez Atkinson, Frutillar, 2026).
-* **Steiner, Rudolf.** *El arte de educar y la formación de los sentidos a través del movimiento* (Editorial Antroposófica, Dornach/Buenos Aires).
-* **Wember, Valentin.** *La gestión de la escuela y la vida artística en la pedagogía Waldorf* (Editorial Rudolf Steiner, Madrid).
+* **Fundación Teatro del Lago.** *«Alquimia» – Programa «Puedes Bailar 2026»: Creación coreográfica, coro e integración comunitaria en el Espacio Tronador* (Frutillar, Chile, noviembre de 2026. Ref: teatrodellago.cl/evento/alquimia-puedes-bailar-2026/).
+* **Steiner, Rudolf.** *El arte de educar y la formación de los sentidos a través del movimiento y la música* (Editorial Antroposófica, Dornach/Buenos Aires).
+* **Wember, Valentin.** *La gestión de la escuela y la vida comunitaria en la pedagogía Waldorf* (Editorial Rudolf Steiner, Madrid).
 * **UNESCO.** *Reimagining our futures together: A new social contract for education* (Informe de la Comisión Internacional sobre los Futuros de la Educación, París, 2021).
