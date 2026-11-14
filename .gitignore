@@ -41,3 +41,9 @@ screenshot*.png
 # Brand proposals in evaluation (not deployed to production)
 public/assets/marca-oficial/
 public/assets/propuestas-logo/
+
+# Agent internal scratch and teamwork sessions (not part of website repository)
+.agents/teamwork/
+.agents/*/
+!.agents/AGENTS.md
+
