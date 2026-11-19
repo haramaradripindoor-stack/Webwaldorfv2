@@ -44,6 +44,10 @@
 - **Prohibición de Hashtags en la Web:** NUNCA utilizar hashtags (ej. #Educacion) en los artículos del blog (archivos .md) ni en ningún componente de texto de Next.js. Esto confunde a los crawlers de Google y arruina el SEO Semántico.
 - **GEO (Generative Engine Optimization):** En lugar de hashtags, el SEO de la web se basa estrictamente en la inyección de palabras clave de alto intento (long-tail) dentro de los párrafos, H1 y H2 (ej. 'Buscando colegios alternativos en Puerto Varas').
 
+## Invariante Arquitectónico de Temporada de Admisión (Single Source of Truth)
+- **Prohibición Estricta de Strings de Año Hardcodeados:** Queda terminantemente prohibido escribir años de temporada escolar (ej. "2026", "2027", "2028") de forma hardcodeada en archivos `.tsx`, `.ts`, llamadas de API, plantillas de correo o banners de SEO programático.
+- **Consumo Obligatorio de `config/admision.ts`:** Todo componente, landing satélite (`/ciudades/[ciudad]`), correo transaccional, menú de navegación (`Navbar`, `Footer`) y prompt del bot de IA DEBE importar y consumir `ADMISION_CONFIG` de `@/config/admision`. Esto garantiza que los cambios de temporada se propaguen de forma atómica a las 52 páginas y el índice de Google sin discrepancias temporales ni vulnerabilidades de prospección externa.
+
 ## Reglas de Interfaz de Usuario (UI/UX)
 - **Sistemas Kanban y CRM:** NUNCA utilizar botones dentro de las tarjetas para mover elementos entre columnas. TODO sistema tipo Kanban (como Admisiones o Gestión de Tareas) debe implementarse estrictamente utilizando una experiencia de 'Arrastrar y Soltar' (Drag and Drop).
 - **Librería Estándar:** Para implementar Drag and Drop en React/Next.js, utilizar SIEMPRE @dnd-kit/core y sus utilidades asociadas. Es el estándar moderno, ligero y accesible, preferido sobre react-beautiful-dnd.

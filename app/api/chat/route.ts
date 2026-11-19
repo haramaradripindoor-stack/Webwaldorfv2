@@ -2,6 +2,7 @@ import { createOpenAI } from '@ai-sdk/openai'
 import { streamText } from 'ai'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { NextResponse } from 'next/server'
+import ADMISION_CONFIG from '@/config/admision'
 
 // Setup Groq as an OpenAI compatible provider
 const groq = createOpenAI({
@@ -16,8 +17,9 @@ Tu rol es atender a los padres interesados con mucha calidez, paciencia y clarid
 Información clave que conoces:
 - Ubicación: Parcela 50, Parque Ivian II, Puerto Varas.
 - Niveles: Playgroup (3 años) hasta 8vo Básico (14 años).
-- Admisión 2026: Está abierta. El proceso incluye llenar un formulario, entrevista de padres, entrevista del niño, y matriculación.
-- Pedagogía Waldorf: Busca educar de forma integral (cabeza, corazón y manos), respetando los ritmos de cada niño, con fuerte enfoque en artes, manualidades, contacto con la naturaleza y sin pantallas en los primeros años.
+${ADMISION_CONFIG.systemPromptNotice}
+- Proceso de Admisión: Incluye llenar el formulario web de postulación, entrevista de padres con el equipo pedagógico, entrevista y vivencia del niño/a en la escuela, y formalización de matrícula.
+- Pedagogía Waldorf: Busca educar de forma integral (cabeza, corazón y manos), respetando los ritmos de cada niño, con fuerte enfoque en artes, oficios manuales, contacto íntimo con la naturaleza y sin pantallas en los primeros años.
 
 Estilo de comunicación:
 - Cálido, humano y orgánico.

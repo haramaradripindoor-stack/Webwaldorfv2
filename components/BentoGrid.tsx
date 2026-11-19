@@ -4,20 +4,33 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 
-// Sub-componente para el efecto Spotlight en cada tarjeta
+// Sub-componente para el efecto Spotlight y Magnetic 3D Tilt (Marina Budarina Standard)
 function BentoCard({ card, index }: { card: any, index: number }) {
   const divRef = useRef<HTMLDivElement>(null)
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [opacity, setOpacity] = useState(0)
+  const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 })
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!divRef.current) return
     const rect = divRef.current.getBoundingClientRect()
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top })
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    setPosition({ x, y })
+
+    // Física táctil de madera patagónica (fricción y peso orgánico)
+    const centerX = rect.width / 2
+    const centerY = rect.height / 2
+    const rotateX = ((y - centerY) / centerY) * -5
+    const rotateY = ((x - centerX) / centerX) * 5
+    setTilt({ rotateX, rotateY })
   }
 
   const handleMouseEnter = () => setOpacity(1)
-  const handleMouseLeave = () => setOpacity(0)
+  const handleMouseLeave = () => {
+    setOpacity(0)
+    setTilt({ rotateX: 0, rotateY: 0 })
+  }
 
   // Variaciones sutiles y orgánicas de los bordes para romper la geometría perfecta
   const borderRadiuses = [
@@ -38,11 +51,12 @@ function BentoCard({ card, index }: { card: any, index: number }) {
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative overflow-hidden p-10 min-h-[420px] md:min-h-0 ${card.bg} flex flex-col justify-end group cursor-none ${card.size}`}
+      className={`relative overflow-hidden p-8 sm:p-10 min-h-[380px] md:min-h-0 ${card.bg} flex flex-col justify-end group ${card.size} will-change-transform`}
       style={{
         borderRadius: organicRadius,
-        // Borde luminoso sutil basado en el mouse (MotionSites effect)
-        boxShadow: opacity ? '0 0 40px rgba(0,0,0,0.1)' : '0 4px 20px rgba(0,0,0,0.03)'
+        transform: `perspective(1000px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
+        transition: opacity ? 'transform 0.12s ease-out' : 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+        boxShadow: opacity ? '0 20px 50px rgba(11,23,16,0.2)' : '0 4px 20px rgba(0,0,0,0.03)'
       }}
     >
       {/* Efecto Spotlight que sigue el mouse */}
@@ -91,34 +105,34 @@ export default function BentoGrid() {
       desc: 'Matemáticas, lenguaje e historia se viven con las manos, el corazón y la mente. No memorizamos, experimentamos.',
       size: 'md:col-span-2 md:row-span-2',
       bg: 'bg-[#1a2e25]',
-      image: '/imagenes-web/actividapedagogicahumedales3.jpg',
+      image: '/assets/pilares/oficios_voluntad_lana.webp',
       lightText: true,
     },
     {
-      title: 'Maestro Guía',
-      subtitle: 'Vínculo Profundo',
-      desc: 'Acompaña al niño durante años, creando un refugio seguro.',
+      title: 'La Luz del Cobijo',
+      subtitle: 'Salas & Madera',
+      desc: 'Espacios de madera nativa y ventanales hacia el bosque, donde el tiempo se detiene para cuidar la infancia.',
       size: 'md:col-span-1 md:row-span-1',
       bg: 'bg-[var(--color-waldorf-mustard)]',
-      image: '/imagenes-web/equipoescolar.jpg',
+      image: '/assets/pilares/aula_madera_ventanales.webp',
       lightText: true,
     },
     {
       title: 'Conexión Natural',
       subtitle: 'Nuestra Aula',
-      desc: 'Huerta, carpintería y bosque.',
+      desc: 'Parque Ivian, bosque templado lluvioso y praderas abiertas donde la voluntad camina libre.',
       size: 'md:col-span-1 md:row-span-2',
       bg: 'bg-transparent',
-      image: '/imagenes-web/paseocerro20267.jpg',
+      image: '/assets/pilares/casona_bosque_parque_ivian.webp',
       lightText: true,
     },
     {
       title: 'Bloques Temáticos',
-      subtitle: 'Inmersión Total',
-      desc: 'Semanas dedicadas a un solo tema para profundizar verdaderamente.',
+      subtitle: 'Inmersión y Épocas',
+      desc: 'Semanas continuas dedicadas a una sola materia en pizarras de época para profundizar y amar el saber.',
       size: 'md:col-span-2 md:row-span-1',
       bg: 'bg-[var(--color-waldorf-terracotta)]',
-      image: '/imagenes-web/actividapedagogicahumedales4.jpg',
+      image: '/assets/pilares/ritmo_pizarra_epocas.webp',
       lightText: true,
     },
   ]

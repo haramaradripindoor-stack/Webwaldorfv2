@@ -72,8 +72,9 @@ export const metadata: Metadata = {
     images: ['https://www.colegiowaldorftrekan.cl/imagenes-web/paseocerro20261.jpg'],
   },
   icons: {
-    icon: '/assets/logo-mini.webp',
-    shortcut: '/assets/logo-mini.webp',
+    icon: '/brand/trekan_isotipo_puro_verde.svg',
+    shortcut: '/brand/trekan_isotipo_puro_verde.svg',
+    apple: '/brand/trekan_isotipo_puro_verde_2048px.png',
   }
 }
 
@@ -116,8 +117,8 @@ export default function RootLayout({
           "Colegio Waldorf Trekan PV"
         ],
         "url": "https://www.colegiowaldorftrekan.cl",
-        "logo": "https://www.colegiowaldorftrekan.cl/assets/logo.png",
-        "image": "https://www.colegiowaldorftrekan.cl/imagenes-web/paseocerro20261.jpg",
+        "logo": "https://www.colegiowaldorftrekan.cl/brand/trekan_sello_completo_verde_2048px.png",
+        "image": "https://www.colegiowaldorftrekan.cl/assets/pilares/casona_bosque_parque_ivian.webp",
         "description": "Colegio Waldorf en Puerto Varas para niños de 3 a 14 años. Educación hacia la libertad sustentada en la Antroposofía y la Trimembración Social.",
         "telephone": "+56 9 6776 5106",
         "email": "admision@colegiowaldorftrekan.cl",

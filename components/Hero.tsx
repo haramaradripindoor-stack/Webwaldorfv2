@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Leaf, Volume2, VolumeX } from 'lucide-react'
 import { useRef, useState, useEffect } from 'react'
 import MagneticButton from './MagneticButton'
+import ADMISION_CONFIG from '@/config/admision'
 
 export default function Hero({ data }: { data?: any }) {
   const containerRef = useRef<HTMLElement>(null)
@@ -14,9 +15,9 @@ export default function Hero({ data }: { data?: any }) {
   const [showSoundPrompt, setShowSoundPrompt] = useState(false)
 
   // Datos dinámicos con fallback
-  const title = data?.title || "Donde el niño camina con voluntad"
-  const subtitle = data?.subtitle || "Colegio Waldorf Trekan. Un espacio diseñado para que los niños crezcan libres, conscientes y profundamente conectados con su entorno."
-  const mediaUrl = data?.media_url || "/assets/testimonial.mp4"
+  const title = (data?.title && data.title !== 'La Vida en Trekan') ? data.title : "Donde el niño camina con voluntad"
+  const subtitle = (data?.subtitle && data.subtitle !== 'Educación con sentido') ? data.subtitle : "Colegio Waldorf Trekan • Puerto Varas. Un espacio de naturaleza, arte y ciencia donde la infancia camina con reverencia y propósito."
+  const mediaUrl = (data?.media_url && data.media_url !== '/assets/testimonial.mp4') ? data.media_url : "/assets/hero-casona-drone.mp4"
   const mediaType = data?.media_type || "video"
 
   useEffect(() => {
@@ -57,7 +58,7 @@ export default function Hero({ data }: { data?: any }) {
   const titleWords: string[] = (title || "").toString().split(" ")
 
   return (
-    <section ref={containerRef} id="inicio" className="relative min-h-screen flex items-center justify-center pt-32 pb-24 px-6 md:px-12 overflow-hidden bg-[#0A0A10]">
+    <section ref={containerRef} id="inicio" className="relative min-h-[100svh] min-h-screen flex items-center justify-center pt-28 md:pt-32 pb-20 md:pb-24 px-6 md:px-12 overflow-hidden bg-[#0B1710]">
       
       {/* Cinematic 4K Video Background with Parallax */}
       <motion.div style={{ y: yBg, scale: scaleBg }} className="absolute inset-0 w-full h-[120%] -top-[10%] z-0 overflow-hidden">
@@ -70,24 +71,26 @@ export default function Hero({ data }: { data?: any }) {
         ) : mediaUrl?.match(/\.(mp4|webm|ogg|mov)$/i) || mediaType === 'video' ? (
           <video
             ref={videoRef}
-            src={mediaUrl} 
             autoPlay
             loop
             muted={isMuted}
             playsInline
             aria-hidden="true"
-            className="object-cover object-center w-full h-full opacity-80"
-          />
+            className="object-cover object-center w-full h-full opacity-90 transition-opacity duration-1000"
+          >
+            <source src="/assets/hero-casona-drone.webm" type="video/webm" />
+            <source src={mediaUrl} type="video/mp4" />
+          </video>
         ) : (
           <img 
             src={mediaUrl} 
             alt="Hero Background"
-            className="object-cover object-center w-full h-full opacity-80"
+            className="object-cover object-center w-full h-full opacity-90"
           />
         )}
-        {/* Gradients for extreme contrast and mood */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A10]/90 via-[#0A0A10]/20 to-[#0A0A10] mix-blend-multiply" />
-        <div className="absolute inset-0 bg-[var(--color-waldorf-moss)]/20 mix-blend-overlay" />
+        {/* Organic Patagonian Forest Atmosphere (Marina Budarina & Master Web Engine Standard) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1710]/65 via-[#0B1710]/20 to-[#0B1710]/85 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-[var(--color-waldorf-moss)]/15 mix-blend-overlay" />
         {/* Film grain layer */}
 
       </motion.div>
@@ -186,7 +189,7 @@ export default function Hero({ data }: { data?: any }) {
           >
             <MagneticButton magneticStrength={0.4}>
               <a href="#admision" className="w-full sm:w-auto px-10 py-5 rounded-full bg-[var(--color-waldorf-mustard)] text-[#1a2e25] font-bold text-sm tracking-wide shadow-[0_0_50px_rgba(224,169,109,0.3)] hover:shadow-[0_0_80px_rgba(224,169,109,0.5)] transition-all duration-500 flex items-center justify-center gap-3 group">
-                Comenzar el Viaje
+                Admisión {ADMISION_CONFIG.activeYear} • Conocer Cupos
                 <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform duration-500" />
               </a>
             </MagneticButton>

@@ -4,6 +4,7 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import { revalidatePath } from 'next/cache'
 import * as nodemailer from 'nodemailer'
 import { z } from 'zod'
+import ADMISION_CONFIG from '@/config/admision'
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -105,7 +106,7 @@ export async function submitLead(formData: FormData) {
               <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto;">
                 <h2 style="color: #4A5D23;">¡Hola, ${parentName}!</h2>
                 <p>Muchas gracias por tu interés en el Colegio Waldorf Trekan.</p>
-                <p>Te escribimos para confirmar que hemos recibido correctamente tus datos para el proceso de admisión 2026. Hemos registrado la siguiente información:</p>
+                <p>Te escribimos para confirmar que hemos recibido correctamente tus datos para el proceso de admisión ${ADMISION_CONFIG.activeYear}. Hemos registrado la siguiente información:</p>
                 <ul>
                   <li><strong>Teléfono de contacto:</strong> ${phone || 'No provisto'}</li>
                   <li><strong>Edades a postular:</strong> ${childrenAges || 'No especificado'}</li>

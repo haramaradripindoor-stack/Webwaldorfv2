@@ -29,7 +29,7 @@
   --font-antroposofia: 'Antroposofia', serif;
 
   /* Fluid Math */
-  --text-fluid-hero: clamp(3rem, 1.25rem + 8vw, 9rem);
+  --text-fluid-hero: clamp(2.25rem, 1rem + 6.5vw, 9rem);
   --text-fluid-h2: clamp(2rem, 1.5rem + 3vw, 4rem);
 }
 

@@ -20,6 +20,7 @@ import RadicalTransparency from '@/components/RadicalTransparency';
 import Footer from '@/components/Footer';
 import { getMarkdownPosts } from '@/lib/markdown';
 import { createClient } from '@/utils/supabase/server';
+import ADMISION_CONFIG from '@/config/admision';
 
 // Generar rutas estáticas para estas ciudades clave
 export function generateStaticParams() {
@@ -94,7 +95,14 @@ export default async function RegionalPage({ params }: { params: { ciudad: strin
   }
 
   // Modificamos el Hero para que inyecte la ciudad y aumente la relevancia local
-  const baseHeroData = homeContent?.hero_section || { title: 'La Vida en Trekan', subtitle: 'Educación con sentido', media_url: '/assets/testimonial.mp4', media_type: 'video' };
+  const baseHeroData = (homeContent?.hero_section && homeContent.hero_section.title !== 'La Vida en Trekan')
+    ? homeContent.hero_section
+    : { 
+        title: 'Donde el niño camina con voluntad', 
+        subtitle: 'Un espacio de naturaleza, arte y ciencia donde la infancia camina con reverencia y propósito.', 
+        media_url: '/assets/hero-casona-drone.mp4', 
+        media_type: 'video' 
+      };
   const regionalHeroData = {
     ...baseHeroData,
     title: `Comunidad Waldorf cerca de ${ciudadLimpia}`,
@@ -189,7 +197,7 @@ export default async function RegionalPage({ params }: { params: { ciudad: strin
         {/* Banner SEO Estático de Confianza */}
         <div className="bg-[var(--color-waldorf-moss)] text-white text-center py-3 px-4 shadow-inner">
           <p className="text-sm md:text-base font-serif tracking-wide">
-            Recibiendo a familias de <strong className="font-bold text-[var(--color-waldorf-earth)]">{ciudadLimpia}</strong> y todo el sur de Chile para la admisión 2026.
+            Recibiendo a familias de <strong className="font-bold text-[var(--color-waldorf-earth)]">{ciudadLimpia}</strong> y todo el sur de Chile para la admisión {ADMISION_CONFIG.activeYear}.
           </p>
         </div>
 

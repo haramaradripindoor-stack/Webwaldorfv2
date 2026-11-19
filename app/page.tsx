@@ -42,7 +42,14 @@ export default async function Home() {
   }
 
   // Fallback defaults si falla la DB o no existe la fila
-  const heroData = homeContent?.hero_section || { title: 'La Vida en Trekan', subtitle: 'Educación con sentido', media_url: '/assets/testimonial.mp4', media_type: 'video' };
+  const heroData = (homeContent?.hero_section && homeContent.hero_section.title !== 'La Vida en Trekan')
+    ? homeContent.hero_section
+    : { 
+        title: 'Donde el niño camina con voluntad', 
+        subtitle: 'Colegio Waldorf Trekan • Puerto Varas. Un espacio de naturaleza, arte y ciencia donde la infancia camina con reverencia y propósito.', 
+        media_url: '/assets/hero-casona-drone.mp4', 
+        media_type: 'video' 
+      };
   const textRevealData = homeContent?.text_reveal || "Educar no es llenar un cubo, es encender un fuego. En Trekan, respetamos el ritmo natural de cada niño, cultivando la cabeza, el corazón y las manos en perfecta armonía.";
   const masonryData = homeContent?.masonry_gallery || null;
 

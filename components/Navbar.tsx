@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import ADMISION_CONFIG from '@/config/admision'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -35,20 +36,28 @@ export default function Navbar() {
     <nav ref={navRef} className={`fixed top-0 left-0 right-0 z-50 py-3 px-6 md:px-12 flex justify-between items-center transition-all duration-500 ${isScrolled ? 'glass-light border-b border-[var(--color-waldorf-sage)]/10' : 'bg-transparent border-b border-transparent'}`}>
       
       {/* Logo */}
-      <Link href="/" className="flex items-center gap-3 group no-cursor-scale">
-        <div className="relative w-14 h-14 flex-shrink-0 group-hover:scale-105 transition-transform origin-left">
+      <Link href="/" className="flex items-center gap-3.5 group no-cursor-scale">
+        <div className="relative w-12 h-12 flex-shrink-0 group-hover:scale-105 transition-transform duration-300 origin-left">
           <Image 
-            src="/assets/logo-mini.webp" 
+            src={isScrolled ? "/brand/trekan_isotipo_puro_verde.svg" : "/brand/trekan_isotipo_puro_crema.svg"} 
             alt="Colegio Waldorf Trekan" 
-            fill
-            className="object-contain mix-blend-multiply"
+            width={48}
+            height={48}
+            className="w-full h-full object-contain transition-opacity duration-300"
             priority
-            sizes="56px"
+            unoptimized
           />
         </div>
-        <div className="hidden sm:flex flex-col leading-none notranslate">
-          <span className="text-sm font-bold text-[var(--color-waldorf-moss)] tracking-tight">Colegio Waldorf</span>
-          <span className="text-lg font-bold font-serif text-[var(--color-waldorf-moss)] tracking-tight leading-none">Trekan</span>
+        <div className="hidden sm:flex flex-col leading-tight notranslate">
+          <span className={`text-[11px] font-semibold tracking-wider uppercase transition-colors duration-300 ${isScrolled ? 'text-[var(--color-waldorf-sage)]' : 'text-white/70'}`}>
+            Colegio Waldorf
+          </span>
+          <span className={`text-xl font-bold font-serif tracking-tight transition-colors duration-300 ${isScrolled ? 'text-[var(--color-waldorf-moss)]' : 'text-[#F7F4EE] drop-shadow-sm'}`}>
+            Trekan
+          </span>
+          <span className={`text-[9px] font-serif italic tracking-wide transition-colors duration-300 ${isScrolled ? 'text-[var(--color-waldorf-terracotta)]' : 'text-[#EBBA7A]/90'}`}>
+            Educamos para la vida
+          </span>
         </div>
       </Link>
 
@@ -101,7 +110,7 @@ export default function Navbar() {
               }
             }}
           >
-            Admisión 2027 <ChevronDown size={14} className={`transition-transform duration-200 ${dropdownOpen === 'admision' ? 'rotate-180' : ''}`} />
+            {ADMISION_CONFIG.title} <ChevronDown size={14} className={`transition-transform duration-200 ${dropdownOpen === 'admision' ? 'rotate-180' : ''}`} />
           </button>
           
           <div 
@@ -147,7 +156,7 @@ export default function Navbar() {
 
       {/* Mobile Toggle */}
       <button
-        className="lg:hidden text-[var(--color-waldorf-moss)] p-2 focus:outline-none"
+        className={`lg:hidden p-2 focus:outline-none transition-colors duration-300 ${isScrolled ? 'text-[var(--color-waldorf-moss)]' : 'text-white drop-shadow-md'}`}
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
         aria-expanded={isOpen}
@@ -180,7 +189,7 @@ export default function Navbar() {
 
           {/* Mobile Admisión */}
           <div className="py-3 border-b border-[var(--color-waldorf-sage)]/10">
-            <div className="text-base font-semibold text-[var(--color-waldorf-moss)] mb-1">Admisión 2027</div>
+            <div className="text-base font-semibold text-[var(--color-waldorf-moss)] mb-1">{ADMISION_CONFIG.title}</div>
             <div className="text-xs text-[var(--color-waldorf-sage)] italic font-serif mb-3 leading-tight pr-4">Un proceso pensado para conocernos con calma.</div>
             <div className="flex flex-col pl-4 gap-3">
               <Link href="/admision" onClick={() => setIsOpen(false)} className="text-sm text-[var(--color-waldorf-text-light)]">Valores y Aranceles</Link>
