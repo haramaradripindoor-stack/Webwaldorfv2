@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import ADMISION_CONFIG from '@/config/admision'
+import AmbientAudio from './AmbientAudio'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -184,6 +185,9 @@ export default function Navbar() {
           Contacto
         </Link>
 
+        {/* Ambient Soundscape Controller (Awwwards Studio Standard) */}
+        <AmbientAudio isDark={isDarkHero} />
+
         {/* Dropdown Selector de Idioma (Despliegue Elegante) */}
         <div className="relative">
           <button
@@ -231,18 +235,21 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Toggle */}
-      <button
-        className={`lg:hidden p-2 focus:outline-none transition-colors duration-300 ${
-          isDarkHero ? 'text-white drop-shadow-md' : 'text-[var(--color-waldorf-moss)]'
-        }`}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label={isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
-        aria-expanded={isOpen}
-        aria-controls="mobile-menu"
-      >
-        {isOpen ? <X size={28} /> : <Menu size={28} />}
-      </button>
+      {/* Mobile Actions */}
+      <div className="flex items-center gap-2 lg:hidden">
+        <AmbientAudio isDark={isDarkHero} />
+        <button
+          className={`p-2 focus:outline-none transition-colors duration-300 ${
+            isDarkHero ? 'text-white drop-shadow-md' : 'text-[var(--color-waldorf-moss)]'
+          }`}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
 
       {/* Mobile Menu */}
       {isOpen && (

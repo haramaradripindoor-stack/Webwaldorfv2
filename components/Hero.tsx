@@ -9,10 +9,8 @@ import ADMISION_CONFIG from '@/config/admision'
 export default function Hero({ data }: { data?: any }) {
   const containerRef = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [isMuted, setIsMuted] = useState(true)
   const [isMounted, setIsMounted] = useState(false)
   const [showScroll, setShowScroll] = useState(false)
-  const [showSoundPrompt, setShowSoundPrompt] = useState(false)
 
   // Datos dinámicos con fallback
   const title = (data?.title && data.title !== 'La Vida en Trekan') ? data.title : "Donde el niño camina con voluntad"
@@ -22,18 +20,8 @@ export default function Hero({ data }: { data?: any }) {
 
   useEffect(() => {
     setIsMounted(true)
-    // Aparece 1s después de que termina el splash (~8.2s)
-    const t = setTimeout(() => setShowScroll(true), 9000)
-    
-    // Sugerencia de sonido aparece a los 4s y desaparece a los 10s
-    const soundTimeout1 = setTimeout(() => setShowSoundPrompt(true), 4000)
-    const soundTimeout2 = setTimeout(() => setShowSoundPrompt(false), 10000)
-    
-    return () => {
-      clearTimeout(t)
-      clearTimeout(soundTimeout1)
-      clearTimeout(soundTimeout2)
-    }
+    const t = setTimeout(() => setShowScroll(true), 2500)
+    return () => clearTimeout(t)
   }, [])
 
   const { scrollYProgress } = useScroll({
@@ -47,13 +35,6 @@ export default function Hero({ data }: { data?: any }) {
   const opacityText = useTransform(scrollYProgress, [0, 0.8], [1, 0])
   const scaleBg = useTransform(scrollYProgress, [0, 1], [1, 1.1])
 
-  const toggleAudio = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted
-      setIsMuted(!isMuted)
-    }
-  }
-
   // Animaciones para las palabras (efecto líquido/fluido)
   const titleWords: string[] = (title || "").toString().split(" ")
 
@@ -64,7 +45,7 @@ export default function Hero({ data }: { data?: any }) {
       <motion.div style={{ y: yBg, scale: scaleBg }} className="absolute inset-0 w-full h-[120%] -top-[10%] z-0 overflow-hidden">
         {(mediaUrl?.includes('youtube.com') || mediaUrl?.includes('youtu.be')) ? (
           <iframe 
-            src={`https://www.youtube.com/embed/${mediaUrl.split('v=')[1]?.split('&')[0] || mediaUrl.split('youtu.be/')[1]}?autoplay=1&mute=${isMuted ? '1' : '0'}&loop=1&playlist=${mediaUrl.split('v=')[1]?.split('&')[0] || mediaUrl.split('youtu.be/')[1]}&controls=0`} 
+            src={`https://www.youtube.com/embed/${mediaUrl.split('v=')[1]?.split('&')[0] || mediaUrl.split('youtu.be/')[1]}?autoplay=1&mute=1&loop=1&playlist=${mediaUrl.split('v=')[1]?.split('&')[0] || mediaUrl.split('youtu.be/')[1]}&controls=0`} 
             className="absolute top-1/2 left-1/2 w-[150vw] h-[150vh] -translate-x-1/2 -translate-y-1/2 opacity-80 pointer-events-none"
             allow="autoplay; fullscreen"
           />
@@ -73,7 +54,7 @@ export default function Hero({ data }: { data?: any }) {
             ref={videoRef}
             autoPlay
             loop
-            muted={isMuted}
+            muted
             playsInline
             aria-hidden="true"
             className="object-cover object-center w-full h-full opacity-90 transition-opacity duration-1000"
@@ -94,39 +75,6 @@ export default function Hero({ data }: { data?: any }) {
         {/* Film grain layer */}
 
       </motion.div>
-      
-      {/* Audio Control (Organic Audio) */}
-      {isMounted && mediaType === 'video' && (
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-6 right-6 md:bottom-12 md:right-12 z-50 flex items-center gap-3 sm:gap-4"
-        >
-          <AnimatePresence>
-            {showSoundPrompt && isMuted && (
-               <motion.span 
-                 initial={{ opacity: 0, filter: 'blur(4px)', x: 10 }}
-                 animate={{ opacity: 1, filter: 'blur(0px)', x: 0 }}
-                 exit={{ opacity: 0, filter: 'blur(4px)', x: 10 }}
-                 className="text-[10px] uppercase tracking-widest font-mono text-white/60 pointer-events-none hidden sm:block"
-               >
-                 Experiencia con sonido
-               </motion.span>
-            )}
-          </AnimatePresence>
-          <button
-            onClick={toggleAudio}
-            aria-label={isMuted ? 'Activar sonido del video' : 'Silenciar video'}
-            className="relative flex items-center justify-center p-3 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-white hover:bg-white/20 transition-all cursor-pointer group shadow-lg"
-          >
-            {isMuted && (
-              <span className="absolute inset-0 rounded-full border border-white/40 animate-[ping_3s_ease-in-out_infinite] opacity-50"></span>
-            )}
-            {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-          </button>
-        </motion.div>
-      )}
 
       <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col items-center text-center mt-6 sm:mt-12">
         <motion.div
