@@ -173,8 +173,8 @@ export default function PedagogiaHorizontal() {
       {/* STICKY */}
       <div className="sticky top-0 h-[100dvh] overflow-hidden bg-[#FAF8F5] flex flex-col">
 
-        {/* Header compacto fijo */}
-        <div className="shrink-0 pt-8 pb-2 px-6 md:px-20 z-20 bg-gradient-to-b from-[#FAF8F5] to-transparent">
+        {/* Header compacto fijo con espacio suficiente bajo el Navbar */}
+        <div className="shrink-0 pt-24 md:pt-28 pb-3 px-6 md:px-20 z-20 bg-gradient-to-b from-[#FAF8F5] via-[#FAF8F5]/90 to-transparent">
           <span className="text-[10px] font-mono tracking-widest uppercase text-[var(--color-waldorf-terracotta)] font-bold block mb-1">
             Metodología Waldorf
           </span>

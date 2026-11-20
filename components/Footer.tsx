@@ -2,49 +2,60 @@
 
 import { Mail, Phone, MapPin, Instagram, Facebook, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import ADMISION_CONFIG from '@/config/admision'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-[#0B1710] text-[#D8D2C5] border-t border-[#2C3E35]/40 py-16 px-6 md:px-12 mt-16 relative overflow-hidden">
+    <footer className="bg-[#0B1710] text-[#D8D2C5] border-t border-[#2C3E35]/40 py-20 px-6 md:px-12 mt-16 relative overflow-hidden">
       
       {/* Organic Forest Ambient Glow */}
       <div 
         aria-hidden="true"
-        className="absolute bottom-0 right-0 w-[45vw] h-[45vw] rounded-full bg-gradient-to-tl from-[#1a3324]/30 to-transparent blur-[100px] pointer-events-none transform translate-x-1/4 translate-y-1/4" 
+        className="absolute bottom-0 right-0 w-[50vw] h-[50vw] rounded-full bg-gradient-to-tl from-[#1a3324]/40 to-transparent blur-[120px] pointer-events-none transform translate-x-1/4 translate-y-1/4" 
       />
       <div 
         aria-hidden="true"
-        className="absolute top-0 left-10 w-[30vw] h-[30vw] rounded-full bg-[#122118]/40 blur-[90px] pointer-events-none" 
+        className="absolute top-0 left-10 w-[35vw] h-[35vw] rounded-full bg-[#122118]/50 blur-[100px] pointer-events-none" 
       />
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 relative z-10">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-14 relative z-10">
         
-        {/* Columna 1: Identidad & Monograma Canónico */}
+        {/* Columna 1: Identidad & Sello Oficial Trekan */}
         <div className="flex flex-col justify-between">
           <div>
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-11 h-11 rounded-full bg-[#1a2e25] border border-[#EBBA7A]/40 flex items-center justify-center font-serif font-bold text-[#EBBA7A] text-lg shadow-lg">
-                T
+            <div className="flex items-center gap-4 mb-6">
+              <div className="relative w-16 h-16 shrink-0 rounded-2xl bg-white/5 border border-[#EBBA7A]/30 p-2 shadow-2xl backdrop-blur-sm group hover:scale-105 transition-transform duration-300">
+                <Image
+                  src="/brand/trekan_sello_completo_crema.svg"
+                  alt="Colegio Waldorf Trekan Sello Oficial"
+                  fill
+                  className="object-contain p-1"
+                  unoptimized
+                />
               </div>
-              <div className="flex flex-col">
-                <span className="font-serif text-xl font-bold tracking-widest text-[#F7F4EE]">
+              <div className="flex flex-col leading-tight">
+                <span className="font-serif text-2xl font-bold tracking-widest text-[#F7F4EE]">
                   TREKAN
                 </span>
-                <span className="text-[10px] uppercase font-mono tracking-widest text-[#8DA399]">
+                <span className="text-[10px] uppercase font-mono tracking-widest text-[#8DA399] mt-0.5">
                   Colegio Waldorf • Puerto Varas
+                </span>
+                <span className="text-[11px] font-serif italic text-[#EBBA7A]/90 mt-1">
+                  «Educamos para la vida»
                 </span>
               </div>
             </div>
 
-            <p className="text-[#D8D2C5]/80 text-sm leading-relaxed font-sans mb-4">
-              Un espacio educativo independiente inspirado en la pedagogía Waldorf, comprometido con el florecimiento libre e íntegro de la infancia en el sur de Chile.
+            <p className="text-[#D8D2C5]/85 text-sm leading-relaxed font-sans mb-4">
+              Un espacio educativo independiente inspirado en la pedagogía Waldorf, comprometido con el florecimiento libre e íntegro de la infancia en el entorno de Parque Ivian.
             </p>
 
-            <blockquote className="border-l-2 border-[#EBBA7A]/50 pl-3 py-1 my-4 text-xs italic font-serif text-[#EBBA7A]/90 leading-relaxed">
-              «Una educación para la libertad, enraizada en la naturaleza y la voluntad humana.»
+            <blockquote className="border-l-2 border-[#EBBA7A]/60 pl-3.5 py-1.5 my-4 text-xs italic font-serif text-[#EBBA7A] leading-relaxed bg-white/[0.02] rounded-r-lg">
+              «Recibir al niño con respeto, educarlo con amor, despedirlo en libertad.»
+              <span className="block text-[10px] text-[#8DA399] font-mono not-italic mt-1">— Rudolf Steiner</span>
             </blockquote>
           </div>
 
