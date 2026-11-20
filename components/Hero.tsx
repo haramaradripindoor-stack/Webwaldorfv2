@@ -101,7 +101,7 @@ export default function Hero({ data }: { data?: any }) {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-12 right-12 z-50 flex items-center gap-4"
+          className="absolute bottom-6 right-6 md:bottom-12 md:right-12 z-50 flex items-center gap-3 sm:gap-4"
         >
           <AnimatePresence>
             {showSoundPrompt && isMuted && (
@@ -109,7 +109,7 @@ export default function Hero({ data }: { data?: any }) {
                  initial={{ opacity: 0, filter: 'blur(4px)', x: 10 }}
                  animate={{ opacity: 1, filter: 'blur(0px)', x: 0 }}
                  exit={{ opacity: 0, filter: 'blur(4px)', x: 10 }}
-                 className="text-[10px] uppercase tracking-widest font-mono text-white/50 pointer-events-none hidden sm:block"
+                 className="text-[10px] uppercase tracking-widest font-mono text-white/60 pointer-events-none hidden sm:block"
                >
                  Experiencia con sonido
                </motion.span>
@@ -118,23 +118,23 @@ export default function Hero({ data }: { data?: any }) {
           <button
             onClick={toggleAudio}
             aria-label={isMuted ? 'Activar sonido del video' : 'Silenciar video'}
-            className="relative flex items-center justify-center p-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-white/70 hover:text-white hover:bg-white/10 transition-all cursor-pointer group"
+            className="relative flex items-center justify-center p-3 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-white hover:bg-white/20 transition-all cursor-pointer group shadow-lg"
           >
             {isMuted && (
-              <span className="absolute inset-0 rounded-full border border-white/30 animate-[ping_3s_ease-in-out_infinite] opacity-50"></span>
+              <span className="absolute inset-0 rounded-full border border-white/40 animate-[ping_3s_ease-in-out_infinite] opacity-50"></span>
             )}
             {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
           </button>
         </motion.div>
       )}
 
-      <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col items-center text-center mt-12">
+      <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col items-center text-center mt-6 sm:mt-12">
         <motion.div
           style={{ y: yText, opacity: opacityText }}
-          className="flex flex-col items-center"
+          className="flex flex-col items-center w-full"
         >
           <motion.div 
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-[var(--color-waldorf-cream)] text-xs font-semibold tracking-widest uppercase mb-12 shadow-2xl"
+            className="inline-flex items-center gap-2 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[var(--color-waldorf-cream)] text-[11px] sm:text-xs font-semibold tracking-widest uppercase mb-6 sm:mb-12 shadow-2xl"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
@@ -145,13 +145,13 @@ export default function Hero({ data }: { data?: any }) {
 
           <h1 
             aria-label={title}
-            className="font-bold tracking-tighter mb-8 leading-[1.1] font-serif text-white drop-shadow-2xl flex flex-wrap justify-center gap-x-4 md:gap-x-8 max-w-5xl" 
+            className="font-bold tracking-tighter mb-4 sm:mb-8 leading-[1.1] font-serif text-white drop-shadow-2xl flex flex-wrap justify-center gap-x-2.5 sm:gap-x-4 md:gap-x-8 max-w-5xl" 
             style={{ fontSize: 'var(--text-fluid-hero)' }}
           >
             {titleWords.map((word, idx) => (
               <motion.span
                 key={idx}
-                className={`relative inline-block ${word.toLowerCase() === 'voluntad' ? 'text-[var(--color-waldorf-mustard)]' : 'text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60'}`}
+                className={`relative inline-block ${word.toLowerCase() === 'voluntad' ? 'text-[var(--color-waldorf-mustard)]' : 'text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70'}`}
                 initial={{ opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' }}
                 animate={{ opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' }}
                 transition={{ duration: 1.2, delay: idx * 0.15 + 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -163,7 +163,7 @@ export default function Hero({ data }: { data?: any }) {
                     initial={{ pathLength: 0, opacity: 0 }}
                     animate={{ pathLength: 1, opacity: 1 }}
                     transition={{ duration: 1.5, delay: 1.5, ease: "easeInOut" }}
-                    className="absolute w-full h-4 -bottom-4 left-0 text-[var(--color-waldorf-terracotta)]/80 drop-shadow-lg" viewBox="0 0 100 20" preserveAspectRatio="none"
+                    className="absolute w-full h-3 sm:h-4 -bottom-3 sm:-bottom-4 left-0 text-[var(--color-waldorf-terracotta)]/90 drop-shadow-lg" viewBox="0 0 100 20" preserveAspectRatio="none"
                   >
                      <path d="M0 10 Q 25 20, 50 10 T 100 10" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round"/>
                    </motion.svg>
@@ -173,7 +173,7 @@ export default function Hero({ data }: { data?: any }) {
           </h1>
 
           <motion.p 
-            className="text-lg md:text-2xl text-[var(--color-waldorf-cream)]/70 font-medium max-w-2xl mx-auto mb-16 font-sans drop-shadow-md"
+            className="text-base sm:text-lg md:text-2xl text-[var(--color-waldorf-cream)]/85 font-medium max-w-2xl mx-auto mb-8 sm:mb-14 font-sans drop-shadow-md px-4 leading-relaxed"
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
@@ -182,13 +182,13 @@ export default function Hero({ data }: { data?: any }) {
           </motion.p>
 
           <motion.div 
-            className="flex flex-col sm:flex-row items-center justify-center gap-6"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full px-4 sm:px-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
           >
             <MagneticButton magneticStrength={0.4}>
-              <a href="#admision" className="w-full sm:w-auto px-10 py-5 rounded-full bg-[var(--color-waldorf-mustard)] text-[#1a2e25] font-bold text-sm tracking-wide shadow-[0_0_50px_rgba(224,169,109,0.3)] hover:shadow-[0_0_80px_rgba(224,169,109,0.5)] transition-all duration-500 flex items-center justify-center gap-3 group">
+              <a href="#admision" className="w-full sm:w-auto px-8 py-4 sm:px-10 sm:py-5 min-h-[50px] rounded-full bg-[var(--color-waldorf-mustard)] text-[#1a2e25] font-bold text-sm tracking-wide shadow-[0_0_50px_rgba(224,169,109,0.3)] hover:shadow-[0_0_80px_rgba(224,169,109,0.5)] transition-all duration-500 flex items-center justify-center gap-3 group">
                 Admisión {ADMISION_CONFIG.activeYear} • Conocer Cupos
                 <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform duration-500" />
               </a>

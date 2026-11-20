@@ -9,28 +9,28 @@ const septenios = [
     titulo: 'Jardín de Infantes',
     edad: 'Primer Septenio · 3-6 años',
     descripcion: 'El mundo es bueno. A través del juego libre, la imitación y el ritmo, el niño construye su cuerpo físico y desarrolla la voluntad en un entorno hogareño y cálido.',
-    image: '/assets/pilares/jardin_cobijo_madera.webp',
+    image: '/assets/pilares/pilar_jardin_infancia_v2.webp',
     num: '01'
   },
   {
     titulo: 'Enseñanza Básica',
     edad: 'Segundo Septenio · 7-12 años',
     descripcion: 'El mundo es bello. Guiados por el maestro de clase y a través del arte, la imaginación y las narraciones, los niños cultivan su mundo emocional y su conexión con el entorno.',
-    image: '/assets/pilares/oficios_voluntad_lana.webp',
+    image: '/assets/pilares/pilar_oficios_lana_v2.webp',
     num: '02'
   },
   {
     titulo: 'El Paso del Rubicón',
     edad: 'Crisis de los 9 años',
     descripcion: 'Un hito emocional profundo. El niño comienza a experimentar su propia individualidad, separándose del mundo que lo rodea. Lo acompañamos con firmeza y amor.',
-    image: '/assets/pilares/ritmo_pizarra_epocas.webp',
+    image: '/assets/pilares/pilar_pizarra_epoca_v2.webp',
     num: '03'
   },
   {
     titulo: 'Hacia la Adolescencia',
     edad: 'Transición · 13-14 años',
     descripcion: 'El mundo es verdadero. Despierta el pensamiento lógico y crítico. Los jóvenes buscan comprender el mundo a través de su propio juicio y experimentación.',
-    image: '/assets/pilares/arte_cuaderno_vivencia.webp',
+    image: '/assets/pilares/pilar_cuaderno_arte_v2.webp',
     num: '04'
   }
 ]
@@ -85,27 +85,28 @@ function SeptenioCard({
   return (
     <motion.div
       style={{ opacity, y, filter, scale, pointerEvents }}
-      className="absolute inset-0 w-full flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-16 px-6 md:px-20 pt-16 sm:pt-20 md:pt-0 pb-12 md:pb-0"
+      className="absolute inset-0 w-full flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-16 px-6 md:px-20 pt-32 sm:pt-36 md:pt-0 pb-8 md:pb-0"
     >
       {/* Imagen */}
-      <div className="relative w-full md:w-[50%] aspect-[16/10] sm:aspect-[4/3] max-h-[32vh] md:max-h-none rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-2xl flex-shrink-0">
+      <div className="relative w-full md:w-[50%] aspect-[16/10] sm:aspect-[4/3] max-h-[28vh] sm:max-h-[34vh] md:max-h-[55vh] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl flex-shrink-0 border border-black/5">
         <Image
           src={etapa.image}
           alt={etapa.titulo}
           fill
           className="object-cover"
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
       </div>
 
       {/* Texto */}
       <div className="w-full md:w-[50%] flex flex-col justify-center">
-        <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-[var(--color-waldorf-terracotta)] font-bold block mb-1.5 sm:mb-3">
+        <span className="text-[10px] sm:text-xs font-mono tracking-[0.25em] uppercase text-[var(--color-waldorf-terracotta)] font-bold block mb-1.5 sm:mb-2.5">
           {etapa.num} — {etapa.edad}
         </span>
-        <h3 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-[#1a2e25] mb-2 sm:mb-5 leading-tight">
+        <h3 className="text-xl sm:text-2xl md:text-5xl lg:text-6xl font-serif font-bold text-[#1a2e25] mb-2 sm:mb-4 leading-tight">
           {etapa.titulo}
         </h3>
-        <p className="text-xs sm:text-base md:text-lg text-[#1a2e25]/70 leading-relaxed font-light max-w-md">
+        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-[#1a2e25]/85 leading-relaxed font-sans max-w-lg">
           {etapa.descripcion}
         </p>
       </div>

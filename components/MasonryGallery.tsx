@@ -8,13 +8,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const fallbackImages = [
-  { url: '/assets/pilares/casona_bosque_parque_ivian.webp', alt: 'Casona Trekan en Parque Ivian', span: 'col-span-2 row-span-2' },
-  { url: '/assets/pilares/oficios_voluntad_lana.webp', alt: 'Oficios y tejido de lana patagónica', span: 'col-span-1 row-span-1' },
-  { url: '/assets/pilares/aula_madera_ventanales.webp', alt: 'Espacios de madera y calma hacia el bosque', span: 'col-span-1 row-span-2' },
-  { url: '/assets/pilares/arte_cuaderno_vivencia.webp', alt: 'Arte y dibujo en cuaderno de época', span: 'col-span-1 row-span-1' },
-  { url: '/assets/pilares/ritmo_pizarra_epocas.webp', alt: 'Inmersión profunda en pizarras de época', span: 'col-span-2 row-span-1' },
-  { url: '/assets/pilares/jardin_cobijo_madera.webp', alt: 'Jardín de infancia y cobijo', span: 'col-span-1 row-span-1' },
-  { url: '/assets/pilares/comunidad_admision_ronda.webp', alt: 'Comunidad Trekan y ronda de bienvenida', span: 'col-span-1 row-span-1' },
+  { url: '/assets/pilares/pilar_casona_parque_v2.webp', alt: 'Casona Trekan en Parque Ivian', span: 'col-span-2 row-span-2' },
+  { url: '/assets/pilares/pilar_oficios_lana_v2.webp', alt: 'Oficios y tejido de lana patagónica', span: 'col-span-1 row-span-1' },
+  { url: '/assets/pilares/pilar_madera_noble_v2.webp', alt: 'Espacios de madera y calma hacia el bosque', span: 'col-span-1 row-span-2' },
+  { url: '/assets/pilares/pilar_cuaderno_arte_v2.webp', alt: 'Arte y dibujo en cuaderno de época', span: 'col-span-1 row-span-1' },
+  { url: '/assets/pilares/pilar_pizarra_epoca_v2.webp', alt: 'Inmersión profunda en pizarras de época', span: 'col-span-2 row-span-1' },
+  { url: '/assets/pilares/pilar_jardin_infancia_v2.webp', alt: 'Jardín de infancia y cobijo', span: 'col-span-1 row-span-1' },
+  { url: '/assets/pilares/comunidad_economia_fraterna.webp', alt: 'Comunidad Trekan y economía fraterna', span: 'col-span-1 row-span-1' },
 ]
 
 export default function MasonryGallery({ data }: { data?: any }) {
