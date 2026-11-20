@@ -8,13 +8,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const fallbackImages = [
-  { url: '/assets/pilares/pilar_casona_parque_v2.webp', alt: 'Casona Trekan en Parque Ivian', span: 'col-span-2 row-span-2' },
-  { url: '/assets/pilares/pilar_oficios_lana_v2.webp', alt: 'Oficios y tejido de lana patagónica', span: 'col-span-1 row-span-1' },
-  { url: '/assets/pilares/pilar_madera_noble_v2.webp', alt: 'Espacios de madera y calma hacia el bosque', span: 'col-span-1 row-span-2' },
-  { url: '/assets/pilares/pilar_cuaderno_arte_v2.webp', alt: 'Arte y dibujo en cuaderno de época', span: 'col-span-1 row-span-1' },
-  { url: '/assets/pilares/pilar_pizarra_epoca_v2.webp', alt: 'Inmersión profunda en pizarras de época', span: 'col-span-2 row-span-1' },
-  { url: '/assets/pilares/pilar_jardin_infancia_v2.webp', alt: 'Jardín de infancia y cobijo', span: 'col-span-1 row-span-1' },
-  { url: '/assets/pilares/comunidad_economia_fraterna.webp', alt: 'Comunidad Trekan y economía fraterna', span: 'col-span-1 row-span-1' },
+  { url: '/assets/galeria/galeria_01_casona_parque.webp', alt: 'Casona Trekan y pradera viva en Parque Ivian', span: 'col-span-2 row-span-2' },
+  { url: '/assets/galeria/galeria_02_herramientas_madera.webp', alt: 'Herramientas y maderas nobles en el taller de oficios', span: 'col-span-1 row-span-1' },
+  { url: '/assets/galeria/galeria_03_luz_ventanal_sala.webp', alt: 'Luz natural y madera nativa en las salas de clase', span: 'col-span-1 row-span-2' },
+  { url: '/assets/galeria/galeria_04_cuaderno_epoca_detalle.webp', alt: 'Trazos de lápiz cera y composición armónica', span: 'col-span-1 row-span-1' },
+  { url: '/assets/galeria/galeria_05_pizarra_epoca_panoramica.webp', alt: 'Pizarra de época ilustrada con tizas minerales', span: 'col-span-2 row-span-1' },
+  { url: '/assets/galeria/galeria_06_jardin_madera_sedas.webp', alt: 'Rincón de juego hogareño en el Jardín de Infancia', span: 'col-span-1 row-span-1' },
+  { url: '/assets/galeria/galeria_07_manos_lana_vellon.webp', alt: 'Vellón de oveja y texturas naturales trabajadas a mano', span: 'col-span-1 row-span-1' },
 ]
 
 export default function MasonryGallery({ data }: { data?: any }) {

@@ -9,28 +9,28 @@ const septenios = [
     titulo: 'Jardín de Infantes',
     edad: 'Primer Septenio · 3-6 años',
     descripcion: 'El mundo es bueno. A través del juego libre, la imitación y el ritmo, el niño construye su cuerpo físico y desarrolla la voluntad en un entorno hogareño y cálido.',
-    image: '/assets/pilares/pilar_jardin_infancia_v2.webp',
+    image: '/assets/pedagogia/septenio_01_jardin_infancia.webp',
     num: '01'
   },
   {
     titulo: 'Enseñanza Básica',
     edad: 'Segundo Septenio · 7-12 años',
     descripcion: 'El mundo es bello. Guiados por el maestro de clase y a través del arte, la imaginación y las narraciones, los niños cultivan su mundo emocional y su conexión con el entorno.',
-    image: '/assets/pilares/pilar_oficios_lana_v2.webp',
+    image: '/assets/pedagogia/septenio_02_ensenanza_basica.webp',
     num: '02'
   },
   {
     titulo: 'El Paso del Rubicón',
     edad: 'Crisis de los 9 años',
     descripcion: 'Un hito emocional profundo. El niño comienza a experimentar su propia individualidad, separándose del mundo que lo rodea. Lo acompañamos con firmeza y amor.',
-    image: '/assets/pilares/pilar_pizarra_epoca_v2.webp',
+    image: '/assets/pedagogia/septenio_03_paso_rubicon.webp',
     num: '03'
   },
   {
     titulo: 'Hacia la Adolescencia',
     edad: 'Transición · 13-14 años',
     descripcion: 'El mundo es verdadero. Despierta el pensamiento lógico y crítico. Los jóvenes buscan comprender el mundo a través de su propio juicio y experimentación.',
-    image: '/assets/pilares/pilar_cuaderno_arte_v2.webp',
+    image: '/assets/pedagogia/septenio_04_adolescencia.webp',
     num: '04'
   }
 ]

@@ -105,7 +105,7 @@ export default function BentoGrid() {
       desc: 'Matemáticas, lenguaje e historia se viven con las manos, el corazón y la mente. No memorizamos, experimentamos.',
       size: 'md:col-span-2 md:row-span-2',
       bg: 'bg-[#1a2e25]',
-      image: '/assets/pilares/pilar_oficios_lana_v2.webp',
+      image: '/assets/bento/bento_oficios_lana.webp',
       lightText: true,
     },
     {
@@ -114,7 +114,7 @@ export default function BentoGrid() {
       desc: 'Espacios de madera nativa y ventanales hacia el bosque, donde el tiempo se detiene para cuidar la infancia.',
       size: 'md:col-span-1 md:row-span-1',
       bg: 'bg-[var(--color-waldorf-mustard)]',
-      image: '/assets/pilares/pilar_jardin_infancia_v2.webp',
+      image: '/assets/bento/bento_ruka_madera.webp',
       lightText: true,
     },
     {
@@ -123,7 +123,7 @@ export default function BentoGrid() {
       desc: 'Parque Ivian, bosque templado lluvioso y praderas abiertas donde la voluntad camina libre.',
       size: 'md:col-span-1 md:row-span-2',
       bg: 'bg-transparent',
-      image: '/assets/pilares/pilar_casona_parque_v2.webp',
+      image: '/assets/bento/bento_casona_parque.webp',
       lightText: true,
     },
     {
@@ -132,7 +132,7 @@ export default function BentoGrid() {
       desc: 'Semanas continuas dedicadas a una sola materia en pizarras de época para profundizar y amar el saber.',
       size: 'md:col-span-2 md:row-span-1',
       bg: 'bg-[var(--color-waldorf-terracotta)]',
-      image: '/assets/pilares/pilar_pizarra_epoca_v2.webp',
+      image: '/assets/bento/bento_pizarra_inmersion.webp',
       lightText: true,
     },
   ]
