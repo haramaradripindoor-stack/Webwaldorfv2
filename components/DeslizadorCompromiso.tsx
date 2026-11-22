@@ -62,8 +62,8 @@ export default function DeslizadorCompromiso() {
               className="absolute inset-0"
             >
               <Image 
-                src="/assets/pilares/comunidad_economia_fraterna.webp" 
-                alt="Comunidad Waldorf Trekan" 
+                src="/assets/galeria/galeria_07_manos_lana_vellon.webp" 
+                alt="Comunidad y Oficios en Colegio Waldorf Trekan" 
                 fill 
                 className="object-cover"
               />

@@ -38,7 +38,7 @@ const team = [
     name: 'Matías Valiente',
     role: 'Profesor de Carpintería',
     bio: 'Maestro de oficios que guía a los niños en el trabajo con la madera y las manos.',
-    photo: `${BASE}/paseocerro20261.jpg`,
+    photo: '/assets/galeria/galeria_02_herramientas_madera.webp',
     tag: 'Oficios'
   },
   {
@@ -52,7 +52,7 @@ const team = [
     name: 'Ivonne Parada',
     role: 'Familia Fundadora · Convivencia Escolar',
     bio: 'Trabajadora Social UV, especialista en convivencia con formación en peritaje social, polivagal y gestalt.',
-    photo: `${BASE}/paseocerro20264.jpg`,
+    photo: '/assets/galeria/galeria_01_casona_parque.webp',
     tag: 'Fundadora'
   },
 ]

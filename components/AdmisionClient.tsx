@@ -3,12 +3,13 @@
 import { useRef } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { Calendar, Users, MapPin, CheckCircle2, XCircle, ArrowRight } from 'lucide-react'
+import { Calendar, Users, MapPin, CheckCircle2, XCircle, ArrowRight, Sprout } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import SmoothScroll from '@/components/SmoothScroll'
 import AdmisionForm from '@/components/AdmisionForm'
 import FAQSection from '@/components/FAQSection'
 import Link from 'next/link'
+import ADMISION_CONFIG from '@/config/admision'
 
 export default function AdmisionClient() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -39,8 +40,8 @@ export default function AdmisionClient() {
             <div className="absolute inset-0 bg-[var(--color-waldorf-moss)]/20 z-10 mix-blend-overlay" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e25] via-transparent to-transparent z-10" />
             <img 
-              src="/imagenes-web/paseocerro20264.jpg" 
-              alt="Bosque Sur" 
+              src="/assets/galeria/galeria_01_casona_parque.webp" 
+              alt="Colegio Waldorf Trekan en Parque Ivian, Puerto Varas" 
               className="w-full h-full object-cover"
             />
           </motion.div>
@@ -50,7 +51,7 @@ export default function AdmisionClient() {
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
               className="inline-block px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[var(--color-waldorf-cream)] text-sm font-bold tracking-widest uppercase mb-8 shadow-2xl"
             >
-              Admisión 2027 · Abierta todo el año
+              Admisión {ADMISION_CONFIG.activeYear} · Abierta todo el año
             </motion.span>
             
             <motion.h1 
@@ -77,26 +78,26 @@ export default function AdmisionClient() {
                 <ArrowRight className="relative z-10 group-hover:translate-x-1 transition-transform" />
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 rounded-full" />
               </a>
-              <a href="#proceso" className="text-[var(--color-waldorf-moss)] font-bold text-lg hover:text-[var(--color-waldorf-terracotta)] transition-colors underline-offset-4 hover:underline">
+              <a href="#proceso" className="text-white/90 hover:text-[var(--color-waldorf-mustard)] font-bold text-lg transition-colors underline-offset-4 hover:underline">
                 Ver proceso de admisión
               </a>
             </motion.div>
 
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.8 }}
-              className="flex flex-wrap justify-center gap-16 md:gap-32 text-[var(--color-waldorf-moss)] border-t border-[var(--color-waldorf-moss)]/10 pt-10"
+              className="flex flex-wrap justify-center gap-16 md:gap-32 text-white/90 border-t border-white/20 pt-10"
             >
               <div className="text-center group">
-                <span className="block text-5xl font-serif font-bold text-[var(--color-waldorf-terracotta)] mb-2 group-hover:scale-110 transition-transform">3-14</span>
-                <span className="text-sm font-bold tracking-widest uppercase opacity-60">años de edad</span>
+                <span className="block text-5xl font-serif font-bold text-[var(--color-waldorf-mustard)] mb-2 group-hover:scale-110 transition-transform">3-14</span>
+                <span className="text-sm font-bold tracking-widest uppercase opacity-80 text-white/80">años de edad</span>
               </div>
               <div className="text-center group">
-                <span className="block text-5xl font-serif font-bold text-[var(--color-waldorf-terracotta)] mb-2 group-hover:scale-110 transition-transform">16</span>
-                <span className="text-sm font-bold tracking-widest uppercase opacity-60">alumnos máx.</span>
+                <span className="block text-5xl font-serif font-bold text-[var(--color-waldorf-mustard)] mb-2 group-hover:scale-110 transition-transform">16</span>
+                <span className="text-sm font-bold tracking-widest uppercase opacity-80 text-white/80">alumnos máx.</span>
               </div>
-              <div className="text-center group">
-                <span className="block text-5xl font-serif font-bold text-[var(--color-waldorf-terracotta)] mb-2 group-hover:scale-110 transition-transform">📍</span>
-                <span className="text-sm font-bold tracking-widest uppercase opacity-60">Puerto Varas</span>
+              <div className="text-center group flex flex-col items-center justify-end">
+                <MapPin size={40} className="text-[var(--color-waldorf-terracotta)] mb-2 group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-bold tracking-widest uppercase opacity-80 text-white/80">Puerto Varas</span>
               </div>
             </motion.div>
           </motion.div>
@@ -140,7 +141,7 @@ export default function AdmisionClient() {
         <section className="py-32 px-6 max-w-6xl mx-auto">
           <div className="mb-16 text-center">
             <span className="font-serif italic text-[var(--color-waldorf-terracotta)] text-xl mb-4 block">Transparencia</span>
-            <h2 className="text-5xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-6">Valores 2026</h2>
+            <h2 className="text-5xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-6">Valores {ADMISION_CONFIG.activeYear}</h2>
             <p className="text-[var(--color-waldorf-text-light)] text-xl max-w-2xl mx-auto">
               Queremos que las familias conozcan los costos desde el principio. 
             </p>
@@ -148,10 +149,10 @@ export default function AdmisionClient() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
             
-            <motion.div whileHover={{ y: -10 }} className="bg-white p-10 rounded-3xl shadow-xl border border-gray-100 flex flex-col justify-between">
+            <motion.div whileHover={{ y: -10 }} className="bg-white p-10 rounded-3xl shadow-xl border border-[#1a2e25]/10 flex flex-col justify-between">
               <div>
                 <h4 className="font-bold text-[var(--color-waldorf-moss)] text-xl mb-2">Matrícula</h4>
-                <p className="text-sm text-gray-500 mb-8">En 2 cuotas: enero y febrero. No reembolsable.</p>
+                <p className="text-sm text-[#1a2e25]/60 mb-8">En 2 cuotas: enero y febrero. No reembolsable.</p>
               </div>
               <div className="text-4xl font-serif font-bold text-[var(--color-waldorf-terracotta)]">$500.000</div>
             </motion.div>
@@ -181,15 +182,15 @@ export default function AdmisionClient() {
               </div>
             </motion.div>
 
-            <motion.div whileHover={{ y: -10 }} className="bg-white p-10 rounded-3xl shadow-xl border border-gray-100 flex flex-col justify-between">
+            <motion.div whileHover={{ y: -10 }} className="bg-white p-10 rounded-3xl shadow-xl border border-[#1a2e25]/10 flex flex-col justify-between">
                <div>
                  <span className="inline-block bg-[var(--color-waldorf-terracotta)]/10 text-[var(--color-waldorf-terracotta)] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">Aporte Comunitario</span>
                  <h4 className="font-bold text-[var(--color-waldorf-moss)] text-xl mb-2">Resp. Social</h4>
-                 <p className="text-sm text-gray-500 mb-8">Aporte voluntario sugerido para sostener becas internas.</p>
+                 <p className="text-sm text-[#1a2e25]/60 mb-8">Aporte voluntario sugerido para sostener becas internas.</p>
                </div>
                <div className="flex items-baseline gap-2">
                  <div className="text-4xl font-serif font-bold text-[var(--color-waldorf-terracotta)]">$33.000</div>
-                 <span className="text-gray-500 font-medium">/mes</span>
+                 <span className="text-[#1a2e25]/60 font-medium">/mes</span>
                </div>
             </motion.div>
             
@@ -206,7 +207,7 @@ export default function AdmisionClient() {
             </div>
             <div className="flex flex-col md:flex-row gap-8 items-start relative z-10">
               <div className="w-16 h-16 rounded-full bg-[#1a2e25] flex items-center justify-center shrink-0">
-                <span className="text-2xl text-[var(--color-waldorf-mustard)]">🌱</span>
+                <Sprout size={28} className="text-[var(--color-waldorf-mustard)]" />
               </div>
               <div>
                 <h4 className="font-serif font-bold text-2xl text-[var(--color-waldorf-moss)] mb-4">Economía Fraterna y Aranceles Diferenciados</h4>
@@ -230,17 +231,17 @@ export default function AdmisionClient() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-             <div className="bg-[#FAF8F5] p-8 rounded-3xl">
+             <div className="bg-[#FAF8F5] p-8 rounded-3xl border border-[#1a2e25]/5">
                <h4 className="font-bold text-[var(--color-waldorf-moss)] text-lg mb-2 flex justify-between items-center">
                  Cuota de Materiales <span className="font-serif text-2xl text-[var(--color-waldorf-terracotta)]">$160.000</span>
                </h4>
-               <p className="text-sm text-gray-600">Anual, en 2 cuotas (marzo y junio).</p>
+               <p className="text-sm text-[#1a2e25]/70">Anual, en 2 cuotas (marzo y junio).</p>
              </div>
-             <div className="bg-[#FAF8F5] p-8 rounded-3xl">
+             <div className="bg-[#FAF8F5] p-8 rounded-3xl border border-[#1a2e25]/5">
                <h4 className="font-bold text-[var(--color-waldorf-moss)] text-lg mb-2 flex justify-between items-center">
                  Cuota Incorporación <span className="font-serif text-2xl text-[var(--color-waldorf-terracotta)]">$330.000</span>
                </h4>
-               <p className="text-sm text-gray-600">Pago único al ingresar al colegio por primera vez.</p>
+               <p className="text-sm text-[#1a2e25]/70">Pago único al ingresar al colegio por primera vez.</p>
              </div>
           </div>
         </section>

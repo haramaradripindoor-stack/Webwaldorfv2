@@ -29,8 +29,8 @@ export default function Footer() {
             <div className="flex items-center gap-4 mb-6">
               <div className="relative w-16 h-16 shrink-0 rounded-2xl bg-white/5 border border-[#EBBA7A]/30 p-2 shadow-2xl backdrop-blur-sm group hover:scale-105 transition-transform duration-300">
                 <Image
-                  src="/brand/trekan_sello_completo_crema.svg"
-                  alt="Colegio Waldorf Trekan Sello Oficial"
+                  src="/brand/trekan_isotipo_puro_crema.svg"
+                  alt="Colegio Waldorf Trekan Monograma Oficial"
                   fill
                   className="object-contain p-1"
                   unoptimized
