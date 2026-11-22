@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: 'Colegio Waldorf Trekan | Enlaces Oficiales',
     description: 'Donde la infancia respira. Admisión 2027, contacto directo y comunidad escolar en Puerto Varas.',
     url: 'https://www.colegiowaldorftrekan.cl/bio',
-    images: [{ url: '/imagenes-web/paseocerro20261.jpg' }],
+    images: [{ url: '/assets/galeria/galeria_01_casona_parque.webp' }],
   }
 };
 

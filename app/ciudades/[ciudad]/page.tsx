@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: { params: { ciudad: string } 
       siteName: 'Colegio Waldorf Trekan',
       images: [
         {
-          url: 'https://www.colegiowaldorftrekan.cl/imagenes-web/paseocerro20261.jpg',
+          url: 'https://www.colegiowaldorftrekan.cl/assets/galeria/galeria_01_casona_parque.webp',
           width: 1200,
           height: 630,
           alt: `Colegio Waldorf Trekan para familias de ${ciudadLimpia}`,
@@ -71,7 +71,7 @@ export async function generateMetadata({ params }: { params: { ciudad: string } 
       card: 'summary_large_image',
       title,
       description,
-      images: ['https://www.colegiowaldorftrekan.cl/imagenes-web/paseocerro20261.jpg'],
+      images: ['https://www.colegiowaldorftrekan.cl/assets/galeria/galeria_01_casona_parque.webp'],
     },
   };
 }

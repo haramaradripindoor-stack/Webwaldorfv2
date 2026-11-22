@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check, ArrowRight, CalendarClock } from 'lucide-react'
+import ADMISION_CONFIG from '@/config/admision'
 
 type SegmentData = {
   nivel: string | null;
@@ -203,7 +204,7 @@ export default function MicroSegmentador() {
                 <div className="bg-white/10 p-6 md:p-8 rounded-2xl border border-white/20 backdrop-blur-sm mb-10 text-left">
                   <h4 className="text-xl font-bold mb-4 flex items-center gap-3">
                     <CalendarClock className="text-[var(--color-waldorf-mustard)]" />
-                    Agenda tu Visita Pedagógica (Proceso 2026)
+                    Agenda tu Visita Pedagógica ({ADMISION_CONFIG.title})
                   </h4>
                   <p className="text-sm opacity-80 mb-6">En el modelo Waldorf, preferimos que conozcas nuestro espacio y conversemos antes de cualquier trámite formal. Selecciona un horario para visitarnos.</p>
                   
@@ -225,7 +226,7 @@ export default function MicroSegmentador() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <button 
                     onClick={() => {
-                      const text = `Hola Ivonne, soy familia buscando nivel para ${data.nivel || 'mi hijo'}. Me encantaría agendar una visita el día ${selectedDay || 'que tengan disponibilidad'}.`;
+                      const text = `Hola Ivonne, soy familia interesada en la Admisión ${ADMISION_CONFIG.activeYear} para ${data.nivel || 'mi hijo'} (enfoque: ${data.enfoque || 'integral'}). Me encantaría agendar una visita pedagógica el día ${selectedDay || 'que tengan disponibilidad'}.`;
                       const whatsappUrl = `https://wa.me/56967765106?text=${encodeURIComponent(text)}`;
                       window.open(whatsappUrl, '_blank');
                     }} 

@@ -57,10 +57,10 @@ export const metadata: Metadata = {
     locale: 'es_CL',
     images: [
       {
-        url: 'https://www.colegiowaldorftrekan.cl/imagenes-web/paseocerro20261.jpg',
+        url: 'https://www.colegiowaldorftrekan.cl/assets/galeria/galeria_01_casona_parque.webp',
         width: 1200,
         height: 630,
-        alt: 'Niños explorando la naturaleza - Colegio Waldorf Trekan',
+        alt: 'Colegio Waldorf Trekan en Parque Ivian, Puerto Varas',
       },
     ],
     type: 'website',
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Colegio Waldorf Trekan | Pedagogía Waldorf en Puerto Varas',
     description: 'Educación con el corazón en armonía con la naturaleza. Colegio con metodología Waldorf para niños de 3 a 14 años.',
-    images: ['https://www.colegiowaldorftrekan.cl/imagenes-web/paseocerro20261.jpg'],
+    images: ['https://www.colegiowaldorftrekan.cl/assets/galeria/galeria_01_casona_parque.webp'],
   },
   icons: {
     icon: '/brand/trekan_isotipo_puro_verde.svg',

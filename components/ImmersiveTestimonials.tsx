@@ -4,8 +4,6 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 
-const BASE = '/imagenes-web'
-
 export default function ImmersiveTestimonials() {
   const containerRef = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
@@ -18,16 +16,16 @@ export default function ImmersiveTestimonials() {
 
   const testimonialsRow1 = [
     { text: "Nuestra hija recuperó el asombro por aprender.", author: "Familia de 2° Básico", media: "/assets/testimonial.mp4", type: "video" },
-    { text: "La conexión con la naturaleza es invaluable.", author: "Familia de 4° Básico", media: `${BASE}/paseocerro20264.jpg`, type: "image" },
-    { text: "Una comunidad que abraza y sostiene.", author: "Apoderada de 1° Básico", media: `${BASE}/actividapedagogicahumedales5.jpg`, type: "image" },
-    { text: "El arte es el corazón del currículo.", author: "Familia de 6° Básico", media: `${BASE}/fiesta%20de%20la%20luz202610.jpg`, type: "image" }
+    { text: "La conexión con la naturaleza es invaluable.", author: "Familia de 4° Básico", media: "/assets/galeria/galeria_01_casona_parque.webp", type: "image" },
+    { text: "Una comunidad que abraza y sostiene.", author: "Apoderada de 1° Básico", media: "/assets/galeria/galeria_07_manos_lana_vellon.webp", type: "image" },
+    { text: "El arte es el corazón del currículo.", author: "Familia de 6° Básico", media: "/assets/galeria/galeria_05_pizarra_epoca_panoramica.webp", type: "image" }
   ]
 
   const testimonialsRow2 = [
-    { text: "Verlos amasar el pan cada semana es mágico.", author: "Familia de Jardín Infantil", media: `${BASE}/actividapedagogicahumedales6.jpg`, type: "image" },
-    { text: "Aprenden matemáticas tejiendo y cantando.", author: "Apoderado de 3° Básico", media: `${BASE}/paseocerro20268.jpg`, type: "image" },
-    { text: "No hay notas, hay un profundo respeto por sus ritmos.", author: "Familia de Kinder", media: `${BASE}/paseocerro20269.jpg`, type: "image" },
-    { text: "El vínculo con su Maestro Guía es para toda la vida.", author: "Familia de 5° Básico", media: `${BASE}/fiesta%20de%20la%20luz20268.jpg`, type: "image" }
+    { text: "Verlos amasar el pan cada semana es mágico.", author: "Familia de Jardín Infantil", media: "/assets/galeria/galeria_06_jardin_madera_sedas.webp", type: "image" },
+    { text: "Aprenden matemáticas tejiendo y cantando.", author: "Apoderado de 3° Básico", media: "/assets/bento/bento_oficios_lana.webp", type: "image" },
+    { text: "No hay notas, hay un profundo respeto por sus ritmos.", author: "Familia de Kinder", media: "/assets/galeria/galeria_03_luz_ventanal_sala.webp", type: "image" },
+    { text: "El vínculo con su Maestro Guía es para toda la vida.", author: "Familia de 5° Básico", media: "/assets/galeria/galeria_04_cuaderno_epoca_detalle.webp", type: "image" }
   ]
 
   const borderRadiuses = [

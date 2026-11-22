@@ -24,10 +24,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://www.colegiowaldorftrekan.cl/imagenes-web/paseocerro20261.jpg',
+        url: 'https://www.colegiowaldorftrekan.cl/assets/galeria/galeria_01_casona_parque.webp',
         width: 1200,
         height: 630,
-        alt: 'Equipo pedagógico Colegio Waldorf Trekan Puerto Varas',
+        alt: 'Comunidad y Entorno Colegio Waldorf Trekan Puerto Varas',
       },
     ],
   },
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Trabaja con Nosotros | Convocatoria Docente Colegio Waldorf Trekan',
     description: 'Buscamos educadores y maestros comprometidos con la infancia y la Pedagogía Waldorf en Puerto Varas.',
-    images: ['https://www.colegiowaldorftrekan.cl/imagenes-web/paseocerro20261.jpg'],
+    images: ['https://www.colegiowaldorftrekan.cl/assets/galeria/galeria_01_casona_parque.webp'],
   },
 }
 
