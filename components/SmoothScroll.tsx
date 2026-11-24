@@ -13,6 +13,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     }
 
     gsap.ticker.add(update)
+    gsap.ticker.lagSmoothing(0)
 
     return () => {
       gsap.ticker.remove(update)

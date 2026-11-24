@@ -10,7 +10,7 @@ import Link from 'next/link'
 
 // Sanitiza URLs de imagen que vienen de Supabase o archivos .md
 function getImageSrc(url?: string | null): string {
-  if (!url) return '/imagenes-web/galeria3.webp'
+  if (!url) return '/assets/galeria/galeria_01_casona_parque.webp'
   if (url.startsWith('/images/')) return url.replace('/images/', '/imagenes-web/')
   if (url.startsWith('images/')) return url.replace('images/', '/imagenes-web/')
   if (url.startsWith('http') || url.startsWith('/')) return url

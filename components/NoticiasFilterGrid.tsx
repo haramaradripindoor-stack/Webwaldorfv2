@@ -192,7 +192,7 @@ export default function NoticiasFilterGrid({ initialPosts }: { initialPosts: New
                 ? rawImg.replace('/images/', '/imagenes-web/')
                 : rawImg && !rawImg.startsWith('/') && !rawImg.startsWith('http')
                 ? '/' + rawImg
-                : rawImg || '/imagenes-web/galeria3.webp';
+                : rawImg || '/assets/galeria/galeria_01_casona_parque.webp';
 
             return (
               <Link href={`/noticias/${post.slug}`} key={post.id || post.slug} className="block h-full">

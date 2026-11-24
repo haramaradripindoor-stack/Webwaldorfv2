@@ -135,7 +135,7 @@ const pillars = [
     tag: 'Formación y crianza',
     description: 'Talleres y encuentros reflexivos donde familias y maestros profundizamos en las etapas del desarrollo infantil, la antroposofía y el cuidado consciente del hogar.',
     icon: BookOpen,
-    image: '/imagenes-web/pentatlon-waldorf-patio-comunidad.jpg',
+    image: '/imagenes-web/pentatlon-waldorf-patio-comunidad.webp',
     color: 'bg-[#1a2e25]'
   },
   {
@@ -143,7 +143,7 @@ const pillars = [
     tag: 'Ritmo y fraternidad',
     description: 'Encuentros regulares donde compartimos el avance de las clases, las festividades del mes y cultivamos la fraternidad entre las familias.',
     icon: CalendarHeart,
-    image: '/imagenes-web/photo_2026-06-29_12-10-14.jpg',
+    image: '/imagenes-web/pentatlon-waldorf-circulo-manos.webp',
     color: 'bg-[var(--color-waldorf-terracotta)]'
   },
   {
@@ -151,7 +151,7 @@ const pillars = [
     tag: 'Naturaleza y celebración',
     description: 'Fiestas de la Cosecha, Faroles, Espiral de Adviento. Marcamos el ritmo de la naturaleza celebrando juntos los cambios de cada estación.',
     icon: Trees,
-    image: '/imagenes-web/fiesta-de-la-luz2026.jpg',
+    image: '/imagenes-web/alquimia-teatro-del-lago-comunidad-trekan.webp',
     color: 'bg-[var(--color-waldorf-sage)]'
   },
   {

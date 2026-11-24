@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://www.colegiowaldorftrekan.cl/imagenes-web/galeria10.webp',
+        url: 'https://www.colegiowaldorftrekan.cl/assets/galeria/galeria_01_casona_parque.webp',
         width: 1200,
         height: 630,
         alt: 'Comunidad escolar y vida pedagógica en el Colegio Waldorf Trekan, Puerto Varas',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Noticias y Vida Escolar | Colegio Waldorf Trekan Puerto Varas',
     description: 'Entérate de las últimas novedades, reflexiones pedagógicas y acontecimientos de nuestra comunidad escolar Waldorf en Puerto Varas.',
-    images: ['https://www.colegiowaldorftrekan.cl/imagenes-web/galeria10.webp'],
+    images: ['https://www.colegiowaldorftrekan.cl/assets/galeria/galeria_01_casona_parque.webp'],
   },
 }
 

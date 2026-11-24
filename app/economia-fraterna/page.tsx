@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { Leaf } from 'lucide-react';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.colegiowaldorftrekan.cl'),
@@ -97,7 +98,7 @@ export default function EconomiaFraternaPage() {
               {/* Disclaimer Column */}
               <div className="bg-[#FDFBF7] p-8 rounded-2xl border border-[#F0EBE1]">
                 <h3 className="text-lg font-serif text-[#2C3E2D] mb-4 flex items-center gap-2">
-                  <span>🌿</span> Transparencia del Aporte
+                  <Leaf size={20} className="text-[#657A54] inline-block" /> Transparencia del Aporte
                 </h3>
                 <p className="text-sm leading-relaxed text-[#5A5A5A] mb-4">
                   Al ser una iniciativa educativa independiente, autogestionada y libre de ataduras corporativas, los aportes que recibimos nacen exclusivamente desde el altruismo y el libre albedrío.
