@@ -3,13 +3,18 @@
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Leaf, Volume2, VolumeX } from 'lucide-react'
 import { useRef, useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import MagneticButton from './MagneticButton'
 import ADMISION_CONFIG from '@/config/admision'
+
+const WatercolorCanvas = dynamic(() => import('./WatercolorCanvas'), { ssr: false })
 
 export default function Hero({ data }: { data?: any }) {
   const containerRef = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isMounted, setIsMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const [showScroll, setShowScroll] = useState(false)
 
   // Datos dinámicos con fallback
@@ -20,8 +25,14 @@ export default function Hero({ data }: { data?: any }) {
 
   useEffect(() => {
     setIsMounted(true)
+    setIsMobile(window.innerWidth < 768)
+    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener('resize', handleResize, { passive: true })
     const t = setTimeout(() => setShowScroll(true), 2500)
-    return () => clearTimeout(t)
+    return () => {
+      clearTimeout(t)
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
 
   const { scrollYProgress } = useScroll({
@@ -50,20 +61,34 @@ export default function Hero({ data }: { data?: any }) {
             allow="autoplay; fullscreen"
           />
         ) : mediaUrl?.match(/\.(mp4|webm|ogg|mov)$/i) || mediaType === 'video' ? (
-          <video
-            ref={videoRef}
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="/assets/galeria/galeria_01_casona_parque.webp"
-            preload="auto"
-            aria-hidden="true"
-            className="object-cover object-center w-full h-full opacity-90 transition-opacity duration-1000"
-          >
-            <source src="/assets/hero-casona-drone.webm" type="video/webm" />
-            <source src={mediaUrl} type="video/mp4" />
-          </video>
+          <>
+            {isMobile && (
+              <Image
+                src="/assets/galeria/galeria_01_casona_parque.webp"
+                alt="Colegio Waldorf Trekan en Parque Ivian, Puerto Varas"
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover object-center w-full h-full opacity-90"
+              />
+            )}
+            <video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster="/assets/galeria/galeria_01_casona_parque.webp"
+              preload={isMobile ? "none" : "auto"}
+              aria-hidden="true"
+              className={`object-cover object-center w-full h-full transition-opacity duration-1000 ${
+                isMobile ? 'opacity-0 md:opacity-90' : 'opacity-90'
+              }`}
+            >
+              <source src="/assets/hero-casona-drone.webm" type="video/webm" />
+              <source src={mediaUrl} type="video/mp4" />
+            </video>
+          </>
         ) : (
           <img 
             src={mediaUrl} 
@@ -71,6 +96,10 @@ export default function Hero({ data }: { data?: any }) {
             className="object-cover object-center w-full h-full opacity-90"
           />
         )}
+
+        {/* Signature Moment: Procedural Wet-on-Wet Watercolor Shader */}
+        <WatercolorCanvas className="absolute inset-0 w-full h-full z-[2] mix-blend-screen opacity-35" />
+
         {/* Organic Patagonian Forest Atmosphere (Marina Budarina & Master Web Engine Standard) */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B1710]/65 via-[#0B1710]/20 to-[#0B1710]/85 mix-blend-multiply" />
         <div className="absolute inset-0 bg-[var(--color-waldorf-moss)]/15 mix-blend-overlay" />

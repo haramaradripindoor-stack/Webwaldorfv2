@@ -186,11 +186,11 @@ export default function AdmisionForm() {
             </div>
 
             {/* Selector de Días Integrado */}
-            <div className="bg-black/20 p-6 rounded-2xl border border-white/10 mt-8">
-              <h4 className="text-lg font-bold mb-4 flex items-center gap-3 text-white">
+            <div className="bg-black/20 p-6 rounded-2xl border border-white/10 mt-8 mb-6">
+              <h3 className="text-lg font-bold mb-4 flex items-center gap-3 text-white">
                 <CalendarClock className="text-[var(--color-waldorf-mustard)]" />
                 Día preferido para la visita
-              </h4>
+              </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
                 {['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'].map(dia => (
                   <button 
@@ -209,7 +209,7 @@ export default function AdmisionForm() {
             <button 
               type="submit" 
               disabled={isSubmitting}
-              className={`w-full text-[#1a2e25] py-4 rounded-xl font-bold transition-colors flex items-center justify-center gap-2 mt-8 text-lg shadow-[0_0_20px_rgba(224,169,109,0.2)] hover:shadow-[0_0_30px_rgba(224,169,109,0.4)] ${
+              className={`w-full text-[#1a2e25] py-4.5 rounded-2xl font-bold transition-all duration-300 flex items-center justify-center gap-2 mt-8 mb-4 text-lg shadow-[0_0_20px_rgba(224,169,109,0.2)] hover:shadow-[0_0_30px_rgba(224,169,109,0.4)] active:scale-[0.98] cursor-pointer ${
                 isSubmitting ? 'bg-[#e6a55e]/70 cursor-not-allowed' : 'bg-[var(--color-waldorf-mustard)] hover:bg-[#e6a55e]'
               }`}
             >

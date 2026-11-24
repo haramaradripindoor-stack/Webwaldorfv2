@@ -14,15 +14,15 @@
   --color-waldorf-premium-ivory: #F4EEDF;
   --color-waldorf-premium-gold: #D9A940;
 
-  /* Colores Originales */
+  /* Colores Originales Calibrados WCAG AA (Ratio > 4.5:1) */
   --color-waldorf-cream: #FAF9F6;
   --color-waldorf-paper: #FDFBF7;
-  --color-waldorf-sage: #6B8E7B;
-  --color-waldorf-moss: #4A6B53;
-  --color-waldorf-terracotta: #E07A5F;
-  --color-waldorf-mustard: #D4A373;
-  --color-waldorf-text: #2C2A29;
-  --color-waldorf-text-light: #5A5755;
+  --color-waldorf-sage: #527361;
+  --color-waldorf-moss: #1A3526;
+  --color-waldorf-terracotta: #A84126;
+  --color-waldorf-mustard: #946820;
+  --color-waldorf-text: #1C1B1A;
+  --color-waldorf-text-light: #484542;
 
   
   --font-sans: 'Quicksand', sans-serif;

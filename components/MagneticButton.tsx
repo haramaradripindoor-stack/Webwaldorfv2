@@ -43,7 +43,8 @@ export default function MagneticButton({
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
       animate={{ x: position.x, y: position.y }}
-      transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: 'spring', stiffness: 320, damping: 20, mass: 0.1 }}
       className={`relative inline-flex items-center justify-center ${className} group`}
       {...props}
     >
