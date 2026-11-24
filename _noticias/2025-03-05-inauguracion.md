@@ -2,7 +2,7 @@
 title: "Inauguración: El anclaje de la Piedra Fundamental"
 excerpt: "Más allá de un evento social, la inauguración de nuestra escuela es el momento sagrado donde el impulso espiritual toma forma en la tierra."
 published_at: "2025-03-05"
-image_url: "/images/galeria-Inauguracion.webp"
+image_url: "/assets/galeria/galeria_01_casona_parque.webp"
 ---
 
 # El Anclaje Espiritual en la Tierra

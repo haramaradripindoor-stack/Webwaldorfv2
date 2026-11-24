@@ -1,0 +1,278 @@
+{
+  "url": "http://127.0.0.1:4400/recursos",
+  "errors": [],
+  "failed": [
+    "[desktop] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[desktop] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[keyboard] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[hover] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[mobile] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[reduced] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED"
+  ],
+  "desktop": {
+    "loadMs": 142,
+    "loaderMs": null,
+    "settledMs": 2378,
+    "vitals": {
+      "lcpMs": 508,
+      "lcpElement": "h1.text-4xl",
+      "cls": 0
+    },
+    "height": 3373,
+    "overflowX": false,
+    "offenders": [],
+    "h1": [
+      "Recursos Waldorf en Chile"
+    ],
+    "smallTargets": [
+      "Inicio 32x20",
+      "Arriendo de Salón 113x20",
+      "Economía Fraterna 117x20",
+      "Contacto 56x20",
+      "Quiénes Somos 98x20",
+      "Pedagogía Waldorf 122x20",
+      "Admisión 2027 97x20",
+      "Noticias & Crónicas 121x20"
+    ],
+    "glHidden": [],
+    "title": "Recursos Waldorf en Chile | Directorio y Comunidad | Trekan",
+    "glOn": false,
+    "scrollFps": {
+      "fps": 60,
+      "worstFrameMs": 17
+    },
+    "nav": {
+      "href": "/",
+      "scrollYAfter": 0,
+      "title": "Colegio Waldorf Trekan | Puerto Varas, Los Lagos"
+    },
+    "idleMotion": false,
+    "idleAt": null
+  },
+  "mobile": {
+    "throttled": true,
+    "loadMs": 2552,
+    "loaderMs": null,
+    "settledMs": 11180,
+    "vitals": {
+      "lcpMs": 3284,
+      "lcpElement": "p.text-lg",
+      "cls": 0
+    },
+    "height": 6912,
+    "overflowX": false,
+    "offenders": [],
+    "h1": [
+      "Recursos Waldorf en Chile"
+    ],
+    "smallTargets": [
+      "Quiénes Somos 98x20",
+      "Pedagogía Waldorf 122x20",
+      "Admisión 2027 97x20",
+      "Noticias & Crónicas 121x20",
+      "Arriendo de Salón 113x20",
+      "Puerto Varas 64x15",
+      "Puerto Montt 65x15",
+      "Frutillar 39x15"
+    ],
+    "glHidden": [],
+    "title": "Recursos Waldorf en Chile | Directorio y Comunidad | Trekan",
+    "glOn": false,
+    "scrollFps": {
+      "fps": 60,
+      "worstFrameMs": 17
+    }
+  },
+  "files": [
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/d-00-firstpaint.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/d-01-hero.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/d-02-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/d-03-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/d-04-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/d-05-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/d-06-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/d-07-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/d-90-transition-a.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/d-90-transition-b.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/d-90-transition-c.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/d-91-after-nav.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/d-92-back.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/k-01-focus.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/k-02-focus.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/k-03-focus.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/k-04-focus.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/h-01-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/h-01-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/h-02-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/h-02-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/h-03-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/h-03-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/h-04-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/h-04-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/h-05-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/h-05-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/h-06-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/h-06-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/h-07-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/h-07-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/h-08-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/h-08-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/m-01-hero.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/m-02-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/m-03-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/m-04-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/m-05-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/m-06-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/r-01-hero.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/recursos/r-02-mid.png"
+  ],
+  "notes": [
+    "desktop FPS runs headless on a software GPU: treat it as a floor, not a measurement of real hardware",
+    "mobile runs at 4x CPU slowdown on slow 4G: mobile.vitals and mobile.scrollFps are the numbers that count",
+    "loadMs: ms from navigation to the load event, null if it had not fired after 30 s (desktop) or 60 s (phone); a heavy page takes long, while visitors see content at vitals.lcpMs. loaderMs: ms until the #loader ended, null when the page has none",
+    "settledMs: ms from navigation by which the first screen stopped changing, never before the fixed wait. null: still changing at the cap, either a long intro or continuous motion (a live shader, video); d-01-hero / m-01-hero tell which. reduced.moving: the screen was still changing 1.5 s after load with reduced motion on"
+  ],
+  "keyboard": {
+    "stops": [
+      "a \"COLEGIO WALDORF Trekan Educamos para la \"",
+      "a \"Inicio\"",
+      "button \"Nosotros\"",
+      "button \"Admisión 2027\"",
+      "a \"Arriendo de Salón\"",
+      "a \"Economía Fraterna\"",
+      "a \"Contacto\"",
+      "button \"SONIDO\"",
+      "button \"ES\"",
+      "a \"Farmacia Tríodo Expertos en farmacia ant\"",
+      "a \"Weleda Chile Cosmética natural y remedio\"",
+      "a \"Farmacia Alquimist Recetario magistral, \""
+    ],
+    "skipLinkFirst": false,
+    "noVisibleFocus": [],
+    "invisibleFocus": [],
+    "stuck": false
+  },
+  "hover": {
+    "targets": [
+      {
+        "shot": "h-01",
+        "label": "button \"Nosotros\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "color",
+          "borderColor",
+          "textDecorationColor",
+          "rotate"
+        ]
+      },
+      {
+        "shot": "h-02",
+        "label": "button \"Sonido @keyframes soundWave { 0%, 100% {\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "backgroundColor",
+          "opacity"
+        ]
+      },
+      {
+        "shot": "h-03",
+        "label": "button \"ES\"",
+        "interactive": true,
+        "primary": true,
+        "react": "color",
+        "changed": [
+          "backgroundColor"
+        ]
+      },
+      {
+        "shot": "h-04",
+        "label": "button \"Hablemos\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "scale"
+        ]
+      },
+      {
+        "shot": "h-05",
+        "label": "a \"Colegio Waldorf Trekan Educamos para la \"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "scale"
+        ]
+      },
+      {
+        "shot": "h-06",
+        "label": "a \"Inicio\"",
+        "interactive": true,
+        "primary": true,
+        "react": "color",
+        "changed": [
+          "color",
+          "borderColor",
+          "textDecorationColor"
+        ]
+      },
+      {
+        "shot": "h-07",
+        "label": "a \"Farmacia Tríodo Expertos en farmacia ant\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "color",
+          "borderColor",
+          "textDecorationColor",
+          "opacity",
+          "translate"
+        ]
+      },
+      {
+        "shot": "h-08",
+        "label": "a \"Sugerir por Correo\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "scale"
+        ]
+      }
+    ],
+    "noHoverChange": [],
+    "colorOnly": [
+      "h-03 button \"ES\"",
+      "h-06 a \"Inicio\""
+    ],
+    "covered": [],
+    "cursorFollower": false
+  },
+  "reduced": {
+    "hiddenText": 9,
+    "moving": false
+  },
+  "a11y": {
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "count": 12,
+        "nodes": [
+          ".text-\\[var\\(--color-waldorf-sage\\)\\].tracking-wider.font-semibold (#6b8e7b on #fbf9f6, 3.45:1, needs 4.5:1)",
+          ".text-\\[9px\\] (#e07a5f on #fbf9f6, 2.8:1, needs 4.5:1)",
+          ".mb-10 (#dbe1dd on #4a6b53, 4.49:1, needs 4.5:1)",
+          ".bg-\\[\\#25D366\\] (#ffffff on #25d366, 1.98:1, needs 4.5:1)"
+        ]
+      }
+    ],
+    "serious": 1,
+    "contrastNeedsReview": 6
+  }
+}

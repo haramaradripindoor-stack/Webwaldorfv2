@@ -83,10 +83,10 @@ export default function Footer() {
 
         {/* Columna 2: Contacto & Visitas a la Casona */}
         <div>
-          <h4 className="font-serif text-[#F7F4EE] font-bold mb-6 text-base tracking-wide flex items-center gap-2">
+          <h3 className="font-serif text-[#F7F4EE] font-bold mb-6 text-base tracking-wide flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#EBBA7A]" />
             Contacto & Visitas
-          </h4>
+          </h3>
           <ul className="space-y-4">
             <li>
               <a 
@@ -105,7 +105,7 @@ export default function Footer() {
               <a 
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=admision@colegiowaldorftrekan.cl&su=Contacto%20Sitio%20Web" 
                 target="_blank" 
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="flex items-center gap-3 text-sm text-[#D8D2C5]/85 hover:text-[#EBBA7A] transition-colors group"
               >
                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-[#EBBA7A] shrink-0 group-hover:bg-[#EBBA7A]/10 transition-colors">
@@ -136,10 +136,10 @@ export default function Footer() {
 
         {/* Columna 3: Navegación & Vida Escolar */}
         <div>
-          <h4 className="font-serif text-[#F7F4EE] font-bold mb-6 text-base tracking-wide flex items-center gap-2">
+          <h3 className="font-serif text-[#F7F4EE] font-bold mb-6 text-base tracking-wide flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#EBBA7A]" />
             Navegación
-          </h4>
+          </h3>
           <ul className="space-y-3.5 text-sm text-[#D8D2C5]/80 font-medium">
             <li>
               <Link href="/#quienes-somos" className="hover:text-[#EBBA7A] hover:translate-x-1 inline-block transition-all duration-200">

@@ -1,0 +1,276 @@
+{
+  "url": "http://127.0.0.1:4400/",
+  "errors": [],
+  "failed": [
+    "[desktop] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[desktop] http://127.0.0.1:4400/assets/testimonial.mp4 net::ERR_ABORTED",
+    "[desktop] http://127.0.0.1:4400/imagenes-web/Candlelight_glow_in_forest_202607082057.mp4 net::ERR_ABORTED",
+    "[desktop] http://127.0.0.1:4400/imagenes-web/Candlelight_glow_in_forest_202607082057.mp4 net::ERR_ABORTED",
+    "[desktop] http://127.0.0.1:4400/assets/testimonial.mp4 net::ERR_ABORTED",
+    "[keyboard] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[keyboard] http://127.0.0.1:4400/assets/testimonial.mp4 net::ERR_ABORTED",
+    "[keyboard] http://127.0.0.1:4400/assets/testimonial.mp4 net::ERR_ABORTED",
+    "[hover] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[hover] http://127.0.0.1:4400/assets/testimonial.mp4 net::ERR_ABORTED",
+    "[mobile] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[mobile] http://127.0.0.1:4400/assets/testimonial.mp4 net::ERR_ABORTED",
+    "[reduced] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[reduced] http://127.0.0.1:4400/assets/testimonial.mp4 net::ERR_ABORTED"
+  ],
+  "desktop": {
+    "loadMs": 485,
+    "loaderMs": null,
+    "settledMs": null,
+    "vitals": {
+      "lcpMs": null,
+      "lcpElement": null,
+      "cls": 0
+    },
+    "height": 25225,
+    "overflowX": false,
+    "offenders": [],
+    "h1": [
+      "Donde\nel\nniño\ncamina\ncon\nvoluntad"
+    ],
+    "smallTargets": [
+      "Inicio 32x20",
+      "Arriendo de Salón 113x20",
+      "Economía Fraterna 117x20",
+      "Contacto 56x20",
+      "@waldorftrekanpv 139x22",
+      "admision@colegiowaldorft 247x22",
+      "Quiénes Somos 98x20",
+      "Pedagogía Waldorf 122x20"
+    ],
+    "glHidden": [],
+    "title": "Colegio Waldorf Trekan | Puerto Varas, Los Lagos",
+    "glOn": false,
+    "scrollFps": {
+      "fps": 60,
+      "worstFrameMs": 17
+    },
+    "idleMotion": true,
+    "idleAt": "top"
+  },
+  "mobile": {
+    "throttled": true,
+    "loadMs": 9411,
+    "loaderMs": null,
+    "settledMs": 13425,
+    "vitals": {
+      "lcpMs": 4932,
+      "lcpElement": "span.relative",
+      "cls": 0
+    },
+    "height": 33582,
+    "overflowX": false,
+    "offenders": [],
+    "h1": [
+      "Donde\nel\nniño\ncamina\ncon\nvoluntad"
+    ],
+    "smallTargets": [
+      "@waldorftrekanpv 139x22",
+      "admision@colegiowaldorft 247x22",
+      "Quiénes Somos 98x20",
+      "Pedagogía Waldorf 122x20",
+      "Admisión 2027 97x20",
+      "Noticias & Crónicas 121x20",
+      "Arriendo de Salón 113x20",
+      "Puerto Varas 64x15"
+    ],
+    "glHidden": [],
+    "title": "Colegio Waldorf Trekan | Puerto Varas, Los Lagos",
+    "glOn": false,
+    "scrollFps": {
+      "fps": 32,
+      "worstFrameMs": 333
+    }
+  },
+  "files": [
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/d-00-firstpaint.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/d-01-hero.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/d-02-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/d-03-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/d-04-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/d-05-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/d-06-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/d-07-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/k-01-focus.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/k-02-focus.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/k-03-focus.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/k-04-focus.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/h-01-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/h-01-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/h-02-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/h-02-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/h-03-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/h-03-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/h-04-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/h-04-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/h-05-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/h-05-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/h-06-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/h-06-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/h-07-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/h-07-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/h-08-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/h-08-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/m-01-hero.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/m-02-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/m-03-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/m-04-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/m-05-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/m-06-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/r-01-hero.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/home/r-02-mid.png"
+  ],
+  "notes": [
+    "--nav: no link to another page could be clicked (tried /recursos, /noticias, /trabaja-con-nosotros, /admision)",
+    "desktop FPS runs headless on a software GPU: treat it as a floor, not a measurement of real hardware",
+    "mobile runs at 4x CPU slowdown on slow 4G: mobile.vitals and mobile.scrollFps are the numbers that count",
+    "loadMs: ms from navigation to the load event, null if it had not fired after 30 s (desktop) or 60 s (phone); a heavy page takes long, while visitors see content at vitals.lcpMs. loaderMs: ms until the #loader ended, null when the page has none",
+    "settledMs: ms from navigation by which the first screen stopped changing, never before the fixed wait. null: still changing at the cap, either a long intro or continuous motion (a live shader, video); d-01-hero / m-01-hero tell which. reduced.moving: the screen was still changing 1.5 s after load with reduced motion on"
+  ],
+  "keyboard": {
+    "stops": [
+      "a \"COLEGIO WALDORF Trekan Educamos para la \"",
+      "a \"Inicio\"",
+      "button \"Nosotros\"",
+      "button \"Admisión 2027\"",
+      "a \"Arriendo de Salón\"",
+      "a \"Economía Fraterna\"",
+      "a \"Contacto\"",
+      "button \"SONIDO\"",
+      "button \"ES\"",
+      "a \"Admisión 2027 • Conocer Cupos\"",
+      "a \"Ver calendario completo\"",
+      "a \"~ charla ~ 5 Nov EDUVIDA: Puedes Bailar \""
+    ],
+    "skipLinkFirst": false,
+    "noVisibleFocus": [],
+    "invisibleFocus": [],
+    "stuck": false
+  },
+  "hover": {
+    "targets": [
+      {
+        "shot": "h-01",
+        "label": "button \"Nosotros\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "color",
+          "borderColor",
+          "textDecorationColor",
+          "rotate"
+        ]
+      },
+      {
+        "shot": "h-02",
+        "label": "button \"Sonido @keyframes soundWave { 0%, 100% {\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "color",
+          "backgroundColor",
+          "textDecorationColor",
+          "borderColor",
+          "opacity"
+        ]
+      },
+      {
+        "shot": "h-03",
+        "label": "button \"ES\"",
+        "interactive": true,
+        "primary": true,
+        "react": "color",
+        "changed": [
+          "backgroundColor"
+        ]
+      },
+      {
+        "shot": "h-04",
+        "label": "button \"Jardín y Kínder (3 a 6 años)\"",
+        "interactive": true,
+        "primary": true,
+        "react": "color",
+        "changed": [
+          "backgroundColor",
+          "borderColor"
+        ]
+      },
+      {
+        "shot": "h-05",
+        "label": "button \"Conocer Valores y Aportes\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "backgroundColor",
+          "translate"
+        ]
+      },
+      {
+        "shot": "h-06",
+        "label": "button \"Noticias anteriores\"",
+        "interactive": true,
+        "primary": true,
+        "react": "color",
+        "changed": [
+          "backgroundColor"
+        ]
+      },
+      {
+        "shot": "h-07",
+        "label": "button \"Desplazar a la izquierda\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "backgroundColor",
+          "boxShadow"
+        ]
+      },
+      {
+        "shot": "h-08",
+        "label": "button \"Todas las Dudas\"",
+        "interactive": true,
+        "primary": true,
+        "react": "pixels",
+        "changed": []
+      }
+    ],
+    "noHoverChange": [],
+    "colorOnly": [
+      "h-03 button \"ES\"",
+      "h-04 button \"Jardín y Kínder (3 a 6 años)\"",
+      "h-06 button \"Noticias anteriores\""
+    ],
+    "covered": [],
+    "cursorFollower": false
+  },
+  "reduced": {
+    "hiddenText": 16,
+    "moving": true
+  },
+  "a11y": {
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "count": 76,
+        "nodes": [
+          ".tracking-\\[0\\.4em\\] (#ead1b9 on #d4a373, 1.54:1, needs 4.5:1)",
+          ".transform-gpu.inline-block.will-change-transform:nth-child(1) (#e8ebe6 on #faf9f6, 1.14:1, needs 3:1)",
+          ".transform-gpu.inline-block.will-change-transform:nth-child(2) (#e8ebe6 on #faf9f6, 1.14:1, needs 3:1)",
+          ".transform-gpu.inline-block.will-change-transform:nth-child(3) (#e8ebe6 on #faf9f6, 1.14:1, needs 3:1)"
+        ]
+      }
+    ],
+    "serious": 1,
+    "contrastNeedsReview": 70
+  }
+}

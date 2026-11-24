@@ -2,7 +2,8 @@
 
 @font-face {
   font-family: 'Antroposofia';
-  src: url('/fonts/antroposofia.ttf') format('truetype');
+  src: url('/fonts/antroposofia.woff2') format('woff2'),
+       url('/fonts/antroposofia.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -168,4 +169,21 @@ div#goog-gt- {
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: rgba(144, 164, 142, 0.7);
+}
+
+/* Accessibility: Full support for Prefers-Reduced-Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .transform-gpu,
+  [data-framer-appear-id] {
+    transform: none !important;
+  }
 }

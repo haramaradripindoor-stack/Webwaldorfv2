@@ -202,10 +202,10 @@ export default function MicroSegmentador() {
                 </p>
                 
                 <div className="bg-white/10 p-6 md:p-8 rounded-2xl border border-white/20 backdrop-blur-sm mb-10 text-left">
-                  <h4 className="text-xl font-bold mb-4 flex items-center gap-3">
+                  <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
                     <CalendarClock className="text-[var(--color-waldorf-mustard)]" />
                     Agenda tu Visita Pedagógica ({ADMISION_CONFIG.title})
-                  </h4>
+                  </h3>
                   <p className="text-sm opacity-80 mb-6">En el modelo Waldorf, preferimos que conozcas nuestro espacio y conversemos antes de cualquier trámite formal. Selecciona un horario para visitarnos.</p>
                   
                   {/* Phygital Simulated Calendar Interface */}

@@ -94,7 +94,7 @@ END:VCARD`
                 <MapPin size={20} />
               </div>
               <div>
-                <h4 className="font-bold text-[var(--color-waldorf-moss)]">Dirección</h4>
+                <h3 className="font-bold text-[var(--color-waldorf-moss)] text-base">Dirección</h3>
                 <p className="text-[var(--color-waldorf-text-light)]">Las Azaleas 96, Parque Ivian 1<br/>Puerto Varas, Chile</p>
               </div>
             </div>
@@ -104,8 +104,8 @@ END:VCARD`
                 <Phone size={20} />
               </div>
               <div>
-                <h4 className="font-bold text-[var(--color-waldorf-moss)]">WhatsApp / Teléfono</h4>
-                <a href="https://wa.me/56967765106" target="_blank" rel="noreferrer" className="text-[var(--color-waldorf-terracotta)] hover:underline font-medium block">
+                <h3 className="font-bold text-[var(--color-waldorf-moss)] text-base">WhatsApp / Teléfono</h3>
+                <a href="https://wa.me/56967765106" target="_blank" rel="noopener noreferrer" className="text-[var(--color-waldorf-terracotta)] hover:underline font-medium block">
                   +56 9 6776 5106
                 </a>
               </div>
@@ -116,8 +116,8 @@ END:VCARD`
                 <Mail size={20} />
               </div>
               <div>
-                <h4 className="font-bold text-[var(--color-waldorf-moss)]">Correo</h4>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=admision@colegiowaldorftrekan.cl&su=Contacto%20Sitio%20Web" target="_blank" rel="noreferrer" className="text-[var(--color-waldorf-text-light)] hover:text-[var(--color-waldorf-terracotta)] transition-colors">
+                <h3 className="font-bold text-[var(--color-waldorf-moss)] text-base">Correo</h3>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=admision@colegiowaldorftrekan.cl&su=Contacto%20Sitio%20Web" target="_blank" rel="noopener noreferrer" className="text-[var(--color-waldorf-text-light)] hover:text-[var(--color-waldorf-terracotta)] transition-colors">
                   admision@colegiowaldorftrekan.cl
                 </a>
               </div>

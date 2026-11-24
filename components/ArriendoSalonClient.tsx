@@ -44,7 +44,7 @@ export default function ArriendoSalonClient() {
             
             <motion.h1 
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2 }}
-              className="text-5xl md:text-8xl font-bold font-serif mb-8 leading-tight tracking-tight"
+              className="text-5xl md:text-8xl font-bold font-serif mb-8 leading-tight tracking-tight text-[#FAF8F5] drop-shadow-sm"
             >
               Arriendo de Salón
             </motion.h1>
@@ -91,7 +91,7 @@ export default function ArriendoSalonClient() {
                   {instalaciones.slice(0,2).map((item, i) => (
                     <motion.div key={i} whileHover={{ y: -5 }} className="bg-white rounded-3xl p-8 border border-[var(--color-waldorf-sage)]/20 shadow-sm flex-1 flex flex-col justify-center">
                       <div className="mb-4">{item.icon}</div>
-                      <h4 className="font-bold text-[var(--color-waldorf-moss)] text-lg mb-2">{item.title}</h4>
+                      <h3 className="font-bold text-[var(--color-waldorf-moss)] text-lg mb-2">{item.title}</h3>
                       <p className="text-[var(--color-waldorf-text-light)] text-sm leading-relaxed">{item.text}</p>
                     </motion.div>
                   ))}
@@ -101,7 +101,7 @@ export default function ArriendoSalonClient() {
                   {instalaciones.slice(2,4).map((item, i) => (
                     <motion.div key={i} whileHover={{ y: -5 }} className="bg-white rounded-3xl p-8 border border-[var(--color-waldorf-sage)]/20 shadow-sm flex-1 flex flex-col justify-center">
                       <div className="mb-4">{item.icon}</div>
-                      <h4 className="font-bold text-[var(--color-waldorf-moss)] text-lg mb-2">{item.title}</h4>
+                      <h3 className="font-bold text-[var(--color-waldorf-moss)] text-lg mb-2">{item.title}</h3>
                       <p className="text-[var(--color-waldorf-text-light)] text-sm leading-relaxed">{item.text}</p>
                     </motion.div>
                   ))}
@@ -120,7 +120,7 @@ export default function ArriendoSalonClient() {
                      </ul>
                    </div>
                    <div className="relative z-10 flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-                     <a href="https://wa.me/56967765106" target="_blank" rel="noreferrer" className="flex-1 bg-[var(--color-waldorf-mustard)] text-[#1a2e25] px-6 py-4 rounded-full font-bold text-center flex items-center justify-center gap-2 hover:bg-[#c4972e] transition-colors shadow-lg">
+                     <a href="https://wa.me/56967765106" target="_blank" rel="noopener noreferrer" className="flex-1 bg-[var(--color-waldorf-mustard)] text-[#1a2e25] px-6 py-4 rounded-full font-bold text-center flex items-center justify-center gap-2 hover:bg-[#c4972e] transition-colors shadow-lg">
                        Consultar Fechas
                      </a>
                    </div>
@@ -137,7 +137,7 @@ export default function ArriendoSalonClient() {
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <motion.div whileHover={{ y: -10 }} className="bg-[#FAF8F5] rounded-3xl p-10 text-center shadow-sm">
-                  <h4 className="font-bold text-[var(--color-waldorf-text-light)] text-sm tracking-widest uppercase mb-4">Bloque Corto</h4>
+                  <h3 className="font-bold text-[var(--color-waldorf-text-light)] text-sm tracking-widest uppercase mb-4">Bloque Corto</h3>
                   <p className="text-5xl font-serif font-bold text-[var(--color-waldorf-moss)] mb-2">$10.000</p>
                   <p className="text-[var(--color-waldorf-text-light)] mb-8">por hora</p>
                   <p className="text-sm font-bold text-[var(--color-waldorf-moss)]">1 a 3 horas</p>
@@ -147,14 +147,14 @@ export default function ArriendoSalonClient() {
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[var(--color-waldorf-moss)] text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-widest">
                     Más Solicitado
                   </div>
-                  <h4 className="font-bold text-[var(--color-waldorf-text-light)] text-sm tracking-widest uppercase mb-4">Medio Día</h4>
+                  <h3 className="font-bold text-[var(--color-waldorf-text-light)] text-sm tracking-widest uppercase mb-4">Medio Día</h3>
                   <p className="text-6xl font-serif font-bold text-[var(--color-waldorf-moss)] mb-2">$9.000</p>
                   <p className="text-[var(--color-waldorf-text-light)] mb-8">por hora</p>
                   <p className="text-sm font-bold text-[var(--color-waldorf-moss)]">4 a 6 horas</p>
                 </motion.div>
 
                 <motion.div whileHover={{ y: -10 }} className="bg-[#FAF8F5] rounded-3xl p-10 text-center shadow-sm">
-                  <h4 className="font-bold text-[var(--color-waldorf-text-light)] text-sm tracking-widest uppercase mb-4">Jornada Completa</h4>
+                  <h3 className="font-bold text-[var(--color-waldorf-text-light)] text-sm tracking-widest uppercase mb-4">Jornada Completa</h3>
                   <p className="text-5xl font-serif font-bold text-[var(--color-waldorf-moss)] mb-2">$50.000</p>
                   <p className="text-[var(--color-waldorf-text-light)] mb-8">fijo por día</p>
                   <p className="text-sm font-bold text-[var(--color-waldorf-moss)]">7 horas completas</p>

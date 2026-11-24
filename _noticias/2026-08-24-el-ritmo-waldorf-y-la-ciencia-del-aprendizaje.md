@@ -2,7 +2,7 @@
 title: "El Ritmo Waldorf y la Ciencia del Aprendizaje"
 excerpt: "La pedagogía Waldorf basó sus ritmos en la profunda observación del desarrollo humano. Hoy, la ciencia ayuda a entender por qué favorecen el aprendizaje profundo y el bienestar."
 published_at: "2026-08-24"
-image_url: "/imagenes-web/galeriaX.webp"
+image_url: "/assets/galeria/galeria_04_cuaderno_epoca_detalle.webp"
 ---
 
 # El Ritmo Waldorf y la Ciencia del Aprendizaje

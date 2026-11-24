@@ -1,0 +1,416 @@
+WARN  /                             heading level skips h2 -> h4
+WARN  /                             target=_blank without rel=noopener
+WARN  /                             target=_blank without rel=noopener
+WARN  /                             target=_blank without rel=noopener
+WARN  /                             11 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /recursos                     heading level skips h2 -> h4
+WARN  /recursos                     target=_blank without rel=noopener
+WARN  /recursos                     1 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias                     heading level skips h1 -> h3
+WARN  /noticias                     target=_blank without rel=noopener
+WARN  /noticias                     3 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /trabaja-con-nosotros         title is 75 chars (keep <= 70)
+WARN  /trabaja-con-nosotros         heading level skips h1 -> h3
+WARN  /trabaja-con-nosotros         target=_blank without rel=noopener
+WARN  /trabaja-con-nosotros         1 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /admision                     heading level skips h2 -> h4
+WARN  /admision                     img without width/height (layout shift): /assets/galeria/galeria_01_casona_parque.webp
+WARN  /admision                     img without width/height (layout shift): /assets/Coordinadora.png
+WARN  /admision                     target=_blank without rel=noopener
+WARN  /admision                     target=_blank without rel=noopener
+WARN  /admision                     9 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /arriendo-salon               heading level skips h2 -> h4
+WARN  /arriendo-salon               target=_blank without rel=noopener
+WARN  /arriendo-salon               target=_blank without rel=noopener
+WARN  /arriendo-salon               1 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /economia-fraterna            target=_blank without rel=noopener
+WARN  /economia-fraterna            1 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /actividades                  title is 72 chars (keep <= 70)
+WARN  /actividades                  target=_blank without rel=noopener
+WARN  /actividades                  1 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/2026-11-06-puedes-bailar-teatro-del-lago-danza-canto-teatro-waldorf  title is 120 chars (keep <= 70)
+WARN  /noticias/2026-11-06-puedes-bailar-teatro-del-lago-danza-canto-teatro-waldorf  meta description is 326 chars (aim 50-160)
+WARN  /noticias/2026-11-06-puedes-bailar-teatro-del-lago-danza-canto-teatro-waldorf  heading level skips h2 -> h4
+WARN  /noticias/2026-11-06-puedes-bailar-teatro-del-lago-danza-canto-teatro-waldorf  img without width/height (layout shift): /imagenes-web/alquimia-teatro-del-lago-danza-ninos.webp
+WARN  /noticias/2026-11-06-puedes-bailar-teatro-del-lago-danza-canto-teatro-waldorf  img without width/height (layout shift): /imagenes-web/alquimia-teatro-del-lago-coro-comunidad.webp
+WARN  /noticias/2026-11-06-puedes-bailar-teatro-del-lago-danza-canto-teatro-waldorf  img without width/height (layout shift): /imagenes-web/alquimia-teatro-del-lago-actuacion-escena.webp
+WARN  /noticias/2026-11-06-puedes-bailar-teatro-del-lago-danza-canto-teatro-waldorf  img without width/height (layout shift): /imagenes-web/alquimia-teatro-del-lago-comunidad-trekan.webp
+WARN  /noticias/2026-11-06-puedes-bailar-teatro-del-lago-danza-canto-teatro-waldorf  target=_blank without rel=noopener
+WARN  /noticias/2026-11-06-puedes-bailar-teatro-del-lago-danza-canto-teatro-waldorf  6 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  title is 126 chars (keep <= 70)
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  meta description is 451 chars (aim 50-160)
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  heading level skips h2 -> h4
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  img without width/height (layout shift): https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/p
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  img without width/height (layout shift): https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/p
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  img without width/height (layout shift): https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/p
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  img without width/height (layout shift): https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/p
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  img without width/height (layout shift): https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/p
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  img without width/height (layout shift): https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/p
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  img without width/height (layout shift): https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/p
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  img without width/height (layout shift): https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/p
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  img without width/height (layout shift): https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/p
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  img without width/height (layout shift): https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/p
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  img without width/height (layout shift): https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/p
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  img without width/height (layout shift): https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/p
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  img without width/height (layout shift): https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/p
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  img without width/height (layout shift): https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/p
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  img without width/height (layout shift): https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/p
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  img without width/height (layout shift): https://ebpioebxcyjpjgiqpjaw.supabase.co/storage/v1/object/p
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  target=_blank without rel=noopener
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  5 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/2026-10-15-joan-mele-encuentro-waldorf-puerto-varas  title is 107 chars (keep <= 70)
+WARN  /noticias/2026-10-15-joan-mele-encuentro-waldorf-puerto-varas  heading level skips h2 -> h4
+WARN  /noticias/2026-10-15-joan-mele-encuentro-waldorf-puerto-varas  target=_blank without rel=noopener
+WARN  /noticias/2026-10-15-joan-mele-encuentro-waldorf-puerto-varas  5 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/2026-10-15-joan-mele-encuentro-waldorf-puerto-varas  sentence repeated 2x: "Joan Melé en Puerto Varas: educación, economía fraterna y sentido de v"
+WARN  /noticias/2026-10-14-teoria-de-los-colores-goethe-pedagogia-waldorf  title is 131 chars (keep <= 70)
+WARN  /noticias/2026-10-14-teoria-de-los-colores-goethe-pedagogia-waldorf  meta description is 313 chars (aim 50-160)
+WARN  /noticias/2026-10-14-teoria-de-los-colores-goethe-pedagogia-waldorf  heading level skips h2 -> h4
+WARN  /noticias/2026-10-14-teoria-de-los-colores-goethe-pedagogia-waldorf  target=_blank without rel=noopener
+WARN  /noticias/2026-10-14-teoria-de-los-colores-goethe-pedagogia-waldorf  7 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/2026-10-14-teoria-de-los-colores-goethe-pedagogia-waldorf  sentence repeated 2x: "La Teoría de los Colores de Goethe: El despertar del alma infantil a t"
+WARN  /noticias/2026-10-14-claridad-confianza-y-cuidado-de-la-infancia  title is 110 chars (keep <= 70)
+WARN  /noticias/2026-10-14-claridad-confianza-y-cuidado-de-la-infancia  meta description is 267 chars (aim 50-160)
+WARN  /noticias/2026-10-14-claridad-confianza-y-cuidado-de-la-infancia  heading level skips h2 -> h4
+WARN  /noticias/2026-10-14-claridad-confianza-y-cuidado-de-la-infancia  target=_blank without rel=noopener
+WARN  /noticias/2026-10-14-claridad-confianza-y-cuidado-de-la-infancia  2 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/2026-10-14-claridad-confianza-y-cuidado-de-la-infancia  sentence repeated 2x: "Claridad, confianza y cuidado de la infancia: La escuela como organism"
+WARN  /ciudades/puerto-varas        title is 77 chars (keep <= 70)
+WARN  /ciudades/puerto-varas        heading level skips h2 -> h4
+WARN  /ciudades/puerto-varas        target=_blank without rel=noopener
+WARN  /ciudades/puerto-varas        target=_blank without rel=noopener
+WARN  /ciudades/puerto-varas        target=_blank without rel=noopener
+WARN  /ciudades/puerto-varas        27 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /ciudades/puerto-varas        sentence repeated 2x: "&quot; Nuestra hija recuperó el asombro por aprender."
+WARN  /ciudades/puerto-varas        sentence repeated 2x: "&quot; La conexión con la naturaleza es invaluable."
+WARN  /ciudades/puerto-varas        sentence repeated 2x: "&quot; Una comunidad que abraza y sostiene."
+WARN  /ciudades/puerto-varas        sentence repeated 2x: "&quot; El arte es el corazón del currículo."
+WARN  /ciudades/puerto-varas        sentence repeated 2x: "&quot; Verlos amasar el pan cada semana es mágico."
+WARN  /ciudades/puerto-varas        sentence repeated 2x: "&quot; Aprenden matemáticas tejiendo y cantando."
+WARN  /ciudades/puerto-varas        sentence repeated 2x: "&quot; No hay notas, hay un profundo respeto por sus ritmos."
+WARN  /ciudades/puerto-varas        sentence repeated 2x: "&quot; El vínculo con su Maestro Guía es para toda la vida."
+WARN  /ciudades/puerto-varas        sentence repeated 2x: "Caminar por senderos nativos y descubrir el bosque templado en Parque "
+WARN  /ciudades/puerto-varas        sentence repeated 2x: "Nuestra Casona histórica al sol de la mañana en Parque Ivian, Puerto V"
+WARN  /ciudades/puerto-varas        sentence repeated 2x: "Espacios de silencio y calma donde el pensamiento florece sin apuros n"
+WARN  /ciudades/puerto-varas        sentence repeated 2x: "La vivencia del color puro: acuarela sobre papel húmedo guiada por el "
+WARN  /ciudades/puerto-varas        sentence repeated 2x: "El trabajo con vellón de lana: sentir la textura, templar el calor y c"
+WARN  /ciudades/puerto-varas        sentence repeated 2x: "Modelar la madera nativa con paciencia y respeto por las formas de la "
+WARN  /ciudades/puerto-varas        sentence repeated 2x: "El cobijo del Jardín de Infancia: juguetes nobles y telas de colores q"
+WARN  /ciudades/puerto-varas        sentence repeated 2x: "El dosel de árboles nativos que cobija a nuestra comunidad en Puerto V"
+WARN  /ciudades/puerto-montt        title is 77 chars (keep <= 70)
+WARN  /ciudades/puerto-montt        heading level skips h2 -> h4
+WARN  /ciudades/puerto-montt        target=_blank without rel=noopener
+WARN  /ciudades/puerto-montt        target=_blank without rel=noopener
+WARN  /ciudades/puerto-montt        target=_blank without rel=noopener
+WARN  /ciudades/puerto-montt        27 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /ciudades/puerto-montt        sentence repeated 2x: "&quot; Nuestra hija recuperó el asombro por aprender."
+WARN  /ciudades/puerto-montt        sentence repeated 2x: "&quot; La conexión con la naturaleza es invaluable."
+WARN  /ciudades/puerto-montt        sentence repeated 2x: "&quot; Una comunidad que abraza y sostiene."
+WARN  /ciudades/puerto-montt        sentence repeated 2x: "&quot; El arte es el corazón del currículo."
+WARN  /ciudades/puerto-montt        sentence repeated 2x: "&quot; Verlos amasar el pan cada semana es mágico."
+WARN  /ciudades/puerto-montt        sentence repeated 2x: "&quot; Aprenden matemáticas tejiendo y cantando."
+WARN  /ciudades/puerto-montt        sentence repeated 2x: "&quot; No hay notas, hay un profundo respeto por sus ritmos."
+WARN  /ciudades/puerto-montt        sentence repeated 2x: "&quot; El vínculo con su Maestro Guía es para toda la vida."
+WARN  /ciudades/puerto-montt        sentence repeated 2x: "Caminar por senderos nativos y descubrir el bosque templado en Parque "
+WARN  /ciudades/puerto-montt        sentence repeated 2x: "Nuestra Casona histórica al sol de la mañana en Parque Ivian, Puerto V"
+WARN  /ciudades/puerto-montt        sentence repeated 2x: "Espacios de silencio y calma donde el pensamiento florece sin apuros n"
+WARN  /ciudades/puerto-montt        sentence repeated 2x: "La vivencia del color puro: acuarela sobre papel húmedo guiada por el "
+WARN  /ciudades/puerto-montt        sentence repeated 2x: "El trabajo con vellón de lana: sentir la textura, templar el calor y c"
+WARN  /ciudades/puerto-montt        sentence repeated 2x: "Modelar la madera nativa con paciencia y respeto por las formas de la "
+WARN  /ciudades/puerto-montt        sentence repeated 2x: "El cobijo del Jardín de Infancia: juguetes nobles y telas de colores q"
+WARN  /ciudades/puerto-montt        sentence repeated 2x: "El dosel de árboles nativos que cobija a nuestra comunidad en Puerto V"
+WARN  /ciudades/frutillar           title is 74 chars (keep <= 70)
+WARN  /ciudades/frutillar           heading level skips h2 -> h4
+WARN  /ciudades/frutillar           target=_blank without rel=noopener
+WARN  /ciudades/frutillar           target=_blank without rel=noopener
+WARN  /ciudades/frutillar           target=_blank without rel=noopener
+WARN  /ciudades/frutillar           27 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /ciudades/frutillar           sentence repeated 2x: "&quot; Nuestra hija recuperó el asombro por aprender."
+WARN  /ciudades/frutillar           sentence repeated 2x: "&quot; La conexión con la naturaleza es invaluable."
+WARN  /ciudades/frutillar           sentence repeated 2x: "&quot; Una comunidad que abraza y sostiene."
+WARN  /ciudades/frutillar           sentence repeated 2x: "&quot; El arte es el corazón del currículo."
+WARN  /ciudades/frutillar           sentence repeated 2x: "&quot; Verlos amasar el pan cada semana es mágico."
+WARN  /ciudades/frutillar           sentence repeated 2x: "&quot; Aprenden matemáticas tejiendo y cantando."
+WARN  /ciudades/frutillar           sentence repeated 2x: "&quot; No hay notas, hay un profundo respeto por sus ritmos."
+WARN  /ciudades/frutillar           sentence repeated 2x: "&quot; El vínculo con su Maestro Guía es para toda la vida."
+WARN  /ciudades/frutillar           sentence repeated 2x: "Caminar por senderos nativos y descubrir el bosque templado en Parque "
+WARN  /ciudades/frutillar           sentence repeated 2x: "Nuestra Casona histórica al sol de la mañana en Parque Ivian, Puerto V"
+WARN  /ciudades/frutillar           sentence repeated 2x: "Espacios de silencio y calma donde el pensamiento florece sin apuros n"
+WARN  /ciudades/frutillar           sentence repeated 2x: "La vivencia del color puro: acuarela sobre papel húmedo guiada por el "
+WARN  /ciudades/frutillar           sentence repeated 2x: "El trabajo con vellón de lana: sentir la textura, templar el calor y c"
+WARN  /ciudades/frutillar           sentence repeated 2x: "Modelar la madera nativa con paciencia y respeto por las formas de la "
+WARN  /ciudades/frutillar           sentence repeated 2x: "El cobijo del Jardín de Infancia: juguetes nobles y telas de colores q"
+WARN  /ciudades/frutillar           sentence repeated 2x: "El dosel de árboles nativos que cobija a nuestra comunidad en Puerto V"
+WARN  /ciudades/llanquihue          title is 75 chars (keep <= 70)
+WARN  /ciudades/llanquihue          heading level skips h2 -> h4
+WARN  /ciudades/llanquihue          target=_blank without rel=noopener
+WARN  /ciudades/llanquihue          target=_blank without rel=noopener
+WARN  /ciudades/llanquihue          target=_blank without rel=noopener
+WARN  /ciudades/llanquihue          27 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /ciudades/llanquihue          sentence repeated 2x: "&quot; Nuestra hija recuperó el asombro por aprender."
+WARN  /ciudades/llanquihue          sentence repeated 2x: "&quot; La conexión con la naturaleza es invaluable."
+WARN  /ciudades/llanquihue          sentence repeated 2x: "&quot; Una comunidad que abraza y sostiene."
+WARN  /ciudades/llanquihue          sentence repeated 2x: "&quot; El arte es el corazón del currículo."
+WARN  /ciudades/llanquihue          sentence repeated 2x: "&quot; Verlos amasar el pan cada semana es mágico."
+WARN  /ciudades/llanquihue          sentence repeated 2x: "&quot; Aprenden matemáticas tejiendo y cantando."
+WARN  /ciudades/llanquihue          sentence repeated 2x: "&quot; No hay notas, hay un profundo respeto por sus ritmos."
+WARN  /ciudades/llanquihue          sentence repeated 2x: "&quot; El vínculo con su Maestro Guía es para toda la vida."
+WARN  /ciudades/llanquihue          sentence repeated 2x: "Caminar por senderos nativos y descubrir el bosque templado en Parque "
+WARN  /ciudades/llanquihue          sentence repeated 2x: "Nuestra Casona histórica al sol de la mañana en Parque Ivian, Puerto V"
+WARN  /ciudades/llanquihue          sentence repeated 2x: "Espacios de silencio y calma donde el pensamiento florece sin apuros n"
+WARN  /ciudades/llanquihue          sentence repeated 2x: "La vivencia del color puro: acuarela sobre papel húmedo guiada por el "
+WARN  /ciudades/llanquihue          sentence repeated 2x: "El trabajo con vellón de lana: sentir la textura, templar el calor y c"
+WARN  /ciudades/llanquihue          sentence repeated 2x: "Modelar la madera nativa con paciencia y respeto por las formas de la "
+WARN  /ciudades/llanquihue          sentence repeated 2x: "El cobijo del Jardín de Infancia: juguetes nobles y telas de colores q"
+WARN  /ciudades/llanquihue          sentence repeated 2x: "El dosel de árboles nativos que cobija a nuestra comunidad en Puerto V"
+WARN  /ciudades/osorno              title is 71 chars (keep <= 70)
+WARN  /ciudades/osorno              heading level skips h2 -> h4
+WARN  /ciudades/osorno              target=_blank without rel=noopener
+WARN  /ciudades/osorno              target=_blank without rel=noopener
+WARN  /ciudades/osorno              target=_blank without rel=noopener
+WARN  /ciudades/osorno              27 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /ciudades/osorno              sentence repeated 2x: "&quot; Nuestra hija recuperó el asombro por aprender."
+WARN  /ciudades/osorno              sentence repeated 2x: "&quot; La conexión con la naturaleza es invaluable."
+WARN  /ciudades/osorno              sentence repeated 2x: "&quot; Una comunidad que abraza y sostiene."
+WARN  /ciudades/osorno              sentence repeated 2x: "&quot; El arte es el corazón del currículo."
+WARN  /ciudades/osorno              sentence repeated 2x: "&quot; Verlos amasar el pan cada semana es mágico."
+WARN  /ciudades/osorno              sentence repeated 2x: "&quot; Aprenden matemáticas tejiendo y cantando."
+WARN  /ciudades/osorno              sentence repeated 2x: "&quot; No hay notas, hay un profundo respeto por sus ritmos."
+WARN  /ciudades/osorno              sentence repeated 2x: "&quot; El vínculo con su Maestro Guía es para toda la vida."
+WARN  /ciudades/osorno              sentence repeated 2x: "Caminar por senderos nativos y descubrir el bosque templado en Parque "
+WARN  /ciudades/osorno              sentence repeated 2x: "Nuestra Casona histórica al sol de la mañana en Parque Ivian, Puerto V"
+WARN  /ciudades/osorno              sentence repeated 2x: "Espacios de silencio y calma donde el pensamiento florece sin apuros n"
+WARN  /ciudades/osorno              sentence repeated 2x: "La vivencia del color puro: acuarela sobre papel húmedo guiada por el "
+WARN  /ciudades/osorno              sentence repeated 2x: "El trabajo con vellón de lana: sentir la textura, templar el calor y c"
+WARN  /ciudades/osorno              sentence repeated 2x: "Modelar la madera nativa con paciencia y respeto por las formas de la "
+WARN  /ciudades/osorno              sentence repeated 2x: "El cobijo del Jardín de Infancia: juguetes nobles y telas de colores q"
+WARN  /ciudades/osorno              sentence repeated 2x: "El dosel de árboles nativos que cobija a nuestra comunidad en Puerto V"
+WARN  /ciudades/valdivia            title is 73 chars (keep <= 70)
+WARN  /ciudades/valdivia            heading level skips h2 -> h4
+WARN  /ciudades/valdivia            target=_blank without rel=noopener
+WARN  /ciudades/valdivia            target=_blank without rel=noopener
+WARN  /ciudades/valdivia            target=_blank without rel=noopener
+WARN  /ciudades/valdivia            27 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /ciudades/valdivia            sentence repeated 2x: "&quot; Nuestra hija recuperó el asombro por aprender."
+WARN  /ciudades/valdivia            sentence repeated 2x: "&quot; La conexión con la naturaleza es invaluable."
+WARN  /ciudades/valdivia            sentence repeated 2x: "&quot; Una comunidad que abraza y sostiene."
+WARN  /ciudades/valdivia            sentence repeated 2x: "&quot; El arte es el corazón del currículo."
+WARN  /ciudades/valdivia            sentence repeated 2x: "&quot; Verlos amasar el pan cada semana es mágico."
+WARN  /ciudades/valdivia            sentence repeated 2x: "&quot; Aprenden matemáticas tejiendo y cantando."
+WARN  /ciudades/valdivia            sentence repeated 2x: "&quot; No hay notas, hay un profundo respeto por sus ritmos."
+WARN  /ciudades/valdivia            sentence repeated 2x: "&quot; El vínculo con su Maestro Guía es para toda la vida."
+WARN  /ciudades/valdivia            sentence repeated 2x: "Caminar por senderos nativos y descubrir el bosque templado en Parque "
+WARN  /ciudades/valdivia            sentence repeated 2x: "Nuestra Casona histórica al sol de la mañana en Parque Ivian, Puerto V"
+WARN  /ciudades/valdivia            sentence repeated 2x: "Espacios de silencio y calma donde el pensamiento florece sin apuros n"
+WARN  /ciudades/valdivia            sentence repeated 2x: "La vivencia del color puro: acuarela sobre papel húmedo guiada por el "
+WARN  /ciudades/valdivia            sentence repeated 2x: "El trabajo con vellón de lana: sentir la textura, templar el calor y c"
+WARN  /ciudades/valdivia            sentence repeated 2x: "Modelar la madera nativa con paciencia y respeto por las formas de la "
+WARN  /ciudades/valdivia            sentence repeated 2x: "El cobijo del Jardín de Infancia: juguetes nobles y telas de colores q"
+WARN  /ciudades/valdivia            sentence repeated 2x: "El dosel de árboles nativos que cobija a nuestra comunidad en Puerto V"
+WARN  /ciudades/chiloe              title is 71 chars (keep <= 70)
+WARN  /ciudades/chiloe              heading level skips h2 -> h4
+WARN  /ciudades/chiloe              target=_blank without rel=noopener
+WARN  /ciudades/chiloe              target=_blank without rel=noopener
+WARN  /ciudades/chiloe              target=_blank without rel=noopener
+WARN  /ciudades/chiloe              27 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /ciudades/chiloe              sentence repeated 2x: "&quot; Nuestra hija recuperó el asombro por aprender."
+WARN  /ciudades/chiloe              sentence repeated 2x: "&quot; La conexión con la naturaleza es invaluable."
+WARN  /ciudades/chiloe              sentence repeated 2x: "&quot; Una comunidad que abraza y sostiene."
+WARN  /ciudades/chiloe              sentence repeated 2x: "&quot; El arte es el corazón del currículo."
+WARN  /ciudades/chiloe              sentence repeated 2x: "&quot; Verlos amasar el pan cada semana es mágico."
+WARN  /ciudades/chiloe              sentence repeated 2x: "&quot; Aprenden matemáticas tejiendo y cantando."
+WARN  /ciudades/chiloe              sentence repeated 2x: "&quot; No hay notas, hay un profundo respeto por sus ritmos."
+WARN  /ciudades/chiloe              sentence repeated 2x: "&quot; El vínculo con su Maestro Guía es para toda la vida."
+WARN  /ciudades/chiloe              sentence repeated 2x: "Caminar por senderos nativos y descubrir el bosque templado en Parque "
+WARN  /ciudades/chiloe              sentence repeated 2x: "Nuestra Casona histórica al sol de la mañana en Parque Ivian, Puerto V"
+WARN  /ciudades/chiloe              sentence repeated 2x: "Espacios de silencio y calma donde el pensamiento florece sin apuros n"
+WARN  /ciudades/chiloe              sentence repeated 2x: "La vivencia del color puro: acuarela sobre papel húmedo guiada por el "
+WARN  /ciudades/chiloe              sentence repeated 2x: "El trabajo con vellón de lana: sentir la textura, templar el calor y c"
+WARN  /ciudades/chiloe              sentence repeated 2x: "Modelar la madera nativa con paciencia y respeto por las formas de la "
+WARN  /ciudades/chiloe              sentence repeated 2x: "El cobijo del Jardín de Infancia: juguetes nobles y telas de colores q"
+WARN  /ciudades/chiloe              sentence repeated 2x: "El dosel de árboles nativos que cobija a nuestra comunidad en Puerto V"
+WARN  /ciudades/santiago            title is 73 chars (keep <= 70)
+WARN  /ciudades/santiago            heading level skips h2 -> h4
+WARN  /ciudades/santiago            target=_blank without rel=noopener
+WARN  /ciudades/santiago            target=_blank without rel=noopener
+WARN  /ciudades/santiago            target=_blank without rel=noopener
+WARN  /ciudades/santiago            27 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /ciudades/santiago            sentence repeated 2x: "&quot; Nuestra hija recuperó el asombro por aprender."
+WARN  /ciudades/santiago            sentence repeated 2x: "&quot; La conexión con la naturaleza es invaluable."
+WARN  /ciudades/santiago            sentence repeated 2x: "&quot; Una comunidad que abraza y sostiene."
+WARN  /ciudades/santiago            sentence repeated 2x: "&quot; El arte es el corazón del currículo."
+WARN  /ciudades/santiago            sentence repeated 2x: "&quot; Verlos amasar el pan cada semana es mágico."
+WARN  /ciudades/santiago            sentence repeated 2x: "&quot; Aprenden matemáticas tejiendo y cantando."
+WARN  /ciudades/santiago            sentence repeated 2x: "&quot; No hay notas, hay un profundo respeto por sus ritmos."
+WARN  /ciudades/santiago            sentence repeated 2x: "&quot; El vínculo con su Maestro Guía es para toda la vida."
+WARN  /ciudades/santiago            sentence repeated 2x: "Caminar por senderos nativos y descubrir el bosque templado en Parque "
+WARN  /ciudades/santiago            sentence repeated 2x: "Nuestra Casona histórica al sol de la mañana en Parque Ivian, Puerto V"
+WARN  /ciudades/santiago            sentence repeated 2x: "Espacios de silencio y calma donde el pensamiento florece sin apuros n"
+WARN  /ciudades/santiago            sentence repeated 2x: "La vivencia del color puro: acuarela sobre papel húmedo guiada por el "
+WARN  /ciudades/santiago            sentence repeated 2x: "El trabajo con vellón de lana: sentir la textura, templar el calor y c"
+WARN  /ciudades/santiago            sentence repeated 2x: "Modelar la madera nativa con paciencia y respeto por las formas de la "
+WARN  /ciudades/santiago            sentence repeated 2x: "El cobijo del Jardín de Infancia: juguetes nobles y telas de colores q"
+WARN  /ciudades/santiago            sentence repeated 2x: "El dosel de árboles nativos que cobija a nuestra comunidad en Puerto V"
+WARN  /noticias/2026-10-06-limites-respeto-corresponsabilidad-comunidad-waldorf  title is 112 chars (keep <= 70)
+WARN  /noticias/2026-10-06-limites-respeto-corresponsabilidad-comunidad-waldorf  meta description is 212 chars (aim 50-160)
+WARN  /noticias/2026-10-06-limites-respeto-corresponsabilidad-comunidad-waldorf  heading level skips h2 -> h4
+WARN  /noticias/2026-10-06-limites-respeto-corresponsabilidad-comunidad-waldorf  target=_blank without rel=noopener
+WARN  /noticias/2026-10-06-limites-respeto-corresponsabilidad-comunidad-waldorf  1 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/2026-10-06-limites-respeto-corresponsabilidad-comunidad-waldorf  sentence repeated 2x: "El arte de ser comunidad: La madurez adulta y el cuidado del organismo"
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  title is 109 chars (keep <= 70)
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  meta description is 219 chars (aim 50-160)
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  heading level skips h1 -> h3
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5516.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5475.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5497.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5514.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5515.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5516.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5520.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5497.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5486.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5437.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5403.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5422.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5450.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5465.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5475.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5482.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  img without width/height (layout shift): /imagenes-web/fiestas-2026/_MG_5500.webp
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  target=_blank without rel=noopener
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  1 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/orden-detras-de-la-libertad-antroposofia  title is 117 chars (keep <= 70)
+WARN  /noticias/orden-detras-de-la-libertad-antroposofia  meta description is 223 chars (aim 50-160)
+WARN  /noticias/orden-detras-de-la-libertad-antroposofia  heading level skips h2 -> h4
+WARN  /noticias/orden-detras-de-la-libertad-antroposofia  target=_blank without rel=noopener
+WARN  /noticias/orden-detras-de-la-libertad-antroposofia  3 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/2026-09-05-el-refugio-evolutivo-neurociencia-pantallas-waldorf  title is 98 chars (keep <= 70)
+WARN  /noticias/2026-09-05-el-refugio-evolutivo-neurociencia-pantallas-waldorf  heading level skips h2 -> h4
+WARN  /noticias/2026-09-05-el-refugio-evolutivo-neurociencia-pantallas-waldorf  target=_blank without rel=noopener
+WARN  /noticias/2026-09-05-el-refugio-evolutivo-neurociencia-pantallas-waldorf  5 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/2026-09-05-el-refugio-evolutivo-neurociencia-pantallas-waldorf  sentence repeated 2x: "El Refugio Evolutivo: Neurociencia, Pantallas y el Ritmo Waldorf"
+WARN  /noticias/meta-redes-sociales-pantallas-educacion-waldorf-2027  only 10 words of visible text (thin content)
+WARN  /noticias/2026-08-24-construyendo-la-casa-waldorf-puerto-varas  title is 117 chars (keep <= 70)
+WARN  /noticias/2026-08-24-construyendo-la-casa-waldorf-puerto-varas  heading level skips h2 -> h4
+WARN  /noticias/2026-08-24-construyendo-la-casa-waldorf-puerto-varas  target=_blank without rel=noopener
+WARN  /noticias/2026-08-24-construyendo-la-casa-waldorf-puerto-varas  5 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/2026-08-24-el-arado-primer-gesto-agricola-waldorf  title is 103 chars (keep <= 70)
+WARN  /noticias/2026-08-24-el-arado-primer-gesto-agricola-waldorf  meta description is 185 chars (aim 50-160)
+WARN  /noticias/2026-08-24-el-arado-primer-gesto-agricola-waldorf  heading level skips h2 -> h4
+WARN  /noticias/2026-08-24-el-arado-primer-gesto-agricola-waldorf  target=_blank without rel=noopener
+WARN  /noticias/2026-08-24-el-arado-primer-gesto-agricola-waldorf  5 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/el-ritmo-waldorf-y-la-ciencia-del-aprendizaje  title is 79 chars (keep <= 70)
+WARN  /noticias/el-ritmo-waldorf-y-la-ciencia-del-aprendizaje  meta description is 177 chars (aim 50-160)
+WARN  /noticias/el-ritmo-waldorf-y-la-ciencia-del-aprendizaje  heading level skips h2 -> h4
+WARN  /noticias/el-ritmo-waldorf-y-la-ciencia-del-aprendizaje  target=_blank without rel=noopener
+WARN  /noticias/el-ritmo-waldorf-y-la-ciencia-del-aprendizaje  11 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/el-ritmo-waldorf-y-la-ciencia-del-aprendizaje  sentence repeated 2x: "El Ritmo Waldorf y la Ciencia del Aprendizaje"
+WARN  /noticias/2026-08-24-hitos-waldorf-libro-de-padres-actos-que-hablan  title is 119 chars (keep <= 70)
+WARN  /noticias/2026-08-24-hitos-waldorf-libro-de-padres-actos-que-hablan  meta description is 205 chars (aim 50-160)
+WARN  /noticias/2026-08-24-hitos-waldorf-libro-de-padres-actos-que-hablan  heading level skips h2 -> h4
+WARN  /noticias/2026-08-24-hitos-waldorf-libro-de-padres-actos-que-hablan  target=_blank without rel=noopener
+WARN  /noticias/2026-08-24-hitos-waldorf-libro-de-padres-actos-que-hablan  7 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/comunidad-relacional-vs-transaccional-colegio-waldorf  title is 105 chars (keep <= 70)
+WARN  /noticias/comunidad-relacional-vs-transaccional-colegio-waldorf  heading level skips h2 -> h4
+WARN  /noticias/comunidad-relacional-vs-transaccional-colegio-waldorf  target=_blank without rel=noopener
+WARN  /noticias/comunidad-relacional-vs-transaccional-colegio-waldorf  1 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/comunidad-relacional-vs-transaccional-colegio-waldorf  sentence repeated 2x: "El valor relacional en el Colegio Waldorf Trekan"
+WARN  /noticias/cerebro-social-aula-multigrado  title is 89 chars (keep <= 70)
+WARN  /noticias/cerebro-social-aula-multigrado  heading level skips h2 -> h4
+WARN  /noticias/cerebro-social-aula-multigrado  target=_blank without rel=noopener
+WARN  /noticias/cerebro-social-aula-multigrado  5 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/cerebro-social-aula-multigrado  sentence repeated 2x: "El Cerebro Social: El inmenso valor del Aula Multigrado"
+WARN  /noticias/pedagogia-waldorf-vs-tradicional-1783802470480  only 10 words of visible text (thin content)
+WARN  /noticias/fiesta-de-la-luz-1783783917589  only 10 words of visible text (thin content)
+WARN  /noticias/jardn-infantil-waldorf-el-valor-del-juego-libre-y-la-naturaleza-1783724379360  only 10 words of visible text (thin content)
+WARN  /noticias/colegio-waldorf-puerto-varas-educacion-sin-pantallas-2026  only 10 words of visible text (thin content)
+WARN  /noticias/diferencias-educacion-tradicional-pedagogia-waldorf  only 10 words of visible text (thin content)
+WARN  /noticias/pedagogia-waldorf-y-curriculum-nacional-trekan  title is 129 chars (keep <= 70)
+WARN  /noticias/pedagogia-waldorf-y-curriculum-nacional-trekan  heading level skips h2 -> h4
+WARN  /noticias/pedagogia-waldorf-y-curriculum-nacional-trekan  target=_blank without rel=noopener
+WARN  /noticias/pedagogia-waldorf-y-curriculum-nacional-trekan  3 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/pedagogia-waldorf-y-curriculum-nacional-trekan  sentence repeated 2x: "Pedagogía Waldorf y Currículum Nacional: Cómo en Colegio Trekan Unimos"
+WARN  /noticias/horario-neurociencia-colegio-trekan  title is 140 chars (keep <= 70)
+WARN  /noticias/horario-neurociencia-colegio-trekan  heading level skips h2 -> h4
+WARN  /noticias/horario-neurociencia-colegio-trekan  target=_blank without rel=noopener
+WARN  /noticias/horario-neurociencia-colegio-trekan  3 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /noticias/horario-neurociencia-colegio-trekan  sentence repeated 2x: "¿Por qué las clases no deberían empezar a las 8:00 a.m.?"
+WARN  /noticias/horario-neurociencia-colegio-trekan  sentence repeated 2x: "La postura de la Neurociencia y el Colegio Trekan"
+WARN  /noticias/aranceles-diferenciados-economia-fraterna-waldorf  title is 123 chars (keep <= 70)
+WARN  /noticias/aranceles-diferenciados-economia-fraterna-waldorf  meta description is 214 chars (aim 50-160)
+WARN  /noticias/aranceles-diferenciados-economia-fraterna-waldorf  heading level skips h1 -> h3
+WARN  /noticias/aranceles-diferenciados-economia-fraterna-waldorf  target=_blank without rel=noopener
+WARN  /noticias/aranceles-diferenciados-economia-fraterna-waldorf  1 em/en dash(es) in visible text (read as AI tell; rewrite)
+WARN  /                             ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /                             image 519 KB: /assets/bento/bento_casona_parque.webp (compress, AVIF/WebP, smaller variant)
+WARN  /                             page weight ~3854 KB (aim < 3 MB)
+WARN  /recursos                     ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias                     ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /trabaja-con-nosotros         ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /admision                     ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /admision                     image 721 KB: /assets/Coordinadora.png (compress, AVIF/WebP, smaller variant)
+WARN  /arriendo-salon               ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /economia-fraterna            ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /actividades                  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/2026-11-06-puedes-bailar-teatro-del-lago-danza-canto-teatro-waldorf  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/pentatlon-waldorf-antigua-grecia-armonia-cuerpo-espiritu  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/2026-10-15-joan-mele-encuentro-waldorf-puerto-varas  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/2026-10-14-teoria-de-los-colores-goethe-pedagogia-waldorf  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/2026-10-14-claridad-confianza-y-cuidado-de-la-infancia  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /ciudades/puerto-varas        ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /ciudades/puerto-varas        image 519 KB: /assets/bento/bento_casona_parque.webp (compress, AVIF/WebP, smaller variant)
+WARN  /ciudades/puerto-varas        page weight ~4797 KB (aim < 3 MB)
+WARN  /ciudades/puerto-montt        ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /ciudades/puerto-montt        image 519 KB: /assets/bento/bento_casona_parque.webp (compress, AVIF/WebP, smaller variant)
+WARN  /ciudades/puerto-montt        page weight ~4797 KB (aim < 3 MB)
+WARN  /ciudades/frutillar           ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /ciudades/frutillar           image 519 KB: /assets/bento/bento_casona_parque.webp (compress, AVIF/WebP, smaller variant)
+WARN  /ciudades/frutillar           page weight ~4799 KB (aim < 3 MB)
+WARN  /ciudades/llanquihue          ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /ciudades/llanquihue          image 519 KB: /assets/bento/bento_casona_parque.webp (compress, AVIF/WebP, smaller variant)
+WARN  /ciudades/llanquihue          page weight ~4799 KB (aim < 3 MB)
+WARN  /ciudades/osorno              ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /ciudades/osorno              image 519 KB: /assets/bento/bento_casona_parque.webp (compress, AVIF/WebP, smaller variant)
+WARN  /ciudades/osorno              page weight ~4797 KB (aim < 3 MB)
+WARN  /ciudades/valdivia            ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /ciudades/valdivia            image 519 KB: /assets/bento/bento_casona_parque.webp (compress, AVIF/WebP, smaller variant)
+WARN  /ciudades/valdivia            page weight ~4799 KB (aim < 3 MB)
+WARN  /ciudades/chiloe              ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /ciudades/chiloe              image 519 KB: /assets/bento/bento_casona_parque.webp (compress, AVIF/WebP, smaller variant)
+WARN  /ciudades/chiloe              page weight ~4799 KB (aim < 3 MB)
+WARN  /ciudades/santiago            ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /ciudades/santiago            image 519 KB: /assets/bento/bento_casona_parque.webp (compress, AVIF/WebP, smaller variant)
+WARN  /ciudades/santiago            page weight ~4797 KB (aim < 3 MB)
+WARN  /noticias/2026-10-06-limites-respeto-corresponsabilidad-comunidad-waldorf  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  image 687 KB: /imagenes-web/fiestas-2026/_MG_5516.webp (compress, AVIF/WebP, smaller variant)
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  image 950 KB: /imagenes-web/fiestas-2026/_MG_5475.webp (compress, AVIF/WebP, smaller variant)
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  image 690 KB: /imagenes-web/fiestas-2026/_MG_5497.webp (compress, AVIF/WebP, smaller variant)
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  image 744 KB: /imagenes-web/fiestas-2026/_MG_5514.webp (compress, AVIF/WebP, smaller variant)
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  image 804 KB: /imagenes-web/fiestas-2026/_MG_5515.webp (compress, AVIF/WebP, smaller variant)
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  image 675 KB: /imagenes-web/fiestas-2026/_MG_5520.webp (compress, AVIF/WebP, smaller variant)
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  image 615 KB: /imagenes-web/fiestas-2026/_MG_5403.webp (compress, AVIF/WebP, smaller variant)
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  image 550 KB: /imagenes-web/fiestas-2026/_MG_5450.webp (compress, AVIF/WebP, smaller variant)
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  image 674 KB: /imagenes-web/fiestas-2026/_MG_5465.webp (compress, AVIF/WebP, smaller variant)
+WARN  /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad  page weight ~8230 KB (aim < 3 MB)
+WARN  /noticias/orden-detras-de-la-libertad-antroposofia  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/2026-09-05-el-refugio-evolutivo-neurociencia-pantallas-waldorf  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/meta-redes-sociales-pantallas-educacion-waldorf-2027  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/2026-08-24-construyendo-la-casa-waldorf-puerto-varas  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/2026-08-24-el-arado-primer-gesto-agricola-waldorf  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/el-ritmo-waldorf-y-la-ciencia-del-aprendizaje  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/2026-08-24-hitos-waldorf-libro-de-padres-actos-que-hablan  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/comunidad-relacional-vs-transaccional-colegio-waldorf  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/cerebro-social-aula-multigrado  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/pedagogia-waldorf-vs-tradicional-1783802470480  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/fiesta-de-la-luz-1783783917589  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/jardn-infantil-waldorf-el-valor-del-juego-libre-y-la-naturaleza-1783724379360  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/colegio-waldorf-puerto-varas-educacion-sin-pantallas-2026  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/diferencias-educacion-tradicional-pedagogia-waldorf  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/pedagogia-waldorf-y-curriculum-nacional-trekan  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/horario-neurociencia-colegio-trekan  ttf/otf font shipped: antroposofia.ttf (use woff2)
+WARN  /noticias/aranceles-diferenciados-economia-fraterna-waldorf  ttf/otf font shipped: antroposofia.ttf (use woff2)
+
+40 pages crawled from http://127.0.0.1:4400
+heaviest page /noticias/2026-09-22-celebracion-fiestas-patrias-comunidad: ~8230 KB | html 18 | JS 193 (gz) | CSS 23 (gz) | fonts 175 | images 7821
+0 FAIL, 412 WARN

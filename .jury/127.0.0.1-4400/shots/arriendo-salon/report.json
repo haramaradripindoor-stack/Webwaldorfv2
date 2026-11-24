@@ -1,0 +1,289 @@
+{
+  "url": "http://127.0.0.1:4400/arriendo-salon",
+  "errors": [],
+  "failed": [
+    "[desktop] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[desktop] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[keyboard] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[hover] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[mobile] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[reduced] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED"
+  ],
+  "desktop": {
+    "loadMs": 158,
+    "loaderMs": null,
+    "settledMs": 2746,
+    "vitals": {
+      "lcpMs": 132,
+      "lcpElement": "img.object-cover",
+      "cls": 0
+    },
+    "height": 4387,
+    "overflowX": false,
+    "offenders": [],
+    "h1": [
+      "Arriendo de Salón"
+    ],
+    "smallTargets": [
+      "Inicio 32x20",
+      "Arriendo de Salón 113x20",
+      "Economía Fraterna 117x20",
+      "Contacto 56x20",
+      "Agregar otro día 133x20",
+      "Quiénes Somos 98x20",
+      "Pedagogía Waldorf 122x20",
+      "Admisión 2027 97x20"
+    ],
+    "glHidden": [],
+    "title": "Arriendo de Salón Multiuso | Comunidad Colegio Waldorf Trekan | Trekan",
+    "glOn": false,
+    "scrollFps": {
+      "fps": 60,
+      "worstFrameMs": 17
+    },
+    "nav": {
+      "href": "/",
+      "scrollYAfter": 0,
+      "title": "Colegio Waldorf Trekan | Puerto Varas, Los Lagos"
+    },
+    "idleMotion": true,
+    "idleAt": "top"
+  },
+  "mobile": {
+    "throttled": true,
+    "loadMs": 4023,
+    "loaderMs": null,
+    "settledMs": 6127,
+    "vitals": {
+      "lcpMs": 2068,
+      "lcpElement": "img.object-cover",
+      "cls": 0
+    },
+    "height": 7448,
+    "overflowX": false,
+    "offenders": [],
+    "h1": [
+      "Arriendo de Salón"
+    ],
+    "smallTargets": [
+      "Agregar otro día 133x20",
+      "Quiénes Somos 98x20",
+      "Pedagogía Waldorf 122x20",
+      "Admisión 2027 97x20",
+      "Noticias & Crónicas 121x20",
+      "Arriendo de Salón 113x20",
+      "Puerto Varas 64x15",
+      "Puerto Montt 65x15"
+    ],
+    "glHidden": [],
+    "title": "Arriendo de Salón Multiuso | Comunidad Colegio Waldorf Trekan | Trekan",
+    "glOn": false,
+    "scrollFps": {
+      "fps": 59,
+      "worstFrameMs": 67
+    }
+  },
+  "files": [
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/d-00-firstpaint.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/d-01-hero.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/d-02-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/d-03-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/d-04-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/d-05-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/d-06-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/d-07-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/d-90-transition-a.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/d-90-transition-b.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/d-90-transition-c.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/d-91-after-nav.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/d-92-back.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/k-01-focus.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/k-02-focus.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/k-03-focus.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/k-04-focus.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/h-01-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/h-01-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/h-02-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/h-02-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/h-03-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/h-03-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/h-04-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/h-04-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/h-05-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/h-05-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/h-06-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/h-06-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/h-07-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/h-07-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/h-08-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/h-08-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/m-01-hero.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/m-02-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/m-03-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/m-04-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/m-05-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/m-06-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/r-01-hero.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/arriendo-salon/r-02-mid.png"
+  ],
+  "notes": [
+    "desktop FPS runs headless on a software GPU: treat it as a floor, not a measurement of real hardware",
+    "mobile runs at 4x CPU slowdown on slow 4G: mobile.vitals and mobile.scrollFps are the numbers that count",
+    "loadMs: ms from navigation to the load event, null if it had not fired after 30 s (desktop) or 60 s (phone); a heavy page takes long, while visitors see content at vitals.lcpMs. loaderMs: ms until the #loader ended, null when the page has none",
+    "settledMs: ms from navigation by which the first screen stopped changing, never before the fixed wait. null: still changing at the cap, either a long intro or continuous motion (a live shader, video); d-01-hero / m-01-hero tell which. reduced.moving: the screen was still changing 1.5 s after load with reduced motion on"
+  ],
+  "keyboard": {
+    "stops": [
+      "a \"COLEGIO WALDORF Trekan Educamos para la \"",
+      "a \"Inicio\"",
+      "button \"Nosotros\"",
+      "button \"Admisión 2027\"",
+      "a \"Arriendo de Salón\"",
+      "a \"Economía Fraterna\"",
+      "a \"Contacto\"",
+      "button \"SONIDO\"",
+      "button \"ES\"",
+      "a \"Consultar Fechas\"",
+      "input \"INPUT\"",
+      "input \"INPUT\""
+    ],
+    "skipLinkFirst": false,
+    "noVisibleFocus": [],
+    "invisibleFocus": [],
+    "stuck": false
+  },
+  "hover": {
+    "targets": [
+      {
+        "shot": "h-01",
+        "label": "button \"Nosotros\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "color",
+          "borderColor",
+          "textDecorationColor",
+          "rotate"
+        ]
+      },
+      {
+        "shot": "h-02",
+        "label": "button \"Sonido @keyframes soundWave { 0%, 100% {\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "backgroundColor",
+          "opacity"
+        ]
+      },
+      {
+        "shot": "h-03",
+        "label": "button \"ES\"",
+        "interactive": true,
+        "primary": true,
+        "react": "color",
+        "changed": [
+          "backgroundColor"
+        ]
+      },
+      {
+        "shot": "h-04",
+        "label": "button \"Agregar otro día\"",
+        "interactive": true,
+        "primary": true,
+        "react": "color",
+        "changed": [
+          "color",
+          "borderColor",
+          "textDecorationColor"
+        ]
+      },
+      {
+        "shot": "h-05",
+        "label": "button \"Siguiente\"",
+        "interactive": true,
+        "primary": true,
+        "react": "color",
+        "changed": [
+          "backgroundColor"
+        ]
+      },
+      {
+        "shot": "h-06",
+        "label": "button \"Hablemos\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "scale"
+        ]
+      },
+      {
+        "shot": "h-07",
+        "label": "a \"Colegio Waldorf Trekan Educamos para la \"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "scale"
+        ]
+      },
+      {
+        "shot": "h-08",
+        "label": "a \"Inicio\"",
+        "interactive": true,
+        "primary": true,
+        "react": "color",
+        "changed": [
+          "color",
+          "borderColor",
+          "textDecorationColor"
+        ]
+      }
+    ],
+    "noHoverChange": [],
+    "colorOnly": [
+      "h-03 button \"ES\"",
+      "h-04 button \"Agregar otro día\"",
+      "h-05 button \"Siguiente\"",
+      "h-08 a \"Inicio\""
+    ],
+    "covered": [],
+    "cursorFollower": false
+  },
+  "reduced": {
+    "hiddenText": 9,
+    "moving": false
+  },
+  "a11y": {
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "count": 17,
+        "nodes": [
+          ".max-w-sm > h3 (#4a6b53 on #1a2e25, 2.4:1, needs 3:1)",
+          "div:nth-child(1) > .mb-1.text-white\\/60.tracking-wider (#b7c4ba on #4a6b53, 3.3:1, needs 4.5:1)",
+          "div:nth-child(3) > .mb-1.text-white\\/60.tracking-wider (#b7c4ba on #4a6b53, 3.3:1, needs 4.5:1)",
+          "div:nth-child(4) > .mb-1.text-white\\/60.tracking-wider (#b7c4ba on #4a6b53, 3.3:1, needs 4.5:1)"
+        ]
+      },
+      {
+        "id": "label",
+        "impact": "critical",
+        "help": "Form elements must have labels",
+        "count": 3,
+        "nodes": [
+          "input[min=\"2026-11-24\"]",
+          "div:nth-child(2) > input[type=\"time\"]",
+          "div:nth-child(3) > input[type=\"time\"]"
+        ]
+      }
+    ],
+    "serious": 2,
+    "contrastNeedsReview": 21
+  }
+}

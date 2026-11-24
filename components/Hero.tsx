@@ -149,13 +149,13 @@ export default function Hero({ data }: { data?: any }) {
       
       {/* Scroll Indicator — aparece solo después del splash */}
       <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10 cursor-pointer"
+        className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-2 z-10 cursor-pointer pointer-events-auto"
         initial={{ opacity: 0, y: 10 }}
         animate={showScroll ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         onClick={() => window.scrollBy({ top: window.innerHeight * 0.9, behavior: 'smooth' })}
       >
-        <span className="text-[10px] uppercase tracking-[0.4em] font-mono text-white/50">Descubrir</span>
+        <span className="text-[10px] uppercase tracking-[0.4em] font-mono text-white/85">Descubrir</span>
         {/* Línea que respira — como latido orgánico */}
         <motion.div
           animate={{ scaleY: [1, 1.4, 1], opacity: [0.4, 0.9, 0.4] }}

@@ -9,6 +9,7 @@ import SmoothScroll from '@/components/SmoothScroll'
 import AdmisionForm from '@/components/AdmisionForm'
 import FAQSection from '@/components/FAQSection'
 import Link from 'next/link'
+import Image from 'next/image'
 import ADMISION_CONFIG from '@/config/admision'
 
 export default function AdmisionClient() {
@@ -39,10 +40,13 @@ export default function AdmisionClient() {
             <div className="absolute inset-0 bg-[#0A0A10]/50 z-10 mix-blend-multiply" />
             <div className="absolute inset-0 bg-[var(--color-waldorf-moss)]/20 z-10 mix-blend-overlay" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e25] via-transparent to-transparent z-10" />
-            <img 
+            <Image 
               src="/assets/galeria/galeria_01_casona_parque.webp" 
               alt="Colegio Waldorf Trekan en Parque Ivian, Puerto Varas" 
-              className="w-full h-full object-cover"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
             />
           </motion.div>
 
@@ -58,8 +62,8 @@ export default function AdmisionClient() {
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2 }}
               className="text-5xl md:text-8xl font-bold font-serif text-white mb-8 leading-tight tracking-tight drop-shadow-2xl"
             >
-              Donde el niño camina <br/>
-              <span className="text-[var(--color-waldorf-mustard)] italic font-light drop-shadow-lg">con voluntad</span>
+              Admisión {ADMISION_CONFIG.activeYear}: <br/>
+              <span className="text-[var(--color-waldorf-mustard)] italic font-light drop-shadow-lg">Encuentro y Comunidad</span>
             </motion.h1>
             
             <motion.p 
@@ -73,7 +77,7 @@ export default function AdmisionClient() {
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20"
             >
-              <a href="https://wa.me/56967765106?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20visita%20al%20Colegio%20Waldorf%20Trekan%20para%20conocer%20el%20proyecto%20educativo.%20%F0%9F%8C%BF" target="_blank" rel="noreferrer" className="group relative overflow-hidden bg-[var(--color-waldorf-moss)] text-white px-10 py-5 rounded-full font-bold text-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-3">
+              <a href="https://wa.me/56967765106?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20visita%20al%20Colegio%20Waldorf%20Trekan%20para%20conocer%20el%20proyecto%20educativo.%20%F0%9F%8C%BF" target="_blank" rel="noopener noreferrer" className="group relative overflow-hidden bg-[var(--color-waldorf-moss)] text-white px-10 py-5 rounded-full font-bold text-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-3">
                 <span className="relative z-10">Agendar visita al colegio</span>
                 <ArrowRight className="relative z-10 group-hover:translate-x-1 transition-transform" />
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 rounded-full" />
@@ -151,7 +155,7 @@ export default function AdmisionClient() {
             
             <motion.div whileHover={{ y: -10 }} className="bg-white p-10 rounded-3xl shadow-xl border border-[#1a2e25]/10 flex flex-col justify-between">
               <div>
-                <h4 className="font-bold text-[var(--color-waldorf-moss)] text-xl mb-2">Matrícula</h4>
+                <h3 className="font-bold text-[var(--color-waldorf-moss)] text-xl mb-2">Matrícula</h3>
                 <p className="text-sm text-[#1a2e25]/60 mb-8">En 2 cuotas: enero y febrero. No reembolsable.</p>
               </div>
               <div className="text-4xl font-serif font-bold text-[var(--color-waldorf-terracotta)]">$500.000</div>
@@ -161,7 +165,7 @@ export default function AdmisionClient() {
               <div className="absolute -right-10 -top-10 w-32 h-32 bg-[var(--color-waldorf-sage)]/20 rounded-full blur-2xl" />
               <div className="relative z-10">
                 <span className="inline-block bg-[var(--color-waldorf-mustard)] text-[#1a2e25] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">Mensual</span>
-                <h4 className="font-bold text-2xl mb-2">Escolaridad</h4>
+                <h3 className="font-bold text-2xl mb-2">Escolaridad</h3>
                 <p className="text-sm text-white/60 mb-6">Pago hasta el día 5 de cada mes.</p>
               </div>
               <div className="relative z-10 flex flex-col gap-4">
@@ -185,7 +189,7 @@ export default function AdmisionClient() {
             <motion.div whileHover={{ y: -10 }} className="bg-white p-10 rounded-3xl shadow-xl border border-[#1a2e25]/10 flex flex-col justify-between">
                <div>
                  <span className="inline-block bg-[var(--color-waldorf-terracotta)]/10 text-[var(--color-waldorf-terracotta)] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">Aporte Comunitario</span>
-                 <h4 className="font-bold text-[var(--color-waldorf-moss)] text-xl mb-2">Resp. Social</h4>
+                 <h3 className="font-bold text-[var(--color-waldorf-moss)] text-xl mb-2">Resp. Social</h3>
                  <p className="text-sm text-[#1a2e25]/60 mb-8">Aporte voluntario sugerido para sostener becas internas.</p>
                </div>
                <div className="flex items-baseline gap-2">
@@ -210,7 +214,7 @@ export default function AdmisionClient() {
                 <Sprout size={28} className="text-[var(--color-waldorf-mustard)]" />
               </div>
               <div>
-                <h4 className="font-serif font-bold text-2xl text-[var(--color-waldorf-moss)] mb-4">Economía Fraterna y Aranceles Diferenciados</h4>
+                <h3 className="font-serif font-bold text-2xl text-[var(--color-waldorf-moss)] mb-4">Economía Fraterna y Aranceles Diferenciados</h3>
                 <p className="text-[var(--color-waldorf-text-light)] text-lg leading-relaxed mb-4">
                   En coherencia con la visión antroposófica de la <em>Trimembración Social</em> propuesta por Rudolf Steiner, comprendemos que el ámbito económico de nuestra comunidad debe regirse por el <strong>Principio de Fraternidad</strong> (producir y sostener para las necesidades del otro, trascendiendo el mero interés transaccional).
                 </p>
@@ -232,15 +236,15 @@ export default function AdmisionClient() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
              <div className="bg-[#FAF8F5] p-8 rounded-3xl border border-[#1a2e25]/5">
-               <h4 className="font-bold text-[var(--color-waldorf-moss)] text-lg mb-2 flex justify-between items-center">
+               <h3 className="font-bold text-[var(--color-waldorf-moss)] text-lg mb-2 flex justify-between items-center">
                  Cuota de Materiales <span className="font-serif text-2xl text-[var(--color-waldorf-terracotta)]">$160.000</span>
-               </h4>
+               </h3>
                <p className="text-sm text-[#1a2e25]/70">Anual, en 2 cuotas (marzo y junio).</p>
              </div>
              <div className="bg-[#FAF8F5] p-8 rounded-3xl border border-[#1a2e25]/5">
-               <h4 className="font-bold text-[var(--color-waldorf-moss)] text-lg mb-2 flex justify-between items-center">
+               <h3 className="font-bold text-[var(--color-waldorf-moss)] text-lg mb-2 flex justify-between items-center">
                  Cuota Incorporación <span className="font-serif text-2xl text-[var(--color-waldorf-terracotta)]">$330.000</span>
-               </h4>
+               </h3>
                <p className="text-sm text-[#1a2e25]/70">Pago único al ingresar al colegio por primera vez.</p>
              </div>
           </div>

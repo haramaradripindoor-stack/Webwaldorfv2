@@ -19,8 +19,9 @@ export default function EconomiaFraternaPage() {
     <div className="min-h-screen bg-[#FDFBF7] text-[#3E3E3E] font-sans selection:bg-[#7D8F69] selection:text-white flex flex-col">
       <Navbar />
       
-      {/* Hero Section */}
-      <section className="relative w-full pt-32 pb-16 px-6 md:px-12 flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-20 text-left flex-1 max-w-7xl mx-auto z-10">
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="relative w-full pt-32 pb-16 px-6 md:px-12 flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-20 text-left max-w-7xl mx-auto z-10">
         <div className="w-full md:w-1/2 flex flex-col justify-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#2C3E2D] mb-6 tracking-tight">
             Economía Fraterna<br/>y Sostenimiento
@@ -117,6 +118,7 @@ export default function EconomiaFraternaPage() {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

@@ -101,6 +101,8 @@ export default function AdmisionForm() {
                 <img 
                   src="/assets/Coordinadora.png" 
                   alt="Ivonne Parada Aravena" 
+                  width={56}
+                  height={56}
                   className="w-14 h-14 rounded-full object-cover border-2 border-[var(--color-waldorf-mustard)] shadow-md shrink-0 bg-white/10"
                 />
                 <div>

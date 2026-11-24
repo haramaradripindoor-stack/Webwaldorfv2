@@ -39,7 +39,7 @@ export default function FloatingWhatsApp() {
                   />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm">Ivonne Parada</h4>
+                  <p className="font-bold text-sm">Ivonne Parada</p>
                   <p className="text-xs text-white/80">Coordinadora de Admisión</p>
                 </div>
               </div>
@@ -63,7 +63,7 @@ export default function FloatingWhatsApp() {
               <a 
                 href="https://wa.me/56967765106?text=Hola%20Ivonne,%20me%20gustaría%20recibir%20más%20información%20sobre%20el%20Colegio%20Waldorf%20Trekan."
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="block w-full bg-[#25D366] text-white text-center py-2.5 rounded-full font-bold text-sm hover:bg-[#128C7E] transition-colors shadow-md"
               >
                 Abrir Chat en WhatsApp

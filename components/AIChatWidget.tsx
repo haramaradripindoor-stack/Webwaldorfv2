@@ -144,12 +144,14 @@ export default function AIChatWidget() {
                 <img 
                   src="/assets/Coordinadora.png" 
                   alt="Ivonne Parada Aravena" 
+                  width={48}
+                  height={48}
                   className="w-12 h-12 rounded-full object-cover border-2 border-[var(--color-waldorf-mustard)]/60 shadow-md shrink-0 bg-white/10"
                 />
                 <div>
-                  <h4 className="text-[var(--color-waldorf-cream)] font-bold text-base font-serif leading-tight">
+                  <p className="text-[var(--color-waldorf-cream)] font-bold text-base font-serif leading-tight">
                     Ivonne Parada Aravena
-                  </h4>
+                  </p>
                   <p className="text-[var(--color-waldorf-mustard)] text-xs font-semibold tracking-wide">
                     Coordinadora General · Trekan
                   </p>
@@ -314,7 +316,7 @@ export default function AIChatWidget() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -10 }}
-              className="absolute right-[110%] mr-4 bg-white px-4 py-2.5 rounded-2xl shadow-xl border border-[var(--color-waldorf-sage)]/20 whitespace-nowrap text-sm font-bold text-[var(--color-waldorf-moss)]"
+              className="hidden md:block absolute right-[110%] mr-4 bg-white px-4 py-2.5 rounded-2xl shadow-xl border border-[var(--color-waldorf-sage)]/20 whitespace-nowrap text-sm font-bold text-[var(--color-waldorf-moss)] pointer-events-none"
             >
               Admisión 2027 🌱
               <div className="absolute top-1/2 -right-2 -translate-y-1/2 border-[6px] border-transparent border-l-white" />
@@ -328,18 +330,18 @@ export default function AIChatWidget() {
             setShowPulse(false)
           }}
           whileTap={{ scale: 0.9 }}
-          className={`relative h-16 ${isOpen ? 'w-16 rounded-full bg-[var(--color-waldorf-sage)]' : 'px-8 rounded-full bg-[var(--color-waldorf-moss)]'} shadow-xl flex items-center justify-center text-white hover:scale-105 transition-all duration-300 cursor-pointer`}
-          aria-label="Abrir Formulario"
+          className={`relative h-13 w-13 sm:h-16 ${isOpen ? 'sm:w-16 rounded-full bg-[var(--color-waldorf-sage)]' : 'sm:w-auto sm:px-8 rounded-full bg-[var(--color-waldorf-moss)]'} shadow-xl flex items-center justify-center text-white hover:scale-105 transition-all duration-300 cursor-pointer`}
+          aria-label={isOpen ? "Cerrar Formulario" : "Abrir Formulario de Contacto"}
         >
           <AnimatePresence mode="wait">
             {isOpen ? (
               <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }} className="flex items-center justify-center w-full h-full">
-                <X size={28} />
+                <X size={24} className="sm:w-7 sm:h-7" />
               </motion.div>
             ) : (
-              <motion.div key="chat" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }} className="flex items-center gap-3">
-                <MessageCircle size={26} fill="currentColor" />
-                <span className="font-bold text-lg tracking-wide whitespace-nowrap">Hablemos</span>
+              <motion.div key="chat" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }} className="flex items-center gap-2.5">
+                <MessageCircle size={24} className="sm:w-6.5 sm:h-6.5" fill="currentColor" />
+                <span className="hidden sm:inline font-bold text-lg tracking-wide whitespace-nowrap">Hablemos</span>
               </motion.div>
             )}
           </AnimatePresence>

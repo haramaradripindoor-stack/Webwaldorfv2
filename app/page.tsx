@@ -22,18 +22,25 @@ const RadicalTransparency = dynamic(() => import('@/components/RadicalTransparen
 
 import Footer from '@/components/Footer'
 import { getMarkdownPosts } from '@/lib/markdown'
-import { createClient } from '@/utils/supabase/server'
+import { createPublicClient } from '@/utils/supabase/server'
 
 
 export const revalidate = 3600; // Cache de 1 hora para Vercel Edge
 
 export default async function Home() {
-  const supabase = createClient();
+  async function fetchWithTimeout<T>(promise: PromiseLike<T>, timeoutMs = 800): Promise<T> {
+    return Promise.race([
+      Promise.resolve(promise),
+      new Promise<T>((_, reject) => setTimeout(() => reject(new Error('Supabase Timeout')), timeoutMs))
+    ]);
+  }
+
+  const supabase = createPublicClient();
   
   // Fetch Homepage Content CMS
   let homeContent = null;
   try {
-    const { data, error } = await supabase.from('homepage_content').select('*').eq('id', 1).maybeSingle();
+    const { data, error } = await fetchWithTimeout(supabase.from('homepage_content').select('*').eq('id', 1).maybeSingle(), 800);
     if (data && !error) {
       homeContent = data;
     }
@@ -58,11 +65,11 @@ export default async function Home() {
   try {
     // 1. Obtener de Supabase
     let supabaseNews: any[] = [];
-    const { data, error } = await supabase
+    const { data, error } = await fetchWithTimeout(supabase
       .from('noticias')
       .select('*')
       .order('published_at', { ascending: false })
-      .limit(10);
+      .limit(10), 800);
       
     if (data && !error) {
       supabaseNews = data;

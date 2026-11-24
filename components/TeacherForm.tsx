@@ -51,7 +51,7 @@ export default function TeacherForm() {
             <div className="w-12 h-12 rounded-full bg-[#F5F2EC] flex items-center justify-center text-[#4A5D23]">
               <Heart className="w-6 h-6" />
             </div>
-            <h3 className="font-serif text-2xl text-[#2C3329]">Estructura y Paz</h3>
+            <h2 className="font-serif text-2xl text-[#2C3329]">Estructura y Paz</h2>
             <p className="font-sans text-[#5C6656] leading-relaxed">
               Sabemos que para sostener a los niños, el maestro debe estar sostenido. Ofrecemos un entorno de trabajo ordenado, predecible y respetuoso.
             </p>
@@ -61,7 +61,7 @@ export default function TeacherForm() {
             <div className="w-12 h-12 rounded-full bg-[#F5F2EC] flex items-center justify-center text-[#4A5D23]">
               <Leaf className="w-6 h-6" />
             </div>
-            <h3 className="font-serif text-2xl text-[#2C3329]">Belleza y Entorno</h3>
+            <h2 className="font-serif text-2xl text-[#2C3329]">Belleza y Entorno</h2>
             <p className="font-sans text-[#5C6656] leading-relaxed">
               Nuestras aulas están diseñadas con materiales nobles y luz natural. Creemos que la belleza es un pilar fundamental para el desarrollo humano.
             </p>
@@ -71,7 +71,7 @@ export default function TeacherForm() {
             <div className="w-12 h-12 rounded-full bg-[#F5F2EC] flex items-center justify-center text-[#4A5D23]">
               <BookOpen className="w-6 h-6" />
             </div>
-            <h3 className="font-serif text-2xl text-[#2C3329]">Desarrollo Integral</h3>
+            <h2 className="font-serif text-2xl text-[#2C3329]">Desarrollo Integral</h2>
             <p className="font-sans text-[#5C6656] leading-relaxed">
               No somos un proyecto academicista. Buscamos guías que comprendan la profundidad de los septenios y la Antroposofía.
             </p>
@@ -101,18 +101,18 @@ export default function TeacherForm() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="font-sans text-sm font-medium text-[#2C3329]">Nombre Completo</label>
-                  <input name="fullName" required type="text" className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all" placeholder="Ej: María José Silva" />
+                  <label htmlFor="fullName" className="font-sans text-sm font-medium text-[#2C3329]">Nombre Completo</label>
+                  <input id="fullName" name="fullName" required type="text" className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all" placeholder="Ej: María José Silva" />
                 </div>
                 <div className="space-y-2">
-                  <label className="font-sans text-sm font-medium text-[#2C3329]">Correo Electrónico</label>
-                  <input name="email" required type="email" className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all" placeholder="tucorreo@ejemplo.com" />
+                  <label htmlFor="email" className="font-sans text-sm font-medium text-[#2C3329]">Correo Electrónico</label>
+                  <input id="email" name="email" required type="email" className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all" placeholder="tucorreo@ejemplo.com" />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="font-sans text-sm font-medium text-[#2C3329]">Área de Interés / Cargo</label>
-                <select name="area" required className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all appearance-none">
+                <label htmlFor="area" className="font-sans text-sm font-medium text-[#2C3329]">Área de Interés / Cargo</label>
+                <select id="area" name="area" aria-label="Área de Interés o Cargo" required className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all appearance-none">
                   <option value="">Selecciona un área...</option>
                   <option value="maestro_clase">Maestro/a de Clase (Básica)</option>
                   <option value="maestro_jardin">Maestro/a de Jardín de Infancia</option>
@@ -123,9 +123,10 @@ export default function TeacherForm() {
               </div>
 
               <div className="space-y-2">
-                <label className="font-sans text-sm font-medium text-[#2C3329]">Adjunta tu CV (PDF o Word)</label>
+                <label htmlFor="cv" className="font-sans text-sm font-medium text-[#2C3329]">Adjunta tu CV (PDF o Word)</label>
                 <div className="relative">
                   <input 
+                    id="cv"
                     name="cv"
                     type="file" 
                     accept=".pdf,.doc,.docx"
@@ -135,8 +136,8 @@ export default function TeacherForm() {
               </div>
 
               <div className="space-y-2">
-                <label className="font-sans text-sm font-medium text-[#2C3329]">Carta de Motivación Breve</label>
-                <textarea name="motivation" rows={4} className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all resize-none" placeholder="Cuéntanos brevemente sobre tu relación con la pedagogía Waldorf y por qué te gustaría unirte a Trekan..."></textarea>
+                <label htmlFor="motivation" className="font-sans text-sm font-medium text-[#2C3329]">Carta de Motivación Breve</label>
+                <textarea id="motivation" name="motivation" rows={4} className="w-full bg-[#FDFBF7] border border-[#E8E3D9] rounded-xl px-4 py-3 font-sans text-[#2C3329] focus:outline-none focus:ring-2 focus:ring-[#4A5D23]/20 focus:border-[#4A5D23] transition-all resize-none" placeholder="Cuéntanos brevemente sobre tu relación con la pedagogía Waldorf y por qué te gustaría unirte a Trekan..."></textarea>
               </div>
 
               {/* Campo trampa antispam (Honeypot) - invisible para humanos */}

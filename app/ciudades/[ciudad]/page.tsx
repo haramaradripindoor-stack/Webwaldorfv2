@@ -19,7 +19,6 @@ import InstagramSection from '@/components/InstagramSection';
 import RadicalTransparency from '@/components/RadicalTransparency';
 import Footer from '@/components/Footer';
 import { getMarkdownPosts } from '@/lib/markdown';
-import { createClient } from '@/utils/supabase/server';
 import ADMISION_CONFIG from '@/config/admision';
 
 // Generar rutas estáticas para estas ciudades clave
@@ -80,57 +79,18 @@ export const revalidate = 3600; // Cache de 1 hora — contenido estático SEO
 
 
 export default async function RegionalPage({ params }: { params: { ciudad: string } }) {
-  const supabase = createClient();
   const ciudadLimpia = params.ciudad.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   
-  // Fetch Homepage Content CMS
-  let homeContent = null;
-  try {
-    const { data, error } = await supabase.from('homepage_content').select('*').eq('id', 1).maybeSingle();
-    if (data && !error) {
-      homeContent = data;
-    }
-  } catch (e) {
-    console.error('Error fetching home content:', e);
-  }
-
-  // Modificamos el Hero para que inyecte la ciudad y aumente la relevancia local
-  const baseHeroData = (homeContent?.hero_section && homeContent.hero_section.title !== 'La Vida en Trekan')
-    ? homeContent.hero_section
-    : { 
-        title: 'Donde el niño camina con voluntad', 
-        subtitle: 'Un espacio de naturaleza, arte y ciencia donde la infancia camina con reverencia y propósito.', 
-        media_url: '/assets/hero-casona-drone.mp4', 
-        media_type: 'video' 
-      };
   const regionalHeroData = {
-    ...baseHeroData,
     title: `Comunidad Waldorf cerca de ${ciudadLimpia}`,
-    subtitle: `A minutos de tu hogar. ${baseHeroData.subtitle}`
+    subtitle: `A minutos de tu hogar. Un espacio de naturaleza, arte y ciencia donde la infancia camina con reverencia y propósito.`,
+    media_url: '/assets/hero-casona-drone.mp4',
+    media_type: 'video'
   };
 
-  const textRevealData = homeContent?.text_reveal || `Educar no es llenar un cubo, es encender un fuego. Si vienes de ${ciudadLimpia}, en Trekan respetamos el ritmo natural de cada niño, cultivando la cabeza, el corazón y las manos en perfecta armonía en el sur de Chile.`;
-  const masonryData = homeContent?.masonry_gallery || null;
-
-  // Noticias
-  let displayNews = [];
-  try {
-    const { data, error } = await supabase
-      .from('noticias')
-      .select('*')
-      .order('published_at', { ascending: false })
-      .limit(5);
-      
-    if (data && !error && data.length > 0) {
-      displayNews = data;
-    } else {
-      const allNews = getMarkdownPosts('_noticias');
-      displayNews = allNews.slice(0, 5);
-    }
-  } catch (e) {
-    const allNews = getMarkdownPosts('_noticias');
-    displayNews = allNews.slice(0, 5);
-  }
+  const textRevealData = `Educar no es llenar un cubo, es encender un fuego. Si vienes de ${ciudadLimpia}, en Trekan respetamos el ritmo natural de cada niño, cultivando la cabeza, el corazón y las manos en perfecta armonía en el sur de Chile.`;
+  const masonryData = null;
+  const displayNews = getMarkdownPosts('_noticias').slice(0, 5);
 
   // Coordenadas geográficas para anclar el LocalBusiness al mapa zonal
   const geoMap: Record<string, { lat: number, lon: number }> = {

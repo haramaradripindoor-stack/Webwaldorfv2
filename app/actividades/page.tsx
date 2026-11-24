@@ -1,4 +1,4 @@
-import { createClient } from '@/utils/supabase/server'
+import { createPublicClient } from '@/utils/supabase/server'
 import { Calendar } from 'lucide-react'
 import ActividadesClient from '@/components/ActividadesClient'
 import Navbar from '@/components/Navbar'
@@ -7,23 +7,33 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.colegiowaldorftrekan.cl'),
-  title: 'Calendario de Actividades | Colegio Waldorf Trekan Puerto Varas',
+  title: 'Calendario de Actividades | Colegio Waldorf Trekan',
   description: 'Revisa el calendario completo de nuestras próximas asambleas, festividades, y encuentros para padres.',
   alternates: {
     canonical: 'https://www.colegiowaldorftrekan.cl/actividades',
   },
 }
 
-export const revalidate = 0; // Disable cache so it updates when admin saves
+import { getMarkdownPosts } from '@/lib/markdown'
+
+export const revalidate = 60;
 
 export default async function ActividadesPage() {
-  const supabase = createClient();
-  const { data: actividades } = await supabase
-    .from('actividades')
-    .select('*')
-    .order('published_at', { ascending: true });
+  const supabase = createPublicClient();
+  let actividades: any[] | null = null;
+  try {
+    const res = await Promise.race([
+      supabase.from('actividades').select('*').order('published_at', { ascending: true }),
+      new Promise<{ data: any }>((_, reject) => setTimeout(() => reject(new Error('Timeout')), 600))
+    ]);
+    actividades = res.data;
+  } catch (e) {
+    // fallback
+  }
 
-  const allActividades = actividades || [];
+  const allActividades = (actividades && actividades.length > 0)
+    ? actividades 
+    : getMarkdownPosts('_actividades').sort((a, b) => new Date(a.published_at).getTime() - new Date(b.published_at).getTime());
 
   return (
     <main className="min-h-screen bg-[var(--color-waldorf-cream)] pt-32 pb-24 relative">

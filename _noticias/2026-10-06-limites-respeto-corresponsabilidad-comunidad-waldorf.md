@@ -2,7 +2,7 @@
 title: "El arte de ser comunidad: La madurez adulta y el cuidado del organismo escolar"
 excerpt: "Una escuela Waldorf no es una empresa de servicios, sino un organismo vivo. Construir comunidad exige corresponsabilidad, comunicación sana y la voluntad de educar a través de nuestro propio ejemplo como adultos."
 published_at: "2026-10-06"
-image_url: "/imagenes-web/galeria5.webp"
+image_url: "/assets/galeria/galeria_01_casona_parque.webp"
 ---
 
 # El arte de ser comunidad: La madurez adulta y el cuidado del organismo escolar

@@ -1,4 +1,4 @@
-import { createClient } from '@/utils/supabase/server'
+import { createPublicClient } from '@/utils/supabase/server'
 import { getMarkdownPosts } from '@/lib/markdown'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 export const revalidate = 60; // ISR para permitir lectura de Markdown en Vercel (1 min)
 
 export default async function NoticiasPage() {
-  const supabase = createClient();
+  const supabase = createPublicClient();
   let allNews: any[] = [];
   
   try {

@@ -1,19 +1,19 @@
 import { getMarkdownPosts, MarkdownPost } from '@/lib/markdown'
 import { Calendar, Clock, MapPin } from 'lucide-react'
-import { createClient } from '@/utils/supabase/server'
+import { createPublicClient } from '@/utils/supabase/server'
 import ActividadRow from './ActividadRow'
 
-export const revalidate = 0; // Para que actualice siempre que haya cambios en BD
+export const revalidate = 3600;
 
 export default async function ActividadesSection() {
-  const supabase = createClient();
+  const supabase = createPublicClient();
   let allActividades: MarkdownPost[] = [];
   
   try {
-    const { data, error } = await supabase
-      .from('actividades')
-      .select('*')
-      .order('published_at', { ascending: true });
+    const { data, error } = await Promise.race([
+      supabase.from('actividades').select('*').order('published_at', { ascending: true }),
+      new Promise<{ data: any, error: any }>((_, reject) => setTimeout(() => reject(new Error('Timeout')), 600))
+    ]);
       
     if (data && !error && data.length > 0) {
       allActividades = data;

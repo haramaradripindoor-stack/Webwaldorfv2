@@ -208,9 +208,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="preload"
-          href="/fonts/antroposofia.ttf"
+          href="/fonts/antroposofia.woff2"
           as="font"
-          type="font/ttf"
+          type="font/woff2"
           crossOrigin="anonymous"
         />
         {/* Schema JSON-LD */}
@@ -245,6 +245,13 @@ export default function RootLayout({
             fbq('track', 'PageView');
           `}
         </Script>
+        <a 
+          href="#main-content" 
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[99999] focus:px-5 focus:py-2.5 focus:bg-[#1a2e25] focus:text-[#FAF8F5] focus:font-bold focus:rounded-full focus:shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#EBBA7A]"
+        >
+          Saltar al contenido principal
+        </a>
+
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe 
@@ -256,7 +263,7 @@ export default function RootLayout({
         </noscript>
         {/* Meta Pixel (noscript) */}
         <noscript>
-          <img height="1" width="1" style={{display: 'none'}}
+          <img height="1" width="1" style={{display: 'none'}} alt=""
                src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID}&ev=PageView&noscript=1`}
           />
         </noscript>
@@ -279,7 +286,9 @@ export default function RootLayout({
         </Script>
 
         <AwwwardsEffects>
-          {children}
+          <div id="main-content">
+            {children}
+          </div>
         </AwwwardsEffects>
         
 

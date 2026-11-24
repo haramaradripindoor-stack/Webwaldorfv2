@@ -1,0 +1,276 @@
+{
+  "url": "http://127.0.0.1:4400/__shoot-missing-page-1795523898317",
+  "errors": [],
+  "failed": [
+    "[desktop] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[desktop] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[keyboard] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[hover] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[mobile] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED",
+    "[reduced] http://127.0.0.1:4400/audio/calm_nature_glow.mp3 net::ERR_ABORTED"
+  ],
+  "desktop": {
+    "loadMs": 116,
+    "loaderMs": null,
+    "settledMs": 2280,
+    "vitals": {
+      "lcpMs": 92,
+      "lcpElement": null,
+      "cls": 0
+    },
+    "height": 1707,
+    "overflowX": false,
+    "offenders": [],
+    "h1": [
+      "Un sendero que se ha transformado"
+    ],
+    "smallTargets": [
+      "Inicio 32x20",
+      "Arriendo de Salón 113x20",
+      "Economía Fraterna 117x20",
+      "Contacto 56x20",
+      "Diario y Noticias 87x16",
+      "Recursos Waldorf 97x16",
+      "Contacto Directo 90x16",
+      "Quiénes Somos 98x20"
+    ],
+    "glHidden": [],
+    "title": "Página no encontrada | Colegio Waldorf Trekan Puerto Varas | Trekan",
+    "glOn": false,
+    "scrollFps": {
+      "fps": 60,
+      "worstFrameMs": 17
+    },
+    "nav": {
+      "href": "/",
+      "scrollYAfter": 0,
+      "title": "Colegio Waldorf Trekan | Puerto Varas, Los Lagos"
+    },
+    "idleMotion": true,
+    "idleAt": "top"
+  },
+  "mobile": {
+    "throttled": true,
+    "loadMs": 2924,
+    "loaderMs": null,
+    "settledMs": 4899,
+    "vitals": {
+      "lcpMs": 3664,
+      "lcpElement": "h1.text-5xl",
+      "cls": 0.008
+    },
+    "height": 2608,
+    "overflowX": false,
+    "offenders": [],
+    "h1": [
+      "Un sendero que se ha transformado"
+    ],
+    "smallTargets": [
+      "Diario y Noticias 87x16",
+      "Recursos Waldorf 97x16",
+      "Contacto Directo 90x16",
+      "Quiénes Somos 98x20",
+      "Pedagogía Waldorf 122x20",
+      "Admisión 2027 97x20",
+      "Noticias & Crónicas 121x20",
+      "Arriendo de Salón 113x20"
+    ],
+    "glHidden": [],
+    "title": "Página no encontrada | Colegio Waldorf Trekan Puerto Varas | Trekan",
+    "glOn": false,
+    "scrollFps": {
+      "fps": 59,
+      "worstFrameMs": 83
+    }
+  },
+  "files": [
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/d-00-firstpaint.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/d-01-hero.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/d-02-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/d-03-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/d-04-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/d-05-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/d-06-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/d-07-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/d-90-transition-a.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/d-90-transition-b.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/d-90-transition-c.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/d-91-after-nav.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/d-92-back.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/k-01-focus.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/k-02-focus.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/k-03-focus.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/k-04-focus.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/h-01-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/h-01-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/h-02-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/h-02-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/h-03-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/h-03-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/h-04-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/h-04-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/h-05-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/h-05-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/h-06-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/h-06-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/h-07-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/h-07-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/h-08-rest.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/h-08-hover.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/m-01-hero.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/m-02-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/m-03-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/m-04-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/m-05-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/m-06-scroll.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/r-01-hero.png",
+    "/Users/felipeandresvivancocornejo/Documents/GitHub/Webwaldorfv2/.jury/127.0.0.1-4400/shots/404/r-02-mid.png"
+  ],
+  "notes": [
+    "desktop FPS runs headless on a software GPU: treat it as a floor, not a measurement of real hardware",
+    "mobile runs at 4x CPU slowdown on slow 4G: mobile.vitals and mobile.scrollFps are the numbers that count",
+    "loadMs: ms from navigation to the load event, null if it had not fired after 30 s (desktop) or 60 s (phone); a heavy page takes long, while visitors see content at vitals.lcpMs. loaderMs: ms until the #loader ended, null when the page has none",
+    "settledMs: ms from navigation by which the first screen stopped changing, never before the fixed wait. null: still changing at the cap, either a long intro or continuous motion (a live shader, video); d-01-hero / m-01-hero tell which. reduced.moving: the screen was still changing 1.5 s after load with reduced motion on"
+  ],
+  "keyboard": {
+    "stops": [
+      "a \"COLEGIO WALDORF Trekan Educamos para la \"",
+      "a \"Inicio\"",
+      "button \"Nosotros\"",
+      "button \"Admisión 2027\"",
+      "a \"Arriendo de Salón\"",
+      "a \"Economía Fraterna\"",
+      "a \"Contacto\"",
+      "button \"SONIDO\"",
+      "button \"ES\"",
+      "a \"VOLVER AL INICIO\"",
+      "a \"ADMISIÓN 2027\"",
+      "a \"Diario y Noticias\""
+    ],
+    "skipLinkFirst": false,
+    "noVisibleFocus": [],
+    "invisibleFocus": [],
+    "stuck": false
+  },
+  "hover": {
+    "targets": [
+      {
+        "shot": "h-01",
+        "label": "button \"Nosotros\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "color",
+          "borderColor",
+          "textDecorationColor",
+          "rotate"
+        ]
+      },
+      {
+        "shot": "h-02",
+        "label": "button \"Sonido @keyframes soundWave { 0%, 100% {\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "backgroundColor",
+          "opacity"
+        ]
+      },
+      {
+        "shot": "h-03",
+        "label": "button \"ES\"",
+        "interactive": true,
+        "primary": true,
+        "react": "color",
+        "changed": [
+          "backgroundColor"
+        ]
+      },
+      {
+        "shot": "h-04",
+        "label": "button \"Hablemos\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "scale"
+        ]
+      },
+      {
+        "shot": "h-05",
+        "label": "a \"Colegio Waldorf Trekan Educamos para la \"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "scale"
+        ]
+      },
+      {
+        "shot": "h-06",
+        "label": "a \"Inicio\"",
+        "interactive": true,
+        "primary": true,
+        "react": "color",
+        "changed": [
+          "color",
+          "borderColor",
+          "textDecorationColor"
+        ]
+      },
+      {
+        "shot": "h-07",
+        "label": "a \"Volver al Inicio\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "backgroundColor",
+          "scale"
+        ]
+      },
+      {
+        "shot": "h-08",
+        "label": "a \"Admisión 2027\"",
+        "interactive": true,
+        "primary": true,
+        "react": "moves",
+        "changed": [
+          "backgroundColor",
+          "scale"
+        ]
+      }
+    ],
+    "noHoverChange": [],
+    "colorOnly": [
+      "h-03 button \"ES\"",
+      "h-06 a \"Inicio\""
+    ],
+    "covered": [],
+    "cursorFollower": false
+  },
+  "reduced": {
+    "hiddenText": 9,
+    "moving": false
+  },
+  "a11y": {
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "count": 12,
+        "nodes": [
+          ".text-\\[var\\(--color-waldorf-sage\\)\\].tracking-wider.font-semibold (#6b8e7b on #faf8f5, 3.42:1, needs 4.5:1)",
+          ".text-\\[9px\\] (#e07a5f on #faf8f5, 2.78:1, needs 4.5:1)",
+          ".bg-\\[\\#2C3E35\\]\\/5 (#d35d3e on #f0f0ec, 3.4:1, needs 4.5:1)",
+          ".bg-\\[\\#D35D3E\\] (#ffffff on #d35d3e, 3.88:1, needs 4.5:1)"
+        ]
+      }
+    ],
+    "serious": 1,
+    "contrastNeedsReview": 6
+  }
+}

@@ -4,7 +4,7 @@ date: '2026-09-07'
 excerpt: 'A menudo la educación alternativa se confunde con la falta de estructura. Exploramos la visión desde Harvard y Das Goetheanum sobre por qué la verdadera libertad espiritual requiere de un organismo social maduro y ordenado.'
 author: 'Colegio Waldorf Trekan'
 category: 'Filosofía Waldorf'
-imageUrl: '/blog/antroposofia-libertad.jpg'
+imageUrl: '/assets/galeria/galeria_05_pizarra_epoca_panoramica.webp'
 ---
 
 Existe un malentendido frecuente en torno a las pedagogías alternativas: la creencia de que educar en libertad significa la ausencia total de estructura, límites o liderazgo. En muchos proyectos, esta confusión deriva en un desgaste institucional profundo, donde las asambleas interminables y la falta de dirección terminan por agotar tanto a los maestros como a las familias.

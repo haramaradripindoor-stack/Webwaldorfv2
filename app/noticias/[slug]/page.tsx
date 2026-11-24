@@ -10,37 +10,55 @@ import MDXGallery from '@/components/MDXGallery'
 
 import remarkGfm from 'remark-gfm'
 import { Metadata } from 'next'
-import { createClient } from '@/utils/supabase/server';
+import { createPublicClient } from '@/utils/supabase/server';
 
-export const revalidate = 0;
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const posts = getMarkdownPosts('_noticias')
+  return posts.map((post) => ({
+    slug: post.slug,
+  }))
+}
+
+async function getPostBySlug(slug: string) {
+  const decodedSlug = decodeURIComponent(slug)
+  const cleanSlug = decodedSlug.replace(/^\d{4}-\d{2}-\d{2}-/, '')
+
+  // 1. Check local Markdown first (instant zero-latency)
+  const posts = getMarkdownPosts('_noticias')
+  const localPost = posts.find((p) => 
+    p.slug === slug || 
+    p.slug === decodedSlug ||
+    decodeURIComponent(p.slug) === decodedSlug ||
+    p.slug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") === decodedSlug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") ||
+    p.slug.replace(/^\d{4}-\d{2}-\d{2}-/, '') === cleanSlug
+  )
+  if (localPost) return localPost
+
+  // 2. Query Supabase with strict timeout race
+  try {
+    const supabase = createPublicClient()
+    const { data } = await Promise.race([
+      supabase.from('noticias').select('*').eq('slug', decodedSlug).maybeSingle(),
+      new Promise<{ data: any }>((_, reject) => setTimeout(() => reject(new Error('Timeout')), 800))
+    ])
+    if (data) return data
+
+    const { data: altList } = await Promise.race([
+      supabase.from('noticias').select('*').ilike('slug', `%${cleanSlug}`).limit(1),
+      new Promise<{ data: any }>((_, reject) => setTimeout(() => reject(new Error('Timeout')), 800))
+    ])
+    if (altList && altList.length > 0) return altList[0]
+  } catch (e) {
+    // Supabase unavailable or timed out
+  }
+
+  return null
+}
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const { slug } = params
-  const decodedSlug = decodeURIComponent(slug)
-  const supabase = createClient()
-  let post = null
-
-  const { data } = await supabase.from('noticias').select('*').eq('slug', decodedSlug).single()
-
-  if (data) {
-    post = data
-  } else {
-    // Buscar en Supabase ignorando prefijo de fecha YYYY-MM-DD-
-    const cleanSlug = decodedSlug.replace(/^\d{4}-\d{2}-\d{2}-/, '')
-    const { data: altList } = await supabase.from('noticias').select('*').ilike('slug', `%${cleanSlug}`)
-    if (altList && altList.length > 0) {
-      post = altList[0]
-    } else {
-      const posts = getMarkdownPosts('_noticias')
-      post = posts.find((p) => 
-        p.slug === slug || 
-        p.slug === decodedSlug ||
-        decodeURIComponent(p.slug) === decodedSlug ||
-        p.slug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") === decodedSlug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") ||
-        p.slug.replace(/^\d{4}-\d{2}-\d{2}-/, '') === cleanSlug
-      )
-    }
-  }
+  const post = await getPostBySlug(params.slug)
 
   if (!post) return { title: 'Noticia no encontrada | Colegio Waldorf Trekan' }
 
@@ -94,32 +112,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default async function NoticiaPage({ params }: { params: { slug: string } }) {
-  const { slug } = params
-  const decodedSlug = decodeURIComponent(slug)
-  const supabase = createClient()
-  let post = null
-
-  const { data } = await supabase.from('noticias').select('*').eq('slug', decodedSlug).single()
-
-  if (data) {
-    post = data
-  } else {
-    // Buscar en Supabase ignorando prefijo de fecha YYYY-MM-DD-
-    const cleanSlug = decodedSlug.replace(/^\d{4}-\d{2}-\d{2}-/, '')
-    const { data: altList } = await supabase.from('noticias').select('*').ilike('slug', `%${cleanSlug}`)
-    if (altList && altList.length > 0) {
-      post = altList[0]
-    } else {
-      const posts = getMarkdownPosts('_noticias')
-      post = posts.find((p) => 
-        p.slug === slug || 
-        p.slug === decodedSlug || 
-        decodeURIComponent(p.slug) === decodedSlug || 
-        p.slug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") === decodedSlug.normalize("NFD").replace(/[\u0300-\u036f]/g, "") ||
-        p.slug.replace(/^\d{4}-\d{2}-\d{2}-/, '') === cleanSlug
-      )
-    }
-  }
+  const post = await getPostBySlug(params.slug)
 
   if (!post) {
     return (
@@ -276,7 +269,7 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
                 <ReactMarkdown 
                   remarkPlugins={[remarkGfm]}
                   components={{
-                    h1: ({node, ...props}) => <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#2C3E35] mt-16 mb-8 leading-tight tracking-tight" {...props} />,
+                    h1: ({node, ...props}) => <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#2C3E35] mt-16 mb-8 leading-tight tracking-tight" {...props} />,
                     h2: ({node, ...props}) => <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-[#2C3E35] mt-16 mb-8 leading-tight tracking-tight" {...props} />,
                     h3: ({node, ...props}) => <h3 className="text-2xl md:text-3xl font-serif text-[#2C3E35] mt-12 mb-6 leading-snug" {...props} />,
                     p: ({node, ...props}) => <p className="text-lg md:text-2xl text-gray-700 leading-[1.8] mb-8 font-light" {...props} />,

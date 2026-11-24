@@ -228,9 +228,9 @@ export default function NoticiasFilterGrid({ initialPosts }: { initialPosts: New
                       })}
                     </time>
 
-                    <h3 className="text-2xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-3 leading-snug group-hover:text-[var(--color-waldorf-terracotta)] transition-colors">
+                    <h2 className="text-2xl font-bold font-serif text-[var(--color-waldorf-moss)] mb-3 leading-snug group-hover:text-[var(--color-waldorf-terracotta)] transition-colors">
                       {post.title}
-                    </h3>
+                    </h2>
 
                     <p className="text-[var(--color-waldorf-text-light)] text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
                       {post.excerpt}

@@ -282,27 +282,27 @@ export default function FAQSection() {
                 aria-expanded={isOpen}
                 aria-controls={`faq-content-${faq.id}`}
                 id={`faq-button-${faq.id}`}
-                className="w-full flex items-start gap-4 md:gap-6 py-7 px-2 md:px-4 text-left group transition-all duration-300"
+                className="w-full flex items-start gap-4 md:gap-6 py-6 px-3 md:px-5 text-left group hover:bg-[#FAF8F5] rounded-2xl transition-all duration-300 cursor-pointer"
               >
                 {/* Número correlativo en monospace */}
                 <span className={`text-[11px] font-mono tracking-widest mt-1.5 transition-colors duration-300 shrink-0 ${
-                  isOpen ? 'text-[var(--color-waldorf-terracotta)] font-bold' : 'text-[#1a2e25]/35 group-hover:text-[var(--color-waldorf-moss)]'
+                  isOpen ? 'text-[var(--color-waldorf-terracotta)] font-bold' : 'text-[#1a2e25]/50 group-hover:text-[var(--color-waldorf-terracotta)]'
                 }`}>
                   {num}
                 </span>
 
                 {/* Pregunta en Serif */}
-                <span className={`flex-1 font-serif text-lg md:text-2xl transition-colors duration-300 leading-snug font-medium ${
-                  isOpen ? 'text-[var(--color-waldorf-terracotta)]' : 'text-[#1a2e25] group-hover:text-[var(--color-waldorf-moss)]'
+                <span className={`flex-1 font-serif text-lg md:text-2xl transition-all duration-300 leading-snug font-medium group-hover:translate-x-1 ${
+                  isOpen ? 'text-[var(--color-waldorf-terracotta)]' : 'text-[#1a2e25] group-hover:text-[var(--color-waldorf-terracotta)]'
                 }`}>
                   {faq.q}
                 </span>
 
                 {/* Indicador táctil plus/minus */}
-                <div className={`relative w-6 h-6 mt-1 shrink-0 rounded-full flex items-center justify-center border transition-all duration-500 ${
+                <div className={`relative w-7 h-7 mt-0.5 shrink-0 rounded-full flex items-center justify-center border transition-all duration-300 group-hover:scale-110 group-hover:bg-white shadow-xs ${
                   isOpen 
                     ? 'border-[var(--color-waldorf-terracotta)] bg-[var(--color-waldorf-terracotta)]/10 text-[var(--color-waldorf-terracotta)] rotate-180' 
-                    : 'border-[#1a2e25]/20 text-[#1a2e25]/60 group-hover:border-[#1a2e25]/40'
+                    : 'border-[#1a2e25]/20 text-[#1a2e25]/60 group-hover:border-[var(--color-waldorf-terracotta)]'
                 }`}>
                   <div className={`absolute w-3 h-[1.5px] transition-colors duration-300 ${isOpen ? 'bg-[var(--color-waldorf-terracotta)]' : 'bg-[#1a2e25]'}`} />
                   <div className={`absolute h-3 w-[1.5px] transition-all duration-300 ${isOpen ? 'opacity-0 rotate-90 bg-[var(--color-waldorf-terracotta)]' : 'opacity-100 bg-[#1a2e25]'}`} />

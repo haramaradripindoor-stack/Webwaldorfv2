@@ -206,19 +206,19 @@ export default function CotizadorSalon() {
                           <X size={20} />
                         </button>
                       )}
-                      <h4 className="font-bold text-[var(--color-waldorf-moss)] mb-4">Día {idx + 1}</h4>
+                      <h3 className="font-bold text-[var(--color-waldorf-moss)] mb-4">Día {idx + 1}</h3>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                         <div>
-                          <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Fecha</label>
-                          <input type="date" min={todayStr} required value={dia.fecha} onChange={e => updateDay(dia.id, 'fecha', e.target.value)} className="w-full bg-transparent border-b-2 border-gray-300 focus:border-[var(--color-waldorf-moss)] outline-none py-2 transition-colors" />
+                          <label htmlFor={`fecha-${dia.id}`} className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Fecha</label>
+                          <input id={`fecha-${dia.id}`} aria-label={`Fecha del día ${idx + 1}`} type="date" min={todayStr} required value={dia.fecha} onChange={e => updateDay(dia.id, 'fecha', e.target.value)} className="w-full bg-transparent border-b-2 border-gray-300 focus:border-[var(--color-waldorf-moss)] outline-none py-2 transition-colors" />
                         </div>
                         <div>
-                          <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Inicio</label>
-                          <input type="time" required value={dia.inicio} onChange={e => updateDay(dia.id, 'inicio', e.target.value)} className="w-full bg-transparent border-b-2 border-gray-300 focus:border-[var(--color-waldorf-moss)] outline-none py-2 transition-colors" />
+                          <label htmlFor={`inicio-${dia.id}`} className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Inicio</label>
+                          <input id={`inicio-${dia.id}`} aria-label={`Hora de inicio del día ${idx + 1}`} type="time" required value={dia.inicio} onChange={e => updateDay(dia.id, 'inicio', e.target.value)} className="w-full bg-transparent border-b-2 border-gray-300 focus:border-[var(--color-waldorf-moss)] outline-none py-2 transition-colors" />
                         </div>
                         <div>
-                          <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Fin</label>
-                          <input type="time" required value={dia.fin} onChange={e => updateDay(dia.id, 'fin', e.target.value)} className="w-full bg-transparent border-b-2 border-gray-300 focus:border-[var(--color-waldorf-moss)] outline-none py-2 transition-colors" />
+                          <label htmlFor={`fin-${dia.id}`} className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Fin</label>
+                          <input id={`fin-${dia.id}`} aria-label={`Hora de fin del día ${idx + 1}`} type="time" required value={dia.fin} onChange={e => updateDay(dia.id, 'fin', e.target.value)} className="w-full bg-transparent border-b-2 border-gray-300 focus:border-[var(--color-waldorf-moss)] outline-none py-2 transition-colors" />
                         </div>
                       </div>
                     </div>
