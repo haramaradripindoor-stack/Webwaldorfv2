@@ -54,7 +54,7 @@ export default async function Home() {
     : { 
         title: 'Donde el niño camina con voluntad', 
         subtitle: 'Colegio Waldorf Trekan • Puerto Varas. Un espacio de naturaleza, arte y ciencia donde la infancia camina con reverencia y propósito.', 
-        media_url: '/assets/hero-casona-drone.mp4', 
+        media_url: '/assets/hero_casona_cinematic.mp4', 
         media_type: 'video' 
       };
   const textRevealData = homeContent?.text_reveal || "Educar no es llenar un cubo, es encender un fuego. En Trekan, respetamos el ritmo natural de cada niño, cultivando la cabeza, el corazón y las manos en perfecta armonía.";
