@@ -18,7 +18,7 @@ export default function Hero({ data }: { data?: any }) {
   // Datos dinámicos con fallback
   const title = (data?.title && data.title !== 'La Vida en Trekan') ? data.title : "Donde el niño camina con voluntad"
   const subtitle = (data?.subtitle && data.subtitle !== 'Educación con sentido') ? data.subtitle : "Colegio Waldorf Trekan • Puerto Varas. Un espacio de naturaleza, arte y ciencia donde la infancia camina con reverencia y propósito."
-  const mediaUrl = (data?.media_url && data.media_url !== '/assets/testimonial.mp4') ? data.media_url : "/assets/hero-casona-drone.mp4"
+  const mediaUrl = (data?.media_url && data.media_url !== '/assets/testimonial.mp4' && data.media_url !== '/assets/hero-casona-drone.mp4') ? data.media_url : "/assets/hero_casona_cinematic.mp4"
   const mediaType = data?.media_type || "video"
 
   useEffect(() => {
@@ -83,7 +83,7 @@ export default function Hero({ data }: { data?: any }) {
                 isMobile ? 'opacity-0 md:opacity-90' : 'opacity-90'
               }`}
             >
-              <source src="/assets/hero-casona-drone.webm" type="video/webm" />
+              <source src="/assets/hero_casona_cinematic.webm" type="video/webm" />
               <source src={mediaUrl} type="video/mp4" />
             </video>
           </>

@@ -146,7 +146,7 @@ export default function TeamSection() {
           {/* Foto Oficial del Claustro Colectivo */}
           <div className="lg:col-span-7 relative min-h-[380px] sm:min-h-[460px] lg:min-h-[520px]">
             <Image
-              src="/imagenes-web/dia_profesor_editorial_real_trekan_oficial.jpg"
+              src="/imagenes-web/equipoescolar.jpg"
               alt="Claustro de profesores y comunidad educativa Colegio Waldorf Trekan"
               fill
               priority={false}
@@ -163,12 +163,13 @@ export default function TeamSection() {
           <div className="lg:col-span-5 p-8 md:p-12 flex flex-col justify-between bg-[#F4F0E8] border-t lg:border-t-0 lg:border-l border-[#2D5A43]/10">
             <div>
               <div className="flex items-center gap-4 mb-6">
-                <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-[#946820] shadow-md shrink-0 bg-[#E8E1D5]">
+                <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-[#1A3526] border border-[#946820]/40 shadow-md shrink-0 flex items-center justify-center p-2.5">
                   <Image
-                    src="/assets/Coordinadora.webp"
-                    alt="Ivonne Parada — Fundadora y Convivencia Escolar Trekan"
-                    fill
-                    className="object-cover"
+                    src="/brand/trekan_isotipo_puro_crema.svg"
+                    alt="Colegio Waldorf Trekan Monograma Institucional"
+                    width={36}
+                    height={36}
+                    className="object-contain"
                   />
                 </div>
                 <div>

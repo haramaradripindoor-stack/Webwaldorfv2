@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 
-// Sub-componente para el efecto Spotlight y Magnetic 3D Tilt (Marina Budarina Standard)
 function BentoCard({ card, index }: { card: any, index: number }) {
   const divRef = useRef<HTMLDivElement>(null)
   const [position, setPosition] = useState({ x: 0, y: 0 })
@@ -18,11 +17,10 @@ function BentoCard({ card, index }: { card: any, index: number }) {
     const y = e.clientY - rect.top
     setPosition({ x, y })
 
-    // Física táctil de madera patagónica (fricción y peso orgánico)
     const centerX = rect.width / 2
     const centerY = rect.height / 2
-    const rotateX = ((y - centerY) / centerY) * -5
-    const rotateY = ((x - centerX) / centerX) * 5
+    const rotateX = ((y - centerY) / centerY) * -4
+    const rotateY = ((x - centerX) / centerX) * 4
     setTilt({ rotateX, rotateY })
   }
 
@@ -32,7 +30,6 @@ function BentoCard({ card, index }: { card: any, index: number }) {
     setTilt({ rotateX: 0, rotateY: 0 })
   }
 
-  // Variaciones sutiles y orgánicas de los bordes para romper la geometría perfecta
   const borderRadiuses = [
     '2rem 3.5rem 1.5rem 2.5rem',
     '3.5rem 2rem 2.5rem 1.5rem',
@@ -50,16 +47,15 @@ function BentoCard({ card, index }: { card: any, index: number }) {
       initial={{ y: 50, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative overflow-hidden p-8 sm:p-10 min-h-[380px] md:min-h-0 ${card.bg} flex flex-col justify-end group ${card.size} will-change-transform`}
+      transition={{ duration: 0.8, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+      className={`relative overflow-hidden p-8 sm:p-10 min-h-[380px] md:min-h-0 bg-[#0D1F17] flex flex-col justify-end group ${card.size} will-change-transform shadow-xl`}
       style={{
         borderRadius: organicRadius,
         transform: `perspective(1000px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
         transition: opacity ? 'transform 0.12s ease-out' : 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-        boxShadow: opacity ? '0 20px 50px rgba(11,23,16,0.2)' : '0 4px 20px rgba(0,0,0,0.03)'
       }}
     >
-      {/* Efecto Spotlight que sigue el mouse */}
+      {/* Spotlight Effect */}
       <div
         className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 z-30 mix-blend-overlay"
         style={{
@@ -70,26 +66,26 @@ function BentoCard({ card, index }: { card: any, index: number }) {
 
       {card.image && (
         <>
-          <div className="absolute inset-0 bg-black/30 z-10 group-hover:bg-black/50 transition-colors duration-700" />
           <Image 
             src={card.image}
             alt={card.title}
             fill
-            className="object-cover transition-transform duration-1000 group-hover:scale-105"
+            className={`object-cover ${card.objectPosition || 'object-center'} transition-transform duration-1000 group-hover:scale-105`}
             sizes="(max-width: 768px) 100vw, 50vw"
           />
+          {/* Gradiente de alto contraste permanente para garantizar lectura perfecta */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0B1710]/95 via-[#0B1710]/55 to-black/20 z-10" />
         </>
       )}
       
-      <div className={`relative z-20 ${card.lightText ? 'text-white' : 'text-[#1a2e25]'} transform transition-transform duration-700 md:translate-y-4 group-hover:translate-y-0`}>
-        <span className="text-sm italic font-serif mb-2 block opacity-80">
+      <div className="relative z-20 text-white transform transition-transform duration-500 md:translate-y-2 group-hover:translate-y-0">
+        <span className="text-xs sm:text-sm font-semibold tracking-widest uppercase mb-2 block text-[#EBBA7A] drop-shadow-sm font-mono">
           {card.subtitle}
         </span>
-        <h3 className="text-3xl md:text-4xl font-serif font-bold mb-3 leading-tight drop-shadow-sm">
+        <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-3 leading-tight text-white drop-shadow-md">
           {card.title}
         </h3>
-        {/* Siempre visible en mobile, aparece en hover solo en desktop */}
-        <p className="text-base md:text-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-700 delay-100 font-medium max-w-sm drop-shadow-sm">
+        <p className="text-sm sm:text-base text-[#FAF8F5]/90 font-light leading-relaxed max-w-md drop-shadow-sm">
           {card.desc}
         </p>
       </div>
@@ -104,48 +100,44 @@ export default function BentoGrid() {
       subtitle: 'El Arte de Hacer',
       desc: 'Matemáticas, lenguaje e historia se viven con las manos, el corazón y la mente. No memorizamos, experimentamos.',
       size: 'md:col-span-2 md:row-span-2',
-      bg: 'bg-[#1a2e25]',
-      image: '/imagenes-web/pentatlon-waldorf-disciplinas-noble-esfuerzo.webp',
-      lightText: true,
+      image: '/imagenes-web/puedes-bailar-teatro-del-lago-expresion-movimiento.webp',
+      objectPosition: 'object-top',
     },
     {
       title: 'La Luz del Cobijo',
-      subtitle: 'Salas & Madera',
+      subtitle: 'Salas & Madera Noble',
       desc: 'Espacios de madera nativa y ventanales hacia el bosque, donde el tiempo se detiene para cuidar la infancia.',
       size: 'md:col-span-1 md:row-span-1',
-      bg: 'bg-[var(--color-waldorf-mustard)]',
-      image: '/assets/bento/bento_ruka_madera.webp',
-      lightText: true,
+      image: '/assets/pilares/aula_madera_ventanales.webp',
+      objectPosition: 'object-center',
     },
     {
       title: 'Conexión Natural',
-      subtitle: 'Nuestra Aula',
+      subtitle: 'Nuestra Aula Viva',
       desc: 'Parque Ivian, bosque templado lluvioso y praderas abiertas donde la voluntad camina libre.',
       size: 'md:col-span-1 md:row-span-2',
-      bg: 'bg-transparent',
-      image: '/imagenes-web/paseocerro20267.jpg',
-      lightText: true,
+      image: '/imagenes-web/fiestas-2026/_MG_5515.webp',
+      objectPosition: 'object-center',
     },
     {
       title: 'Bloques Temáticos',
       subtitle: 'Inmersión y Épocas',
       desc: 'Semanas continuas dedicadas a una sola materia en pizarras de época para profundizar y amar el saber.',
       size: 'md:col-span-2 md:row-span-1',
-      bg: 'bg-[var(--color-waldorf-terracotta)]',
       image: '/assets/bento/bento_pizarra_inmersion.webp',
-      lightText: true,
+      objectPosition: 'object-center',
     },
   ]
 
   return (
-    <section id="pedagogia" className="py-32 px-6 md:px-12 bg-[#FAF8F5]">
+    <section id="pedagogia" className="py-28 px-6 md:px-12 bg-[#FAF8F5]">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-24 md:w-2/3">
-          <span className="text-[var(--color-waldorf-terracotta)] text-sm font-bold tracking-[0.2em] uppercase block mb-6 border-l-2 border-[var(--color-waldorf-terracotta)] pl-4">
+        <div className="mb-20 md:w-2/3">
+          <span className="text-[#A84126] text-xs font-bold tracking-[0.25em] uppercase block mb-4 border-l-2 border-[#A84126] pl-3.5">
             Filosofía Trekan
           </span>
-          <h2 className="text-4xl md:text-7xl font-light font-serif text-[#1a2e25] leading-tight">
-            Un ecosistema diseñado para <span className="font-bold italic">florecer</span>.
+          <h2 className="text-4xl md:text-6xl font-light font-serif text-[#1A3526] leading-tight">
+            Un ecosistema diseñado para <span className="font-bold italic text-[#946820]">florecer</span>.
           </h2>
         </div>
 

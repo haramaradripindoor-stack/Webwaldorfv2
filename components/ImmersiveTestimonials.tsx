@@ -16,16 +16,16 @@ export default function ImmersiveTestimonials() {
 
   const testimonialsRow1 = [
     { text: "Nuestra hija recuperó el asombro por aprender.", author: "Familia de 2° Básico", media: "/assets/testimonial.mp4", type: "video" },
-    { text: "La conexión con la naturaleza es invaluable.", author: "Familia de 4° Básico", media: "/imagenes-web/fiestas-2026/_MG_5465.webp", type: "image" },
-    { text: "Una comunidad que abraza y sostiene.", author: "Apoderada de 1° Básico", media: "/imagenes-web/pentatlon-waldorf-descanso-bancas.webp", type: "image" },
-    { text: "El arte es el corazón del currículo.", author: "Familia de 6° Básico", media: "/imagenes-web/alquimia-teatro-del-lago-actuacion-escena.webp", type: "image" }
+    { text: "La conexión con la naturaleza es invaluable.", author: "Familia de 4° Básico", media: "/imagenes-web/fiestas-2026/_MG_5465.webp", type: "image", objectPos: "object-center" },
+    { text: "Una comunidad que abraza y sostiene.", author: "Apoderada de 1° Básico", media: "/imagenes-web/pentatlon-waldorf-banquete-comunitario.webp", type: "image", objectPos: "object-center" },
+    { text: "El arte es el corazón del currículo.", author: "Familia de 6° Básico", media: "/imagenes-web/alquimia-teatro-del-lago-actuacion-escena.webp", type: "image", objectPos: "object-center" }
   ]
 
   const testimonialsRow2 = [
-    { text: "Verlos amasar el pan cada semana es mágico.", author: "Familia de Jardín Infantil", media: "/imagenes-web/fiesta de la luz202610.jpg", type: "image" },
-    { text: "Aprenden matemáticas tejiendo y cantando.", author: "Apoderado de 3° Básico", media: "/imagenes-web/pentatlon-waldorf-coronacion-laurel.webp", type: "image" },
-    { text: "No hay notas, hay un profundo respeto por sus ritmos.", author: "Familia de Kinder", media: "/imagenes-web/paseocerro20264.jpg", type: "image" },
-    { text: "El vínculo con su Maestro Guía es para toda la vida.", author: "Familia de 5° Básico", media: "/imagenes-web/fiestas-2026/_MG_5514.webp", type: "image" }
+    { text: "Verlos amasar el pan cada semana es mágico.", author: "Familia de Jardín Infantil", media: "/imagenes-web/fiesta de la luz202610.jpg", type: "image", objectPos: "object-center" },
+    { text: "Aprenden matemáticas tejiendo y cantando.", author: "Apoderado de 3° Básico", media: "/imagenes-web/fiestas-2026/_MG_5482.webp", type: "image", objectPos: "object-center" },
+    { text: "No hay notas, hay un profundo respeto por sus ritmos.", author: "Familia de Kinder", media: "/imagenes-web/fiestas-2026/_MG_5500.webp", type: "image", objectPos: "object-center" },
+    { text: "El vínculo con su Maestro Guía es para toda la vida.", author: "Familia de 5° Básico", media: "/imagenes-web/fiestas-2026/_MG_5514.webp", type: "image", objectPos: "object-center" }
   ]
 
   const borderRadiuses = [
@@ -70,7 +70,7 @@ export default function ImmersiveTestimonials() {
                     alt={t.author}
                     fill
                     sizes="700px"
-                    className="object-cover opacity-70 group-hover:scale-105 transition-transform duration-1000"
+                    className={`object-cover ${t.objectPos || 'object-center'} opacity-70 group-hover:scale-105 transition-transform duration-1000`}
                   />
                 )}
                 <div className="absolute inset-0 bg-[var(--color-waldorf-moss)]/20 mix-blend-multiply pointer-events-none transition-colors duration-700 group-hover:bg-[var(--color-waldorf-moss)]/10" />
@@ -101,7 +101,7 @@ export default function ImmersiveTestimonials() {
                   alt={t.author}
                   fill
                   sizes="650px"
-                  className="object-cover opacity-70 group-hover:scale-105 transition-transform duration-1000"
+                  className={`object-cover ${t.objectPos || 'object-center'} opacity-70 group-hover:scale-105 transition-transform duration-1000`}
                 />
                 <div className="absolute inset-0 bg-[var(--color-waldorf-moss)]/20 mix-blend-multiply pointer-events-none transition-colors duration-700 group-hover:bg-[var(--color-waldorf-moss)]/10" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e25]/90 via-[#1a2e25]/30 to-transparent pointer-events-none" />

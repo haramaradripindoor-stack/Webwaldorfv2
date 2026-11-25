@@ -127,7 +127,7 @@ const pillars = [
     tag: 'El pilar pedagógico',
     description: 'Acompaña a la generación durante años, formando un vínculo profundo de respeto, amor y conocimiento de cada niño. Es la autoridad amorosa en el aula.',
     icon: User,
-    image: '/imagenes-web/equipoescolar.jpg',
+    image: '/assets/pilares/comunidad_admision_ronda.webp',
     color: 'bg-[var(--color-waldorf-mustard)]'
   },
   {
@@ -151,7 +151,7 @@ const pillars = [
     tag: 'Naturaleza y celebración',
     description: 'Fiestas de la Cosecha, Faroles, Espiral de Adviento. Marcamos el ritmo de la naturaleza celebrando juntos los cambios de cada estación.',
     icon: Trees,
-    image: '/imagenes-web/alquimia-teatro-del-lago-comunidad-trekan.webp',
+    image: '/imagenes-web/fiesta de la luz20268.jpg',
     color: 'bg-[var(--color-waldorf-sage)]'
   },
   {

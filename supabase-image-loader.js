@@ -10,11 +10,6 @@ export default function supabaseLoader({ src, width, quality }) {
     return src;
   }
 
-  // Si es una imagen local de /imagenes-web/ que sabemos está replicada en el bucket de Supabase
-  if (src.startsWith('/imagenes-web/')) {
-    return `${supabaseUrl}/storage/v1/render/image/public${src}?width=${width}&quality=${quality || 75}&format=webp`;
-  }
-
-  // Para otros assets locales (ej. /assets/logos), devolvemos la ruta original (carga directa sin optimizar)
+  // Todos los assets locales (/imagenes-web, /assets, /brand, etc.) se sirven directo desde el CDN local / Vercel
   return src;
 }
