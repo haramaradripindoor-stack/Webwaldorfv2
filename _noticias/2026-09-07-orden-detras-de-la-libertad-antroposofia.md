@@ -43,7 +43,7 @@ Al proteger a nuestros maestros del desgaste administrativo, ellos pueden dedica
 
 ---
 
-### Referencias Bibliográficas
+### Fuentes y Lecturas Recomendadas
 
 - **Das Goetheanum** (Sede Mundial de la Sociedad Antroposófica, Suiza): *"Anthroposophy and Extremism are Incompatible"*. [Leer declaración oficial](https://dasgoetheanum.com/en/anthroposophy-and-extremism-are-incompatible/)
 - **Harvard Divinity School** (Program for the Evolution of Spirituality): *"Anthroposophical Anarchism and the Decentralization of Spirit"*. [Leer investigación](https://pes.hds.harvard.edu/publication/anthroposophical-anarchism-and-decentralization-spirit)
