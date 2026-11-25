@@ -62,7 +62,7 @@ export default function Hero({ data }: { data?: any }) {
           <>
             {isMobile && (
               <Image
-                src="/assets/galeria/galeria_01_casona_parque.webp"
+                src="/assets/hero_casona_poster.webp"
                 alt="Colegio Waldorf Trekan en Parque Ivian, Puerto Varas"
                 fill
                 priority
@@ -76,7 +76,7 @@ export default function Hero({ data }: { data?: any }) {
               loop
               muted
               playsInline
-              poster="/assets/galeria/galeria_01_casona_parque.webp"
+              poster="/assets/hero_casona_poster.webp"
               preload={isMobile ? "none" : "auto"}
               aria-hidden="true"
               className={`object-cover object-center w-full h-full transition-opacity duration-1000 ${
