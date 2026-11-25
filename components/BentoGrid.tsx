@@ -105,7 +105,7 @@ export default function BentoGrid() {
       desc: 'Matemáticas, lenguaje e historia se viven con las manos, el corazón y la mente. No memorizamos, experimentamos.',
       size: 'md:col-span-2 md:row-span-2',
       bg: 'bg-[#1a2e25]',
-      image: '/assets/bento/bento_oficios_lana.webp',
+      image: '/imagenes-web/pentatlon-waldorf-disciplinas-noble-esfuerzo.webp',
       lightText: true,
     },
     {
@@ -123,7 +123,7 @@ export default function BentoGrid() {
       desc: 'Parque Ivian, bosque templado lluvioso y praderas abiertas donde la voluntad camina libre.',
       size: 'md:col-span-1 md:row-span-2',
       bg: 'bg-transparent',
-      image: '/assets/bento/bento_casona_parque.webp',
+      image: '/imagenes-web/paseocerro20267.jpg',
       lightText: true,
     },
     {

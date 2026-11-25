@@ -16,16 +16,16 @@ export default function ImmersiveTestimonials() {
 
   const testimonialsRow1 = [
     { text: "Nuestra hija recuperó el asombro por aprender.", author: "Familia de 2° Básico", media: "/assets/testimonial.mp4", type: "video" },
-    { text: "La conexión con la naturaleza es invaluable.", author: "Familia de 4° Básico", media: "/assets/galeria/galeria_01_casona_parque.webp", type: "image" },
-    { text: "Una comunidad que abraza y sostiene.", author: "Apoderada de 1° Básico", media: "/assets/galeria/galeria_07_manos_lana_vellon.webp", type: "image" },
-    { text: "El arte es el corazón del currículo.", author: "Familia de 6° Básico", media: "/assets/galeria/galeria_05_pizarra_epoca_panoramica.webp", type: "image" }
+    { text: "La conexión con la naturaleza es invaluable.", author: "Familia de 4° Básico", media: "/imagenes-web/fiestas-2026/_MG_5465.webp", type: "image" },
+    { text: "Una comunidad que abraza y sostiene.", author: "Apoderada de 1° Básico", media: "/imagenes-web/pentatlon-waldorf-descanso-bancas.webp", type: "image" },
+    { text: "El arte es el corazón del currículo.", author: "Familia de 6° Básico", media: "/imagenes-web/alquimia-teatro-del-lago-actuacion-escena.webp", type: "image" }
   ]
 
   const testimonialsRow2 = [
-    { text: "Verlos amasar el pan cada semana es mágico.", author: "Familia de Jardín Infantil", media: "/assets/galeria/galeria_06_jardin_madera_sedas.webp", type: "image" },
-    { text: "Aprenden matemáticas tejiendo y cantando.", author: "Apoderado de 3° Básico", media: "/assets/bento/bento_oficios_lana.webp", type: "image" },
-    { text: "No hay notas, hay un profundo respeto por sus ritmos.", author: "Familia de Kinder", media: "/assets/galeria/galeria_03_luz_ventanal_sala.webp", type: "image" },
-    { text: "El vínculo con su Maestro Guía es para toda la vida.", author: "Familia de 5° Básico", media: "/assets/galeria/galeria_04_cuaderno_epoca_detalle.webp", type: "image" }
+    { text: "Verlos amasar el pan cada semana es mágico.", author: "Familia de Jardín Infantil", media: "/imagenes-web/fiesta de la luz202610.jpg", type: "image" },
+    { text: "Aprenden matemáticas tejiendo y cantando.", author: "Apoderado de 3° Básico", media: "/imagenes-web/pentatlon-waldorf-coronacion-laurel.webp", type: "image" },
+    { text: "No hay notas, hay un profundo respeto por sus ritmos.", author: "Familia de Kinder", media: "/imagenes-web/paseocerro20264.jpg", type: "image" },
+    { text: "El vínculo con su Maestro Guía es para toda la vida.", author: "Familia de 5° Básico", media: "/imagenes-web/fiestas-2026/_MG_5514.webp", type: "image" }
   ]
 
   const borderRadiuses = [

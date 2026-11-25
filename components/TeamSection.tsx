@@ -1,85 +1,116 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useEffect } from 'react'
+import { Sparkles, Compass, BookOpen, Music, Hammer, HeartHandshake } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const BASE = '/imagenes-web'
-
-// Fotos reales del equipo desde Supabase.
-// NOTA: Cuando tengas fotos individuales de cada maestro, reemplaza aquí la URL.
-const team = [
+const facultyMembers = [
   {
     name: 'Yabel Painemil',
-    role: 'Docente Intercultural',
-    bio: 'Comunicadora Audiovisual, docente intercultural bilingüe, formación Waldorf básica y especialista en Gimnasia Bothmer.',
-    photo: `${BASE}/photo_2026-06-29_12-10-23.jpg`,
-    tag: 'Jardín'
+    discipline: 'Interculturalidad & Gimnasia Bothmer',
+    tag: 'Jardín & Raíces',
+    icon: Compass,
+    accent: 'border-[#946820]/30 hover:border-[#946820]',
+    bgBadge: 'bg-[#946820]/10 text-[#946820]',
+    bio: 'Comunicadora audiovisual, docente bilingüe y especialista en gimnasia Bothmer. Conecta el desarrollo espacial y motriz con la cosmovisión territorial y el respeto por los pueblos originarios.'
   },
   {
     name: 'Javiera Ortega',
-    role: 'Profesora General Básica',
-    bio: 'Especialista en lenguaje, cursando formación Waldorf.',
-    photo: `${BASE}/actividapedagogicahumedales2.jpg`,
-    tag: 'Básica'
+    discipline: 'Profesora General Básica',
+    tag: 'Lenguaje & Épocas',
+    icon: BookOpen,
+    accent: 'border-[#A84126]/30 hover:border-[#A84126]',
+    bgBadge: 'bg-[#A84126]/10 text-[#A84126]',
+    bio: 'Especialista en lenguaje y procesos lectoescritores. Acompaña a los estudiantes de básica mediante la narración viva, el dibujo de formas y el despertar armónico del pensamiento.'
   },
   {
     name: 'Hanna Lowen',
-    role: 'Profesora de Inglés',
-    bio: 'Enseñanza del inglés con enfoque vivencial y artístico.',
-    photo: `${BASE}/actividapedagogicahumedales1.jpg`,
-    tag: 'Idiomas'
+    discipline: 'Lengua Inglesa Vivencial',
+    tag: 'Idiomas',
+    icon: Sparkles,
+    accent: 'border-[#2D5A43]/30 hover:border-[#2D5A43]',
+    bgBadge: 'bg-[#2D5A43]/10 text-[#2D5A43]',
+    bio: 'Inmersión en la lengua inglesa a través del ritmo, la dramatización, rimas y canciones tradicionales, permitiendo una apropiación natural y afectiva del segundo idioma.'
   },
   {
     name: 'Matías Valiente',
-    role: 'Profesor de Carpintería',
-    bio: 'Maestro de oficios que guía a los niños en el trabajo con la madera y las manos.',
-    photo: '/assets/galeria/galeria_02_herramientas_madera.webp',
-    tag: 'Oficios'
+    discipline: 'Maestro de Oficios & Carpintería',
+    tag: 'Manos & Voluntad',
+    icon: Hammer,
+    accent: 'border-[#946820]/30 hover:border-[#946820]',
+    bgBadge: 'bg-[#946820]/10 text-[#946820]',
+    bio: 'Formación del carácter y la perseverancia a través del trabajo manual en maderas nobles del sur, enseñando el cuidado de las herramientas y el respeto a la materia prima.'
   },
   {
     name: 'Verónica Sepúlveda',
-    role: 'Profesora de Música',
-    bio: 'La música como lenguaje del alma en cada jornada escolar.',
-    photo: `${BASE}/fiesta%20de%20la%20luz202610.jpg`,
-    tag: 'Artes'
+    discipline: 'Educación Musical & Canto Coral',
+    tag: 'Artes Sonoras',
+    icon: Music,
+    accent: 'border-[#A84126]/30 hover:border-[#A84126]',
+    bgBadge: 'bg-[#A84126]/10 text-[#A84126]',
+    bio: 'Guía la experiencia musical colectiva a través de flautas pentatónicas, cítaras y canto a voces. La música actúa como respiración y armonización diaria del aula.'
   },
   {
-    name: 'Ivonne Parada',
-    role: 'Familia Fundadora · Convivencia Escolar',
-    bio: 'Trabajadora Social UV, especialista en convivencia con formación en peritaje social, polivagal y gestalt.',
-    photo: '/assets/galeria/galeria_01_casona_parque.webp',
-    tag: 'Fundadora'
-  },
+    name: 'Comunidad Educativa',
+    discipline: 'Acompañamiento & Convivencia',
+    tag: 'Sostén Colectivo',
+    icon: HeartHandshake,
+    accent: 'border-[#2D5A43]/30 hover:border-[#2D5A43]',
+    bgBadge: 'bg-[#2D5A43]/10 text-[#2D5A43]',
+    bio: 'El claustro de maestros y las comisiones de apoderados operan en co-responsabilidad fraterna, garantizando un entorno sano, libre de pantallas y de profundo cobijo humano.'
+  }
 ]
 
 export default function TeamSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const heroCardRef = useRef<HTMLDivElement>(null)
+  const rosterRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!sectionRef.current) return
-    const cards = sectionRef.current.querySelectorAll('.team-card')
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(cards,
-        { y: 80, opacity: 0, scale: 0.94 },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          stagger: 0.1,
-          duration: 1,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 75%',
+      // Entrada del bloque principal
+      if (heroCardRef.current) {
+        gsap.fromTo(
+          heroCardRef.current,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1.1,
+            ease: 'expo.out',
+            scrollTrigger: {
+              trigger: heroCardRef.current,
+              start: 'top 80%',
+            }
           }
-        }
-      )
+        )
+      }
+
+      // Entrada secuencial del directorio de disciplinas
+      if (rosterRef.current) {
+        const cards = rosterRef.current.children
+        gsap.fromTo(
+          cards,
+          { y: 35, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.08,
+            duration: 0.9,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: rosterRef.current,
+              start: 'top 82%',
+            }
+          }
+        )
+      }
     }, sectionRef)
 
     return () => ctx.revert()
@@ -89,75 +120,140 @@ export default function TeamSection() {
     <section
       ref={sectionRef}
       id="quienes-somos"
-      className="py-32 px-6 md:px-12 max-w-7xl mx-auto"
+      className="py-28 px-6 md:px-12 max-w-7xl mx-auto"
     >
-      {/* Encabezado editorial */}
-      <div className="mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-        <div>
-          <span className="text-[var(--color-waldorf-terracotta)] text-xs font-bold tracking-widest uppercase block mb-4">
-            Quiénes Somos
-          </span>
-          <h2 className="text-5xl md:text-7xl font-serif font-bold text-[var(--color-waldorf-moss)] leading-[1.1]">
-            Nuestro<br />Equipo
-          </h2>
-        </div>
-        <p className="text-[var(--color-waldorf-text-light)] text-lg max-w-md font-light leading-relaxed">
-          Educadores y familias comprometidas con el florecimiento integral de cada niño, desde el primer septenio hasta la adolescencia.
+      {/* 1. Encabezado Editorial */}
+      <div className="mb-16 md:mb-20 max-w-3xl">
+        <span className="text-[#A84126] text-xs font-bold tracking-[0.25em] uppercase block mb-4 border-l-2 border-[#A84126] pl-3.5">
+          Gobierno Escolar & Claustro Colegiado
+        </span>
+        <h2 className="text-4xl md:text-6xl font-serif font-bold text-[#1A3526] leading-[1.1] mb-6">
+          Educadores y Familias <br />
+          <span className="font-serif italic font-normal text-[#946820]">al cuidado de la infancia</span>
+        </h2>
+        <p className="text-[#1A3526]/75 text-lg font-light leading-relaxed">
+          En la pedagogía Waldorf no existe una jerarquía piramidal abstracta. El colegio es guiado por un <strong className="font-semibold text-[#1A3526]">Claustro Docente colegiado</strong> y una comunidad de familias fundadoras que sostienen con amor y presencia cada ciclo de desarrollo.
         </p>
       </div>
 
-      {/* Grid asimétrico editorial */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {team.map((person, i) => (
-          <div
-            key={i}
-            className={`team-card group relative overflow-hidden rounded-3xl cursor-default will-change-transform
-              ${i === 0 ? 'sm:col-span-2 lg:col-span-1 aspect-[3/2] lg:aspect-[3/4]' : 'aspect-[3/4]'}
-            `}
-          >
-            {/* Foto de fondo */}
+      {/* 2. Bloque Principal: Claustro de Profesores & Fundadora (Elemento Visual Distintivo) */}
+      <div
+        ref={heroCardRef}
+        className="mb-16 bg-[#FAF8F5] border border-[#2D5A43]/15 rounded-3xl md:rounded-[2.5rem] overflow-hidden shadow-xl"
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
+          
+          {/* Foto Oficial del Claustro Colectivo */}
+          <div className="lg:col-span-7 relative min-h-[380px] sm:min-h-[460px] lg:min-h-[520px]">
             <Image
-              src={person.photo}
-              alt={`${person.name} — ${person.role}`}
+              src="/imagenes-web/dia_profesor_editorial_real_trekan_oficial.jpg"
+              alt="Claustro de profesores y comunidad educativa Colegio Waldorf Trekan"
               fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover transition-transform duration-[1.5s] ease-[0.16,1,0.3,1] group-hover:scale-105"
+              priority={false}
+              sizes="(max-width: 1024px) 100vw, 60vw"
+              className="object-cover object-center"
             />
-
-            {/* Gradiente siempre visible */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0d1f18]/90 via-[#0d1f18]/30 to-transparent" />
-
-            {/* Tag de categoría */}
-            <div className="absolute top-5 left-5">
-              <span className="bg-[var(--color-waldorf-terracotta)] text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full">
-                {person.tag}
-              </span>
-            </div>
-
-            {/* Texto inferior */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-              <h3 className="text-xl md:text-2xl font-serif font-bold text-white leading-tight mb-1">
-                {person.name}
-              </h3>
-              <p className="text-[var(--color-waldorf-terracotta)] text-xs font-semibold tracking-wide mb-3">
-                {person.role}
-              </p>
-              {/* Bio oculta que aparece en hover */}
-              <p className="text-white/70 text-sm leading-relaxed font-light
-                max-h-0 overflow-hidden opacity-0
-                group-hover:max-h-24 group-hover:opacity-100
-                transition-all duration-700 ease-[0.16,1,0.3,1]">
-                {person.bio}
-              </p>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1710]/80 via-transparent to-transparent lg:hidden" />
+            <div className="absolute bottom-4 left-4 right-4 lg:hidden text-white text-xs font-mono tracking-wider bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg">
+              Claustro Docente · Colegio Waldorf Trekan
             </div>
           </div>
-        ))}
+
+          {/* Coordinación y Familia Fundadora: Ivonne Parada */}
+          <div className="lg:col-span-5 p-8 md:p-12 flex flex-col justify-between bg-[#F4F0E8] border-t lg:border-t-0 lg:border-l border-[#2D5A43]/10">
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-[#946820] shadow-md shrink-0 bg-[#E8E1D5]">
+                  <Image
+                    src="/assets/Coordinadora.webp"
+                    alt="Ivonne Parada — Fundadora y Convivencia Escolar Trekan"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <span className="text-[10px] font-mono font-bold tracking-widest uppercase px-2.5 py-1 rounded-full bg-[#A84126]/10 text-[#A84126]">
+                    Familia Fundadora
+                  </span>
+                  <h3 className="text-2xl font-serif font-bold text-[#1A3526] mt-1.5">
+                    Ivonne Parada
+                  </h3>
+                  <p className="text-xs font-medium text-[#946820]">
+                    Coordinación & Convivencia Escolar
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-sm md:text-base text-[#1A3526]/85 font-light leading-relaxed mb-6">
+                Trabajadora Social por la Universidad de Valparaíso, especialista en convivencia escolar y peritaje social, con formación en enfoque polivagal y gestalt. Como familia fundadora, impulsa el cobijo socioemocional y la alianza virtuosa entre la escuela y el hogar.
+              </p>
+
+              <blockquote className="border-l-2 border-[#946820] pl-4 py-1 italic text-xs md:text-sm font-serif text-[#1A3526]/80 leading-relaxed bg-[#FAF8F5]/60 rounded-r-xl">
+                «La escuela no es una fábrica de contenidos, sino un santuario vivo donde el niño es acogido en su ritmo natural y sostenido con presencia real.»
+              </blockquote>
+            </div>
+
+            <div className="pt-8 border-t border-[#2D5A43]/10 mt-6 flex items-center justify-between text-xs text-[#1A3526]/60 font-mono">
+              <span>Parque Ivian · Puerto Varas</span>
+              <span className="text-[#A84126] font-semibold">Fundado con Amor</span>
+            </div>
+          </div>
+
+        </div>
       </div>
 
-      {/* Nota editorial al pie */}
-      <p className="mt-12 text-center text-[var(--color-waldorf-text-light)] text-sm font-light italic">
-        * Las fotografías de perfil individuales de cada educador serán actualizadas próximamente.
-      </p>
+      {/* 3. Directorio de Disciplinas Pedagógicas (Elemento 2: Roster Tipográfico y Riguroso) */}
+      <div>
+        <div className="flex items-center justify-between mb-8">
+          <h3 className="text-2xl md:text-3xl font-serif font-bold text-[#1A3526]">
+            Disciplinas & Maestros Guías
+          </h3>
+          <span className="text-xs font-mono text-[#1A3526]/60">
+            6 Áreas Formativas
+          </span>
+        </div>
+
+        <div
+          ref={rosterRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {facultyMembers.map((member, i) => {
+            const Icon = member.icon
+            return (
+              <div
+                key={i}
+                className={`p-7 rounded-2xl bg-[#FAF8F5] border transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col justify-between ${member.accent}`}
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className={`text-[10px] font-mono font-bold tracking-wider uppercase px-2.5 py-1 rounded-full ${member.bgBadge}`}>
+                      {member.tag}
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-[#F4F0E8] flex items-center justify-center text-[#1A3526]/70">
+                      <Icon size={16} />
+                    </div>
+                  </div>
+
+                  <h4 className="text-xl font-serif font-bold text-[#1A3526] mb-1">
+                    {member.name}
+                  </h4>
+                  <p className="text-xs font-semibold text-[#A84126] mb-3">
+                    {member.discipline}
+                  </p>
+                  <p className="text-xs md:text-sm text-[#1A3526]/75 font-light leading-relaxed">
+                    {member.bio}
+                  </p>
+                </div>
+
+                <div className="pt-4 mt-6 border-t border-[#2D5A43]/10 flex items-center justify-between text-[11px] font-mono text-[#1A3526]/50">
+                  <span>Waldorf Trekan</span>
+                  <span>Pedagogía Viva</span>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
     </section>
   )
 }

@@ -8,13 +8,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const fallbackImages = [
-  { url: '/assets/galeria/galeria_01_casona_parque.webp', alt: 'Casona Trekan y pradera viva en Parque Ivian', span: 'col-span-2 row-span-2' },
+  { url: '/imagenes-web/fiestas-2026/_MG_5516.webp', alt: 'Comunidad escolar y ronda viva bajo el bosque nativo de Parque Ivian', span: 'col-span-2 row-span-2' },
   { url: '/assets/galeria/galeria_02_herramientas_madera.webp', alt: 'Herramientas y maderas nobles en el taller de oficios', span: 'col-span-1 row-span-1' },
-  { url: '/assets/galeria/galeria_03_luz_ventanal_sala.webp', alt: 'Luz natural y madera nativa en las salas de clase', span: 'col-span-1 row-span-2' },
-  { url: '/assets/galeria/galeria_04_cuaderno_epoca_detalle.webp', alt: 'Trazos de lápiz cera y composición armónica', span: 'col-span-1 row-span-1' },
-  { url: '/assets/galeria/galeria_05_pizarra_epoca_panoramica.webp', alt: 'Pizarra de época ilustrada con tizas minerales', span: 'col-span-2 row-span-1' },
+  { url: '/imagenes-web/actividapedagogicahumedales5.jpg', alt: 'Salidas pedagógicas y exploración en humedales de la cuenca del Llanquihue', span: 'col-span-1 row-span-2' },
+  { url: '/assets/galeria/galeria_04_cuaderno_epoca_detalle.webp', alt: 'Trazos de lápiz cera y composición armónica en cuadernos de época', span: 'col-span-1 row-span-1' },
+  { url: '/imagenes-web/puedes-bailar-teatro-del-lago-canto-coro.webp', alt: 'Canto coral y música comunitaria en Teatro del Lago', span: 'col-span-2 row-span-1' },
   { url: '/assets/galeria/galeria_06_jardin_madera_sedas.webp', alt: 'Rincón de juego hogareño en el Jardín de Infancia', span: 'col-span-1 row-span-1' },
-  { url: '/assets/galeria/galeria_07_manos_lana_vellon.webp', alt: 'Vellón de oveja y texturas naturales trabajadas a mano', span: 'col-span-1 row-span-1' },
+  { url: '/imagenes-web/pentatlon-waldorf-presente-madera-sur.webp', alt: 'Escultura y presentes en maderas nobles del sur', span: 'col-span-1 row-span-1' },
 ]
 
 export default function MasonryGallery({ data }: { data?: any }) {
