@@ -3,8 +3,7 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, CalendarCheck, Users, Sparkles } from 'lucide-react'
 import Link from 'next/link'
-
-const ADMISION_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSdXbiojPJFncN94G3AS5huINvHKjpv2xFLcEaMjsHiC8sHYSQ/viewform'
+import ADMISION_CONFIG from '@/config/admision'
 
 const steps = [
   {
@@ -33,7 +32,7 @@ export default function AdmisionSection() {
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="mb-16 text-center">
           <span className="text-[var(--color-waldorf-sage)] text-xs font-bold tracking-widest uppercase block mb-4">
-            Admisión 2027
+            {ADMISION_CONFIG.title}
           </span>
           <h2 className="text-3xl md:text-5xl font-bold font-serif mb-4 text-[var(--color-waldorf-moss)]">
             Comienza el Camino
@@ -79,15 +78,13 @@ export default function AdmisionSection() {
           viewport={{ once: true }}
         >
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-            <a
-              href={ADMISION_FORM}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/admision"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[var(--color-waldorf-moss)] text-[var(--color-waldorf-cream)] font-semibold text-base earth-shadow earth-shadow-hover group transition-transform hover:-translate-y-1"
             >
-              🌿 Postular Ahora
+              🌿 Conocer Proceso y Postular
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </a>
+            </Link>
             
             <Link
               href="/admision"

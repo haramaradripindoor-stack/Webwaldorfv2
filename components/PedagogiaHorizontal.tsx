@@ -10,6 +10,7 @@ const septenios = [
     edad: 'Primer Septenio · 3-6 años',
     descripcion: 'El mundo es bueno. A través del juego libre, la imitación y el ritmo, el niño construye su cuerpo físico y desarrolla la voluntad en un entorno hogareño y cálido.',
     image: '/assets/pedagogia/septenio_01_jardin_infancia.webp',
+    objectPosition: 'object-center',
     num: '01'
   },
   {
@@ -17,6 +18,7 @@ const septenios = [
     edad: 'Segundo Septenio · 7-12 años',
     descripcion: 'El mundo es bello. Guiados por el maestro de clase y a través del arte, la imaginación y las narraciones, los niños cultivan su mundo emocional y su conexión con el entorno.',
     image: '/assets/pedagogia/septenio_02_ensenanza_basica.webp',
+    objectPosition: 'object-[center_bottom]',
     num: '02'
   },
   {
@@ -24,6 +26,7 @@ const septenios = [
     edad: 'Crisis de los 9 años',
     descripcion: 'Un hito emocional profundo. El niño comienza a experimentar su propia individualidad, separándose del mundo que lo rodea. Lo acompañamos con firmeza y amor.',
     image: '/assets/pedagogia/septenio_03_paso_rubicon.webp',
+    objectPosition: 'object-[center_top]',
     num: '03'
   },
   {
@@ -31,6 +34,7 @@ const septenios = [
     edad: 'Transición · 13-14 años',
     descripcion: 'El mundo es verdadero. Despierta el pensamiento lógico y crítico. Los jóvenes buscan comprender el mundo a través de su propio juicio y experimentación.',
     image: '/assets/pedagogia/septenio_04_adolescencia.webp',
+    objectPosition: 'object-[center_bottom]',
     num: '04'
   }
 ]
@@ -93,7 +97,7 @@ function SeptenioCard({
           src={etapa.image}
           alt={etapa.titulo}
           fill
-          className="object-cover"
+          className={`object-cover ${etapa.objectPosition || 'object-center'}`}
           sizes="(max-width: 768px) 100vw, 50vw"
         />
       </div>

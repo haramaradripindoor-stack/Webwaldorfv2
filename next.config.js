@@ -26,6 +26,16 @@ const nextConfig = {
         destination: '/admision',
         permanent: true,
       },
+      {
+        source: '/arriendo-de-salon',
+        destination: '/arriendo-salon',
+        permanent: true,
+      },
+      {
+        source: '/pedagogia-waldorf',
+        destination: '/#pedagogia',
+        permanent: true,
+      },
     ]
   },
   async rewrites() {

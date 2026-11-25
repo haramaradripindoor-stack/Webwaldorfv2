@@ -41,7 +41,7 @@ export default function EconomiaFraternaPage() {
             alt="Niña jugando en el interior del Colegio Waldorf Trekan bajo luz natural"
             fill
             priority
-            className="object-cover object-[center_top]"
+            className="object-cover object-center"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>

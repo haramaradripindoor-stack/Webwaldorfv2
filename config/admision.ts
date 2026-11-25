@@ -27,6 +27,18 @@ function resolveAdmissionsYear(): number {
 const activeYearNum = resolveAdmissionsYear();
 const nextYearNum = activeYearNum + 1;
 
+export const CURSOS_DISPONIBLES = [
+  'Jardín Infantil (3 a 5 años)',
+  '1° Básico',
+  '2° Básico',
+  '3° Básico',
+  '4° Básico',
+  '5° Básico',
+  '6° Básico',
+] as const;
+
+export type CursoDisponible = typeof CURSOS_DISPONIBLES[number];
+
 export const ADMISION_CONFIG = {
   activeYear: String(activeYearNum),
   nextYear: String(nextYearNum),

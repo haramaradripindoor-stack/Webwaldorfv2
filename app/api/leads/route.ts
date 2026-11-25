@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
 import { createHash } from 'crypto';
+import ADMISION_CONFIG from '@/config/admision';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const supabase = createClient(
@@ -192,7 +193,7 @@ export async function POST(req: Request) {
       await resend.emails.send({
         from: 'Colegio Waldorf Trekan <onboarding@resend.dev>', // Usamos el fallback seguro de Resend
         to: 'admision@colegiowaldorftrekan.cl',
-        subject: `NUEVO LEAD: ${nombre_apoderado} (Admisión 2027)`,
+        subject: `NUEVO LEAD: ${nombre_apoderado} (${ADMISION_CONFIG.title})`,
         html: htmlContent
       });
     } catch (emailError) {

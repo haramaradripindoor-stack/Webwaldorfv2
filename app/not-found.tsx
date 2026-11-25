@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { Compass, ArrowRight, Home } from 'lucide-react'
+import ADMISION_CONFIG from '@/config/admision'
 
 export const metadata = {
   title: 'Página no encontrada | Colegio Waldorf Trekan Puerto Varas',
@@ -44,7 +45,7 @@ export default function NotFound() {
               href="/admision"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#D35D3E] text-white rounded-full font-bold uppercase tracking-wider text-xs hover:bg-[#b04a32] transition-all duration-300 earth-shadow hover:scale-105"
             >
-              Admisión 2027
+              {ADMISION_CONFIG.title}
               <ArrowRight size={15} />
             </Link>
           </div>

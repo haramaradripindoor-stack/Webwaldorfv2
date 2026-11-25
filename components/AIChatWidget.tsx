@@ -3,17 +3,18 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, X, Send, CheckCircle, Check, Users } from 'lucide-react'
+import ADMISION_CONFIG from '@/config/admision'
 
-// Cursos oficiales disponibles para Admisión 2027
+// Cursos oficiales disponibles para Admisión
 const AVAILABLE_COURSES = [
-  { id: 'kinder', label: 'Kinder', tag: 'Kinder (2027)' },
-  { id: '1basico', label: '1° Básico', tag: '1ro Básico (2027)' },
-  { id: '2basico', label: '2° Básico', tag: '2do Básico (2027)' },
-  { id: '3basico', label: '3° Básico', tag: '3ro Básico (2027)' },
-  { id: '4basico', label: '4° Básico', tag: '4to Básico (2027)' },
-  { id: '5basico', label: '5° Básico', tag: '5to Básico (2027)' },
-  { id: '6basico', label: '6° Básico', tag: '6to Básico (2027)' },
-  { id: '7-8basico', label: '7°-8° Básico', tag: '7mo Básico (2027)' },
+  { id: 'kinder', label: 'Kinder', tag: `Kinder (${ADMISION_CONFIG.activeYear})` },
+  { id: '1basico', label: '1° Básico', tag: `1ro Básico (${ADMISION_CONFIG.activeYear})` },
+  { id: '2basico', label: '2° Básico', tag: `2do Básico (${ADMISION_CONFIG.activeYear})` },
+  { id: '3basico', label: '3° Básico', tag: `3ro Básico (${ADMISION_CONFIG.activeYear})` },
+  { id: '4basico', label: '4° Básico', tag: `4to Básico (${ADMISION_CONFIG.activeYear})` },
+  { id: '5basico', label: '5° Básico', tag: `5to Básico (${ADMISION_CONFIG.activeYear})` },
+  { id: '6basico', label: '6° Básico', tag: `6to Básico (${ADMISION_CONFIG.activeYear})` },
+  { id: '7-8basico', label: '7°-8° Básico', tag: `7mo Básico (${ADMISION_CONFIG.activeYear})` },
   { id: 'otro', label: 'Otro / Consulta', tag: 'Consultas / Por coordinar' },
 ]
 

@@ -18,15 +18,17 @@ import {
   Calendar
 } from 'lucide-react';
 
+import ADMISION_CONFIG from '@/config/admision';
+
 export const metadata: Metadata = {
-  title: 'Colegio Waldorf Trekan | Enlaces Oficiales y Admisión 2027',
-  description: 'Acceso directo a Admisión 2027, WhatsApp del equipo pedagógico, sitio web oficial y vida comunitaria en Puerto Varas.',
+  title: `Colegio Waldorf Trekan | Enlaces Oficiales y ${ADMISION_CONFIG.title}`,
+  description: `Acceso directo a ${ADMISION_CONFIG.title}, WhatsApp del equipo pedagógico, sitio web oficial y vida comunitaria en Puerto Varas.`,
   alternates: {
     canonical: 'https://www.colegiowaldorftrekan.cl/bio',
   },
   openGraph: {
     title: 'Colegio Waldorf Trekan | Enlaces Oficiales',
-    description: 'Donde la infancia respira. Admisión 2027, contacto directo y comunidad escolar en Puerto Varas.',
+    description: `Donde la infancia respira. ${ADMISION_CONFIG.title}, contacto directo y comunidad escolar en Puerto Varas.`,
     url: 'https://www.colegiowaldorftrekan.cl/bio',
     images: [{ url: '/assets/galeria/galeria_01_casona_parque.webp' }],
   }
@@ -107,11 +109,11 @@ export default function BioLinksPage() {
               <div className="text-left">
                 <div className="inline-flex items-center gap-1.5">
                   <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-[var(--color-waldorf-mustard)] text-[#1a2e25]">
-                    Vacantes 2027
+                    Vacantes {ADMISION_CONFIG.activeYear}
                   </span>
                 </div>
                 <h2 className="text-sm sm:text-base font-serif font-bold text-white mt-0.5">
-                  Postulaciones Admisión 2027
+                  Postulaciones {ADMISION_CONFIG.title}
                 </h2>
                 <p className="text-[11px] text-white/80 font-medium">
                   Formulario directo de postulación por curso

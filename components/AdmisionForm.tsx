@@ -1,20 +1,35 @@
 'use client'
 
 import { useState } from 'react'
-import { Send, CalendarClock } from 'lucide-react'
+import { Send, CalendarClock, Check, Sparkles, Users } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { ADMISION_CONFIG, CURSOS_DISPONIBLES } from '@/config/admision'
 
 export default function AdmisionForm() {
   const [selectedDay, setSelectedDay] = useState<string | null>(null)
+  const [selectedCourses, setSelectedCourses] = useState<string[]>(['Jardín Infantil (3 a 5 años)'])
   
   // Handlers para el form
   const [formData, setFormData] = useState({
     parentName: '',
     phone: '',
     email: '',
-    childrenAges: '',
+    childrenNamesAges: '',
     message: ''
   })
+
+  const isHermanoMode = selectedCourses.length >= 2
+
+  const toggleCourse = (curso: string) => {
+    setSelectedCourses(prev => {
+      if (prev.includes(curso)) {
+        if (prev.length === 1) return prev // Mínimo 1 curso seleccionado
+        return prev.filter(c => c !== curso)
+      } else {
+        return [...prev, curso]
+      }
+    })
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -26,17 +41,28 @@ export default function AdmisionForm() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Disparar Eventos de Conversión
+    const serializedCourses = selectedCourses.join(', ')
+
+    // Disparar Eventos de Conversión Meta Pixel y DataLayer
     try {
       // @ts-ignore
       if (typeof window !== 'undefined' && window.fbq) {
         // @ts-ignore
-        window.fbq('track', 'Lead');
+        window.fbq('track', 'Lead', {
+          content_name: serializedCourses,
+          content_category: 'Admisión ' + ADMISION_CONFIG.activeYear,
+          currency: 'CLP',
+          value: 0
+        });
       }
       // @ts-ignore
       if (typeof window !== 'undefined' && window.dataLayer) {
         // @ts-ignore
-        window.dataLayer.push({'event': 'generar_lead'});
+        window.dataLayer.push({
+          'event': 'generar_lead',
+          'cursos': serializedCourses,
+          'modo_hermanos': isHermanoMode
+        });
       }
     } catch (error) {
       console.error('Error tracking conversion', error);
@@ -62,9 +88,9 @@ export default function AdmisionForm() {
           nombre_apoderado: formData.parentName,
           telefono_apoderado: formData.phone || 'Vía WhatsApp (Pendiente)', 
           email_apoderado: formData.email || 'Pendiente',
-          nombre_nino: 'No especificado',
-          edad_nino: formData.childrenAges,
-          curso_postula: `Visita preferida: ${selectedDay || 'Cualquier día'}. Notas: ${formData.message || 'Ninguna'}`,
+          nombre_nino: formData.childrenNamesAges || (isHermanoMode ? 'Hermanos' : 'Postulante'),
+          edad_nino: formData.childrenNamesAges,
+          curso_postula: `${serializedCourses} | Visita: ${selectedDay || 'Cualquier día'}${formData.message ? ` | Notas: ${formData.message}` : ''}`,
           origen: leadOrigen
         })
       });
@@ -73,12 +99,12 @@ export default function AdmisionForm() {
       // Si falla, continuamos igual al WhatsApp para no bloquear al apoderado
     }
 
-    // 2. Redirigir a WhatsApp
-    const text = `Hola Ivonne, soy ${formData.parentName}, me gustaría coordinar una visita al Colegio Waldorf Trekan para conocer el proyecto para edades: ${formData.childrenAges}.${formData.message ? ` Mensaje: ${formData.message}.` : ''} Día preferido: ${selectedDay || 'por definir'}.`;
+    // 2. Redirigir a WhatsApp con texto adaptado
+    const cursosText = isHermanoMode ? `cursos: ${serializedCourses}` : `curso: ${serializedCourses}`;
+    const ninosText = formData.childrenNamesAges ? ` para: ${formData.childrenNamesAges}` : '';
+    const text = `Hola Ivonne, soy ${formData.parentName}, me gustaría coordinar una visita al Colegio Waldorf Trekan para la Admisión ${ADMISION_CONFIG.activeYear} (${cursosText}${ninosText}).${formData.message ? ` Mensaje: ${formData.message}.` : ''} Día preferido: ${selectedDay || 'por coordinar'}.`;
     const whatsappUrl = `https://wa.me/56967765106?text=${encodeURIComponent(text)}`;
     
-    // Usamos location.href en lugar de window.open porque los navegadores bloquean 
-    // ventanas nuevas (popups) que ocurren después de un await asíncrono
     window.location.href = whatsappUrl;
   }
 
@@ -93,7 +119,7 @@ export default function AdmisionForm() {
           <form onSubmit={handleWhatsAppRoute} className="space-y-6">
             <div className="text-center mb-8">
               <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--color-waldorf-mustard)]/20 text-[var(--color-waldorf-mustard)] text-xs font-semibold uppercase tracking-wider mb-3">
-                🌿 Paso 1 · Primer Contacto
+                🌿 Paso 1 · Primer Contacto · Admisión {ADMISION_CONFIG.activeYear}
               </span>
               <h3 className="text-3xl font-serif font-bold text-white mb-4">Agenda tu Visita a la Escuela</h3>
               
@@ -115,7 +141,7 @@ export default function AdmisionForm() {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-5">
               <div>
                 <label htmlFor="parentName" className="block text-sm font-medium text-white/90 mb-1">Tu Nombre Completo *</label>
                 <input 
@@ -157,17 +183,64 @@ export default function AdmisionForm() {
                 />
               </div>
 
+              {/* Selector Táctil Multicurso (Regla CRO) */}
+              <div className="pt-2">
+                <div className="flex items-center justify-between mb-2">
+                  <label className="block text-sm font-medium text-white/90">
+                    Cursos a Postular * <span className="text-xs text-white/60">(puedes seleccionar varios)</span>
+                  </label>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                  {CURSOS_DISPONIBLES.map(curso => {
+                    const isSelected = selectedCourses.includes(curso)
+                    return (
+                      <button
+                        key={curso}
+                        type="button"
+                        onClick={() => toggleCourse(curso)}
+                        className={`py-2.5 px-3 rounded-xl border transition-all text-xs font-semibold flex items-center justify-between gap-1.5 cursor-pointer text-left ${
+                          isSelected
+                            ? 'bg-[var(--color-waldorf-mustard)] text-[#1a2e25] border-transparent shadow-md scale-[1.02]'
+                            : 'bg-white/5 border-white/15 text-white/90 hover:bg-white/10 hover:border-white/30'
+                        }`}
+                      >
+                        <span className="truncate">{curso}</span>
+                        {isSelected && <Check size={14} className="shrink-0 stroke-[3]" />}
+                      </button>
+                    )
+                  })}
+                </div>
+
+                {/* Banner Modo Hermanos Dinámico */}
+                <AnimatePresence>
+                  {isHermanoMode && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                      animate={{ opacity: 1, height: 'auto', marginTop: 10 }}
+                      exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                      className="bg-[var(--color-waldorf-mustard)]/15 border border-[var(--color-waldorf-mustard)]/40 rounded-xl p-3 flex items-center gap-2.5 text-xs text-[var(--color-waldorf-mustard)] font-semibold"
+                    >
+                      <Sparkles size={16} className="shrink-0" />
+                      <span>✨ Modo Hermanos Activo: Postulación familiar conjunta ({selectedCourses.length} cursos seleccionados).</span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
               <div>
-                <label htmlFor="childrenAges" className="block text-sm font-medium text-white/90 mb-1">Edades de los niños/as a postular *</label>
+                <label htmlFor="childrenNamesAges" className="block text-sm font-medium text-white/90 mb-1">
+                  {isHermanoMode ? 'Nombres y edades de tus hijos/as *' : 'Nombre y edad de tu hijo/a *'}
+                </label>
                 <input 
                   type="text" 
-                  id="childrenAges"
-                  name="childrenAges"
+                  id="childrenNamesAges"
+                  name="childrenNamesAges"
                   required
-                  value={formData.childrenAges}
+                  value={formData.childrenNamesAges}
                   onChange={handleChange}
                   className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[var(--color-waldorf-mustard)] transition-colors"
-                  placeholder="Ej: 4 y 7 años"
+                  placeholder={isHermanoMode ? "Ej: Sofía (4 años) y Mateo (7 años)" : "Ej: Sofía (4 años)"}
                 />
               </div>
 
@@ -197,10 +270,10 @@ export default function AdmisionForm() {
                     key={dia} 
                     type="button"
                     onClick={() => setSelectedDay(dia)}
-                    className={`py-3 px-2 md:px-4 rounded-xl border transition-colors text-sm font-medium ${selectedDay === dia ? 'bg-[var(--color-waldorf-mustard)] text-[#1a2e25] border-transparent scale-105 shadow-lg' : 'bg-white/5 border-white/10 hover:bg-white/20 hover:border-white/30 text-white'}`}
+                    className={`py-3 px-2 md:px-4 rounded-xl border transition-colors text-sm font-medium cursor-pointer ${selectedDay === dia ? 'bg-[var(--color-waldorf-mustard)] text-[#1a2e25] border-transparent scale-105 shadow-lg font-bold' : 'bg-white/5 border-white/10 hover:bg-white/20 hover:border-white/30 text-white'}`}
                   >
                     {dia} <br/>
-                    <span className={`text-xs ${selectedDay === dia ? 'opacity-80' : 'opacity-60'}`}>Mañana</span>
+                    <span className={`text-xs ${selectedDay === dia ? 'opacity-90' : 'opacity-60'}`}>Mañana</span>
                   </button>
                 ))}
               </div>

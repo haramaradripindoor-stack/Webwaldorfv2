@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, ArrowLeft, CheckCircle2, User, Baby, Users, HeartPulse, MapPin, Send, Sparkles } from 'lucide-react'
+import { CURSOS_DISPONIBLES } from '@/config/admision'
 
 // Definimos la estructura de datos que enviaremos al API
 interface PostulacionData {
@@ -301,7 +302,7 @@ export default function FormularioPostulacionCompleto() {
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-2">¿A qué curso postularías? (puedes seleccionar más de uno) *</label>
                   <div className="grid grid-cols-2 gap-3">
-                    {['Medio Menor-Medio Mayor-Transición', '1ro Básico', '2do Básico', '3ro Básico', '4to Básico', '5to Básico', '6to Básico', '7mo Básico', '8vo Básico'].map(curso => (
+                    {CURSOS_DISPONIBLES.map(curso => (
                       <label key={curso} className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 border border-transparent hover:border-gray-200 transition-colors">
                         <input type="checkbox" checked={formData.appliedCourse.includes(curso)} onChange={() => toggleArrayItem('appliedCourse', curso)} className="w-5 h-5 rounded text-[var(--color-waldorf-moss)] focus:ring-[var(--color-waldorf-moss)]" />
                         <span className="text-sm font-medium text-gray-700">{curso}</span>
