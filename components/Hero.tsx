@@ -60,16 +60,14 @@ export default function Hero({ data }: { data?: any }) {
           />
         ) : mediaUrl?.match(/\.(mp4|webm|ogg|mov)$/i) || mediaType === 'video' ? (
           <>
-            {isMobile && (
-              <Image
-                src="/assets/hero_casona_poster.webp"
-                alt="Colegio Waldorf Trekan en Parque Ivian, Puerto Varas"
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover object-center w-full h-full opacity-90"
-              />
-            )}
+            <Image
+              src="/assets/hero_casona_poster.webp"
+              alt="Colegio Waldorf Trekan en Parque Ivian, Puerto Varas"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center w-full h-full opacity-90 -z-10"
+            />
             <video
               ref={videoRef}
               autoPlay
@@ -77,11 +75,9 @@ export default function Hero({ data }: { data?: any }) {
               muted
               playsInline
               poster="/assets/hero_casona_poster.webp"
-              preload={isMobile ? "none" : "auto"}
+              preload="auto"
               aria-hidden="true"
-              className={`object-cover object-center w-full h-full transition-opacity duration-1000 ${
-                isMobile ? 'opacity-0 md:opacity-90' : 'opacity-90'
-              }`}
+              className="object-cover object-center w-full h-full opacity-90 transition-opacity duration-1000"
             >
               <source src="/assets/hero_casona_cinematic.webm" type="video/webm" />
               <source src={mediaUrl} type="video/mp4" />
@@ -95,9 +91,9 @@ export default function Hero({ data }: { data?: any }) {
           />
         )}
 
-        {/* Organic Patagonian Forest Atmosphere (Marina Budarina & Master Web Engine Standard) */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1710]/65 via-[#0B1710]/20 to-[#0B1710]/85 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-[var(--color-waldorf-moss)]/15 mix-blend-overlay" />
+        {/* Velo atmosférico equilibrado: protección sutil de contraste superior para el título, luz solar natural sobre la Casona */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1710]/60 via-[#0B1710]/15 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#0B1710]/40 to-transparent pointer-events-none" />
         {/* Film grain layer */}
 
       </motion.div>
