@@ -8,8 +8,6 @@ import Image from 'next/image'
 import MagneticButton from './MagneticButton'
 import ADMISION_CONFIG from '@/config/admision'
 
-const WatercolorCanvas = dynamic(() => import('./WatercolorCanvas'), { ssr: false })
-
 export default function Hero({ data }: { data?: any }) {
   const containerRef = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -96,9 +94,6 @@ export default function Hero({ data }: { data?: any }) {
             className="object-cover object-center w-full h-full opacity-90"
           />
         )}
-
-        {/* Signature Moment: Procedural Wet-on-Wet Watercolor Shader */}
-        <WatercolorCanvas className="absolute inset-0 w-full h-full z-[2] mix-blend-screen opacity-35" />
 
         {/* Organic Patagonian Forest Atmosphere (Marina Budarina & Master Web Engine Standard) */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B1710]/65 via-[#0B1710]/20 to-[#0B1710]/85 mix-blend-multiply" />

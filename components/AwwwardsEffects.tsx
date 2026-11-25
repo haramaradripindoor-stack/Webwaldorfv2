@@ -6,7 +6,6 @@ import dynamic from 'next/dynamic';
 
 const MagneticCursor = dynamic(() => import('@/components/MagneticCursor'), { ssr: false });
 const SmoothScroll = dynamic(() => import('@/components/SmoothScroll'), { ssr: false });
-const PageTransitionCurtain = dynamic(() => import('@/components/PageTransitionCurtain'), { ssr: false });
 
 export default function AwwwardsEffects({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -24,7 +23,6 @@ export default function AwwwardsEffects({ children }: { children: React.ReactNod
 
   return (
     <>
-      <PageTransitionCurtain />
       <MagneticCursor />
       <div className="awwwards-noise" />
       <SmoothScroll>
