@@ -3,6 +3,7 @@ title: "El Estudio del Niño: Rigor Antroposófico y Diagnóstico Colegiado"
 excerpt: "Explorando la Kínderbesprechung, el núcleo científico-espiritual de la reunión de maestros, donde se analiza colegiadamente la fenomenología de cada estudiante."
 published_at: "2025-06-10"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 La reunión semanal del Claustro de Maestros en una Escuela Waldorf Trekan dista profundamente de un mero consejo administrativo. Si bien se destinan fracciones de tiempo a la logística escolar, el núcleo indisoluble de esta congregación es de carácter científico y ontológico: el **Estudio del Niño** o Kínderbesprechung.
@@ -20,3 +21,12 @@ Una vez conformada la imagen fenomenológica, el claustro eleva la observación 
 El resultado de este esfuerzo colegiado no es un expediente de calificaciones, sino el diseño de una **terapia pedagógica** concreta y personalizada. Puede implicar ajustes en la ubicación física del alumno en el aula, tareas rítmicas específicas, abordajes artísticos (como pintar con determinados colores) o recomendaciones para las dinámicas en el hogar.
 
 Este nivel de dedicación certifica que la pedagogía Waldorf ofrece uno de los sistemas de seguimiento estudiantil más profundos y personalizados del panorama educativo moderno, exigiendo de sus maestros una preparación intelectual, empática y espiritual de la más alta exigencia profesional.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Goethe, Johann Wolfgang von.** *Teoría de los colores* (*Zur Farbenlehre*). Con notas e introducción de Rudolf Steiner. Alianza Editorial.
+* **Steiner, Rudolf.** *La esencia de los colores* (GA 291). Editorial Rudolf Steiner, Madrid.
+* **Schindler, Maria.** *El color: Un camino hacia la vivencia consciente del mundo anímico*. Editorial Rudolf Steiner.
+* **Künzle, Paul.** *Arquitectura y diseño ambiental en las escuelas Waldorf: La luz natural y las materias nobles*. Dornach.

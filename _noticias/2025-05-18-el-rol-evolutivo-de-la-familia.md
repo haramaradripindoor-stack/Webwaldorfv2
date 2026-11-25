@@ -3,6 +3,7 @@ title: "El Rol Evolutivo de la Familia: La Comunidad Abierta"
 excerpt: "El ingreso a una Escuela Waldorf Trekan implica un proceso de transformación biográfica familiar, donde el apoderado abandona la pasividad para construir el tejido social escolar."
 published_at: "2025-05-18"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 El acto de matricular a un niño en un colegio Waldorf no constituye un mero trámite administrativo, sino el inicio de un **proceso biográfico** para todo el núcleo familiar. La pedagogía fundamentada por Rudolf Steiner requiere de un entorno ecológico coherente entre el hogar y el aula; una dicotomía severa entre los valores promovidos en la escuela y el estilo de vida doméstico debilita estructuralmente el desarrollo del infante.
@@ -23,3 +24,12 @@ Esta labor no persigue un estándar de perfección utópica, sino que establece 
 En el marco de la autogestión escolar, la pasividad no tiene cabida. Las familias deben trascender el rol de "espectadores" para convertirse en constructores del tejido social. Esto se materializa a través del trabajo en comisiones (infraestructura, festividades, comunicaciones), la asistencia obligatoria a las reuniones de curso (Elternabend) y el apoyo económico solidario.
 
 El compromiso activo de los adultos infunde a los niños una sensación de seguridad vital. Cuando un alumno observa a sus padres tejiendo, pintando o reparando el mobiliario escolar durante una minga comunitaria, absorbe empíricamente una lección fundamental: la escuela es un recinto sagrado que merece ser cuidado, y la comunidad es una red de soporte tangible.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Melé, Joan Antoni.** *Dinero y conciencia: ¿A quién le sirve mi dinero?* Plataforma Editorial, Barcelona (2009).
+* **Steiner, Rudolf.** *Curso de economía social: El trabajo, el capital y el valor asociativo* (GA 340). Editorial Antroposófica, Buenos Aires.
+* **Wember, Valentin.** *La economía fraterna y el sostenimiento del organismo escolar*. Editorial Pau de Damasc.
+* **Felber, Christian.** *La Economía del Bien Común: Un modelo económico de futuro*. Editorial Deusto.

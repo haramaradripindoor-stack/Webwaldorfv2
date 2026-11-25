@@ -3,6 +3,7 @@ title: "Los Hitos de la Comunidad: El Libro de Padres y los Actos que Forjan una
 excerpt: "Una Escuela Waldorf no se mide por sus programas o infraestructura. Se mide por la densidad y profundidad de sus hitos comunitarios: los momentos donde adultos y niños se reconocen mutuamente en el camino."
 published_at: "2026-08-24"
 image_url: "/imagenes-web/galeria10.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 # Una Escuela se Cuenta por sus Hitos, No por sus Años
@@ -58,3 +59,12 @@ Eso es lo que ofrece una Escuela Waldorf. No un servicio educativo. Una comunida
 ---
 
 *¿Quieres ser parte de los próximos hitos del Colegio Waldorf Trekan? El proceso de Admisión 2027 ya está abierto. Conoce todos los detalles en [colegiowaldorftrekan.cl/admision](/admision).*
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Melé, Joan Antoni.** *Dinero y conciencia: ¿A quién le sirve mi dinero?* Plataforma Editorial, Barcelona (2009).
+* **Steiner, Rudolf.** *Curso de economía social: El trabajo, el capital y el valor asociativo* (GA 340). Editorial Antroposófica, Buenos Aires.
+* **Wember, Valentin.** *La economía fraterna y el sostenimiento del organismo escolar*. Editorial Pau de Damasc.
+* **Felber, Christian.** *La Economía del Bien Común: Un modelo económico de futuro*. Editorial Deusto.

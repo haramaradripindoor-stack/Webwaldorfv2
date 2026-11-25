@@ -3,6 +3,7 @@ title: "El Cerebro Social: El inmenso valor del Aula Multigrado"
 excerpt: "Descubre por qué agrupar a los niños por 'fecha de fabricación' aumenta el estrés, y cómo el modelo multigrado acelera el aprendizaje orgánico."
 published_at: "2026-07-26"
 image_url: "/imagenes-web/galeria8.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 # El Cerebro Social: El inmenso valor del Aula Multigrado
@@ -36,3 +37,12 @@ Para la **comunidad Waldorf mundial**, que hoy abarca miles de escuelas en todos
 En el Colegio Waldorf Trekan no preparamos a los niños para encajar en una fábrica, los preparamos para la vida. Y en la vida real, interactuamos, trabajamos y amamos a personas de todas las edades. 
 
 El aula multigrado no es una coincidencia administrativa; es una decisión pedagógica profunda, diseñada para respetar la biología humana, proteger la infancia y cultivar seres humanos seguros de sí mismos, empáticos y socialmente brillantes.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **American Academy of Pediatrics (AAP).** *Media and Young Minds: Clinical Guidelines on Screen Exposure and Infant Brain Health*. Pediatrics (2016).
+* **Damasio, Antonio.** *El error de Descartes: La emoción, la razón y el cerebro humano*. Editorial Crítica / Paidós.
+* **Walker, Matthew.** *Por qué dormimos: La nueva ciencia del sueño y el neurodesarrollo infantil*. Editorial Capitán Swing.
+* **Steiner, Rudolf.** *Cronobiología y ritmo vital: La respiración del organismo infantil* (GA 304). Conferencia pedagógica de Dornach.

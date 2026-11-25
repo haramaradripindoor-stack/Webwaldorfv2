@@ -3,6 +3,7 @@ title: "Teoría U: Liderando la Escuela desde el Futuro a Medida que Emerge"
 excerpt: "La aplicación de la Teoría U de Otto Scharmer en la gestión de colegios Waldorf, permitiendo a los equipos directivos superar los patrones del pasado y conectar con su máximo potencial."
 published_at: "2025-04-18"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 Frente a los desafíos crecientes de administrar un organismo educativo complejo en el siglo XXI, las herramientas convencionales de planificación estratégica —basadas exclusivamente en la extrapolación de datos del pasado— a menudo resultan insuficientes. Es aquí donde la **Teoría U**, desarrollada por Otto Scharmer en el MIT, converge profundamente con la visión antroposófica, ofreciendo una tecnología de consciencia vital para los Equipos de Gestión y el Claustro de Maestros.
@@ -39,3 +40,12 @@ Guarden un minuto de silencio grupal. No traten de "resolver" el problema todav�
 Abre los ojos y, en lugar de intentar cerrar un acuerdo masivo o definitivo, propongan un prototipo. Una acción mínima y rápida. *"¿Qué tal si en las próximas dos semanas probamos esta pequeña acción juntos y evaluamos cómo nos va?"*
 
 Cuando practicamos esta técnica de la Teoría U, dejamos de chocar violentamente contra las opiniones forjadas en el pasado y empezamos a co-crear a partir del futuro que quiere nacer. Esa es la esencia viva de un colegio Waldorf.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Melé, Joan Antoni.** *Dinero y conciencia: ¿A quién le sirve mi dinero?* Plataforma Editorial, Barcelona (2009).
+* **Steiner, Rudolf.** *Curso de economía social: El trabajo, el capital y el valor asociativo* (GA 340). Editorial Antroposófica, Buenos Aires.
+* **Wember, Valentin.** *La economía fraterna y el sostenimiento del organismo escolar*. Editorial Pau de Damasc.
+* **Felber, Christian.** *La Economía del Bien Común: Un modelo económico de futuro*. Editorial Deusto.

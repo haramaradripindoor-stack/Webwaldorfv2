@@ -33,3 +33,12 @@ En la pedagogía Waldorf, priorizamos la **luz natural directa o filtrada** como
 Rechazamos por completo la luz fría y los tubos fluorescentes. Al eliminar estos estímulos agresivos y la luz azul, reducimos drásticamente la fatiga cerebral, creando un ambiente de calma donde los niños con TDAH o sensibilidades sensoriales pueden regularse de manera natural.
 
 Nuestras aulas no son oficinas iluminadas con neón; son espacios cálidos diseñados para el bienestar emocional. En el próximo artículo, exploraremos cómo logramos esta "atmósfera hogareña" a través del color y las herramientas estéticas de la educación Waldorf.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **American Academy of Pediatrics (AAP).** *Media and Young Minds: Clinical Guidelines on Screen Exposure and Infant Brain Health*. Pediatrics (2016).
+* **Damasio, Antonio.** *El error de Descartes: La emoción, la razón y el cerebro humano*. Editorial Crítica / Paidós.
+* **Walker, Matthew.** *Por qué dormimos: La nueva ciencia del sueño y el neurodesarrollo infantil*. Editorial Capitán Swing.
+* **Steiner, Rudolf.** *Cronobiología y ritmo vital: La respiración del organismo infantil* (GA 304). Conferencia pedagógica de Dornach.

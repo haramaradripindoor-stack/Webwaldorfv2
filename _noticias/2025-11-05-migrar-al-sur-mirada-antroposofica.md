@@ -30,3 +30,12 @@ Para las familias que dan este gran paso biográfico, la elección del colegio e
 Buscar un **Colegio Waldorf Trekan en el sur de Chile** asegura que la transición sea armónica. En el Colegio Waldorf Trekan, el aula es una extensión de la calidez del hogar y del entorno natural. Los materiales nobles, el ritmo de la clase (inspirado en la inhalación y exhalación) y el trabajo con las manos (huerta, oficios, arte) permiten que el niño integre el paisaje exterior en su paisaje interior.
 
 Migrar al sur es escuchar un llamado profundo del alma familiar. Es elegir conscientemente un entorno que diga al niño: *"El mundo es bueno, el mundo es bello y tienes tiempo para crecer"*.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Wember, Valentin.** *La gestión de la escuela: El encuentro entre familias y maestros en la escuela viva*. Editorial Pau de Damasc.
+* **Steiner, Rudolf.** *Comunidad consciente y libertad individual* (GA 257). Editorial Rudolf Steiner.
+* **Das Goetheanum — Sección de Ciencias Sociales.** *La corresponsabilidad comunitaria en iniciativas antroposóficas*. Dornach, Suiza.
+* **Covey, Stephen R.** *El principio de la empatía profunda y la escucha activa en organismos humanos*.

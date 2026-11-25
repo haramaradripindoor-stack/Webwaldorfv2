@@ -3,6 +3,7 @@ title: "Profesionalización y Voluntad: La Gestión Institucional Contemporánea
 excerpt: "La integración de la filosofía administrativa antroposófica con las más altas exigencias de gestión moderna, conformando equipos de dirección sólidamente acreditados."
 published_at: "2025-05-08"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 Uno de los postulados más exigentes de la obra de Valentin Wember sobre la administración escolar Waldorf radica en la erradicación del romanticismo burocrático. Conducir una institución educativa en el siglo XXI no puede depender únicamente del idealismo bienintencionado; exige una convergencia estricta entre el impulso espiritual originario y el máximo rigor de la administración corporativa y educacional moderna.
@@ -18,3 +19,12 @@ El manejo de presupuestos estratégicos, la planificación institucional, la con
 No obstante, la acreditación universitaria por sí sola es insuficiente si carece de sustancia filosófica. Lo que distingue a la gestión de Trekan es el entrelazamiento de estas competencias técnicas con el estudio profundo de textos fundamentales como "La Gestión de la Escuela", la asimilación del corpus de Rudolf Steiner, y la participación en formaciones antroposóficas continuas.
 
 Esta dualidad —la competencia profesional empírica y la profundidad espiritual— permite a nuestro Equipo de Gestión operar no como burócratas, sino como genuinos arquitectos del impulso Waldorf, asegurando que las generaciones de niños presentes y futuras cuenten con un espacio seguro, sustentable y administrativamente impecable para su desarrollo integral.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Wember, Valentin.** *La gestión de la escuela: Una guía para las escuelas Waldorf*. Editorial Pau de Damasc / Antroposófica.
+* **Steiner, Rudolf.** *Hacia la renovación del organismo social: Trimembración social* (GA 23). Editorial Rudolf Steiner, Madrid.
+* **Das Goetheanum — Sección Pedagógica.** *Directrices internacionales sobre liderazgo colegiado y gobernanza comunitaria en escuelas Waldorf*. Dornach, Suiza.
+* **Lievegoed, Bernard.** *Las etapas evolutivas del organismo y la organización humana*. Editorial Antroposófica.

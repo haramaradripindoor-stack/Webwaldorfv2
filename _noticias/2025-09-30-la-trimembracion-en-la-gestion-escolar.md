@@ -3,6 +3,7 @@ title: "La Trimembración Social en la Gestión Escolar"
 excerpt: "Explorando las ideas de Valentin Wember sobre cómo organizar una Escuela Waldorf Trekan de forma orgánica, dividiéndola en tres esferas autónomas pero interconectadas."
 published_at: "2025-09-30"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 En su libro *"La Gestión de la Escuela - Una guía para las Escuelas Waldorf Trekan"*, Valentin Wember nos invita a repensar la forma en que estructuramos nuestras comunidades educativas. Wember retoma los conceptos fundamentales de Rudolf Steiner sobre la Trimembración Social y los aplica magistralmente al organismo escolar.
@@ -19,3 +20,12 @@ Aquí encontramos al **Directorio** o la administración institucional. Esta esf
 La economía en una Escuela Waldorf Trekan no busca el lucro, sino la sustentabilidad. Aquí entran los apoderados, benefactores y la administración financiera. El principio que rige esta esfera es la **Fraternidad**: cada uno aporta según sus capacidades y recibe según las necesidades de la escuela. Wember destaca que cuando las familias comprenden esto, el pago de la colegiatura deja de ser una "compra de servicios" y se transforma en un aporte consciente a la educación de la humanidad.
 
 La correcta comprensión y separación de estas tres esferas evita la mayoría de los conflictos escolares. Cuando la administración intenta imponer cómo enseñar, o cuando los maestros deben preocuparse por la contabilidad en lugar del currículum, el organismo enferma. Wember nos recuerda que la salud de la escuela depende de que cada esfera respete a las otras, operando en total autonomía pero bajo un propósito común.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Melé, Joan Antoni.** *Dinero y conciencia: ¿A quién le sirve mi dinero?* Plataforma Editorial, Barcelona (2009).
+* **Steiner, Rudolf.** *Curso de economía social: El trabajo, el capital y el valor asociativo* (GA 340). Editorial Antroposófica, Buenos Aires.
+* **Wember, Valentin.** *La economía fraterna y el sostenimiento del organismo escolar*. Editorial Pau de Damasc.
+* **Felber, Christian.** *La Economía del Bien Común: Un modelo económico de futuro*. Editorial Deusto.

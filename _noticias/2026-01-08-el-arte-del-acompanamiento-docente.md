@@ -34,3 +34,12 @@ A menudo, por las necesidades mismas de la escuela en crecimiento, se le pide a 
 Las Escuelas Waldorf de vanguardia no descartan a quienes están aprendiendo; instauran sistemas de **Acompañamiento y Padrinazgo (Mentoring)**. Un maestro con más experiencia (interno o externo) acompaña, observa y guía al educador en formación, fijando metas objetivas para el año. 
 
 Al proteger y nutrir a sus maestros en desarrollo, el colegio no solo honra la biografía de ese ser humano, sino que encarna verdaderamente los principios de la economía fraterna y la educación hacia la libertad.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Melé, Joan Antoni.** *Dinero y conciencia: ¿A quién le sirve mi dinero?* Plataforma Editorial, Barcelona (2009).
+* **Steiner, Rudolf.** *Curso de economía social: El trabajo, el capital y el valor asociativo* (GA 340). Editorial Antroposófica, Buenos Aires.
+* **Wember, Valentin.** *La economía fraterna y el sostenimiento del organismo escolar*. Editorial Pau de Damasc.
+* **Felber, Christian.** *La Economía del Bien Común: Un modelo económico de futuro*. Editorial Deusto.

@@ -3,6 +3,7 @@ title: "El Directorio Institucional: Guardianes del Marco Legal y Administrativo
 excerpt: "La trascendencia de la Esfera Administrativa en la protección de la libertad pedagógica, garantizando el cumplimiento jurídico y la solvencia del proyecto educativo."
 published_at: "2025-09-04"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 Para que la pedagogía Waldorf florezca en las aulas con total libertad y rigor metodológico, requiere de una coraza protectora que opere con precisión técnica frente a las exigencias del mundo civil y estatal. Esta es la labor magna del **Directorio Institucional** o Entidad Sostenedora, el órgano ejecutivo que rige la Esfera del Derecho y la Igualdad en la Trimembración Social escolar.
@@ -18,3 +19,12 @@ Valentin Wember clarifica de forma taxativa que el Directorio no tiene competenc
 El liderazgo administrativo en una Escuela Waldorf Trekan exige un profundo discernimiento. Los directores y gestores deben poseer competencias profesionales de alto nivel (como sucede en Colegio Waldorf Trekan a través de perfiles universitarios en administración y dirección), pero deben someter dichas herramientas a la filosofía de la institución. 
 
 Un Directorio maduro comprende que su mayor indicador de éxito no es acumular poder de decisión, sino **proteger celosamente la autonomía del Claustro de Maestros**. Cuando el Directorio absorbe el estrés legal y financiero, los profesores pueden concentrar sus energías exclusivamente en el desarrollo espiritual e intelectual de los niños. Este equilibrio de respeto mutuo es el sello distintivo de una gestión institucional de excelencia.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Melé, Joan Antoni.** *Dinero y conciencia: ¿A quién le sirve mi dinero?* Plataforma Editorial, Barcelona (2009).
+* **Steiner, Rudolf.** *Curso de economía social: El trabajo, el capital y el valor asociativo* (GA 340). Editorial Antroposófica, Buenos Aires.
+* **Wember, Valentin.** *La economía fraterna y el sostenimiento del organismo escolar*. Editorial Pau de Damasc.
+* **Felber, Christian.** *La Economía del Bien Común: Un modelo económico de futuro*. Editorial Deusto.

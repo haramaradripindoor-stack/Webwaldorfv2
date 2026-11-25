@@ -3,6 +3,7 @@ title: "La Trimembración Social: Arquitectura Viva de la Gestión Escolar Waldo
 excerpt: "Un análisis riguroso de la estructura orgánica de las Escuelas Waldorf Trekan y cómo la Trimembración Social fundamenta una administración basada en la autonomía de esferas."
 published_at: "2025-11-01"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 La administración contemporánea a menudo concibe a las instituciones educativas bajo paradigmas mecanicistas, estructurándolas mediante jerarquías verticales rígidas. En contraposición a esta visión, la pedagogía Waldorf —fundamentada en la antroposofía de Rudolf Steiner— postula que una escuela debe ser comprendida y administrada como un **organismo vivo**. Esta comprensión se materializa a través del principio de la Trimembración Social (Soziale Dreigliederung).
@@ -21,3 +22,12 @@ Alejada diametralmente de la visión de "clientes comprando un servicio", la eco
 ### Equilibrio y Sinergia Organizacional
 
 El desafío supremo de la gestión en una institución Waldorf, como el Colegio Waldorf Trekan, radica en evitar la hipertrofia de una esfera sobre las demás. Cuando la administración jurídica pretende dictar normas pedagógicas, o cuando la presión económica vulnera la equidad de los derechos, el organismo escolar enferma. La madurez institucional se alcanza únicamente mediante un liderazgo capaz de sostener este equilibrio dinámico, garantizando que cada miembro de la comunidad opere con excelencia desde su ámbito de competencia.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Melé, Joan Antoni.** *Dinero y conciencia: ¿A quién le sirve mi dinero?* Plataforma Editorial, Barcelona (2009).
+* **Steiner, Rudolf.** *Curso de economía social: El trabajo, el capital y el valor asociativo* (GA 340). Editorial Antroposófica, Buenos Aires.
+* **Wember, Valentin.** *La economía fraterna y el sostenimiento del organismo escolar*. Editorial Pau de Damasc.
+* **Felber, Christian.** *La Economía del Bien Común: Un modelo económico de futuro*. Editorial Deusto.

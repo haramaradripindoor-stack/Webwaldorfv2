@@ -3,6 +3,7 @@ title: "¿Por qué las clases no deberían empezar a las 8:00 a.m.? La postura d
 excerpt: "Descubre la base neurocientífica de los horarios escolares. Por qué respetar el ritmo circadiano mejora el aprendizaje y cómo lo abordamos en Colegio Waldorf Trekan."
 published_at: "2026-05-30"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 # ¿Por qué las clases no deberían empezar a las 8:00 a.m.? La postura de la Neurociencia y el Colegio Trekan
@@ -46,3 +47,12 @@ La "Época" cognitiva (las clases principales donde se requiere la máxima conce
 En el **Colegio Waldorf Trekan**, no obligamos al niño a encajar en el reloj de la industria; ajustamos el reloj de la escuela para que encaje con la naturaleza humana. 
 
 **Te invitamos a conocer una educación que respeta los ritmos vitales de tu hijo.**
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **American Academy of Pediatrics (AAP).** *Media and Young Minds: Clinical Guidelines on Screen Exposure and Infant Brain Health*. Pediatrics (2016).
+* **Damasio, Antonio.** *El error de Descartes: La emoción, la razón y el cerebro humano*. Editorial Crítica / Paidós.
+* **Walker, Matthew.** *Por qué dormimos: La nueva ciencia del sueño y el neurodesarrollo infantil*. Editorial Capitán Swing.
+* **Steiner, Rudolf.** *Cronobiología y ritmo vital: La respiración del organismo infantil* (GA 304). Conferencia pedagógica de Dornach.

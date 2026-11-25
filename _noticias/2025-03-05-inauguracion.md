@@ -3,6 +3,7 @@ title: "Inauguración: El anclaje de la Piedra Fundamental"
 excerpt: "Más allá de un evento social, la inauguración de nuestra escuela es el momento sagrado donde el impulso espiritual toma forma en la tierra."
 published_at: "2025-03-05"
 image_url: "/assets/galeria/galeria_01_casona_parque.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 # El Anclaje Espiritual en la Tierra
@@ -20,3 +21,12 @@ Durante nuestra inauguración, las palabras compartidas por los maestros y las f
 ## Un Faro de Luz en la Comunidad
 
 Iniciar las clases es encender una llama. Como comunidad, hemos encendido un fuego que busca ser luz no solo para nuestras familias, sino para todo el entorno social. La inauguración es el paso de ser un "proyecto" a ser una **entidad viva**, un organismo escolar completo y respirante, preparado para recibir a las generaciones del futuro con profunda reverencia y amor incondicional.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Wember, Valentin.** *La gestión de la escuela: El encuentro entre familias y maestros en la escuela viva*. Editorial Pau de Damasc.
+* **Steiner, Rudolf.** *Comunidad consciente y libertad individual* (GA 257). Editorial Rudolf Steiner.
+* **Das Goetheanum — Sección de Ciencias Sociales.** *La corresponsabilidad comunitaria en iniciativas antroposóficas*. Dornach, Suiza.
+* **Covey, Stephen R.** *El principio de la empatía profunda y la escucha activa en organismos humanos*.

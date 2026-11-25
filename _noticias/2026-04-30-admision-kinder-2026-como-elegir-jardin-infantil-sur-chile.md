@@ -101,3 +101,12 @@ Los cupos se llenan durante el año anterior. Si tu hijo tendrá 4 o 5 años dur
 ---
 
 *Colegio Waldorf Trekan, Parque Ivian, Puerto Varas. Admisión Kinder 2026 abierta para niños de 3-6 años. También recibimos familias en proceso de matrícula para 1ro a 8vo básico.*
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Melé, Joan Antoni.** *Dinero y conciencia: ¿A quién le sirve mi dinero?* Plataforma Editorial, Barcelona (2009).
+* **Steiner, Rudolf.** *Curso de economía social: El trabajo, el capital y el valor asociativo* (GA 340). Editorial Antroposófica, Buenos Aires.
+* **Wember, Valentin.** *La economía fraterna y el sostenimiento del organismo escolar*. Editorial Pau de Damasc.
+* **Felber, Christian.** *La Economía del Bien Común: Un modelo económico de futuro*. Editorial Deusto.

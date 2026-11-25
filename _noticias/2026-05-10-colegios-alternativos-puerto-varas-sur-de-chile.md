@@ -89,3 +89,12 @@ Puedes agendar directamente a través de WhatsApp o llenar el formulario de cont
 ---
 
 *Colegio Waldorf Trekan recibe familias de Puerto Varas, Frutillar, Llanquihue, Puerto Montt y el sur de Chile para la admisión 2026. Grupos de Kinder, 1ro a 8vo básico en modalidad bi-grado y multi-grado.*
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Steiner, Rudolf.** *La educación del niño desde el punto de vista de la antroposofía* (GA 34). Editorial Rudolf Steiner.
+* **Jaffke, Freya.** *El juego en la primera infancia: Juguetes y actividades para el jardín de infantes*. Editorial Antroposófica.
+* **American Academy of Pediatrics (AAP).** *The Power of Play: A Pediatric Role in Enhancing Development in Young Children*. Pediatrics (2018).
+* **Pikler, Emmi.** *Moverse en libertad: Desarrollo de la motricidad global*. Editorial Narcea.

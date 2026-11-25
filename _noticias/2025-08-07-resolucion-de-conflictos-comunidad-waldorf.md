@@ -3,6 +3,7 @@ title: "Resolución de Conflictos en la Comunidad Escolar"
 excerpt: "Valentin Wember nos entrega las claves para enfrentar y resolver los conflictos naturales que surgen en una comunidad educativa autogestionada."
 published_at: "2025-08-07"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 Cualquier organismo vivo enfrenta crisis y los colegios Waldorf no son la excepción. En una estructura donde prima la autogestión y el involucramiento profundo de los padres (Esfera Comunitaria) y maestros (Esfera Pedagógica), es natural que surjan diferencias de visión. 
@@ -21,3 +22,12 @@ Para gestionar la escuela sanamente, Wember recomienda la creación de órganos 
 Para la Antroposofía, el encuentro con "el otro" es siempre una oportunidad kármica. Wember sugiere que cuando enfrentamos un conflicto en la escuela, debemos preguntarnos: *"¿Qué me está pidiendo la escuela que yo aprenda de esto?"*. 
 
 Al enfrentar las crisis con voluntad de sanación y no de división, la comunidad escolar sale fortalecida, demostrándoles a los niños —nuestro verdadero foco— que los adultos son capaces de superar sus diferencias a través del diálogo y el amor por la educación.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Steiner, Rudolf.** *La educación del niño desde el punto de vista de la antroposofía* (GA 34). Editorial Rudolf Steiner.
+* **Jaffke, Freya.** *El juego en la primera infancia: Juguetes y actividades para el jardín de infantes*. Editorial Antroposófica.
+* **American Academy of Pediatrics (AAP).** *The Power of Play: A Pediatric Role in Enhancing Development in Young Children*. Pediatrics (2018).
+* **Pikler, Emmi.** *Moverse en libertad: Desarrollo de la motricidad global*. Editorial Narcea.

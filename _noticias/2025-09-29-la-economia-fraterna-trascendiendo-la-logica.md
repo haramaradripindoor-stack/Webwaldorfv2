@@ -3,6 +3,7 @@ title: "La Economía Fraterna: Trascendiendo la Dinámica Transaccional en la Ed
 excerpt: "Un análisis riguroso sobre el financiamiento de las Escuelas Waldorf Trekan, la sustentabilidad institucional y la transformación del pago en un acto de fraternidad social."
 published_at: "2025-09-29"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 Dentro de la arquitectura de la Trimembración Social que sostiene a las instituciones Waldorf, la Esfera Económica representa, sin lugar a dudas, uno de los desafíos paradigmáticos más profundos para las familias que ingresan al sistema. Acostumbrados a una lógica de libre mercado, es habitual que el apoderado inicialmente asuma un rol de "cliente" que "compra un servicio educativo". 
@@ -20,3 +21,12 @@ La gestión financiera de la escuela exige un rigor técnico absoluto por parte 
 Simultáneamente, exige de la comunidad de familias una corresponsabilidad activa. Las Escuelas Waldorf Trekan logran su máxima eficiencia cuando los talentos profesionales, técnicos y logísticos de la comunidad de apoderados se ponen al servicio del proyecto, complementando el flujo financiero con aportes de infraestructura, mantención o gestión de recursos.
 
 Trascender la mentalidad de "cliente" para asumir la de "corresponsable" es el salto cualitativo indispensable que garantiza la sustentabilidad del colegio y permite que la labor pedagógica de los maestros fluya sin el asedio constante del déficit o la precariedad.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Melé, Joan Antoni.** *Dinero y conciencia: ¿A quién le sirve mi dinero?* Plataforma Editorial, Barcelona (2009).
+* **Steiner, Rudolf.** *Curso de economía social: El trabajo, el capital y el valor asociativo* (GA 340). Editorial Antroposófica, Buenos Aires.
+* **Wember, Valentin.** *La economía fraterna y el sostenimiento del organismo escolar*. Editorial Pau de Damasc.
+* **Felber, Christian.** *La Economía del Bien Común: Un modelo económico de futuro*. Editorial Deusto.

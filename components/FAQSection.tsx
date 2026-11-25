@@ -223,10 +223,6 @@ export default function FAQSection() {
       {/* Header Editorial */}
       <div className="mb-14 text-center md:text-left flex flex-col md:flex-row md:items-end md:justify-between gap-6 border-b border-[#1a2e25]/10 pb-10">
         <div>
-          <span className="text-[var(--color-waldorf-terracotta)] text-xs font-mono font-bold tracking-[0.25em] uppercase flex items-center justify-center md:justify-start gap-1.5 mb-3">
-            <Sparkles size={14} />
-            Claridad & Transparencia
-          </span>
           <h2 className="text-4xl md:text-6xl font-bold font-serif text-[var(--color-waldorf-moss)] leading-tight">
             Preguntas Frecuentes
           </h2>
@@ -335,9 +331,6 @@ export default function FAQSection() {
       {/* Callout Consultivo de Cierre (Toque High-End / Acompañamiento Familiar) */}
       <div className="mt-16 p-8 md:p-10 rounded-[28px] bg-[#F4EFEA] border border-[#1a2e25]/10 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="text-center md:text-left">
-          <span className="text-xs font-mono uppercase tracking-widest text-[var(--color-waldorf-terracotta)] font-bold block mb-1">
-            Atención Personalizada
-          </span>
           <h3 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-waldorf-moss)]">
             ¿Tienes una inquietud específica para tu familia?
           </h3>

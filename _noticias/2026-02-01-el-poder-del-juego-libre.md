@@ -30,3 +30,12 @@ En nuestro entorno privilegiado en el sur de Chile, la conexión con la naturale
 Si te preguntas cómo implementar esta filosofía en casa, te sugerimos comenzar por desaturar el ambiente. Menos juguetes, y más elementos abiertos (bloques de madera, telas, piñas de pino, lana) fomentan un juego mucho más rico y prolongado. Permite que el aburrimiento aparezca; es la antesala de la creatividad más profunda.
 
 Te invitamos a conocer cómo integramos el juego libre en nuestra rutina diaria en el Colegio Waldorf Trekan.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **American Academy of Pediatrics (AAP).** *Media and Young Minds: Clinical Guidelines on Screen Exposure and Infant Brain Health*. Pediatrics (2016).
+* **Damasio, Antonio.** *El error de Descartes: La emoción, la razón y el cerebro humano*. Editorial Crítica / Paidós.
+* **Walker, Matthew.** *Por qué dormimos: La nueva ciencia del sueño y el neurodesarrollo infantil*. Editorial Capitán Swing.
+* **Steiner, Rudolf.** *Cronobiología y ritmo vital: La respiración del organismo infantil* (GA 304). Conferencia pedagógica de Dornach.

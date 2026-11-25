@@ -30,3 +30,12 @@ Si un niño está hiperactivo o ansioso, muchas veces se debe a que ha estado "e
 3. **El Ritmo de la Noche:** Mantén las luces bajas y reduce el ritmo de toda la casa una hora antes de dormir. Un cuento narrado a viva voz, sin libros con ilustraciones estridentes, permite que el niño procese el día y se entregue al sueño confiado.
 
 Ven a conocer cómo nuestro proyecto educativo Waldorf en Puerto Varas acompaña los ritmos naturales de la infancia.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **American Academy of Pediatrics (AAP).** *Media and Young Minds: Clinical Guidelines on Screen Exposure and Infant Brain Health*. Pediatrics (2016).
+* **Damasio, Antonio.** *El error de Descartes: La emoción, la razón y el cerebro humano*. Editorial Crítica / Paidós.
+* **Walker, Matthew.** *Por qué dormimos: La nueva ciencia del sueño y el neurodesarrollo infantil*. Editorial Capitán Swing.
+* **Steiner, Rudolf.** *Cronobiología y ritmo vital: La respiración del organismo infantil* (GA 304). Conferencia pedagógica de Dornach.

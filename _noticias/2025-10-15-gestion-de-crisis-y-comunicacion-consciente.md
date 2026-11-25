@@ -3,6 +3,7 @@ title: "Gestión de Crisis y Comunicación Consciente: El Abordaje Antroposófic
 excerpt: "Un marco normativo e institucional para la resolución de conflictos en el organismo escolar, enfatizando la erradicación del rumor y el diálogo directo."
 published_at: "2025-10-15"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 Toda institución humana de carácter complejo está inherentemente expuesta a la tensión y al conflicto. En los colegios Waldorf, donde la gestión involucra la participación activa de padres y maestros bajo un esquema no jerárquico tradicional, la aparición de discrepancias no representa un fracaso del sistema, sino un síntoma natural de su vitalidad. No obstante, la salud a largo plazo de la escuela depende críticamente de la **metodología** empleada para tramitar dichas crisis.
@@ -22,3 +23,12 @@ Para garantizar el debido proceso en la resolución de discrepancias, las instit
 
 ### El Conflicto como Oportunidad Biográfica
 Desde el paradigma antroposófico, la colisión interpersonal no es accidental. Posee una dimensión kármica y biográfica que interpela al adulto a desarrollar nuevas facultades anímicas. La resolución madura de un conflicto en el seno del colegio no solo restaura el equilibrio institucional, sino que ofrece a los estudiantes —los verdaderos receptores de nuestra coherencia— el modelo empírico de que los adultos poseen la voluntad y la capacidad técnica para trascender el disenso mediante la razón y el propósito superior.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Steiner, Rudolf.** *La educación del niño desde el punto de vista de la antroposofía* (GA 34). Editorial Rudolf Steiner.
+* **Jaffke, Freya.** *El juego en la primera infancia: Juguetes y actividades para el jardín de infantes*. Editorial Antroposófica.
+* **American Academy of Pediatrics (AAP).** *The Power of Play: A Pediatric Role in Enhancing Development in Young Children*. Pediatrics (2018).
+* **Pikler, Emmi.** *Moverse en libertad: Desarrollo de la motricidad global*. Editorial Narcea.

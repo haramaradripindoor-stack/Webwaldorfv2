@@ -4,6 +4,7 @@ excerpt: "Una escuela Waldorf no es una empresa de servicios ni un archipiélago
 published_at: "2026-10-14"
 category: "Vida Comunitaria"
 image_url: "/imagenes-web/equipoescolar.jpg"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 # Claridad, confianza y cuidado de la infancia: La escuela como organismo vivo

@@ -3,6 +3,7 @@ title: "Cronobiología y Etapas de Maduración: Interpelando el Dogma Escolar"
 excerpt: "Una reflexión profunda sobre cómo la neurociencia moderna respalda la flexibilidad de horarios y cómo el colegio, en su madurez, debe trascender el dogma para servir al niño real."
 published_at: "2025-04-30"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 El desarrollo de una Escuela Waldorf Trekan, al igual que el de un ser humano, transita por distintas **etapas de maduración**. Valentin Wember describe con agudeza cómo las instituciones pasan de una fase "Pionera" fundacional (llena de entusiasmo pero estructuralmente frágil), a una fase de "Institucionalización", para finalmente enfrentar el riesgo del estancamiento dogmático. La verdadera madurez institucional, afirma Wember, se alcanza cuando el colegio posee la flexibilidad intelectual y espiritual para **interpelar sus propias prácticas** a la luz del presente.
@@ -23,3 +24,12 @@ El aprendizaje real ocurre en los periodos de pausa y durante el sueño (lo que 
 Acoger las observaciones críticas de Wember significa comprender que la antroposofía no es un recetario inamovible. Es un método de investigación viva. Cuando el **Equipo de Gestión y el Claustro de Maestros** integran la flexibilidad horaria, el respeto por la biología del sueño y la adaptación de los ritmos a la época actual, demuestran que la institución ha superado su fase dogmática. 
 
 En esta etapa de madurez consciente, el colegio no busca preservar "la forma Waldorf" como si fuese una reliquia de museo, sino que utiliza sus herramientas para servir, con absoluta vigencia, al niño y joven del presente.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **American Academy of Pediatrics (AAP).** *Media and Young Minds: Clinical Guidelines on Screen Exposure and Infant Brain Health*. Pediatrics (2016).
+* **Damasio, Antonio.** *El error de Descartes: La emoción, la razón y el cerebro humano*. Editorial Crítica / Paidós.
+* **Walker, Matthew.** *Por qué dormimos: La nueva ciencia del sueño y el neurodesarrollo infantil*. Editorial Capitán Swing.
+* **Steiner, Rudolf.** *Cronobiología y ritmo vital: La respiración del organismo infantil* (GA 304). Conferencia pedagógica de Dornach.

@@ -3,6 +3,7 @@ title: "La Disposición Interior: El Arte Oculto de las Reuniones Efectivas"
 excerpt: "Por qué el éxito de una reunión administrativa o pedagógica no depende solo de la agenda, sino del estado anímico, la escucha activa y la preparación espiritual de sus integrantes."
 published_at: "2025-03-08"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 En la cultura organizacional moderna, la eficiencia de una reunión suele medirse por la velocidad con la que se vacía una lista de tareas (agenda). Sin embargo, en el contexto de una institución regida por principios antroposóficos, esta métrica es superficial. Si el colegio es verdaderamente un organismo vivo, la calidad de las decisiones que se toman en sus comisiones depende directamente de un factor intangible: la **disposición interior** de cada uno de sus participantes.
@@ -21,3 +22,12 @@ Esto demanda una **escucha activa** radical. El participante debe silenciar su p
 
 ### El Cultivo de la Ecuanimidad
 Al final del día, el miembro de un Directorio, Comisión o Claustro está convocado para servir a un ente superior: el desarrollo espiritual de los niños. Preguntarse internamente *"¿Qué implica servir un propósito más elevado?"* antes de tomar una decisión de presupuestos o infraestructura, dota a la resolución de un peso moral específico. La eficiencia logística es vital, pero es la **disposición moral-espiritual** del equipo la que verdaderamente blinda a la escuela frente a las tempestades institucionales.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Wember, Valentin.** *La gestión de la escuela: Una guía para las escuelas Waldorf*. Editorial Pau de Damasc / Antroposófica.
+* **Steiner, Rudolf.** *Hacia la renovación del organismo social: Trimembración social* (GA 23). Editorial Rudolf Steiner, Madrid.
+* **Das Goetheanum — Sección Pedagógica.** *Directrices internacionales sobre liderazgo colegiado y gobernanza comunitaria en escuelas Waldorf*. Dornach, Suiza.
+* **Lievegoed, Bernard.** *Las etapas evolutivas del organismo y la organización humana*. Editorial Antroposófica.

@@ -3,6 +3,7 @@ title: "Pedagogía Waldorf y Currículum Nacional: Cómo en Colegio Trekan Unimo
 excerpt: "Descubre cómo el Colegio Waldorf Trekan en Puerto Varas integra la pedagogía Waldorf con el currículum del MINEDUC mediante aulas multigrado y excelencia académica."
 published_at: "2026-06-09"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 # Pedagogía Waldorf y Currículum Nacional: Cómo en Colegio Trekan Unimos lo Mejor de Ambos Mundos
@@ -54,3 +55,12 @@ Por otro lado, si una familia necesita reinsertarse en la educación tradicional
 Tus hijos no pierden su infancia, ni se desconectan de su esencia para encajar en el sistema. Al contrario: gracias a una educación fundamentada en el desarrollo neurobiológico real, conquistan el mundo académico con seguridad, pensamiento crítico y un profundo sentido de pertenencia.
 
 **Te invitamos a ser parte del Colegio Waldorf Trekan.** El lugar donde la ciencia del aprendizaje y la educación con alma se encuentran.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **American Academy of Pediatrics (AAP).** *Media and Young Minds: Clinical Guidelines on Screen Exposure and Infant Brain Health*. Pediatrics (2016).
+* **Damasio, Antonio.** *El error de Descartes: La emoción, la razón y el cerebro humano*. Editorial Crítica / Paidós.
+* **Walker, Matthew.** *Por qué dormimos: La nueva ciencia del sueño y el neurodesarrollo infantil*. Editorial Capitán Swing.
+* **Steiner, Rudolf.** *Cronobiología y ritmo vital: La respiración del organismo infantil* (GA 304). Conferencia pedagógica de Dornach.

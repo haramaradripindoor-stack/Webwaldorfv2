@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { Instagram, ArrowUpRight, Sparkles, ChevronLeft, ChevronRight, MoveHorizontal } from 'lucide-react'
+import { Instagram, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import { FALLBACK_POSTS, InstagramPost } from '@/config/instagram'
 
@@ -114,10 +114,6 @@ export default function InstagramSection() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between mb-10 gap-6">
           <div className="text-center md:text-left">
-            <span className="text-xs uppercase font-mono tracking-widest text-[var(--color-waldorf-terracotta)] font-bold flex items-center justify-center md:justify-start gap-1.5 mb-2">
-              <Sparkles size={14} />
-              Vida Comunitaria
-            </span>
             <h2 className="text-3xl md:text-5xl font-bold font-serif text-[var(--color-waldorf-moss)] flex items-center justify-center md:justify-start gap-3 tracking-tight">
               <Instagram size={36} className="text-[var(--color-waldorf-terracotta)]" />
               Comunidad Activa
@@ -165,12 +161,6 @@ export default function InstagramSection() {
               <ArrowUpRight size={16} className="text-white/60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           </div>
-        </div>
-
-        {/* Indicador sutil de arrastre con mouse */}
-        <div className="flex items-center justify-end mb-3 pr-2 text-xs font-mono text-[#1a2e25]/50 gap-1.5 select-none">
-          <MoveHorizontal size={14} className="text-[var(--color-waldorf-terracotta)]" />
-          <span>Arrastra con el mouse para explorar libremente</span>
         </div>
 
         {/* Vitrina Horizontal interactiva con Drag del Mouse & Touch Swipe */}

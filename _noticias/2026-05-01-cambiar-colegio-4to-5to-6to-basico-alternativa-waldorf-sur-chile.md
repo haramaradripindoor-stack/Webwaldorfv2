@@ -98,3 +98,12 @@ Si reconociste tu historia en alguna parte de este artículo, te invitamos a con
 ---
 
 *Colegio Waldorf Trekan. Puerto Varas, Parque Ivian. Admisión 2026 abierta para Kinder y 1ro a 8vo básico en modalidad bi-grado y multigrado. Recibimos familias de Puerto Varas, Puerto Montt, Frutillar, Llanquihue, Osorno y familias en proceso de migración al sur de Chile.*
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Steiner, Rudolf.** *La educación del niño desde el punto de vista de la antroposofía* (GA 34). Editorial Rudolf Steiner.
+* **Jaffke, Freya.** *El juego en la primera infancia: Juguetes y actividades para el jardín de infantes*. Editorial Antroposófica.
+* **American Academy of Pediatrics (AAP).** *The Power of Play: A Pediatric Role in Enhancing Development in Young Children*. Pediatrics (2018).
+* **Pikler, Emmi.** *Moverse en libertad: Desarrollo de la motricidad global*. Editorial Narcea.

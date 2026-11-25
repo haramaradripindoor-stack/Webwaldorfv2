@@ -7,6 +7,11 @@
 - **Aislamiento de Bocetos y Propuestas:** Todo activo de exploración o tablero visual debe permanecer aislado y no debe vincularse al código vivo de Next.js sin autorización directa.
 - **Integridad y Salud de la Web:** Mantener siempre el sitio web compilando limpiamente (verificado 100% funcional con 52 páginas estáticas). No romper el tracking de Meta Pixel, formularios ni estilos actuales.
 
+## 🚫 Prohibición Estricta de Micro-Labels y Micro-Copy Redundante (Anti-Slop Universal)
+- **Erradicación de Kickers Obvios:** Queda terminantemente prohibido colocar micro-labels o kickers que reiteren lo evidente encima de títulos principales (ej. NUNCA usar "Vida Comunitaria" sobre "Comunidad Activa", "Claridad & Transparencia" o "Atención Personalizada" sobre "Preguntas Frecuentes", "Hablemos" sobre "Ven a conocernos", ni "Nuestra Casa" sobre "Dónde Encontrarnos").
+- **Prohibición de Instrucciones de Interfaz Obvias:** NUNCA colocar textos de ayuda obvios como "Arrastra con el mouse para explorar libremente", "Haz click aquí para más información", "Desliza para ver fotos", o similares muletillas de IA. La interfaz debe explicarse por sí misma mediante affordances visuales limpios.
+- **Prohibición de Videos con 'Efecto Terremoto' (Anti-Jitter Zoompan):** NUNCA sintetizar videos de fondo usando filtros `zoompan` de FFmpeg sobre fotos fijas que provoquen vibraciones de píxel, saltos de cuadro o bucles bruscos cada pocos segundos. Los videos de fondo (Hero) deben ser metrajes reales fluidos, de movimiento orgánico continuo y con bucles invisibles (crossfade loop) a 60/24 fps sin sobresaltos.
+
 ## Reglas de Arquitectura de Admisión (Doble Embudo)
 - **Prohibición de Google Forms:** Nunca utilizar Google Forms para procesos de admisión, ya que rompen el ecosistema de tracking (Meta Pixel). Todo formulario debe ser nativo en Next.js.
 - **Topología de Doble Embudo:**

@@ -7,9 +7,6 @@ export default function MapSection() {
   return (
     <section id="ubicacion" className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
       <div className="mb-12 text-center">
-        <span className="text-[var(--color-waldorf-mustard)] text-xs font-bold tracking-widest uppercase block mb-4">
-          Nuestra Casa
-        </span>
         <h2 className="text-3xl md:text-5xl font-bold font-serif text-[var(--color-waldorf-moss)]">
           Dónde Encontrarnos
         </h2>

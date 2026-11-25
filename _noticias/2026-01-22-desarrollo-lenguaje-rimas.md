@@ -30,3 +30,12 @@ En el Colegio Waldorf Trekan, las rondas y las rimas son el corazón del ritmo d
 Para las familias que desean fomentar un lenguaje rico y articulado en casa, el consejo más simple es también el más poderoso: canten y rimen con sus hijos. No necesitan pantallas ni aplicaciones para aprender a hablar bien. Un simple juego de palmas, una rima para ir a dormir o una canción mientras amasan pan juntos, tienen un impacto neurológico y anímico incalculable. 
 
 El aprendizaje genuino del lenguaje requiere la presencia humana cálida y amorosa. ¡Explora más sobre nuestro enfoque educativo en Puerto Varas!
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **American Academy of Pediatrics (AAP).** *Media and Young Minds: Clinical Guidelines on Screen Exposure and Infant Brain Health*. Pediatrics (2016).
+* **Damasio, Antonio.** *El error de Descartes: La emoción, la razón y el cerebro humano*. Editorial Crítica / Paidós.
+* **Walker, Matthew.** *Por qué dormimos: La nueva ciencia del sueño y el neurodesarrollo infantil*. Editorial Capitán Swing.
+* **Steiner, Rudolf.** *Cronobiología y ritmo vital: La respiración del organismo infantil* (GA 304). Conferencia pedagógica de Dornach.

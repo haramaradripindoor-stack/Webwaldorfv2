@@ -3,6 +3,7 @@ title: "El Arado: Cuando el niño toca la tierra por primera vez con intención"
 excerpt: "Arar no es una actividad de huerta escolar. En una Escuela Waldorf, es el gesto con el que el niño aprende que el mundo puede ser transformado por su voluntad, y que la tierra responde."
 published_at: "2026-08-24"
 image_url: "/imagenes-web/galeria10.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 # La Diferencia entre Tocar la Tierra y Trabajarla
@@ -40,3 +41,12 @@ En antroposofía, eso se llama la consolidación del **cuerpo físico a través 
 ---
 
 *Si quieres que tu hijo/a tenga este tipo de experiencias fundacionales desde 1ro Básico, conoce nuestro proceso de [Admisión 2027](/admision).*
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **American Academy of Pediatrics (AAP).** *Media and Young Minds: Clinical Guidelines on Screen Exposure and Infant Brain Health*. Pediatrics (2016).
+* **Damasio, Antonio.** *El error de Descartes: La emoción, la razón y el cerebro humano*. Editorial Crítica / Paidós.
+* **Walker, Matthew.** *Por qué dormimos: La nueva ciencia del sueño y el neurodesarrollo infantil*. Editorial Capitán Swing.
+* **Steiner, Rudolf.** *Cronobiología y ritmo vital: La respiración del organismo infantil* (GA 304). Conferencia pedagógica de Dornach.

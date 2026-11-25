@@ -3,6 +3,7 @@ title: "¿Clientes o Comunidad? El valor relacional en el Colegio Waldorf Trekan
 excerpt: "Descubre por qué una escuela Waldorf no es una empresa de servicios, sino un organismo vivo donde las familias asumen una corresponsabilidad fraterna y comunitaria."
 published_at: "2026-08-13"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 # ¿Clientes o Comunidad? El valor relacional en el Colegio Waldorf Trekan
@@ -40,3 +41,12 @@ Ingresar al Colegio Waldorf Trekan requiere valentía y un alto nivel de conscie
 Nuestra promesa es ofrecer una trayectoria académica y humana de excelencia, amparada en la neurociencia y en el profundo respeto por la infancia. A cambio, pedimos a las familias **confianza absoluta en el quehacer pedagógico** y disposición para sostener, desde lo relacional y lo fraterno, la iniciativa que hace posible que sus hijos florezcan.
 
 **Te invitamos a ser parte de algo más grande. Te invitamos a hacer comunidad.**
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Melé, Joan Antoni.** *Dinero y conciencia: ¿A quién le sirve mi dinero?* Plataforma Editorial, Barcelona (2009).
+* **Steiner, Rudolf.** *Curso de economía social: El trabajo, el capital y el valor asociativo* (GA 340). Editorial Antroposófica, Buenos Aires.
+* **Wember, Valentin.** *La economía fraterna y el sostenimiento del organismo escolar*. Editorial Pau de Damasc.
+* **Felber, Christian.** *La Economía del Bien Común: Un modelo económico de futuro*. Editorial Deusto.

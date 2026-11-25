@@ -3,6 +3,7 @@ title: "El Refugio Evolutivo: Neurociencia, Pantallas y el Ritmo Waldorf"
 excerpt: "Por qué el mundo desarrollado está reevaluando el uso de tecnología temprana y cómo las Escuelas Waldorf resguardan el desarrollo cognitivo infantil."
 published_at: "2026-09-05"
 image_url: "/imagenes-web/paseocerro20261.jpg"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 # El Refugio Evolutivo: Neurociencia, Pantallas y el Ritmo Waldorf
@@ -36,3 +37,12 @@ Bajo la línea pragmática de autores como Valentín Wember, entendemos que sost
 ---
 
 Para las madres de nuestra comunidad en el Sur de Chile que buscan este respiro frente al ritmo del sistema tradicional, el **Colegio Waldorf Trekan** en Puerto Varas mantiene vivo este impulso universal. Las invitamos a conocer cómo materializamos este refugio evolutivo en nuestro territorio.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Melé, Joan Antoni.** *Dinero y conciencia: ¿A quién le sirve mi dinero?* Plataforma Editorial, Barcelona (2009).
+* **Steiner, Rudolf.** *Curso de economía social: El trabajo, el capital y el valor asociativo* (GA 340). Editorial Antroposófica, Buenos Aires.
+* **Wember, Valentin.** *La economía fraterna y el sostenimiento del organismo escolar*. Editorial Pau de Damasc.
+* **Felber, Christian.** *La Economía del Bien Común: Un modelo económico de futuro*. Editorial Deusto.

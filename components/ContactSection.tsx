@@ -79,7 +79,6 @@ END:VCARD`
         {/* Info Column */}
         <div className="space-y-10">
           <div>
-            <span className="font-serif italic text-[var(--color-waldorf-terracotta)] text-lg mb-2 block">Hablemos</span>
             <h2 className="text-4xl md:text-5xl font-bold font-serif text-[var(--color-waldorf-moss)] leading-tight">
               Ven a conocernos
             </h2>

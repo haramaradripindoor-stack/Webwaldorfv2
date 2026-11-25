@@ -3,6 +3,7 @@ title: "Construir la Casa: Por qué levantar el espacio escolar es el primer act
 excerpt: "Cuando una comunidad construye con sus propias manos el lugar donde crecerán sus hijos, no está levantando ladrillos: está fundando el cuerpo vivo de una escuela Waldorf."
 published_at: "2026-08-24"
 image_url: "/imagenes-web/galeria10.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 # La Casa No Precede a la Escuela: Es la Escuela
@@ -40,3 +41,12 @@ Construir la casa de Trekan fue el acto pedagógico inaugural. Todo lo que ocurr
 ---
 
 *¿Quieres conocer más sobre nuestra pedagogía y el proceso de Admisión 2027? Visita nuestro [Portal de Admisión](/admision) o escribe directamente a nuestra coordinadora.*
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **American Academy of Pediatrics (AAP).** *Media and Young Minds: Clinical Guidelines on Screen Exposure and Infant Brain Health*. Pediatrics (2016).
+* **Damasio, Antonio.** *El error de Descartes: La emoción, la razón y el cerebro humano*. Editorial Crítica / Paidós.
+* **Walker, Matthew.** *Por qué dormimos: La nueva ciencia del sueño y el neurodesarrollo infantil*. Editorial Capitán Swing.
+* **Steiner, Rudolf.** *Cronobiología y ritmo vital: La respiración del organismo infantil* (GA 304). Conferencia pedagógica de Dornach.

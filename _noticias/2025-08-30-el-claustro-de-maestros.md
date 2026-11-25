@@ -3,6 +3,7 @@ title: "El Claustro de Maestros: El corazón de la escuela"
 excerpt: "Un análisis del rol espiritual y pedagógico del Claustro de Maestros en las Escuelas Waldorf Trekan, según las directrices de Valentin Wember."
 published_at: "2025-08-30"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 Uno de los pilares más incomprendidos desde fuera de la pedagogía Waldorf es el **Claustro de Maestros**. En su texto "La Gestión de la Escuela", Valentin Wember dedica una profunda reflexión a la función de este órgano vital, dejándonos en claro que no se trata de un simple "grupo de empleados", sino del corazón que bombea vida a todo el proyecto educativo.
@@ -19,3 +20,12 @@ Wember enfatiza que el Claustro solo puede sostener a la escuela si opera desde 
 El maestro Waldorf acompaña a los niños en etapas largas (ciclos de 7 u 8 años). Esto convierte al Claustro no solo en un guía para los alumnos, sino también para los padres. La gestión escolar exitosa depende de que las familias puedan mirar al Claustro con respeto, reconociendo su labor como una vocación espiritual y formativa de largo aliento.
 
 Wember nos recuerda que para que una Escuela Waldorf Trekan prospere, el Claustro debe mantener encendida la llama de la antroposofía, estudiando constantemente los impulsos originales de Steiner y adaptándolos a los desafíos de los niños del presente.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Wember, Valentin.** *La gestión de la escuela: Una guía para las escuelas Waldorf*. Editorial Pau de Damasc / Antroposófica.
+* **Steiner, Rudolf.** *Hacia la renovación del organismo social: Trimembración social* (GA 23). Editorial Rudolf Steiner, Madrid.
+* **Das Goetheanum — Sección Pedagógica.** *Directrices internacionales sobre liderazgo colegiado y gobernanza comunitaria en escuelas Waldorf*. Dornach, Suiza.
+* **Lievegoed, Bernard.** *Las etapas evolutivas del organismo y la organización humana*. Editorial Antroposófica.

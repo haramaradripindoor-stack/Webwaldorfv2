@@ -37,3 +37,12 @@ Este proceso artesanal permite que la luz penetre las capas de pintura y se refl
 **Conclusión**
 
 En Trekan, cada detalle estético tiene un propósito pedagógico. La iluminación y el color no son decorativos; son herramientas activas que protegen la vitalidad del niño, reducen el estrés y cultivan un alma libre, creativa y en paz.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Goethe, Johann Wolfgang von.** *Teoría de los colores* (*Zur Farbenlehre*). Con notas e introducción de Rudolf Steiner. Alianza Editorial.
+* **Steiner, Rudolf.** *La esencia de los colores* (GA 291). Editorial Rudolf Steiner, Madrid.
+* **Schindler, Maria.** *El color: Un camino hacia la vivencia consciente del mundo anímico*. Editorial Rudolf Steiner.
+* **Künzle, Paul.** *Arquitectura y diseño ambiental en las escuelas Waldorf: La luz natural y las materias nobles*. Dornach.

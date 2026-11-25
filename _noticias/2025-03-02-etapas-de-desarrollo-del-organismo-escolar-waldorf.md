@@ -3,6 +3,7 @@ title: "Etapas de Desarrollo: La Biografía del Organismo Escolar Waldorf"
 excerpt: "Al igual que el ser humano, un colegio transita por septenios de desarrollo. Comprender si estamos en la fase Pionera, de Institucionalización o de Renovación es clave para la gestión."
 published_at: "2025-03-02"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 Las Escuelas Waldorf Trekan, fundadas bajo el impulso de la antroposofía, rechazan la concepción mecanicista de ser meras "organizaciones prestadoras de servicios". Son, fundamentalmente, **organismos vivos**. Y como todo ser viviente, poseen una biografía. Tienen un nacimiento, transitan por fases de crecimiento (similares a los septenios humanos), experimentan crisis biográficas y requieren profundas metamorfosis para no envejecer prematuramente.
@@ -20,3 +21,12 @@ El riesgo en esta etapa es la pérdida del calor humano original frente a la fri
 Eventualmente, la institucionalización puede cristalizarse en dogma. El colegio repite tradiciones mecánicamente "porque así se ha hecho siempre". Se instalan jerarquías ocultas y se pierde la conexión con los impulsos modernos de la neurociencia o las nuevas tecnologías. 
 
 Para evitar la muerte del proyecto (o su división por conflictos no resueltos), el organismo escolar debe forzar una crisis de **Renovación Consciente**. Utilizando metodologías como la Teoría U o retrospectivas profundas, el Claustro y la Administración deben regresar a su núcleo de "Kínderbesprechung" (Estudio del Niño real, del presente) e interpelar sus viejas estructuras. Solo al reinventarse conscientemente, abrazando la profesionalización y reencendiendo su llama espiritual, la escuela se transforma en una institución adulta, capaz de guiar a cientos de niños hacia su libertad.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **American Academy of Pediatrics (AAP).** *Media and Young Minds: Clinical Guidelines on Screen Exposure and Infant Brain Health*. Pediatrics (2016).
+* **Damasio, Antonio.** *El error de Descartes: La emoción, la razón y el cerebro humano*. Editorial Crítica / Paidós.
+* **Walker, Matthew.** *Por qué dormimos: La nueva ciencia del sueño y el neurodesarrollo infantil*. Editorial Capitán Swing.
+* **Steiner, Rudolf.** *Cronobiología y ritmo vital: La respiración del organismo infantil* (GA 304). Conferencia pedagógica de Dornach.

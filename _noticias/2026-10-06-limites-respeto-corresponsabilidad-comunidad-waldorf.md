@@ -3,6 +3,7 @@ title: "El arte de ser comunidad: La madurez adulta y el cuidado del organismo e
 excerpt: "Una escuela Waldorf no es una empresa de servicios, sino un organismo vivo. Construir comunidad exige corresponsabilidad, comunicación sana y la voluntad de educar a través de nuestro propio ejemplo como adultos."
 published_at: "2026-10-06"
 image_url: "/assets/galeria/galeria_01_casona_parque.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 # El arte de ser comunidad: La madurez adulta y el cuidado del organismo escolar
@@ -32,3 +33,12 @@ Wember dedica dos capítulos al feedback (entre colegas, y con las familias), y 
 Rechazar el modelo "cliente-proveedor" significa comprender que el colegio no es un ente externo que "nos debe" algo, sino un fuego que mantenemos encendido entre todos.
 
 La corresponsabilidad no significa que los padres asuman roles pedagógicos ni que los maestros dicten la vida familiar. Significa que ambos, desde sus tareas propias, asumen el compromiso maduro de cuidar la relación que los une. El respeto mutuo es la base de todo lo anterior: familias y colegio nos debemos un trato digno, también (y especialmente) cuando estamos en desacuerdo. Cuando logramos esto, los maestros pueden hacer su trabajo con alegría, las familias se sienten parte de un hogar extendido, y los niños pueden dedicarse a crecer.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Wember, Valentin.** *La gestión de la escuela: Una guía para las escuelas Waldorf*. Editorial Pau de Damasc / Antroposófica.
+* **Steiner, Rudolf.** *Hacia la renovación del organismo social: Trimembración social* (GA 23). Editorial Rudolf Steiner, Madrid.
+* **Das Goetheanum — Sección Pedagógica.** *Directrices internacionales sobre liderazgo colegiado y gobernanza comunitaria en escuelas Waldorf*. Dornach, Suiza.
+* **Lievegoed, Bernard.** *Las etapas evolutivas del organismo y la organización humana*. Editorial Antroposófica.

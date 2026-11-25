@@ -3,6 +3,7 @@ title: "Construyendo el futuro: La voluntad que levanta una escuela"
 excerpt: "Levantar una Escuela Waldorf no es un proyecto arquitectónico, es un acto de voluntad comunitaria y fraternidad pura."
 published_at: "2025-02-20"
 image_url: "/imagenes-web/galeria10.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 # El Impulso de la Voluntad en la Comunidad
@@ -18,3 +19,12 @@ Valentín Wember nos recuerda que una escuela es un organismo vivo, y como tal, 
 Al igual que los niños en la pedagogía Waldorf aprenden a través del "hacer" antes que del intelecto frío, los adultos que fundamos y sostenemos esta escuela también aprendemos haciendo. Cada clavo martillado, cada huerta sembrada y cada muro pintado con la suave técnica de la veladura, es un mensaje silencioso para nuestros niños: *El mundo es bueno, y nosotros somos responsables de embellecerlo para ustedes.*
 
 Este es el verdadero espíritu de una Escuela Waldorf. No somos clientes consumiendo un servicio educativo; somos los **guardianes y constructores** del espacio donde el futuro de la humanidad, encarnado en nuestros hijos, podrá florecer con libertad.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Melé, Joan Antoni.** *Dinero y conciencia: ¿A quién le sirve mi dinero?* Plataforma Editorial, Barcelona (2009).
+* **Steiner, Rudolf.** *Curso de economía social: El trabajo, el capital y el valor asociativo* (GA 340). Editorial Antroposófica, Buenos Aires.
+* **Wember, Valentin.** *La economía fraterna y el sostenimiento del organismo escolar*. Editorial Pau de Damasc.
+* **Felber, Christian.** *La Economía del Bien Común: Un modelo económico de futuro*. Editorial Deusto.

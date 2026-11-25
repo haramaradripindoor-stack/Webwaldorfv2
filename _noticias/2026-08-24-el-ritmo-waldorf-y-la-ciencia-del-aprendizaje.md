@@ -3,6 +3,7 @@ title: "El Ritmo Waldorf y la Ciencia del Aprendizaje"
 excerpt: "La pedagogía Waldorf basó sus ritmos en la profunda observación del desarrollo humano. Hoy, la ciencia ayuda a entender por qué favorecen el aprendizaje profundo y el bienestar."
 published_at: "2026-08-24"
 image_url: "/assets/galeria/galeria_04_cuaderno_epoca_detalle.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 # El Ritmo Waldorf y la Ciencia del Aprendizaje
@@ -32,3 +33,12 @@ La pedagogía Waldorf, nacida a principios del siglo XX, basó sus ritmos escola
 ---
 
 **Nota editorial:** Este texto describe con honestidad lo que la evidencia científica respalda hoy y evita presentar observaciones pedagógicas como si fueran mecanismos neurológicos comprobados. No usamos términos prestados de otras disciplinas (como "Deep Work", que pertenece a la literatura de productividad, no a la psicología cognitiva) para dar una apariencia de mayor rigor del que corresponde. Este es el estándar de redacción del Colegio Trekan para cualquier comunicación que vincule la pedagogía Waldorf con la ciencia: mostrar con transparencia dónde la evidencia es sólida y dónde una práctica se sostiene, ante todo, en la observación pedagógica y la experiencia acumulada.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **American Academy of Pediatrics (AAP).** *Media and Young Minds: Clinical Guidelines on Screen Exposure and Infant Brain Health*. Pediatrics (2016).
+* **Damasio, Antonio.** *El error de Descartes: La emoción, la razón y el cerebro humano*. Editorial Crítica / Paidós.
+* **Walker, Matthew.** *Por qué dormimos: La nueva ciencia del sueño y el neurodesarrollo infantil*. Editorial Capitán Swing.
+* **Steiner, Rudolf.** *Cronobiología y ritmo vital: La respiración del organismo infantil* (GA 304). Conferencia pedagógica de Dornach.

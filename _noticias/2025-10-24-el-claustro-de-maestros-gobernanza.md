@@ -3,6 +3,7 @@ title: "El Claustro de Maestros: Gobernanza Colegiada y Rigor Espiritual"
 excerpt: "Abordaje exhaustivo de la función directiva del Claustro de Maestros, su responsabilidad como órgano colegiado y la exigencia de un desarrollo ontológico continuo."
 published_at: "2025-10-24"
 image_url: "/imagenes-web/galeria3.webp"
+author: "Equipo Pedagógico y Fundador"
 ---
 
 Uno de los paradigmas más complejos de asimilar para los profesionales ajenos a la pedagogía Waldorf es la ausencia de una figura rectora unilateral —el director jerárquico— en la conducción académica del colegio. Valentin Wember subraya que esta aparente "ausencia de jefatura" no implica un vacío de autoridad, sino una evolución hacia una forma de gobernanza superior: el **Liderazgo Colegiado**.
@@ -21,3 +22,12 @@ Wember es categórico al advertir los riesgos inherentes a la autogestión. Para
 3. **Formación Continua:** El maestro Waldorf está sujeto a un imperativo ético de autoeducación permanente, tanto en las disciplinas académicas como en su desarrollo interior.
 
 La validación del modelo colegiado en instituciones como Colegio Waldorf Trekan no depende únicamente de la herencia filosófica, sino de la integración de este modelo con altos estándares de profesionalización, diplomados en gestión y el acompañamiento constante de expertos, asegurando que el Claustro actúe con la más alta competencia técnica y espiritual.
+
+---
+
+### Fuentes y Lecturas Recomendadas
+
+* **Wember, Valentin.** *La gestión de la escuela: Una guía para las escuelas Waldorf*. Editorial Pau de Damasc / Antroposófica.
+* **Steiner, Rudolf.** *Hacia la renovación del organismo social: Trimembración social* (GA 23). Editorial Rudolf Steiner, Madrid.
+* **Das Goetheanum — Sección Pedagógica.** *Directrices internacionales sobre liderazgo colegiado y gobernanza comunitaria en escuelas Waldorf*. Dornach, Suiza.
+* **Lievegoed, Bernard.** *Las etapas evolutivas del organismo y la organización humana*. Editorial Antroposófica.
