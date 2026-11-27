@@ -29,7 +29,7 @@ flowchart TD
         direction TB
         E_VID["⭐ 45 Videos Élite<br/>(30 Reels + 15 Cinemáticos)"]
         E_FOT["⭐ 82 Fotos Editoriales<br/>(Aulas, Jardín, Bosque, Rondas)"]
-        FULL_STOCK["🎬 707 Videos + 📸 1.513 Fotos<br/>+ 📑 418 Docs + 🎙️ 15 Audios"]
+        FULL_STOCK["🎬 707 Videos + 📸 1.513 Fotos<br/>"]
     end
 
     subgraph CANAL_WEB["🌐 1. Plataforma Web Next.js (colegiovaldorftrekan.cl)"]
@@ -49,7 +49,7 @@ flowchart TD
 
     subgraph CANAL_DIRECTO["🤝 3. Nutrición Privada & Admisión"]
         direction TB
-        WSP["WhatsApp Oficial: Fichas técnicas, Cuentos PDF y Audios formativos"]
+        WSP["WhatsApp Oficial: Atención directa y coordinación de visitas"]
         DOSSIER["Brochure Impreso / PDF: Charlas pedagógicas presenciales"]
     end
 
@@ -59,8 +59,8 @@ flowchart TD
     E_FOT --> NIVELES
     E_FOT --> MOFU
     E_FOT --> DOSSIER
-    FULL_STOCK --> NOTICIAS
-    FULL_STOCK --> WSP
+    FULL_STOCK --> CANAL_WEB
+    
 ```
 
 ---
@@ -187,8 +187,6 @@ BANCO_MEDIOS_TREKAN_OFICIAL/
 │   ├── 🤝 04_Comunidad_Rondas_y_Fiestas/        <- Archivo de encuentros comunitarios
 │   ├── 🏛️ 05_Casona_y_Vistas_Aereas/            <- Fachada patrimonial y dron
 │   └── ✨ 06_Coleccion_Vida_Escolar/            <- 793 fotos de crónica diaria
-├── 📑 03_DOCUMENTOS_Y_PROYECTOS/                <- 418 PDFs pedagógicos y cuentos
-└── 🎙️ 04_VOCES_Y_REFLEXIONES_PEDAGOGICAS/       <- 15 grabaciones de voz y relatos
 ```
 
 ---
